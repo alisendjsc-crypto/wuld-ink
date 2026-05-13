@@ -172,3 +172,31 @@
   color: var(--c-accent);
   border-color: var(--c-accent);
 }
+
+/* ---------- Audio-intro band ----------
+   Mirrors the SV essay pattern (session H): a top-of-body audio
+   affordance for entries that ship a recorded reading. Audio is its
+   own artifact (full reading or condensed); the entry body below
+   stands as the canonical text. Note lives above the .audio-block
+   so duration + label are scannable before the player hydrates.
+   --------------------------------------------------------------- */
+.audio-intro {
+  margin-block-end: var(--s-6);
+  padding-block-end: var(--s-5);
+  border-bottom: var(--bw-base) solid var(--c-border);
+  max-width: var(--w-prose);
+}
+
+.audio-intro-note {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--c-fg-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  margin-block-end: var(--s-3);
+}
+
+.audio-intro-note strong {
+  color: var(--c-accent);
+  font-weight: 500;
+}
