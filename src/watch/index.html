@@ -3,24 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Watch — wuld.ink</title>
-  <meta name="description" content="Video mirror — link-out to selected YouTube uploads from the WULD Incorporated channel.">
+  <title>Watch &mdash; wuld.ink</title>
+  <meta name="description" content="Video mirror — selected uploads from W.U.L.D.: Incorporated. Click to play in-place; YouTube assets deferred until activation.">
 
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
   <link rel="stylesheet" href="/components/nav.css">
 
+  <!-- Preconnect to ytimg only (the thumbnail CDN). The video host is
+       youtube-nocookie.com and is NOT preconnected — connections to it
+       happen on click, by design (privacy-deferred). -->
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+
   <style>
     /* ============================================================
-       /watch/ — video mirror.
-       Architecture: link-out thumbnail-grid cards. No iframe embeds
-       (SaaS-shaped, bandwidth-heavy, surveillance-coupled). Each card
-       links straight to youtube.com/watch?v=<id>. Card pattern below
-       is a paste-replace template — copy a <a class="video-card">
-       block and fill in date / title / video ID / thumbnail URL.
-       Thumbnail URL pattern:
-         https://i.ytimg.com/vi/<VIDEO_ID>/hqdefault.jpg   (480×360, always exists)
-         https://i.ytimg.com/vi/<VIDEO_ID>/maxresdefault.jpg (1280×720, only if uploaded HD)
+       /watch/ — video mirror with FACADE pattern (session G).
+
+       Cards render as static thumbnails + a play-button overlay on
+       page load. ZERO YouTube iframes load until the visitor clicks.
+       On click, the thumb-wrap's contents are swapped for a
+       youtube-nocookie.com iframe (autoplay=1, rel=0, modestbranding=1).
+
+       Thumbnails come from i.ytimg.com (YouTube's image CDN). That
+       is the only cross-origin asset on initial render; ytimg does
+       not set tracking cookies in the user's browser session for
+       youtube.com. Full privacy discipline would mean caching thumbs
+       on R2 — a future polish, not session-G scope.
+
+       Card → iframe swap is handled by the inline <script> at the
+       bottom of <body>. No external JS. With JS disabled, clicking a
+       card does nothing and visitors fall through to the channel CTA
+       above (graceful degradation).
+
+       To refresh the curated grid: re-scrape the channel and paste
+       new <article class="video-card"> blocks; dates here are
+       approximated from relative timestamps captured at scrape time.
        ============================================================ */
 
     .watch-page {
@@ -36,7 +53,6 @@
       border-bottom: var(--bw-base) solid var(--c-border);
       margin-block-end: var(--s-7);
     }
-
     .page-hero-eyebrow {
       font-family: var(--font-mono);
       font-size: var(--t-xs);
@@ -45,7 +61,6 @@
       color: var(--c-accent);
       margin-block-end: var(--s-3);
     }
-
     .page-hero-title {
       font-family: var(--font-headline);
       font-size: var(--t-h1);
@@ -74,7 +89,6 @@
       flex-wrap: wrap;
       gap: var(--s-4);
     }
-
     .channel-cta-label {
       font-family: var(--font-mono);
       font-size: var(--t-xs);
@@ -82,7 +96,6 @@
       letter-spacing: var(--ls-mega);
       color: var(--c-fg-muted);
     }
-
     .channel-cta a {
       font-family: var(--font-mono);
       font-size: var(--t-sm);
@@ -92,22 +105,15 @@
       padding-block-end: 2px;
       transition: color var(--t-fast) var(--ease);
     }
-
-    .channel-cta a:hover {
-      color: var(--c-accent);
-    }
-
+    .channel-cta a:hover { color: var(--c-accent); }
     .channel-cta a .arrow {
       display: inline-block;
       margin-left: var(--s-2);
       transition: transform var(--t-fast) var(--ease);
     }
+    .channel-cta a:hover .arrow { transform: translateX(3px); }
 
-    .channel-cta a:hover .arrow {
-      transform: translateX(3px);
-    }
-
-    /* ---------- Video card grid ---------- */
+    /* ---------- Video grid heading ---------- */
     .video-grid-heading {
       font-family: var(--font-mono);
       font-size: var(--t-xs);
@@ -119,63 +125,103 @@
       border-bottom: var(--bw-base) solid var(--c-border);
     }
 
+    /* ---------- Video grid ---------- */
     .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: var(--s-5);
     }
 
-    /* Each card: full-click link, thumbnail on top, metadata below. */
+    /* ---------- Video card ---------- */
     .video-card {
       display: flex;
       flex-direction: column;
-      text-decoration: none;
       background-color: var(--c-bg);
       border: var(--bw-base) solid var(--c-border);
-      transition:
-        border-color var(--t-fast) var(--ease),
-        transform var(--t-fast) var(--ease);
+      cursor: pointer;
+      transition: border-color var(--t-fast) var(--ease);
     }
-
-    .video-card:hover {
-      border-color: var(--c-accent);
-    }
-
-    .video-card:focus-visible {
+    .video-card:hover { border-color: var(--c-accent); }
+    .video-card:focus-within {
       outline: var(--bw-base) solid var(--c-focus);
       outline-offset: 2px;
+    }
+
+    /* Thumb wrap — facade container, swapped with iframe on click */
+    .video-thumb-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      background-color: var(--c-bg-elevated);
+      border-bottom: var(--bw-base) solid var(--c-border);
+      overflow: hidden;
     }
 
     .video-thumb {
       display: block;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 100%;
       object-fit: cover;
-      background-color: var(--c-bg-elevated);  /* fallback while loading */
-      border-bottom: var(--bw-base) solid var(--c-border);
+      transition:
+        filter var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease);
     }
 
-    /* Placeholder thumbnail for paste-replace stubs */
-    .video-thumb-placeholder {
-      aspect-ratio: 16 / 9;
-      background-color: var(--c-bg-elevated);
-      border-bottom: var(--bw-base) solid var(--c-border);
+    .video-card:hover .video-thumb {
+      filter: brightness(0.7);
+    }
+
+    /* Play overlay — neobrutalist register, no rounded corners */
+    .video-play {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 4.5rem;
+      height: 4.5rem;
+      background-color: rgba(10, 10, 10, 0.78);
+      border: var(--bw-base) solid var(--c-accent);
+      color: var(--c-accent);
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      line-height: 1;
+      padding: 0;
+      padding-left: 0.2em;  /* optical correction for the ▶ glyph's left-weighted bounding box */
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      transition:
+        background-color var(--t-fast) var(--ease),
+        color var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease);
+    }
+
+    .video-card:hover .video-play {
+      background-color: var(--c-accent);
+      color: var(--c-fg);
+      transform: scale(1.06);
+    }
+
+    .video-play:focus-visible {
+      outline: var(--bw-base) solid var(--c-focus);
+      outline-offset: 3px;
+    }
+
+    /* Video duration badge (bottom-right corner of thumb) */
+    .video-duration {
+      position: absolute;
+      bottom: var(--s-2);
+      right: var(--s-2);
+      background-color: rgba(10, 10, 10, 0.88);
+      color: var(--c-fg);
       font-family: var(--font-mono);
       font-size: var(--t-xs);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-mega);
-      color: var(--c-fg-dim);
-      text-align: center;
-      padding: var(--s-5);
+      padding: 2px 6px;
+      border: var(--bw-thin) solid var(--c-border);
+      letter-spacing: var(--ls-wide);
     }
 
-    .video-card:hover .video-thumb-placeholder {
-      color: var(--c-fg-muted);
-    }
-
+    /* Meta block */
     .video-meta {
       padding: var(--s-5);
       display: flex;
@@ -200,8 +246,17 @@
       transition: color var(--t-fast) var(--ease);
     }
 
-    .video-card:hover .video-title {
-      color: var(--c-accent);
+    .video-card:hover .video-title { color: var(--c-accent); }
+
+    /* Activated state — once iframe is loaded, border lifts to accent */
+    .video-thumb-wrap[data-activated="1"] {
+      border-bottom-color: var(--c-accent);
+    }
+    .video-thumb-wrap[data-activated="1"] iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
     }
 
     /* ---------- Footer ---------- */
@@ -215,7 +270,6 @@
       text-transform: uppercase;
       letter-spacing: var(--ls-wide);
     }
-
     .page-footer-inner {
       max-width: var(--w-max);
       margin-inline: auto;
@@ -228,9 +282,7 @@
 
     /* ---------- Narrow viewport adjustments ---------- */
     @media (max-width: 640px) {
-      .page-hero-title {
-        font-size: var(--t-h2);
-      }
+      .page-hero-title { font-size: var(--t-h2); }
       .channel-cta {
         flex-direction: column;
         align-items: flex-start;
@@ -243,7 +295,6 @@
 
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- Site header -->
   <header class="site-header">
     <div class="site-header-inner container">
       <a href="/" class="site-mark">wuld.ink</a>
@@ -265,18 +316,16 @@
          Page hero
          ============================================================ -->
     <section class="page-hero">
-      <p class="page-hero-eyebrow">07 · Video mirror</p>
+      <p class="page-hero-eyebrow">07 &middot; Video mirror</p>
       <h1 class="page-hero-title">Watch</h1>
     </section>
 
     <p class="page-intro">
-      Selected uploads from the WULD Incorporated channel. Each card links to
-      the canonical YouTube watch page — no embeds, no autoplay, no surveillance
-      pixel passing through this surface.
+      Selected uploads from W.U.L.D.: Incorporated. Click any card to play in-place. The canonical channel lives at YouTube; this is the umbrella&rsquo;s mirror.
     </p>
 
     <!-- ============================================================
-         Channel CTA — always-current pointer to the source channel
+         Channel CTA — always-current pointer to source
          ============================================================ -->
     <div class="channel-cta">
       <span class="channel-cta-label">Source channel</span>
@@ -284,55 +333,138 @@
          target="_blank"
          rel="noopener noreferrer">
         youtube.com/@WULDIncorporated
-        <span class="arrow" aria-hidden="true">→</span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
       </a>
     </div>
 
     <!-- ============================================================
-         Video grid
-         ----------------------------------------------------------------
-         PASTE-REPLACE TEMPLATE — copy one .video-card block and fill:
-           href              = https://www.youtube.com/watch?v=<VIDEO_ID>
-           img src           = https://i.ytimg.com/vi/<VIDEO_ID>/hqdefault.jpg
-                               (or .../maxresdefault.jpg if HD uploaded)
-           img alt           = video title (or "" if title is below + decorative)
-           .video-date       = YYYY-MM-DD
-           .video-title      = video title
-
-         When replacing a placeholder card, swap the .video-thumb-placeholder
-         <div> for an <img class="video-thumb" src="..." alt="..."> element.
+         Video grid — facade cards (8 most recent at scrape time)
+         Dates approximated from relative timestamps. To refresh:
+         re-scrape channel and paste new .video-card blocks.
          ============================================================ -->
     <h2 class="video-grid-heading">Selected uploads</h2>
 
     <div class="video-grid">
 
-      <!-- ---------- PLACEHOLDER CARD 1 — paste-replace ---------- -->
-      <a class="video-card"
-         href="https://www.youtube.com/@WULDIncorporated/videos"
-         target="_blank"
-         rel="noopener noreferrer">
-        <div class="video-thumb-placeholder" aria-hidden="true">
-          Paste thumbnail
+      <article class="video-card" data-video-id="GSDN0vu18Fo" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/GSDN0vu18Fo/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/GSDN0vu18Fo/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration">23:59</span>
+          <button class="video-play" type="button" aria-label="Play: The Architecture of Moral Disaster">&#9654;</button>
         </div>
         <div class="video-meta">
-          <span class="video-date">YYYY-MM-DD</span>
-          <h3 class="video-title">[ Paste video title ]</h3>
+          <span class="video-date">Apr 2026</span>
+          <h3 class="video-title">The Architecture of Moral Disaster</h3>
         </div>
-      </a>
+      </article>
 
-      <!-- ---------- PLACEHOLDER CARD 2 — paste-replace ---------- -->
-      <a class="video-card"
-         href="https://www.youtube.com/@WULDIncorporated/videos"
-         target="_blank"
-         rel="noopener noreferrer">
-        <div class="video-thumb-placeholder" aria-hidden="true">
-          Paste thumbnail
+      <article class="video-card" data-video-id="BGZXSa3A1Nc" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/BGZXSa3A1Nc/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/BGZXSa3A1Nc/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration">9:43</span>
+          <button class="video-play" type="button" aria-label="Play: The Blood-Soaked Footprint of Life">&#9654;</button>
         </div>
         <div class="video-meta">
-          <span class="video-date">YYYY-MM-DD</span>
-          <h3 class="video-title">[ Paste video title ]</h3>
+          <span class="video-date">Apr 2026</span>
+          <h3 class="video-title">The Blood-Soaked Footprint of Life</h3>
         </div>
-      </a>
+      </article>
+
+      <article class="video-card" data-video-id="3B9I7KkDnmk" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/3B9I7KkDnmk/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/3B9I7KkDnmk/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration">11:44</span>
+          <button class="video-play" type="button" aria-label="Play: Taedium Vitae">&#9654;</button>
+        </div>
+        <div class="video-meta">
+          <span class="video-date">Nov 2025</span>
+          <h3 class="video-title">Taedium Vitae</h3>
+        </div>
+      </article>
+
+      <article class="video-card" data-video-id="ITUWd1vzNRQ" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/ITUWd1vzNRQ/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/ITUWd1vzNRQ/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration">4:27</span>
+          <button class="video-play" type="button" aria-label="Play: Anfractuous Aporia">&#9654;</button>
+        </div>
+        <div class="video-meta">
+          <span class="video-date">2025</span>
+          <h3 class="video-title">Anfractuous Aporia</h3>
+        </div>
+      </article>
+
+      <article class="video-card" data-video-id="y7Kfy28S0tw" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/y7Kfy28S0tw/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/y7Kfy28S0tw/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration">5:18</span>
+          <button class="video-play" type="button" aria-label="Play: Life: A Tale Told By An Idiot">&#9654;</button>
+        </div>
+        <div class="video-meta">
+          <span class="video-date">2025</span>
+          <h3 class="video-title">Life: A Tale Told By An Idiot</h3>
+        </div>
+      </article>
+
+      <article class="video-card" data-video-id="jsRCXoB9oy8" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/jsRCXoB9oy8/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/jsRCXoB9oy8/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration">3:34</span>
+          <button class="video-play" type="button" aria-label="Play: Health &amp; Safety (Board of Supervisors)">&#9654;</button>
+        </div>
+        <div class="video-meta">
+          <span class="video-date">2025</span>
+          <h3 class="video-title">Health &amp; Safety (Board of Supervisors)</h3>
+        </div>
+      </article>
+
+      <article class="video-card" data-video-id="d5OhpKgrBOs" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/d5OhpKgrBOs/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/d5OhpKgrBOs/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration">6:37</span>
+          <button class="video-play" type="button" aria-label="Play: Gladiator War (Remastered)">&#9654;</button>
+        </div>
+        <div class="video-meta">
+          <span class="video-date">2025</span>
+          <h3 class="video-title">&ldquo;Gladiator War&rdquo; (Remastered)</h3>
+        </div>
+      </article>
+
+      <article class="video-card" data-video-id="XZdj7U44qv0" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/XZdj7U44qv0/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/XZdj7U44qv0/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration">8:38</span>
+          <button class="video-play" type="button" aria-label="Play: Reductio Ad Absurdum">&#9654;</button>
+        </div>
+        <div class="video-meta">
+          <span class="video-date">2025</span>
+          <h3 class="video-title">Reductio Ad Absurdum</h3>
+        </div>
+      </article>
 
     </div>
 
@@ -349,5 +481,45 @@
   </footer>
 
   <script src="/components/nav.js"></script>
+
+  <script>
+    /* ============================================================
+       Facade activator — swap thumb-wrap for youtube-nocookie.com
+       iframe on first click/keypress. No-op if JS disabled.
+       ============================================================ */
+    (function () {
+      function activate(card) {
+        if (!card) return;
+        var wrap = card.querySelector('.video-thumb-wrap');
+        if (!wrap || wrap.dataset.activated === '1') return;
+        var id = card.dataset.videoId;
+        if (!id) return;
+        wrap.dataset.activated = '1';
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
+                     '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+        iframe.title = 'YouTube video player';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        wrap.innerHTML = '';
+        wrap.appendChild(iframe);
+      }
+      document.addEventListener('click', function (e) {
+        var card = e.target.closest('.video-card');
+        if (!card) return;
+        activate(card);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var t = e.target;
+        if (!t || (t.tagName !== 'BUTTON' && !(t.classList && t.classList.contains('video-card')))) return;
+        var card = t.closest('.video-card');
+        if (!card) return;
+        e.preventDefault();
+        activate(card);
+      });
+    })();
+  </script>
 </body>
 </html>
