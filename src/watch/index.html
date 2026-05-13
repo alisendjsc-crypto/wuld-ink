@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch — wuld.ink</title>
+  <meta name="description" content="Video mirror — link-out to selected YouTube uploads from the WULD Incorporated channel.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+
+  <style>
+    /* ============================================================
+       /watch/ — video mirror.
+       Architecture: link-out thumbnail-grid cards. No iframe embeds
+       (SaaS-shaped, bandwidth-heavy, surveillance-coupled). Each card
+       links straight to youtube.com/watch?v=<id>. Card pattern below
+       is a paste-replace template — copy a <a class="video-card">
+       block and fill in date / title / video ID / thumbnail URL.
+       Thumbnail URL pattern:
+         https://i.ytimg.com/vi/<VIDEO_ID>/hqdefault.jpg   (480×360, always exists)
+         https://i.ytimg.com/vi/<VIDEO_ID>/maxresdefault.jpg (1280×720, only if uploaded HD)
+       ============================================================ */
+
+    .watch-page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+
+    /* ---------- Page hero ---------- */
+    .page-hero {
+      padding-block: var(--s-8) var(--s-6);
+      border-bottom: var(--bw-base) solid var(--c-border);
+      margin-block-end: var(--s-7);
+    }
+
+    .page-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+      margin-block-end: var(--s-3);
+    }
+
+    .page-hero-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h1);
+      line-height: var(--lh-tight);
+      color: var(--c-fg);
+      margin-block-end: 0;
+    }
+
+    .page-intro {
+      font-family: var(--font-body);
+      font-size: var(--t-lead);
+      line-height: var(--lh-default);
+      color: var(--c-fg-muted);
+      max-width: var(--w-prose);
+      margin-block-end: var(--s-6);
+    }
+
+    /* ---------- Channel CTA bar ---------- */
+    .channel-cta {
+      border: var(--bw-base) solid var(--c-border-strong);
+      padding: var(--s-5);
+      margin-block-end: var(--s-7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--s-4);
+    }
+
+    .channel-cta-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+    }
+
+    .channel-cta a {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      color: var(--c-fg);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+      padding-block-end: 2px;
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .channel-cta a:hover {
+      color: var(--c-accent);
+    }
+
+    .channel-cta a .arrow {
+      display: inline-block;
+      margin-left: var(--s-2);
+      transition: transform var(--t-fast) var(--ease);
+    }
+
+    .channel-cta a:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    /* ---------- Video card grid ---------- */
+    .video-grid-heading {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-5);
+      padding-block-end: var(--s-3);
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: var(--s-5);
+    }
+
+    /* Each card: full-click link, thumbnail on top, metadata below. */
+    .video-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      background-color: var(--c-bg);
+      border: var(--bw-base) solid var(--c-border);
+      transition:
+        border-color var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease);
+    }
+
+    .video-card:hover {
+      border-color: var(--c-accent);
+    }
+
+    .video-card:focus-visible {
+      outline: var(--bw-base) solid var(--c-focus);
+      outline-offset: 2px;
+    }
+
+    .video-thumb {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background-color: var(--c-bg-elevated);  /* fallback while loading */
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+
+    /* Placeholder thumbnail for paste-replace stubs */
+    .video-thumb-placeholder {
+      aspect-ratio: 16 / 9;
+      background-color: var(--c-bg-elevated);
+      border-bottom: var(--bw-base) solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-dim);
+      text-align: center;
+      padding: var(--s-5);
+    }
+
+    .video-card:hover .video-thumb-placeholder {
+      color: var(--c-fg-muted);
+    }
+
+    .video-meta {
+      padding: var(--s-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+
+    .video-date {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+    }
+
+    .video-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h4);
+      line-height: var(--lh-snug);
+      color: var(--c-fg);
+      margin-block-end: 0;
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .video-card:hover .video-title {
+      color: var(--c-accent);
+    }
+
+    /* ---------- Footer ---------- */
+    .page-footer {
+      border-top: var(--bw-base) solid var(--c-border);
+      padding-block: var(--s-5);
+      margin-block-start: var(--s-9);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+
+    .page-footer-inner {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s-4);
+    }
+
+    /* ---------- Narrow viewport adjustments ---------- */
+    @media (max-width: 640px) {
+      .page-hero-title {
+        font-size: var(--t-h2);
+      }
+      .channel-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Site header -->
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="watch-page">
+
+    <!-- ============================================================
+         Page hero
+         ============================================================ -->
+    <section class="page-hero">
+      <p class="page-hero-eyebrow">07 · Video mirror</p>
+      <h1 class="page-hero-title">Watch</h1>
+    </section>
+
+    <p class="page-intro">
+      Selected uploads from the WULD Incorporated channel. Each card links to
+      the canonical YouTube watch page — no embeds, no autoplay, no surveillance
+      pixel passing through this surface.
+    </p>
+
+    <!-- ============================================================
+         Channel CTA — always-current pointer to the source channel
+         ============================================================ -->
+    <div class="channel-cta">
+      <span class="channel-cta-label">Source channel</span>
+      <a href="https://www.youtube.com/@WULDIncorporated/videos"
+         target="_blank"
+         rel="noopener noreferrer">
+        youtube.com/@WULDIncorporated
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <!-- ============================================================
+         Video grid
+         ----------------------------------------------------------------
+         PASTE-REPLACE TEMPLATE — copy one .video-card block and fill:
+           href              = https://www.youtube.com/watch?v=<VIDEO_ID>
+           img src           = https://i.ytimg.com/vi/<VIDEO_ID>/hqdefault.jpg
+                               (or .../maxresdefault.jpg if HD uploaded)
+           img alt           = video title (or "" if title is below + decorative)
+           .video-date       = YYYY-MM-DD
+           .video-title      = video title
+
+         When replacing a placeholder card, swap the .video-thumb-placeholder
+         <div> for an <img class="video-thumb" src="..." alt="..."> element.
+         ============================================================ -->
+    <h2 class="video-grid-heading">Selected uploads</h2>
+
+    <div class="video-grid">
+
+      <!-- ---------- PLACEHOLDER CARD 1 — paste-replace ---------- -->
+      <a class="video-card"
+         href="https://www.youtube.com/@WULDIncorporated/videos"
+         target="_blank"
+         rel="noopener noreferrer">
+        <div class="video-thumb-placeholder" aria-hidden="true">
+          Paste thumbnail
+        </div>
+        <div class="video-meta">
+          <span class="video-date">YYYY-MM-DD</span>
+          <h3 class="video-title">[ Paste video title ]</h3>
+        </div>
+      </a>
+
+      <!-- ---------- PLACEHOLDER CARD 2 — paste-replace ---------- -->
+      <a class="video-card"
+         href="https://www.youtube.com/@WULDIncorporated/videos"
+         target="_blank"
+         rel="noopener noreferrer">
+        <div class="video-thumb-placeholder" aria-hidden="true">
+          Paste thumbnail
+        </div>
+        <div class="video-meta">
+          <span class="video-date">YYYY-MM-DD</span>
+          <h3 class="video-title">[ Paste video title ]</h3>
+        </div>
+      </a>
+
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span>WULD &middot; wuld.ink &middot; 2026&ndash;</span>
+      <span><a href="/" style="color: inherit; text-decoration: none;">&larr; Return to index</a></span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /* ============================================================
    wuld.ink — site nav component
    Promoted from essay.html template-local CSS in session B.
-   Markup contract:
+   Markup contract (session G: 7 items, Watch added between Void and Book):
      <header class="site-header">
        <div class="site-header-inner container">
          <a href="/" class="site-mark">wuld.ink</a>
@@ -10,6 +10,7 @@
            <a href="/argument-library/">Library</a>
            <a href="/glossary/">Glossary</a>
            <a href="/void-engine/">Void</a>
+           <a href="/watch/">Watch</a>
            <a href="/book/">Book</a>
            <a href="/blog/">Blog</a>
          </nav>
@@ -32,11 +33,13 @@
   flex-wrap: wrap;       /* mobile fallback — nav wraps below mark */
 }
 
-/* ---------- Site mark (logo / wordmark) ---------- */
+/* ---------- Site mark (logo / wordmark) ----------
+   Same family + weight as nav links; size carries the hierarchy.
+   Session G fix: dropped font-weight:700 — was reading bolder than nav
+   strip while spec is same-family-at-different-sizes-only. */
 .site-mark {
   font-family: var(--font-mono);
   font-size: var(--t-h5);
-  font-weight: 700;
   letter-spacing: var(--ls-tight);
   color: var(--c-fg);
   text-decoration: none;

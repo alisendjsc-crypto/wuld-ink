@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>[ · ]</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+
+  <!--
+    ============================================================
+    THE SUCCESSOR PROTOCOL — gated stub
+    ============================================================
+    Hidden route: /_/successor-protocol/
+    Underscored-prefix is the wuld.ink internal convention for
+    "not indexed, not linked, not surfaced anywhere on the site."
+
+    AUTHORIZATION (operator-side, post-session):
+      Configure at: Cloudflare Zero Trust dashboard →
+        Access → Applications → Add an application →
+        Self-hosted application
+      Application domain: wuld.ink/_/successor-protocol/*
+      Identity providers: One-time PIN (email-OTP)
+      Policy: Allow → Emails include → alisendjsc@gmail.com
+      Session duration: 24 hours (or operator preference)
+
+    Cloudflare Access gates the request at the edge BEFORE the
+    HTML is served. View-source / dev-tools bypass is impossible
+    because the bytes never leave the edge until JWT is validated.
+    Client-side JS password schemes (defeated by view-source) are
+    categorically NOT used here.
+
+    CONTENT (chat-side, post-baton):
+      Replace the <main> stub block below with the actual
+      Successor Protocol content when the baton arrives from the
+      authoring project. No Cowork session needed for the swap.
+
+    No nav, no site-header, no footer — this is a sealed surface,
+    deliberately untethered from the umbrella's chrome. If you
+    landed here unauthenticated, something is wrong with Access.
+    ============================================================
+  -->
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: var(--s-7);
+    }
+
+    .stub {
+      max-width: var(--w-narrow);
+      text-align: center;
+      font-family: var(--font-mono);
+      color: var(--c-fg-muted);
+    }
+
+    .stub-mark {
+      font-size: var(--t-h2);
+      color: var(--c-accent);
+      margin-block-end: var(--s-5);
+      letter-spacing: var(--ls-mega);
+      line-height: 1;
+    }
+
+    .stub-label {
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-dim);
+      margin-block-end: var(--s-3);
+    }
+
+    .stub-body {
+      font-size: var(--t-sm);
+      line-height: var(--lh-snug);
+      color: var(--c-fg-muted);
+    }
+
+    .stub-meta {
+      margin-block-start: var(--s-7);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="stub" aria-labelledby="stub-label">
+    <div class="stub-mark" aria-hidden="true">[ · ]</div>
+    <p id="stub-label" class="stub-label">The Successor Protocol</p>
+    <p class="stub-body">Awaiting transmission.</p>
+    <p class="stub-meta">Scaffold &middot; 2026&ndash;</p>
+  </main>
+</body>
+</html>

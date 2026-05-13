@@ -91,31 +91,20 @@
       margin-block: var(--s-5);
     }
 
-    .cover-handles {
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-mega);
-      color: var(--c-fg-muted);
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: var(--s-3) var(--s-5);
-      margin-block-end: 0;
-    }
-
-    .cover-handles span {
-      display: inline-block;
-    }
-
-    .cover-handles .sep {
-      color: var(--c-accent);
-    }
-
-    /* Bottom of cover: descent affordance */
+    /* Bottom of cover: descent affordance.
+       Session-G fix: matched constraint pattern to .cover-mark-block
+       (max-width + margin-inline:auto + width:100%) so both children
+       share the same centerline at every viewport width. Also added a
+       visibility:hidden balancer span left of "Index" so the WORD
+       centers on the page axis with the arrow as right-decoration
+       (previous inline-flex centered the unit, which pushed "Index"
+       optically left of the title's centerline). */
     .cover-descent {
       grid-row: 3;
       align-self: end;
+      max-width: var(--w-max);
+      margin-inline: auto;
+      width: 100%;
       text-align: center;
       font-family: var(--font-mono);
       font-size: var(--t-xs);
@@ -141,6 +130,12 @@
     .cover-descent .arrow {
       display: inline-block;
       animation: descent-pulse 2.4s var(--ease) infinite;
+    }
+
+    .cover-descent .arrow-balancer {
+      visibility: hidden;
+      pointer-events: none;
+      user-select: none;
     }
 
     @keyframes descent-pulse {
@@ -171,12 +166,31 @@
       border-bottom: var(--bw-base) solid var(--c-border);
     }
 
+    /* Session-G: explicit 3-column grid per Josiah's lock. 7 destination
+       cards + 2 placeholder cells = 3×3 with deliberate empty slots
+       reserving future additions. Placeholders hide at narrow widths so
+       the grid reads as a list, not a half-empty matrix. */
     .index-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: var(--bw-base);  /* gaps render as hairline accent divisions when bg shows through */
       background-color: var(--c-border);
       border: var(--bw-base) solid var(--c-border);
+    }
+
+    @media (max-width: 900px) {
+      .index-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .destination-placeholder {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .index-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Each destination is a card with hairline borders forming a grid */
@@ -232,6 +246,22 @@
       color: var(--c-fg-dim);
     }
 
+    /* Reserved-slot placeholder cells (visible only at wide widths) */
+    .destination-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 11rem;
+      background-color: var(--c-bg);
+    }
+
+    .destination-placeholder .placeholder-mark {
+      font-family: var(--font-mono);
+      font-size: var(--t-h3);
+      color: var(--c-fg-dim);
+      letter-spacing: var(--ls-mega);
+    }
+
     /* ---------- Footer ---------- */
     .home-footer {
       border-top: var(--bw-base) solid var(--c-border);
@@ -269,6 +299,7 @@
         <a href="/argument-library/">Library</a>
         <a href="/glossary/">Glossary</a>
         <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
         <a href="/book/">Book</a>
         <a href="/blog/">Blog</a>
       </nav>
@@ -277,6 +308,9 @@
 
   <!-- ============================================================
        Cover — full viewport. Collapsed title-page register.
+       Session G: handles row removed (aliases were decorative noise,
+       WULD redundant with title). Cover now: bracketed title + slab
+       rule + INDEX↓ descent.
        ============================================================ -->
   <section class="cover" aria-label="Cover">
     <div class="cover-spacer-top"></div>
@@ -284,17 +318,11 @@
     <div class="cover-mark-block">
       <h1 class="cover-mark">wuld.ink</h1>
       <hr class="cover-rule">
-      <p class="cover-handles">
-        <span>WULD</span>
-        <span class="sep">·</span>
-        <span>AnomicIndividual87</span>
-        <span class="sep">·</span>
-        <span>Evilis&nbsp;Anihilis&nbsp;Uls</span>
-      </p>
     </div>
 
     <p class="cover-descent">
       <a href="#index">
+        <span class="arrow-balancer" aria-hidden="true">↓</span>
         <span>Index</span>
         <span class="arrow" aria-hidden="true">↓</span>
       </a>
@@ -344,6 +372,20 @@
         <h3 class="destination-title">Blog</h3>
         <span class="destination-tag">Posts</span>
       </a>
+
+      <a class="destination" href="/watch/">
+        <span class="destination-label">07 · Video mirror</span>
+        <h3 class="destination-title">Watch</h3>
+        <span class="destination-tag">YouTube · WULD Incorporated</span>
+      </a>
+
+      <div class="destination destination-placeholder" aria-hidden="true">
+        <span class="placeholder-mark">·</span>
+      </div>
+
+      <div class="destination destination-placeholder" aria-hidden="true">
+        <span class="placeholder-mark">·</span>
+      </div>
 
     </div>
   </section>
