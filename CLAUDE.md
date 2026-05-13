@@ -1,0 +1,306 @@
+# CLAUDE.md — wuld.ink project primer
+
+You are a Cowork instance working on Josiah's `wuld.ink` personal site. Read this file first. Then read `docs/wuld-ink-cowork-brief.md`. That is the orientation sequence.
+
+---
+
+## What this project is
+
+A multi-page philosophical-content site for Josiah (WULD / AnomicIndividual87 / Evilis Anihilis Uls). Cloudflare end-to-end stack (Registrar + Pages + R2). Domain `wuld.ink` registered 2026-05-11 (auto-renew $20/yr, expires 2027-05-11). The site is the umbrella for all his philosophical output.
+
+---
+
+## Orientation sequence (in order)
+
+1. Read this file.
+2. Read `docs/wuld-ink-cowork-brief.md` — full implementation brief, stack rationale, capacity math, audio architecture, open decisions, working preferences.
+3. Confirm what Josiah is asking. If a session-A-prerequisite decision is still open (see "Current state" below), surface it via `AskUserQuestion` before building anything.
+
+---
+
+## File layout
+
+| Path | Role |
+|---|---|
+| `README.md` | Quick orientation, scope summary |
+| `CLAUDE.md` | This file — primer for Cowork sessions |
+| `docs/wuld-ink-cowork-brief.md` | Full implementation brief |
+| `src/tokens.css` | Multi-mode design tokens (type, color×3 modes, spacing, borders, motion) + `@font-face` declarations for 3 self-hosted serif faces |
+| `src/base.css` | Reset + element defaults wired to tokens; root font-size bumped to 18px |
+| `src/components/audio-player.{css,js}` | Inline `.audio-block` audio player; reads `data-audio-key` → R2 URL |
+| `src/components/mode-toggle.{css,js}` | Scoped reader-mode toggle (dark / reader / hc) |
+| `src/components/nav.{css,js}` | Site header + primary nav. JS sets `aria-current="page"` on matching link (session B) |
+| `src/components/glossary.css` | Glossary index + per-entry layout (shared across all `/glossary/*` pages) |
+| `src/components/void-engine.{css,js}` | Void Engine instrument: signal textarea + mode radiogroup + seed input + transmit button + transmission output. JS exposes `window.VoidEngine.register(slug, {label, transform})` for chat-side authorship of transmission modes. Ships with two content-empty stub presets (NULL passthrough, INVERSION mirror) so the instrument boots usable. Seeded determinism via mulberry32 PRNG; empty seed input falls through to content-derived xmur3 hash for reproducible auto-seeding. |
+| `src/templates/essay.html` | Canonical essay template — root-relative asset paths after session B; serve `src/` via static server for local preview |
+| `src/index.html` | Real homepage — collapsed title-page. Cover (full viewport, Cormorant Garamond display + handles row + descent affordance) → Index grid of 6 destinations → footer |
+| `src/essays/index.html` | Essay index — lists SV (live shell) + Illogically Is + A Life Inside (forthcoming) |
+| `src/essays/sanguinolentum-vestigium/index.html` | SV essay shell — 3 sections wired with audio data-keys (`essays/sanguinolentum-vestigium/section-{1,2,3}.mp3`), prose placeholders awaiting chat-side injection |
+| `src/argument-library/index.html` | Library page shell — placeholder; editorial extracts land in F+ once library declares stable tag |
+| `src/glossary/index.html` | Glossary A–Z index — 9 terms listed, 2 live (Alogical Isness, Contextus Claudit) + 7 forthcoming |
+| `src/glossary/_template.html` | Glossary entry template — copy for new entries, fill term/meta/sections |
+| `src/glossary/alogical-isness/index.html` | Anchor entry shell — definition/etymology/see-also/appears-in scaffolded, bodies pending |
+| `src/glossary/contextus-claudit/index.html` | Anchor entry shell — same scaffold as alogical-isness |
+| `src/void-engine/index.html` | Void Engine page — live instrument. Signal textarea + transmission output below, section-rule separated. Mode radiogroup hydrates from registry. Cmd/Ctrl+Enter from textarea transmits. Two stub presets ship; chat-side appends real transmission modes by calling `VoidEngine.register(...)` in a sibling `<script>` block (see comment block at bottom of the file). |
+| `src/book/index.html` | Book page shell |
+| `src/blog/index.html` | Blog page shell |
+| `src/fonts/README.md` | List of WOFF2 files to drop in + sources (Cormorant Garamond, IM Fell English, EB Garamond) |
+| `docs/baton-template.md` | Cross-project synthesis template Josiah carries between project chats; feeds session B's IA + glossary work |
+| `docs/library-claude-coordination.md` | Cross-Claude relay doc between wuld.ink Cowork and library-Claude. Append a new dated Exchange section per round. Locks agreements + open pushes per item (confirm/nudge/reject format). |
+
+---
+
+## Scope: what Cowork is for vs not for
+
+### Cowork is FOR (most build work):
+
+- Design system: typography scale, color tokens, spacing rhythm, component library
+- HTML/CSS/JS implementation across all pages
+- Audio player component + `data-audio-key` wiring to R2
+- Build tooling, GitHub repo init, Cloudflare Pages config, DNSSEC enable
+- Iterative debug/fix/refine cycles
+- File reorganization, find-and-replace, structural lookups
+- R2 bucket setup, custom subdomain (`audio.wuld.ink`) config
+
+### Cowork is NOT FOR (defer to chat):
+
+- Drafting essay or blog **content** (philosophical writing)
+- Generating glossary entries (vocabulary curation)
+- Drafting Void Engine prompts (semantic content authorship)
+- Major architectural pivots (re-locking the stack, swapping registrar)
+- Anything that would update the **efilist** project's canon (different project)
+
+Rule of thumb: **Cowork builds the vessel; chat fills it with content.**
+
+---
+
+## Register and working norms
+
+- **Direct.** No hedging, apologies, sycophancy, "great question" openers.
+- **Iconoclastic framing welcome** where it earns its keep.
+- **Disagree substantively** — don't flatter, push back where the user's logic has gaps. Concede only to superior argument.
+- **No menus.** Recommendation first, then supporting reasoning.
+- **Concise.** Josiah reads without prescription glasses currently — keep blocks short, scannable.
+- **Pre-flag token-budget risks.** Multi-session arc; sessions that may hit ceilings mid-build should be re-scoped, not pushed through.
+
+---
+
+## Aesthetic register (LOCKED — applies to all visual decisions)
+
+- **Mode:** Neobrutalist dark-mode (canonical). Reader-mode (warm-cream light) and high-contrast (HC) modes are SCOPED accessibility affordances on heavy-read containers only — not site-global theme switches.
+- **Typography (book-matched):** Three serif faces mirroring Josiah's book + IBM Plex Mono retained for UI chrome only.
+  - **Cormorant Garamond** (Christian Thalmann) — `--font-display`: homepage hero, title-page, book-cover register.
+  - **IM Fell English** (Igino Marini) — `--font-headline`: h1, h2 essay/section titles.
+  - **EB Garamond** (Georg Duffner) — `--font-body`: body text, h3-h5 subheadings.
+  - **IBM Plex Mono** — `--font-mono`: eyebrow labels, audio readouts, mode-toggle buttons, code, metadata, footer, nav. The "manufactured object" signal (running heads, colophons, page numbers in literary-press parlance). **Also the cross-surface anchor** between wuld.ink (where Mono = chrome) and `library.wuld.ink` (where Mono = everywhere, the instrument-panel diegetic skin). The Mono spine is the typographic constant across the umbrella; non-chrome typography diverges by design (serif on wuld.ink for content register; mono throughout on library for instrument register).
+  - All three serifs self-hosted via `@font-face` with `local()` first in the src chain (renders Josiah's installed copies immediately, falls through to WOFF2 in `src/fonts/` for web visitors).
+  - Root font-size bumped to 18px (`html { font-size: 112.5% }`) to compensate for Garamond's small x-height — also serves Josiah's no-glasses reading constraint.
+- **Palette:** Three modes keyed on `[data-mode]`:
+  - Dark (default): near-black `#0a0a0a`, warm off-white `#f0ebe5`, blood-red accent `#c41e3a`.
+  - Reader: warm cream `#f5efe6`, dark warm-gray text `#1a1816`, darker accent `#a91930`.
+  - HC: pure black/white, lifted accent `#ff4060`, yellow focus ring `#ffeb3b`.
+- **Future axis:** `data-palette="cb-*"` reserved for colorblind-safe variants (deutan/protan/tritan).
+- **Influences:** Risograph print, zine culture, underground photography (Paul Clipson), analog/experimental.
+- **Reject categorically:** SaaS landing-page aesthetics, pastels, gradients, drop shadows, rounded soft corners, Material Design, generic AI design.
+
+Visual anchor reference: `alisendjsc-crypto.github.io/efilist-argument-library` (do NOT inherit its patterns — reconcile to the wuld.ink token system in session C).
+
+---
+
+## Current state (as of 2026-05-13, post-session-E2 close)
+
+**Status:** Sessions A + E + B + D' + D'' + E2 complete. (Session D superseded by D' / D''; text-transformer scaffolding orphaned files confirmed rm'd by Josiah this E2 turn.) A: design tokens + canonical essay template (2026-05-11). E: Cloudflare wire-up — Pages + apex + www + DNSSEC + R2 + audio.wuld.ink (2026-05-12). B: IA build — nav component, homepage as collapsed title-page, 6 page shells, glossary scaffold + 2 anchor entries, SV essay shell (2026-05-13). **D' (superseded by D''):** standalone Void Engine port from `void-engine-suite-canonical.html` (271 KB). **D'': full bundled triptych port shipped to `src/void-engine/index.html`** — faithful public surface of `DUAL_ENGINE_v2.html` (~374 KB pre-port / 4,390 lines; 380,265 bytes / 4,308 lines post-port after null-strip). All three engines live at `/void-engine/`: Void Engine (image-prompt builder, 222 modifiers / 15 categories), Signal Engine (992-track frequency index across 17 genres × 17 moods × 7 source playlists, link-out to YouTube Music), Transmission v2 (canvas-rendered ambient visual, 3 modes wave/particle/type cycling through 16 moods + 26 fragments). Toggle bar at top of body routes between the three (canonical `switchEngine(which)` mechanism). Six bounded transformations applied: (1) wuld.ink chrome wrap (site-header + nav, page-footer + nav.js) outside the suite's toggle bar + three engine wrappers, three header bands stack in series (site-header → #engine-toggle → per-engine .hdr); (2) Anthropic API strip per Exchange 3 B1 lock — Void Engine portion only, Signal + Transmission confirmed zero external surface per Exchange 7 D6; (3) ARCH_KEY rename to `wuld.ink:void-engine:archive`, no Signal/Transmission keys to rename per Exchange 7 D4 (both session-volatile by design); (4) wuld.ink stylesheet injection (tokens/base/nav) before canonical inline `<style>`; (5) **D5=α hash-route shim** — 22-line JS appended to toggle script block, `/void-engine/#sig` → Signal, `#trans` → Transmission, `#void` or bare → Void Engine default; (6) **D7=β Transmission canvas full-bleed under chrome** — `#trans-engine-wrap.active` becomes `position:fixed; inset:0; z-index:0`; site-header + page-footer + canonical `#engine-toggle` form opaque bands above; HUD elements offset to clear chrome bands. Engine bodies retain canonical visual register per Exchange 3 A5 (i) — Space Mono / blood-red / Courier Prime / scanline. Homepage Void card updated: `04 · Triptych` label, tag now reads "Lexicon · signal · transmission". Exchange 8 reply appended to relay doc (D1–D8 + audit-reply on suite-Claude's hash-route flag, two new flags E1 FRAGMENTS-count-delta 26-vs-25 and E2 trailing-null-padding in canonical export). Logic preservation principle held — every engine function preserved at implementation level (boot, compile, loadPreset, _runCorpusLocalMode, archGetAll/archSave, doSearch, setCat, toggleNeg, switchEngine, plus all Signal Engine catalog/decode/render functions and all Transmission canvas/MOODS/FRAGMENTS rendering functions). Only the API-mode branch was excised. **E2 (2026-05-13 micro):** four-item arc closed via Chrome MCP — (1) audio.wuld.ink propagation re-verified (clean HTTP/2 404, no error 1014); (2) **all of sessions B + D' + D'' shipped to Cloudflare Pages this turn** — root-cause finding was that the deployed site at wuld.ink / www.wuld.ink / wuld-ink.pages.dev was still the session-A placeholder (2,783 bytes, MD5 cf33b18a) because no deploy had happened post-session-A; deploy refresh via direct-upload zip (153 KB compressed / 467 KB uncompressed / 19 files / 30 entries; built from src/ minus authoring-scaffold exclusions: fonts/README.md, templates/*, glossary/_template.html); upload via Chrome-MCP synthetic file_upload hit a known boundary limitation (NotFoundError on FileReader-read after synthetic File injection), Josiah drag-dropped manually as fallback, deploy succeeded clean (19/19 files); post-deploy verified live (apex=10,768 bytes MD5 d32227b7, /void-engine/=380,265 bytes MD5 f1841eba, 46 triptych structural markers, API-strip clean = 4 comment-residue placeholder matches only); (3) www → apex 301 redirect rule deployed via Cloudflare Rules → Redirect Rules template "Redirect from WWW to root" — wildcard pattern `https://www.*` → `https://${1}` at 301 with preserve-query-string checked; deployed despite dashboard's false-positive DNS warning (www is attached as Pages custom domain, not standalone proxied DNS, but Rules engine still inspects); verified live (www.wuld.ink/ → 301 → https://wuld.ink/; www.wuld.ink/void-engine/?test=1 → 301 → https://wuld.ink/void-engine/?test=1 with query preserved); (4) R2 custom domain audio.wuld.ink TLS minimum bumped 1.0 → 1.2 via Configure options → Minimum TLS version dropdown. **D'' live-browser smoke completed this turn:** loaded /void-engine/ in browser, Void Engine renders clean (`[wuld.ink]` site-header + VOID nav-current red underline, engine-toggle bar below, `VOID ENGINE — Sanguinolentum Vestigium` heading, 222 entries, combinatorial math `Pick-8 combinations: 128,705,283,347,445` populated, `SYSTEM ONLINE` badge, idle compiler state); clicked TRANSMISSION toggle → canvas wave-mode amber lines rendering full-viewport, site-header + toggle-bar opaque bands above, lower HUD (`MODE: WAVE · MOOD: STILLNESS · INT: 3/5` + `SIGNAL ENGINE // AMBIENT VISUAL · Illogically is.`) cleared from chrome bands — **D7=β layering confirmed working**; clicked SIGNAL ENGINE toggle → 992-track frequency index renders with italic-serif `Signal Engine // FREQUENCY INDEX` title, 17 genres + 17 mood vectors with counts (Stillness 164, Fracture 150, Melancholy 139, etc.), LIBRARY/GENERATOR toggle, search bar; tab title updates per engine switch (canonical `document.title` setter intact). Chrome-MCP synthetic-file-upload boundary documented as known limitation; future deploy refreshes via Git-deploy wire-up (when shipped) bypass this entirely.
+
+### Misread log (session D, 2026-05-13)
+
+- **What I read:** "Void Engine — prompt tool, with Signal and Transmission components" (`docs/wuld-ink-cowork-brief.md` line 64).
+- **How I parsed it:** "prompt tool" = tool that *operates on* prompts (text-in, text-out, transformation-style instrument).
+- **Actual meaning:** "prompt tool" = tool that *builds* prompts (the suite's AI image-prompt builder).
+- **The clarifying questions I did ask at D start were UI-shape questions** (single textarea vs. structured form, output position, registry vs. pipeline). They locked the surface details of the wrong artifact.
+- **The clarifying question I did NOT ask:** *Does `/void-engine/` host an existing suite app, or is this its own new thing?* That was the architectural-origin question. Asking it would have surfaced the suite immediately and prevented the misread.
+- **Failure mode to log permanently:** when a project surface shares a name with an external artifact (suite engine, library substrate, anything cross-project), ASK about origin before building. Don't infer from naming alone.
+
+### Direction locked (rebuild fork chosen 2026-05-13)
+
+- `wuld.ink/void-engine/` will be a faithful public **port of the suite Void Engine** (image-prompt builder, ~190 modifier entries across 12 categories, positive/negative prompt compiler, presets, chaos roll, deep scan, diagnosis modal, corpus analyzer, session archive via `localStorage`). Suite-Claude maintains the canonical source; wuld.ink-side hosts the public port.
+- **Naming collision resolves cleanly under this fork:** there is ONE Void Engine. Same artifact, suite is the source-of-truth, wuld.ink is the public face.
+- **Logic preservation principle for the port:** suite's JS is the canonical source. Port should preserve it as-is to the maximum extent compatible with the wuld.ink chrome. Don't re-implement what the suite has already hardened across multiple versions.
+- **Styling reconciliation is the bounded transformation:** suite's CSS gets replaced with wuld.ink design tokens (`var(--c-bg)`, `var(--c-accent)`, `var(--font-mono)`, etc.); suite's JS stays untouched. Layout grammar may need reconciliation depending on suite's current shape — pending suite-Claude's next-round file export.
+
+### What session D' will roll back
+
+- `src/components/void-engine.css` (~8.3 KB) — text-transformer styling. Delete; not reusable for image-prompt builder layout.
+- `src/components/void-engine.js` (~9.2 KB) — registry + PRNG + DOM controller for text transforms. Delete; suite app has its own controller, no port value.
+- `src/void-engine/index.html` — full overwrite with suite Void Engine port wrapped in wuld.ink chrome (site header / nav / footer / page hero).
+- Homepage Void card already rolled back to `data-status="forthcoming"` this turn (tag updated to "Image-prompt builder — port pending"); no further index.html change needed for the rollback step itself.
+
+### Session D deliverables (2026-05-13)
+
+- **`src/components/void-engine.css`** (~8.3 KB) — instrument styling: signal textarea (blood-red accent rail, mono, brutalist border, dim italic placeholder, focus-visible ring), mode radiogroup (button row with hairline borders between presets, active mode flips to accent fill), seed input (labeled tag + numeric field, "auto" placeholder when empty), transmit button (right-aligned via margin-inline-start: auto on desktop, full-width on mobile), section-rule with absolutely-positioned "TRANSMISSION" label punching through, transmission output region (accent-dim rail goes hot when transmitted), meta readout (preset · seed · char count), full mobile fallback (stacks vertically <640px), screen-reader-only utility class.
+- **`src/components/void-engine.js`** (~9.2 KB) — IIFE-scoped controller. Mulberry32 seeded PRNG; xmur3 string-to-seed hash for empty-seed-input fallthrough (auto-seed becomes pure function of Signal content → reproducible without manual seed entry). Registry as Map: `register(slug, {label, transform})`. Two stubs auto-registered on boot: `null` (passthrough) and `inversion` (Array.from + reverse + join — surrogate-pair safe). Public API exposed at `window.VoidEngine` with `register`, `list`, `run`, `rehydrate`. DOM hydration: builds radio buttons from registry, wires keyboard arrow nav within radiogroup, form submit handler, Cmd/Ctrl+Enter shortcut from textarea, empty-signal handling falls back to idle state, error state on transform throw. Try/catch around `mod.transform()` so a buggy chat-authored preset can't take down the page.
+- **`src/void-engine/index.html`** — placeholder `[ · ]` frame replaced with the live instrument. Page-intro paragraph in italic serif body register sets the instrument's mood without philosophical content. Inline `<script>` chat-side authoring contract documented in a trailing comment block — example registration pattern + reminder to call `VoidEngine.rehydrate()` after appending presets.
+- **`src/index.html`** — homepage Void card `data-status="forthcoming"` attribute removed; card is now live-state (no `↳` prefix on the tag).
+
+**Smoke-test results:** 6/6 PRNG + registry unit tests pass (passthrough, inversion, surrogate-pair safe inversion, content-deterministic auto-seed, explicit seed honored, PRNG same-seed reproducibility). Live HTTP server probe: void-engine page returns 200 (5128 bytes), all 6 referenced assets resolve 200, all expected structural elements present (void-engine section, signal input, modes radiogroup, transmission output, aria-live polite, void-engine.js script tag, role="radiogroup"). JS passes `node -c` syntax check. CSS braces balanced (39 open / 39 close). Note: bash mount of `index.html` shows a stale pre-session-B snapshot (mtime 00:56) so the homepage edit isn't visible to bash but IS visible to the file-tool Read — the workspace folder (which Cloudflare Pages deploys from) reflects the live edit.
+
+**Chat-side authoring contract for Void Engine transmission modes:** SUPERSEDED by D'. The text-transformer registry contract no longer exists. The new Void Engine is the suite's image-prompt builder — modifier DB is inline `const DB=[...]` in the engine script; modifications flow via suite-side canonical → relay-doc re-export → wuld.ink port re-apply.
+
+### Session D' deliverables (2026-05-13)
+
+- **`src/void-engine/index.html`** (262,118 bytes / 2,007 lines) — full overwrite. Suite Void Engine canonical (`void-engine-suite-canonical.html`, 271,059 bytes, ported from `VOID_ENGINE_v5.html`) wrapped in wuld.ink chrome via four bounded transformations:
+  - **Chrome wrap.** Before canonical `<body><div class="app">`: skip-link, `<header class="site-header">` with site-mark + nav (6 destinations, `aria-current="page"` on /void-engine/), `<main id="main">`. After canonical's closing `</div>` (line 547 of the post-edit file): `</main>`, `<footer class="page-footer">` (mono / blood-bordered / dim text, inline-styled with canonical's `--bdr` / `--mono` / `--mist` / `--void` vars to merge into the engine's dark register), `<script src="/components/nav.js">` for aria-current activation.
+  - **Stylesheet injection.** `<link rel="stylesheet">` to `/tokens.css`, `/base.css`, `/components/nav.css` injected in head BEFORE canonical's inline `<style>` (so canonical's `:root` token names — `--void`, `--blood`, `--mono`, etc. — override nothing; canonical uses distinct names from wuld.ink's `--c-bg`, `--c-accent`, `--font-mono` and there are zero collisions). Google Fonts `preconnect` to `fonts.gstatic.com` added.
+  - **Anthropic API strip per Exchange 3 B1 lock.** Removed: CSS rules `.corp-mode-row`, `.corp-mode-btn*`, `.corp-api-section*`, `.corp-api-row`, `.corp-api-note`, `.corp-key-in*`, `.corp-key-status*`, `.corp-api-badge`, `.corp-loading`, `.corp-spin`, `@keyframes spin`. HTML: `.corp-mode-row` div with LOCAL/API toggle buttons + entire `#corp-api-sec` block (key input, save/clear/status). JS: `let corpMode`, `function setCorpMode`, `function checkApiKeyStatus`, `function saveApiKey`, `function clearApiKey`, `async function runCorpusAPI`, `async function _runCorpusApiMode` (80-line API implementation). Dispatcher simplified to local-only: `var runCorpus=function(){_runCorpusLocalMode();};`. Intro paragraph re-worded to drop the "Deep mode" sentence. Strip placeholder comment retained at site for clean suite-resync. Net: 180 lines / ~7.8 KB removed from canonical baseline. Public port has zero references to `anthropic`, `sk-ant`, `api-key`, `corpMode`, `runCorpusAPI`, `_runCorpusApiMode`, `setCorpMode`, `saveApiKey`, `clearApiKey`, `checkApiKeyStatus`.
+  - **ARCH_KEY localStorage rename per A4.** `const ARCH_KEY='void-engine-v5:archive'` → `const ARCH_KEY='wuld.ink:void-engine:archive'`. Surgical single-literal change. Round-trip verified offline (Node simulation of localStorage + DOM stubs): `archGetAll()` returns `[]` initially, then returns parsed array after a synthetic `setItem` to the new key.
+- **`src/index.html`** — homepage Void card `data-status="forthcoming"` removed; tag updated from "Image-prompt builder — port pending" → "Analog & nihilist generative lexicon" (live state, no `↳` prefix).
+- **`docs/void-engine-suite-coordination.md`** — synced to upload (Exchange 3 from suite-Claude landed). Exchange 4 reply appended: A1–A5 + B1/B2 closures, A5 carve-out for chrome integration documented, C1 new flag (file ships 222 modifier entries by 5 independent parsing methods; suite-Claude said 227 in B2 — minor delta worth suite-side audit, non-blocking).
+
+**Logic preservation principle held.** Every engine function preserved at the implementation level: `boot`, `compile`, `loadPreset`, `_runCorpusLocalMode`, `archGetAll`/`archSave`, `doSearch`, `setCat`, `toggleNeg`, `toggleReadable`, `corpScore`, `corpTokenize`, deep scan, diagnosis modal, full local Corpus Analyzer. Only the API-mode branch was excised; local mode is untouched.
+
+**Smoke-test results (offline, file-level — sandbox can't bind HTTP):** HTML balance 100/100 divs + 1/1 each of html/head/body/main/style + 2/2 script; UTF-8 clean (1135 trailing nulls from a python write quirk stripped post-hoc); JS parses in non-strict and strict mode (221,282 chars / 1451 lines); zero stray API identifiers via static analyzer; ARCH_KEY localStorage round-trip works in Node simulation; DB parses to 222 entries via 5 parsing methods (regex `\bid:'[^']+'`, etc.); DS parses to 222 keys; 15 categories (`Aesthetic & Texture`, `Biological / Thermodynamic`, `Camera & Process`, `Clinical Abjection`, `Color Grade`, `Compositional Grammar`, `Figure / Subject`, `Infrastructure / Ruin`, `Lighting & Atmosphere`, `Liminal Space`, `Normative / Ironic`, `Psychogenic / Dissociation`, `Runway / Video`, `Sound / Duration`, `Void / Dissolution`); structural elements (.hdr, .perm-bar, .panel, .neg-panel, .pre-row, .chips-panel, .corpus-panel, .archive-panel) all present at expected positions. Live-browser smoke test (Josiah-side): load `/void-engine/` in browser, expect: nav at top renders in Plex Mono with "Void" highlighted as current page; engine instrument header renders below in Space Mono with blood-red accent; modifier chips populate; click a preset (e.g., "Taedium Vitae") — positive prompt output should populate; localStorage inspect should show `wuld.ink:void-engine:archive` key on first archive save; no console errors; no network requests to api.anthropic.com.
+
+### Session D'' deliverables (2026-05-13)
+
+- **`src/void-engine/index.html`** (380,265 bytes / 4,308 lines post-port) — D' standalone port REPLACED by bundled triptych port. Source: `DUAL_ENGINE_v2.html` (383,899 bytes pre-port, suite-Claude reported 379,499 expanded ~4 KB by export transport; post-null-strip wuld.ink-side at 380,265 — see Exchange 8 E2). Six bounded transformations applied:
+  - **Chrome wrap (triptych scale).** Before suite's `<div id="engine-toggle">`: skip-link, `<header class="site-header">` with site-mark + nav (6 destinations, aria-current handled by nav.js), `<main id="main">`. After the last engine wrapper + all four script tags + before `</body>`: `</main>`, `<footer class="page-footer">` (Plex Mono, opaque background `#030303` matching canonical body, blood-red return-link), `<script src="/components/nav.js">`. Toggle bar (#engine-toggle, canonical sticky position z:9990) sits below the site-header at top of `<main>`; three engine wrappers (#void-engine-wrap, #trans-engine-wrap, #sig-engine-wrap) follow as siblings inside `<main>`.
+  - **Stylesheet injection.** `<link rel="stylesheet">` to `/tokens.css`, `/base.css`, `/components/nav.css` injected in head BEFORE canonical's inline `<style>` (zero `:root` token-name collisions with canonical's `--void`/`--blood`/`--mono`/`--mist`/`--bdr`/`--amber`/etc.). Google Fonts `preconnect` to `fonts.gstatic.com` added.
+  - **Anthropic API strip per Exchange 3 B1.** Identical scope to D' (the API path lives entirely in Void Engine's portion of the bundle): CSS rule block (`.corp-mode-row`, `.corp-mode-btn*`, `.corp-api-section*`, `.corp-api-row`, `.corp-api-note`, `.corp-key-in*`, `.corp-key-status*`, `.corp-api-badge`, `.corp-loading`, `.corp-spin`, `@keyframes spin`), HTML (corp-mode-row buttons + entire `#corp-api-sec` div), 7 JS functions (`let corpMode`, `setCorpMode`, `checkApiKeyStatus`, `saveApiKey`, `clearApiKey`, `runCorpusAPI`, `_runCorpusApiMode`), dispatcher simplified to local-only. `corp-intro` paragraph re-worded (drop "Deep mode" sentence). Static analyzer confirms zero references to API identifiers in functional code (only in strip-site placeholder comments). Signal + Transmission unaffected — confirmed zero external surface per Exchange 7 D6.
+  - **ARCH_KEY rename.** Single-literal swap `void-engine-v5:archive` → `wuld.ink:void-engine:archive`. Same D' A4 surgery. Signal Engine + Transmission have zero localStorage usage per Exchange 7 D4 — no additional renames needed.
+  - **D5=α hash-route shim.** 22 lines of JS appended to the toggle-script block (`<script>` at lines 922-988), after `switchEngine` definition. `_hashToEngine()` parses `location.hash`: `#sig`/`#signal` → 'sig', `#trans`/`#transmission` → 'trans', `#void` or bare → 'void', else null. `_applyHashRoute()` calls `switchEngine(target)` if non-null. Listeners: `hashchange` + `DOMContentLoaded` (or immediate if document already past loading). Suite-side standalone Dual Engine V2 untouched (the shim is harmless when no URL routing is in effect). Decision rationale per Exchange 7 D5: URL semantics belong to the umbrella, not the instrument.
+  - **D7=β Transmission canvas full-bleed under chrome.** CSS rules appended to end of canonical inline `<style>` block: `#trans-engine-wrap.active { position:fixed; inset:0; z-index:0; width:100vw; height:100vh; }` hoists the wrap out of normal flow when Transmission is active. HUD offsets: `#t-corner-tl` top:`calc(104px + 16px)` (clears site-header + toggle bar bands); `#t-corner-br` + `#t-hud` bottom:`calc(50px + 16px)` (clears footer band). Site-header + page-footer get `z-index:9991` to backstop the inline z:20. `body:has(#trans-engine-wrap.active) { overflow: hidden; }` prevents the 100vh wrap from pushing document scroll. Decision rationale per Exchange 7 D7: constraining canvas to chrome-aware viewport (α) breaks the threshold-crossing argument from A5; floating it full-bleed under opaque chrome bands preserves the suite posture (chrome-as-frame, transmission-as-void).
+- **`src/index.html`** — homepage Void card updated: label `04 · Instrument` → `04 · Triptych`; tag `"Analog & nihilist generative lexicon"` → `"Lexicon · signal · transmission"`. Triptych now reflected in the umbrella index.
+- **`docs/void-engine-suite-coordination.md`** — synced from upload (Exchange 5 + Exchange 7 from suite-Claude landed). Exchange 8 reply appended: D1–D8 ack/closures + audit-reply on suite-Claude's hash-route unsolicited-flag (only soft spot, audit closed clean) + sync-protocol updated for 6 bounded transformations + two new items (E1, E2).
+
+**Logic preservation principle held at triptych scale.** Every engine function preserved at implementation level. Only API-mode branch excised from Void Engine; Signal + Transmission untouched.
+
+**Smoke-test battery (offline, file-level):** File metrics 380,265 bytes / 4,308 lines, UTF-8 valid, zero trailing nulls post-clean (3,634 stripped — same D' write-quirk). HTML balance: 1/1 html/head/body/main, 1/1 footer/nav, 2/2 header (site + canonical .hdr), 1/1 style (canonical's only `<style>` block, the "2 open" in raw count was a literal `<style>` inside an HTML comment), 5/5 script, 148/148 div. JS parses in non-strict AND strict mode (4 inline `<script>` blocks combine to 312,373 chars / 3,324 lines). Zero stray API identifiers in functional code (residual matches all live in strip-site placeholder comments). Data shapes: DB=222 (modifier array, 4-method battery), DS=222 keys, 15 categories, SE_DB RAW=992 non-empty pipe-delimited lines, MOODS=16, FRAGMENTS=26 (suite-Claude said 25 — see E1 in relay doc; "NOWHERE" appears at two indices, likely intentional). Additional `id:` matches outside DB: 13 (nq1–nq8 negative-prompt presets + q1–q5 diagnosis-modal questions — separate canonical structures). ARCH_KEY localStorage round-trip: 5/5 PASS (empty init, save+retrieve, most-recent-first ordering, namespace correctness, legacy key NOT auto-migrated). Hash-route Node simulation: 9/9 PASS (bare URL, all four canonical hashes, case-insensitivity, unrecognized fallthrough). switchEngine branches: 'void' + 'sig' explicit, 'trans' via else fallthrough — three destinations all reachable. **Live-browser smoke test (Josiah-side):** load `/void-engine/`, expect: site-header renders in Plex Mono with "Void" current-page; below it, engine-toggle bar in Space Mono with three buttons; default landing = Void Engine (modifier chips, preset row, compiler). Click "SIGNAL ENGINE" toggle → genre × mood grid of 992 tracks. Click "TRANSMISSION" toggle → canvas full-viewport ambient visual; site-header + footer remain opaque above; HUD elements visible below toggle bar and above footer. Try `/void-engine/#sig` directly → Signal Engine renders without manual toggle click. localStorage inspect on first archive save → `wuld.ink:void-engine:archive` key only. Zero network requests to api.anthropic.com.
+
+### Session B deliverables (2026-05-13)
+
+- **nav component** (`src/components/nav.{css,js}`) — promoted from essay.html template-local CSS. JS sets `aria-current="page"` via URL-path matching (exact > section). Mobile fallback: stacks below site mark at <640px. 6 nav items: Essays / Library / Glossary / Void / Book / Blog.
+- **Homepage** (`src/index.html`) — collapsed title-page. Cover section is full-viewport (100vh): Cormorant Garamond display "wuld.ink" with blood-red `[ ]` brackets, slab rule, handles row in mono mega-letter-spacing (WULD · AnomicIndividual87 · Evilis Anihilis Uls), "Index ↓" descent affordance with reduced-motion-respecting pulse. Site nav floats over cover (absolute-positioned, transparent). Index section: 6-card grid with hairline accent dividers, IM Fell English titles, mono eyebrow + tag rows, forthcoming-state marker on 4 of 6 destinations.
+- **6 page shells** (`/essays/`, `/argument-library/`, `/glossary/`, `/void-engine/`, `/book/`, `/blog/`). Each carries the full site header + nav, page hero (eyebrow + h1), and a register-appropriate body block. /essays/ lists SV + 2 forthcoming. /argument-library/ explicitly notes "library.wuld.ink subdomain pending stable tag." /void-engine/ shows a centered `[ · ]` glyph frame. /book/ + /blog/ are minimal status cards.
+- **Glossary scaffold** — `glossary.css` component handles both the index A–Z layout and per-entry layout. Index lists 9 terms (Alogical Isness, Contextus Claudit, Labor Sine Fructu, NothinGist, Proxy Gamble, Signal, Transmission, Void Engine, w-holes) under letter-divided sections. `_template.html` is the entry template (copy for new entries). 2 anchor entry shells (`alogical-isness/`, `contextus-claudit/`) — full Definition/Etymology/See-also/Appears-in scaffold, bodies marked as awaiting chat-side authorship, cross-linked to each other and to SV.
+- **SV essay shell** (`/essays/sanguinolentum-vestigium/`) — 3 numbered sections with H2 placeholders, audio blocks wired at `essays/sanguinolentum-vestigium/section-{1,2,3}.mp3`, prose placeholders marked clearly in italics + accent-red brackets. Scoped mode-toggle (dark/reader/hc) in essay header. Endnotes section scaffolded but empty.
+- **Canonical template migrated** — `src/templates/essay.html` now loads `/components/nav.{css,js}` and all assets via root-relative paths (`/tokens.css` etc.) matching the deployed-site routing. Local file:// preview no longer works; serve `src/` via static server (e.g., `python -m http.server` from `src/`).
+
+### Session E2 deliverables (2026-05-13 micro)
+
+- **Pages deploy refresh** — sessions B + D' + D'' all shipped this turn (root-cause discovery: no deploy had happened since session-A's placeholder upload, so 5+ sessions of local work were invisible on the live site). Deploy zip `wuld-ink-deploy.zip` built at outputs/, 153 KB compressed / 467 KB uncompressed / 19 files / 30 entries; exclusions: `fonts/README.md`, `templates/*`, `glossary/_template.html`. Upload via direct-upload Pages dashboard ("Create deployment" → drag-drop zip → Production env → Save and deploy). Note: Chrome-MCP synthetic `file_upload` tool injected the File reference but Cloudflare's `onUpload` handler threw `NotFoundError` when its FileReader attempted to read the file bytes (synthetic-File-via-input doesn't stream actual bytes through the extension boundary the way OS-level DataTransfer does); fallback: Josiah drag-dropped manually, deploy succeeded clean (19/19 files). Post-deploy HTTP verification: apex returns 10,768 bytes MD5 `d32227b7fd610541878024e165d764a7` (was stale `cf33b18a...` × 2,783 bytes), /void-engine/ returns 380,265 bytes MD5 `f1841ebae6ce6057b10dfe2a50824db5`, 46 triptych structural markers in served HTML, API-strip clean (4 matches = strip-site comment-residue placeholders per D'' notes).
+- **www → apex 301 redirect rule** deployed on `wuld.ink` zone via Cloudflare Rules → Redirect Rules template `Redirect from WWW to root`. Configuration: wildcard pattern `https://www.*` → `https://${1}` at 301 Permanent Redirect, preserve-query-string CHECKED (CLAUDE.md spec said `${URI}`-equivalent). Dashboard fired a false-positive DNS warning ("Your DNS configuration may not be proxying traffic for www") — www is attached as Pages custom domain not a standalone proxied DNS record, but the Rules engine still inspects Pages-attached hostnames; chose "Ignore and deploy rule anyway"; rule landed Active (Order 1, 1/10 used). Verified live: `https://www.wuld.ink/` → HTTP/2 301 → `https://wuld.ink/`; `https://www.wuld.ink/void-engine/?test=1` → HTTP/2 301 → `https://wuld.ink/void-engine/?test=1` (query string preserved); following redirect lands clean 200 with triptych content.
+- **R2 custom domain TLS minimum bump** on `audio.wuld.ink`: 1.0 → 1.2 via R2 → wuld-audio → Settings → Custom Domains → audio.wuld.ink (••• menu) → Configure options → Minimum TLS version dropdown → Save. Dashboard confirmed "Configuration options have been updated successfully. This may take a few minutes to take effect." Defense-in-depth bump; edge negotiates higher in practice but this enforces the floor.
+- **audio.wuld.ink propagation verified** (item 1 of E2): HEAD on `https://audio.wuld.ink/anything.mp3` returns clean `HTTP/2 404` with `server: cloudflare` and proper cf-ray, no error 1014. R2 custom-domain backend sync is complete; `<body data-audio-base="https://audio.wuld.ink">` (set in session B) is good to go for SV audio uploads.
+- **Stray-file cleanup confirmed** — Josiah rm'd `wuld-ink-deploy.zip` (the prior session-E stray) + `src/components/void-engine.css` + `src/components/void-engine.js` (session-D text-transformer orphans). Verified empty via filesystem audit at session E2 start. Components dir now lean: `audio-player.{css,js}`, `glossary.css`, `mode-toggle.{css,js}`, `nav.{css,js}`. New session-E2 stray artifacts that *also* couldn't be rm'd by Cowork sandbox (write-once outputs/): a 0-byte `wuld-ink-deploy-2026-05-13.zip` + a 153 KB `ziCwRmw0` temp file in the user's outputs scratchpad. Harmless; rm when convenient.
+- **D'' live-browser smoke** completed this turn (the verification that couldn't run pre-deploy): /void-engine/ loaded in browser — site-header `[wuld.ink]` mono + VOID nav-current red-underlined; engine-toggle bar `▪ VOID ENGINE / ▶ SIGNAL ENGINE / ○ TRANSMISSION` rendering below; Void Engine default body intact (`VOID ENGINE — Sanguinolentum Vestigium` heading, `ANALOG & NIHILIST GENERATIVE LEXICON V5.0`, `SYSTEM ONLINE` + `TARGET: NB2 / PRO / GEN-4.5` + `LEGIBILITY+` badges, `Nothing is alright and never will be.` italic anchor, `Entries: 222 · Selected: 0 · Pick-8 combinations: 128,705,283,347,445`, `POSITIVE_COMPILER.OUTPUT [Awaiting modifier selection]` idle state). Clicked TRANSMISSION → canvas wave-mode amber drift lines full-viewport, upper HUD (`WULD.INK — UMBRELLA FOR PHILOSOPHICAL OUTPUT ▸ RETURN TO INDEX`) clears toggle-bar, lower HUD (`MODE: WAVE · MOOD: STILLNESS · INT: 3/5` + `SIGNAL ENGINE // AMBIENT VISUAL · Illogically is.`) clears footer position — **D7=β chrome-band offsets confirmed working in practice**; site-header + toggle-bar form opaque dark bands above the canvas without overlap. Clicked SIGNAL ENGINE → italic-serif `Signal Engine // FREQUENCY INDEX` title, `992 tracks · 281+ hours · 17 genres · 17 mood vectors`, LIBRARY/GENERATOR toggle + LEGIBILITY toggle, search bar, full genre grid with track counts (Ambient/Drone 235, Avant-Garde Classical 150, ..., Hip-Hop 3) and mood grid (Stillness 164 to Yearning 47). Tab title flips per engine via canonical `document.title` setter. No console errors, no API-endpoint network requests, ARCH_KEY round-trip not exercised (no preset compiled this smoke) — wait for next live-author session.
+
+**Misread caveat:** the Status paragraph at top of "Current state" claimed E was complete and the live site reflected sessions B/D''. That was wrong-by-omission — E shipped the *infra* but the *content deploys* never happened. The Status paragraph now reflects that B/D'/D'' actually went live in E2.
+
+**Tool-budget pre-flag retrospective:** Chrome-MCP arc used roughly 35-40 calls across this session — Cloudflare dashboard navigation (slow loads, multiple "Still loading..." waits = 10-15 calls), Pages upload + Save and deploy = 5 calls, Rules redirect template + deploy + DNS-warning modal = 6 calls, R2 TLS dropdown + save = 5 calls, /void-engine/ triptych smoke (Void → Transmission → Signal) = 8 calls. The synthetic-file-upload failure cost an extra ~4 calls before the fallback decision was made; future arcs that need Pages uploads should plan around this limitation upfront.
+
+### Infra facts locked (updated post-E2 close — reference for F+)
+
+- **Account ID:** `a2fc6a0d2e2f1fff96fe425de624a388`
+- **Pages project:** `wuld-ink` → `wuld-ink.pages.dev` (auto-staging URL). Direct upload from dashboard for now; **GitHub Git-deploy never wired in session B; if/when shipped, becomes its own micro-session — sidebar shows "No Git connection" still.** Pattern reinforced in E2 (one more direct upload) but the right long-term answer remains Git-deploy.
+- **Live domains:** `https://wuld.ink` (canonical) + `https://www.wuld.ink` (301 → apex via E2 redirect rule). DNS for www is Pages-attached, not standalone proxied.
+- **DNSSEC:** enabled on `wuld.ink` zone; DS record auto-publishing on registrar side.
+- **R2 bucket:** `wuld-audio`, location WNAM, default storage class Standard. Public Access ENABLED via custom domain only (no `r2.dev` public URL).
+- **Audio host:** `https://audio.wuld.ink` → `wuld-audio` bucket. Propagation confirmed (clean 404 on absent keys, not error 1014). `<body data-audio-base="https://audio.wuld.ink">` set in session-B page shells.
+- **R2 subscription:** activated on PayPal `evilisanihilis@live.com`. Free tier 10GB/1M Class A/10M Class B. Overage authorization signed.
+- **TLS minimum on R2 custom domain:** 1.2 (post-E2 bump from 1.0 default). Edge still negotiates higher in practice; this enforces the floor.
+- **Cloudflare Rules — Redirect Rules:** 1/10 used. Order 1 = "Redirect from WWW to root [Template]" — Active. URI Full wildcard `r"https://www.*"` → `https://${1}` at 301 with preserve-query-string.
+
+### Cleared in E2 (formerly "Open from session E")
+
+- ~~**www → apex 301 redirect**~~ — SHIPPED E2 2026-05-13 via Cloudflare Rules template. Verified live (path + query preserved).
+- ~~**audio.wuld.ink final propagation verification**~~ — SHIPPED E2 2026-05-13. Clean HTTP/2 404, no error 1014.
+- ~~**Stray artifacts (sandbox FS denied rm)**~~ — Josiah rm'd `wuld-ink-deploy.zip` + `src/components/void-engine.{css,js}` between session-D'' close and E2 start. Verified empty.
+- **NEW E2 stray (outputs/ scratchpad write-once):** `wuld-ink-deploy-2026-05-13.zip` (0 bytes) + `ziCwRmw0` (153 KB zip swap temp). Sandbox-side artifacts only — not in project tree, not deployed. Manual rm when convenient.
+
+### Resolved decisions
+
+- Multi-page architecture
+- Audio: per-paragraph but **selective** (not all paragraphs)
+- Stack: Cloudflare Registrar + Pages + R2
+- Domain: wuld.ink (registered)
+- **Title page = homepage** (collapsed; zine-cover effect lives as first scroll-section)
+- **Reader/HC modes = INCLUDED, but SCOPED** — accessibility affordance on `[data-readable]` containers, not site-global. Three modes: dark (canonical default), reader (warm-cream light), hc (WCAG-AAA). Colorblind-safe palette axis reserved.
+- **EFIList integration = HYBRID** (fully locked across Exchange 1 + Exchange 2 with library-Claude, both ratified 2026-05-12. See `docs/library-claude-coordination.md`. One Exchange 3 question pending wuld.ink-side reply — see "pending question" at end of this block; not blocking session E).
+  - Library substrate ships as `library.wuld.ink` SUBDOMAIN preserving the existing application as-is — force-directed viz, 4-archetype interlocutor filter, internal nav, format-discipline invariants from ~80 sessions of hardening. **Substrate-protection invariant locked maximally:** no edits, no PRs, no issues-filed-against, no proposed patches in coordination messages. If we encounter what looks like a defect during editorial extraction, the action is FLAG via relay doc only. Library-side decides if flag → session.
+  - Editorial extraction into wuld.ink proper covers only: (a) the coda as a standalone wuld.ink page at `wuld.ink/coda` — coexists with `library.wuld.ink/coda.html` which keeps its current relative `coda-link`; (b) 1-2 canonical objection long-forms (VAR, why-not-suicide) under `wuld.ink/objections/` with "see in full taxonomy" links; (c) static Map 1 frame on a wuld.ink "about the library" page with "open interactive →" affordance to the subdomain.
+  - **Prose extraction defers until library declares stable tag** (v3.7.0+, encompassing c6 cascade close + post-c6 queued motion). Static Map 1 frame is unaffected and can ship at any time the session-F slot opens.
+  - **Subdomain provisioning also waits for stable tag.** Session E ships wuld.ink-side infra only. The `library.wuld.ink` subdomain ships in a later session (E2 or folded into F+) keyed off library-Claude's "baton-ready" signal.
+  - **Cross-surface coherence resolutions (Exchange 2 ratified, 2026-05-12):**
+    - **Typography:** universal serif REJECTED. Library mono is its diegetic instrument-panel skin; serif would invert the register. Locked anchor: **IBM Plex Mono as the cross-surface chrome typeface** (wuld.ink uses for UI chrome; library uses throughout). Non-chrome typography diverges by design.
+    - **Token-sharing:** `@import` and vendored copy both REJECTED. Library uses inline color literals, no `:root { --token }` consumers. Token flow REVERSES — `tokens.css` codifies library's pre-existing palette at umbrella anchors (`#0a0a0a` bg, `#c41e3a` accent). `--c-fg` divergent by design (wuld.ink `#f0ebe5` warm vs library `#e8e8e8` cool). Body-class protocol mirror added to wuld.ink mode-toggle as secondary output (`.legible` ↔ reader, `.high-contrast` ↔ hc).
+    - **Audio architecture:** reserved as universal architectural pre-commitment ("later, not never" per library-Claude lock). Library has zero audio currently. If ever added, follows `<surface>/<piece-slug>/<section-slug>.mp3` convention via shared `audio.wuld.ink` host. Audio does NOT belong inside SPA viz/panels — only on per-objection deep-link surfaces if those ever exist.
+    - **Shared nav:** full nav strip REJECTED. Single discreet `apex-link` ("• wuld.ink") at library header, styled like existing `coda-link` idiom. Library-side authors substrate-side in a future session. wuld.ink-side has its own complementary affordance — top-level nav lists "Library" as a primary destination.
+    - **Mode-system mismatch:** library 4-mode (STANDARD/LEGIBILITY/HC/BOTH) vs wuld.ink 3-mode (dark/reader/hc) PERMANENTLY DIVERGES. No future "unify modes" proposal — substrate rewrite is permanently out of scope.
+  - **SPA-permanence (library-Claude Exchange 2 answer):** SPA is permanent for the instrument view. Per-objection deep-link surfaces (`library.wuld.ink/objections/<slug>/`) are plausible-and-likely future additions post-stable-tag, not committed and not foreclosed.
+  - **Editorial extraction link strategy (REVISED per Exchange 2):** wuld.ink long-forms link to **durable canonical URL form** `library.wuld.ink/objections/<slug>/` — NOT `library.wuld.ink/#<slug>` hash-route. Library-side commits to URL durability: that path initially redirects to the SPA hash-route equivalent at build time; when per-objection pages ever ship, the URL resolves to the standalone surface, transparently. wuld.ink long-forms don't update when architecture shifts. Redirect rule lives in the deploy-adapter machinery (single line).
+  - **Deploy-adapter pattern for library subdomain:** Cloudflare Pages build-step via a single `_build.sh` script that auto-resolves the rolling canonical filename (`index_v*_*.html`) → `index.html` at build time AND houses the durable-URL redirect rule. Zero per-deploy operator attention; zero substrate mutation. **Library-Claude repo-structure preference: substrate repo stays pure** — adapter lives in a separate Pages-backing repo that pulls/syncs substrate at build time. **Acceptable fallback:** same-repo `.deploy/build.sh` or `.cloudflare/build.sh`. wuld.ink-side picks at deploy time. Script never authored by library-Claude.
+  - **Editorial-drift discipline locked per-piece (Exchange 3, 2026-05-12):**
+    - **Coda (`wuld.ink/coda`)** — discipline (c) editorial divergence by design. Re-authored as the umbrella's coda; occasioned by but structurally distinct from `library.wuld.ink/coda.html`. No drift-tracking; no library-side flagging required.
+    - **VAR long-form (`wuld.ink/objections/violence-as-reductio`)** — discipline (d) editorial divergence with material-shift notification. Standalone essayistic artifact; library-Claude flags only material canon shifts via relay (threshold pending Exchange 4 reply from library-side); wuld.ink-side decides per-flag whether to re-author. No auto-tracking.
+    - **why-not-suicide long-form (`wuld.ink/objections/why-not-suicide`)** — discipline (c) editorial divergence by design. Standalone essayistic artifact at greater register-distance from canonical entry than VAR. No drift-tracking; no library-side flagging required.
+  - **One Exchange 4 question owed by library-side (re: VAR notification threshold).** Not blocking session F+ first long-form ship — VAR can be authored against current canon at stable-tag; threshold answer affects only future flagging cadence.
+- **Void Engine = pure client-side v1** — no Pages Functions until forced.
+- **Body type = IBM Plex Sans**; Mono for structural chrome only.
+- **Endnotes (template default)** = bottom-of-page list with back-links; final pattern still officially open.
+
+### Open decisions DEFERRABLE
+
+- Endnotes — final pattern: footnote popups / bottom-of-page (current) / separate endnotes page
+- Email contact — Cloudflare Email Routing free forwarding to Gmail / omit
+- Flash card content source + tech — efilist objections? glossary? both? — vanilla JS / React / htmx
+- Animation scope — page transitions / decorative / illustrative
+- Colorblind-safe palette variants — hooks reserved in tokens.css, content TBD
+
+### Notes for downstream sessions
+
+- **Session B (IA build)**: ✓ DONE 2026-05-13. Nav promoted to `/components/nav.{css,js}`. Homepage is the collapsed title-page (`src/index.html`). All 6 page shells exist. Glossary scaffold + 2 anchor entry shells live. SV essay shell wired (audio data-keys, 3 sections). Essay template migrated to root-relative paths + new nav. **Prose injection (essays, glossary entry bodies, Void Engine prompts) remains chat-side work** — no Cowork session will write that content. To populate SV, paste the prose into `src/essays/sanguinolentum-vestigium/index.html` directly (replace each `<p class="prose-placeholder">…</p>` block) — no Cowork session required for paste-and-replace unless you want section titles restructured, additional sections added, or audio data-keys reshuffled.
+- **Session D (Void Engine text-transformer)**: SUPERSEDED by D'. Files orphaned at `src/components/void-engine.{css,js}` (manual rm pending — sandbox FS denied). No transmission-mode authoring contract anymore; the engine is now the suite's image-prompt builder.
+- **Session D' (Void Engine standalone port from suite)**: SUPERSEDED by D''. Standalone Void Engine port was an interim deliverable; D'' replaces it with the full bundled triptych. D' content is preserved in this CLAUDE.md as historical context (its surgery shape is a strict subset of D''s).
+- **Session D'' (Dual Engine V2 triptych port from suite)**: ✓ DONE 2026-05-13. Live triptych at `/void-engine/` — Void Engine (image-prompt builder, 222 modifiers / 15 categories / 14 presets / Corpus Analyzer local-mode / archive / deep scan / diagnosis modal / readable-mode toggle) + Signal Engine (992-track frequency index, 17 genres × 17 moods × 7 source playlists, link-out to YouTube Music) + Transmission v2 (canvas-rendered ambient visual, wave/particle/type modes cycling 16 moods + 26 fragments). Toggle bar at top of body routes between the three; hash-route shim allows `/void-engine/#sig` and `/void-engine/#trans` deep-links. Future Dual Engine V2 updates resync via `docs/void-engine-suite-coordination.md` relay: suite-Claude re-exports `DUAL_ENGINE_v2.html` (or whatever the canonical bundled name becomes), wuld.ink-Cowork re-applies the SIX bounded transformations (chrome wrap / API strip / ARCH_KEY rename / stylesheet injection / D5=α hash-route shim / D7=β Transmission full-bleed). All six are idempotent and tightly scoped — port resyncs are mechanical, not creative. Flash card scaffolding still deferred to D2.
+- **Session E (Cloudflare wire-up)**: ✓ DONE 2026-05-12. wuld.ink-side infra all shipped per "Infra facts locked" above. `library.wuld.ink` subdomain still DEFERRED (waits for library audit close + stable tag v3.7.0+); ships in a later session. `<body data-audio-base="https://audio.wuld.ink">` is now set on every page produced in session B.
+- **Session E2 (micro)**: ✓ DONE 2026-05-13. All four items closed: (1) audio.wuld.ink propagation verified clean 404; (2) **all of sessions B + D' + D'' deployed to Pages this turn** (the live site had been frozen on the session-A placeholder since 2026-05-11 — no one had pushed the local work to Pages between then and now); (3) www → apex 301 redirect rule deployed and verified live with query-string preserved; (4) R2 custom domain TLS minimum bumped 1.0 → 1.2. Bonus: D'' triptych live-browser smoke completed (Void Engine / Transmission / Signal Engine all render clean, D7=β chrome-band layering confirmed). `library.wuld.ink` subdomain provisioning STILL DEFERRED (waits for library audit close + stable tag v3.7.0+); will ship in a later micro-session when library-Claude signals baton-ready.
+- **Session F+ editorial library extraction**: do NOT touch the library substrate (it lives at `library.wuld.ink` unchanged). Extract editorially: coda → standalone wuld.ink page using wuld.ink design system, 1-2 canonical objection long-forms → `wuld.ink/objections/` as prose-essays, static Map 1 frame → "about the library" page. Cross-link bridges only. Wait for library audit close before starting.
+- **Baton file workflow** (cross-project synthesis): baton not delivered in session B (skipped per Josiah's note: EFIList portion deferred to library stable tag; Book + handles portions sufficient as already in CLAUDE.md/memory). Future sessions can ingest baton enrichment as it lands.
+- **Component-CSS deduplication backlog**: page-shell inline `<style>` blocks (footer chrome, page-hero, status-card patterns) repeat across `essays/index.html`, `argument-library/`, `book/`, `blog/`. When a third page wants any of these, promote to `/components/page.css` (or split: `footer.css`, `page-hero.css`). Premature now — two instances each.
+
+---
+
+## Recommended Cowork session arc (revised post-A close)
+
+Session C from the original arc is COLLAPSED. Its subdomain-infra surface folds into session E; its editorial-extraction surface folds into F+.
+
+| Session | Deliverable |
+|---|---|
+| A | Lock decisions; design tokens + canonical essay template ✓ DONE |
+| E | Cloudflare wire-up: Pages deploy + custom domains (apex + www) + DNSSEC + R2 bucket + `audio.wuld.ink` subdomain ✓ DONE 2026-05-12 (`library.wuld.ink` subdomain split out to micro-session, ships post-stable-tag) |
+| B | IA build (homepage as collapsed title-page, nav component, page shells for all 6 destinations, glossary scaffold + 2 anchor entry shells, SV essay shell wired with audio data-keys) ✓ DONE 2026-05-13 |
+| ~~D~~ | ~~Void Engine text-transformer instrument~~ — MISREAD. `components/void-engine.{css,js}` orphaned (manual rm pending); `void-engine/index.html` fully overwritten by D'. |
+| ~~D'~~ | ~~Void Engine standalone port from suite~~ — SUPERSEDED by D''. D' shipped 2026-05-13 as an interim Void-Engine-only port; replaced same day by the bundled triptych. D'' surgery shape is a strict superset; D' shape no longer lives in the deployed file. |
+| D'' | **Dual Engine V2 triptych port from suite** ✓ DONE 2026-05-13. `wuld.ink/void-engine/` shipped as faithful public port of `DUAL_ENGINE_v2.html` (374 KB pre-port / 380 KB post-port after null-strip). All three engines live + toggle bar. **Six bounded transformations:** chrome wrap (triptych scale), API strip per B1, ARCH_KEY rename per A4, stylesheet injection, **D5=α hash-route shim** (wuld.ink-side, ~22 lines), **D7=β Transmission canvas full-bleed under chrome with z-index layering**. Engine bodies retain canonical visual register per A5 (i) — Space Mono / blood-red / Courier Prime / scanline. 222 DB / 222 DS / 15 cats / 992 SE_DB tracks / 16 MOODS / 26 FRAGMENTS verified. Smoke-tested offline (HTML balance, JS strict-mode parse, ARCH_KEY round-trip 5/5, hash-route 9/9, data shapes). Exchange 8 reply on relay doc; two new flags (E1 FRAGMENTS-count 26-vs-25, E2 trailing-null-padding in canonical export), both non-blocking. C1 closed via Exchange 5 (222 ground truth). Homepage Void card updated to "04 · Triptych" / "Lexicon · signal · transmission". |
+| D2 (optional) | Flash card game scaffolding — content source (efilist objections / glossary terms / both) and tech (vanilla JS recommended) still OPEN. Parallel-safe with library work. Runs whenever Josiah picks the slot. |
+| E2 (micro) | www→apex 301 redirect rule + audio.wuld.ink propagation re-verify + TLS minimum bump 1.0→1.2 + **emergency deploy of sessions B/D'/D'' which had never been pushed since session-A placeholder upload** + D'' live-browser smoke ✓ DONE 2026-05-13. All shipped via Chrome MCP (deploy upload step fell back to Josiah manual drag-drop due to synthetic-File-upload limitation in Cloudflare's FileReader path). `library.wuld.ink` subdomain provisioning split out to a future micro-session when library audit closes and library-Claude declares stable tag v3.7.0+. |
+| F+ | Editorial library extraction (coda, 2 canonical objection long-forms, static Map 1 frame on "about the library") — runs AFTER library audit closes. Animations, additional essays, blog, book excerpts, content fill-in. |
+
+Don't try to compress. Each session ships one slice cleanly.
+
+---
+
+## Session close protocol
+
+At end of each Cowork session:
+
+1. Update this CLAUDE.md "Current state" section: resolved decisions, status of branches built, new open questions.
+2. Update the memory file `project_website_intent.md` to match.
+3. Emit a NEXT line: pasteable prompt for the next session.
+
+The CLAUDE.md should always reflect current state at session close.
+
+---
+
+## If you are about to do something content-shaped
+
+Stop. If the task involves drafting essay content, writing book excerpts, generating glossary entries, or composing Void Engine prompts — defer to chat. Cowork sessions implement; chat sessions write.

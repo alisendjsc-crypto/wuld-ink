@@ -1,0 +1,352 @@
+/* ============================================================
+   wuld.ink — design tokens
+   Multi-mode architecture: data-mode attribute scopes overrides.
+   Default (no data-mode) = dark canonical.
+   data-mode="reader" = warm light reader mode (long-form sections).
+   data-mode="hc"     = high-contrast accessibility mode.
+   Set data-mode on <html> for global, on <article> for scoped.
+   ============================================================ */
+
+:root {
+  /* ---------- Typography ---------- */
+  /* Type system mirrors Josiah's book:
+       Display  (Cormorant Garamond)   = homepage title hero, book-cover-style
+       Headline (IM Fell English)      = h1, h2 essay/section titles
+       Body     (EB Garamond)          = long-form body, h3-h6 subheadings
+       Mono     (IBM Plex Mono)        = UI chrome, code, labels, metadata —
+                                         the "manufactured object" signal
+                                         (running heads, colophons, page nos)
+     @font-face declarations at bottom of file use local() first so installed
+     fonts render immediately on Josiah's machine; self-hosted WOFF2 fallback
+     for web visitors once files are dropped into src/fonts/. */
+
+  --font-display:  "Cormorant Garamond",
+                   "Cormorant",
+                   Garamond,
+                   "Adobe Garamond Pro",
+                   "Times New Roman",
+                   serif;
+
+  --font-headline: "IM Fell English",
+                   "IM Fell DW Pica",
+                   "Hoefler Text",
+                   "Caslon",
+                   Georgia,
+                   serif;
+
+  --font-body:     "EB Garamond",
+                   Garamond,
+                   "Adobe Garamond Pro",
+                   "Hoefler Text",
+                   Georgia,
+                   "Times New Roman",
+                   serif;
+
+  --font-mono:     "IBM Plex Mono",
+                   ui-monospace,
+                   "SFMono-Regular",
+                   Menlo,
+                   Monaco,
+                   Consolas,
+                   monospace;
+
+  /* Legacy aliases for any prior references */
+  --font-sans: var(--font-body);
+
+  /* Type scale (1.25 ratio — calmer than 1.333, kinder to long-form) */
+  --t-xs:    0.75rem;   /* 12px — captions, metadata, footnote refs */
+  --t-sm:    0.875rem;  /* 14px — small UI text, asides */
+  --t-base:  1rem;      /* 16px — body */
+  --t-lead:  1.125rem;  /* 18px — body lead, large body */
+  --t-h5:    1.25rem;   /* 20px */
+  --t-h4:    1.5rem;    /* 24px */
+  --t-h3:    1.875rem;  /* 30px */
+  --t-h2:    2.25rem;   /* 36px */
+  --t-h1:    3rem;      /* 48px */
+  --t-display: 4.5rem;  /* 72px — title hero */
+
+  /* Line heights — slightly looser than industrial-sans defaults to give
+     Garamond's small x-height room to breathe. */
+  --lh-tight:   1.18;   /* display, h1-h2 serif headings */
+  --lh-snug:    1.35;   /* sub-headings, h4-h5 */
+  --lh-default: 1.65;   /* serif body — reading endurance */
+  --lh-loose:   1.85;   /* spacious blocks, reader-mode body */
+
+  /* Letter spacing */
+  --ls-tight:  -0.01em; /* large serif headlines — subtle tightening only */
+  --ls-normal: 0;
+  --ls-wide:   0.06em;  /* mono labels, eyebrow text, all-caps */
+  --ls-mega:   0.12em;
+
+  /* ---------- Spacing rhythm (4px base) ---------- */
+  --s-0:  0;
+  --s-1:  0.25rem;   /* 4px  */
+  --s-2:  0.5rem;    /* 8px  */
+  --s-3:  0.75rem;   /* 12px */
+  --s-4:  1rem;      /* 16px */
+  --s-5:  1.5rem;    /* 24px */
+  --s-6:  2rem;      /* 32px */
+  --s-7:  3rem;      /* 48px */
+  --s-8:  4rem;      /* 64px */
+  --s-9:  6rem;      /* 96px */
+  --s-10: 8rem;      /* 128px */
+
+  /* Content widths */
+  --w-narrow: 50ch;
+  --w-prose:  65ch;   /* optimal reading width */
+  --w-wide:   80ch;
+  --w-max:    1200px;
+
+  /* ---------- Borders & strokes (neobrutalist = hard, visible) ---------- */
+  --bw-thin:   1px;
+  --bw-base:   2px;   /* default brutalist stroke */
+  --bw-thick:  4px;
+  --bw-slab:   6px;   /* heavy emphasis */
+
+  --radius-0: 0;      /* default — no soft corners */
+  /* No other radius tokens. Resist the urge. */
+
+  /* ---------- Motion ---------- */
+  --t-fast:    80ms;
+  --t-base-d:  160ms;
+  --t-slow:    320ms;
+  --ease:      cubic-bezier(0.2, 0, 0, 1);
+
+  /* ============================================================
+     COLOR — DARK (canonical, default)
+     ----------------------------------------------------------------
+     Cross-surface coherence note (per library-Claude coordination
+     Exchange 2, 2026-05-12):
+
+     wuld.ink does NOT push tokens down to library.wuld.ink. The
+     library uses inline color literals across ~600 lines of CSS and
+     consumes no var() references. Forcing token consumption there =
+     substrate rewrite, which is permanently out of scope.
+
+     Direction reverses: tokens.css codifies what the library already
+     does at the umbrella-anchor points. Shared values (lock):
+       --c-bg     = #0a0a0a   (matches library)
+       --c-accent = #c41e3a   (matches library)
+
+     Divergent BY DESIGN:
+       --c-fg     = #f0ebe5   (wuld.ink — warm off-white, optical
+                              pairing with serif-on-warm body)
+                  vs library  #e8e8e8 (cool gray, optical pairing
+                              with mono-on-cool body)
+
+     The fg divergence reinforces the register divergence (literary
+     vs instrument) rather than betraying coherence.
+
+     Cross-surface chrome anchor: IBM Plex Mono. wuld.ink uses Mono
+     for UI chrome; library uses Mono throughout. The Mono spine is
+     the typographic constant; non-chrome typography diverges by
+     design.
+     ============================================================ */
+  --c-bg:           #0a0a0a;   /* near-black, slight warmth vs pure #000 */
+  --c-bg-elevated:  #161616;   /* inline code, audio chrome, asides */
+  --c-bg-overlay:   #1f1f1f;   /* hover surfaces */
+
+  --c-fg:           #f0ebe5;   /* warm off-white — softer than #fff */
+  --c-fg-muted:     #8a847b;
+  --c-fg-dim:       #5a554f;
+
+  --c-accent:       #c41e3a;   /* blood-red (cardinal/crimson)        */
+  --c-accent-hover: #e63950;
+  --c-accent-dim:   #7a1226;   /* visited links, secondary accent     */
+
+  --c-border:        #2a2a2a;
+  --c-border-strong: #4a4540;
+  --c-border-accent: #c41e3a;
+
+  --c-focus:        #c41e3a;
+  --c-focus-ring:   0 0 0 var(--bw-base) var(--c-focus);
+
+  --c-selection-bg: #c41e3a;
+  --c-selection-fg: #f0ebe5;
+}
+
+/* ============================================================
+   READER MODE — warm light, opt-in on long-form sections
+   ============================================================ */
+[data-mode="reader"] {
+  --c-bg:           #f5efe6;   /* warm cream, risograph paper */
+  --c-bg-elevated:  #ebe4d8;
+  --c-bg-overlay:   #ddd6c6;
+
+  --c-fg:           #1a1816;   /* dark warm gray, not pure black */
+  --c-fg-muted:     #5a554f;
+  --c-fg-dim:       #8a847b;
+
+  --c-accent:       #a91930;   /* darker blood-red for light-bg contrast */
+  --c-accent-hover: #851424;
+  --c-accent-dim:   #c44560;
+
+  --c-border:        #d4cdbd;
+  --c-border-strong: #a8a094;
+  --c-border-accent: #a91930;
+
+  --c-focus:        #a91930;
+
+  --c-selection-bg: #a91930;
+  --c-selection-fg: #f5efe6;
+}
+
+/* ============================================================
+   HIGH-CONTRAST MODE — WCAG AAA, accessibility-critical
+   ============================================================ */
+[data-mode="hc"] {
+  --c-bg:           #000000;
+  --c-bg-elevated:  #1a1a1a;
+  --c-bg-overlay:   #2a2a2a;
+
+  --c-fg:           #ffffff;
+  --c-fg-muted:     #d4d4d4;
+  --c-fg-dim:       #a8a8a8;
+
+  --c-accent:       #ff4060;   /* lifted for max contrast on pure black */
+  --c-accent-hover: #ff5577;
+  --c-accent-dim:   #c0334f;
+
+  --c-border:        #ffffff;
+  --c-border-strong: #ffffff;
+  --c-border-accent: #ff4060;
+
+  --c-focus:        #ffeb3b;   /* yellow focus ring — max visibility */
+
+  --c-selection-bg: #ffeb3b;
+  --c-selection-fg: #000000;
+}
+
+/* ============================================================
+   FUTURE: data-palette="cb-*" axis for colorblind variants.
+   Reserved hooks (not yet implemented):
+     [data-palette="cb-deutan"]  — green-weak adjustment
+     [data-palette="cb-protan"]  — red-weak adjustment
+     [data-palette="cb-tritan"]  — blue-weak adjustment
+   These would override --c-accent et al. without touching bg/fg.
+   ============================================================ */
+
+/* ---------- Reduced motion respect ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-fast:   0ms;
+    --t-base-d: 0ms;
+    --t-slow:   0ms;
+  }
+}
+
+/* ============================================================
+   @font-face — self-hosted faces
+   ----------------------------------------------------------------
+   local() first: if the user has the font installed on their OS,
+   it renders immediately without any network request. Falls
+   through to self-hosted WOFF2 files in src/fonts/ for web visitors.
+   Drop the WOFF2 files into src/fonts/ following the names below;
+   see src/fonts/README.md for sources and conversion instructions.
+   Until the files exist, the browser falls through to the system
+   serif fallback chain defined in --font-* tokens above.
+   ============================================================ */
+
+/* ----- EB Garamond — body ----- */
+@font-face {
+  font-family: "EB Garamond";
+  src: local("EB Garamond Regular"),
+       local("EBGaramond-Regular"),
+       local("EB Garamond"),
+       url("./fonts/EBGaramond-Regular.woff2") format("woff2"),
+       url("./fonts/EBGaramond-Regular.woff")  format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: local("EB Garamond Italic"),
+       local("EBGaramond-Italic"),
+       url("./fonts/EBGaramond-Italic.woff2") format("woff2"),
+       url("./fonts/EBGaramond-Italic.woff")  format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: local("EB Garamond SemiBold"),
+       local("EBGaramond-SemiBold"),
+       url("./fonts/EBGaramond-SemiBold.woff2") format("woff2"),
+       url("./fonts/EBGaramond-SemiBold.woff")  format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: local("EB Garamond Bold"),
+       local("EBGaramond-Bold"),
+       url("./fonts/EBGaramond-Bold.woff2") format("woff2"),
+       url("./fonts/EBGaramond-Bold.woff")  format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----- IM Fell English — headlines (h1, h2) ----- */
+@font-face {
+  font-family: "IM Fell English";
+  src: local("IM Fell English Roman"),
+       local("IM FELL English Roman"),
+       local("IM Fell English"),
+       url("./fonts/IMFellEnglish-Regular.woff2") format("woff2"),
+       url("./fonts/IMFellEnglish-Regular.woff")  format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IM Fell English";
+  src: local("IM Fell English Italic"),
+       local("IM FELL English Italic"),
+       url("./fonts/IMFellEnglish-Italic.woff2") format("woff2"),
+       url("./fonts/IMFellEnglish-Italic.woff")  format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ----- Cormorant Garamond — display / hero / title-page ----- */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: local("Cormorant Garamond Regular"),
+       local("CormorantGaramond-Regular"),
+       local("Cormorant Garamond"),
+       url("./fonts/CormorantGaramond-Regular.woff2") format("woff2"),
+       url("./fonts/CormorantGaramond-Regular.woff")  format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: local("Cormorant Garamond Medium"),
+       local("CormorantGaramond-Medium"),
+       url("./fonts/CormorantGaramond-Medium.woff2") format("woff2"),
+       url("./fonts/CormorantGaramond-Medium.woff")  format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: local("Cormorant Garamond SemiBold"),
+       local("CormorantGaramond-SemiBold"),
+       url("./fonts/CormorantGaramond-SemiBold.woff2") format("woff2"),
+       url("./fonts/CormorantGaramond-SemiBold.woff")  format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----- IBM Plex Mono — UI chrome only (kept) -----
+   Mono lives on small UI labels, audio readouts, code, metadata.
+   Loaded via system fallback chain by default; add @font-face here
+   if pinning to a specific weight becomes important later. */

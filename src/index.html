@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>wuld.ink</title>
+  <meta name="description" content="WULD — philosophical work by Josiah Cooper. Pessimism, nihilism, the proxy gamble, the void engine.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+
+  <style>
+    /* ============================================================
+       Homepage — collapsed title-page.
+       First scroll-section = zine cover (full viewport).
+       Subsequent section = destinations grid.
+       Cover-local chrome lives here; promote to a component only if
+       a second page ever needs it.
+       ============================================================ */
+
+    /* Strip the global nav off the cover viewport — nav slides up from the
+       second section onward. The cover stands alone like a book jacket. */
+    body.home .site-header {
+      position: absolute;
+      inset-inline: 0;
+      inset-block-start: 0;
+      z-index: 10;
+      margin-block-end: 0;
+      border-bottom: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.0) 0%,
+        rgba(10, 10, 10, 0.0) 100%
+      );
+      /* transparent over the cover; nav text still visible against dark bg */
+    }
+
+    /* ---------- Cover section ---------- */
+    .cover {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto 1fr;
+      align-items: center;
+      padding-inline: var(--s-5);
+      padding-block: var(--s-6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-spacer-top  { grid-row: 1; }
+    .cover-spacer-bot  { grid-row: 3; align-self: end; }
+
+    .cover-mark-block {
+      grid-row: 2;
+      max-width: var(--w-max);
+      margin-inline: auto;
+      width: 100%;
+      text-align: center;
+    }
+
+    .cover-mark {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 14vw, 9rem);
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: var(--ls-tight);
+      color: var(--c-fg);
+      margin-block-end: var(--s-5);
+    }
+
+    .cover-mark::before {
+      content: "[";
+      color: var(--c-accent);
+      margin-right: 0.04em;
+      font-weight: 400;
+    }
+
+    .cover-mark::after {
+      content: "]";
+      color: var(--c-accent);
+      margin-left: 0.04em;
+      font-weight: 400;
+    }
+
+    .cover-rule {
+      border: none;
+      border-top: var(--bw-slab) solid var(--c-accent);
+      width: var(--s-7);
+      margin-inline: auto;
+      margin-block: var(--s-5);
+    }
+
+    .cover-handles {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--s-3) var(--s-5);
+      margin-block-end: 0;
+    }
+
+    .cover-handles span {
+      display: inline-block;
+    }
+
+    .cover-handles .sep {
+      color: var(--c-accent);
+    }
+
+    /* Bottom of cover: descent affordance */
+    .cover-descent {
+      grid-row: 3;
+      align-self: end;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-dim);
+    }
+
+    .cover-descent a {
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      padding-block: var(--s-2);
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .cover-descent a:hover {
+      color: var(--c-accent);
+    }
+
+    .cover-descent .arrow {
+      display: inline-block;
+      animation: descent-pulse 2.4s var(--ease) infinite;
+    }
+
+    @keyframes descent-pulse {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50%      { transform: translateY(4px); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cover-descent .arrow { animation: none; }
+    }
+
+    /* ---------- Index section ---------- */
+    .index {
+      padding-block: var(--s-9);
+      padding-inline: var(--s-5);
+      max-width: var(--w-max);
+      margin-inline: auto;
+    }
+
+    .index-heading {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-6);
+      padding-block-end: var(--s-3);
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--bw-base);  /* gaps render as hairline accent divisions when bg shows through */
+      background-color: var(--c-border);
+      border: var(--bw-base) solid var(--c-border);
+    }
+
+    /* Each destination is a card with hairline borders forming a grid */
+    .destination {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+      padding: var(--s-5);
+      background-color: var(--c-bg);
+      text-decoration: none;
+      transition:
+        background-color var(--t-fast) var(--ease),
+        color var(--t-fast) var(--ease);
+      min-height: 11rem;
+    }
+
+    .destination:hover {
+      background-color: var(--c-bg-elevated);
+    }
+
+    .destination:focus-visible {
+      outline: var(--bw-base) solid var(--c-focus);
+      outline-offset: -4px;
+    }
+
+    .destination-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+    }
+
+    .destination-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h3);
+      line-height: var(--lh-tight);
+      color: var(--c-fg);
+      margin-block-end: 0;
+    }
+
+    .destination-tag {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-muted);
+      margin-block-start: auto;   /* push to bottom of card */
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+
+    .destination[data-status="forthcoming"] .destination-tag::before {
+      content: "↳ ";
+      color: var(--c-fg-dim);
+    }
+
+    /* ---------- Footer ---------- */
+    .home-footer {
+      border-top: var(--bw-base) solid var(--c-border);
+      padding-block: var(--s-5);
+      margin-block-start: var(--s-8);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+
+    .home-footer-inner {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s-4);
+    }
+  </style>
+</head>
+
+<body class="home" data-audio-base="https://audio.wuld.ink">
+
+  <a href="#index" class="skip-link">Skip to index</a>
+
+  <!-- Site header (nav over cover, transparent on cover scroll) -->
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       Cover — full viewport. Collapsed title-page register.
+       ============================================================ -->
+  <section class="cover" aria-label="Cover">
+    <div class="cover-spacer-top"></div>
+
+    <div class="cover-mark-block">
+      <h1 class="cover-mark">wuld.ink</h1>
+      <hr class="cover-rule">
+      <p class="cover-handles">
+        <span>WULD</span>
+        <span class="sep">·</span>
+        <span>AnomicIndividual87</span>
+        <span class="sep">·</span>
+        <span>Evilis&nbsp;Anihilis&nbsp;Uls</span>
+      </p>
+    </div>
+
+    <p class="cover-descent">
+      <a href="#index">
+        <span>Index</span>
+        <span class="arrow" aria-hidden="true">↓</span>
+      </a>
+    </p>
+  </section>
+
+  <!-- ============================================================
+       Index — primary destinations grid
+       ============================================================ -->
+  <section id="index" class="index" aria-labelledby="index-heading">
+    <h2 id="index-heading" class="index-heading">Index</h2>
+
+    <div class="index-grid">
+
+      <a class="destination" href="/essays/">
+        <span class="destination-label">01 · Long-form</span>
+        <h3 class="destination-title">Essays</h3>
+        <span class="destination-tag">Pessimism · Nihilism · Personal</span>
+      </a>
+
+      <a class="destination" href="/argument-library/" data-status="forthcoming">
+        <span class="destination-label">02 · Reference</span>
+        <h3 class="destination-title">Argument Library</h3>
+        <span class="destination-tag">EFIList v3.6.1 — subdomain pending</span>
+      </a>
+
+      <a class="destination" href="/glossary/">
+        <span class="destination-label">03 · Vocabulary</span>
+        <h3 class="destination-title">Glossary</h3>
+        <span class="destination-tag">Alogical Isness · Contextus Claudit · &amp;c.</span>
+      </a>
+
+      <a class="destination" href="/void-engine/">
+        <span class="destination-label">04 · Triptych</span>
+        <h3 class="destination-title">Void Engine</h3>
+        <span class="destination-tag">Lexicon &middot; signal &middot; transmission</span>
+      </a>
+
+      <a class="destination" href="/book/" data-status="forthcoming">
+        <span class="destination-label">05 · Long-work</span>
+        <h3 class="destination-title">Book</h3>
+        <span class="destination-tag">Hybrid compendium — in development</span>
+      </a>
+
+      <a class="destination" href="/blog/" data-status="forthcoming">
+        <span class="destination-label">06 · Notes</span>
+        <h3 class="destination-title">Blog</h3>
+        <span class="destination-tag">Posts</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer class="home-footer">
+    <div class="home-footer-inner">
+      <span>WULD &middot; wuld.ink &middot; 2026&ndash;</span>
+      <span>Cloudflare Pages + R2</span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>

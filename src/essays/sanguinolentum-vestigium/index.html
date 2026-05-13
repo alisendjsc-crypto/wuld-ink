@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sanguinolentum Vestigium — Essays — wuld.ink</title>
+  <meta name="description" content="Sanguinolentum Vestigium — pessimism manifesto by WULD. Body pending chat-side authorship.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/audio-player.css">
+  <link rel="stylesheet" href="/components/mode-toggle.css">
+
+  <style>
+    /* Essay article shell — copied from canonical template,
+       de-duplicated to component CSS in a future micro-session
+       once a second populated essay exists. */
+    .essay {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+    .essay-header {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-5);
+      margin-block-end: var(--s-7);
+    }
+    .essay-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-5);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      margin-block: var(--s-3) var(--s-4);
+    }
+    .essay-meta strong {
+      color: var(--c-fg-muted);
+      font-weight: 500;
+    }
+    .essay-body {
+      max-width: var(--w-prose);
+      margin-inline: auto;
+    }
+    .essay-body > * { max-width: 100%; }
+    .section-rule {
+      border: none;
+      border-top: var(--bw-slab) solid var(--c-accent);
+      width: var(--s-7);
+      margin-block: var(--s-7);
+    }
+    .prose-placeholder {
+      font-style: italic;
+      color: var(--c-fg-dim);
+    }
+    .prose-placeholder::before {
+      content: "[ ";
+      color: var(--c-accent);
+    }
+    .prose-placeholder::after {
+      content: " ]";
+      color: var(--c-accent);
+    }
+    .page-footer {
+      border-top: var(--bw-base) solid var(--c-border);
+      padding-block: var(--s-5);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+    .page-footer-inner {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s-4);
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="essay" data-readable="sanguinolentum-vestigium">
+
+      <header class="essay-header">
+        <p class="eyebrow">Essay  /  Pessimism manifesto</p>
+
+        <h1>Sanguinolentum Vestigium</h1>
+
+        <div class="essay-meta">
+          <span><strong>Author</strong> WULD</span>
+          <span><strong>Published</strong> 2026</span>
+          <span><strong>Reading</strong> &mdash; min</span>
+        </div>
+
+        <div class="mode-toggle" role="group" aria-label="Reading mode">
+          <button class="mode-toggle-btn" data-mode-target="dark"   aria-pressed="true">Dark</button>
+          <button class="mode-toggle-btn" data-mode-target="reader" aria-pressed="false">Reader</button>
+          <button class="mode-toggle-btn" data-mode-target="hc"     aria-pressed="false">HC</button>
+        </div>
+      </header>
+
+      <div class="essay-body">
+
+        <!-- ============================================================
+             SECTION 1 — opening. Replace H2 with the section's title;
+             paste prose below; audio block is wired and ready.
+             ============================================================ -->
+        <section>
+          <h2>[Section I — title pending]</h2>
+
+          <p class="prose-placeholder">Opening paragraph &mdash; awaiting chat-side authorship.</p>
+
+          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/section-1.mp3">
+            <button class="audio-play" aria-label="Play narration"></button>
+            <div class="audio-progress"><div class="audio-progress-bar"></div></div>
+            <span class="audio-time">0:00</span>
+          </div>
+
+          <p class="prose-placeholder">Continuation &mdash; awaiting chat-side authorship.</p>
+        </section>
+
+        <hr class="section-rule">
+
+        <!-- ============================================================
+             SECTION 2
+             ============================================================ -->
+        <section>
+          <h2>[Section II — title pending]</h2>
+
+          <p class="prose-placeholder">Body paragraph &mdash; awaiting chat-side authorship.</p>
+
+          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/section-2.mp3">
+            <button class="audio-play" aria-label="Play narration"></button>
+            <div class="audio-progress"><div class="audio-progress-bar"></div></div>
+            <span class="audio-time">0:00</span>
+          </div>
+
+          <p class="prose-placeholder">Continuation &mdash; awaiting chat-side authorship.</p>
+        </section>
+
+        <hr class="section-rule">
+
+        <!-- ============================================================
+             SECTION 3
+             ============================================================ -->
+        <section>
+          <h2>[Section III — title pending]</h2>
+
+          <p class="prose-placeholder">Body paragraph &mdash; awaiting chat-side authorship.</p>
+
+          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/section-3.mp3">
+            <button class="audio-play" aria-label="Play narration"></button>
+            <div class="audio-progress"><div class="audio-progress-bar"></div></div>
+            <span class="audio-time">0:00</span>
+          </div>
+
+          <p class="prose-placeholder">Closing &mdash; awaiting chat-side authorship.</p>
+        </section>
+
+        <hr class="section-rule">
+
+        <!-- Endnotes scaffold. Add <li id="fn-N"> entries as the body
+             accumulates references. Body refs use:
+               <a href="#fn-1" class="endnote-ref" id="ref-1">1</a> -->
+        <section aria-labelledby="endnotes">
+          <h2 id="endnotes">Endnotes</h2>
+          <ol>
+            <li class="prose-placeholder">Endnotes &mdash; awaiting chat-side authorship.</li>
+          </ol>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span>WULD &middot; wuld.ink &middot; 2026&ndash;</span>
+      <span>Cloudflare Pages + R2</span>
+    </div>
+  </footer>
+
+  <script src="/components/audio-player.js"></script>
+  <script src="/components/mode-toggle.js"></script>
+  <script src="/components/nav.js"></script>
+</body>
+</html>

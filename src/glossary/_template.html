@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  GLOSSARY ENTRY TEMPLATE
+  Copy this file to /glossary/<term-slug>/index.html and fill in:
+    1. <title> + <meta description>
+    2. .eyebrow text
+    3. .entry-term (the term itself, retains italics by default)
+    4. .entry-meta items (part-of-speech, etymology hint, first-appearance)
+    5. .entry-section bodies (definition / etymology / register / see-also / appears-in)
+  Audio block is optional — include if a chat-side narration exists.
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Term] — Glossary — wuld.ink</title>
+  <meta name="description" content="[One-line gloss — replace at fill-time.]">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/glossary.css">
+  <link rel="stylesheet" href="/components/audio-player.css">
+  <link rel="stylesheet" href="/components/mode-toggle.css">
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="entry" data-readable="glossary-template">
+
+      <header class="entry-header">
+        <p class="eyebrow">Glossary &middot; [Letter]</p>
+        <h1 class="entry-term">[Term]</h1>
+        <div class="entry-meta">
+          <span><strong>Pos.</strong> [n. / phr. / adj.]</span>
+          <span><strong>Etymology</strong> [Lat. / coined / portmanteau]</span>
+          <span><strong>First use</strong> [essay / book section]</span>
+        </div>
+
+        <div class="mode-toggle" role="group" aria-label="Reading mode">
+          <button class="mode-toggle-btn" data-mode-target="dark"   aria-pressed="true">Dark</button>
+          <button class="mode-toggle-btn" data-mode-target="reader" aria-pressed="false">Reader</button>
+          <button class="mode-toggle-btn" data-mode-target="hc"     aria-pressed="false">HC</button>
+        </div>
+      </header>
+
+      <div class="entry-body">
+
+        <section class="entry-section" aria-labelledby="def">
+          <p class="entry-section-label" id="def">Definition</p>
+          <p class="entry-placeholder">[Definition body — chat-side authorship.]</p>
+        </section>
+
+        <!-- Optional audio block — include if narration exists.
+             Otherwise delete this section.
+        <section class="entry-section" aria-labelledby="narr">
+          <p class="entry-section-label" id="narr">Narration</p>
+          <div class="audio-block" data-audio-key="glossary/[term-slug]/definition.mp3">
+            <button class="audio-play" aria-label="Play narration"></button>
+            <div class="audio-progress"><div class="audio-progress-bar"></div></div>
+            <span class="audio-time">0:00</span>
+          </div>
+        </section>
+        -->
+
+        <section class="entry-section" aria-labelledby="etym">
+          <p class="entry-section-label" id="etym">Etymology &amp; register</p>
+          <p class="entry-placeholder">[Etymology + register notes — chat-side authorship.]</p>
+        </section>
+
+        <section class="entry-section" aria-labelledby="see-also">
+          <p class="entry-section-label" id="see-also">See also</p>
+          <ul class="entry-see-also">
+            <li><a href="/glossary/[related-1]/">[Related 1]</a></li>
+            <li><a href="/glossary/[related-2]/">[Related 2]</a></li>
+          </ul>
+        </section>
+
+        <section class="entry-section" aria-labelledby="appears-in">
+          <p class="entry-section-label" id="appears-in">Appears in</p>
+          <ul class="entry-see-also">
+            <li><a href="/essays/[essay-slug]/">[Essay title]</a></li>
+          </ul>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <script src="/components/audio-player.js"></script>
+  <script src="/components/mode-toggle.js"></script>
+  <script src="/components/nav.js"></script>
+</body>
+</html>

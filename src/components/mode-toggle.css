@@ -1,0 +1,55 @@
+/* ============================================================
+   wuld.ink — mode toggle component
+   Scoped accessibility affordance for heavy-read sections.
+   Lives on <article data-readable> or section-header chrome.
+   Markup:
+   <div class="mode-toggle" role="group" aria-label="Reading mode">
+     <button class="mode-toggle-btn" data-mode-target="dark"   aria-pressed="true">Dark</button>
+     <button class="mode-toggle-btn" data-mode-target="reader" aria-pressed="false">Reader</button>
+     <button class="mode-toggle-btn" data-mode-target="hc"     aria-pressed="false">HC</button>
+   </div>
+   ============================================================ */
+
+.mode-toggle {
+  display: inline-flex;
+  align-items: stretch;
+
+  border: var(--bw-base) solid var(--c-border-strong);
+  margin-block: var(--s-4);
+  font-family: var(--font-mono);
+}
+
+.mode-toggle-btn {
+  padding: var(--s-2) var(--s-3);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+  background-color: transparent;
+  border: none;
+  border-right: var(--bw-base) solid var(--c-border-strong);
+  transition:
+    background-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease);
+  min-width: 4.5rem;
+}
+
+.mode-toggle-btn:last-child {
+  border-right: none;
+}
+
+.mode-toggle-btn:hover {
+  background-color: var(--c-bg-overlay);
+  color: var(--c-fg);
+}
+
+.mode-toggle-btn[aria-pressed="true"] {
+  background-color: var(--c-accent);
+  color: var(--c-bg);
+}
+
+.mode-toggle-btn:focus-visible {
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+  z-index: 1;
+}

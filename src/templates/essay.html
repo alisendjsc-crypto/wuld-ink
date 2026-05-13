@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canonical Essay Template — wuld.ink</title>
+  <meta name="description" content="Session A scaffolding — design tokens + audio player + mode toggle wired into a canonical essay template.">
+
+  <!-- Fonts: self-hosted via @font-face in tokens.css.
+       local() fallback in the @font-face src chain renders Josiah's installed
+       fonts immediately (IM Fell English, EB Garamond, Cormorant Garamond).
+       Drop WOFF2 files into src/fonts/ for web visitors (see src/fonts/README.md). -->
+
+  <!-- Tokens + base + components.
+       Root-relative paths so this template renders correctly whether
+       opened from src/templates/ on disk (file://) or served from
+       Cloudflare Pages (src/ is the deploy root, so /tokens.css resolves). -->
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/audio-player.css">
+  <link rel="stylesheet" href="/components/mode-toggle.css">
+
+  <style>
+    /* ============================================================
+       Template-local layout chrome only. Site header / nav / mark
+       were promoted to src/components/nav.{css,js} in session B.
+       Anything still reusable migrates similarly in future sessions.
+       ============================================================ */
+
+    /* Essay article shell */
+    .essay {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+
+    .essay-header {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-5);
+      margin-block-end: var(--s-7);
+    }
+
+    .essay-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-5);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      margin-block: var(--s-3) var(--s-4);
+    }
+
+    .essay-meta strong {
+      color: var(--c-fg-muted);
+      font-weight: 500;
+    }
+
+    .essay-body {
+      max-width: var(--w-prose);
+      margin-inline: auto;
+    }
+
+    .essay-body > * {
+      max-width: 100%;
+    }
+
+    /* Section divider — neobrutalist slab */
+    .section-rule {
+      border: none;
+      border-top: var(--bw-slab) solid var(--c-accent);
+      width: var(--s-7);
+      margin-block: var(--s-7);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: var(--bw-base) solid var(--c-border);
+      padding-block: var(--s-5);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+
+    .site-footer-inner {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s-4);
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ============================================================
+       Site header — uses /components/nav.{css,js} (session B).
+       nav.js auto-marks the current page with aria-current.
+       ============================================================ -->
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN — canonical essay article.
+       [data-readable] scopes the mode toggle to this article only.
+       Replace [data-readable="essay-id"] with the slug per essay.
+       ============================================================ -->
+  <main id="main">
+    <article class="essay" data-readable="essay-template">
+
+      <header class="essay-header">
+        <p class="eyebrow">Essay  /  Section 1  /  Canonical Template</p>
+
+        <h1>Sanguinolentum Vestigium</h1>
+
+        <div class="essay-meta">
+          <span><strong>Author</strong> WULD</span>
+          <span><strong>Published</strong> 2026-05-11</span>
+          <span><strong>Reading</strong> 12 min</span>
+        </div>
+
+        <!-- Scoped reader-mode toggle. Acts on this article only. -->
+        <div class="mode-toggle" role="group" aria-label="Reading mode">
+          <button class="mode-toggle-btn" data-mode-target="dark"   aria-pressed="true">Dark</button>
+          <button class="mode-toggle-btn" data-mode-target="reader" aria-pressed="false">Reader</button>
+          <button class="mode-toggle-btn" data-mode-target="hc"     aria-pressed="false">HC</button>
+        </div>
+      </header>
+
+      <div class="essay-body">
+
+        <!-- Opening section: includes an audio block as inline narration -->
+        <section>
+          <p>
+            [PLACEHOLDER BODY] This is the canonical body paragraph at the default
+            line-height and measure. It sits at <code>--t-base</code> in
+            <strong>IBM Plex Sans</strong>, capped at <code>--w-prose</code>
+            (~65ch) for reading endurance. Mono is reserved for structural
+            and code elements; sustained prose runs in Sans.
+          </p>
+
+          <!-- Inline audio block. data-audio-key constructs the R2 URL at runtime. -->
+          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/section-1.mp3">
+            <button class="audio-play" aria-label="Play narration"></button>
+            <div class="audio-progress">
+              <div class="audio-progress-bar"></div>
+            </div>
+            <span class="audio-time">0:00</span>
+          </div>
+
+          <p>
+            [PLACEHOLDER BODY] Per-paragraph audio is <em>selective</em>, not
+            blanket — only paragraphs tagged with an audio block render the
+            narration affordance. Each <code>data-audio-key</code> resolves
+            against the host in <code>data-audio-base</code> on
+            <code>&lt;body&gt;</code> (defaults to
+            <code>https://audio.wuld.ink</code> once the R2 custom subdomain
+            is wired in session E).<a href="#fn-1" class="endnote-ref" id="ref-1">1</a>
+          </p>
+        </section>
+
+        <hr class="section-rule">
+
+        <section>
+          <h2>Form rules, condensed</h2>
+
+          <p>
+            [PLACEHOLDER BODY] Block-level demonstrations follow. Each maps
+            to a token defined in <code>tokens.css</code>.
+          </p>
+
+          <h3>Headings cascade in IBM Plex Mono</h3>
+          <p>[PLACEHOLDER BODY] Mono headings on a Sans body produce the
+            structural rhythm characteristic of neobrutalist zine layouts.
+            Tight letter-spacing on Mono prevents the &ldquo;wide grid&rdquo;
+            effect mono fonts default to.</p>
+
+          <h4>h4 — section sub-heading</h4>
+          <p>[PLACEHOLDER BODY] Body continues. h5 and h6 exist; h6 reads as
+            an eyebrow rather than a sixth-level heading.</p>
+
+          <blockquote>
+            [PLACEHOLDER QUOTE] A blockquote uses a heavy left rule in
+            accent red. Italic body, muted color. The slab is
+            <code>--bw-slab</code> &mdash; the heaviest stroke token.
+          </blockquote>
+
+          <p>[PLACEHOLDER BODY] Inline elements render in their token-keyed
+            forms: <a href="#">links in accent red, underlined</a>,
+            <strong>strong in elevated weight</strong>,
+            <em>italic for emphasis</em>,
+            <code>inline code in elevated background</code>.</p>
+
+          <pre><code>// Code block — Mono, bordered, no soft corners.
+const audio = new Audio(`${base}/${key}`);
+audio.play();</code></pre>
+        </section>
+
+        <hr class="section-rule">
+
+        <section>
+          <h2>A second audio-tagged passage</h2>
+
+          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/section-2.mp3">
+            <button class="audio-play" aria-label="Play narration"></button>
+            <div class="audio-progress">
+              <div class="audio-progress-bar"></div>
+            </div>
+            <span class="audio-time">0:00</span>
+          </div>
+
+          <p>
+            [PLACEHOLDER BODY] Multiple audio blocks coexist; the controller
+            stops any other playing block when a new one starts. One-at-a-time
+            playback by design &mdash; no overlapping narration.
+          </p>
+
+          <p>
+            [PLACEHOLDER BODY] Try the mode toggle in the article header.
+            <strong>Reader</strong> bumps the size + line-height for endurance
+            and warms the palette toward risograph cream.
+            <strong>HC</strong> swaps to pure-black / pure-white with a
+            yellow focus ring for WCAG AAA accessibility. The toggle is
+            <em>scoped to this article only</em> &mdash; the rest of the site
+            stays in dark canonical.
+          </p>
+        </section>
+
+        <hr class="section-rule">
+
+        <!-- Endnotes — placeholder. Final implementation TBD (open Q). -->
+        <section aria-labelledby="endnotes">
+          <h2 id="endnotes">Endnotes</h2>
+          <ol>
+            <li id="fn-1">
+              [PLACEHOLDER ENDNOTE] Endnote rendering pattern is a deferrable
+              open question: footnote popups, bottom-of-page (this), or a
+              separate endnotes page. Voice rule per the brief: clean body
+              text, philosophical hedges in endnotes.
+              <a href="#ref-1" aria-label="Back to reference">&#x21A9;</a>
+            </li>
+          </ol>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span>WULD &middot; wuld.ink &middot; 2026&ndash;</span>
+      <span>Cloudflare Pages + R2</span>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       Component controllers
+       ============================================================ -->
+  <script src="/components/audio-player.js"></script>
+  <script src="/components/mode-toggle.js"></script>
+  <script src="/components/nav.js"></script>
+
+</body>
+</html>

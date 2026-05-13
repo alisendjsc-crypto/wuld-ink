@@ -1,0 +1,117 @@
+/* ============================================================
+   wuld.ink — site nav component
+   Promoted from essay.html template-local CSS in session B.
+   Markup contract:
+     <header class="site-header">
+       <div class="site-header-inner container">
+         <a href="/" class="site-mark">wuld.ink</a>
+         <nav class="site-nav" aria-label="Primary">
+           <a href="/essays/">Essays</a>
+           <a href="/argument-library/">Library</a>
+           <a href="/glossary/">Glossary</a>
+           <a href="/void-engine/">Void</a>
+           <a href="/book/">Book</a>
+           <a href="/blog/">Blog</a>
+         </nav>
+       </div>
+     </header>
+   nav.js sets aria-current="page" on the matching link.
+   ============================================================ */
+
+.site-header {
+  border-bottom: var(--bw-base) solid var(--c-border-strong);
+  padding-block: var(--s-4);
+  margin-block-end: var(--s-7);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  flex-wrap: wrap;       /* mobile fallback — nav wraps below mark */
+}
+
+/* ---------- Site mark (logo / wordmark) ---------- */
+.site-mark {
+  font-family: var(--font-mono);
+  font-size: var(--t-h5);
+  font-weight: 700;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-fg);
+  text-decoration: none;
+  /* Beat base.css link defaults */
+  text-decoration-thickness: 0;
+}
+
+.site-mark::before {
+  content: "[";
+  color: var(--c-accent);
+  margin-right: 0.1em;
+}
+
+.site-mark::after {
+  content: "]";
+  color: var(--c-accent);
+  margin-left: 0.1em;
+}
+
+.site-mark:hover {
+  color: var(--c-fg);   /* mark itself stays steady; brackets carry the affect */
+}
+
+.site-mark:hover::before,
+.site-mark:hover::after {
+  color: var(--c-accent-hover);
+}
+
+/* ---------- Primary nav ---------- */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-5);
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.site-nav a {
+  color: var(--c-fg-muted);
+  text-decoration: none;
+  padding-block: var(--s-1);   /* enlarges hit target without disturbing rhythm */
+  border-bottom: var(--bw-base) solid transparent;
+  transition:
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease);
+}
+
+.site-nav a:hover {
+  color: var(--c-accent);
+  border-bottom-color: var(--c-accent);
+}
+
+.site-nav a:focus-visible {
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+/* Current page — solid underline in accent, fg color lifted */
+.site-nav a[aria-current="page"] {
+  color: var(--c-fg);
+  border-bottom-color: var(--c-accent);
+}
+
+/* ---------- Narrow viewports ---------- */
+@media (max-width: 640px) {
+  .site-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .site-nav {
+    width: 100%;
+  }
+  .site-nav a {
+    font-size: var(--t-xs);
+  }
+}

@@ -1,0 +1,28 @@
+# wuld.ink .gitignore
+# Deploy artifacts (Cloudflare Pages now pulls from main branch)
+*.zip
+*.tar.gz
+wuld-ink-deploy*
+ziCwRmw0
+ziGq6fkD
+zi[A-Za-z0-9]*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+*.bak
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node (in case build tooling ever lands)
+node_modules/
+.env
+.env.local
+
+# Cowork session artifacts (none currently expected, but defensive)
+outputs/

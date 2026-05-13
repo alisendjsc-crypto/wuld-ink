@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog — wuld.ink</title>
+  <meta name="description" content="Posts — shorter than essays, looser than reference.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+
+  <style>
+    .page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+    .page-hero {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-6);
+      margin-block-end: var(--s-7);
+    }
+    .empty-state {
+      border: var(--bw-base) dashed var(--c-border);
+      padding: var(--s-7);
+      max-width: var(--w-prose);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+    }
+    .page-footer {
+      border-top: var(--bw-base) solid var(--c-border);
+      padding-block: var(--s-5);
+      margin-block-start: var(--s-9);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+    .page-footer-inner {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s-4);
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="page">
+      <header class="page-hero">
+        <p class="eyebrow">06 · Notes</p>
+        <h1>Blog</h1>
+      </header>
+
+      <p class="empty-state">No posts yet.</p>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span>WULD &middot; wuld.ink &middot; 2026&ndash;</span>
+      <span>Cloudflare Pages + R2</span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>

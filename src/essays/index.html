@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Essays — wuld.ink</title>
+  <meta name="description" content="Long-form philosophical essays by WULD.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+
+  <style>
+    .page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+    .page-hero {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-6);
+      margin-block-end: var(--s-7);
+    }
+    .essay-list {
+      list-style: none;
+      padding: 0;
+      max-width: var(--w-wide);
+      margin: 0;
+    }
+    .essay-list li {
+      border-bottom: var(--bw-thin) solid var(--c-border);
+      padding-block: var(--s-5);
+      margin: 0;
+    }
+    .essay-list li:last-child { border-bottom: none; }
+    .essay-list a {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .essay-list a:hover .essay-list-title { color: var(--c-accent); }
+    .essay-list-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-2);
+    }
+    .essay-list-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h2);
+      line-height: var(--lh-tight);
+      color: var(--c-fg);
+      transition: color var(--t-fast) var(--ease);
+      margin-block-end: var(--s-2);
+    }
+    .essay-list-tag {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+    .essay-list-item[data-status="forthcoming"] .essay-list-title {
+      color: var(--c-fg-muted);
+    }
+    .essay-list-item[data-status="forthcoming"] a {
+      pointer-events: none;
+      cursor: default;
+    }
+    .essay-list-item[data-status="forthcoming"] .essay-list-tag::before {
+      content: "Forthcoming · ";
+      color: var(--c-accent);
+    }
+    .page-footer {
+      border-top: var(--bw-base) solid var(--c-border);
+      padding-block: var(--s-5);
+      margin-block-start: var(--s-9);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+    .page-footer-inner {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s-4);
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="page">
+      <header class="page-hero">
+        <p class="eyebrow">01 · Long-form</p>
+        <h1>Essays</h1>
+      </header>
+
+      <ul class="essay-list">
+        <li class="essay-list-item">
+          <a href="/essays/sanguinolentum-vestigium/">
+            <p class="essay-list-eyebrow">Pessimism manifesto</p>
+            <h2 class="essay-list-title">Sanguinolentum Vestigium</h2>
+            <p class="essay-list-tag">2026 · Long-form</p>
+          </a>
+        </li>
+        <li class="essay-list-item" data-status="forthcoming">
+          <a href="#">
+            <p class="essay-list-eyebrow">Nihilism treatise</p>
+            <h2 class="essay-list-title">Illogically Is</h2>
+            <p class="essay-list-tag">Long-form</p>
+          </a>
+        </li>
+        <li class="essay-list-item" data-status="forthcoming">
+          <a href="#">
+            <p class="essay-list-eyebrow">Personal mementos</p>
+            <h2 class="essay-list-title">A Life Inside</h2>
+            <p class="essay-list-tag">Long-form</p>
+          </a>
+        </li>
+      </ul>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span>WULD &middot; wuld.ink &middot; 2026&ndash;</span>
+      <span>Cloudflare Pages + R2</span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>
