@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/components/nav.css">
   <link rel="stylesheet" href="/components/audio-player.css">
   <link rel="stylesheet" href="/components/mode-toggle.css">
+  <link rel="stylesheet" href="/components/footer.css">
 
   <style>
     /* ============================================================
@@ -76,26 +77,9 @@
       margin-block: var(--s-7);
     }
 
-    /* Footer */
-    .site-footer {
-      border-top: var(--bw-base) solid var(--c-border);
-      padding-block: var(--s-5);
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      color: var(--c-fg-dim);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
-    }
-
-    .site-footer-inner {
-      max-width: var(--w-max);
-      margin-inline: auto;
-      padding-inline: var(--s-5);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: var(--s-4);
-    }
+    /* Footer rules moved to /components/footer.css (session J).
+       Class renamed from .site-footer to .page-footer to match
+       the shared canonical. */
   </style>
 </head>
 
@@ -271,10 +255,12 @@ audio.play();</code></pre>
   <!-- ============================================================
        Footer
        ============================================================ -->
-  <footer class="site-footer">
-    <div class="site-footer-inner">
-      <span>WULD &middot; wuld.ink &middot; 2026&ndash;</span>
-      <span>Cloudflare Pages + R2</span>
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
+      </span>
+      <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
     </div>
   </footer>
 

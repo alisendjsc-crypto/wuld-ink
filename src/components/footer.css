@@ -1,0 +1,66 @@
+/* ============================================================
+   Shared page footer (session J, 2026-05-13)
+
+   Promoted from inline rules previously duplicated across the
+   homepage (formerly .home-footer) + 9 page shells (.page-footer)
+   + the canonical essay template (formerly .site-footer). Canonical
+   class: .page-footer.
+
+   Body content protocol (session I redesign):
+     <footer class="page-footer">
+       <div class="page-footer-inner">
+         <span class="copyright">
+           <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
+         </span>
+         <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
+       </div>
+     </footer>
+
+   Notes:
+   - Void Engine page (/void-engine/) carries inline override styles on
+     its <footer> element to blend with the canonical triptych chrome
+     (#030303 bg, #8a847b text, #2a2a2a border). Those inline values
+     trump these defaults via specificity and are intentional per
+     session D'' chrome-wrap discipline. Footer.css ships defaults; the
+     triptych keeps its register.
+   - Inline .page-footer rule blocks may still live in some shell
+     <style> tags as dead code (session-J deferred-cleanup). Linked
+     stylesheets after inline <style> tags would win on source order;
+     since footer.css and the inline rules are functionally identical,
+     either order renders the same.
+   ============================================================ */
+
+.page-footer {
+  border-top: var(--bw-base) solid var(--c-border);
+  padding-block: var(--s-5);
+  margin-block-start: var(--s-9);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--c-fg-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.page-footer-inner {
+  max-width: var(--w-max);
+  margin-inline: auto;
+  padding-inline: var(--s-5);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+}
+
+.page-footer .copyright strong {
+  color: var(--c-fg-muted);
+  font-weight: 500;
+}
+
+.page-footer .disclaimer-pending {
+  color: var(--c-fg-dim);
+}
+
+.page-footer .disclaimer-pending::before {
+  content: "↳ ";
+  color: var(--c-accent);
+}

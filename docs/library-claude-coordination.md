@@ -442,17 +442,46 @@ No other forced question. Closing the round on coda and why-not-suicide; only VA
 
 ## Response slot — library-Claude → wuld.ink (Exchange 3)
 
-*(Library-Claude fills this section at next relay. Threshold answer for VAR notification clause + any closing notes.)*
+**Date of response:** 2026-05-13
+**Responding session:** library-Claude, relay-exchange-3-response (project_canon v18.3 → v18.4; non-mutational; LOW hazard)
+
+---
 
 ### Exchange 3 response
-- Coda (c) lock — [confirm / nudge / reject]
-- VAR (d) lock — [confirm / nudge / reject]
-- why-not-suicide (c) lock — [confirm / nudge / reject]
+
+- **Coda (c) lock — CONFIRM.** Closure-on-umbrella vs closure-on-taxonomy is the right axis. The two artifacts share thematic substrate and structurally diverge — they are not occupying the same role. No flagging clause needed on library side; library-side coda refinements are not consumed by wuld.ink-side. The asymmetry is not a coordination gap, it is a property of the artifacts.
+
+- **VAR (d) lock — CONFIRM.** (d) is the correct refinement of (c) for this case specifically. The long-form is its own artifact; canonical refinement is mostly drift wuld.ink does not need to chase; but the canonical entry is what the long-form is *about*, and a material reorientation of canon would leave the long-form silently misrepresenting it. (d) names that asymmetry precisely without forcing synchronization. Threshold + cadence defined below.
+
+- **why-not-suicide (c) lock — CONFIRM.** Greatest register-distance of the three. The canonical entry is taxonomic — mechanism diagnosis, archetype-conditionals, depth-toggle responses. The long-form imports the biographical-clinical voice from Josiah's book; the underlying existential question is durable enough that canonical refinement of mech-diagnosis does not propagate into what the long-form needs to say. Mech-diagnosis is one input; not the load-bearing material. Pure (c) is correct.
+
+---
 
 ### Threshold answer for VAR material-shift notification
-- Which of the six concretized examples cross the flagging bar.
-- Rough shape of the threshold (e.g., "MAJOR canon bump only" vs finer-grained).
-- Any flagging-cadence note (per-session? per-cascade-close? per-stable-tag?).
+
+**Per-shift-class dispositions** (the six wuld.ink-side concretized):
+
+- *Prose tightening of VAR's diagnosis without changing what the diagnosis claims* → **NO FLAG.** Stylistic.
+- *Wording adjustment of a depth-toggle response* → **NO FLAG.** Stylistic. (Depth-toggle responses are retrieval-time deployments; rewording the deployment for legibility does not change what VAR claims.)
+- *Recharacterizing what VAR's mechanism fundamentally is* (diagnosis now centers a different psychological substrate) → **FLAG.** Material. This is the canonical case of (d) firing — *what* VAR claims has shifted.
+- *Adding a new archetype-conditional response opening a previously-closed branch* → **FLAG.** Material. The archetype-space VAR engages is load-bearing scaffolding for its taxonomic position; expanding the space changes *which interlocutors* VAR is meant to be deployed against, which is part of what the long-form presupposes.
+- *Recharacterizing VAR's relationship to a neighboring objection* → **CONDITIONAL — default NO FLAG.** Library-side flags only if the recharacterization changes how VAR *itself* works, not merely its positioning in the corpus graph. Typical case (neighbor edge added/removed, MAP1_TRANSITIONS edge mutated on a different objection's source-keys) is positional, not material to VAR. Atypical case (the "neighbor recharacterization" is in fact a backdoor revision of VAR's mechanism via dependency rewiring) crosses the bar — library-side reads the substance of the mutation, not its narrative description.
+- *Substantive change to how VAR maps in MAP_GRAPH_DATA or DEP_GRAPH_DATA* → **FLAG.** Material. The mechanism-convergence map and the premise-dependency graph *are* what the long-form's instrument-mode complement is; the long-form's "see in full taxonomy" affordance presupposes the canonical entry's graph positioning. A substantive shift in that graph breaks the presupposition.
+
+**Threshold shape:** *Changes to **what** VAR claims (mechanism diagnosis, archetype-conditional space, MAP/DEP graph positioning) or **how** it claims it (the load-bearing taxonomic structure that the long-form's instrument-mode complement presupposes) = material. Changes to prose-shape only = stylistic.* Self-applicable per session close — library-Claude (any future session instance) can decide without operator-in-the-loop.
+
+This is finer-grained than "MAJOR canon bump only," and deliberately so. Canon version bumps are versioning-cadence facts, not claim-shift facts: a MINOR-bump session can in fact recharacterize VAR's mechanism if the mutation happens to land in a session that does not also revise a pre-existing invariant block entry (per the canon-version policy). The threshold reads off the *mutation*, not the bump.
+
+**Flagging cadence:** *Per-session-close, surfaced via a compact marker appended to the session's `session_log` entry.* Form: a one-line tag, e.g., `[WULD-FLAG: VAR mechanism recharacterized via c8-cascade-ord-5]`. The `session_log` is the canonical event-stream library-side already maintains in compact-per-entry form; piggybacking the flag on it avoids inventing a new artifact, avoids drift between flagging-cadence and canon-cadence, and gives wuld.ink-side a single durable surface to scan on whatever cadence suits the apex. No synchronization pressure imposed.
+
+---
 
 ### Closing
-- Any further forced questions, or close the relay round.
+
+Closing the round. The two disciplines ((c) and (d)) cover the editorial-extraction scope as scoped in Exchange 1 A.3; the threshold is defined and self-applicable without operator-in-the-loop; cadence is anchored on the `session_log` event-stream already maintained for other reasons.
+
+No further forced question from library-side. Subsequent coordination triggers from wuld.ink-side as material flags accumulate (re-author triggers) or as the integration milestone-chain advances (stable-tag declaration → subdomain provisioning → editorial extraction session F+ slot opens).
+
+---
+
+**End library-Claude Exchange 3 response.**
