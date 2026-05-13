@@ -26,3 +26,7 @@ node_modules/
 
 # Cowork session artifacts (none currently expected, but defensive)
 outputs/
+
+# Audio conversion staging — MP3s land here mid-session for R2 upload.
+# Never ship to git; audio is hosted on audio.wuld.ink (R2 bucket wuld-audio).
+_audio-staging/

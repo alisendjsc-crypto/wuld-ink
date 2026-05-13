@@ -65,6 +65,25 @@
       content: " ]";
       color: var(--c-accent);
     }
+    /* Audio-intro band — sits above section structure. Audio is its own
+       artifact (condensed reading); prose below stands as the full essay. */
+    .audio-intro {
+      margin-block-end: var(--s-7);
+      padding-block-end: var(--s-5);
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+    .audio-intro-note {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      margin-block-end: var(--s-3);
+    }
+    .audio-intro-note strong {
+      color: var(--c-accent);
+      font-weight: 500;
+    }
     .page-footer {
       border-top: var(--bw-base) solid var(--c-border);
       padding-block: var(--s-5);
@@ -129,19 +148,31 @@
       <div class="essay-body">
 
         <!-- ============================================================
+             AUDIO INTRO — single condensed reading of the essay (6:50).
+             The audio is its own artifact, derived from a truncated
+             script; section breaks in the prose below do NOT sync to
+             the audio. Inline passage-alignment markers can land
+             chat-side when Josiah annotates which prose the audio
+             covers; until then, the audio plays as a standalone
+             reading.
+             ============================================================ -->
+        <div class="audio-intro">
+          <p class="audio-intro-note"><strong>Audio reading</strong> &middot; condensed version &middot; 6:50</p>
+          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/full.mp3">
+            <button class="audio-play" aria-label="Play narration"></button>
+            <div class="audio-progress"><div class="audio-progress-bar"></div></div>
+            <span class="audio-time">0:00</span>
+          </div>
+        </div>
+
+        <!-- ============================================================
              SECTION 1 — opening. Replace H2 with the section's title;
-             paste prose below; audio block is wired and ready.
+             paste prose below.
              ============================================================ -->
         <section>
           <h2>[Section I — title pending]</h2>
 
           <p class="prose-placeholder">Opening paragraph &mdash; awaiting chat-side authorship.</p>
-
-          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/section-1.mp3">
-            <button class="audio-play" aria-label="Play narration"></button>
-            <div class="audio-progress"><div class="audio-progress-bar"></div></div>
-            <span class="audio-time">0:00</span>
-          </div>
 
           <p class="prose-placeholder">Continuation &mdash; awaiting chat-side authorship.</p>
         </section>
@@ -156,12 +187,6 @@
 
           <p class="prose-placeholder">Body paragraph &mdash; awaiting chat-side authorship.</p>
 
-          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/section-2.mp3">
-            <button class="audio-play" aria-label="Play narration"></button>
-            <div class="audio-progress"><div class="audio-progress-bar"></div></div>
-            <span class="audio-time">0:00</span>
-          </div>
-
           <p class="prose-placeholder">Continuation &mdash; awaiting chat-side authorship.</p>
         </section>
 
@@ -174,12 +199,6 @@
           <h2>[Section III — title pending]</h2>
 
           <p class="prose-placeholder">Body paragraph &mdash; awaiting chat-side authorship.</p>
-
-          <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/section-3.mp3">
-            <button class="audio-play" aria-label="Play narration"></button>
-            <div class="audio-progress"><div class="audio-progress-bar"></div></div>
-            <span class="audio-time">0:00</span>
-          </div>
 
           <p class="prose-placeholder">Closing &mdash; awaiting chat-side authorship.</p>
         </section>

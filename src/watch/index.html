@@ -259,6 +259,51 @@
       display: block;
     }
 
+    /* ---------- Theater mode ----------
+       When a card activates, it expands to span the full grid row and
+       caps at a comfortable theater width (centered). Sibling cards
+       dim but remain clickable — clicking another swaps the active.
+       Click outside any card OR press Escape to dismiss.
+       Tear-down restores the original thumb so a re-click re-activates. */
+    .video-card--active {
+      grid-column: 1 / -1;
+      max-width: 56rem;
+      width: 100%;
+      margin-inline: auto;
+      border-color: var(--c-accent);
+      transition:
+        border-color var(--t-fast) var(--ease),
+        max-width var(--t-base) var(--ease);
+    }
+    .video-card--active:hover {
+      border-color: var(--c-accent); /* hold accent; don't double-emphasize */
+    }
+
+    .video-grid.theater-mode .video-card:not(.video-card--active) {
+      opacity: 0.3;
+      transform: scale(0.985);
+      transition:
+        opacity var(--t-base) var(--ease),
+        transform var(--t-base) var(--ease);
+    }
+    .video-grid.theater-mode .video-card:not(.video-card--active):hover {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    .video-grid.theater-mode .video-card:not(.video-card--active):hover .video-thumb {
+      filter: none; /* in theater mode, hover-on-dim should brighten, not darken */
+    }
+
+    /* Reduced-motion: keep the dim, drop the scale animation */
+    @media (prefers-reduced-motion: reduce) {
+      .video-grid.theater-mode .video-card:not(.video-card--active) {
+        transform: none;
+      }
+      .video-card--active {
+        transition: none;
+      }
+    }
+
     /* ---------- Footer ---------- */
     .page-footer {
       border-top: var(--bw-base) solid var(--c-border);
@@ -484,17 +529,40 @@
 
   <script>
     /* ============================================================
-       Facade activator — swap thumb-wrap for youtube-nocookie.com
-       iframe on first click/keypress. No-op if JS disabled.
+       Facade activator + theater mode.
+
+       On click/Enter/Space: activate the card. Swap thumb-wrap for
+       youtube-nocookie.com iframe; add .video-card--active to the
+       card; add .theater-mode to the grid so siblings dim via CSS.
+
+       Switching cards: clicking a different card deactivates the
+       previous one (tears down iframe, restores thumb) then activates
+       the new one.
+
+       Dismissing: click outside any card OR press Escape. Tears down
+       the iframe so background audio stops.
+
+       No-op without JS — clicking does nothing, channel CTA above
+       remains the canonical path.
        ============================================================ */
     (function () {
+      // Cache the original thumb-wrap HTML per card so we can restore
+      // it on deactivate (re-click re-builds the thumb).
+      var originals = new WeakMap();
+
       function activate(card) {
         if (!card) return;
         var wrap = card.querySelector('.video-thumb-wrap');
         if (!wrap || wrap.dataset.activated === '1') return;
         var id = card.dataset.videoId;
         if (!id) return;
+        if (!originals.has(card)) {
+          originals.set(card, wrap.innerHTML);
+        }
         wrap.dataset.activated = '1';
+        card.classList.add('video-card--active');
+        var grid = card.closest('.video-grid');
+        if (grid) grid.classList.add('theater-mode');
         var iframe = document.createElement('iframe');
         iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
                      '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
@@ -505,18 +573,58 @@
         wrap.innerHTML = '';
         wrap.appendChild(iframe);
       }
+
+      function deactivate(card) {
+        if (!card) return;
+        var wrap = card.querySelector('.video-thumb-wrap');
+        if (!wrap || wrap.dataset.activated !== '1') return;
+        var orig = originals.get(card);
+        if (orig !== undefined) {
+          wrap.innerHTML = orig;
+        }
+        wrap.dataset.activated = '0';
+        card.classList.remove('video-card--active');
+        var grid = card.closest('.video-grid');
+        if (grid && !grid.querySelector('.video-card--active')) {
+          grid.classList.remove('theater-mode');
+        }
+      }
+
+      function getActive() {
+        return document.querySelector('.video-card--active');
+      }
+
       document.addEventListener('click', function (e) {
         var card = e.target.closest('.video-card');
-        if (!card) return;
-        activate(card);
+        if (card) {
+          var active = getActive();
+          if (active && active !== card) deactivate(active);
+          activate(card);
+          return;
+        }
+        // Click outside any card → dismiss the active one (if theater is on)
+        var active = getActive();
+        if (active) deactivate(active);
       });
+
       document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          var active = getActive();
+          if (active) {
+            deactivate(active);
+            // Focus the card so keyboard users don't lose context
+            active.focus();
+          }
+          return;
+        }
         if (e.key !== 'Enter' && e.key !== ' ') return;
         var t = e.target;
         if (!t || (t.tagName !== 'BUTTON' && !(t.classList && t.classList.contains('video-card')))) return;
         var card = t.closest('.video-card');
         if (!card) return;
         e.preventDefault();
+        var active = getActive();
+        if (active && active !== card) deactivate(active);
         activate(card);
       });
     })();

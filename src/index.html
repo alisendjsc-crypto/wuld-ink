@@ -83,6 +83,57 @@
       font-weight: 400;
     }
 
+    /* ---------- Cover mark video variant (session H intro stamp) ----------
+       The .cover-mark wrapper keeps its bracket pseudo-elements; we add
+       a video inside that frame. mix-blend-mode: screen lets the stamp's
+       near-black background vanish against --c-bg, so no alpha encoding
+       is needed. prefers-reduced-motion swaps the video for the
+       SR-readable text fallback span. */
+    .cover-mark--video {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 50rem;
+      background: transparent;
+      /* margin-block-end already inherited from .cover-mark */
+    }
+
+    .cover-mark-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      flex: 0 1 auto;
+      max-width: 100%;
+      mix-blend-mode: screen;
+    }
+
+    /* Brackets — keep the umbrella's accent-red frame at the cover scale.
+       Explicit font-size overrides the inherited h1 sizing for the
+       pseudo-elements inside the flex container. */
+    .cover-mark--video::before,
+    .cover-mark--video::after {
+      font-size: clamp(4rem, 14vw, 9rem);
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+
+    /* Text fallback (hidden by default; shown when reduced-motion is on) */
+    .cover-mark-text-fallback {
+      display: none;
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 14vw, 9rem);
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: var(--ls-tight);
+      color: var(--c-fg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cover-mark-video { display: none; }
+      .cover-mark-text-fallback { display: inline-block; }
+    }
+
     .cover-rule {
       border: none;
       border-top: var(--bw-slab) solid var(--c-accent);
@@ -316,7 +367,18 @@
     <div class="cover-spacer-top"></div>
 
     <div class="cover-mark-block">
-      <h1 class="cover-mark">wuld.ink</h1>
+      <h1 class="cover-mark cover-mark--video" aria-label="W.U.L.D. Incorporated">
+        <!-- Reduced-motion + no-video fallback. Brackets come from .cover-mark
+             pseudo-elements (red accent), preserving the umbrella signature. -->
+        <span class="cover-mark-text-fallback" aria-hidden="true">wuld.ink</span>
+        <video class="cover-mark-video"
+               autoplay muted loop playsinline
+               preload="auto"
+               poster="/assets/intro_stamp_poster.jpg">
+          <source src="/assets/intro_stamp_1080p.webm" type="video/webm">
+          <source src="/assets/intro_stamp_1080p.mp4" type="video/mp4">
+        </video>
+      </h1>
       <hr class="cover-rule">
     </div>
 
