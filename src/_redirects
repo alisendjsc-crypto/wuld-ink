@@ -1,0 +1,9 @@
+# Cloudflare Pages redirects file (session K8, 2026-05-14)
+# https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# Glossary consolidation: "Black Box of Inaccessibility" is an English
+# alias for the canonical Latin headword "Contextus Claudit" per book-
+# Claude P1 response (handout-priorities 2026-05-13). Both URLs serve
+# the same conceptual content; the Latin is canonical headword.
+/glossary/black-box-of-inaccessibility/ /glossary/contextus-claudit/ 301
+/glossary/black-box-of-inaccessibility  /glossary/contextus-claudit/ 301

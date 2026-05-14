@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The cat is on the table &mdash; wuld.ink</title>
+  <meta name="description" content="">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/footer.css">
+
+  <style>
+    /* 404 page (session K8, 2026-05-14). Per book-Claude P4
+       response (handout-priorities 2026-05-13): "The cat is on the
+       table." is the book body's closing gesture. The /404/ slot is
+       the architecturally-fit deployment for the line because both
+       /404/ and the book's closing line are structurally exit-line
+       moments. Treatment per book-Claude: roman, body-size,
+       flush-left, vertically high on the page. No "404 - Page Not
+       Found" boilerplate above the line; technical status placed
+       small + below at footer scale. The line does the work alone. */
+    .not-found {
+      max-width: var(--w-prose);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block: var(--s-7) var(--s-10);
+      min-height: 60vh;
+    }
+    .not-found-line {
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      color: var(--c-fg);
+      margin-block-end: 0;
+    }
+    .not-found-status {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+      margin-block-start: var(--s-10);
+      margin-block-end: var(--s-2);
+    }
+    .not-found-return {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-muted);
+      margin-block-start: 0;
+    }
+    .not-found-return a {
+      color: var(--c-fg);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+    }
+    .not-found-return a:hover { color: var(--c-accent); }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="not-found">
+      <p class="not-found-line">The cat is on the table.</p>
+
+      <p class="not-found-status">404 &middot; Path not found</p>
+      <p class="not-found-return"><a href="/">Return to index</a></p>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
+      </span>
+      <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>

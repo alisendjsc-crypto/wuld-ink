@@ -187,6 +187,24 @@
       margin-inline-start: var(--s-2);
     }
     .book-other-works a:hover { color: var(--c-accent); }
+
+    /* Terminal stamp (session K8, 2026-05-14) — the book's own
+       editorial-frame closer "Begin at the beginning." deployed on
+       /book/ per book-Claude P4 response (handout-priorities
+       2026-05-13). Roman, body-size, flush-left, hairline-top
+       separator. Architecturally honest: the umbrella's discovery
+       surface for the book closes the way the book's own editorial
+       frame closes. Line does the work alone; no boilerplate. */
+    .book-terminal-stamp {
+      margin-block-start: var(--s-9);
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      color: var(--c-fg);
+      max-width: var(--w-prose);
+      margin-block-end: 0;
+    }
   </style>
 </head>
 
@@ -351,6 +369,14 @@
              rel="noopener noreferrer">View on Amazon &rarr;</a>
         </p>
       </section>
+
+      <!-- Terminal stamp (session K8, 2026-05-14). "Begin at the
+           beginning." is the book's own closer to its editorial frame
+           ("A Note to the Reader"). Per book-Claude P4 (handout
+           2026-05-13): roman, not italic; body-size; flush-left;
+           hairline-top separator. The umbrella's discovery surface
+           for the book closes the way the book's own frame closes. -->
+      <p class="book-terminal-stamp">Begin at the beginning.</p>
     </article>
   </main>
 
