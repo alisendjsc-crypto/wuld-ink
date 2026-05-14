@@ -53,6 +53,7 @@ A multi-page philosophical-content site for Josiah (WULD / AnomicIndividual87 / 
 | `docs/baton-template.md` | Cross-project synthesis template Josiah carries between project chats; feeds session B's IA + glossary work |
 | `docs/library-claude-coordination.md` | Cross-Claude relay doc between wuld.ink Cowork and library-Claude. Append a new dated Exchange section per round. Locks agreements + open pushes per item (confirm/nudge/reject format). |
 | `docs/book-claude-coordination.md` | Cross-Claude relay doc between wuld.ink Cowork and book-project Claude. Append a new dated Exchange section per round. K → Exchange 1 (wuld.ink-side: baton ratifications + (ii) collapse + Lacero forced question + canonical-shift discipline forced question). K3 → Exchange 1 response (book-Claude side: NUDGEs + locks). K3 → Exchange 2 (wuld.ink-side: closures + ratifications + round closes). |
+| `docs/successor-claude-coordination.md` | Cross-Claude relay doc between wuld.ink Cowork and successor-Claude (Successor Protocol / Ne Hoc Fiat project). Fourth relay channel in the umbrella's coord-doc family. K8 close (post-baton-intake, 2026-05-14) → Exchange 1 (wuld.ink-side: HTML mirror sealed-artifact discipline lock + per-term glossary disposition for 11 baton candidates + Ne Hoc Fiat page architecture options + forced-question on canonical ownership + drift management per term). Awaits Exchange 2 reply with public-form glossary drafts for 6 candidate terms + Alogical Isness body fill. |
 
 ---
 
