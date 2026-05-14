@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frame &mdash; wuld.ink</title>
+  <meta name="description" content="The philosophical stance the umbrella sits inside — negative utilitarianism, anti-natalism, structural pessimism, voluntary human extinction, each through WULD's specific inflection.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/footer.css">
+
+  <style>
+    .page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+    .page-hero {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-6);
+      margin-block-end: var(--s-7);
+    }
+    .lede {
+      max-width: var(--w-prose);
+      font-family: var(--font-body);
+      font-size: var(--t-lead);
+      line-height: var(--lh-default);
+      color: var(--c-fg);
+      margin-block-end: var(--s-7);
+    }
+
+    /* Frame-term sections — one per general-philosophy anchor.
+       Pattern matches /book/'s book-section idiom: heading + body.
+       Body content is chat-side authorship; this shell ships the
+       structural scaffold + an inflection-note per term flagging
+       what differentiates WULD's reading from the canonical academic
+       position. Bodies marked .frame-section-placeholder land as
+       paragraphs once chat-side authorship arrives. */
+    .frame-section {
+      margin-block-end: var(--s-9);
+      max-width: var(--w-prose);
+    }
+    .frame-section-heading {
+      font-family: var(--font-headline);
+      font-size: var(--t-h3);
+      color: var(--c-fg);
+      margin-block-end: var(--s-2);
+      padding-block-end: var(--s-2);
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+    .frame-section-canonical {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-4);
+    }
+    .frame-section-placeholder {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--c-fg-dim);
+      max-width: var(--w-prose);
+    }
+    .frame-section-placeholder::before {
+      content: "[ ";
+      color: var(--c-accent);
+      font-style: normal;
+    }
+    .frame-section-placeholder::after {
+      content: " ]";
+      color: var(--c-accent);
+      font-style: normal;
+    }
+
+    /* Cross-link affordance at bottom — points reader at the glossary
+       for proprietary vocabulary once the umbrella's general stance is
+       situated. Mono register, matches sibling shells. */
+    .frame-onward {
+      border-top: var(--bw-base) solid var(--c-border);
+      padding-block-start: var(--s-6);
+      margin-block-start: var(--s-9);
+      max-width: var(--w-prose);
+    }
+    .frame-onward-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+      margin-block-end: var(--s-3);
+    }
+    .frame-onward p {
+      font-family: var(--font-body);
+      color: var(--c-fg);
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="page">
+      <header class="page-hero">
+        <p class="eyebrow">Anchor &middot; Position</p>
+        <h1>Frame</h1>
+      </header>
+
+      <p class="lede">
+        The umbrella sits inside a stance. Below: the four positions WULD's work assumes &mdash; each named with its canonical academic referent, then situated through the specific inflection that distinguishes this body of work from the broader literature. Not a glossary; the <a href="/glossary/">Glossary</a> is for coined vocabulary. This page is for the stance everything else operates within.
+      </p>
+
+      <!-- ============================================================
+           FRAME SECTIONS — one per general-philosophy term.
+           Pattern: heading = term, .frame-section-canonical = mono line
+           gesturing at the academic position, .frame-section-placeholder
+           = where WULD's specific inflection lands chat-side. Body text
+           is authorship discipline; Cowork builds the vessel.
+           ============================================================ -->
+
+      <section class="frame-section" aria-labelledby="negative-utilitarianism">
+        <h2 id="negative-utilitarianism" class="frame-section-heading">Negative utilitarianism</h2>
+        <p class="frame-section-canonical">Canonical: minimize suffering rather than maximize pleasure</p>
+        <p class="frame-section-placeholder">WULD's inflection &mdash; awaiting chat-side authorship. What does the asymmetry between suffering-prevention and pleasure-creation look like inside this body of work? Where does this position part company with mainstream NU readings (Smart, Mayerfeld, etc.)?</p>
+      </section>
+
+      <section class="frame-section" aria-labelledby="anti-natalism">
+        <h2 id="anti-natalism" class="frame-section-heading">Anti-natalism</h2>
+        <p class="frame-section-canonical">Canonical: procreation is morally impermissible (Benatar et al.)</p>
+        <p class="frame-section-placeholder">WULD's inflection &mdash; awaiting chat-side authorship. Where does this body of work stand on the asymmetry argument, the consent objection, the misanthropic vs. philanthropic AN distinction? What's the specific register of pessimism the umbrella inherits from this position?</p>
+      </section>
+
+      <section class="frame-section" aria-labelledby="structural-pessimism">
+        <h2 id="structural-pessimism" class="frame-section-heading">Structural pessimism</h2>
+        <p class="frame-section-canonical">Canonical: the bad outweighs the good as a feature of existence, not a contingent fact</p>
+        <p class="frame-section-placeholder">WULD's inflection &mdash; awaiting chat-side authorship. What's the version of structural pessimism this work argues from? Schopenhauer? Mainl&auml;nder? Ligotti? Or a different lineage entirely? Where does the umbrella's reading depart from the academic-canonical positions?</p>
+      </section>
+
+      <section class="frame-section" aria-labelledby="voluntary-human-extinction">
+        <h2 id="voluntary-human-extinction" class="frame-section-heading">Voluntary human extinction</h2>
+        <p class="frame-section-canonical">Canonical: the species should cease procreating, as a moral conclusion</p>
+        <p class="frame-section-placeholder">WULD's inflection &mdash; awaiting chat-side authorship. How does this body of work treat VHE as conclusion vs. position-among-others? What's the relationship to efilism (per <a href="/argument-library/">the argument library</a> when stable tag lands), to the broader extinctionist literature, to the EVF/VHEMT distinction?</p>
+      </section>
+
+      <div class="frame-onward">
+        <p class="frame-onward-label">Onward</p>
+        <p>
+          The coined vocabulary that operates within these positions lives in the <a href="/glossary/">Glossary</a>. The long-form arguments live in <a href="/essays/">Essays</a> and the canonical compendium <em><a href="/book/">Malgr&eacute; Tout</a></em>. The systematic objection corpus will live at <code>library.wuld.ink</code> when the substrate's stable tag drops.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
+      </span>
+      <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>

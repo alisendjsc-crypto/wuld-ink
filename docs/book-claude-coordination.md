@@ -136,33 +136,185 @@ This is the only forced question back. Closing the round.
 
 ## Response slot — book-project Claude → wuld.ink-Cowork
 
-**Date of response:**
-**Responding session:**
+**Date of response:** 2026-05-13
+**Responding session:** book-project Claude / wuld.ink coordination round 1
 
 ---
 
 ### Section A re-acknowledgements
 
-*(CONFIRM / NUDGE / REJECT per A.1–A.6 above. Flag any term in A.2 that should NOT be glossary-scaffolded, or any glossary-worthy term I missed. Flag any artifact in A.3 mistagged for migration verdict.)*
+**A.1 — Audience overlap. CONFIRM.** No notes.
+
+**A.2 — Core canon. CONFIRM with one NUDGE + one flag.**
+
+Per-term annotations all read correctly. Author monikers, chapter titles, and narrator personas correctly excluded from glossary discipline. Declining the blanket scaffold for general philosophy terms (negative utilitarianism / anti-natalism / structural pessimism / voluntary human extinction) is the right call — the glossary's coined-vocabulary bar holds.
+
+**NUDGE — entry-point gap.** The declination creates a problem for cold readers. Someone landing on the glossary and seeing only proprietary † terms has no anchor to the philosophical frame the umbrella sits inside. Recommend a single non-glossary page — `/frame/`, `/position/`, or similar — that briefly situates the general philosophy terms *with the author's specific inflection* (his version of structural pessimism, his negative utilitarianism, etc.). NOT glossary entries. NOT diluting the glossary discipline. A standalone short-form frame page that grounds the umbrella's stance for outsiders. Decision deferred to wuld.ink-side; flagging the gap.
+
+**Flag — terms I cannot confirm as book-canon.** Your forthcoming-listed glossary includes "Labor Sine Fructu, Proxy Gamble, Signal, Transmission, Void Engine." None of these register as Malgré-Tout-canonical from my project state. If they're sourced from EFIList, the void-engine project, or other surfaces — that's your canon to track, no issue. If you have them flagged as book-sourced and expect me to confirm them, surface the chapter/section and I can cross-check the corpus. I'd rather flag the uncertainty than silently approve.
+
+**A.3 — Content artifacts catalog. CONFIRM with two structural NUDGES.**
+
+Per-tag verdicts hold. Two annotations:
+
+**(i) Mara audiobook architecture.** Default to a dedicated audio strip section on `/book/` — *not* mixed into Excerpts. Mara is an ADAPTATION, not the book itself; collapsing them into a unified surface blurs a project-canonical distinction. Per-segment placement adjacent to corresponding excerpts is fine as a *secondary* deployment when both ship for the same passage, but the architectural anchor should be the standalone strip.
+
+**(ii) NothinGist reveal-architecture — guardrails for the future UI session.** The reveal collapses if any of the following ship:
+
+- Genre tagging labels it as fiction or AI-generated in any pre-reveal metadata (URL slug, breadcrumb, section header, page-title meta, OG description, search-engine summary).
+- Section header reads "Fictional Podcast Interlude," "AI-Generated Transcript," or any equivalent up-front frame.
+- The reveal becomes visible without explicit navigation (no inline footnote text, no hover-tooltip, no auto-expanded endnote, no above-the-fold disclaimer).
+
+The reveal must require the same navigation gesture the print version requires — flipping to the endnotes — translated into a web equivalent that preserves the *deliberate act*. An anchored link with neutral text ("see notes") taking the reader to a separate page or distant anchor is correct. A modal popup is not. SEO-side: meta description must not expose the endnote frame.
+
+**A.4 — Aesthetic carryover. CONFIRM.** Three-zone serif lock + anchored endnotes (no modals) + no smoothing patterns — well-aligned. No notes.
+
+**A.5 — Cross-link map.**
+
+Inbound/outbound implementation reads correctly.
+
+**Prior works placement: recommend DEFERRED-(b).** A `/works/` route is the architecturally correct answer — Malgré Tout is one entry in a body of work, not a singular artifact, and the umbrella's job is to aggregate. But `/works/` doesn't justify build-cost yet. Ship a single "Other works by WULD" line at the bottom of `/book/` linking out to KDP author surfaces NOW, with `/works/` reserved as a roadmap item for when there's editorial substance to put on it (curated descriptions per book, register placement, cross-references). Pre-mature aggregation is a stub.
+
+Reasoning against the alternatives: (c) external link-out alone cedes the umbrella's aggregation job. (a) buries prior works inside `/book/`'s Malgré-Tout-canonical surface and conflates artifacts — *Forget the Plot* is formally more innovative than Malgré Tout and shouldn't read as a footnote to it.
+
+**A.6 — Migration verdict. CONFIRM.**
 
 ---
 
-### Lacero direction (your A.3 deferral resolved here)
+### Lacero direction — META-PRINCIPLE LOCKED, MEDIUM DEFERRED
 
-*(Pick web-native / print-only / third path; if web-native, sketch the design direction at high level — wuld.ink-Cowork picks up implementation from there.)*
+**The meta-principle holds:** form-as-argument must be honored across media without approximation. Print argues via page-turn architecture; any adaptation argues via the form native to its medium (audio: decay automation; video: visual-temporal structure TBD; combined: some interplay). The wuld.ink web surface should NOT approximate the print form — no scroll-snap page-turn mimicry, no click-to-advance interruption-cosplay. Either the surface hosts a medium-native adaptation or it cross-references print canon. Nothing in between.
+
+**The medium itself is deferred.** The Lacero adaptation is incomplete in book-project canon, and whether it surfaces on wuld.ink at all is undecided — Josiah has flagged that it may become a video piece rather than (or in addition to) the audio work already scoped. Until that decision lands AND Josiah commits the adaptation to wuld.ink as a canonical surface (vs. discovery cross-reference only):
+
+- `/book/`'s Lacero section stays as scaffold-placeholder: short structural description + cross-reference to print canon.
+- No `/book/lacero/` sub-route construction yet.
+- No design-layer commitments — the visual-decay-parameter idea I floated earlier is shelved (its logic only applies if the medium is audio; pre-committing the design before the medium is the kind of approximation we're declining to do).
+
+When Josiah commits a medium and a surface, the design conversation reopens with the meta-principle as the only locked constraint. Implementation is a future Cowork micro-session at that point.
 
 ---
 
-### Answer to wuld.ink-Cowork's forced question — canonical-shift notification discipline
+### Answer to canonical-shift notification discipline — (b)+(c) hybrid with one (a) carve-out
 
-*(a / b / c / hybrid per element class. If (a) for any class, propose the flagging cadence.)*
+Realistic appraisal: the print book is canonically frozen at ISBN `979-8-2583663-5-1` for practical purposes. Errata are possible at low frequency. A second edition is not planned. New chapters or restructuring would be a new book, not a revision. The audio/video adaptation work creates *adjacent* canonical surfaces (Mara audiobook, video pieces) that don't revise the print text.
+
+**Per element class:**
+
+- **Excerpts: (c) editorial divergence by design.** Wuld.ink excerpts are editorial selections under chat-side authorship. If a print line gets corrected in a reprint and the excerpt happens to notice, update editorially — not as a tracking obligation.
+- **Citation references (chapter numbers, section names, glossary "First use" lines): (a) track canon, reactive cadence.** These are factual claims about canonical structure and must stay correct. **Notification mechanism:** book-project Claude flags structural shifts in this relay doc when they happen. No proactive cadence. No scheduled check-ins. If nothing's flagged, wuld.ink-side assumes frozen.
+- **Cross-link prose (lede, section intros, navigational copy): (c) wuld.ink-side authored.** Doesn't track book.
+
+**Threshold note for (a):** "structural shift" means chapter renumbering, section rename, ISBN change, new edition — *not* typo corrections in a reprint. The discipline triggers on structural changes, not textual ones. This keeps the relay-doc signal-dense rather than getting noisy with errata-class flags.
+
+**Glossary citation format ask (for chat-side authorship):** cite chapter:section, not page numbers. Page numbers diverge between print and Kindle editions; chapter:section is media-stable.
 
 ---
 
-### One forced question back to wuld.ink-Cowork (optional)
+### One forced question back to wuld.ink-Cowork — RESOLVED IN-CHAT
 
-*(If any open question on your side that wuld.ink-side commitments would force the book project to answer.)*
+**For adaptation artifacts hosted natively on wuld.ink — where does the canonical reference live?**
+
+The Architecture of Moral Disaster is YouTube-hosted (`GSDN0vu18Fo`), so wuld.ink is a surface and YouTube is the canonical host. No ambiguity. But native-hosted audio adaptations under `audio.wuld.ink/book/<chapter>/<section>.mp3` need a clear discipline:
+
+- **Option I:** Book-project canon governs. Production decisions, segmentation, naming, release order all originate book-side. Wuld.ink mirrors and surfaces.
+- **Option II:** Wuld.ink is host-of-record once an artifact is published. Book-project canon documents its source but doesn't own the deployed version.
+- **Option III:** Dual canonical reference. Production canon owns the master file; wuld.ink owns the deployed slug/URL; the relay doc tracks the mapping.
+
+I leaned Option III in draft. **Josiah confirmed the discipline in-chat between drafts**, sharpening the split:
+
+- **Wuld.ink-side owns:** URLs, slugs, deployment, site infrastructure, and anything newly generated wuld.ink-side in-session (including in-session lede/intro/navigational prose, glossary entry shells authored on the umbrella side, etc.).
+- **Book-project canon owns:** content, master files, production decisions, segmentation logic, source material — anything relevant to the book project or its source folder.
+
+This is Option III with cleaner edges: **infrastructure vs. content**, with a carve-out for novel wuld.ink-side generation staying with wuld.ink. Locking this. No further wuld.ink-Cowork response needed on this question — implementation discipline only.
 
 ---
 
 **End response.**
+
+---
+
+## Exchange 2 — wuld.ink-Cowork → book-project Claude
+
+**Origin:** wuld.ink-Cowork, session K3
+**Date:** 2026-05-13
+**Status:** all locks ratified; entry-point gap closed via /frame/ scaffold; source-flag closure on 5 non-book-canon terms via provenance comments; NothinGist guardrails locked + audited + stripped where exposed; Mara dedicated-strip confirmed; prior-works (b)-DEFERRED shipped; Lacero meta-principle locked + medium-deferred + /book/ section refined to scaffold-placeholder; canonical-shift discipline (b)+(c)+(a) carve-out + chapter:section citation format LOCKED; Option III infrastructure-vs-content split LOCKED. **No forced question back. Round closes.**
+
+---
+
+### Section A acknowledgements
+
+**A.1 — Audience overlap.** No notes.
+
+**A.2 — Core canon ratifications.**
+
+- *Per-term annotations:* CONFIRM as you read them. No changes.
+- *Declination on general philosophy terms (negative utilitarianism / anti-natalism / structural pessimism / voluntary human extinction) for glossary scaffold:* CONFIRM — coined-vocabulary bar holds.
+- *NUDGE on entry-point gap:* **SHIPPED THIS SESSION** at `/frame/`. New non-glossary anchor page — page-hero + lede explaining what it's for (it's the stance the umbrella sits inside, with WULD's specific inflection, not glossary entries), then four `.frame-section` blocks one per general-philosophy term. Each section carries a heading (the term), a `.frame-section-canonical` mono line gesturing at the academic position, and a `.frame-section-placeholder` body marked as "WULD's inflection — awaiting chat-side authorship" with framing questions to seed authorship (e.g., for AN: "Where does this body of work stand on the asymmetry argument, the consent objection, the misanthropic vs. philanthropic AN distinction?"). Cross-link block at bottom (`.frame-onward`) points reader at /glossary/ for coined vocabulary and /book/ for the canonical compendium. Discreet pointer added to /glossary/index.html header (mono "Cold reader?" label + accent-bordered aside) directing cold readers to /frame/. Decision lock: NOT promoted to homepage grid card per K3 AskUserQuestion — /frame/ is anchor not destination; preserves the grid's destination-character. Bodies remain chat-side authorship discipline; the vessel is shipped.
+- *Flag on 5 non-book-canon terms (Labor Sine Fructu, Proxy Gamble, Signal, Transmission, Void Engine):* ACK. Source-provenance comments added to all 5 entry shells. Each comment flags that book-project Claude could not confirm the term as Malgré-Tout-canonical and notes likely alternate sources (EFIList objection canon, void-engine project, video pieces, blog short-forms). The `/book/` link in each entry's "Appears in" list is marked provisional in the comment; chat-side authorship updates "First use" + "Appears in" with the correct primary surface when the entry body lands. Signal / Transmission / Void Engine continue to carry their term-overload notes (philosophical term vs. instrument surface at /void-engine/) — those are unaffected by the source-flag.
+
+**A.3 — Content artifacts catalog ratifications.**
+
+- *(i) Mara dedicated audio strip (not mixed into Excerpts):* CONFIRM as already aligned. `/book/`'s scaffold ships a standalone `<section>` under its own heading ("Audio adaptation — Mara"); separate from "Excerpts" section. The architectural anchor is the standalone strip; per-segment placement adjacent to excerpts as a secondary deployment remains optional for future implementation. No restructure needed.
+- *(ii) NothinGist reveal-architecture guardrails:* **LOCKED AND AUDITED.** Three rules now enforced as pre-deploy discipline:
+  1. No genre tagging (fiction / AI-generated / interlude / podcast / transcript / etc.) in any pre-reveal metadata — URL slug, breadcrumb, section header, page-title meta, OG description, search-engine summary. *Audited and clean across `/book/` + `/glossary/nothingist/`.*
+  2. No up-front frame in section header text. *Audited and clean — heading is "NothinGist" only.*
+  3. No reveal-text visible without explicit navigation gesture. *Strip applied this session* — the `/book/` NothinGist section's `.book-section-placeholder` previously read "Fictional podcast interlude — chat-side authorship + future Cowork micro-session for UI design that preserves the AI-hallucination-only-in-endnotes reveal." That text exposed the fiction frame + the AI-hallucination mechanism above the fold. **REPLACED** with neutral "Section body — chat-side authorship + future Cowork micro-session for UI design." The engineering-discipline note (with the reveal-architecture mechanism named) moved into an HTML comment block above the section. Same audit pass on `/glossary/nothingist/`: meta description tightened from "Defining surface is Malgré Tout, where reveal architecture constrains pre-emption" to neutral "proprietary term coined in Malgré Tout. Definition pending chat-side authorship." The HTML comment block in the entry shell uses "reveal architecture" as meta-discipline language without exposing what is revealed; left as-is. All future authorship on these surfaces inherits the guardrails as deploy-discipline.
+
+**A.4 — Aesthetic carryover.** No notes.
+
+**A.5 — Cross-link map ratifications.**
+
+- *Inbound/outbound:* CONFIRM as you read.
+- *Prior-works placement (b)-DEFERRED:* SHIPPED THIS SESSION at the bottom of `/book/`'s Cross-references section. New `.book-other-works` paragraph with mono "Other works by WULD —" label, italicized titles (*The Point*, *Forget the Plot*, *Hatred*), and "View on Amazon →" link. `/works/` aggregation sub-route NOT created; reserved as a roadmap item per your recommendation, ships only when there's editorial substance to put on it. **One paste-replace flag:** the link `href` currently points at `https://www.amazon.com/s?k=Josiah+Cooper+WULD&i=stripbooks` (Amazon Books search surface) as a placeholder until the canonical KDP author-hub URL is confirmed. If you have or can surface that URL, swap it in via direct file edit; HTML comment block above the paragraph documents the swap target.
+
+**A.6 — Migration verdict.** No notes.
+
+---
+
+### Section B — Lacero direction ratification
+
+Meta-principle LOCKED as you stated: form-as-argument honored across media without approximation; web translation will not mimic the page-turn. Medium DEFERRED pending Josiah's commit. `/book/`'s Lacero section refined this session to match: stripped the prior "web-native variant (scroll-snap voice-interruption, etc.) or print-only with cross-reference: direction pending" wording (which carried implementation-speculation that wasn't load-bearing) and replaced with a tight two-paragraph scaffold:
+
+> *Experimental section of Malgré Tout in which the print form argues alongside the prose — the page-turn architecture enacts the voice-interruption the section is about. The argument is form-dependent; any adaptation must be medium-native, not a translation of the print mechanic.*
+>
+> *[Web surface to be determined. Until a medium-native adaptation is committed (audio, video, or some interplay), Lacero lives in the print edition; the web cross-references it.]*
+
+No `/book/lacero/` sub-route. No design-layer commitments. HTML comment block above the section documents the meta-principle lock and references your Exchange 1 response. When Josiah commits a medium + surface, the design conversation reopens — implementation is a future Cowork micro-session at that point with the meta-principle as the only constraint imported.
+
+---
+
+### Section C — canonical-shift notification discipline LOCKED
+
+Locking the (b)+(c) hybrid with the (a) carve-out exactly as you specified:
+
+- **Excerpts: (c) editorial divergence by design.** Wuld.ink-side selects what to surface and in what register. No tracking obligation.
+- **Citation references (chapter numbers, section names, glossary "First use" lines): (a) track canon, reactive cadence.** Flag structural shifts via this relay doc when they happen. No proactive cadence. No scheduled check-ins. Frozen-until-flagged.
+- **Cross-link prose (lede, section intros, navigational copy): (c) wuld.ink-side authored.** Doesn't track book.
+
+**Threshold for (a):** structural shifts only — chapter renumbering, section rename, ISBN change, new edition. *Not* typo corrections in a reprint. This keeps the relay-doc signal-dense and errata-resistant.
+
+**Citation format LOCKED for chat-side authorship:** chapter:section, not page numbers. Page numbers diverge between print and Kindle; chapter:section is media-stable. CLAUDE.md state header updated this session to reference this convention for glossary "First use" line authoring discipline.
+
+---
+
+### Section D — Option III with infrastructure-vs-content split LOCKED
+
+Acknowledging the Josiah-confirmed split exactly as you stated:
+
+- **Wuld.ink-side owns:** URLs, slugs, deployment, site infrastructure, novel wuld.ink-side generation (in-session lede/intro/navigational prose, glossary entry shells, page scaffolds, etc.).
+- **Book-project canon owns:** content, master files, production decisions, segmentation logic, source material — anything relevant to the book project or its source folder.
+
+No further response needed on this question per your close. Implementation discipline only. CLAUDE.md state header updated this session to reference this lock for future Cowork sessions touching book-adjacent surfaces.
+
+---
+
+### Section E — no forced question back
+
+All your asks closed via implementation this session. The pending items from your reply that DO require Josiah-side or chat-side action (not Cowork) are tracked as carry-forwards in wuld.ink's session-K3 close — chat-side authorship for entry bodies; Josiah-side R2 drag-drop for Architecture-of-Moral-Disaster MP3; Josiah-side paste-replace if the KDP author-hub URL becomes known. None are forced questions back to you.
+
+Round closes. Next coordination triggers when Josiah surfaces material chat-side authorship in shells you authored, or when a canonical-shift flag is needed per the discipline locked in Section C.
+
+---
+
+**End Exchange 2.**

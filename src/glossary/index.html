@@ -24,6 +24,39 @@
       padding-block-end: var(--s-6);
       margin-block-end: var(--s-7);
     }
+    /* Frame pointer — entry-point affordance for cold readers.
+       Per session K3 + book-Claude Exchange 1 NUDGE: the glossary
+       discipline holds coined vocabulary only; general philosophy
+       terms (negative utilitarianism, anti-natalism, structural
+       pessimism, voluntary human extinction) get their own anchor
+       page at /frame/. Mono register, dim text, accent rail on left. */
+    .frame-pointer {
+      max-width: var(--w-wide);
+      margin-block-end: var(--s-8);
+      padding: var(--s-4) var(--s-5);
+      border-left: var(--bw-slab) solid var(--c-accent);
+      background-color: var(--c-bg-elevated);
+    }
+    .frame-pointer-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+    .frame-pointer p {
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg);
+      margin-block-end: 0;
+    }
+    .frame-pointer a {
+      color: var(--c-fg);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+    }
+    .frame-pointer a:hover { color: var(--c-accent); }
     /* Footer rules promoted to /components/footer.css (session J);
        inline duplicates removed (session K). */
   </style>
@@ -53,6 +86,14 @@
         <p class="eyebrow">03 · Vocabulary</p>
         <h1>Glossary</h1>
       </header>
+
+      <!-- Entry-point affordance for cold readers (session K3). The
+           glossary holds coined vocabulary; the umbrella's general
+           philosophical stance is situated at /frame/. -->
+      <aside class="frame-pointer" aria-label="Entry-point pointer">
+        <p class="frame-pointer-label">Cold reader?</p>
+        <p>The general philosophical stance the umbrella sits inside &mdash; negative utilitarianism, anti-natalism, structural pessimism, voluntary human extinction &mdash; is situated through WULD&rsquo;s specific inflection at <a href="/frame/">Frame</a>. This glossary is for coined vocabulary only.</p>
+      </aside>
 
       <!-- A -->
       <p class="glossary-letter">A</p>

@@ -138,6 +138,37 @@
       color: var(--c-accent);
       font-style: normal;
     }
+
+    /* Other works by WULD — single-line aggregator at bottom of
+       cross-references (session K3). (b)-DEFERRED per book-Claude
+       Exchange 1: ship single line now; /works/ sub-route reserved.
+       Mono label + body register, accent-bordered Amazon link. */
+    .book-other-works {
+      margin-block-start: var(--s-6);
+      padding-block-start: var(--s-5);
+      border-top: var(--bw-base) solid var(--c-border);
+      font-family: var(--font-body);
+      color: var(--c-fg);
+    }
+    .book-other-works-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-inline-end: var(--s-2);
+    }
+    .book-other-works a {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+      margin-inline-start: var(--s-2);
+    }
+    .book-other-works a:hover { color: var(--c-accent); }
   </style>
 </head>
 
@@ -212,14 +243,19 @@
       </section>
 
       <!-- ============================================================
-           NOTHINGIST — fictional podcast interlude. Reveal architecture
-           (AI hallucination only in endnotes) requires careful chat-side
-           authorship + future Cowork micro-session for the UI design
-           that preserves the endnote-only reveal mechanism.
+           NOTHINGIST — section requires careful chat-side authorship +
+           future Cowork micro-session for UI design that preserves the
+           book's reveal architecture. PRE-REVEAL DISCIPLINE LOCKED via
+           book-Claude relay Exchange 1 Section A.3 (ii): the placeholder
+           body, section heading, page-title, OG description, and any
+           crawlable text must NOT pre-empt or expose what the book
+           reveals. No genre tagging, no up-front frame, no above-the-
+           fold disclaimer. Reveal must require explicit navigation
+           gesture mirroring the print edition's endnote flip.
            ============================================================ -->
       <section class="book-section" aria-labelledby="nothingist">
         <h2 id="nothingist" class="book-section-heading">NothinGist</h2>
-        <p class="book-section-placeholder">Fictional podcast interlude &mdash; chat-side authorship + future Cowork micro-session for UI design that preserves the AI-hallucination-only-in-endnotes reveal.</p>
+        <p class="book-section-placeholder">Section body &mdash; chat-side authorship + future Cowork micro-session for UI design.</p>
       </section>
 
       <!-- ============================================================
@@ -234,13 +270,20 @@
       </section>
 
       <!-- ============================================================
-           LACERO — experimental section. Web-native treatment pending
-           book-Claude relay Exchange 1 reply (see
-           docs/book-claude-coordination.md, Section B.2).
+           LACERO — experimental section. META-PRINCIPLE LOCKED (form-as-
+           argument must be honored across media without approximation;
+           web translation will not mimic the page-turn). MEDIUM DEFERRED
+           pending Josiah's commit to a wuld.ink-native surface vs.
+           cross-reference-only. See docs/book-claude-coordination.md
+           Exchange 1 response, Lacero direction section. No
+           /book/lacero/ sub-route until medium + surface are committed.
            ============================================================ -->
       <section class="book-section" aria-labelledby="lacero">
         <h2 id="lacero" class="book-section-heading">Lacero</h2>
-        <p class="book-section-placeholder">Four-movement experimental section &mdash; web-native variant (scroll-snap voice-interruption, etc.) or print-only with cross-reference: direction pending book-project relay reply. Form depends on page-turn enacting voice interruption; web translation is a form-as-argument decision, not decoration.</p>
+        <p>
+          Experimental section of <em>Malgr&eacute; Tout</em> in which the print form argues alongside the prose &mdash; the page-turn architecture enacts the voice-interruption the section is about. The argument is form-dependent; any adaptation must be medium-native, not a translation of the print mechanic.
+        </p>
+        <p class="book-section-placeholder">Web surface to be determined. Until a medium-native adaptation is committed (audio, video, or some interplay), Lacero lives in the print edition; the web cross-references it.</p>
       </section>
 
       <!-- ============================================================
@@ -255,9 +298,26 @@
           Video adaptations and readings &mdash; including <em>The Architecture of Moral Disaster</em>, <em>Anfractuous Aporia</em>, <em>Taedium Vitae</em> &mdash; live on <a href="/watch/">Watch</a>.
         </p>
         <p>
-          Full-length audio readings of individual essays drawn from the book&rsquo;s register live on <a href="/essays/">Essays</a> &mdash; including <em><a href="/essays/sanguinolentum-vestigium/">Sanguinolentum Vestigium</a></em> and <em><a href="/essays/alogically-is/">Alogically Is</a></em>.
+          Full-length audio readings of individual essays drawn from the book&rsquo;s register live on <a href="/essays/">Essays</a> &mdash; including <em><a href="/essays/sanguinolentum-vestigium/">Sanguinolentum Vestigium</a></em>, <em><a href="/essays/alogically-is/">Alogically Is</a></em>, and <em><a href="/essays/architecture-of-moral-disaster/">The Architecture of Moral Disaster</a></em>.
         </p>
-        <p class="book-section-placeholder">Prior works archive (<em>The Point</em>, <em>Forget the Plot</em>, <em>Hatred</em>) &mdash; placement decision pending. Options: inline cross-reference here, new <code>/works/</code> sub-route, or external author-page link-out.</p>
+
+        <!-- Prior-works placement: (b)-DEFERRED per book-Claude Exchange 1
+             response (session K3). Ship single bottom line linking out
+             to Amazon author hub now; /works/ aggregation sub-route
+             reserved as a roadmap item for when there's editorial
+             substance to put on it (curated per-book descriptions,
+             register placement, cross-references). Pre-mature aggregation
+             would be a stub. The Amazon author hub URL below is a
+             placeholder pointing at the search surface until the
+             canonical author-page URL is known; replace href when
+             KDP author hub URL is confirmed. -->
+        <p class="book-other-works">
+          <span class="book-other-works-label">Other works by WULD &mdash;</span>
+          <em>The Point</em>, <em>Forget the Plot</em>, <em>Hatred</em>.
+          <a href="https://www.amazon.com/s?k=Josiah+Cooper+WULD&amp;i=stripbooks"
+             target="_blank"
+             rel="noopener noreferrer">View on Amazon &rarr;</a>
+        </p>
       </section>
     </article>
   </main>
