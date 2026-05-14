@@ -95,13 +95,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      /* Session J post-deploy tune: 50rem → 32rem. The intro stamp
-         video's subject occupies only the middle ~30% of the source
-         frame, and mix-blend-mode:screen makes the dark margins
-         transparent. At 50rem the brackets framed the FRAME, leaving
-         a big empty halo between brackets and figure. 32rem hugs the
-         figure tighter without re-cropping the source video. */
-      max-width: 32rem;
+      max-width: 50rem;
       /* h1 is block-level — without margin-inline:auto, it sits at
          the start edge of .cover-mark-block (which is wider than
          50rem at desktop). text-align:center on parent doesn't
@@ -160,6 +154,17 @@
       color: var(--c-fg-muted);
       margin-block: 0 var(--s-4);
       text-align: center;
+      /* Session J post-deploy fix: base.css applies max-width:
+         var(--w-prose) to ALL <p> elements as a prose-readability
+         default. The constrained box was sitting at the start edge
+         of cover-mark-block (block elements default to start, not
+         center). text-align:center centered the text within the
+         narrow box, but the box itself was left-shifted by
+         (parent_width - prose_width)/2 ≈ ~200px on wide viewports.
+         margin-inline:auto centers the box within parent so the
+         text actually lands on the page axis with the slab rule
+         + INDEX↓ below. */
+      margin-inline: auto;
     }
 
     .cover-subhead .sep {

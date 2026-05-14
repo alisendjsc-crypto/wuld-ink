@@ -11,8 +11,10 @@ wuld.ink: Cowork session K. Book-project Claude baton intake (already triaged ME
 **Background from a previous K-instance that glitched mid-planning (Josiah is relaying):** A prior K-Claude staked the session plan, triaged the baton as MEDIUM, surfaced two questions, and got stuck in thinking before producing artifacts. Nothing committed by that instance. The two questions it surfaced (preserved below for continuity) and its baton-triage MEDIUM read are valid inputs. Item 1 below incorporates them.
 
 **Post-session-J state worth knowing:**
-- Cover-axis fix from session J (margin-inline:auto on .cover-mark--video) deployed and verified live via curl. Visual centering achieved.
-- Same-day follow-on tune shipped: `.cover-mark--video` `max-width: 50rem` → `32rem` so brackets hug the figure inside the intro stamp video tighter (mix-blend-mode:screen made the dark video margins transparent at 50rem, leaving an empty halo between brackets and figure). If Josiah's live-deploy eye on this 32rem crop reads as too tight, dial back to 36rem or 40rem in a one-line edit. If it reads as still-too-wide, dial down to 28rem.
+- Cover-axis fix from session J (margin-inline:auto on .cover-mark--video) deployed and verified live via curl. Video frame structural centering achieved at 50rem.
+- 32rem tune attempted post-J then reverted to 50rem — Josiah preferred the original frame size.
+- **Cover subhead fix shipped same-day:** `Worthless · Useless · Lifeless · Dead` was visually shifted ~200px left of page axis (slab rule + INDEX↓ were correctly centered). Root cause: `base.css` applies `max-width: var(--w-prose)` to ALL `<p>` elements as global prose-readability default. Subhead `<p>` was capped at ~65ch, but block elements default to start-edge placement — `text-align:center` only centered text WITHIN the narrow box, not the box itself within parent. Fix: one-line `margin-inline: auto` on `.cover-subhead`.
+- **Audit nudge for K:** check whether any other `<p>` element on the homepage (or in components) suffers the same latent issue (base.css max-width + no margin-inline:auto). `.cover-descent` is already safe (session G fix added margin-inline:auto). Other surfaces TBD — if K finds any, one-line fix per element.
 
 **Five items in priority order. Recommended default path = items 1 + 2 + 3 (the substantive scope). Items 4 and 5 ship if budget allows.**
 
@@ -81,7 +83,7 @@ If the baton lists forthcoming glossary terms not yet stubbed in `src/glossary/`
 
 ### Other follow-ons (mention-only)
 
-- **Cover-axis tune-up dial:** if the 32rem crop shipped post-J reads as too tight in the live deploy, one-line edit to 36rem (looser) or 28rem (tighter). Mention proactively at session start so Josiah can compare with what's live.
+- **`<p>` margin-inline:auto audit** (see post-J state above) — quick parallel-grep across `src/` for `<p class="...">` elements that might suffer the same latent base.css-prose-width + start-edge centering bug. ~5-10 tool calls if any are found.
 - **Footer dead-CSS sweep** already covered in item 3.
 
 ---
