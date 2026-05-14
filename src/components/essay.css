@@ -1,0 +1,96 @@
+/* ============================================================
+   essay.css — shared essay article shell
+   Promoted from inline <style> blocks in SV + Alogically Is
+   (session K2, 2026-05-13) per second-instance threshold rule.
+   Pattern follows footer.css (session J) promotion.
+
+   Consumers: src/essays/*/index.html
+   Companion stylesheets expected in <head>:
+     /tokens.css, /base.css, /components/nav.css,
+     /components/audio-player.css, /components/mode-toggle.css,
+     /components/footer.css
+   ============================================================ */
+
+.essay {
+  max-width: var(--w-max);
+  margin-inline: auto;
+  padding-inline: var(--s-5);
+  padding-block-end: var(--s-10);
+}
+
+.essay-header {
+  border-bottom: var(--bw-base) solid var(--c-border);
+  padding-block-end: var(--s-5);
+  margin-block-end: var(--s-7);
+}
+
+.essay-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--c-fg-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  margin-block: var(--s-3) var(--s-4);
+}
+
+.essay-meta strong {
+  color: var(--c-fg-muted);
+  font-weight: 500;
+}
+
+.essay-body {
+  max-width: var(--w-prose);
+  margin-inline: auto;
+}
+
+.essay-body > * {
+  max-width: 100%;
+}
+
+.section-rule {
+  border: none;
+  border-top: var(--bw-slab) solid var(--c-accent);
+  width: var(--s-7);
+  margin-block: var(--s-7);
+}
+
+.prose-placeholder {
+  font-style: italic;
+  color: var(--c-fg-dim);
+}
+
+.prose-placeholder::before {
+  content: "[ ";
+  color: var(--c-accent);
+}
+
+.prose-placeholder::after {
+  content: " ]";
+  color: var(--c-accent);
+}
+
+/* Audio-intro band — sits above section structure. Audio is its own
+   artifact (e.g., condensed reading for SV, full reading for Alogically
+   Is); prose sections below stand as the canonical essay text. */
+.audio-intro {
+  margin-block-end: var(--s-7);
+  padding-block-end: var(--s-5);
+  border-bottom: var(--bw-base) solid var(--c-border);
+}
+
+.audio-intro-note {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--c-fg-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  margin-block-end: var(--s-3);
+}
+
+.audio-intro-note strong {
+  color: var(--c-accent);
+  font-weight: 500;
+}

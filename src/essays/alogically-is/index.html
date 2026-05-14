@@ -9,82 +9,13 @@
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
   <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/essay.css">
   <link rel="stylesheet" href="/components/audio-player.css">
   <link rel="stylesheet" href="/components/mode-toggle.css">
   <link rel="stylesheet" href="/components/footer.css">
-
-  <style>
-    /* Essay article shell — copy of SV shell. Promote to component CSS
-       in a future micro-session now that two populated essays share the
-       same pattern. */
-    .essay {
-      max-width: var(--w-max);
-      margin-inline: auto;
-      padding-inline: var(--s-5);
-      padding-block-end: var(--s-10);
-    }
-    .essay-header {
-      border-bottom: var(--bw-base) solid var(--c-border);
-      padding-block-end: var(--s-5);
-      margin-block-end: var(--s-7);
-    }
-    .essay-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--s-5);
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      color: var(--c-fg-dim);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
-      margin-block: var(--s-3) var(--s-4);
-    }
-    .essay-meta strong {
-      color: var(--c-fg-muted);
-      font-weight: 500;
-    }
-    .essay-body {
-      max-width: var(--w-prose);
-      margin-inline: auto;
-    }
-    .essay-body > * { max-width: 100%; }
-    .section-rule {
-      border: none;
-      border-top: var(--bw-slab) solid var(--c-accent);
-      width: var(--s-7);
-      margin-block: var(--s-7);
-    }
-    .prose-placeholder {
-      font-style: italic;
-      color: var(--c-fg-dim);
-    }
-    .prose-placeholder::before {
-      content: "[ ";
-      color: var(--c-accent);
-    }
-    .prose-placeholder::after {
-      content: " ]";
-      color: var(--c-accent);
-    }
-    /* Audio-intro band — sits above section structure. */
-    .audio-intro {
-      margin-block-end: var(--s-7);
-      padding-block-end: var(--s-5);
-      border-bottom: var(--bw-base) solid var(--c-border);
-    }
-    .audio-intro-note {
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      color: var(--c-fg-dim);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
-      margin-block-end: var(--s-3);
-    }
-    .audio-intro-note strong {
-      color: var(--c-accent);
-      font-weight: 500;
-    }
-  </style>
+  <!-- Essay article shell rules promoted to /components/essay.css
+       (session K2, 2026-05-13) per second-instance threshold.
+       Inline <style> block removed. -->
 </head>
 
 <body data-audio-base="https://audio.wuld.ink">
