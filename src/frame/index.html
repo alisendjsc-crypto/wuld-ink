@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Frame &mdash; wuld.ink</title>
-  <meta name="description" content="The philosophical stance the umbrella sits inside — negative utilitarianism, anti-natalism, structural pessimism, voluntary human extinction, each through WULD's specific inflection.">
+  <meta name="description" content="The philosophical stance the umbrella sits inside — negative utilitarianism, anti-natalism, structural antinatalism, voluntary human extinction, each through WULD's specific inflection.">
 
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
@@ -76,6 +76,52 @@
       font-style: normal;
     }
 
+    /* Inflection-body class — for paste-relayed library content per K5
+       Exchange 5 lock. Substantive prose register, not placeholder. */
+    .frame-section-inflection {
+      font-family: var(--font-body);
+      color: var(--c-fg);
+      max-width: var(--w-prose);
+    }
+    .frame-section-inflection + .frame-section-inflection {
+      margin-block-start: var(--s-3);
+    }
+    .frame-section-inflection em {
+      font-style: italic;
+    }
+
+    /* Composition block — two-layer architecture meta-frame.
+       Sits above the four anchors so the positions compose rather
+       than reading as flat-and-co-equal. Paste-relayed from library
+       Exchange 4 C.3 (registered_moves[2] two-layer-nu-architecture). */
+    .frame-composition {
+      border-block-start: var(--bw-base) solid var(--c-border);
+      border-block-end: var(--bw-base) solid var(--c-border);
+      padding-block: var(--s-6);
+      margin-block-end: var(--s-9);
+      max-width: var(--w-prose);
+    }
+    .frame-composition-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-3);
+    }
+    .frame-composition p {
+      font-family: var(--font-body);
+      color: var(--c-fg);
+      margin-block-end: var(--s-3);
+    }
+    .frame-composition p:last-child {
+      margin-block-end: 0;
+    }
+    .frame-composition strong {
+      color: var(--c-fg);
+      font-weight: 600;
+    }
+
     /* Cross-link affordance at bottom — points reader at the glossary
        for proprietary vocabulary once the umbrella's general stance is
        situated. Mono register, matches sibling shells. */
@@ -126,39 +172,89 @@
       </header>
 
       <p class="lede">
-        The umbrella sits inside a stance. Below: the four positions WULD's work assumes &mdash; each named with its canonical academic referent, then situated through the specific inflection that distinguishes this body of work from the broader literature. Not a glossary; the <a href="/glossary/">Glossary</a> is for coined vocabulary. This page is for the stance everything else operates within.
+        The umbrella sits inside a stance. Below: a brief meta-frame on how the positions compose, then the four positions themselves &mdash; each named with its canonical academic referent, then situated through the specific inflection that distinguishes this body of work from the broader literature. Not a glossary; the <a href="/glossary/">Glossary</a> is for coined vocabulary. This page is for the stance everything else operates within.
       </p>
+
+      <!-- ============================================================
+           COMPOSITION BLOCK — two-layer architecture meta-frame.
+           Paste-relayed from library-Claude Exchange 4 Section C.3
+           (2026-05-13). Substrate: registered_moves[2]
+           `two-layer-nu-architecture` (library canon v3.7
+           post-c8-cascade-ord-9, project_canon v18.13).
+           Positioning rationale: orients the reader BEFORE the
+           four-anchor rows so the positions compose rather than
+           reading as flat-and-co-equal. Library NUDGE on overall
+           framing closed by this block.
+           ============================================================ -->
+      <section class="frame-composition" aria-labelledby="frame-composition">
+        <h2 id="frame-composition" class="frame-composition-label">How these compose</h2>
+        <p>
+          The four positions below are not flat-and-co-equal. This body of work is architecturally two-layered: <strong>(1) a structural antinatalist argument</strong> grounded on consent-impossibility, asymmetry, and suffering-as-deterrence, and <strong>(2) a downstream eliminationist / negative-utilitarian superstructure</strong> that licenses urgency, duty, and red-button-style advocacy. The two layers are derivationally distinct.
+        </p>
+        <p>
+          The load-bearing consequence: concessions to the diagnostic layer do not entail commitment to the prescriptive layer. Many critiques target Layer 2 and treat the success of that attack as a refutation of Layer 1; this conflates two arguments that share a diagnostic premise but diverge on what the diagnosis licenses. Read the four positions below with the composition pre-loaded &mdash; <strong>Structural Antinatalism is Layer 1</strong>; <strong>Negative Utilitarianism</strong> and <strong>Voluntary Human Extinction</strong> sit at Layer 2.
+        </p>
+      </section>
 
       <!-- ============================================================
            FRAME SECTIONS — one per general-philosophy term.
            Pattern: heading = term, .frame-section-canonical = mono line
-           gesturing at the academic position, .frame-section-placeholder
-           = where WULD's specific inflection lands chat-side. Body text
-           is authorship discipline; Cowork builds the vessel.
+           gesturing at the academic position, .frame-section-inflection
+           = WULD's specific reading paste-relayed from library Exchange 4
+           A.1/A.2 (2026-05-13). Inflection prose treats library content
+           as inverse-derived structural-position material per Section C.2
+           register lock; chat-side authorship can refine canonical-line
+           wording without disturbing the inflection-body content.
            ============================================================ -->
 
       <section class="frame-section" aria-labelledby="negative-utilitarianism">
         <h2 id="negative-utilitarianism" class="frame-section-heading">Negative utilitarianism</h2>
         <p class="frame-section-canonical">Canonical: minimize suffering rather than maximize pleasure</p>
-        <p class="frame-section-placeholder">WULD's inflection &mdash; awaiting chat-side authorship. What does the asymmetry between suffering-prevention and pleasure-creation look like inside this body of work? Where does this position part company with mainstream NU readings (Smart, Mayerfeld, etc.)?</p>
+        <p class="frame-section-inflection">
+          The reading here is <strong>consent-bounded</strong>, not pure aggregative. The framework demands that unconsented suffering not be imposed on new entities; it does not demand the elimination of suffering at any cost, including the destruction of existing beings who prefer to continue living. The 'destroy-the-world-to-prevent-a-headache' reductio collapses against this consent-bound distinction.
+        </p>
+        <p class="frame-section-inflection">
+          Operating as a consent-sensitive ethical framework rather than a context-free maximization algorithm is the substantive disagreement with pure NU this body of work performs in every entry that touches the reductio.
+        </p>
       </section>
 
       <section class="frame-section" aria-labelledby="anti-natalism">
         <h2 id="anti-natalism" class="frame-section-heading">Anti-natalism</h2>
         <p class="frame-section-canonical">Canonical: procreation is morally impermissible (Benatar et al.)</p>
-        <p class="frame-section-placeholder">WULD's inflection &mdash; awaiting chat-side authorship. Where does this body of work stand on the asymmetry argument, the consent objection, the misanthropic vs. philanthropic AN distinction? What's the specific register of pessimism the umbrella inherits from this position?</p>
+        <p class="frame-section-inflection">
+          The reading here is <strong>convergent-architecture</strong>, not Benatar-asymmetry-monocausal. The position stands on nine independent foundations &mdash; Benatar's asymmetry, the proxy gamble, zero-sum existence, consent-impossibility, suffering-as-deterrence, alogical isness, contextus claudit, convergent architecture itself, and empirical tail-risk &mdash; plus four diagnostic premises that close the empirical work the foundations need.
+        </p>
+        <p class="frame-section-inflection">
+          The standard academic move (refute the asymmetry &rarr; AN collapses) is the wrong move against this version of the position. Defeating Benatar's asymmetry &mdash; the move most academic AN-criticism makes &mdash; does not defeat the AN conclusion as this body of work holds it; the other foundations carry the argument independently.
+        </p>
       </section>
 
-      <section class="frame-section" aria-labelledby="structural-pessimism">
-        <h2 id="structural-pessimism" class="frame-section-heading">Structural pessimism</h2>
-        <p class="frame-section-canonical">Canonical: the bad outweighs the good as a feature of existence, not a contingent fact</p>
-        <p class="frame-section-placeholder">WULD's inflection &mdash; awaiting chat-side authorship. What's the version of structural pessimism this work argues from? Schopenhauer? Mainl&auml;nder? Ligotti? Or a different lineage entirely? Where does the umbrella's reading depart from the academic-canonical positions?</p>
+      <!-- SP &rarr; Structural Antinatalism rename (K5 paste-relay).
+           Library Exchange 4 A.1 flagged "structural pessimism" as
+           zero-corpus-footprint and mis-tagging the layer as a
+           mood-claim when the actual commitment is a derivation-claim.
+           Renamed to track the library's canonical Layer 1 term;
+           diagnostic-layer characterization anchor = Labor Sine Fructu. -->
+      <section class="frame-section" aria-labelledby="structural-antinatalism">
+        <h2 id="structural-antinatalism" class="frame-section-heading">Structural Antinatalism</h2>
+        <p class="frame-section-canonical">Layer 1 of the two-layer architecture: the diagnostic substrate grounding consent-impossibility, asymmetry, suffering-as-deterrence</p>
+        <p class="frame-section-inflection">
+          The structural-antinatalist argument grounds on consent-impossibility, asymmetry, and suffering-as-deterrence; it is <strong>derivationally separable</strong> from the eliminationist / NU superstructure above it (which licenses urgency, duty, and red-button-style advocacy). Conceding the diagnostic layer does not commit one to the prescriptive layer.
+        </p>
+        <p class="frame-section-inflection">
+          The diagnostic-layer characterization anchors on <em>Labor Sine Fructu</em> &mdash; labor without fruit, the EFIList characterization of biological existence. The earlier "structural pessimism" naming mis-tagged the layer as a mood-claim ("the bad outweighs the good") when the actual commitment is a derivation-claim: the structural premises license the antinatalist conclusion independent of the prescriptive layer above.
+        </p>
       </section>
 
       <section class="frame-section" aria-labelledby="voluntary-human-extinction">
         <h2 id="voluntary-human-extinction" class="frame-section-heading">Voluntary human extinction</h2>
         <p class="frame-section-canonical">Canonical: the species should cease procreating, as a moral conclusion</p>
-        <p class="frame-section-placeholder">WULD's inflection &mdash; awaiting chat-side authorship. How does this body of work treat VHE as conclusion vs. position-among-others? What's the relationship to efilism (per <a href="/argument-library/">the argument library</a> when stable tag lands), to the broader extinctionist literature, to the EVF/VHEMT distinction?</p>
+        <p class="frame-section-inflection">
+          The reading here is <strong>voluntary-mechanism-specific</strong>, not mechanism-agnostic. The position is the conjunction of extinction-as-preferable-end-state plus voluntary-individual-non-procreation-as-only-licensed-mechanism. Forced extinction is incoherent with the framework's premises &mdash; it causes massive suffering to existing beings, violates consent, and so violates the very ground that licenses the position.
+        </p>
+        <p class="frame-section-inflection">
+          Readings that drop the mechanism qualifier &mdash; the standard critic move that hears VHE as crypto-violent &mdash; are <em>reductio-targets</em>, not position-statements. The position is structurally not what its critics read it as; the umbrella inherits the framework's active repudiation of forced-mechanism readings at the source.
+        </p>
       </section>
 
       <div class="frame-onward">
