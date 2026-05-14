@@ -95,11 +95,17 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      max-width: 50rem;
+      /* Session J post-deploy tune: 50rem → 32rem. The intro stamp
+         video's subject occupies only the middle ~30% of the source
+         frame, and mix-blend-mode:screen makes the dark margins
+         transparent. At 50rem the brackets framed the FRAME, leaving
+         a big empty halo between brackets and figure. 32rem hugs the
+         figure tighter without re-cropping the source video. */
+      max-width: 32rem;
       /* h1 is block-level — without margin-inline:auto, it sits at
          the start edge of .cover-mark-block (which is wider than
          50rem at desktop). text-align:center on parent doesn't
-         center a flex h1's own box. This line is the axis fix. */
+         center a flex h1's own box. */
       margin-inline: auto;
       background: transparent;
       /* margin-block-end already inherited from .cover-mark */
