@@ -24,6 +24,24 @@
       margin-block-end: var(--s-7);
     }
 
+    /* Book cover — Josiah's full-bleed adaptation, 2026 (portrait variant).
+       Single dissolved face in red/black, distressed paper texture. Palette
+       aligns with umbrella tokens (--c-accent + --c-bg). 3:4 portrait
+       aspect = canonical book-cover ratio. Capped at ~24rem so the cover
+       anchors the page-hero without pushing title-block + lede below the
+       fold on desktop. Hairline border preserves brutalist hard-edge
+       discipline. PNG with alpha (RGBA 8-bit). */
+    .book-cover {
+      max-width: 24rem;
+      margin-block-end: var(--s-6);
+    }
+    .book-cover img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: var(--bw-base) solid var(--c-border);
+    }
+
     /* Book title block — display register matches cover scale */
     .book-title-block {
       max-width: var(--w-prose);
@@ -194,6 +212,19 @@
     <article class="page">
       <header class="page-hero">
         <p class="eyebrow">05 &middot; Long-work</p>
+
+        <!-- Book cover image — full-bleed adaptation by Josiah, 2026
+             (portrait variant). Source asset at
+             src/assets/book-cover-malgre-tout.png (true PNG with alpha,
+             ~3.0 MB / 1152x1536, 3:4 portrait). Future optimization
+             candidate: re-encode as WebP to reduce above-fold transfer
+             size while preserving alpha + distressed-texture detail. -->
+        <div class="book-cover">
+          <img src="/assets/book-cover-malgre-tout.png"
+               alt="Malgr&eacute; Tout cover &mdash; a single dissolved face in red and black, distressed paper texture"
+               loading="eager">
+        </div>
+
         <div class="book-title-block">
           <h1>Malgr&eacute; Tout</h1>
           <p class="book-subtitle">A Guide to Nothingness</p>
