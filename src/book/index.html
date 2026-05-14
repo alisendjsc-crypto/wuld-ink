@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Book — wuld.ink</title>
-  <meta name="description" content="Hybrid compendium in active development — personal narrative, pessimistic philosophy, experimental form, comedy.">
+  <title>Malgr&eacute; Tout &mdash; Book &mdash; wuld.ink</title>
+  <meta name="description" content="Malgré Tout: A Guide to Nothingness — hybrid compendium by WULD. Personal narrative, pessimistic philosophy, deconstructionism, experimental form, comedy, and mementos.">
 
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
@@ -23,6 +23,35 @@
       padding-block-end: var(--s-6);
       margin-block-end: var(--s-7);
     }
+
+    /* Book title block — display register matches cover scale */
+    .book-title-block {
+      max-width: var(--w-prose);
+    }
+    .book-title-block h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-tight);
+      margin-block-end: var(--s-3);
+    }
+    .book-subtitle {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-4);
+    }
+    .book-author {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+      margin-block-end: 0;
+    }
+
     .lede {
       max-width: var(--w-prose);
       font-family: var(--font-body);
@@ -31,44 +60,83 @@
       color: var(--c-fg);
       margin-block-end: var(--s-7);
     }
-    .status-card {
+
+    /* Purchase affordance — in-body, not chrome. KDP is canonical
+       commercial surface; this is discovery + adaptation home. Mono
+       register + blood-red rail matches the umbrella's status-card
+       idiom from sibling shells. */
+    .purchase-block {
       border: var(--bw-base) solid var(--c-border);
       border-left: var(--bw-slab) solid var(--c-accent);
       padding: var(--s-5);
       max-width: var(--w-prose);
       background-color: var(--c-bg-elevated);
+      margin-block-end: var(--s-9);
     }
-    .status-card-label {
+    .purchase-label {
       font-family: var(--font-mono);
       font-size: var(--t-xs);
       text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
+      letter-spacing: var(--ls-mega);
       color: var(--c-accent);
       margin-block-end: var(--s-3);
     }
-    .status-card p {
-      font-family: var(--font-body);
-      color: var(--c-fg-muted);
-    }
-    .status-card p:last-child { margin-block-end: 0; }
-    .page-footer {
-      border-top: var(--bw-base) solid var(--c-border);
-      padding-block: var(--s-5);
-      margin-block-start: var(--s-9);
+    .purchase-isbn {
       font-family: var(--font-mono);
       font-size: var(--t-xs);
       color: var(--c-fg-dim);
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      margin-block-end: var(--s-4);
+    }
+    .purchase-link {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
       text-transform: uppercase;
       letter-spacing: var(--ls-wide);
+      color: var(--c-fg);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+      padding-block-end: 2px;
+      transition: color var(--t-fast) var(--ease);
+      display: inline-block;
     }
-    .page-footer-inner {
-      max-width: var(--w-max);
-      margin-inline: auto;
-      padding-inline: var(--s-5);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: var(--s-4);
+    .purchase-link:hover { color: var(--c-accent); }
+    .purchase-link .arrow {
+      display: inline-block;
+      margin-left: var(--s-2);
+      transition: transform var(--t-fast) var(--ease);
+    }
+    .purchase-link:hover .arrow { transform: translateX(3px); }
+
+    /* Section blocks — each book element (excerpts, mementos, etc.) */
+    .book-section {
+      margin-block-end: var(--s-9);
+      max-width: var(--w-prose);
+    }
+    .book-section-heading {
+      font-family: var(--font-headline);
+      font-size: var(--t-h3);
+      color: var(--c-fg);
+      margin-block-end: var(--s-4);
+      padding-block-end: var(--s-2);
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+    .book-section-placeholder {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--c-fg-dim);
+      max-width: var(--w-prose);
+    }
+    .book-section-placeholder::before {
+      content: "[ ";
+      color: var(--c-accent);
+      font-style: normal;
+    }
+    .book-section-placeholder::after {
+      content: " ]";
+      color: var(--c-accent);
+      font-style: normal;
     }
   </style>
 </head>
@@ -94,18 +162,103 @@
   <main id="main">
     <article class="page">
       <header class="page-hero">
-        <p class="eyebrow">05 · Long-work</p>
-        <h1>Book</h1>
+        <p class="eyebrow">05 &middot; Long-work</p>
+        <div class="book-title-block">
+          <h1>Malgr&eacute; Tout</h1>
+          <p class="book-subtitle">A Guide to Nothingness</p>
+          <p class="book-author">Josiah S. Cooper &middot; WULD</p>
+        </div>
       </header>
 
       <p class="lede">
-        Hybrid compendium &mdash; personal narrative, pessimistic philosophy, experimental form, comedy. Voice rule: clean body, hedges in endnotes.
+        Hybrid compendium &mdash; personal narrative, pessimistic philosophy, deconstructionism, experimental form, comedy, and mementos. The canonical reference text for WULD&rsquo;s coined vocabulary and the umbrella&rsquo;s pessimist-nihilist positions.
       </p>
 
-      <div class="status-card" role="note">
-        <p class="status-card-label">Status</p>
-        <p>In active development. Excerpts will land here as sections stabilize.</p>
+      <!-- Purchase affordance — in-body, not chrome. KDP is canonical
+           commercial surface; umbrella links out. Session K: collapsed
+           in here from session-J's grid card 09. -->
+      <div class="purchase-block" role="note">
+        <p class="purchase-label">Read &middot; print or Kindle</p>
+        <p class="purchase-isbn">ISBN 979-8-2583663-5-1 &middot; Amazon KDP</p>
+        <a class="purchase-link"
+           href="https://www.amazon.com/dp/B0GZ18XVTD"
+           target="_blank"
+           rel="noopener noreferrer">
+          View on Amazon
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
+
+      <!-- ============================================================
+           EXCERPTS — chat-side authorship selects passages.
+           Pattern: one excerpt per <section class="book-section"> with
+           the excerpt title as .book-section-heading and the body in
+           normal <p> paragraphs. Endnotes follow the SV/Alogically-Is
+           pattern (back-linked refs, not modals).
+           ============================================================ -->
+      <section class="book-section" aria-labelledby="excerpts">
+        <h2 id="excerpts" class="book-section-heading">Excerpts</h2>
+        <p class="book-section-placeholder">Selected passages &mdash; awaiting chat-side authorship. Surface as individual sub-sections under this heading.</p>
+      </section>
+
+      <!-- ============================================================
+           MEMENTOS — visual material native to web. Layout pattern TBD
+           when first memento lands (image strip / scroll-narrative /
+           separate /book/mementos/ sub-route).
+           ============================================================ -->
+      <section class="book-section" aria-labelledby="mementos">
+        <h2 id="mementos" class="book-section-heading">Mementos</h2>
+        <p class="book-section-placeholder">Visual material from the book &mdash; layout decision pending when first memento lands. Candidates: image strip, scroll-narrative gallery, or separate /book/mementos/ sub-route.</p>
+      </section>
+
+      <!-- ============================================================
+           NOTHINGIST — fictional podcast interlude. Reveal architecture
+           (AI hallucination only in endnotes) requires careful chat-side
+           authorship + future Cowork micro-session for the UI design
+           that preserves the endnote-only reveal mechanism.
+           ============================================================ -->
+      <section class="book-section" aria-labelledby="nothingist">
+        <h2 id="nothingist" class="book-section-heading">NothinGist</h2>
+        <p class="book-section-placeholder">Fictional podcast interlude &mdash; chat-side authorship + future Cowork micro-session for UI design that preserves the AI-hallucination-only-in-endnotes reveal.</p>
+      </section>
+
+      <!-- ============================================================
+           AUDIO ADAPTATION — Mara (ElevenLabs narrator persona).
+           Per-segment audio on R2 under audio.wuld.ink/book/... when
+           segments are released. Naming convention:
+             book/<chapter-slug>/<section-slug>.mp3
+           ============================================================ -->
+      <section class="book-section" aria-labelledby="audio">
+        <h2 id="audio" class="book-section-heading">Audio adaptation &mdash; Mara</h2>
+        <p class="book-section-placeholder">Audiobook segments narrated by Mara (ElevenLabs persona) &mdash; land here as segments are released. R2 architecture provisioned at <code>audio.wuld.ink/book/</code>; per-segment <code>.audio-block</code> mounts use the established <code>data-audio-key</code> pattern.</p>
+      </section>
+
+      <!-- ============================================================
+           LACERO — experimental section. Web-native treatment pending
+           book-Claude relay Exchange 1 reply (see
+           docs/book-claude-coordination.md, Section B.2).
+           ============================================================ -->
+      <section class="book-section" aria-labelledby="lacero">
+        <h2 id="lacero" class="book-section-heading">Lacero</h2>
+        <p class="book-section-placeholder">Four-movement experimental section &mdash; web-native variant (scroll-snap voice-interruption, etc.) or print-only with cross-reference: direction pending book-project relay reply. Form depends on page-turn enacting voice interruption; web translation is a form-as-argument decision, not decoration.</p>
+      </section>
+
+      <!-- ============================================================
+           CROSS-REFERENCES — to glossary, watch, prior works.
+           ============================================================ -->
+      <section class="book-section" aria-labelledby="cross-refs">
+        <h2 id="cross-refs" class="book-section-heading">Cross-references</h2>
+        <p>
+          Vocabulary coined in <em>Malgr&eacute; Tout</em> lives in the umbrella&rsquo;s <a href="/glossary/">Glossary</a> &mdash; current entries scaffolded for <em>Alogical Isness</em>, <em>Anfractuous Aporia</em>, <em>Contextus Claudit</em>, with more forthcoming.
+        </p>
+        <p>
+          Video adaptations and readings &mdash; including <em>The Architecture of Moral Disaster</em>, <em>Anfractuous Aporia</em>, <em>Taedium Vitae</em> &mdash; live on <a href="/watch/">Watch</a>.
+        </p>
+        <p>
+          Full-length audio readings of individual essays drawn from the book&rsquo;s register live on <a href="/essays/">Essays</a> &mdash; including <em><a href="/essays/sanguinolentum-vestigium/">Sanguinolentum Vestigium</a></em> and <em><a href="/essays/alogically-is/">Alogically Is</a></em>.
+        </p>
+        <p class="book-section-placeholder">Prior works archive (<em>The Point</em>, <em>Forget the Plot</em>, <em>Hatred</em>) &mdash; placement decision pending. Options: inline cross-reference here, new <code>/works/</code> sub-route, or external author-page link-out.</p>
+      </section>
     </article>
   </main>
 
