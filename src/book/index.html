@@ -157,6 +157,42 @@
       font-style: normal;
     }
 
+    /* Memento sub-sections (K13, 2026-05-14) — prose pieces nested
+       under Mementos. Pattern: h3 italic title, optional accent lede
+       (closer-as-lede for Tucson per book-Claude B.3 (a); mid-piece
+       tidiness line for Desk), body paragraphs, hairline between. */
+    .memento { margin-block-end: var(--s-7); max-width: var(--w-prose); }
+    .memento-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h4);
+      color: var(--c-fg);
+      font-style: italic;
+      margin-block-end: var(--s-3);
+    }
+    .memento-lede {
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      font-style: italic;
+      color: var(--c-accent);
+      margin-block: var(--s-3) var(--s-5);
+      max-width: var(--w-prose);
+    }
+    .memento-body { max-width: var(--w-prose); }
+    .memento-body p {
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-default);
+      color: var(--c-fg);
+      margin-block-end: var(--s-4);
+    }
+    .memento-body p:last-child { margin-block-end: 0; }
+    .memento-rule {
+      border: 0;
+      border-top: var(--bw-base) solid var(--c-border);
+      margin-block: var(--s-7);
+      max-width: var(--w-prose);
+    }
+
     /* Other works by WULD — single-line aggregator at bottom of
        cross-references (session K3). (b)-DEFERRED per book-Claude
        Exchange 1: ship single line now; /works/ sub-route reserved.
@@ -282,13 +318,46 @@
       </section>
 
       <!-- ============================================================
-           MEMENTOS — visual material native to web. Layout pattern TBD
-           when first memento lands (image strip / scroll-narrative /
-           separate /book/mementos/ sub-route).
-           ============================================================ -->
+           MEMENTOS (K13, 2026-05-14) — back-matter prose pieces from
+           the book. First wave: Tucson + The desk. Source: book-Claude
+           Exchange 4 Response Sections B.1 + B.2 (verbatim text;
+           em-dashes spaced per book canon LD #45; no endnote
+           superscripts). Section sequence in book: Grey -> The desk
+           -> Beyond Good and Evil -> Tucson -> Forget the Plot ->
+           Correspondence -> bare-line closer. Deploy order per
+           book-Claude B.4 wave recommendation: Grey first (text
+           pending), then Tucson, then Desk. K13 ships Tucson + Desk
+           in book-canonical sequence order. Section lede candidate
+           from K4 F4 ("A memento is a thing one keeps when one has
+           lost the argument for keeping it.") NOT deployed this turn
+           — K11 authorization scope is narrow to Tucson + Desk
+           verbatim only. DO-NOT-EXCERPT list still locked (K4):
+           Correspondence + Ch. IV + NothinGist + cat-line book-only
+           by default. Explicit-override-not-quiet-inclusion. -->
       <section class="book-section" aria-labelledby="mementos">
         <h2 id="mementos" class="book-section-heading">Mementos</h2>
-        <p class="book-section-placeholder">Visual material from the book &mdash; layout decision pending when first memento lands. Candidates: image strip, scroll-narrative gallery, or separate /book/mementos/ sub-route.</p>
+
+        <article class="memento" aria-labelledby="memento-desk">
+          <h3 id="memento-desk" class="memento-title">The desk</h3>
+          <p class="memento-lede">Tidiness would be an argument and I do not make arguments at the desk.</p>
+          <div class="memento-body">
+            <p>The desk is where the writing happens. On it, generally: the computer, a notebook, sometimes a mug that has not been washed, cat hair, papers I have not filed, a pen I have stopped using but have not put away. The cat is on it as often as not. The desk is not tidy. The desk has never been tidy. Tidiness would be an argument and I do not make arguments at the desk. I only work there.</p>
+            <p>There is a chair. There is a window. The window has a view of nothing in particular.</p>
+            <p>I have written every page of this book at this desk. I will not describe the desk more than this. The desk is a thing, and the describing is a separate thing, and the describing is not the desk.</p>
+          </div>
+        </article>
+
+        <hr class="memento-rule" aria-hidden="true">
+
+        <article class="memento" aria-labelledby="memento-tucson">
+          <h3 id="memento-tucson" class="memento-title">Tucson</h3>
+          <p class="memento-lede">I do not love the desert. I am held by it. These are different relations.</p>
+          <div class="memento-body">
+            <p>I have never left for long. I was placed in the desert. I stayed. The staying is a fact older than any decision about it. The saguaros do not need me to notice them. They have been here longer than my family, and they will be here after. This is comforting in a way I do not trust the comfort of. A landscape that survives without the people in it is, from most angles, a rebuke; from one angle it is a permission; the permission is the one I take.</p>
+            <p>The light is the thing most strangers underestimate. Particular at dusk. The distance between ranges is sharp enough that time reads differently against it &mdash; a thing on the far ridge is half an hour&rsquo;s thought away at least, and that half hour, performed by the eye as it crosses the distance, is a pace the mind is grateful for.</p>
+            <p>I do not love the desert. I am held by it. These are different relations.</p>
+          </div>
+        </article>
       </section>
 
       <!-- ============================================================
