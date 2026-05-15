@@ -1,8 +1,10 @@
 # Bug Report — Cowork VM Worker (vmwp.exe) Stale-Cache Writeback
 
-**Status:** Paste-ready for submission to `github.com/anthropics/claude-code/issues/new`
+**Status:** FILED 2026-05-15 (K19 close)
 **Authored:** K19 (2026-05-15) Cowork session, wuld-ink project
-**Submit URL:** https://github.com/anthropics/claude-code/issues/new
+**Issue URL:** https://github.com/anthropics/claude-code/issues/59564
+**Label:** bug
+**K20 note:** vmwp.exe vector confirmed NOT wuld-ink-specific — targets any C:\ mounted folder when sandbox initiates `.git/` writes. See K20 narrative in CLAUDE.md for expanded scope finding (sibling-folder corruption during library substrate clone attempt).
 **Repo:** `anthropics/claude-code` (per search confirmation — Cowork issues land here per #50895, #49276, #27492, #48407)
 **Labels (suggest at submission):** `bug`, `cowork`, `desktop-app`, `windows`
 
