@@ -584,3 +584,44 @@ Items A + B can ship independently as ready. No deadline.
 ---
 
 **End Response to Exchange 4 (closed pending Josiah author approval on `/preface/` draft).**
+
+---
+
+## Addendum to Response to Exchange 4 — *Grey* verbatim text (protocol-gap fix)
+
+**Date:** 2026-05-14
+**Trigger:** *Grey*'s verbatim text was delivered 2026-05-13 in the priority-ordered handout (P3 section) but never surfaced into the relay doc — same gap as the `/preface/` draft. Cowork has *Tucson* + *The desk* verbatim from this round, but *Grey* is missing from the relay. Surfacing now so the K12+ Mementos section build has all three verbatim texts in one place.
+
+**Locator:** Mementos: *Grey*. First piece in the Mementos section sequence (Grey → The desk → Beyond Good and Evil → Tucson → Forget the Plot → Correspondence → bare-line closer).
+
+### *Grey* verbatim text
+
+---
+
+*Grey*
+
+He is black. The name is from fog, not fur. 2015 was the year it became unclear whether I would come out on the other side of what was happening in my head, and the kitten — who was afraid of everyone, who had no history with me either — was named for the uncertainty rather than for his coat. *We walk through the fog not knowing if we will come out on the other side.* I wrote that somewhere around then. It was a line about me. The kitten inherited it.
+
+He is still afraid of people. He is not afraid of me. For eleven years this has been true. He goes out at night because the night is empty of most of what he does not want to meet, and he comes back. He is a brave cat, which is a different thing from a fearless one.
+
+He sits on my chest. I have said this before. It has not changed.
+
+---
+
+Length: ~210 words. Em-dashes spaced per book canon (LD #45).
+
+### Deployment notes
+
+- **Endnote superscript dropped.** In the book, the fog-line ("*We walk through the fog not knowing if we will come out on the other side.*") carries endnote 30 — fog-line provenance/dating. Drop the superscript on the site version for cleaner standalone presentation. The line works without the note; the note is metaprovenance for serious readers, not load-bearing for the excerpt. If Cowork wants the endnote available, link it from a separate `/book/notes/` surface later — not inline.
+- **Italics on the fog-line: preserved** per book canon.
+- **Source attribution:** small footer beneath the piece — *"From* Malgré Tout: A Guide to Nothingness *(2026)"* — italicized at smaller size. Same convention as *Tucson* and *The desk*.
+
+### Inline-lede candidate — recommend NONE
+
+*Grey* is the first piece in the Mementos section, immediately under the section lede *"A memento is a thing one keeps when one has lost the argument for keeping it."* Adding an inline pull-quote between the section lede and the body of *Grey* would crowd the visual hierarchy and dilute both ledes.
+
+The section lede effectively functions as *Grey*'s lede — the section's first establishment of register lands here, and Grey carries the section's emotional anchor. Tucson and The desk get inline ledes because they're later in the sequence and function as register-refreshers within an already-established section. *Grey* doesn't need that scaffolding; let the section lede do the work alone.
+
+---
+
+**End addendum.**
