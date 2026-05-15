@@ -193,6 +193,37 @@
       max-width: var(--w-prose);
     }
 
+    /* Section-level lede for Mementos (K19, 2026-05-15) — K4 F4
+       authorization: "A memento is a thing one keeps when one has
+       lost the argument for keeping it." Sits below section h2 as
+       governing principle. Slightly larger + hairline-separated from
+       first piece. NOT a piece-lede; piece-ledes use .memento-lede. */
+    .memento-section-lede {
+      font-family: var(--font-body);
+      font-size: var(--t-lg);
+      font-style: italic;
+      color: var(--c-accent);
+      line-height: var(--lh-tight);
+      margin-block: var(--s-5) var(--s-7);
+      padding-block-end: var(--s-5);
+      border-bottom: var(--bw-base) solid var(--c-border);
+      max-width: var(--w-prose);
+    }
+
+    /* Source attribution footer for memento articles (K19) — small
+       mono italic line beneath body; signals provenance without
+       crowding the piece. Per book-Claude deployment notes: italic
+       at smaller size, same convention applies to Grey + Tucson + Desk
+       going forward. */
+    .memento-source {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      font-style: italic;
+      color: var(--c-fg-dim);
+      margin-block-start: var(--s-4);
+      max-width: var(--w-prose);
+    }
+
     /* Other works by WULD — single-line aggregator at bottom of
        cross-references (session K3). (b)-DEFERRED per book-Claude
        Exchange 1: ship single line now; /works/ sub-route reserved.
@@ -334,8 +365,36 @@
            verbatim only. DO-NOT-EXCERPT list still locked (K4):
            Correspondence + Ch. IV + NothinGist + cat-line book-only
            by default. Explicit-override-not-quiet-inclusion. -->
+      <!-- ============================================================
+           MEMENTOS K19 update (2026-05-15) — section lede deployed per
+           K4 F4 authorization (book-Claude addendum implicitly authorizes:
+           Grey ships with NO inline-lede because section lede serves as
+           Grey's lede). Grey verbatim text inserted as first piece per
+           book-canonical sequence (Grey -> Desk -> Tucson within deployed
+           set; Beyond Good and Evil + Forget the Plot + Correspondence
+           remain book-only). Source: book-Claude Exchange 4 Addendum
+           (2026-05-14, surfaced via commit 33ccabf during K18 close).
+           Endnote 30 superscript on fog-line dropped per deployment notes
+           (line works standalone; provenance is metadata not load-bearing).
+           Em-dashes spaced per LD #45; italics on fog-line preserved.
+           Source attribution footer convention applies to all three
+           mementos going forward (small mono italic under each piece). -->
       <section class="book-section" aria-labelledby="mementos">
         <h2 id="mementos" class="book-section-heading">Mementos</h2>
+
+        <p class="memento-section-lede">A memento is a thing one keeps when one has lost the argument for keeping it.</p>
+
+        <article class="memento" aria-labelledby="memento-grey">
+          <h3 id="memento-grey" class="memento-title">Grey</h3>
+          <div class="memento-body">
+            <p>He is black. The name is from fog, not fur. 2015 was the year it became unclear whether I would come out on the other side of what was happening in my head, and the kitten &mdash; who was afraid of everyone, who had no history with me either &mdash; was named for the uncertainty rather than for his coat. <em>We walk through the fog not knowing if we will come out on the other side.</em> I wrote that somewhere around then. It was a line about me. The kitten inherited it.</p>
+            <p>He is still afraid of people. He is not afraid of me. For eleven years this has been true. He goes out at night because the night is empty of most of what he does not want to meet, and he comes back. He is a brave cat, which is a different thing from a fearless one.</p>
+            <p>He sits on my chest. I have said this before. It has not changed.</p>
+          </div>
+          <p class="memento-source">From <em>Malgr&eacute; Tout: A Guide to Nothingness</em> (2026)</p>
+        </article>
+
+        <hr class="memento-rule" aria-hidden="true">
 
         <article class="memento" aria-labelledby="memento-desk">
           <h3 id="memento-desk" class="memento-title">The desk</h3>
@@ -345,6 +404,7 @@
             <p>There is a chair. There is a window. The window has a view of nothing in particular.</p>
             <p>I have written every page of this book at this desk. I will not describe the desk more than this. The desk is a thing, and the describing is a separate thing, and the describing is not the desk.</p>
           </div>
+          <p class="memento-source">From <em>Malgr&eacute; Tout: A Guide to Nothingness</em> (2026)</p>
         </article>
 
         <hr class="memento-rule" aria-hidden="true">
@@ -357,6 +417,7 @@
             <p>The light is the thing most strangers underestimate. Particular at dusk. The distance between ranges is sharp enough that time reads differently against it &mdash; a thing on the far ridge is half an hour&rsquo;s thought away at least, and that half hour, performed by the eye as it crosses the distance, is a pace the mind is grateful for.</p>
             <p>I do not love the desert. I am held by it. These are different relations.</p>
           </div>
+          <p class="memento-source">From <em>Malgr&eacute; Tout: A Guide to Nothingness</em> (2026)</p>
         </article>
       </section>
 

@@ -139,8 +139,44 @@ def main():
         writer.writerow(["timestamp", "process_name", "pid", "operation", "path", "result", "detail"])
 
         reader = ProcmonLogsReader(fh)
-        for event in reader:
+        try:
+            total_events = len(reader)
+            print(f"[analyze_procmon] events in capture: {total_events:,}", file=sys.stderr)
+        except Exception:
+            total_events = None
+
+        # Subscript access (reader[i]) lets us skip individual events that
+        # raise from procmon-parser internals (e.g. KeyError on unknown
+        # process_idx from a corrupted/truncated event mid-capture). The
+        # `for event in reader:` pattern propagates such errors out of
+        # __next__ and terminates iteration early — one bad event kills
+        # the whole run. Circuit breaker aborts gracefully if errors
+        # compound beyond MAX_POISONED_STREAK consecutive failures (likely
+        # indicates the file is corrupted past that point).
+        MAX_POISONED_STREAK = 1000
+        poisoned_streak = 0
+        i = 0
+        while True:
+            if total_events is not None and i >= total_events:
+                break
+            try:
+                event = reader[i]
+                poisoned_streak = 0
+            except (IndexError, StopIteration):
+                break
+            except Exception as ex:
+                skipped += 1
+                poisoned_streak += 1
+                if skipped <= 20:
+                    print(f"[analyze_procmon] skip event #{i}: {type(ex).__name__}: {ex}", file=sys.stderr)
+                if poisoned_streak >= MAX_POISONED_STREAK:
+                    print(f"[analyze_procmon] {poisoned_streak} consecutive read errors at #{i} — aborting; partial CSV preserved ({matched:,} rows)", file=sys.stderr)
+                    break
+                i += 1
+                continue
+
             scanned += 1
+            i += 1
             if args.verbose and scanned % 100_000 == 0:
                 print(f"[analyze_procmon] scanned {scanned:,} events, matched {matched:,}", file=sys.stderr)
 
@@ -153,13 +189,37 @@ def main():
                 if path_needle not in path.lower():
                     continue
 
-                ts = getattr(event, "date", None) or getattr(event, "date_filetime", None)
+                # Timestamp extraction — procmon-parser 0.3.13 exposes event.date
+                # as a callable (method, not property), so we must invoke it.
+                # Fall back to FILETIME→datetime conversion if .date() isn't usable.
+                ts = None
+                raw_date = getattr(event, "date", None)
+                if callable(raw_date):
+                    try:
+                        ts = raw_date()
+                    except Exception:
+                        ts = None
+                elif raw_date is not None:
+                    ts = raw_date
+
+                if ts is None:
+                    ft = getattr(event, "date_filetime", None)
+                    if ft is not None and ft > 0:
+                        try:
+                            from datetime import timedelta, timezone
+                            # Windows FILETIME: 100-ns ticks since 1601-01-01 UTC
+                            ts = datetime(1601, 1, 1, tzinfo=timezone.utc) + timedelta(microseconds=ft / 10)
+                        except Exception:
+                            ts = None
+
                 if win_start or win_end:
                     if ts is None:
                         continue
-                    if win_start and ts < win_start:
+                    # Strip tzinfo for naive comparison against parsed window
+                    ts_naive = ts.replace(tzinfo=None) if hasattr(ts, "tzinfo") and ts.tzinfo else ts
+                    if win_start and ts_naive < win_start:
                         continue
-                    if win_end and ts > win_end:
+                    if win_end and ts_naive > win_end:
                         continue
 
                 proc_name = getattr(event.process, "process_name", "?") if getattr(event, "process", None) else "?"

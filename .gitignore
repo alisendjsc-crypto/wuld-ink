@@ -37,3 +37,41 @@ _audio-staging/
 *.PML
 docs/Procmon-*.pml
 docs/Procmon-*.PML
+
+# Procmon CSV outputs from analyze_procmon.py — analysis artifacts, kept
+# Josiah-side for forensic reference but not part of wuld.ink repo.
+k*-trace.csv
+docs/k*-trace.csv
+
+# Library publication artifacts (K17+ landed Josiah-side from library-Claude
+# coordination session output). These belong in the library GitHub repo
+# (alisendjsc-crypto/efilist-argument-library), NOT wuld.ink. Staged here
+# only because Josiah's working folder is shared. Deferred to dedicated
+# library publication coordination session per K17 lock.
+docs/LICENSE
+docs/LICENSE-CODE
+docs/README.md
+docs/CITATION_cff_*.cff
+docs/RELEASE_NOTES_v*.md
+docs/OPERATOR_CHECKLIST_*.md
+docs/cowork_orientation_v*.md
+docs/library_claude_coordination_EXCHANGE_*_FRAGMENT.md
+
+# Procmon CSV outputs from analyze_procmon.py — analysis artifacts, kept
+# Josiah-side for forensic reference but not part of wuld.ink repo.
+k*-trace.csv
+docs/k*-trace.csv
+
+# Library publication artifacts (K17+ landed Josiah-side from library-Claude
+# coordination session output). These belong in the library GitHub repo
+# (alisendjsc-crypto/efilist-argument-library), NOT wuld.ink. Staged here
+# only because Josiah's working folder is shared. Deferred to dedicated
+# library publication coordination session per K17 lock.
+docs/LICENSE
+docs/LICENSE-CODE
+docs/README.md
+docs/CITATION_cff_*.cff
+docs/RELEASE_NOTES_v*.md
+docs/OPERATOR_CHECKLIST_*.md
+docs/cowork_orientation_v*.md
+docs/library_claude_coordination_EXCHANGE_*_FRAGMENT.md

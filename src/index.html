@@ -563,15 +563,45 @@
        /legal/ (or similar) once that page is authored chat-side.
        Until then, dim text signals the future destination without
        a broken href.
+
+       Session K19 (2026-05-15): library.wuld.ink roadmap line added
+       alongside Legal pointer. Per K18 Exchange 7 lock + K19 Exchange
+       8 stable-tag-declaration trigger-met state: subdomain is
+       declaration-released but not yet provisioned wuld.ink-side.
+       Line swaps to live `library.wuld.ink` link OR migrates to nav
+       when subdomain ships in K20+. Stacked-on-right .footer-pending
+       wrapper preserves existing space-between flex layout.
        ============================================================ -->
   <footer class="page-footer">
     <div class="page-footer-inner">
       <span class="copyright">
         <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
       </span>
-      <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
+      <span class="footer-pending">
+        <span class="disclaimer-pending">library.wuld.ink &mdash; forthcoming</span>
+        <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
+      </span>
     </div>
   </footer>
+
+  <!-- K19 footer-pending wrapper: flex-column stack on right side so
+       multiple forthcoming-pointer lines align without breaking the
+       parent flex space-between. Inline-styled (homepage-local) until
+       a second shell wants the pattern — promote-to-footer.css on
+       second instance per N=2 component-CSS threshold. -->
+  <style>
+    .page-footer .footer-pending {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--s-2);
+    }
+    @media (max-width: 640px) {
+      .page-footer .footer-pending {
+        align-items: flex-start;
+      }
+    }
+  </style>
 
   <script src="/components/nav.js"></script>
 </body>
