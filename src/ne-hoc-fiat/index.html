@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ne Hoc Fiat &mdash; Project &mdash; wuld.ink</title>
+  <meta name="description" content="Ne Hoc Fiat — Latin for let this not be done — book-in-progress arguing modal-architectural pessimism via the empirical asymmetry argument and the structural-absence pair (Contextus Claudit + No Essential Protection From Destruction). In development.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/footer.css">
+
+  <!--
+    ============================================================
+    /ne-hoc-fiat/ — project page (session K10, 2026-05-14)
+    ============================================================
+    First project-shaped page on the umbrella. Pattern-matched to
+    /book/ shape (page-hero + lede + section scaffolds), MINUS the
+    cover image + purchase block (project is in-development, no
+    purchasable artifact yet). Substituted: status section + outline
+    placeholder + approved-excerpts (author-sign-off-gated) + cross-
+    references + discreet Successor Protocol link-back at bottom
+    (mirrors K3 .frame-pointer aside pattern).
+
+    Lede + status text are paste-relayed verbatim from successor-Claude
+    Exchange 2 Section C response (docs/successor-claude-coordination.md).
+    Per K5 discipline lock: Cowork RELAYS authoritative content to
+    vessel surfaces; Cowork does NOT AUTHOR new philosophical content.
+
+    Approved-excerpts section ships scaffold-only; per baton §3 +
+    Exchange 2 Section C confirm: excerpts appear ONLY as Josiah
+    signs them off. No content here without explicit authorization.
+
+    Discreet SP link-back at bottom uses .sp-aside pattern (mono
+    "For approved readers —" label + accent-bordered aside + single
+    sentence). Gated path stays gated; aside is informational pointer
+    only. Cloudflare Access policy at the edge gates the actual page;
+    this aside surfaces the existence of the gated work.
+
+    If a second project-shaped page lands later (≥2 projects), promote
+    .project-* CSS rules to /components/page.css per K's
+    second-instance-promotion threshold. Premature now.
+    ============================================================
+  -->
+
+  <style>
+    /* ============================================================
+       Project page — patterned on /book/ shape. Same .page + .lede
+       layout; .project-* rules mirror .book-* variants minus the
+       cover + purchase affordances.
+       ============================================================ */
+
+    .page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+
+    .page-hero {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-6);
+      margin-block-end: var(--s-7);
+    }
+
+    /* Project title block — display register matches /book/ minus
+       the cover image (no in-progress cover yet). Single-name title
+       in Latin; English subtitle in mono accent; author line in
+       mono muted, matches /book/ author register. */
+    .project-title-block {
+      max-width: var(--w-prose);
+    }
+    .project-title-block h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-tight);
+      margin-block-end: var(--s-3);
+    }
+    .project-subtitle {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      font-style: italic;
+      margin-block-end: var(--s-4);
+    }
+    .project-author {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+      margin-block-end: 0;
+    }
+
+    .lede {
+      max-width: var(--w-prose);
+      font-family: var(--font-body);
+      font-size: var(--t-lead);
+      line-height: var(--lh-default);
+      color: var(--c-fg);
+      margin-block-end: var(--s-7);
+    }
+
+    /* Section blocks — mirror /book/'s .book-section pattern */
+    .project-section {
+      margin-block-end: var(--s-9);
+      max-width: var(--w-prose);
+    }
+    .project-section-heading {
+      font-family: var(--font-headline);
+      font-size: var(--t-h3);
+      color: var(--c-fg);
+      margin-block-end: var(--s-4);
+      padding-block-end: var(--s-2);
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+    .project-section p {
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-prose);
+      color: var(--c-fg);
+      margin-block-end: var(--s-4);
+    }
+    .project-section-placeholder {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--c-fg-dim);
+      max-width: var(--w-prose);
+    }
+    .project-section-placeholder::before {
+      content: "[ ";
+      color: var(--c-accent);
+      font-style: normal;
+    }
+    .project-section-placeholder::after {
+      content: " ]";
+      color: var(--c-accent);
+      font-style: normal;
+    }
+
+    /* Discreet Successor Protocol link-back aside (K3 .frame-pointer
+       pattern: mono eyebrow label + accent-bordered single-sentence
+       body, set off from the main flow). Lightest possible affordance
+       for "the canonical philosophical scaffolding lives on a gated
+       path" — surfaces existence + provides clickable link, without
+       performing the gating mechanism in the visible chrome. */
+    .sp-aside {
+      max-width: var(--w-prose);
+      margin-block-start: var(--s-9);
+      padding-inline-start: var(--s-5);
+      border-left: var(--bw-slab) solid var(--c-accent);
+    }
+    .sp-aside-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+    .sp-aside p {
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-prose);
+      color: var(--c-fg-muted);
+      margin-block-end: 0;
+    }
+    .sp-aside a {
+      color: var(--c-fg);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+      transition: color var(--t-fast) var(--ease);
+    }
+    .sp-aside a:hover { color: var(--c-accent); }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="page">
+      <header class="page-hero">
+        <p class="eyebrow">09 &middot; Project</p>
+
+        <div class="project-title-block">
+          <h1>Ne Hoc Fiat</h1>
+          <p class="project-subtitle">Let this not be done</p>
+          <p class="project-author">Josiah S. Cooper &middot; WULD</p>
+        </div>
+      </header>
+
+      <!-- Lede — paste-relayed verbatim from successor-Claude Exchange 2
+           Section C response (docs/successor-claude-coordination.md).
+           ~50 words. Do NOT edit chat-side-without-relay. -->
+      <p class="lede">
+        <em>Ne Hoc Fiat</em> &mdash; Latin for <em>let this not be done</em> &mdash; is a book-in-progress arguing that the worst feature of existence is not how much suffering it contains but what kind of structure contains it. A structure with no protector-class, no listening-class, no architectural feature positioned to prevent or hear what occurs.
+      </p>
+
+      <!-- ============================================================
+           STATUS — paste-relayed verbatim from successor-Claude
+           Exchange 2 Section C response. ~75 words. Do NOT edit
+           chat-side-without-relay. Material shifts in project status
+           flow through coord-doc Exchange N updates per drift discipline
+           (d) lock for Ne Hoc Fiat term in Section D table.
+           ============================================================ -->
+      <section class="project-section" aria-labelledby="status">
+        <h2 id="status" class="project-section-heading">Status</h2>
+        <p>
+          In development. The thesis spine is locked: modal-architectural pessimism grounded by the empirical asymmetry argument, anchored to the structural-absence pair &mdash; <em>Contextus Claudit</em> (no listening-class) and <em>No Essential Protection From Destruction</em> (no protector-class). The manuscript is at chapter-outline stage. Approved excerpts will appear here as the author signs them off. Canonical philosophical scaffolding lives in the Successor Protocol; this page is the public-facing companion to that gated work.
+        </p>
+      </section>
+
+      <!-- ============================================================
+           OUTLINE — placeholder; chapter/section outline lands here
+           when successor-Claude relays a stabilized outline OR when
+           Josiah signs off chat-side.
+           ============================================================ -->
+      <section class="project-section" aria-labelledby="outline">
+        <h2 id="outline" class="project-section-heading">Outline</h2>
+        <p class="project-section-placeholder">Chapter outline &mdash; pending stabilization. Lands here when successor-canon relays a finalized outline or Josiah authorizes chat-side. Section will surface as nested headings once outline is fixed.</p>
+      </section>
+
+      <!-- ============================================================
+           APPROVED EXCERPTS — author-sign-off-gated. No excerpt appears
+           here without explicit authorization. Per baton §3: "excerpts
+           as Josiah approves". Per Exchange 2 Section C confirm:
+           sign-off gate is hard discipline; Cowork ships scaffold only.
+           When excerpts arrive: each gets its own .project-section
+           sub-block with excerpt title as .project-section-heading
+           (level-down) and body in normal <p> paragraphs.
+           ============================================================ -->
+      <section class="project-section" aria-labelledby="excerpts">
+        <h2 id="excerpts" class="project-section-heading">Approved excerpts</h2>
+        <p class="project-section-placeholder">Excerpts appear here as the author signs them off. Author-approval gate; no excerpt surfaces without explicit authorization. Empty by design until then.</p>
+      </section>
+
+      <!-- ============================================================
+           CROSS-REFERENCES — to glossary terms (5 net-new K9-shipped +
+           2 anchor entries) and sibling umbrella surfaces.
+           ============================================================ -->
+      <section class="project-section" aria-labelledby="cross-refs">
+        <h2 id="cross-refs" class="project-section-heading">Cross-references</h2>
+        <p>
+          Canonical vocabulary lives in the umbrella&rsquo;s <a href="/glossary/">Glossary</a> &mdash; <em><a href="/glossary/ne-hoc-fiat/">Ne Hoc Fiat</a></em> (the formula), <em><a href="/glossary/no-essential-protection-from-destruction/">No Essential Protection From Destruction</a></em>, <em><a href="/glossary/modal-architectural-pessimism/">Modal-architectural pessimism</a></em>, <em><a href="/glossary/empirical-asymmetry-argument/">Empirical asymmetry argument</a></em>, <em><a href="/glossary/protecting-class-absence/">Protecting-class absence</a></em>, <em><a href="/glossary/contextus-claudit/">Contextus Claudit</a></em>, <em><a href="/glossary/alogical-isness/">Alogical Isness</a></em>.
+        </p>
+        <p>
+          Cross-surface &mdash; <em>Malgr&eacute; Tout</em> lives on <a href="/book/">Book</a>; video adaptations and readings on <a href="/watch/">Watch</a>; the umbrella&rsquo;s general philosophical stance framed for cold readers on <a href="/frame/">Frame</a>.
+        </p>
+      </section>
+
+      <!-- ============================================================
+           Discreet Successor Protocol link-back (session K10, 2026-05-14).
+           K3 .frame-pointer pattern: mono "For approved readers —" label
+           + accent-bordered aside + single sentence pointing at gated
+           path. Cloudflare Access policy (Zero Trust dashboard) gates
+           the path at edge before HTML serves — unauthorized landings
+           hit OTP screen, NOT a leaked page byte.
+           ============================================================ -->
+      <aside class="sp-aside" aria-label="For approved readers">
+        <p class="sp-aside-label">For approved readers &mdash;</p>
+        <p>The Protocol&rsquo;s canonical philosophical scaffolding lives at <a href="/_/successor-protocol/">the gated path</a>. Access is allowlist-bounded; readers without authorization land on a sealed surface and an email-OTP prompt.</p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
+      </span>
+      <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>
