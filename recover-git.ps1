@@ -1,14 +1,28 @@
-# recover-git.ps1 - K12 forensic-hardened git index recovery
+# recover-git.ps1 - K16 forensic-hardened git index recovery
 # wuld.ink Cowork project
-# Handles: stale .git/index.lock + binary-corrupt index + null-sha1 phantom entries
+# Handles: corrupt .git/config branch.main.merge key (K15-NEW failure mode,
+#          K16-confirmed recurring) + stale .git/index.lock + binary-corrupt
+#          index + null-sha1 phantom entries
 # Idempotent + interruption-survivable + ASCII-only (PowerShell 5.1 safe)
 #
 # Why this script exists:
-#   Cowork sessions K7-K12 hit recurring .git/index.lock + index-corruption pattern.
-#   Sandbox-side rm is blocked by Windows file lock; Linux unlink returns
-#   "Operation not permitted". Out-of-band Windows-side process (most likely
-#   Defender/AV scan, IDE git integration, or Anthropic sandbox boundary hook)
-#   recreates the lock + corrupts index after PS recovery completes.
+#   Cowork sessions K7-K16 hit recurring failure pattern:
+#     (i)  .git/index.lock recreated post-recovery (orphan-stale, 0-byte,
+#          mtime in K-close window); sandbox-side rm blocked by Windows file
+#          lock ("Operation not permitted")
+#     (ii) .git/index binary-corrupted (bad sha1 signature, fatal: index file
+#          corrupt); fsck fails, git operations blocked
+#     (iii)[K10+] null-sha1 phantom entries in index (D+?? working-tree pattern
+#          for same files; index-corruption artifact, not real drift)
+#     (iv) [K15-NEW, K16-confirmed-recurring] .git/config [branch "main"]
+#          merge key truncated mid-line (`\tmerge ` orphan, no `=`, no value,
+#          no EOL); PS-write-truncation family, same vector as E3-era
+#          setup-git.ps1 corruption. Blocks `git pull` / `git push`-tracking
+#          / branch-aware operations.
+#   Out-of-band Windows-side process (cowork-svc.exe candidate per K14
+#   handle.exe trace; Defender ruled out post-Experiment-1; remaining proof
+#   needs Procmon trace on .git/ writes during session-close cycle) is the
+#   leading-candidate corruption vector.
 #
 # Usage:
 #   cd C:\Users\y_m_a\Projects\wuld-ink
@@ -24,7 +38,7 @@
 $repoRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Set-Location $repoRoot
 
-Write-Output "=== recover-git.ps1 - K12 hardened recovery ==="
+Write-Output "=== recover-git.ps1 - K16 hardened recovery ==="
 Write-Output "Repo root: $repoRoot"
 Write-Output ""
 
@@ -35,11 +49,86 @@ if (-not (Test-Path ".git")) {
 }
 
 # -----------------------------------------------------------------------------
-# Step 1: Clear .git/index.lock if present
+# Step 1: Verify .git/config [branch "main"] merge key integrity
+#   K15-NEW failure mode: PS-write-truncation corrupts the merge key.
+#   K16-confirmed: recurring vector (not one-time write artifact).
+#   Detection: line-parse the [branch "main"] section, verify
+#       merge = <non-empty value>
+#   present. Fail loud + emit repair instructions; do NOT auto-repair
+#   (per K15 lesson i: fail loud with manual-repair guidance).
+#   Must precede lock-clear / fsck / read-tree: broken config affects
+#   branch-aware git operations unpredictably.
+# -----------------------------------------------------------------------------
+Write-Output "Step 1: Checking .git/config [branch ""main""] merge key..."
+$configPath = ".git\config"
+if (-not (Test-Path $configPath)) {
+    Write-Output "  ERROR: .git\config not found at $repoRoot\$configPath"
+    Write-Output "  Repo may be partially initialized. Re-run setup-git.ps1 OR clone fresh."
+    exit 5
+}
+$configLines = Get-Content $configPath
+$inBranchMain = $false
+$mergeFound = $false
+$mergeValue = ""
+$branchBlockLines = @()
+foreach ($line in $configLines) {
+    if ($line -match '^\s*\[branch\s+"main"\]\s*$') {
+        $inBranchMain = $true
+        $branchBlockLines += $line
+        continue
+    }
+    if ($line -match '^\s*\[.*\]\s*$') {
+        if ($inBranchMain) { $inBranchMain = $false }
+        continue
+    }
+    if ($inBranchMain) {
+        $branchBlockLines += $line
+        if ($line -match '^\s*merge\s*=\s*(\S.*?)\s*$') {
+            $mergeFound = $true
+            $mergeValue = $Matches[1]
+        }
+    }
+}
+if ($branchBlockLines.Count -eq 0) {
+    Write-Output "  WARN: No [branch ""main""] section found in .git\config."
+    Write-Output "  Non-standard config; skipping merge-key check."
+    Write-Output "  If push/pull tracking fails, run: git branch --set-upstream-to=origin/main main"
+} elseif (-not $mergeFound) {
+    Write-Output "  ERROR: [branch ""main""] merge key is missing or truncated."
+    Write-Output "  This is the K15-NEW / K16-recurring failure mode (PS-write-truncation)."
+    Write-Output ""
+    Write-Output "  Current [branch ""main""] block content (likely truncated):"
+    foreach ($l in $branchBlockLines) {
+        $shown = $l -replace "`t", "\t"
+        Write-Output "    | $shown"
+    }
+    Write-Output ""
+    Write-Output "  Repair: open .git\config in a text editor (Notepad / VS Code / etc.)"
+    Write-Output "  and ensure the [branch ""main""] section reads exactly:"
+    Write-Output ""
+    Write-Output "    [branch ""main""]"
+    Write-Output "    `tremote = origin"
+    Write-Output "    `tmerge = refs/heads/main"
+    Write-Output ""
+    Write-Output "  (Note: leading whitespace is a single TAB character, not spaces.)"
+    Write-Output ""
+    Write-Output "  After repair, re-run: powershell -ExecutionPolicy Bypass -File recover-git.ps1"
+    exit 5
+} else {
+    Write-Output "  OK: merge = $mergeValue"
+    if ($mergeValue -ne "refs/heads/main") {
+        Write-Output "  NOTE: merge value is not the canonical 'refs/heads/main'."
+        Write-Output "  This may be intentional (non-standard remote tracking). No action taken."
+    }
+}
+Write-Output ""
+
+# -----------------------------------------------------------------------------
+# Step 2: Clear .git/index.lock if present
 # -----------------------------------------------------------------------------
 $lockPath = ".git\index.lock"
 if (Test-Path $lockPath) {
-    Write-Output "Step 1: Lock present, attempting removal..."
+    Write-Output "Step 2: Lock present, attempting removal..."
     try {
         # Clear attributes first (handles read-only / system / hidden)
         $lockItem = Get-Item $lockPath -Force -ErrorAction SilentlyContinue
@@ -65,14 +154,14 @@ if (Test-Path $lockPath) {
     }
     Write-Output "  OK: lock cleared."
 } else {
-    Write-Output "Step 1: No lock present (clean state)."
+    Write-Output "Step 2: No lock present (clean state)."
 }
 Write-Output ""
 
 # -----------------------------------------------------------------------------
-# Step 2: Check index integrity via git fsck
+# Step 3: Check index integrity via git fsck
 # -----------------------------------------------------------------------------
-Write-Output "Step 2: Checking index integrity (git fsck)..."
+Write-Output "Step 3: Checking index integrity (git fsck)..."
 $fsckOutput = & git fsck --no-reflogs 2>&1 | Out-String
 $indexCorrupt = ($fsckOutput -match "bad index file sha1 signature") -or `
                 ($fsckOutput -match "index file corrupt")
@@ -103,9 +192,9 @@ if ($indexCorrupt) {
 Write-Output ""
 
 # -----------------------------------------------------------------------------
-# Step 3: Check for null-sha1 phantom entries (K10 corruption pattern)
+# Step 4: Check for null-sha1 phantom entries (K10 corruption pattern)
 # -----------------------------------------------------------------------------
-Write-Output "Step 3: Checking for null-sha1 phantom entries..."
+Write-Output "Step 4: Checking for null-sha1 phantom entries..."
 $lsFiles = & git ls-files --stage 2>&1
 $nullEntries = $lsFiles | Where-Object { $_ -match "^\d+ 0{40} " }
 $nullCount = ($nullEntries | Measure-Object).Count
@@ -132,9 +221,9 @@ if ($nullCount -gt 0) {
 Write-Output ""
 
 # -----------------------------------------------------------------------------
-# Step 4: Working tree status report (informational; not modified)
+# Step 5: Working tree status report (informational; not modified)
 # -----------------------------------------------------------------------------
-Write-Output "Step 4: Working tree status..."
+Write-Output "Step 5: Working tree status..."
 $statusOutput = & git status --short 2>&1 | Out-String
 $statusClean = [string]::IsNullOrWhiteSpace($statusOutput)
 
@@ -155,12 +244,13 @@ Write-Output ""
 # Final summary
 # -----------------------------------------------------------------------------
 Write-Output "=== recovery complete ==="
-Write-Output "  Index integrity: OK"
-Write-Output "  Lock state:      cleared"
-Write-Output "  Null entries:    cleared"
+Write-Output "  Config merge key: OK"
+Write-Output "  Lock state:       cleared"
+Write-Output "  Index integrity:  OK"
+Write-Output "  Null entries:     cleared"
 if ($statusClean) {
-    Write-Output "  Working tree:    clean"
+    Write-Output "  Working tree:     clean"
 } else {
-    Write-Output "  Working tree:    has uncommitted changes (see above)"
+    Write-Output "  Working tree:     has uncommitted changes (see above)"
 }
 exit 0
