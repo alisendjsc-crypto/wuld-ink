@@ -50,6 +50,9 @@ $COMMIT_MSG   = "v3.7.1 stable - single-file distribution; md5-locked; CC-BY-4.0
 $TAG          = "v3.7.1"
 $REPO_DESC    = "An interactive objection-map and next-move predictor for antinatalist, efilist, and negative-utilitarian debate. 78 objections across five tiers, 13 premises with 245 dependencies, 34 mechanisms, 136 attested real-world deployments, across four interlocutor archetypes (sophisticate / defender / drifter / blended). Single HTML file, no build step, works offline."
 
+$WULDINK_EMAIL = "263501734+alisendjsc-crypto@users.noreply.github.com"
+$WULDINK_NAME  = "alisendjsc-crypto"
+
 $FILES_MIN  = @('combined.html', 'CITATION.cff', 'README.md', 'instructions.md')
 $FILES_PROV = @('LICENSE', 'LICENSE-CODE')
 
@@ -124,6 +127,12 @@ if (-not (Test-Path (Join-Path $REPO_LOCAL '.git'))) {
     exit 5
 }
 Write-Host "  OK: cloned to $REPO_LOCAL" -ForegroundColor DarkGreen
+
+# === Step 5.5: set local git identity (prevents step 11 "Author identity unknown") ===
+Write-Host "[5.5/12] Local identity-set on fresh clone"
+git -C $REPO_LOCAL config user.email $WULDINK_EMAIL
+git -C $REPO_LOCAL config user.name  $WULDINK_NAME
+Write-Host "  OK: identity set ($WULDINK_NAME <$WULDINK_EMAIL>)" -ForegroundColor DarkGreen
 
 # === Step 6: surface stale content + Y/n destruction gate ===
 Set-Location $REPO_LOCAL
