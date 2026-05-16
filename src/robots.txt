@@ -1,0 +1,9 @@
+# wuld.ink — robots.txt
+# Posture: permissive. The author uses AI in the work; explicit-allow rather than
+# disallowing AI crawlers matches that position. Treat any specific bot blocked
+# at edge level as an infrastructure decision, not a content-policy one.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://wuld.ink/sitemap.xml
