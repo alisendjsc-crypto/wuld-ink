@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NothinGist &mdash; Malgr&eacute; Tout &mdash; wuld.ink</title>
+  <meta name="description" content="A section of Malgré Tout: A Guide to Nothingness.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/footer.css">
+
+  <!-- ============================================================
+       NOTHINGIST DEDICATED PAGE (session K22, 2026-05-15) — body
+       layout reasons: NothinGist when populated is long; rendering
+       inline on /book/ pushes Audio adaptation / Lacero / Cross-
+       references below the fold and dilutes the discovery surface.
+       Dedicated route preserves /book/ as a compact discovery
+       surface and gives NothinGist room to breathe at its own URL.
+
+       REVEAL-ARCHITECTURE PRESERVATION LOCKED (per book-Claude
+       Exchange 1 Section A.3.ii, K3 2026-05-13):
+         "The placeholder body, section heading, page-title, OG
+          description, and any crawlable text must NOT pre-empt
+          or expose what the book reveals. No genre tagging, no
+          up-front frame, no above-the-fold disclaimer. Reveal
+          must require explicit navigation gesture mirroring the
+          print edition's endnote flip."
+
+       The dedicated-page architecture IS the navigation gesture.
+       Reaching /book/nothingist/ from /book/ is the web analogue
+       of the print edition's endnote flip. Page title, meta
+       description, heading, and placeholder body all reveal-safe.
+
+       URL slug: /book/nothingist/. Lowercase per umbrella URL
+       convention (NothinGist is the rendering register; nothingist
+       is the route token, matching /glossary/nothingist/ slug
+       discipline). The compound capitalization lives in display
+       text only.
+
+       BODY PENDING: chat-side authorship + future Cowork
+       micro-session for UI design that preserves the reveal.
+       Per book-Claude lock: no genre tag, no frame, no
+       disclaimer. The page is the placeholder until the UI
+       design lands.
+       ============================================================ -->
+
+  <style>
+    .page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+    .page-hero {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-6);
+      margin-block-end: var(--s-7);
+    }
+    .nothingist-title-block {
+      max-width: var(--w-prose);
+    }
+    .nothingist-title-block h1 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-tight);
+      margin-block-end: var(--s-3);
+    }
+    .nothingist-meta {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+      margin-block-end: 0;
+    }
+    /* Placeholder body — reveal-safe. No content, no frame, no
+       disclaimer. The page exists; the body waits. */
+    .nothingist-body {
+      max-width: var(--w-prose);
+      font-family: var(--font-body);
+      color: var(--c-fg);
+    }
+    .nothingist-placeholder {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-dim);
+      margin-block-start: 0;
+      margin-block-end: var(--s-7);
+    }
+    /* Back-to-/book/ affordance — discreet mono, hairline-top
+       separator. Mirrors the /preface/-style footer return pattern. */
+    .nothingist-return {
+      margin-block-start: var(--s-9);
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      max-width: var(--w-prose);
+    }
+    .nothingist-return a {
+      color: var(--c-fg);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+      padding-block-end: 2px;
+      transition: color var(--t-fast) var(--ease);
+    }
+    .nothingist-return a:hover { color: var(--c-accent); }
+
+    /* Script-format register (K23 paste-relay). NothinGist is a podcast
+       transcript document; preserves speaker labels, stage directions,
+       theme music brackets. Verbatim paste-relay per user lock —
+       reveal-architecture concerns acknowledged but overridden by
+       Josiah-as-authoritative-source. */
+    .nothingist-body h3.script-marker {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+      text-align: center;
+      margin-block: var(--s-7) var(--s-5);
+      font-weight: 500;
+    }
+    .nothingist-body h4.script-episode {
+      font-family: var(--font-headline);
+      font-style: italic;
+      text-align: center;
+      letter-spacing: var(--ls-tight);
+      color: var(--c-fg);
+      margin-block-end: var(--s-6);
+    }
+    .nothingist-body .script-direction {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      text-align: center;
+      margin-block: var(--s-5);
+      font-style: normal;
+    }
+    .nothingist-body .script-line {
+      font-family: var(--font-body);
+      margin-block-end: var(--s-3);
+      line-height: var(--lh-base);
+    }
+    .nothingist-body .script-line .speaker {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      font-weight: 500;
+      margin-inline-end: var(--s-2);
+    }
+    .nothingist-body hr.script-rule {
+      border: none;
+      border-top: var(--bw-base) solid var(--c-border);
+      width: var(--s-6);
+      margin-block: var(--s-6);
+    }
+    .nothingist-body .script-coda {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: var(--t-sm);
+      color: var(--c-fg-muted);
+      margin-block-start: var(--s-7);
+      padding-block-start: var(--s-5);
+      border-top: var(--bw-base) solid var(--c-border);
+      max-width: var(--w-prose);
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="page">
+      <header class="page-hero">
+        <p class="eyebrow">05 &middot; Long-work &middot; Section</p>
+
+        <div class="nothingist-title-block">
+          <h1>NothinGist</h1>
+          <p class="nothingist-meta">From <em>Malgr&eacute; Tout</em> &middot; section</p>
+        </div>
+      </header>
+
+      <div class="nothingist-body">
+        <h3 class="script-marker">Interlude &middot; The NothinGist</h3>
+        <hr class="script-rule">
+        <h3 class="script-marker">Episode 1</h3>
+        <h4 class="script-episode">&ldquo;The Sole Sonance Upon Rousing&rdquo;</h4>
+        <hr class="script-rule">
+        <p class="script-direction">[Cold open]</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Are the skies really blue and the clouds really white?</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> No.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Correct.</p>
+        <p class="script-direction">[Theme music: thirty seconds of a single sustained tone that may or may not be a note]</p>
+        <hr class="script-rule">
+        <p class="script-line"><span class="speaker">Nancy:</span> Welcome back to The NothinGist &mdash; the podcast about the unannouncing non-existence of intelligence &mdash; I&rsquo;m Nancy.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> And I&rsquo;m Jessica. And this is episode one, which means nothing has preceded us.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> As it should be. How was your matutinal, Jess?</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Oh, it was nullity. The sole sonance upon rousing. I lay there for a while in the chamber, experiencing the sole endowment of the cosmos, and then I got up and made coffee. You?</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Similar. I opened my eyes, confirmed the persistence of the alogical instant, fed the dog, and then sat on the porch for about forty minutes doing absolutely nothing. Deliberately. As a practice.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> As a <em>praxis.</em></p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Thank you, yes. As a praxis.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> And here we are.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> And here we are. Broadcasting into the void about the void, for the void, sponsored by &mdash; we&rsquo;ll get to that.</p>
+        <hr class="script-rule">
+        <p class="script-line"><span class="speaker">Jessica:</span> So Nancy, today&rsquo;s topic.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Yes.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Which is&mdash;</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Nothing.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Right. And I want to be very clear with our listeners that when we say the topic is nothing, we don&rsquo;t mean we haven&rsquo;t prepared. We&rsquo;ve prepared extensively. We&rsquo;ve done research. I have notes. Nancy has a binder.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> I do have a binder.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> The binder is empty.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> The binder is <em>immaculate</em>. There is a difference.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Fair. So let&rsquo;s get into it. Nothing. Where do we begin?</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Well, that&rsquo;s the aporia right there, isn&rsquo;t it? You can&rsquo;t begin with nothing, because beginning implies a prior state from which the beginning departs, and nothing has no prior state, because it has no state, because it isn&rsquo;t a thing that has properties.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> A void remains a void because a void is a void.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Exactly. Which is utterly logical&mdash;</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> &mdash;and utterly doomed.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Right. Because here we are. Talking. Into microphones. Which exist. In a universe that has no logical reason to be here. So the void <em>didn&rsquo;t</em> remain a void, despite having every logical obligation to do so.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> The void defaulted on its obligations.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> The void is delinquent.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Someone should notify the void&rsquo;s creditors.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> The creditors are also the void. It&rsquo;s delinquent to itself. It&rsquo;s an ouroboros of fiscal irresponsibility.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> See, and this is &mdash; I think this is the crux of the problem. People think nothing is simple. They think it&rsquo;s the <em>absence</em> of complexity. But nothing is actually the most complex possible concept, because it has to sustain itself against the entire weight of a universe that went ahead and happened <em>anyway</em>, without consulting it.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Without consulting <em>anything.</em> That&rsquo;s the point. Genesis is non-intrinsically reasonable. The universe will or will not happen for no reason, because no prior factor will or will not prevent it. There&rsquo;s no authority. There&rsquo;s no jurisdiction. The court doesn&rsquo;t even exist, and the defendant was never in it, and the crime isn&rsquo;t a crime because the legal system is also the void.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> This is why I got into podcasting.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Obviously.</p>
+        <hr class="script-rule">
+        <p class="script-direction">[Sponsor break]</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> This episode of The NothinGist is brought to you by Air.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Air.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> You know it. You breathe it. You have no choice. Air is a dispersed admixture of minuscule corpuscles in ether &mdash; primarily dinitrogen, dioxygen, and a haunting trace of argon that serves no known purpose but persists anyway, much like everything else.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Air: it&rsquo;s smoggy and suffocating from the harmful and excessive emissions of our vehicles, factories, and power plants.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> But it&rsquo;s all we&rsquo;ve got.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Air doesn&rsquo;t ask for your consent. Air doesn&rsquo;t consult your preferences. Air enters your lungs approximately twelve to twenty times per minute whether you&rsquo;ve agreed to the terms and conditions or not. In that sense, Air is the most honest product on the market.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Air: <em>You&rsquo;re already subscribed.</em></p>
+        <p class="script-line"><span class="speaker">Jessica:</span> There is no unsubscribe button.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> The unsubscribe button is &mdash; well.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> We don&rsquo;t talk about the unsubscribe button.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> We do not. Anyway. Air. It&rsquo;s a nothingness &mdash; li&rsquo;l seed of disease &mdash; that we breathe in every lungful of. And it&rsquo;s free, which is appropriate, given our brand.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Thank you, Air, for making this episode possible by doing literally nothing on purpose.</p>
+        <hr class="script-rule">
+        <p class="script-line"><span class="speaker">Nancy:</span> Okay. Segment two. Jessica, you had something prepared.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> I did. I wanted to talk about walls.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Walls.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Walls. I&rsquo;ve been thinking about walls a lot recently, and I think they&rsquo;re profoundly underexamined as a philosophical object.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Go on.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> So a wall &mdash; and I&rsquo;m going to be precise here &mdash; a wall is a planoid entity of adamantine essence that bisects two domains of void.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Obviously.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> The entity has a nihility and a limit that oscillate in their form and aspect. The limit comprises manifold substrata of disparate entities &mdash; a dehydrated compound of calcite and brimstone, a pale agent of aer and ore, a filamentous complex of saccharide&mdash;</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> You&rsquo;re describing drywall.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> I am describing drywall, yes, at the level of precision it <em>deserves</em>. Because here&rsquo;s the thing, Nancy. The wall is <em>there</em>. The wall persists regardless of your epistemological position. You stop believing in the wall, the wall is still there. You deconstruct the wall philosophically, the wall is still there. You prove, through rigorous logical deduction, that the wall cannot exist because existence is alogical and nothing has a foundation&mdash;</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> &mdash;and the wall is still there.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> The wall is still there. You walk into it. It hurts.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> The wall doesn&rsquo;t care about your ontology.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> The wall has never cared about anyone&rsquo;s ontology. The wall is the most alogical object in any room, because it just <em>is</em>, with absolute indifference to whether you&rsquo;ve justified its being. The wall is Alogical Isness made of gypsum.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> This is the most profound thing anyone has ever said about drywall.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Thank you. I&rsquo;ve been workshopping it.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> You can tell.</p>
+        <hr class="script-rule">
+        <p class="script-line"><span class="speaker">Nancy:</span> Okay, listener questions. We asked our audience to send in questions about nothing.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> And?</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> And nobody sent anything.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> That&rsquo;s perfect.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> It is, isn&rsquo;t it? Our listeners understood the assignment. The absence of questions is itself the question. The void <em>remains</em> the void. We asked for nothing and received it in its purest possible form: no one, saying nothing, to no one.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> I&rsquo;m going to answer it anyway.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Answer what?</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> The nothing. The question that wasn&rsquo;t asked. Because &mdash; and I think this matters &mdash; the question underneath every other question, the one people are really asking when they ask anything at all, is: &ldquo;Why is there something rather than nothing?&rdquo;</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> And your answer?</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> My answer is the same as it&rsquo;s always been. There <em>isn&rsquo;t</em> something rather than nothing. There&rsquo;s just &mdash; this. This ambiguous, indefinite, diamond-edged, spontaneous instant. Not the past or the future. Neither infinite nor finite. Beyond the beyond, and only within itself. It is without explanation other than through itself. It is without properties outside of itself. It means itself. And that will never be untrue, but what it <em>means</em> cannot be explicated ulteriorly.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> &hellip;</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> &hellip;</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> That was&mdash;</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> &mdash;yeah.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Yeah. Okay. Moving on.</p>
+        <hr class="script-rule">
+        <p class="script-direction">[Segment &mdash; &ldquo;Nothing in the News&rdquo;]</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Nothing in the news this week.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Literally or&mdash;?</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Both. I checked. I looked at every major outlet. Wars, famines, ecological collapse, the ongoing cheerful extinction of roughly two hundred species per day. Same as always. None of it consulted reason. None of it asked permission. It just &mdash; is.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> The universe doesn&rsquo;t listen.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> It never did. It was never in the room.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> So: nothing in the news.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Nothing new under the sun. The sun itself being an unremarkable ball of hydrogen engaged in slow-motion self-destruction for no reason, which incidentally enables all life on Earth, which is itself a suffering-production engine of staggering scale and perfect indifference&mdash;</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Nancy.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Sorry. Got away from me.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> It&rsquo;s fine. Happens to the best of us. Or the worst of us. Or &mdash; there is no best or worst, those are comparative relativities, which cannot be attached to the instant&mdash;</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Jess.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Right. Sorry.</p>
+        <hr class="script-rule">
+        <p class="script-direction">[Closing]</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> That&rsquo;s our show.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Is it?</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Is anything? We&rsquo;ve been talking for &mdash; I don&rsquo;t actually know how long. Time is relative and variable from the complex and mysterious phenomena of our physics. We may have been here for forty minutes. We may have been here for no time at all. The podcast exists in the same ontological condition as everything else: alogically, without foundation, for no reason.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> And yet.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> And yet. Here it is. You listened to it. Or you didn&rsquo;t. Both options are equally valid. Neither was necessary.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Thank you for spending your nullity with us.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> The sole sonance upon rousing. The sole semblance upon beholding. The sole endowment in this chamber.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> The sole essence in this cosmos.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> We are the denotation.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> And we are the nothing gist.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> We are the certainty.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> And we are the mendacity.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Next week on The NothinGist: we discuss whether next week exists.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> Spoiler: it doesn&rsquo;t. But we&rsquo;ll be there anyway.</p>
+        <p class="script-line"><span class="speaker">Nancy:</span> Goodnight.</p>
+        <p class="script-line"><span class="speaker">Jessica:</span> There is no night. But goodnight.</p>
+        <p class="script-direction">[Theme music: the same sustained tone. It does not resolve. It simply stops.]</p>
+        <hr class="script-rule">
+        <p class="script-direction">[End of transcript]</p>
+        <hr class="script-rule">
+        <p class="script-coda">The NothinGist is recorded in a room. The room has walls. The walls are planoid entities of adamantine essence. The hosts are Nancy and Jessica. They are not paid. The show is sponsored by Air, which is free, which is the only honest price for anything. New episodes whenever the void obliges. Which is never. Which is always. Subscribe nowhere.</p>
+      </div>
+
+      <p class="nothingist-return">
+        <a href="/book/">&larr; Return to <em>Malgr&eacute; Tout</em></a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
+      </span>
+      <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>

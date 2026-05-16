@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you cite this library, please use the metadata below."
+title: "efilist argument library"
+abstract: >-
+  A structured taxonomy of objections to antinatalism. The corpus catalogues
+  78 objections across 5 tiers and 34 mechanisms, with 136 real-world examples
+  drawn from public discourse, and 238 mapped responses. A force-directed map
+  (Map 1; 77 nodes / 2,846 edges) models the objection space against four
+  interlocutor archetypes — sophisticate, defender, drifter, and blended — and
+  charts the recognizable retreats between them. A dependency graph (91 nodes,
+  245 links: 161 strong / 84 weak) anchors each objection to 13 premises
+  (9 foundational, 4 diagnostic). The library treats objections as live moves
+  in real discourse rather than specimens under glass; the descriptive content
+  stands as observation regardless of the suffering-priority axiom's standing.
+  The closing coda makes the substrate explicit: the work is built on a stake,
+  not a derivation.
+authors:
+  - family-names: "Josiah"
+    alias: "AnomicIndividual87"
+version: "3.7.0"
+date-released: "2026-05-15"
+url: "https://anomicindividual87.github.io/efilist-argument-library/"
+repository-code: "https://github.com/AnomicIndividual87/efilist-argument-library"
+license: "CC-BY-SA-4.0"
+license-url: "https://creativecommons.org/licenses/by-sa/4.0/"
+keywords:
+  - "antinatalism"
+  - "argument taxonomy"
+  - "philosophy"
+  - "ethics"
+  - "objection mapping"
+  - "discourse analysis"
+  - "interlocutor archetypes"
+type: dataset

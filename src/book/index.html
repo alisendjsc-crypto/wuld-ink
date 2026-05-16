@@ -157,6 +157,30 @@
       font-style: normal;
     }
 
+    /* Section pointer (K22, 2026-05-15) — discreet mono affordance
+       routing to a dedicated sub-page when the section body lives
+       elsewhere (currently: NothinGist → /book/nothingist/). Mono
+       register matches the umbrella's discreet-pointer idiom
+       (.cover-preface-pointer, .frame-pointer); accent underline
+       signals the navigation gesture without competing with
+       book-section-heading weight. */
+    .book-section-pointer {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      max-width: var(--w-prose);
+      margin-block-end: 0;
+    }
+    .book-section-pointer a {
+      color: var(--c-fg);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+      padding-block-end: 2px;
+      transition: color var(--t-fast) var(--ease);
+    }
+    .book-section-pointer a:hover { color: var(--c-accent); }
+
     /* Memento sub-sections (K13, 2026-05-14) — prose pieces nested
        under Mementos. Pattern: h3 italic title, optional accent lede
        (closer-as-lede for Tucson per book-Claude B.3 (a); mid-piece
@@ -337,16 +361,14 @@
       </div>
 
       <!-- ============================================================
-           EXCERPTS — chat-side authorship selects passages.
-           Pattern: one excerpt per <section class="book-section"> with
-           the excerpt title as .book-section-heading and the body in
-           normal <p> paragraphs. Endnotes follow the SV/Alogically-Is
-           pattern (back-linked refs, not modals).
+           EXCERPTS section REMOVED K22 (2026-05-15). Mementos below
+           is the operative excerpts surface in practice (Grey + Desk
+           + Tucson live; BG&E + Forget the Plot + bare-line closer
+           pending book-Claude relay). Standalone Excerpts placeholder
+           was stale noise to cold readers — see Josiah's K22 session
+           screenshot. If future authorial-prose excerpts (non-Mementos)
+           ever need a separate surface, scaffold fresh.
            ============================================================ -->
-      <section class="book-section" aria-labelledby="excerpts">
-        <h2 id="excerpts" class="book-section-heading">Excerpts</h2>
-        <p class="book-section-placeholder">Selected passages &mdash; awaiting chat-side authorship. Surface as individual sub-sections under this heading.</p>
-      </section>
 
       <!-- ============================================================
            MEMENTOS (K13, 2026-05-14) — back-matter prose pieces from
@@ -422,19 +444,23 @@
       </section>
 
       <!-- ============================================================
-           NOTHINGIST — section requires careful chat-side authorship +
-           future Cowork micro-session for UI design that preserves the
-           book's reveal architecture. PRE-REVEAL DISCIPLINE LOCKED via
-           book-Claude relay Exchange 1 Section A.3 (ii): the placeholder
-           body, section heading, page-title, OG description, and any
-           crawlable text must NOT pre-empt or expose what the book
-           reveals. No genre tagging, no up-front frame, no above-the-
-           fold disclaimer. Reveal must require explicit navigation
-           gesture mirroring the print edition's endnote flip.
+           NOTHINGIST — section body lives at /book/nothingist/ (K22,
+           2026-05-15). Split-off reasoning: when body lands (long),
+           inline rendering on /book/ would push Audio adaptation /
+           Lacero / Cross-references below the fold and dilute the
+           discovery surface. Dedicated route preserves /book/ as a
+           compact discovery surface; the navigation gesture from
+           here to /book/nothingist/ also serves the reveal-architecture
+           preservation lock (book-Claude Exchange 1 Section A.3.ii)
+           as the web analogue of the print edition's endnote flip.
+           This stub remains reveal-safe: no genre tag, no frame, no
+           disclaimer. The pointer is the function.
            ============================================================ -->
       <section class="book-section" aria-labelledby="nothingist">
         <h2 id="nothingist" class="book-section-heading">NothinGist</h2>
-        <p class="book-section-placeholder">Section body &mdash; chat-side authorship + future Cowork micro-session for UI design.</p>
+        <p class="book-section-pointer">
+          <a href="/book/nothingist/">NothinGist &rarr;</a>
+        </p>
       </section>
 
       <!-- ============================================================

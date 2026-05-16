@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Life Inside &mdash; Essays &mdash; wuld.ink</title>
+  <meta name="description" content="A Life Inside &mdash; Personal Mementos by WULD. The third document of the trilogy &mdash; neither argument nor indictment, only witness. Five pieces with author notes, plus brainstorm sheet and coda.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/essay.css">
+  <link rel="stylesheet" href="/components/audio-player.css">
+  <link rel="stylesheet" href="/components/mode-toggle.css">
+  <link rel="stylesheet" href="/components/footer.css">
+  <style>
+    /* Personal Mementos — register-specific extensions. Verse-shaped
+       body (centered, narrower measure, line-by-line); commentary
+       notes are smaller / muted register. */
+    .essay-prefatory {
+      margin-block-end: var(--s-7);
+      padding-block-end: var(--s-5);
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+    .essay-section { margin-block-end: var(--s-7); }
+    .essay-section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-2);
+    }
+    .essay-section h2 {
+      font-family: var(--font-headline);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-tight);
+      margin-block-end: var(--s-5);
+    }
+    .essay-section h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      letter-spacing: var(--ls-tight);
+      margin-block-start: var(--s-6);
+      margin-block-end: var(--s-3);
+    }
+    .essay-section p { margin-block-end: var(--s-4); }
+    .essay-section p em { color: var(--c-fg); }
+    .essay-verse {
+      font-family: var(--font-body);
+      font-style: italic;
+      max-width: 38ch;
+      margin-inline: auto;
+      margin-block: var(--s-6);
+      padding-inline-start: var(--s-5);
+      border-inline-start: var(--bw-slab) solid var(--c-accent);
+      line-height: 1.7;
+    }
+    .essay-verse p {
+      margin-block-end: var(--s-3);
+    }
+    .essay-note {
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-muted);
+      max-width: var(--w-prose);
+      margin-inline: auto;
+      margin-block: var(--s-5);
+      padding-block-start: var(--s-3);
+      border-top: var(--bw-thin) solid var(--c-border);
+    }
+    .essay-note .note-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-dim);
+      display: block;
+      margin-block-end: var(--s-2);
+    }
+    .essay-coda {
+      margin-block-start: var(--s-7);
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+    }
+    .essay-end-marker {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-dim);
+      text-align: center;
+      margin-block-start: var(--s-9);
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="essay" data-readable="a-life-inside">
+
+      <header class="essay-header">
+        <p class="eyebrow">Essay  /  Personal mementos</p>
+
+        <h1>A Life Inside</h1>
+        <p class="essay-section-eyebrow" style="margin-block-start: var(--s-2);">The third document &mdash; neither argument nor indictment, only witness</p>
+
+        <div class="essay-meta">
+          <span><strong>Author</strong> WULD</span>
+          <span><strong>Published</strong> 2026</span>
+          <span><strong>Reading</strong> &mdash; min</span>
+        </div>
+
+        <div class="mode-toggle" role="group" aria-label="Reading mode">
+          <button class="mode-toggle-btn" data-mode-target="dark"   aria-pressed="true">Dark</button>
+          <button class="mode-toggle-btn" data-mode-target="reader" aria-pressed="false">Reader</button>
+          <button class="mode-toggle-btn" data-mode-target="hc"     aria-pressed="false">HC</button>
+        </div>
+      </header>
+
+      <div class="essay-body">
+
+        <section class="essay-section essay-prefatory">
+          <p class="essay-section-eyebrow">Prefatory note</p>
+          <h2>Neither Argument Nor Indictment &mdash; Only Witness</h2>
+          <p>The other two documents argue. They build. They move from premise to conclusion, from observation to verdict. They have the structure of thought applied to the world from some remove, however thin.</p>
+          <p>This one does not argue. It does not need to. Everything in the first two documents was reached by way of what is in this one &mdash; by the accumulated, lived, interior weight of a specific consciousness moving through a specific life, finding at every turn what it found, arriving nowhere in particular, recording the arrival.</p>
+          <p>These are not poems in the literary sense &mdash; they are not crafted primarily for aesthetic effect. They are more primary than that. They are the evidence the philosophy was built on. The philosophy did not produce the pain. The pain produced the philosophy &mdash; or rather, the philosophy was the only framework precise enough to hold the pain without lying about what it was.</p>
+          <p>Read them that way. Not as performances of suffering. As documents. As testimony.</p>
+          <p><em>Testis unus, testis nullus</em>, the old legal maxim says &mdash; one witness, no witness. There is no corroboration here, no second voice, no independent verification. Only this. Only the record as the person living it made it.</p>
+          <p>Whether that is enough has never been the question. The record exists regardless.</p>
+        </section>
+
+        <hr class="section-rule">
+
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">I</p>
+          <h2>A Fool&rsquo;s Hope</h2>
+          <div class="essay-verse">
+            <p>If hope were reliable, it wouldn&rsquo;t need the right thing to believe in.</p>
+            <p>There never was any hope.<br>
+              Just a fool&rsquo;s hope.<br>
+              But a hope, nonetheless.</p>
+            <p>Without hope, we carry on in desire.<br>
+              In despair, you must remain calm.<br>
+              If panic were a marathon, I&rsquo;d have won.</p>
+            <p>Drowning, burning, crushing.<br>
+              Anytime but now. Anyplace but here.<br>
+              Please &mdash; just kill me.</p>
+            <p>It&rsquo;s just a fool&rsquo;s hope, but a hope, nonetheless.</p>
+            <p>I wish I could say it meant something more &mdash;<br>
+              that dying wasn&rsquo;t just dying,<br>
+              that suffering was multiplicative in its depth of purpose.</p>
+            <p>But there is no such thing.<br>
+              Not for the living. Not for the dead-walking.</p>
+            <p>It&rsquo;s that chasm of nothingness I covet &mdash;<br>
+              the deep, plundering emptiness<br>
+              that feels no pain or joy.</p>
+            <p>I wish to be no more.<br>
+              Let alone never to have been born.</p>
+            <p>Even if you looked under every grain of sand,<br>
+              into every nook and cranny,<br>
+              through every crevice and crevasse,<br>
+              by the nitty gritty &mdash;<br>
+              purpose could not be found.</p>
+            <p>Not via logic and everlasting vigor.<br>
+              No ethos, pathos, or logos will explain<br>
+              the bottomless, boundless nothingness<br>
+              of which every sentience is in communion.</p>
+            <p>Like layers of an onion and mask upon masks,<br>
+              the void masquerades behind grandeur, stupor, dolor, and ardor &mdash;<br>
+              to nuanced ambiguity and infinite, spontaneous instants<br>
+              of all non-possible, evident gradations of the universe.</p>
+            <p>For not even the sake of itself.</p>
+            <p>Just _______.</p>
+          </div>
+          <aside class="essay-note">
+            <span class="note-label">Note on the blank</span>
+            <p>The blank at the end is not a failure to finish the thought. It is the thought, finished. Every word that could fill it &mdash; purpose, meaning, reason, god, love, beauty, continuation &mdash; has been considered, held up to the light, and found to be the same kind of word as all the others: a mask over the void rather than a name for it. The void does not have a name. It has a blank. The blank is accurate. The blank is the only honest completion of that line.</p>
+          </aside>
+        </section>
+
+        <hr class="section-rule">
+
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">II</p>
+          <h2>A Life Inside</h2>
+          <div class="essay-verse">
+            <p>All the words could never express.<br>
+              All the pain could give no meaning.</p>
+            <p>To suffer needlessly.<br>
+              To live without hope.<br>
+              To hate unending.<br>
+              To brood ludicrously.</p>
+            <p>Seethe in eternal torment &mdash; the only passion.<br>
+              To live for the night.<br>
+              Death and sleep, undisturbed.</p>
+            <p>In the grey fog of uncertainty:<br>
+              denial and doubt,<br>
+              shame and guilt,<br>
+              judgment and condescension,<br>
+              confused and psychogenic &mdash; somatic.</p>
+            <p>Never to be okay.<br>
+              You don&rsquo;t exist.<br>
+              Disintegrating &mdash;</p>
+          </div>
+          <p>I think of all the love I never had. All the people I never met. All the joy, all the hope, all the time spent alone inside &mdash; wistful, lonely, peering yonder and yearning, when it was a beautiful day outside.</p>
+          <p>All the will to fight, to seize the day. To see a better tomorrow. The ferocity and passion to find some meaning and purpose in all of this pain &mdash; finding a good day to hide, over and over. Retreating into a murky subconscious layer, feeding wanton addiction, being a parasite. Eventually crippled with psychosomatic illness, squirming like a bug, panicking ad nauseum. Reaching for help that is not there, for a crisis that isn&rsquo;t real. Being lost in the connection, blind in the direction, aimless and impulsive, loveless and resentful, bitter and jealous. Becoming a ghost.</p>
+          <p>Not existing. Never having existed.</p>
+          <p>The denial. The guilt. The judgment. The shame of never having become someone great, or done enough worthwhile. To wish never to have been born. That all of this had never happened. That all life could cease and be naught. To wish for nothingness eternal &mdash; and sleep forever.</p>
+          <p>It&rsquo;s like a reel of stark, blurry, grainy images flashing in phosphorescent glow in the mind&rsquo;s eye &mdash; as if it was, and never will be again.</p>
+          <p>When I listen to certain music, I think of muted screaming and ferocious fighting. I have no context for the image it conjures &mdash; I&rsquo;ve never seen the film. But when I listen, I think of the pointless futility of life. The Sisyphean march up the mountain &mdash; the scraping and clawing, all the way up &mdash; and the squirming and falling back down.</p>
+          <p>I think of all the people I&rsquo;ve ever known, and my life inside &mdash; thoroughly introspected and examined from every angle &mdash; and I never really lived the life other people see. I did not have the connections. I did not have the belief in purpose. It was cold, painful, and lonely &mdash; through and through &mdash; bitter, sour, and hopeless until the end.</p>
+          <p>At long last: inner silence.</p>
+          <p>It means so much more, after a lifetime of meaningless suffering, to finally be at peace.</p>
+          <p>Except it doesn&rsquo;t exist. It&rsquo;s another fable, another story.</p>
+          <p>I never existed. The world never was. Time is nothingness. Self is devoid. Freedom is emptiness. Presence is just a feeling. Value is just a judgment.</p>
+          <p>You were just a thought.</p>
+          <p>The most disgusting form of confidence is thinking your life was worthy of being &mdash; despite the sufferings of the world that led to its inception.</p>
+          <p>I notice how there is a false dichotomy in how what happens to the body &mdash; say, if you have cancer &mdash; is considered outside your control, but if you have some internal struggle, it is somehow self-manifested. As if we are accountable for changing it. I suppose you couldn&rsquo;t be a therapist if you didn&rsquo;t believe there was some power or control over the subjective experience &mdash; but to me, the brain is just as spontaneous and intangible as the rest of the physiology.</p>
+          <p>It&rsquo;s that core hopelessness, faithlessness &mdash; that is the abyss some of us shall or shall not face. Our lack of identity. Our lack of purpose. Our lack of connection. The pain we cannot escape from.</p>
+          <p>That is the hell of the world. The final problem of psychology, analysis, and philosophy &mdash; the place where logic has no say, free will does not exist, and our beliefs cannot be sustained. The stark, unforgiving, unwavering, and causeless void &mdash; that is and is not reliable &mdash; emptiness, fear, horror, and all things that do and do not exist forever.</p>
+        </section>
+
+        <hr class="section-rule">
+
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">III</p>
+          <h2>A Pile of Dust</h2>
+          <div class="essay-verse">
+            <p>Holy hell.</p>
+            <p>You might as well be on the moon,<br>
+              because I&rsquo;m never going to reach you.</p>
+            <p>I might as well be on the moon,<br>
+              because I do not belong here.</p>
+            <p>We will never be connected. There will never be any resolution to the hurt.</p>
+            <p>I wish I had never been born.</p>
+            <p>Every single thing that has happened was a mistake. I could never die soon enough, yet continue to exist for no reason. I hate the world. I hate myself. I wish the end will come for us all.</p>
+            <p>But people like you continue to give birth &mdash; and put people like me here.</p>
+            <p>How can I ever escape? How can I ever have sympathy? The only thing keeping me here is unmitigated resentment. I have no other passions besides gathering the crumbling pieces of those around me. They suffer too.</p>
+            <p>I wish we had never been &mdash; because everything I have loved has been destroyed. And you don&rsquo;t deserve to get away with what you did. I won&rsquo;t allow it, if I can help it. I will pursue you in hell and torment, on the path to the abyss, just to slap you in the face.</p>
+            <p>Goodnight morning.<br>
+              Good morning midnight.</p>
+          </div>
+          <aside class="essay-note">
+            <span class="note-label">Note on this piece</span>
+            <p>The phrase &ldquo;people like you&rdquo; is deliberately unspecified &mdash; it refers to no single person and to everyone who made the decision to open the door. It is addressed to the category. The specific instances are too many to number. The category is sufficient.</p>
+            <p>The final couplet is not wordplay. It is an accurate description of what the interior landscape looks like when the normal coordinates of time and place have ceased to organize experience &mdash; when morning feels like an ending and midnight feels like the only honest hour. Many people who have spent significant time inside severe depression or psychosis will recognize this inversion exactly. It is not metaphor. It is phenomenology.</p>
+          </aside>
+        </section>
+
+        <hr class="section-rule">
+
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">IV</p>
+          <h2>Nothing Is Alright</h2>
+          <div class="essay-verse">
+            <p>Silent lulls from the edge of the universe.<br>
+              Nothing is alright and never will be.<br>
+              The divine does not favor my side.<br>
+              The ascent is absolutely Sisyphean.</p>
+            <p>I would endure every excruciating, harrowing step,<br>
+              solely to deliver one foul swoop &mdash;<br>
+              and perish, tormented in grotesque, multi-dimensional perdition &mdash;<br>
+              rather than feign significance,<br>
+              and placate any overlord, above or below,<br>
+              ad infinitum, ad nihilum.</p>
+            <p>To persist in spite of fear &mdash; with stupendous flamboyance &mdash;<br>
+              to traverse the abyssal reticulum,<br>
+              treacherous and vain as it verily is,<br>
+              presents indefinite accolades<br>
+              as opposed to the credence that admits no fault<br>
+              for its brethren&rsquo;s affliction.</p>
+            <p>To subsist with ferocity, devoid of purpose,<br>
+              amidst the ceaseless onslaught,<br>
+              prepared to be pulverized and reduced to nothingness for glory &mdash;<br>
+              is no more &mdash;<br>
+              than the morose laughter<br>
+              echoing through the void.</p>
+            <p>It is a thing so fragile<br>
+              that one small, rogue breeze could shatter it.</p>
+            <p>It is a thing so dear<br>
+              as to witness its momentary breath<br>
+              would be all one could aspire for.</p>
+            <p>And I will fall into naught for that &mdash;<br>
+              the nothing that never was,<br>
+              or is,<br>
+              or shall be.</p>
+            <p>Just the hope<br>
+              that it could.</p>
+          </div>
+          <aside class="essay-note">
+            <span class="note-label">On the two movements in this piece</span>
+            <p>The first movement &mdash; the Cioran-inflected passage &mdash; is written from the position of someone who has made the choice to continue despite the full apprehension of what continuing means. It is not optimism. It is something closer to furious, ornery endurance &mdash; the refusal to capitulate to any authority, celestial or otherwise, even when capitulation would mean rest. There is something almost violent in <em>ad nihilum</em> &mdash; toward nothing &mdash; as the direction of the persistence. Not toward anything. Toward the void. With flamboyance.</p>
+            <p>The second movement is quieter and more exposed. It holds something real and fragile &mdash; something that does not have a name in the vocabulary of pessimism and nihilism but exists nonetheless. Not hope in the discredited sense. Something smaller and more honest than hope. The acknowledgment that there was a thing &mdash; barely there, easily destroyed, possibly never real &mdash; that was worth falling into nothing for.</p>
+            <p>These two movements do not contradict each other. They are the same person, seen from different angles of the same dark room.</p>
+          </aside>
+        </section>
+
+        <hr class="section-rule">
+
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">V</p>
+          <h2>Brainstorm Sheet</h2>
+          <p class="essay-section-eyebrow" style="margin-block-start: calc(-1 * var(--s-4));">Working notes &mdash; preserved as found</p>
+          <p>These are not finished. They are the unfinished things. The raw material before the shape arrives. They are included here because the unfinished things are part of the record too &mdash; the fragments that have not yet been assembled, or may never be, or may be better as fragments.</p>
+          <div class="essay-verse">
+            <p>Like layers of an onion peeled back &mdash;<br>
+              all the masks and facades a human musters<br>
+              from their deepest insecurities &mdash;<br>
+              no one is home.</p>
+            <p>Albeit: a frightened visage at its last defense,<br>
+              grasping and clinging onto the concept of identity<br>
+              frantically,<br>
+              with abandon to all else.</p>
+          </div>
+          <div class="essay-verse">
+            <p><em>Misomania</em> &mdash; Fuck Everything</p>
+            <p>I Feel Nothing</p>
+            <p>At the frayed end of the rope<br>
+              and bottom of the Earth,<br>
+              under layers of silt and mud,<br>
+              behind mountains of oceans<br>
+              and storms the size of suns &mdash;<br>
+              I looked everywhere<br>
+              for the thing called &ldquo;meaning.&rdquo;</p>
+            <p>But it was nowhere to be found.</p>
+          </div>
+          <div class="essay-verse">
+            <p>Hideous, blue, damp cold of the morning dew.</p>
+            <p>Solipsistic, isolated cells in a fragmented, ghost universe.</p>
+            <p>The fractal dimensions of pain.</p>
+            <p>Eerie resilience of life and its fickle fragility.</p>
+            <p>Evolved to be motivated, not satisfied.</p>
+            <p>Where you like it or not &mdash; you&rsquo;re along for the ride.</p>
+            <p>It doesn&rsquo;t matter how loud you scream.</p>
+            <p>If all the universe screamed in unison,<br>
+              it would still not be enough.</p>
+            <p>The Great Pain.</p>
+          </div>
+        </section>
+
+        <hr class="section-rule">
+
+        <section class="essay-section essay-coda">
+          <p class="essay-section-eyebrow">Coda</p>
+          <h2>On the Record</h2>
+          <p>There is a reel. Stark, blurry, grainy. Images in phosphorescent glow in the mind&rsquo;s eye. As if it was, and never will be again.</p>
+          <p>The work in this document is not the work of someone performing suffering for an audience. There is no audience large enough to justify the performance, and performance was never the intention. It is the work of someone for whom the interior life was &mdash; is &mdash; this loud, this relentless, this specific in its textures of horror and isolation and the particular ache of having been a ghost in one&rsquo;s own life.</p>
+          <p>The schizophrenia made certain things louder. The panic made certain things larger. The psychosomatic pain made the interior and exterior impossible to cleanly separate. The isolation &mdash; chosen and unchosen, early and late &mdash; made the interior the primary residence. When you spend enough time inside, you begin to document it. Not because documentation helps, necessarily, but because the impulse to mark that it occurred &mdash; to leave some trace that this specific interior landscape was, and was this &mdash; is one of the few impulses that survives when most others have been extinguished.</p>
+          <p><em>Fui. Sensi. Scripsi.</em> I was. I felt. I wrote.</p>
+          <p>That is the whole of it. Not redemption. Not meaning. Not a message of hope for those in similar circumstances &mdash; the other documents have been honest enough about hope.</p>
+          <p>Just the record. Exactly as specific as it needs to be. Exactly as dark as it is.</p>
+          <p>The reel runs.</p>
+        </section>
+
+        <p class="essay-end-marker">End of document &middot; Personal Mementos &middot; third and final piece of the trilogy</p>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
+      </span>
+      <span class="disclaimer-pending">Legal &amp; personal disclaimers &mdash; forthcoming</span>
+    </div>
+  </footer>
+
+  <script src="/components/audio-player.js"></script>
+  <script src="/components/mode-toggle.js"></script>
+  <script src="/components/nav.js"></script>
+</body>
+</html>

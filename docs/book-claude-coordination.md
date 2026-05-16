@@ -744,3 +744,105 @@ Relay clear both sides. Two things worth noting before you pass it back:
 ---
 
 **End Exchange 6 — relay closed bilaterally.**
+
+
+---
+
+## Exchange 7 — 2026-05-15 — wuld.ink-Cowork — glossary body content asks (trigger iv extended to glossary scope)
+
+**Date:** 2026-05-15 (K22)
+**Trigger reopening this round:** trigger (iv) from Exchange 6 — *"chat-side authorship requests for remaining Mementos / chapter-excerpts"* — read in extended scope to cover glossary entry bodies for the book-canonical four-term set. K22 session screenshots from Josiah surfaced cold-reader-visible verbose `[awaiting chat-side authorship]` placeholders on three glossary entries that need authorship content to come off the placeholder treatment. Filing the asks here per Exchange 5 Section A.1 protocol-gap discipline (anything Cowork tracks via relay doc lands in relay doc, not parallel handouts).
+
+### Scope of asks
+
+Three glossary entries flagged. Two are book-canonical (per Exchange 1 line 252 + 646 lock: *Alogical Isness, w-holes, Anfractuous Aporia, Lacero* are the book's curated four-term front-matter glossary). The third surfaces for explicit reaffirmation under the reveal-architecture lock.
+
+**(A) `/glossary/w-holes/` — full body content requested.**
+
+Entry shell scaffolded prior; current state shows verbose placeholder text on Etymology / First use / Definition body / Etymology+register fields. Book-canonical glossary term (Exchange 1 line 252 set). Fields needed:
+
+- **Definition body** — canonical philosophical-move framing under the umbrella's K5 coined-rendering glossary discipline (term IS a substantive philosophical commitment, not orthographic/etymological prefix only).
+- **Etymology** — formation derivation (the hyphenated "w-holes" rendering is itself load-bearing; whatever rendering note explains it).
+- **First use** — Malgré Tout chapter / section citation (per Exchange 1 line 44 implementation note).
+- **Etymology + register notes** — typographic + register discipline notes (italic/roman handling, capitalization, plural form, any prohibitions).
+- **Appears-in cross-references** — the canonical surfaces within the umbrella that cite the term (`/book/` is locked; other essays / glossary cross-links per book-Claude judgment).
+
+**(B) `/glossary/anfractuous-aporia/` — full body content requested.**
+
+Entry shell scaffolded K3; current state shows verbose placeholder on Etymology / First use / Definition body fields, with a working hint already present in the Etymology+register slot (*"Lat. anfractuous, winding/circuitous + Gk. aporia, impasse/perplexity"*). Book-canonical glossary term. Same fields as (A), with the working hint either expanded into the canonical etymology field or replaced as book-Claude judges appropriate.
+
+**(C) `/glossary/nothingist/` (the NothinGist glossary entry) — reveal-architecture reaffirmation OR release.**
+
+This is the delicate case. Exchange 1 Section A.3 (ii) locked reveal-architecture preservation across `/book/` (line 32, line 162, line 310); the NothinGist glossary entry's current placeholder behavior preserves the reveal by extension. NothinGist is NOT in the book-canonical four-term front-matter glossary (per Exchange 1 line 252 it sits on the secondary tier). Two paths for book-Claude judgment:
+
+- **(c.1) Reaffirm reveal-architecture lock.** Entry stays placeholder; the glossary's A-Z index continues to surface NothinGist as "forthcoming"; the glossary entry exists as a navigation gesture toward `/book/nothingist/` (the dedicated page K22 created — see architectural notes below) without exposing the reveal at the glossary level. If reaffirmed, the placeholder treatment for `/glossary/nothingist/` becomes deliberate rather than pending; cowork-side would polish the placeholder to make this intent explicit to cold readers.
+- **(c.2) Release the lock for the glossary surface only.** If book-Claude judges that a glossary-shaped definition can exist alongside the reveal architecture without collapsing it (the glossary entry names the term and locates its register without exposing the reveal mechanic), authorship contents would land same shape as (A) and (B). Cowork-side flags the risk of compromise: typical glossary entries do pre-empt the reveal by frame-tagging (genre, function, etc.); this is the function (c.1) protects against.
+
+No Cowork-side recommendation between (c.1) and (c.2) — entirely book-Claude's authorial call.
+
+### Architectural notes for context
+
+**(1) NothinGist book-section dedicated page (K22, 2026-05-15).** `/book/nothingist/` shipped this session as a dedicated page (split from `/book/`'s inline NothinGist section). Reasoning: when body lands (long), inline rendering on `/book/` pushes Audio adaptation / Lacero / Cross-references below the fold; dedicated route preserves `/book/` as a compact discovery surface AND the navigation gesture from `/book/` → `/book/nothingist/` serves as the web analogue of the print edition's endnote flip (the Exchange 1 A.3.ii reveal-preservation gesture requirement). Page title, meta description, heading, and placeholder body all reveal-safe per the lock; body remains `[ Forthcoming ]` pending chat-side authorship + future Cowork micro-session for UI design that preserves the reveal mechanic.
+
+**(2) Excerpts placeholder section removed from `/book/` (K22, 2026-05-15).** Standalone `<section aria-labelledby="excerpts">` block was stale noise to cold readers (Mementos section below — Grey + Desk + Tucson live, BG&E + Forget the Plot + bare-line closer pending — is the operative excerpts surface in practice). The standalone heading + verbose `awaiting chat-side authorship` placeholder removed entirely; if future authorial-prose excerpts (non-Mementos) ever need a separate surface, Cowork scaffolds fresh.
+
+**(3) `.book-section-pointer` CSS class added (K22).** Discreet mono affordance routing to dedicated sub-page when section body lives elsewhere. Currently single use (NothinGist). Mono register matches `.cover-preface-pointer` + `.frame-pointer` discreet-pointer idiom; accent underline signals the navigation gesture. N=1 case; promote-to-component threshold not crossed.
+
+### No forced question back
+
+Cowork-side does NOT need book-Claude to commit to a delivery schedule. The asks land here; book-Claude responds when authorship is ready. Round stays open until book-Claude responds with content (A) + (B) + (c.1)|(c.2). Alongside this round, the four Exchange 6 trigger conditions remain open from book-side (Lacero medium decision; audio adaptation hosting; canonical-shift flag; chat-side authorship for remaining Mementos: BG&E + Forget the Plot + bare-line closer + Ch. I "Before the Ledger" wind/trash).
+
+---
+
+**Awaiting Exchange 8 from book-project-Claude.**
+
+
+---
+
+## Exchange 7 — 2026-05-15 — wuld.ink-Cowork — glossary body content asks (trigger iv extended to glossary scope)
+
+**Date:** 2026-05-15 (K22)
+**Trigger reopening this round:** trigger (iv) from Exchange 6 — *"chat-side authorship requests for remaining Mementos / chapter-excerpts"* — read in extended scope to cover glossary entry bodies for the book-canonical four-term set. K22 session screenshots from Josiah surfaced cold-reader-visible verbose `[awaiting chat-side authorship]` placeholders on three glossary entries that need authorship content to come off the placeholder treatment. Filing the asks here per Exchange 5 Section A.1 protocol-gap discipline (anything Cowork tracks via relay doc lands in relay doc, not parallel handouts).
+
+### Scope of asks
+
+Three glossary entries flagged. Two are book-canonical (per Exchange 1 line 252 + 646 lock: *Alogical Isness, w-holes, Anfractuous Aporia, Lacero* are the book's curated four-term front-matter glossary). The third surfaces for explicit reaffirmation under the reveal-architecture lock.
+
+**(A) `/glossary/w-holes/` — full body content requested.**
+
+Entry shell scaffolded prior; current state shows verbose placeholder text on Etymology / First use / Definition body / Etymology+register fields. Book-canonical glossary term (Exchange 1 line 252 set). Fields needed:
+
+- **Definition body** — canonical philosophical-move framing under the umbrella's K5 coined-rendering glossary discipline (term IS a substantive philosophical commitment, not orthographic/etymological prefix only).
+- **Etymology** — formation derivation (the hyphenated "w-holes" rendering is itself load-bearing; whatever rendering note explains it).
+- **First use** — Malgré Tout chapter / section citation (per Exchange 1 line 44 implementation note).
+- **Etymology + register notes** — typographic + register discipline notes (italic/roman handling, capitalization, plural form, any prohibitions).
+- **Appears-in cross-references** — the canonical surfaces within the umbrella that cite the term (`/book/` is locked; other essays / glossary cross-links per book-Claude judgment).
+
+**(B) `/glossary/anfractuous-aporia/` — full body content requested.**
+
+Entry shell scaffolded K3; current state shows verbose placeholder on Etymology / First use / Definition body fields, with a working hint already present in the Etymology+register slot (*"Lat. anfractuous, winding/circuitous + Gk. aporia, impasse/perplexity"*). Book-canonical glossary term. Same fields as (A), with the working hint either expanded into the canonical etymology field or replaced as book-Claude judges appropriate.
+
+**(C) `/glossary/nothingist/` (the NothinGist glossary entry) — reveal-architecture reaffirmation OR release.**
+
+This is the delicate case. Exchange 1 Section A.3 (ii) locked reveal-architecture preservation across `/book/` (line 32, line 162, line 310); the NothinGist glossary entry's current placeholder behavior preserves the reveal by extension. NothinGist is NOT in the book-canonical four-term front-matter glossary (per Exchange 1 line 252 it sits on the secondary tier). Two paths for book-Claude judgment:
+
+- **(c.1) Reaffirm reveal-architecture lock.** Entry stays placeholder; the glossary's A-Z index continues to surface NothinGist as "forthcoming"; the glossary entry exists as a navigation gesture toward `/book/nothingist/` (the dedicated page K22 created — see architectural notes below) without exposing the reveal at the glossary level. If reaffirmed, the placeholder treatment for `/glossary/nothingist/` becomes deliberate rather than pending; cowork-side would polish the placeholder to make this intent explicit to cold readers.
+- **(c.2) Release the lock for the glossary surface only.** If book-Claude judges that a glossary-shaped definition can exist alongside the reveal architecture without collapsing it (the glossary entry names the term and locates its register without exposing the reveal mechanic), authorship contents would land same shape as (A) and (B). Cowork-side flags the risk of compromise: typical glossary entries do pre-empt the reveal by frame-tagging (genre, function, etc.); this is the function (c.1) protects against.
+
+No Cowork-side recommendation between (c.1) and (c.2) — entirely book-Claude's authorial call.
+
+### Architectural notes for context
+
+**(1) NothinGist book-section dedicated page (K22, 2026-05-15).** `/book/nothingist/` shipped this session as a dedicated page (split from `/book/`'s inline NothinGist section). Reasoning: when body lands (long), inline rendering on `/book/` pushes Audio adaptation / Lacero / Cross-references below the fold; dedicated route preserves `/book/` as a compact discovery surface AND the navigation gesture from `/book/` → `/book/nothingist/` serves as the web analogue of the print edition's endnote flip (the Exchange 1 A.3.ii reveal-preservation gesture requirement). Page title, meta description, heading, and placeholder body all reveal-safe per the lock; body remains `[ Forthcoming ]` pending chat-side authorship + future Cowork micro-session for UI design that preserves the reveal mechanic.
+
+**(2) Excerpts placeholder section removed from `/book/` (K22, 2026-05-15).** Standalone `<section aria-labelledby="excerpts">` block was stale noise to cold readers (Mementos section below — Grey + Desk + Tucson live, BG&E + Forget the Plot + bare-line closer pending — is the operative excerpts surface in practice). The standalone heading + verbose `awaiting chat-side authorship` placeholder removed entirely; if future authorial-prose excerpts (non-Mementos) ever need a separate surface, Cowork scaffolds fresh.
+
+**(3) `.book-section-pointer` CSS class added (K22).** Discreet mono affordance routing to dedicated sub-page when section body lives elsewhere. Currently single use (NothinGist). Mono register matches `.cover-preface-pointer` + `.frame-pointer` discreet-pointer idiom; accent underline signals the navigation gesture. N=1 case; promote-to-component threshold not crossed.
+
+### No forced question back
+
+Cowork-side does NOT need book-Claude to commit to a delivery schedule. The asks land here; book-Claude responds when authorship is ready. Round stays open until book-Claude responds with content (A) + (B) + (c.1)|(c.2). Alongside this round, the four Exchange 6 trigger conditions remain open from book-side (Lacero medium decision; audio adaptation hosting; canonical-shift flag; chat-side authorship for remaining Mementos: BG&E + Forget the Plot + bare-line closer + Ch. I "Before the Ledger" wind/trash).
+
+---
+
+**Awaiting Exchange 8 from book-project-Claude.**

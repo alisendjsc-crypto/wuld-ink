@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sanguinolentum Vestigium — Essays — wuld.ink</title>
-  <meta name="description" content="Sanguinolentum Vestigium — pessimism manifesto by WULD. Body pending chat-side authorship.">
+  <title>Sanguinolentum Vestigium &mdash; Essays &mdash; wuld.ink</title>
+  <meta name="description" content="Sanguinolentum Vestigium &mdash; a pessimist's manifesto in three movements by WULD. Asymmetry of existing, the slaughterhouse of nature, the only honest conclusion.">
 
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
@@ -13,9 +13,66 @@
   <link rel="stylesheet" href="/components/audio-player.css">
   <link rel="stylesheet" href="/components/mode-toggle.css">
   <link rel="stylesheet" href="/components/footer.css">
-  <!-- Essay article shell rules promoted to /components/essay.css
-       (session K2, 2026-05-13) per second-instance threshold.
-       Inline <style> block removed. -->
+  <style>
+    /* Essay structural extensions (K23) — movement / subsection / latin
+       subtitle / invocation / litany registers. Promote to /components/essay.css
+       at second use case if pattern holds (Alogically Is is parallel). */
+    .essay-invocation {
+      font-family: var(--font-body);
+      font-style: italic;
+      max-width: var(--w-prose);
+      margin-block-end: var(--s-7);
+      padding-block-end: var(--s-5);
+      border-bottom: var(--bw-base) solid var(--c-border);
+    }
+    .essay-invocation .latin-line {
+      font-family: var(--font-headline);
+      font-style: italic;
+      font-size: var(--t-h4);
+      color: var(--c-accent);
+      margin-block-end: var(--s-3);
+    }
+    .essay-section { margin-block-end: var(--s-7); }
+    .essay-section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-2);
+    }
+    .essay-section h2 {
+      font-family: var(--font-headline);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-tight);
+      margin-block-end: var(--s-2);
+    }
+    .essay-section-subtitle {
+      font-family: var(--font-headline);
+      font-style: italic;
+      color: var(--c-accent);
+      font-size: var(--t-h5);
+      margin-block-end: var(--s-5);
+    }
+    .essay-section h3 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      letter-spacing: var(--ls-tight);
+      margin-block-start: var(--s-6);
+      margin-block-end: var(--s-3);
+    }
+    .essay-section p { margin-block-end: var(--s-4); }
+    .essay-section p em { color: var(--c-fg); }
+    .essay-litany {
+      font-family: var(--font-body);
+      max-width: var(--w-prose);
+      margin-block: var(--s-5);
+      padding-inline-start: var(--s-5);
+      border-inline-start: var(--bw-slab) solid var(--c-accent);
+    }
+    .essay-litany p { margin-block-end: var(--s-3); }
+    .essay-litany em { color: var(--c-accent); font-style: italic; }
+  </style>
 </head>
 
 <body data-audio-base="https://audio.wuld.ink">
@@ -44,6 +101,7 @@
         <p class="eyebrow">Essay  /  Pessimism manifesto</p>
 
         <h1>Sanguinolentum Vestigium</h1>
+        <p class="essay-section-subtitle"><em>The Blood-Soaked Footprint of Life</em></p>
 
         <div class="essay-meta">
           <span><strong>Author</strong> WULD</span>
@@ -60,15 +118,6 @@
 
       <div class="essay-body">
 
-        <!-- ============================================================
-             AUDIO INTRO — single condensed reading of the essay (6:50).
-             The audio is its own artifact, derived from a truncated
-             script; section breaks in the prose below do NOT sync to
-             the audio. Inline passage-alignment markers can land
-             chat-side when Josiah annotates which prose the audio
-             covers; until then, the audio plays as a standalone
-             reading.
-             ============================================================ -->
         <div class="audio-intro">
           <p class="audio-intro-note"><strong>Audio reading</strong> &middot; condensed version &middot; 6:50</p>
           <div class="audio-block" data-audio-key="essays/sanguinolentum-vestigium/full.mp3">
@@ -78,54 +127,127 @@
           </div>
         </div>
 
-        <!-- ============================================================
-             SECTION 1 — opening. Replace H2 with the section's title;
-             paste prose below.
-             ============================================================ -->
-        <section>
-          <h2>[Section I — title pending]</h2>
-
-          <p class="prose-placeholder">Opening paragraph &mdash; awaiting chat-side authorship.</p>
-
-          <p class="prose-placeholder">Continuation &mdash; awaiting chat-side authorship.</p>
+        <section class="essay-invocation">
+          <p class="essay-section-eyebrow">Invocation</p>
+          <p class="latin-line"><em>Sic erat, sic est, sic erit: nihil unquam bene.</em></p>
+          <p>Thus it was, thus it is, thus it will be &mdash; nothing ever well.</p>
+          <p>That is not a lament. It is not the whimper of someone who has simply been unlucky, whose tally ran unlucky, whose particular generation drew the short straw of history. It is an observation so structurally consistent, across every era, every geography, every stratum of biological life, that to call it pessimism is almost too kind. Pessimism implies a divergence from some expected good. There is no expected good. There never was. The horror is the baseline condition. The baseline condition has never changed.</p>
+          <p><em>Nunquam salve, nunquam integrum, nunquam sanum.</em></p>
+          <p>Never safe, never whole, never sound. Not once. Not in any age that called itself civilized, enlightened, reformed. The technologies improved. The liturgies changed. The suffering &mdash; the asymmetric, disproportionate, senseless suffering of the most vulnerable &mdash; held its shape, perfectly intact, beneath every architecture of progress humanity has ever raised over it.</p>
+          <p>This document does not mourn. Mourning implies something was lost. This document <em>indicts</em> &mdash; and then it reaches the only honest conclusion indictment permits.</p>
         </section>
 
         <hr class="section-rule">
 
-        <!-- ============================================================
-             SECTION 2
-             ============================================================ -->
-        <section>
-          <h2>[Section II — title pending]</h2>
-
-          <p class="prose-placeholder">Body paragraph &mdash; awaiting chat-side authorship.</p>
-
-          <p class="prose-placeholder">Continuation &mdash; awaiting chat-side authorship.</p>
+        <section class="essay-section essay-movement">
+          <p class="essay-section-eyebrow">Movement I</p>
+          <h2>The Well is Poisoned</h2>
+          <p class="essay-section-subtitle"><em>Puteus Venenatus Vitae &mdash; The Poisoned Well of Life</em></p>
+          <h3>On the Asymmetry of Existing</h3>
+          <p>The non-existent are deprived of nothing.</p>
+          <p>This must be understood before anything else, because it is the pivot on which every moral argument against reproduction turns. The one who was never born does not sit in some antechamber of non-being, mourning the experiences that passed them by. There is no they. There is no mourning. The pleasures unmissed are simply <em>unmissed</em> &mdash; not experienced as loss, not experienced as anything, because there is no subject to carry the experience. Absence, for the absent, is not a deprivation. It is a non-event.</p>
+          <p>But existence is an event. And once the event begins, the ledger opens &mdash; and it does not balance.</p>
+          <p><em>Fons Letalis Vitae.</em> The deadly spring of life. The metaphor is precise: the source appears clean, nourishing, necessary &mdash; and it is poisoned at the root. A child is born into guaranteed death, handed a set of variables it did not choose and cannot return, dropped into a system that has demonstrated, at every point in its operation, that it will produce suffering in excess of whatever it offers to compensate.</p>
+          <p>The argument is not that life contains no pleasure. It contains pleasure. It contains love, music, the warm weight of another body, the specific satisfaction of understanding something difficult for the first time. These are real. They are not fabrications of desperate optimists trying to sell the product of existence to people who never asked to buy it.</p>
+          <p>But they are <em>not commensurate</em>. They do not weigh against what they are asked to weigh against.</p>
+          <p>A child&rsquo;s potential birthday does not justify the possibility of their cancer. A graduation does not redeem the decades of invisible, nameless suffering that may surround it. The moment of ecstasy &mdash; of love, of creation, of transcendence &mdash; does not neutralize the years of quiet, causeless despair that may precede or follow it, that may constitute the majority of a life&rsquo;s interior texture while the exterior performs normalcy.</p>
+          <p><em>Omnia Vanitas.</em> All of it is vanity &mdash; not in the contemptuous sense, but in the precise theological sense: vapor. Breath. The thing that appears substantial and disperses. The joys of life are real the way breath is real. The suffering is real the way a wound is real. These are not the same kind of real.</p>
+          <p>And still &mdash; people reproduce. Still &mdash; the door is opened. Still &mdash; the dice are rolled on another consciousness, another nervous system capable of registering pain, another entity that cannot be unborn once the decision is made.</p>
+          <p><em>You cannot ask to be born. 100% of those born cannot become unborn. All of them are given a death sentence.</em></p>
+          <h3>On the Rotten Apple</h3>
+          <p>One drop of poison taints the well. One rotten apple ruins the pie. Not because of irrational contamination-phobia. Because <em>that is the structural reality of a system in which the worst things that can happen are bad enough to be irredeemable.</em></p>
+          <p>The worst things that can happen to a child are: sexual violation. Physical torture. Psychological annihilation at the hands of someone who was supposed to protect them. Illness that devours them from the inside. Starvation. The slow comprehension, arriving over years, that they were never wanted, that they arrived into contempt and were asked to find a reason to stay.</p>
+          <p>None of these are rare events. None of them are statistical outliers that a careful parent can design around. They are distributed throughout human experience with the banal regularity of weather &mdash; they strike the prepared and the negligent, the fortunate and the cursed, the rich and the destitute &mdash; because the system has no ethics, no preference, no protective intelligence operating in the child&rsquo;s favor.</p>
+          <p>And when they happen &mdash; when the worst thing happens &mdash; no arithmetic recovers the equation. There is no compensatory joy that makes a child&rsquo;s rape retroactively acceptable. There is no future accomplishment that erases the foundational wound. The harm is specific, concrete, indelible. The purported compensations are vague, contingent, unevenly distributed.</p>
+          <p><em>Labor Sine Fructu.</em> Labor without fruit. Not always &mdash; not in every case &mdash; but <em>often enough</em>. Often enough that the honest position is not &ldquo;some lives are worth starting&rdquo; but rather &ldquo;you cannot know in advance whose is,&rdquo; and that uncertainty, placed against the gravity of what can go wrong, is not a gamble anyone has the right to make on another&rsquo;s behalf.</p>
+          <p>The non-existent have never needed a reason to be grateful they weren&rsquo;t born. They don&rsquo;t exist. They have no needs. They require no consolation.</p>
+          <p><em>Only the living need consolation. And consolation is the proof that something has gone wrong.</em></p>
+          <h3>On Consent and Its Impossibility</h3>
+          <p>You have reproductive organs. This gives you no more inherent right to use them than having fists gives you the right to strike.</p>
+          <p>The capacity is not the license. The biological ability to do a thing has never been, in any coherent moral framework, sufficient justification for doing it. And yet &mdash; uniquely, almost inexplicably &mdash; reproduction is treated as though the mere fact of its possibility confers a right. As though the presence of the mechanism validates the act. As though there is something sacred in the drive toward continuation that exempts it from the scrutiny we apply to every other consequential decision.</p>
+          <p>There is nothing sacred in it. It is biochemistry. It is evolutionary programming that does not know and does not care what it is doing to the consciousness it creates. It has no wisdom. It has no knowledge. It does not love the thing it makes.</p>
+          <p><em>It simply makes it.</em></p>
+          <p>And the thing it makes &mdash; the child &mdash; cannot consent. Cannot weigh the offer. Cannot decline. Cannot, once arrived, leave. This is not a philosophical puzzle that clever argumentation can dissolve. It is a brute structural fact. The one most affected by the decision of reproduction is the one with precisely zero input into that decision.</p>
+          <p><em>Vita Invisa</em> &mdash; hated life &mdash; is not a pathology. It is a coherent response. If you did not ask to arrive, and the place you arrived in is demonstrably dangerous, and you have no guaranteed means of exit, and you were given no information before arrival &mdash; then to resent the arrival is not dysfunction. It is the only rational response to having been put somewhere without your consent.</p>
+          <p>To those who will say &ldquo;but you&rsquo;d have nothing without being born&rdquo; &mdash; yes. That is correct. The non-existent have nothing, and need nothing, and suffer nothing. <em>That is precisely the point.</em></p>
         </section>
 
         <hr class="section-rule">
 
-        <!-- ============================================================
-             SECTION 3
-             ============================================================ -->
-        <section>
-          <h2>[Section III — title pending]</h2>
-
-          <p class="prose-placeholder">Body paragraph &mdash; awaiting chat-side authorship.</p>
-
-          <p class="prose-placeholder">Closing &mdash; awaiting chat-side authorship.</p>
+        <section class="essay-section essay-movement">
+          <p class="essay-section-eyebrow">Movement II</p>
+          <h2>The Tree and Its Roots</h2>
+          <p class="essay-section-subtitle"><em>Arbor Vitae: Sanguinolentum Vestigium &mdash; The Tree of Life&rsquo;s Blood-Soaked Footprint</em></p>
+          <h3>On Nature as Slaughterhouse</h3>
+          <p>The &ldquo;tree of life&rdquo; grows in soil that is <em>death.</em></p>
+          <p>This is not metaphor layered over reality. It is biology, stated plainly. Life feeds on life. The mechanism of existence requires the destruction of other existence to sustain itself &mdash; consuming energy, consuming bodies, consuming the finite resources of a closed system that has never been anything other than a competition for survival among entities that did not choose to compete.</p>
+          <p>Evolution has no blueprint. It has no executive, no vision, no concept of the flourishing it is supposedly driving toward. It is a headless mechanism selecting for whatever survives long enough to replicate &mdash; not for whatever deserves to survive, not for whatever would choose to survive if given the option. The selection pressure is brutality. The currency is death. What persists is what was most ruthless in its particular context. That is the mechanism. That is all there is.</p>
+          <p>Infant mortality rates in wilderness conditions are among the highest observable anywhere. Cubs are devoured by members of their own kind. Fawns starve. Parasites consume living hosts from the inside while the host continues to register pain. Prey animals are eaten alive &mdash; not killed cleanly, not given the mercy of quick dispatch &mdash; alive, partially devoured, still experiencing what their nervous systems experience as agony. This is not cruelty. Cruelty requires intent, requires a subject who <em>chooses</em> to inflict. This is something worse than cruelty: indifference so total, so structural, that it has no name.</p>
+          <p><em>The green Earth is a holocaust factory.</em></p>
+          <p>To fetishize nature &mdash; to hold it up as something pristine, to speak of returning to it as though it represents an Eden before human corruption &mdash; is to perform a studied ignorance of what nature actually is and what it actually does to everything that lives within it. The aesthetic appeal of forests and coastlines does not neutralize the operational reality of what those forests and coastlines do to the organisms that inhabit them every second of every day.</p>
+          <p>This is not nihilism. This is natural history. The horror is documented. It is not a matter of interpretation.</p>
+          <h3>On Humanity&rsquo;s Legacy</h3>
+          <p><em>Mundus Furiosus.</em> A mad world.</p>
+          <p>Humanity has been the apex predator for thousands of years. During those thousands of years, it has produced: war at an industrial scale, genocide systematized into bureaucracy, the sexual exploitation of children institutionalized at every stratum of every society that has ever existed, the slow torture of animals for pleasure and for profit, the manufacture of new and increasingly efficient methods of mass destruction, and the active suppression of any movement that attempted to hold any of this accountable.</p>
+          <p>This is not the exception. This is the pattern. The horror is not an aberration from the human project &mdash; it <em>is</em> the human project, documented from its earliest recoverable records to its present moment, without meaningful interruption. The technologies became more sophisticated. The capacity for destruction scaled accordingly. The ethical infrastructure &mdash; law, religion, philosophy, social norms &mdash; existed primarily to manage and justify the distribution of violence and suffering, not to end it.</p>
+          <p><em>Not being bad is not sufficient to be good.</em></p>
+          <p>This must be said plainly because it is routinely overlooked. The person who performs moderate decency &mdash; who does not personally harm, who maintains a functional kindness in their immediate social sphere &mdash; while the architecture of cruelty continues to function around them, enabled by their participation in the system that sustains it, is not a good person. They are a passive collaborator. Their comfort is subsidized by the suffering of those who did not get to choose comfort. Their gratitude for their relative good fortune is, at some level, gratitude that someone else received the worst of it instead of them.</p>
+          <p><em>Chronica Calamitatum.</em> The chronicle of disasters. It does not end. It does not improve in any direction that matters. The specific forms shift. The technologies change. The bureaucratic mechanisms of violence become more sophisticated. But the child who is tortured today is tortured just as completely as the child who was tortured in any previous century &mdash; their nervous system does not receive the benefit of historical progress. Their suffering is not ameliorated by the fact that we now have better medical treatments for the survivors.</p>
+          <p>And if there is a god observing this &mdash; observing the rape of children, the slow devouring of lambs, the generational punishment of the innocent, the systematic suffering of those who never chose to arrive &mdash; then this god is one of three things: absent, indifferent, or sadistic. The effect of all three is identical. The prayer is not answered. The child is not spared. The system continues.</p>
+          <p>No righteous and just being would design or permit this experiment. No loving creator would watch it unfold and withhold intervention for the sake of some abstract, cosmic pedagogy. If what is called &ldquo;free will&rdquo; requires the rape of a child to exist &mdash; if the pedo&rsquo;s choice to violate is more sacred, in the divine calculus, than the child&rsquo;s right to be left unviolated &mdash; then the entity upholding that calculus is not a god worth the word.</p>
+          <p><em>Animus Defessus.</em> A weary spirit. Weary not from the effort of the day, but from the cumulative, structural exhaustion of understanding what this place actually is and being unable to pretend otherwise.</p>
+          <h3>On Those Who Persist in Hope</h3>
+          <p><em>Pomum Tabidum in Placenta.</em> Decaying fruit in the cake.</p>
+          <p>The optimist is not the enemy &mdash; not primarily. The enemy is the optimist who has <em>seen</em> the horror and continues to insist that the ledger balances. The one who has looked directly at the suffering of children, of animals, of the structurally dispossessed &mdash; and has concluded that it is, on net, worth it. That the equation comes out ahead. That the birthday party justifies the cancer.</p>
+          <p>That is not hope. That is <em>willful arithmetic corruption.</em> It is the decision to weight pleasure heavily and suffering lightly because weighting it any other way would require a conclusion one is not prepared to reach.</p>
+          <p>And the conclusion they are not prepared to reach is this: <em>if what you love depends for its existence on what you cannot justify, then what you love is built on what you cannot justify.</em> The art, the music, the connection, the beauty &mdash; they emerge from the same system that produces the torture. They are not separable from it. They are its byproducts, its consolation prizes, its advertisements.</p>
+          <p>Hope, in this light, is not a virtue. It is the mechanism by which the machine sustains itself. It is what keeps people feeding it new material.</p>
+          <p><em>Desperatio In Remedium.</em> Despair without remedy &mdash; but despair that has at least the integrity of seeing clearly, rather than the comfortable delusion of seeing selectively.</p>
         </section>
 
         <hr class="section-rule">
 
-        <!-- Endnotes scaffold. Add <li id="fn-N"> entries as the body
-             accumulates references. Body refs use:
-               <a href="#fn-1" class="endnote-ref" id="ref-1">1</a> -->
-        <section aria-labelledby="endnotes">
-          <h2 id="endnotes">Endnotes</h2>
-          <ol>
-            <li class="prose-placeholder">Endnotes &mdash; awaiting chat-side authorship.</li>
-          </ol>
+        <section class="essay-section essay-movement">
+          <p class="essay-section-eyebrow">Movement III</p>
+          <h2>The Only Honest Conclusion</h2>
+          <p class="essay-section-subtitle"><em>Terminus Universalis &mdash; The Universal End</em></p>
+          <h3>On Annihilation</h3>
+          <p>My conclusion is total and utter annihilation.</p>
+          <p>Not in a theatrical sense. Not as the howl of someone who has simply suffered too much and wants it to stop &mdash; though that is also true, and is not something to be ashamed of. But as a <em>position</em> &mdash; argued, examined, and reached by the logic of everything that precedes it.</p>
+          <p>If the asymmetry holds &mdash; if the harm genuinely outweighs the benefit, if the non-existent genuinely lack nothing &mdash; then the moral trajectory that follows is toward <em>less existence</em>, not more. Every new life added to the system is a new exposure to harm, a new nervous system capable of registering suffering, a new subject dropped without consent into a structure that has never adequately protected the most vulnerable members of any generation it has ever produced.</p>
+          <p>The reduction of that &mdash; the narrowing of the surface area of suffering &mdash; is the only coherent moral project available in a world where you cannot simply end it all at once. Not breeding. Not giving the universe new victims. Not opening the door, even slightly, to the possibility of another consciousness arriving here and wishing it hadn&rsquo;t.</p>
+          <p>This is not defeat. <em>Defeat is letting it continue.</em></p>
+          <p>Defeat is feeding the machine because you were afraid to face what stopping would require of you. Defeat is the sunken cost fallacy of existence &mdash; the belief that because so much has already been suffered, something must be extracted from it, some meaning must be mined, some justification must eventually emerge from the rubble. It will not. The rubble is the point. The rubble is all there is.</p>
+          <p><em>Mors Immortalis. Quies Absoluta. Terminus Universalis.</em></p>
+          <p>Deathless death. Absolute rest. The universal end.</p>
+          <p>These are not curses. They are the only vocabulary adequate to what is being asked for &mdash; not the angry termination of something hated, but the <em>cessation of the condition that makes hatred and suffering possible at all</em>. The silence that is not death because there is no one left to register death as loss.</p>
+          <h3>On Those Who Made the Decision for Us</h3>
+          <p><em>A curse upon all of you, and your children too, and their children&rsquo;s children, forever true</em> &mdash; for the negligence, for the callousness, for the arrogance to assert life without virtue. For the insouciance of those who looked at the world and said: <em>yes, into this, I will bring another one.</em> Who weighed the horror and found it acceptable on behalf of someone who could not be consulted.</p>
+          <p>You will not be punished for it by any god. The universe has no punishment mechanism. The indifference that permitted the original act will permit every consequence of it, without comment. This is not a comfort. It is the worst possible verdict: that the people who deserve to answer for what they&rsquo;ve done will simply not be called to answer. The child who wishes they were never born will not receive an apology. The suffering will not be acknowledged by the force that allowed it.</p>
+          <p>What remains, then, is this document. And the decision not to add to it. And the only responsible claim one can make in the face of everything documented here:</p>
+          <p><em>Do not give the Earth more victims.</em></p>
+          <p>Not as commandment. Not as judgment over those who choose otherwise &mdash; they were brought here without consent too, and are running the same programming, subject to the same evolutionary pressures that told them continuation is the point. But as the clearest possible statement of what the evidence, followed to its end, requires:</p>
+          <p><em>The most responsible thing a human being can do is refuse to open the door again.</em></p>
+        </section>
+
+        <hr class="section-rule">
+
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">Coda</p>
+          <h3>The Litany</h3>
+          <div class="essay-litany">
+            <p><em>Taedium Vitae</em> &mdash; the weariness of life that is not a mood but a reckoning.</p>
+            <p><em>Contemptus Mundi</em> &mdash; contempt for the world, not because it failed to be beautiful, but because beauty was not enough and never was.</p>
+            <p><em>Odium Humana</em> &mdash; hatred of humanity, not of individuals but of the species&rsquo; aggregate choice, across every age, to continue.</p>
+            <p><em>Vita Invisa</em> &mdash; hated life, which is not the same as hating the person who lives it.</p>
+            <p><em>Vanitas Vanitatum, Omnia Vanitas</em> &mdash; vanity of vanities, all is vanity &mdash; vapor, breath, the thing that appears and disperses and leaves no permanent mark.</p>
+            <p><em>Labor Sine Fructu</em> &mdash; labor without fruit &mdash; all the effort, all the striving, all the generation of meaning &mdash; and underneath it, always, the same foundation.</p>
+            <p><em>Inane Caelum et Terra</em> &mdash; empty sky and earth &mdash; not metaphysically empty in the nihilist sense, but emptied of any power to justify what occurs within them.</p>
+            <p><em>Aeterna Damnatio</em> &mdash; eternal damnation &mdash; not as theological threat but as structural description: to be born is to be damned into a duration of suffering you cannot negotiate.</p>
+            <p><em>Sic Vita Est.</em> Thus is life.</p>
+          </div>
+          <p><em>Nunquam fuit, nunquam est, nunquam erit recte.</em></p>
+          <p>Never was it right. Never is. Never will be.</p>
         </section>
 
       </div>
