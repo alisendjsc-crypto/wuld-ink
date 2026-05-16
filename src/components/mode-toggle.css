@@ -53,3 +53,118 @@
   outline-offset: 2px;
   z-index: 1;
 }
+
+/* ============================================================
+   wuld.ink — magnification slider component
+   Companion to .mode-toggle; lives in same chrome row.
+   Applies --mag-scale to <html> globally (font-size: calc(112.5%
+   * var(--mag-scale))); persists to localStorage "wuld:mag".
+   Range 90–140% in 5% steps. Brutalist range slider
+   (stripped appearance + custom track + thumb).
+   Markup:
+   <div class="mag-slider" role="group" aria-label="Text size">
+     <span class="mag-slider-label">Size</span>
+     <input class="mag-slider-input" type="range"
+            min="90" max="140" step="5" value="100"
+            aria-label="Text magnification percentage">
+     <output class="mag-slider-output">100%</output>
+   </div>
+   ============================================================ */
+
+.mag-slider {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+
+  padding: var(--s-2) var(--s-3);
+  border: var(--bw-base) solid var(--c-border-strong);
+  margin-block: var(--s-4);
+  margin-inline-start: var(--s-3);
+
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+
+  /* Wrap to next line on narrow viewports rather than overflow */
+  flex-wrap: nowrap;
+  vertical-align: top;
+}
+
+.mag-slider-label {
+  font-weight: 500;
+}
+
+.mag-slider-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 7rem;
+  height: 1rem;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mag-slider-input::-webkit-slider-runnable-track {
+  height: var(--bw-thick);
+  background: var(--c-border-strong);
+  border: none;
+}
+
+.mag-slider-input::-moz-range-track {
+  height: var(--bw-thick);
+  background: var(--c-border-strong);
+  border: none;
+}
+
+.mag-slider-input::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0.75rem;
+  height: 1rem;
+  background: var(--c-accent);
+  border: var(--bw-thin) solid var(--c-bg);
+  /* Vertically recentre thumb against the thin track */
+  margin-top: calc((var(--bw-thick) - 1rem) / 2);
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease);
+}
+
+.mag-slider-input::-moz-range-thumb {
+  width: 0.75rem;
+  height: 1rem;
+  background: var(--c-accent);
+  border: var(--bw-thin) solid var(--c-bg);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease);
+}
+
+.mag-slider-input:focus-visible::-webkit-slider-thumb {
+  background: var(--c-focus);
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+}
+.mag-slider-input:focus-visible::-moz-range-thumb {
+  background: var(--c-focus);
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+.mag-slider-input:hover::-webkit-slider-thumb {
+  background: var(--c-accent-hover);
+}
+.mag-slider-input:hover::-moz-range-thumb {
+  background: var(--c-accent-hover);
+}
+
+.mag-slider-output {
+  min-width: 2.75rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-fg);
+}

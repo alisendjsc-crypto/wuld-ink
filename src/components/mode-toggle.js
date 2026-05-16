@@ -92,3 +92,68 @@
     init();
   }
 })();
+
+
+/* ============================================================
+   wuld.ink — magnification slider controller
+   Applies --mag-scale to <html> via inline style. Persists the
+   user's chosen percentage in localStorage key "wuld:mag" (single
+   global key — the slider is page-rendered but globally
+   scoped, since font-size cascades from <html>).
+   ============================================================ */
+
+(() => {
+  "use strict";
+
+  const MAG_STORAGE_KEY = "wuld:mag";
+  const MAG_MIN = 90;
+  const MAG_MAX = 140;
+  const MAG_STEP = 5;
+  const MAG_DEFAULT = 100;
+
+  function clampMag(n) {
+    if (!isFinite(n)) return MAG_DEFAULT;
+    let v = Math.round(n / MAG_STEP) * MAG_STEP;
+    if (v < MAG_MIN) v = MAG_MIN;
+    if (v > MAG_MAX) v = MAG_MAX;
+    return v;
+  }
+
+  function applyMag(pct) {
+    document.documentElement.style.setProperty("--mag-scale", (pct / 100).toString());
+  }
+
+  function syncAllSliders(pct, sliders, outputs) {
+    sliders.forEach((s) => { s.value = String(pct); });
+    outputs.forEach((o) => { o.textContent = pct + "%"; });
+  }
+
+  function initMagSliders() {
+    const sliders = Array.from(document.querySelectorAll(".mag-slider-input"));
+    if (sliders.length === 0) return;
+    const outputs = Array.from(document.querySelectorAll(".mag-slider-output"));
+
+    // Restore persisted choice
+    let saved = null;
+    try { saved = localStorage.getItem(MAG_STORAGE_KEY); } catch (_) { /* no storage */ }
+    const initial = clampMag(parseInt(saved, 10) || MAG_DEFAULT);
+
+    applyMag(initial);
+    syncAllSliders(initial, sliders, outputs);
+
+    sliders.forEach((slider) => {
+      slider.addEventListener("input", (e) => {
+        const v = clampMag(parseInt(e.target.value, 10));
+        applyMag(v);
+        syncAllSliders(v, sliders, outputs);
+        try { localStorage.setItem(MAG_STORAGE_KEY, String(v)); } catch (_) { /* ignore */ }
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMagSliders);
+  } else {
+    initMagSliders();
+  }
+})();

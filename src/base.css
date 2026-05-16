@@ -19,7 +19,7 @@ html {
   /* Bump root from browser default (16px) to 18px — Garamond has a small
      x-height and needs the extra optical size for sustained reading.
      All rem-based tokens scale up proportionally. */
-  font-size: 112.5%;
+  font-size: calc(112.5% * var(--mag-scale, 1));
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

@@ -215,6 +215,18 @@
 
   --c-selection-bg: #ffeb3b;
   --c-selection-fg: #000000;
+
+  /* ---------- Stroke escalation ----------
+     HC needs heavier chrome strokes to read as a distinct mode
+     at-a-glance (Dark uses 2px hairline; HC bumps to 3px).
+     Propagates to: chrome borders (nav, footer, audio-player,
+     mode-toggle, glossary lists, essay section-rules), focus
+     outlines (component :focus-visible rules using --bw-base),
+     and link underline thickness (base.css text-decoration). */
+  --bw-thin:   2px;   /* was 1px in :root */
+  --bw-base:   3px;   /* was 2px in :root */
+  --bw-thick:  5px;   /* was 4px in :root */
+  --bw-slab:   7px;   /* was 6px in :root */
 }
 
 /* ============================================================
