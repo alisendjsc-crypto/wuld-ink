@@ -1,0 +1,243 @@
+/* ============================================================
+   wuld.ink - ambient background player
+   Fixed-bottom-bar chrome (32px). Streams a curated YouTube
+   playlist via youtube-nocookie.com. localStorage state persists
+   across navigation; first-interaction listener works around
+   browser autoplay policy hard-block (Chrome 66+ / Safari 11+ /
+   Firefox 66+ all require user interaction before audio plays).
+
+   Sealed surfaces (/_/*) and template files do not load this
+   component; injection is site-wide except where explicitly skipped.
+
+   Markup (injected before </body> on each surface):
+   <div class="ambient-player" id="ambient-player" hidden>
+     <div class="ambient-iframe-wrap"><div id="ambient-iframe"></div></div>
+     <div class="ambient-bar">
+       <span class="ambient-track" id="ambient-track">.</span>
+       <button class="ambient-btn" id="ambient-playpause" aria-label="Play / pause">[play]</button>
+       <button class="ambient-btn" id="ambient-skip" aria-label="Skip">[skip]</button>
+       <button class="ambient-btn ambient-toggle" id="ambient-shuffle" aria-pressed="true">[shuffle on]</button>
+       <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+       <button class="ambient-btn ambient-toggle" id="ambient-onoff" aria-pressed="true">[ambient on]</button>
+     </div>
+   </div>
+   ============================================================ */
+
+/* Add padding to <body> so the fixed bar never overlays scroll-end content. */
+body { padding-bottom: 2.5rem; }
+
+.ambient-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  /* Visually present, but rendered only once JS boots. The [hidden] attr
+     is removed by init(); browsers without JS see nothing. */
+}
+
+.ambient-player[hidden] { display: none; }
+
+.ambient-iframe-wrap {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ambient-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+
+  height: 2.5rem;
+  padding-inline: var(--s-3);
+
+  background-color: var(--c-bg);
+  border-top: var(--bw-thin) solid var(--c-border);
+
+  font-family: var(--font-mono);
+  font-size: var(--t-xs, 0.75rem);
+  color: var(--c-fg-muted);
+
+  user-select: none;
+}
+
+/* Track name truncates with ellipsis; widest element steals leftover space. */
+.ambient-track {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: var(--ls-normal, 0);
+}
+
+/* Mono "button" register matches mode-toggle idiom: bracketed lowercase
+   label, no border on rest state, accent border on focus/hover. */
+.ambient-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--s-2);
+  height: 1.5rem;
+
+  background-color: transparent;
+  border: var(--bw-thin) solid transparent;
+  color: var(--c-fg-muted);
+
+  font-family: var(--font-mono);
+  font-size: var(--t-xs, 0.75rem);
+  font-weight: 500;
+  letter-spacing: var(--ls-normal, 0);
+  line-height: 1;
+
+  cursor: pointer;
+  transition:
+    color var(--t-fast, 120ms) var(--ease, ease),
+    border-color var(--t-fast, 120ms) var(--ease, ease),
+    background-color var(--t-fast, 120ms) var(--ease, ease);
+}
+
+.ambient-btn:hover {
+  color: var(--c-fg);
+  border-color: var(--c-border);
+}
+
+.ambient-btn:focus-visible {
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+  color: var(--c-fg);
+}
+
+.ambient-btn[aria-pressed="true"] {
+  color: var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+.ambient-btn[aria-pressed="true"]:hover {
+  color: var(--c-accent-hover);
+  border-color: var(--c-accent-hover);
+}
+
+/* "Tap to start" CTA pulse when autoplay is blocked but state.on is true.
+   Triggered by JS toggling .ambient-needs-tap on the playpause button. */
+.ambient-btn.ambient-needs-tap {
+  color: var(--c-accent);
+  border-color: var(--c-accent);
+  animation: ambient-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes ambient-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.45; }
+}
+
+/* Brutalist range slider mirroring magnification-slider register but
+   compact (~80px). Stripped appearance + accent thumb. */
+.ambient-volume {
+  flex-shrink: 0;
+  width: 5rem;
+  height: 1rem;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ambient-volume::-webkit-slider-runnable-track {
+  width: 100%;
+  height: var(--bw-thick, 4px);
+  background-color: var(--c-border);
+  border: none;
+}
+.ambient-volume::-moz-range-track {
+  width: 100%;
+  height: var(--bw-thick, 4px);
+  background-color: var(--c-border);
+  border: none;
+}
+
+.ambient-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0.6rem;
+  height: 0.9rem;
+  margin-top: -2px;
+  background-color: var(--c-accent);
+  border: var(--bw-thin) solid var(--c-accent);
+  border-radius: 0;
+  cursor: pointer;
+}
+.ambient-volume::-moz-range-thumb {
+  width: 0.6rem;
+  height: 0.9rem;
+  background-color: var(--c-accent);
+  border: var(--bw-thin) solid var(--c-accent);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.ambient-volume:focus-visible::-webkit-slider-thumb {
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+}
+.ambient-volume:focus-visible::-moz-range-thumb {
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+/* ---------- State-driven hide for [off] ---------- */
+/* When user toggles ambient off, the bar stays visible (so they can
+   toggle back on) but the playpause/skip/volume controls dim. */
+.ambient-player[data-state="off"] .ambient-btn:not(#ambient-onoff),
+.ambient-player[data-state="off"] .ambient-volume {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.ambient-player[data-state="off"] .ambient-track {
+  opacity: 0.5;
+}
+
+/* ---------- Reader-mode + HC scoping ---------- */
+[data-mode="reader"] .ambient-bar,
+body.legible    .ambient-bar {
+  background-color: var(--c-bg);
+  border-top-color: var(--c-border);
+  color: var(--c-fg-muted);
+}
+
+[data-mode="hc"] .ambient-bar,
+body.high-contrast .ambient-bar {
+  border-top-width: var(--bw-base);
+  background-color: var(--c-bg);
+}
+
+/* ---------- Reduced-motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-btn.ambient-needs-tap { animation: none; }
+  .ambient-btn { transition: none; }
+}
+
+/* ---------- Mobile (<= 480px): collapse volume slider, tighten ---------- */
+@media (max-width: 480px) {
+  .ambient-bar {
+    gap: var(--s-2);
+    padding-inline: var(--s-2);
+    font-size: 0.6875rem;
+  }
+  .ambient-track {
+    max-width: 8rem;
+  }
+  .ambient-volume {
+    width: 3rem;
+  }
+  .ambient-btn {
+    padding: 0 var(--s-1);
+  }
+}

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css">
   <link rel="license" href="/LICENSE">
   <title>The Easiest Case &mdash; Blog &mdash; wuld.ink</title>
   <meta name="description" content="The biosphere is a rapist with no nervous system. A blog note by WULD on the grammar of intervention, the suffering-only-on-the-ledger argument, and why the absence of an agent makes the case easier, not harder.">
@@ -227,5 +228,17 @@
   </footer>
 
   <script src="/components/nav.js"></script>
+  <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
+    <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
+    <div class="ambient-bar">
+      <span class="ambient-track" id="ambient-track">ambient</span>
+      <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
+      <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
+      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+    </div>
+  </div>
+<script src="/components/ambient-player.js" defer></script>
 </body>
 </html>

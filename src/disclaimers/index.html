@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css">
   <link rel="license" href="/LICENSE">
   <title>Legal &amp; personal disclaimers &mdash; wuld.ink</title>
   <meta name="description" content="Site-wide disclaimers for wuld.ink — purpose, positioning, philosophical-content scope, personal-account framing, privacy, and copyright.">
@@ -226,6 +227,7 @@
           <h2>Licensed under CC-BY-4.0; attribution required; share and adapt freely</h2>
           <p>All written content, audio, and visual material authored for this site is &copy; Josiah S. Cooper, 2010&ndash;2026, and licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License (CC-BY-4.0)</a>. The full license text is also mirrored at <a href="/LICENSE">/LICENSE</a>. You are free to copy, redistribute, remix, transform, and build upon the material in any medium or format, for any purpose &mdash; including commercially &mdash; provided you give appropriate credit to Josiah S. Cooper, link to the license, and indicate if changes were made.</p>
           <p>Associated projects may carry their own terms. The <em>efilist Argument Library</em> at <a href="https://library.wuld.ink/">library.wuld.ink</a> ships under dual CC-BY-4.0 (content) and MIT (code) licensing per its repository. <em>Malgr&eacute; Tout</em> &mdash; the book &mdash; retains standard authorial copyright as an independently-published artifact; the CC-BY-4.0 license here covers the book&rsquo;s presentation pages and authorial commentary on the site, not the book&rsquo;s text itself. The <em>Ne Hoc Fiat</em> / Successor Protocol project is in development and unreleased; its surface materials are gated and not yet under public license. Readers seeking permission for uses outside the scope of CC-BY-4.0 &mdash; or for material outside its scope &mdash; should contact the author.</p>
+          <p>The site also embeds a small ambient background player on each page, which streams tracks from a curated YouTube playlist via <a href="https://www.youtube-nocookie.com/" rel="noopener">youtube-nocookie.com</a>, Google&rsquo;s reduced-tracking embed domain. When active, this still phones home to Google for video delivery, even though the no-cookie variant does not set tracking cookies until a video is interacted with. Readers who prefer zero third-party network calls can toggle ambient off using the control at the bottom of the page; the off-state persists across sessions in your browser&rsquo;s local storage.</p>
         </section>
 
         <p class="disclaimer-stamp">&copy; Josiah S. Cooper &middot; 2010&ndash;2026 &middot; This document supersedes any prior site disclaimer when posted. Revisions logged in the page&rsquo;s git history.</p>
@@ -244,5 +246,17 @@
   </footer>
 
   <script src="/components/nav.js"></script>
+  <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
+    <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
+    <div class="ambient-bar">
+      <span class="ambient-track" id="ambient-track">ambient</span>
+      <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
+      <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
+      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+    </div>
+  </div>
+<script src="/components/ambient-player.js" defer></script>
 </body>
 </html>
