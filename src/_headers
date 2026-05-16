@@ -1,0 +1,79 @@
+# wuld.ink -- Cloudflare Pages _headers
+# Belt-and-suspenders against FB-scraper 403 + OG/social rendering compat.
+# Cloudflare Pages _headers syntax: pathspec on its own line, indented
+# header lines below. Multiple pathspecs can target the same path; later
+# rules override earlier ones for the same header name.
+#
+# K24i origin: shipped after K24h FB-403 narrowing closed 5 of 8 hypotheses
+# operator-side. Surviving open hypothesis (#5: Pages/GitHub-side FB-UA
+# behavior) is closed regardless by explicit-permissive headers here.
+
+# --- Global baseline ---
+# Permissive CORS for all assets so OG scrapers (Facebook, Discord, Slack,
+# Twitter/X, LinkedIn, Bluesky, Mastodon) can fetch without preflight issues.
+# Security headers preserved (no clickjack, MIME-sniff lock, referrer trim).
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: interest-cohort=()
+  X-Robots-Tag: index, follow
+
+# --- og:image (highest-traffic-from-scrapers asset) ---
+# Explicit Content-Type override in case any client doubts the .png sniff.
+# Long-cache so platforms with their own preview-image caches don't refetch.
+/assets/og-default.png
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=2592000, immutable
+  Content-Type: image/png
+
+/assets/og-default.svg
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=2592000, immutable
+  Content-Type: image/svg+xml
+
+# --- Logo + favicon (also frequently fetched by scrapers/clients) ---
+/assets/logo/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=2592000
+
+/favicon.svg
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=2592000
+
+# --- All other assets (covers, fonts, etc) ---
+/assets/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=2592000
+
+/fonts/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable
+
+# --- Components (CSS + JS shared across surfaces) ---
+/components/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400
+
+# --- Crawler-targeted files (short-cache to let updates propagate) ---
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+# --- Sealed surfaces (belt-and-suspenders with page-level meta) ---
+# The /_/ prefix is the umbrella's noindex-by-convention namespace
+# (currently /_/successor-protocol/). Page-level <meta name="robots"
+# content="noindex,nofollow"> remains authoritative; this header is
+# a second line of defense for scrapers that ignore meta tags.
+/_/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+# --- License pointer (CC-BY-4.0; mirrored from /disclaimers/ Sec.07) ---
+/LICENSE
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+/CITATION.cff
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
