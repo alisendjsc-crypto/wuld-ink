@@ -94,3 +94,82 @@
   color: var(--c-accent);
   font-weight: 500;
 }
+
+/* ============================================================
+   K23 promote (2026-05-15): shared .essay-section family
+   folded from inline <style> blocks across SV + Alogically Is +
+   Architecture of Moral Disaster + A Life Inside vessels per
+   K2 second-instance threshold (N=4 confirmed).
+
+   Vessel-unique classes (.essay-invocation, .essay-litany in SV;
+   .essay-coda flourish-line in Alogically Is; .essay-verse +
+   .essay-note + .essay-coda section-modifier in A Life Inside)
+   remain inline as N=1.
+   ============================================================ */
+
+.essay-section {
+  margin-block-end: var(--s-7);
+}
+
+.essay-section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+  margin-block-end: var(--s-2);
+}
+
+.essay-section h2 {
+  font-family: var(--font-headline);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin-block-end: var(--s-5);
+}
+
+/* When a subtitle follows the h2, tighten the gap so the pair reads as a unit. */
+.essay-section h2:has(+ .essay-section-subtitle) {
+  margin-block-end: var(--s-2);
+}
+
+.essay-section-subtitle {
+  font-family: var(--font-headline);
+  font-style: italic;
+  color: var(--c-accent);
+  font-size: var(--t-h5);
+  margin-block-end: var(--s-5);
+}
+
+.essay-section h3 {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  letter-spacing: var(--ls-tight);
+  margin-block-start: var(--s-6);
+  margin-block-end: var(--s-3);
+}
+
+.essay-section p {
+  margin-block-end: var(--s-4);
+}
+
+.essay-section p em {
+  color: var(--c-fg);
+}
+
+/* Prefatory block — Alogically Is + A Life Inside lead-ins. */
+.essay-prefatory {
+  margin-block-end: var(--s-7);
+  padding-block-end: var(--s-5);
+  border-bottom: var(--bw-base) solid var(--c-border);
+}
+
+/* End-of-document marker — Alogically Is + A Life Inside. */
+.essay-end-marker {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-mega);
+  color: var(--c-fg-dim);
+  text-align: center;
+  margin-block-start: var(--s-9);
+}

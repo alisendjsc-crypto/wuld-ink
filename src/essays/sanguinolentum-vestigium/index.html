@@ -14,9 +14,8 @@
   <link rel="stylesheet" href="/components/mode-toggle.css">
   <link rel="stylesheet" href="/components/footer.css">
   <style>
-    /* Essay structural extensions (K23) — movement / subsection / latin
-       subtitle / invocation / litany registers. Promote to /components/essay.css
-       at second use case if pattern holds (Alogically Is is parallel). */
+    /* SV-specific vessel registers (N=1): invocation block + litany passage.
+       Shared .essay-section family promoted to /components/essay.css (K23). */
     .essay-invocation {
       font-family: var(--font-body);
       font-style: italic;
@@ -32,37 +31,6 @@
       color: var(--c-accent);
       margin-block-end: var(--s-3);
     }
-    .essay-section { margin-block-end: var(--s-7); }
-    .essay-section-eyebrow {
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
-      color: var(--c-fg-muted);
-      margin-block-end: var(--s-2);
-    }
-    .essay-section h2 {
-      font-family: var(--font-headline);
-      line-height: var(--lh-tight);
-      letter-spacing: var(--ls-tight);
-      margin-block-end: var(--s-2);
-    }
-    .essay-section-subtitle {
-      font-family: var(--font-headline);
-      font-style: italic;
-      color: var(--c-accent);
-      font-size: var(--t-h5);
-      margin-block-end: var(--s-5);
-    }
-    .essay-section h3 {
-      font-family: var(--font-headline);
-      font-weight: 500;
-      letter-spacing: var(--ls-tight);
-      margin-block-start: var(--s-6);
-      margin-block-end: var(--s-3);
-    }
-    .essay-section p { margin-block-end: var(--s-4); }
-    .essay-section p em { color: var(--c-fg); }
     .essay-litany {
       font-family: var(--font-body);
       max-width: var(--w-prose);

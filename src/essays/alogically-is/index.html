@@ -14,45 +14,11 @@
   <link rel="stylesheet" href="/components/mode-toggle.css">
   <link rel="stylesheet" href="/components/footer.css">
   <style>
-    /* Essay structural extensions (K23) — parallel to SV vessel; pattern
-       N=2 here. Promote to /components/essay.css next session if a third
-       essay (Architecture of Moral Disaster body) also adopts it. */
-    .essay-prefatory {
-      margin-block-end: var(--s-7);
-      padding-block-end: var(--s-5);
-      border-bottom: var(--bw-base) solid var(--c-border);
-    }
-    .essay-section { margin-block-end: var(--s-7); }
-    .essay-section-eyebrow {
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
-      color: var(--c-fg-muted);
-      margin-block-end: var(--s-2);
-    }
-    .essay-section h2 {
-      font-family: var(--font-headline);
-      line-height: var(--lh-tight);
-      letter-spacing: var(--ls-tight);
-      margin-block-end: var(--s-2);
-    }
-    .essay-section-subtitle {
-      font-family: var(--font-headline);
-      font-style: italic;
-      color: var(--c-accent);
-      font-size: var(--t-h5);
-      margin-block-end: var(--s-5);
-    }
-    .essay-section h3 {
-      font-family: var(--font-headline);
-      font-weight: 500;
-      letter-spacing: var(--ls-tight);
-      margin-block-start: var(--s-6);
-      margin-block-end: var(--s-3);
-    }
-    .essay-section p { margin-block-end: var(--s-4); }
-    .essay-section p em { color: var(--c-fg); }
+    /* Alogically Is vessel register (N=1): .essay-coda is the centered
+       italic Latin-flourish closing line (Punctum est punctum...).
+       NOT the same class as A Life Inside's section-modifier .essay-coda;
+       cascade is vessel-local, no conflict.
+       Shared .essay-section family promoted to /components/essay.css (K23). */
     .essay-coda {
       font-family: var(--font-headline);
       font-style: italic;
@@ -60,15 +26,6 @@
       color: var(--c-accent);
       text-align: center;
       margin-block: var(--s-7);
-    }
-    .essay-end-marker {
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-mega);
-      color: var(--c-fg-dim);
-      text-align: center;
-      margin-block-start: var(--s-9);
     }
   </style>
 </head>

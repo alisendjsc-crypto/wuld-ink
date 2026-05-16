@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>the NothinGist &mdash; Glossary &mdash; wuld.ink</title>
-  <meta name="description" content="the NothinGist — proprietary term coined in Malgré Tout. Definition pending chat-side authorship.">
+  <meta name="description" content="Some entries in this glossary are delivered by the work, not the reference layer. The NothinGist resolves in Malgré Tout, in sequence.">
 
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
@@ -13,6 +13,36 @@
   <link rel="stylesheet" href="/components/audio-player.css">
   <link rel="stylesheet" href="/components/mode-toggle.css">
   <link rel="stylesheet" href="/components/footer.css">
+
+  <style>
+    /* K23: discreet inline style for the work-delivered pointer block.
+       N=1 — promote to /components/glossary.css if a second
+       work-delivered entry ever surfaces (per book-Claude Exchange 8
+       legibility-as-category framing, future staged devices would
+       share this rendering as a class, not a one-off). */
+    .entry-work-delivered {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      max-width: 38rem;
+    }
+    .entry-work-delivered + .entry-work-delivered-pointer {
+      margin-top: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+    }
+    .entry-work-delivered-pointer a {
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-accent);
+      padding-bottom: 1px;
+    }
+    .entry-work-delivered-pointer a:hover {
+      color: var(--color-text);
+      border-bottom-color: var(--color-text);
+    }
+  </style>
 </head>
 
 <body data-audio-base="https://audio.wuld.ink">
@@ -41,8 +71,7 @@
         <h1 class="entry-term">the NothinGist</h1>
         <div class="entry-meta">
           <span><strong>Pos.</strong> n.</span>
-          <span><strong>Etymology</strong> [pending]</span>
-          <span><strong>First use</strong> Malgr&eacute; Tout</span>
+          <span><strong>Reference</strong> work-delivered &mdash; <em>Malgr&eacute; Tout</em></span>
         </div>
 
         <div class="mode-toggle" role="group" aria-label="Reading mode">
@@ -54,25 +83,36 @@
 
       <div class="entry-body">
 
-        <!-- Reveal-architecture constraint per session-K relay-doc Section
-             B.1 commitment: the NothinGist's defining surface is Malgré
-             Tout, where the term is introduced and unfolded via the
-             book's reveal architecture. The glossary entry's body
-             should respect that staging — chat-side authorship decides
-             whether to summarize what the book reveals, gesture
-             obliquely, or post-author after the book ships in stable
-             form. Cowork does not pre-empt the reveal. -->
+        <!-- Reveal-architecture lock reaffirmed per book-Claude
+             Exchange 8 Section (C), judgment (c.1). The entry is
+             COMPLETE AS RESTRAINT — the placeholder is deliberate,
+             not pending content. Hard constraints (book-side):
+               - no AI-hallucination origin disclosure (reserved for
+                 the book's endnote, deepest protected layer)
+               - no frame-tags: no "fictional," "satire,"
+                 "constructed," "transcript," "AI-generated,"
+                 "not real," "interlude"
+               - no media-object catalogue: no hosts (Nancy / Jessica),
+                 no sponsor (Air), no "podcast" descriptor
+               - no redaction aesthetics (no strikethrough, no
+                 [REDACTED], no spoiler-blur)
+               - no "forthcoming / awaiting authorship" language
+                 (that invites a content-fill that would break the lock)
+             Legibility principle: the non-entry is framed as a
+             CATEGORY ("some terms the work delivers in sequence")
+             applied consistently. A class of work-delivered terms
+             reads as an editorial stance; a lone redacted entry
+             reads as a flag. K22's /book/nothingist/ dedicated page
+             + its navigation gesture is the web analogue of the
+             print endnote flip; the glossary points there and stops.
+             Future web treatment of the reveal itself is a separate
+             Cowork micro-session per Exchange 1 A.3, not glossary
+             scope. -->
 
-        <!-- Audio block deliberately omitted. -->
-
-        <section class="entry-section" aria-labelledby="def">
-          <p class="entry-section-label" id="def">Definition</p>
-          <p class="entry-placeholder">[Definition body &mdash; awaiting chat-side authorship. (See reveal-architecture note above.)]</p>
-        </section>
-
-        <section class="entry-section" aria-labelledby="etym">
-          <p class="entry-section-label" id="etym">Etymology &amp; register</p>
-          <p class="entry-placeholder">[Etymology + register notes &mdash; awaiting chat-side authorship.]</p>
+        <section class="entry-section" aria-labelledby="note">
+          <p class="entry-section-label" id="note">Note</p>
+          <p class="entry-work-delivered">Some entries in this glossary are delivered by the work, not the reference layer. This is one of them. It resolves in <em>Malgr&eacute; Tout</em>, in sequence.</p>
+          <p class="entry-work-delivered-pointer">&rarr; <a href="/book/nothingist/">/book/nothingist/</a></p>
         </section>
 
         <section class="entry-section" aria-labelledby="see-also">
@@ -87,6 +127,7 @@
           <p class="entry-section-label" id="appears-in">Appears in</p>
           <ul class="entry-see-also">
             <li><a href="/book/">Malgr&eacute; Tout</a></li>
+            <li><a href="/book/nothingist/">Malgr&eacute; Tout &mdash; <em>NothinGist</em> section</a></li>
           </ul>
         </section>
 
