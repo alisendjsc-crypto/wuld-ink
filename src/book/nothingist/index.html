@@ -45,6 +45,21 @@
        Per book-Claude lock: no genre tag, no frame, no
        disclaimer. The page is the placeholder until the UI
        design lands.
+
+       UPDATE (K23, 2026-05-15): script-format register added,
+       Episode 1 paste-relayed verbatim. Reveal-architecture
+       lock released by Josiah-as-authoritative-source for this
+       surface (per inline CSS comment below).
+
+       UPDATE (K24b-addendum, 2026-05-16): Episode 1 cover-art
+       image (the-sole-sonance-upon-rousing.png) added between
+       h4 episode title and Cold-open direction. Future audio
+       reading possible later but not now &mdash; documented
+       per Josiah K24b-addendum direction. When ready, audio
+       slot pattern matches /essays/architecture-of-moral-disaster/
+       audio-intro band (audio-block element with
+       data-audio-key="book/nothingist/episode-1.mp3" or similar
+       key under wuld-audio R2 bucket).
        ============================================================ -->
 
   <style>
@@ -114,6 +129,21 @@
       transition: color var(--t-fast) var(--ease);
     }
     .nothingist-return a:hover { color: var(--c-accent); }
+
+    /* Episode 1 cover-art figure (K24b-addendum, 2026-05-16). Image:
+       the-sole-sonance-upon-rousing.png (3.5 MB PNG, page-local). Future
+       WebP re-encode candidate for above-fold transfer optimization. */
+    .nothingist-figure {
+      max-width: var(--w-prose);
+      margin-block: var(--s-6) var(--s-7);
+      margin-inline: auto;
+    }
+    .nothingist-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: var(--bw-base) solid var(--c-border);
+    }
 
     /* Script-format register (K23 paste-relay). NothinGist is a podcast
        transcript document; preserves speaker labels, stage directions,
@@ -215,6 +245,9 @@
         <hr class="script-rule">
         <h3 class="script-marker">Episode 1</h3>
         <h4 class="script-episode">&ldquo;The Sole Sonance Upon Rousing&rdquo;</h4>
+        <figure class="nothingist-figure">
+          <img src="the-sole-sonance-upon-rousing.png" alt="Episode 1 cover &mdash; The Sole Sonance Upon Rousing">
+        </figure>
         <hr class="script-rule">
         <p class="script-direction">[Cold open]</p>
         <p class="script-line"><span class="speaker">Jessica:</span> Are the skies really blue and the clouds really white?</p>
