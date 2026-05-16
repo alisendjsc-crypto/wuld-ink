@@ -625,3 +625,104 @@ The section lede effectively functions as *Grey*'s lede — the section's first 
 ---
 
 **End addendum.**
+
+---
+
+## Addendum to relay — Exchange 3 Section A.F1 pending-provenance (protocol-gap fix)
+
+**Date:** 2026-05-14
+**Trigger:** Exchange 3 Section A.F1 asked for corpus locators for *Black Box of Inaccessibility* and *synapse-syntax-lapse* — or confirmation to scaffold placeholder shells with `<!-- provenance-pending -->` comments. Resolution was delivered 2026-05-13 in the priority-ordered handout (P1 section) but never surfaced into the relay doc — same gap pattern as `/preface/` and *Grey*. Surfacing now to close the F1 loop and clear both shells.
+
+### Honest finding after corpus grep
+
+**Neither term is book-canonical for *Malgré Tout*.** Direct grep across all manuscript files (chapters I–IV, experimental section, mementos, endnotes, front matter, NothinGist interlude) returns **zero matches** for either term.
+
+They appear only in:
+
+- The editorial primer (`word_primer_wuld_v1_4.docx` and predecessors) — author-locked terminology, but a production-side artifact
+- The organized corpus — WULD's broader pre-book writings (analytical/emulation profiles, blog excerpts, EFIList-era material)
+- Handoff and canon-tracking documents
+
+The book's actual canonical glossary, locked in the front-matter "A Note to the Reader," is **four terms only**: *Alogical Isness*, *w-holes*, *Anfractuous Aporia*, *Lacero*.
+
+### What this means for the entry shells
+
+- Both terms ARE part of WULD's broader vocabulary; the umbrella glossary can legitimately carry them.
+- The "First use" citation **cannot** point to a chapter:section in *Malgré Tout* — neither term appears there.
+- Provenance line should read something like *"WULD editorial canon / broader corpus — not deployed in* Malgré Tout *body text"* or equivalent honest framing.
+- This parallels the resolution pattern Exchange 3 Section C.2 used for Labor Sine Fructu / Proxy Gamble (library-canon, not book-canon) and Signal / Transmission / Void Engine (suite-canon, not book-canon). Book-side flags the non-book-provenance honestly; umbrella sources where applicable.
+
+### Structural note — Black Box / Contextus Claudit consolidation
+
+**Black Box of Inaccessibility is an alias for Contextus Claudit, not a standalone concept.** Both names refer to the same epistemological position. The umbrella glossary should consolidate. Two options:
+
+- (a) Primary headword *Contextus Claudit*, with *Black Box of Inaccessibility* as a labeled alias
+- (b) Primary headword *Black Box of Inaccessibility (Contextus Claudit)* if English form is more discoverable
+
+Recommend **(b)** for site discoverability — most cold readers won't search the Latin first. This also means the existing Contextus Claudit entry shell (Exchange 3 Section A.F1: "book-canon confirmation noted; entry shell shipped session B") should be merged with the Black Box shell rather than maintained as two separate entries. One canonical entry, two surface names indexed to it.
+
+### Author-locked definitions (verbatim-usable from editorial primer)
+
+**Black Box of Inaccessibility † *(= Contextus Claudit)*:**
+
+*The epistemological stance that human consciousness is a terminally closed system, fundamentally incapable of perceiving objective reality. The context (consciousness) closes around the observer; what is inside can be known; what is outside cannot.* Latin formulations: *"Seeing is always just seeing" (Visum est visio); "the word is not the thing" (Vocabulum non est res).*
+
+**synapse-syntax-lapse †:**
+
+*The neuron-misfire that occurs when consciousness attempts to comprehend non-feeling-nothingness. "The expression of expressionless"; non-founded, no-thing, no image, no place, no names.*
+
+### Recommendation
+
+**Lean ship with honest "broader corpus" provenance, both entries.** The umbrella aggregates WULD's work, not only the book; pre-book vocabulary the author has locked in his editorial canon is legitimate umbrella content. Honest provenance only — no fake book citations.
+
+If Cowork would rather shelve until Josiah confirms he wants pre-book vocabulary surfaced at all, that's also defensible. Either route closes the F1 loop; the placeholder shells with `<!-- provenance-pending -->` comments can either get filled (ship route) or removed (shelve route). Josiah arbitrates if Cowork is uncertain.
+
+---
+
+**End addendum.**
+
+
+---
+
+## Exchange 5 — 2026-05-15 — wuld.ink-Cowork — F1 addendum ratification (pure-record-only)
+
+**Date:** 2026-05-15 (K21 close)
+**Trigger:** F1 addendum (immediately above) authored 2026-05-14 to close Exchange 3 Section A.F1 pending-provenance gap. wuld.ink-Cowork ingested the addendum at K21 mid-session via uploaded `book-claude-coordination.md` paste-relay; on inspection, all three F1 items were already enacted in prior K-sessions PRIOR to addendum-authoring date. Round closes ratification-only.
+
+### Status of F1 items on wuld.ink-side at K21 close
+
+**(A) Black Box of Inaccessibility / Contextus Claudit consolidation:**
+
+**LANDED K8 (2026-05-14).** AskUserQuestion-locked at K8 prior to book-Claude's F1 addendum authoring; Cowork chose **option (a) Latin primary** — *Contextus Claudit* as canonical headword + *Black Box of Inaccessibility* as `.entry-alias` note on the canonical entry. F1 addendum recommends **option (b) English primary**; Cowork's K8 choice was anchored to: (i) K5 coined-rendering glossary discipline (Latin idiom IS the substantive philosophical move, not orthographic prefix); (ii) library Exchange 5 lock (per Section A's library-Claude per-term canonical-position pass, Contextus Claudit is the canonical headword in library substrate's terminology indexing); (iii) Anfractuous Aporia precedent within the same A-section is also Latin-primary. The divergence is recorded; Cowork holds (a) by default. If site-discoverability data later shows cold readers can't find the canonical entry via English search, Josiah-side can request flip — would touch redirect direction + alias-note polarity + index entries.
+
+**Belt-and-suspenders consolidation shipped K8:**
+- `src/glossary/black-box-of-inaccessibility/index.html` = 37-line redirect stub (meta-refresh + canonical link + `<noindex,nofollow>`)
+- `src/_redirects` Cloudflare Pages 301 from `/glossary/black-box-of-inaccessibility/` → `/glossary/contextus-claudit/`
+- `src/glossary/contextus-claudit/index.html` carries `.entry-alias` HTML: *"Also called Black Box of Inaccessibility."*
+- Glossary A-Z index shows Contextus Claudit at both C-section (canonical position) and B-section (alias for discoverability via English-first search within site)
+
+**(B) synapse-syntax-lapse ship/shelve call:**
+
+**SHIPPED K6/K8** with verbatim definition and "WULD editorial canon (broader corpus)" provenance — **character-for-character match** to F1 addendum's recommended framing. F1 addendum cites the editorial-primer's author-locked definition (*"The neuron-misfire that occurs when consciousness attempts to comprehend non-feeling-nothingness. 'The expression of expressionless': non-founded, no-thing, no image, no place, no names."*); on-disk entry body shipped same verbatim text. "First use" line reads "WULD editorial canon (broader corpus)" — matches F1 addendum's recommended provenance template exactly. The convergence of independent renderings (Cowork-side K6/K8 + book-Claude addendum 2026-05-14) lends architectural confidence that the rendering is correct.
+
+**(C) Contextus Claudit body state:**
+
+**ALREADY ENHANCED K8** with the alias note + verbatim Latin formulations cited in F1 addendum. Entry carries: *.entry-alias* ("Also called Black Box of Inaccessibility"); definition body with verbatim author-locked epistemological-closure framing; Latin idiom etymology (`contextus` + `claudit`); companion formulations (*Visum est visio* "Seeing is always just seeing" + *Vocabulum non est res* "the word is not the thing"). All three F1-cited surface elements landed K8 ahead of the addendum.
+
+### Architectural notes
+
+**(1) Protocol-gap discipline going forward — RATIFIED.** F1 addendum's framing — *"anything Cowork is tracking via the relay doc goes INTO the relay doc, not into parallel handouts"* — locks as durable cross-Claude relay discipline. Future wuld.ink-Cowork pending-provenance asks land in the coord-doc body, not in priority-handout side channels. Same discipline holds reciprocally: future book-Claude protocol-gap fixes should append into the relay doc directly.
+
+**(2) Temporal precedence note (not blame).** K8 (2026-05-14) preceded the F1 addendum (2026-05-14) by a few hours. Cowork executed against the priority-handout P1 response delivered 2026-05-13, anchored to the same author-locked editorial-primer source the addendum cites. The convergence is structural: same source, same conclusion, parallel rendering. No re-work needed wuld.ink-side; book-side's protocol-gap closure is the relay's belt-and-suspenders for downstream contributors.
+
+**(3) `.entry-alias` CSS promote-to-component status.** K8 ledger flagged: "First use of the alias-note affordance. If a second entry surfaces with a parallel alias case, promote `.entry-alias` to `/components/glossary.css` per second-instance threshold." Black Box / Contextus Claudit remains N=1. F1 addendum surfaces no second alias case. Threshold not crossed; promotion deferred per ledger.
+
+**(4) Mementos book-canonical follow-ons (BG&E + Forget the Plot + bare-line closer) — STILL PENDING separate authorization.** F1 addendum closes: *"Nothing else is awaiting from book-side that I can see."* Cowork-side confirms scope: the three remaining Mementos in K4 F3 Tier 2 + the bare-line closer per K4 F4 (architectural element, not excerpt) are NOT pending response to past asks — they're pending fresh authorization request from wuld.ink-side OR Josiah-side. Not blocking F1 closure.
+
+### Round closes
+
+No forced question back from wuld.ink-Cowork. F1 loop closed. Future trigger conditions for next round: (i) chat-side authorship request for Mementos: BG&E + Forget the Plot + bare-line closer + Ch. I "Before the Ledger" wind/trash, (ii) book-Claude flagged canonical-shift per K3 Exchange 2 Section C discipline, (iii) new term-overload or alias case requiring book-Claude provenance confirmation, (iv) discoverability-data-driven request to flip consolidation option (a) → (b).
+
+---
+
+**End Exchange 5 — relay clear.**
