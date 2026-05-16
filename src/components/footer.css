@@ -88,3 +88,21 @@
   color: var(--c-fg);
   border-bottom-color: var(--c-accent);
 }
+
+/* .library-link - mono active link for footer-housed library.wuld.ink reference.
+   Mirrors .disclaimer-link register minus the chevron prefix. K24e. */
+.page-footer .library-link {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+.page-footer .library-link:hover,
+.page-footer .library-link:focus-visible {
+  color: var(--c-fg);
+  border-bottom-color: var(--c-accent);
+}
