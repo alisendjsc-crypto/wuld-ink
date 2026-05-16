@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="license" href="/LICENSE">
+  <title>Music &mdash; wuld.ink</title>
+  <meta name="description" content="Audio mirror — selected releases from W.U.L.D. Click any card to listen / purchase on Bandcamp; full audio stays on the canonical source.">
+
+  <link rel="canonical" href="https://wuld.ink/music/">
+  <meta property="og:title" content="Music &mdash; wuld.ink">
+  <meta property="og:description" content="Audio mirror — selected releases from W.U.L.D. Click any card to listen / purchase on Bandcamp; full audio stays on the canonical source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/music/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Music &mdash; wuld.ink">
+  <meta name="twitter:description" content="Audio mirror — selected releases from W.U.L.D. Click any card to listen / purchase on Bandcamp; full audio stays on the canonical source.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Music",
+    "description": "Audio mirror — selected releases from W.U.L.D. Click any card to listen / purchase on Bandcamp; full audio stays on the canonical source.",
+    "url": "https://wuld.ink/music/",
+    "image": "https://wuld.ink/assets/og-default.png",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://wuld.ink/#website"
+    },
+    "mainEntity": {
+      "@type": "MusicAlbum",
+      "name": "W–HOLE",
+      "byArtist": {
+        "@type": "MusicGroup",
+        "name": "W.U.L.D.",
+        "url": "https://wuld.bandcamp.com/"
+      },
+      "datePublished": "2019",
+      "numTracks": 8,
+      "image": "https://wuld.ink/assets/music/w-hole-cover.jpg",
+      "url": "https://wuld.bandcamp.com/album/w-hole-2"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/footer.css">
+
+  <style>
+    /* ============================================================
+       /music/ — audio mirror, link-out card grid.
+
+       Pattern-matches /watch/ shape (session G) but adapted for
+       Bandcamp link-outs rather than YouTube facade pattern. No
+       player embeds, no R2 self-hosting; the canonical purchase /
+       listen surface is Bandcamp. Cards exist to direct visitors
+       there with cover art + metadata context.
+
+       To add a new album: paste a new <article class="music-card">
+       block with cover image at /assets/music/<slug>-cover.jpg,
+       per-album metadata (title, year, tracks, runtime), and the
+       Bandcamp URL. Cover images should be square (1:1) and
+       compressed for web (~150-400 KB at 1024×1024).
+       ============================================================ */
+
+    .music-page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+
+    .page-hero { padding-block: var(--s-7) var(--s-5); }
+    .page-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+    .page-hero-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h1);
+      line-height: var(--lh-tight);
+      margin-block: 0 var(--s-3);
+    }
+    .page-intro {
+      max-width: 50ch;
+      margin-block-end: var(--s-6);
+    }
+
+    .bandcamp-cta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--s-3);
+      padding: var(--s-4) var(--s-5);
+      border: var(--bw-base) solid var(--c-border);
+      background-color: var(--c-bg-elevated);
+      margin-block-end: var(--s-7);
+    }
+    .bandcamp-cta-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg);
+      opacity: 0.7;
+    }
+    .bandcamp-cta a {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      color: var(--c-accent);
+      text-decoration: underline;
+      text-decoration-thickness: var(--bw-thin);
+      text-underline-offset: 3px;
+    }
+    .bandcamp-cta a:hover { color: var(--c-fg); }
+
+    .music-grid-heading {
+      font-family: var(--font-headline);
+      font-size: var(--t-h3);
+      margin-block: var(--s-6) var(--s-4);
+    }
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+      gap: var(--s-5);
+    }
+
+    .music-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--c-bg-elevated);
+      border: var(--bw-base) solid var(--c-border);
+      transition: border-color var(--t-fast) var(--ease);
+    }
+    .music-card:hover { border-color: var(--c-accent); }
+    .music-card:focus-within {
+      outline: var(--bw-base) solid var(--c-focus);
+      outline-offset: 2px;
+    }
+
+    .music-cover-wrap {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      background-color: var(--c-bg);
+      border-bottom: var(--bw-base) solid var(--c-border);
+      overflow: hidden;
+      display: block;
+    }
+    .music-cover {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition:
+        filter var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease);
+    }
+    .music-card:hover .music-cover { filter: brightness(0.7); }
+
+    .music-meta {
+      padding: var(--s-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+    .music-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+    }
+    .music-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h4);
+      line-height: var(--lh-snug);
+      color: var(--c-fg);
+      margin-block: 0;
+      transition: color var(--t-fast) var(--ease);
+    }
+    .music-card:hover .music-title { color: var(--c-accent); }
+
+    .music-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg);
+      opacity: 0.7;
+      margin-block: var(--s-1) var(--s-3);
+    }
+    .music-stat::after {
+      content: " ·";
+      color: var(--c-border);
+      margin-inline-start: var(--s-2);
+    }
+    .music-stat:last-child::after { content: ""; }
+
+    .music-tracklist {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg);
+      margin-block-end: var(--s-3);
+    }
+    .music-tracklist summary {
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      list-style: none;
+      padding-block: var(--s-1);
+    }
+    .music-tracklist summary::-webkit-details-marker { display: none; }
+    .music-tracklist summary::before { content: "+ "; }
+    .music-tracklist[open] summary::before { content: "− "; }
+    .music-tracklist ol {
+      list-style: none;
+      padding: 0;
+      margin: var(--s-2) 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .music-tracklist li {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--s-3);
+      padding-block: 2px;
+      border-bottom: var(--bw-thin) dashed var(--c-border);
+    }
+    .music-tracklist li:last-child { border-bottom: none; }
+    .music-track-num { color: var(--c-border); min-width: 1.5em; }
+    .music-track-title { flex: 1; color: var(--c-fg); }
+    .music-track-time { color: var(--c-fg); opacity: 0.7; font-variant-numeric: tabular-nums; }
+
+    .bandcamp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      padding: var(--s-3) var(--s-4);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      border: var(--bw-thin) solid var(--c-accent);
+      background: transparent;
+      text-decoration: none;
+      align-self: flex-start;
+      transition:
+        background-color var(--t-fast) var(--ease),
+        color var(--t-fast) var(--ease);
+    }
+    .bandcamp-link:hover {
+      background-color: var(--c-accent);
+      color: var(--c-fg);
+    }
+    .bandcamp-link:focus-visible {
+      outline: var(--bw-base) solid var(--c-focus);
+      outline-offset: 2px;
+    }
+    .bandcamp-link .arrow { transition: transform var(--t-fast) var(--ease); }
+    .bandcamp-link:hover .arrow { transform: translateX(2px); }
+  </style>
+</head>
+
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="music-page">
+
+    <section class="page-hero">
+      <p class="page-hero-eyebrow">08 &middot; Audio mirror</p>
+      <h1 class="page-hero-title">Music</h1>
+    </section>
+
+    <p class="page-intro">
+      Selected releases from W.U.L.D. Click any cover to listen or purchase on Bandcamp &mdash; the canonical surface for the audio itself. This page is the umbrella&rsquo;s mirror.
+    </p>
+
+    <div class="bandcamp-cta">
+      <span class="bandcamp-cta-label">Source profile</span>
+      <a href="https://wuld.bandcamp.com/"
+         target="_blank"
+         rel="noopener noreferrer">
+        wuld.bandcamp.com
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
+    <h2 class="music-grid-heading">Featured</h2>
+
+    <div class="music-grid">
+
+      <article class="music-card">
+        <a class="music-cover-wrap"
+           href="https://wuld.bandcamp.com/album/w-hole-2"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="W&ndash;HOLE on Bandcamp">
+          <img class="music-cover"
+               src="/assets/music/w-hole-cover.jpg"
+               alt="W&ndash;HOLE album cover &mdash; high-contrast black-and-white photograph of a cat named Mr Grey"
+               width="1024" height="1024"
+               loading="lazy">
+        </a>
+        <div class="music-meta">
+          <span class="music-eyebrow">Album &middot; 2019</span>
+          <h3 class="music-title">W&ndash;HOLE</h3>
+          <div class="music-stats">
+            <span class="music-stat">8 tracks</span>
+            <span class="music-stat">45:35</span>
+            <span class="music-stat">MP3 / WAV</span>
+          </div>
+          <details class="music-tracklist">
+            <summary>Tracklist</summary>
+            <ol>
+              <li><span class="music-track-num">01</span><span class="music-track-title">Rose Water</span><span class="music-track-time">2:14</span></li>
+              <li><span class="music-track-num">02</span><span class="music-track-title">White Void</span><span class="music-track-time">5:35</span></li>
+              <li><span class="music-track-num">03</span><span class="music-track-title">The Darkest Place I&rsquo;ve Ever Walked</span><span class="music-track-time">4:10</span></li>
+              <li><span class="music-track-num">04</span><span class="music-track-title">Get God</span><span class="music-track-time">5:40</span></li>
+              <li><span class="music-track-num">05</span><span class="music-track-title">Fever Dream</span><span class="music-track-time">4:23</span></li>
+              <li><span class="music-track-num">06</span><span class="music-track-title">Stomping Giants</span><span class="music-track-time">5:00</span></li>
+              <li><span class="music-track-num">07</span><span class="music-track-title">Etheric Predators</span><span class="music-track-time">4:36</span></li>
+              <li><span class="music-track-num">08</span><span class="music-track-title">The Final Revelation is Death</span><span class="music-track-time">13:57</span></li>
+            </ol>
+          </details>
+          <a class="bandcamp-link"
+             href="https://wuld.bandcamp.com/album/w-hole-2"
+             target="_blank"
+             rel="noopener noreferrer">
+            Listen on Bandcamp
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="bandcamp-cta" style="margin-block-start: var(--s-7);">
+      <span class="bandcamp-cta-label">Full discography</span>
+      <a href="https://wuld.bandcamp.com/music"
+         target="_blank"
+         rel="noopener noreferrer">
+        wuld.bandcamp.com/music
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>

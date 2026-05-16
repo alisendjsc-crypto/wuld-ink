@@ -1,9 +1,31 @@
-# wuld.ink — robots.txt
-# Posture: permissive. The author uses AI in the work; explicit-allow rather than
-# disallowing AI crawlers matches that position. Treat any specific bot blocked
-# at edge level as an infrastructure decision, not a content-policy one.
+# wuld.ink — robots policy
+# Explicitly permissive: all crawlers welcome, all paths.
+# Sealed surfaces (/_/*) carry noindex,nofollow meta per-page;
+# this file does not gate them — page-level meta does.
 
 User-agent: *
+Allow: /
+
+# Belt-and-suspenders: name common OG/social scrapers explicitly.
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
 Allow: /
 
 Sitemap: https://wuld.ink/sitemap.xml

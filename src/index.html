@@ -21,6 +21,47 @@
   <meta name="twitter:title" content="wuld.ink">
   <meta name="twitter:description" content="WULD — philosophical work by Josiah Cooper. Pessimism, nihilism, the proxy gamble, the void engine.">
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://wuld.ink/#website",
+    "name": "wuld.ink",
+    "alternateName": "WULD",
+    "url": "https://wuld.ink/",
+    "description": "WULD — philosophical work by Josiah Cooper. Pessimism, nihilism, the proxy gamble, the void engine.",
+    "inLanguage": "en",
+    "image": "https://wuld.ink/assets/og-default.png",
+    "author": {
+      "@type": "Person",
+      "name": "Josiah S. Cooper",
+      "alternateName": [
+        "WULD",
+        "AnomicIndividual87",
+        "Evilis Anihilis Uls"
+      ],
+      "url": "https://wuld.ink/",
+      "sameAs": [
+        "https://wuld.bandcamp.com/",
+        "https://www.youtube.com/@WULDIncorporated"
+      ]
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Josiah S. Cooper",
+      "alternateName": [
+        "WULD",
+        "AnomicIndividual87",
+        "Evilis Anihilis Uls"
+      ],
+      "url": "https://wuld.ink/",
+      "sameAs": [
+        "https://wuld.bandcamp.com/",
+        "https://www.youtube.com/@WULDIncorporated"
+      ]
+    }
+  }
+  </script>
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
   <link rel="stylesheet" href="/components/nav.css">
@@ -139,20 +180,21 @@
       flex: 0 0 auto;
     }
 
-    /* Text fallback (hidden by default; shown when reduced-motion is on) */
-    .cover-mark-text-fallback {
+    /* Image fallback (hidden by default; shown when reduced-motion is on).
+       K24h: switched from plain "wuld.ink" text to full W.U.L.D. logo image.
+       Logo image also doubles as video poster (preload state). */
+    .cover-mark-img-fallback {
       display: none;
-      font-family: var(--font-display);
-      font-size: clamp(4rem, 14vw, 9rem);
-      font-weight: 500;
-      line-height: 0.95;
-      letter-spacing: var(--ls-tight);
-      color: var(--c-fg);
+      width: 100%;
+      max-width: clamp(20rem, 60vw, 40rem);
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
     }
 
     @media (prefers-reduced-motion: reduce) {
       .cover-mark-video { display: none; }
-      .cover-mark-text-fallback { display: inline-block; }
+      .cover-mark-img-fallback { display: block; margin-inline: auto; }
     }
 
     /* ---------- Cover subhead (session I) ----------
@@ -432,6 +474,7 @@
         <a href="/glossary/">Glossary</a>
         <a href="/void-engine/">Void</a>
         <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
         <a href="/book/">Book</a>
         <a href="/blog/">Blog</a>
       </nav>
@@ -451,11 +494,11 @@
       <h1 class="cover-mark cover-mark--video" aria-label="W.U.L.D. Incorporated">
         <!-- Reduced-motion + no-video fallback. Brackets come from .cover-mark
              pseudo-elements (red accent), preserving the umbrella signature. -->
-        <span class="cover-mark-text-fallback" aria-hidden="true">wuld.ink</span>
+        <img class="cover-mark-img-fallback" src="/assets/logo/wuld-icon.png" alt="W.U.L.D. — wuld.ink" aria-hidden="true" width="792" height="792">
         <video class="cover-mark-video"
                autoplay muted loop playsinline
                preload="auto"
-               poster="/assets/intro_stamp_poster.jpg">
+               poster="/assets/logo/wuld-icon.png">
           <source src="/assets/intro_stamp_1080p.webm" type="video/webm">
           <source src="/assets/intro_stamp_1080p.mp4" type="video/mp4">
         </video>
