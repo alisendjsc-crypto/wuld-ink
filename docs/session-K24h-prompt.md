@@ -28,6 +28,29 @@ Three findings surfaced post-K24g-deploy that drive K24h:
 
 ================================================================================
 
+## POST-WRITE DIAGNOSTIC NARROWING (2026-05-16, post-prompt-commit)
+
+Cloudflare dashboard inspection between this prompt's authoring and K24h open ruled out further hypotheses on top of the ones already listed in workstream 1a (AI Crawl Control, Bot Fight Mode, WAF managed rules, Pages Access policy, robots.txt). Visual verification via dashboard screenshots confirmed:
+
+* **WAF Custom rules** — 0/5 used. No custom rules exist.
+* **Rate limiting rules** — 0/1 used. No rate-limit rules exist.
+* **Managed rules** — 0 active.
+* **Rules → Overview (zone-level)** — only the K24g/E2-era "Redirect from WWW to root [Template]" rule active (1/10 Redirect Rules); URL Rewrite / Configuration / Origin / Request Header / Cache Rules / Snippets / Cloud Connector / Page Rules all empty.
+
+**Current surviving FB 403 hypotheses (K24h workstream 1a targets):**
+
+1. **Pages Functions / Workers** bound to the `wuld-ink` Pages project — check Workers & Pages → wuld-ink → Functions tab. Not surfaced in zone-level Rules view.
+2. **Bulk Redirects** — separate surface from the 1/10 Redirect Rules; the "Go to Bulk Redirects" link in the Rules → Overview screenshot is a different feature. Unverified.
+3. **Account-level rules** — not visible in the zone view; check account scope (e.g., account-wide WAF / firewall rules / Page Shield policies).
+4. **`_redirects` file** — entries beyond the `/  /combined  200` shipped K24e. Verify the deployed file matches expectation (curl `https://wuld.ink/_redirects` from sandbox; or `git show HEAD:src/_redirects` if present, else confirm absence).
+5. **Pages-side / GitHub-side behavior on FB User-Agent** — the 403 may not be Cloudflare at all. Sandbox curl with FB UA returns 200; production FB-scraper IPs may hit something downstream of Cloudflare (Pages routing, GitHub Pages-of-Pages, or FB's own scraper infrastructure).
+
+**Workstream 1a is SUPERSEDED** by this narrowing; pursue the five branches above rather than the original Bot Fight Mode + WAF Custom rule path. Workstreams 1b (`robots.txt`) and 1c (`sitemap.xml`) remain valid as belt-and-suspenders work even though robots.txt is now confirmed NOT the FB-403 cause.
+
+Operator-side actions still appropriate at K24h open: capture Workers & Pages → wuld-ink → Functions tab state + Bulk Redirects state + account-level rule state via dashboard screenshots, then surface findings to Cowork for hypothesis intersection. Cowork-side: re-run FB UA curl post any operator-side change to confirm 403→200 transition.
+
+================================================================================
+
 ## K24h PRIMARY SCOPE — Recommended default: (a) infra hygiene + music tab + logo + schema.org
 
 Recommended primary track is 4 workstreams sequenced as: Cloudflare bot diagnostic FIRST (operator-side; observation-only from Cowork; unblocks FB) → crawler hygiene (robots.txt + sitemap.xml; Cowork autonomous) → /music/ tab + W.U.L.D logo placement (asset-handoff dependent on Josiah) → schema.org JSON-LD wave-edit (Cowork autonomous; pattern-matches K24g OG injection).
