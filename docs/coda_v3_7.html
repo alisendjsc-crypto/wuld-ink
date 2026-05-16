@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+  Library substrate REFERENCE COPY (v3.7.1) — NOT a wuld.ink deploy target.
+
+  Authoritative source: alisendjsc-crypto/efilist-argument-library
+  Single-file distribution: combined.html (md5 dd2abd01a43c2f173c98aa1b8c88bcbb)
+  This file is one of three regenerable source views — superseded by combined.html
+  for any deployment purpose. Kept here for substrate inspection (router probing,
+  schema reference, regeneration context). See docs/library-claude-coordination.md
+  Exchange 12 + 13 for the canonical-substrate-shape locks.
+
+  Do not link to or serve this file from wuld.ink-side surfaces. Cross-link grammar
+  for the library lives at library.wuld.ink/#/library | #/rwe | #/coda only.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coda — efilist argument library</title>
+<meta name="description" content="On the axiom this library does not derive." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F0E0C;
+    --ink: #E8E4DC;
+    --mute: #8C887F;
+    --rule: #2B2823;
+    --accent: #B8AC95;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  body {
+    font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    line-height: 1.78;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .frame {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 4.5rem 1.75rem 6rem;
+  }
+  .return {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--mute);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    display: inline-block;
+    margin-bottom: 4.5rem;
+    border-bottom: 1px solid transparent;
+    transition: color 200ms ease, border-color 200ms ease;
+  }
+  .return:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: 2.75rem;
+    line-height: 1.05;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.005em;
+  }
+  .subtitle {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11.5px;
+    color: var(--mute);
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    display: block;
+    margin-bottom: 3rem;
+  }
+  hr.lede {
+    border: none;
+    border-top: 1px solid var(--rule);
+    width: 64px;
+    margin: 0 0 2.75rem 0;
+  }
+  p {
+    margin: 0 0 1.45em 0;
+  }
+  p.lead::first-letter {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 3.6rem;
+    line-height: 0.85;
+    float: left;
+    padding: 0.22rem 0.55rem 0 0;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  em { font-style: italic; color: var(--accent); }
+  .pause {
+    display: block;
+    text-align: center;
+    color: var(--mute);
+    letter-spacing: 0.55em;
+    margin: 2.75rem 0 2.25rem;
+    font-size: 0.85rem;
+    user-select: none;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  sup.fn-ref {
+    line-height: 0;
+    font-size: 0.7em;
+    vertical-align: super;
+    margin-left: 0.05em;
+  }
+  sup.fn-ref a {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 400;
+    transition: color 200ms ease;
+  }
+  sup.fn-ref a:hover { color: var(--ink); }
+  hr.endrule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    width: 100%;
+    margin: 4rem 0 2rem 0;
+  }
+  .endnote {
+    font-size: 0.85em;
+    line-height: 1.62;
+    color: var(--mute);
+  }
+  .endnote p {
+    margin-bottom: 0.6em;
+  }
+  .endnote p:last-child { margin-bottom: 0; }
+  .endnote .fn-num {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.85em;
+    color: var(--accent);
+    margin-right: 0.5em;
+    letter-spacing: 0.04em;
+  }
+  .endnote em {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .endnote :target {
+    background: rgba(184, 172, 149, 0.08);
+    transition: background 600ms ease;
+  }
+  @media (max-width: 480px) {
+    body { font-size: 18px; line-height: 1.72; }
+    h1 { font-size: 2.25rem; }
+    .frame { padding: 3rem 1.25rem 4.5rem; }
+    p.lead::first-letter { font-size: 2.9rem; }
+    .return { margin-bottom: 3.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <a class="return" href="index.html">← the library</a>
+
+  <h1>Coda</h1>
+  <span class="subtitle">on the axiom this library does not derive</span>
+  <hr class="lede" />
+
+  <p class="lead">This library catalogs 78 ways the world declines to hear the case against birth. It maps 2,886 transitions between defensive postures. It names 34 mechanisms by which the objection is metabolized into harmlessness. What it does not do — what no library can do — is prove that any of this matters.</p>
+
+  <p>The whole apparatus rests on a single claim it does not derive: that suffering has priority. That the prevention of pain weighs more than the generation of pleasure. That the cries of the hurt place a demand on us that the silence of the unborn does not. This is the floor the library stands on. It is also a floor that nothing supports.</p>
+
+  <p>Efforts at derivation have been made. Benatar's asymmetry argues that the absence of pain is good even when there is no one to enjoy that absence, while the absence of pleasure is not bad when there is no one to be deprived of it — and from this asymmetry the antinatalist conclusion is meant to follow. But the asymmetry presupposes that harms and benefits have non-symmetrical existence-conditions, which is itself a claim about what suffering is, what it demands, what its standing is relative to the standing of joy. The argument is internally consistent. It is not a derivation. It is a restatement of the axiom in a more rigorous register.</p>
+
+  <p>Negative-utilitarian arithmetic is the same move at a different temperature: suffering counts more, therefore the math works out. The math works out because suffering counts more. The phenomenology supports the axiom — pain is more readily recognized as bad than pleasure is recognized as good, demands more of us, is harder to dismiss, has a non-fungibility in lived experience that positives do not — but tracking something real is not the same as being derived from something more basic. The phenomenology <em>is</em> the axiom, dressed in description.</p>
+
+  <p>So: yes. Suffering-priority is asserted, not proved. The library is an apparatus built on an unprovable floor. This is the honest version.</p>
+
+  <span class="pause">· · ·</span>
+
+  <p>But the move the corpus implicitly invites — the demand that the antinatalist <em>justify</em> this axiom, derive it, ground it, before being permitted to use it — is itself a commitment. The demand for derivation is not given by the universe. Rationalism is also a choice: the privileging of logical consistency, the requirement that serious claims terminate in foundations, the discipline of refusing assertion that cannot be supported. These are not features of reality. They are postures we adopt toward reality, defensible on their own terms, indefensible from outside them.</p>
+
+  <p>Follow the demand for derivation all the way down. Suffering-priority is not derived — but neither is its opposite. Vitalism is not derived. The natalist's claim that the continuation of human consciousness has intrinsic value, that being is better than non-being, that there is something meritorious about the perpetuation of the species — none of this is derived either. The argument from intuition, the gesture toward biological imperative, the appeal to the felt weight of love and connection: these are all axiomatic moves at different latitudes. The whole field is axioms. The asymmetry between antinatalist and natalist is not that one has proofs and the other has stances. They both have stances. The antinatalist has the advantage only of having admitted it.</p>
+
+  <p>Go further. The demand that axioms must be defensible is itself an axiom. The meta-claim — that serious philosophical claims must terminate in something more basic — is not derivable from anything more basic without infinite regress. At some level, the rationalist apparatus runs out of floor and stands on its own assertion that floors are required. The recognition is old. It is, broadly, Pyrrhonist; it is also Wittgensteinian, where the spade turns and you stop and say <em>this is simply what I do</em>. The library, here at its terminus, makes contact with the same point from a different angle.</p>
+
+  <span class="pause">· · ·</span>
+
+  <p>What is there, when the demand for derivation runs out? <em>Alogical isness.</em> Not the absence of logic — irrationality is still a structured relation to rationality. <em>Alogical</em>: outside the binary entirely. The substrate of what is, prior to any ordering laid over it. The universe is, before it is <em>for</em> or <em>against</em> anything. Before suffering matters more, or matters less, or is salient at all. Before the demand for proof. Before the architecture of value.</p>
+
+  <p>This is the floor that grounds nothing. It is also the most honest place to stand, because it does not pretend to be a ground.</p>
+
+  <p>From there, every commitment becomes visible as a commitment. Suffering-priority is a stake — a choice made in response to a particular encounter with the world, a particular weight assigned to a particular set of phenomena. The choice has consequences. It directs attention. It animates the building of libraries like this one. What it does not have — what no commitment has — is exemption from being a choice.</p>
+
+  <p>The library does not need foundations to do its work. The descriptive content stands as observation regardless of the axiom's standing: the 78 objections are encountered patterns, the transitions are mapped retreats, the mechanisms are catalogued moves in a real game played in real discourse. This is empirical material. It is <em>true</em><sup class="fn-ref"><a href="#fn1">1</a></sup> that natalist defenders deflect, true that the deflections follow recognizable patterns, true that the patterns admit of mechanism-level analysis. That is true whether or not suffering-priority is true.</p>
+
+  <p>What the library does — what it has always done — is hold space for the case. It does not force the conclusion. It makes it possible to see the conclusion clearly enough to assent or refuse.</p>
+
+  <p>The author assents. He does so knowing the assent is not derivation. He does so on the alogical floor, where nothing is grounded and every stake is visible as a stake. This is not nihilism in the dismissive sense. Nihilism in that sense is itself a metaphysical position, with its own undefended axioms about meaninglessness and consequence. The alogical floor is prior to that. It is prior to <em>all</em> of it.</p>
+
+  <p>The library ends here. What remains is the act of standing on it.</p>
+
+  <hr class="endrule" />
+  <aside class="endnote">
+    <p id="fn1"><span class="fn-num">1</span>The use holds locally — descriptive truth-talk works where descriptive register is shared. But <em>truth</em> is itself a structure laid over what is; alogical isness is prior to truth-conditions as it is prior to value-conditions. Flagged, not retracted.</p>
+  </aside>
+</div>
+</body>
+</html>
