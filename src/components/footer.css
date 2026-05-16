@@ -64,3 +64,27 @@
   content: "↳ ";
   color: var(--c-accent);
 }
+
+/* K24a — disclaimer link (replaces .disclaimer-pending stub once
+   /disclaimers/ goes live). Same mono register; accent color on
+   hover; preserves the chevron prefix from .disclaimer-pending. */
+.page-footer .disclaimer-link {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color var(--motion-fast, 150ms) ease, border-bottom-color var(--motion-fast, 150ms) ease;
+}
+.page-footer .disclaimer-link::before {
+  content: "↳ ";
+  color: var(--c-accent);
+}
+.page-footer .disclaimer-link:hover,
+.page-footer .disclaimer-link:focus-visible {
+  color: var(--c-fg);
+  border-bottom-color: var(--c-accent);
+}

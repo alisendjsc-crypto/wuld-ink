@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  wuld.ink favicon — pixel-stroke W, neobrutalist register
+  Authored K24a (2026-05-15).
+  Palette: red accent #c41e3a on near-black #0a0a0a ground (matches dark-mode tokens).
+  16x16 viewBox; 2px polyline strokes; miter joins for sharp corners.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <rect width="16" height="16" fill="#0a0a0a"/>
+  <polyline points="2,2 6,13 8,5 10,13 14,2"
+            stroke="#c41e3a"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="square"
+            stroke-linejoin="miter"/>
+</svg>
