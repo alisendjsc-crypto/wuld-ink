@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you cite wuld.ink, please use the metadata below."
+type: software
+title: "wuld.ink"
+abstract: >-
+  A multi-page philosophical-content site authored and maintained by Josiah S.
+  Cooper. The umbrella for essays, glossary entries, the book Malgré Tout, the
+  Frame, the Void Engine instrument, the Successor / Ne Hoc Fiat project, and
+  the embedded argument library at library.wuld.ink. Register: negative
+  utilitarianism, anti-natalism, structural pessimism, voluntary human
+  extinction — through a personal philosophical inflection.
+authors:
+  - family-names: "Cooper"
+    given-names: "Josiah S."
+    alias: "WULD"
+    email: "alisendjsc@gmail.com"
+url: "https://wuld.ink/"
+repository-code: "https://github.com/alisendjsc-crypto/wuld-ink"
+license: CC-BY-4.0
+keywords:
+  - philosophy
+  - anti-natalism
+  - efilism
+  - negative-utilitarianism
+  - structural-pessimism
+  - voluntary-human-extinction
+  - phenomenology
+  - argument-library
+identifiers:
+  - type: url
+    value: "https://wuld.ink/"
+    description: "Canonical site URL"
+  - type: url
+    value: "https://library.wuld.ink/"
+    description: "Companion argument library"
+version: "2026-05-16"
+date-released: 2026-05-16

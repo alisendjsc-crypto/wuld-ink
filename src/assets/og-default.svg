@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  wuld.ink default og:image (link-preview) — 1200x630, neobrutalist register.
+  Authored K24g (2026-05-16). Matches favicon W mark scaled up; mono wordmark below.
+  Palette: red accent #c41e3a on near-black #0a0a0a ground (matches dark-mode tokens).
+  Text is path-rendered where typography matters; monospace fallback chain for
+  the wordmark + caption since platforms rasterize without site fonts.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" shape-rendering="geometricPrecision">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+
+  <!-- Outer rule (neobrutalist frame) -->
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#1a1a1a" stroke-width="4"/>
+
+  <!-- Large W mark — scaled-up polyline from favicon -->
+  <polyline points="380,180 480,420 600,250 720,420 820,180"
+            stroke="#c41e3a"
+            stroke-width="32"
+            fill="none"
+            stroke-linecap="square"
+            stroke-linejoin="miter"/>
+
+  <!-- Wordmark: wuld.ink -->
+  <text x="600" y="500"
+        text-anchor="middle"
+        font-family="'IBM Plex Mono', 'Courier New', Courier, monospace"
+        font-size="64"
+        font-weight="500"
+        letter-spacing="4"
+        fill="#f0ebe5">wuld.ink</text>
+
+  <!-- Subtitle: descriptor caption -->
+  <text x="600" y="555"
+        text-anchor="middle"
+        font-family="'IBM Plex Mono', 'Courier New', Courier, monospace"
+        font-size="20"
+        letter-spacing="6"
+        fill="#8a847b">PHILOSOPHY &#183; PESSIMISM &#183; LIBRARY</text>
+</svg>
