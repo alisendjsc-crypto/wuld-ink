@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>The Easiest Case &mdash; Blog &mdash; wuld.ink</title>
+  <meta name="description" content="The biosphere is a rapist with no nervous system. A blog note by WULD on the grammar of intervention, the suffering-only-on-the-ledger argument, and why the absence of an agent makes the case easier, not harder.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/footer.css">
+
+  <style>
+    .post {
+      max-width: var(--w-prose);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+    .post-header {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-6);
+      margin-block-end: var(--s-7);
+    }
+    .post-header h1 {
+      font-family: var(--font-headline);
+      font-size: var(--t-4xl);
+      line-height: var(--lh-tight);
+      margin-block: var(--s-3) var(--s-5);
+    }
+    .post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-5);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+    }
+    .post-meta strong {
+      color: var(--c-fg-dim);
+      margin-right: var(--s-2);
+    }
+    .post-figure {
+      margin: 0 0 var(--s-7) 0;
+    }
+    .post-figure img {
+      display: block;
+      width: 100%;
+      max-width: 32rem;
+      height: auto;
+      margin-inline: auto;
+      border: var(--bw-base) solid var(--c-border);
+    }
+    .post-figure-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 32rem;
+      margin-inline: auto;
+      aspect-ratio: 1 / 1;
+      border: var(--bw-base) dashed var(--c-border);
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      padding: var(--s-7);
+      text-align: center;
+    }
+    .post-figcaption {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-start: var(--s-3);
+      text-align: center;
+    }
+    .post-body p {
+      font-family: var(--font-body);
+      font-size: var(--t-base);
+      line-height: var(--lh-prose);
+      margin-block: 0 var(--s-5);
+    }
+    .post-body p:last-child {
+      margin-block-end: 0;
+    }
+    .post-back {
+      margin-block-start: var(--s-8);
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+    .post-back a {
+      color: var(--c-fg-muted);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid transparent;
+      transition: color var(--mo-base), border-color var(--mo-base);
+    }
+    .post-back a:hover,
+    .post-back a:focus {
+      color: var(--c-accent);
+      border-bottom-color: var(--c-accent);
+    }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/watch/">Watch</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post">
+
+      <header class="post-header">
+        <p class="eyebrow">Blog &middot; 2026</p>
+        <h1>The Easiest Case</h1>
+        <div class="post-meta">
+          <span><strong>Author</strong> WULD</span>
+          <span><strong>Date</strong> April 27, 2026</span>
+          <span><strong>Source</strong> Facebook note</span>
+        </div>
+      </header>
+
+      <!--
+        IMAGE ASSET GAP (K24b carry-forward):
+        FB attached image was 526x526 distressed-paper figure (alt: "May be pop art").
+        Chrome MCP redacted the direct image URL (FB CDN auth tokens). To populate this slot:
+        1. Open the FB post in your browser, right-click the image, "Save image as"
+        2. Save to src/assets/blog/the-easiest-case-cover.png (or .jpg)
+        3. The img tag below will render automatically. Remove the .post-figure-placeholder fallback.
+      -->
+      <figure class="post-figure">
+        <div class="post-figure-placeholder">[ Image &mdash; awaiting asset drop &mdash; see src comment ]</div>
+        <figcaption class="post-figcaption">Figure / distressed-paper pop-art ground</figcaption>
+      </figure>
+
+      <div class="post-body">
+
+        <p>When a rapist is interrupted mid-act, no one &mdash; not even the most rigorous defender of personal autonomy &mdash; claims that the rapist&rsquo;s right to act on his preference outweighs the victim&rsquo;s right not to be acted upon. The autonomy is overridden. The intervention is unambiguous. The calculation is so transparent we do not even register having performed it: a being&rsquo;s capacity to suffer takes precedence over another being&rsquo;s capacity to inflict.</p>
+
+        <p>The biosphere is a rapist with no nervous system.</p>
+
+        <p>Four billion years of life have produced suffering at industrial scale &mdash; the parasite that hollows out the host while the host is still alive, the predator that begins eating before the prey is dead, the thermodynamic arrangement in which every conscious creature must consume another conscious creature to delay its own dissolution &mdash; and the only thing that distinguishes this from the rapist case is the absence of a will to override. Not a moral difference. A grammatical one. The suffering produced is identical in kind. The victim&rsquo;s interest in not being violated is identical in kind. The only variable is whether the agent of violation has a perspective we have to refuse &mdash; and nature, conveniently, has none.</p>
+
+        <p>This is supposed to function as a barrier. You cannot intervene in nature; there is no one to intervene against. But examine what the absence is actually doing in the argument. With the rapist, the will is what makes intervention costly &mdash; something has to be overridden, an interest discounted, a person&rsquo;s preference denied. With nature, there is none of this. The only thing preserved by non-intervention is the suffering itself.</p>
+
+        <p>That is not autonomy. There is no autonomy to defend. The suffering is the only thing on the ledger.</p>
+
+        <p>So the appeal to nature&rsquo;s impersonality, which is supposed to render intervention impossible, in fact renders intervention the easiest case there is. The rapist case is hard because you must violate a person to stop the violation of another person. The nature case is not hard. There is no person on the agent-side of the equation. The case has been pre-cleared of the only thing that makes the rapist case ethically expensive.</p>
+
+        <p>Not a harder case. The easiest one.</p>
+
+      </div>
+
+      <p class="post-back"><a href="/blog/">&larr; Blog index</a></p>
+
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; All rights reserved
+      </span>
+      <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js"></script>
+</body>
+</html>

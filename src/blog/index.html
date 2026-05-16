@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <title>Blog — wuld.ink</title>
-  <meta name="description" content="Posts — shorter than essays, looser than reference.">
+  <title>Blog &mdash; wuld.ink</title>
+  <meta name="description" content="Posts &mdash; shorter than essays, looser than reference. Notes from the umbrella.">
 
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
@@ -24,19 +24,58 @@
       padding-block-end: var(--s-6);
       margin-block-end: var(--s-7);
     }
-    .empty-state {
-      border: var(--bw-base) dashed var(--c-border);
-      padding: var(--s-7);
+    .post-list {
+      display: grid;
+      gap: var(--s-7);
       max-width: var(--w-prose);
-      text-align: center;
+    }
+    .post-card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-6);
+      transition: border-color var(--mo-base), color var(--mo-base);
+    }
+    .post-card:hover,
+    .post-card:focus {
+      border-color: var(--c-accent);
+    }
+    .post-card:hover .post-card-title,
+    .post-card:focus .post-card-title {
+      color: var(--c-accent);
+    }
+    .post-card:last-of-type {
+      border-bottom: none;
+      padding-block-end: 0;
+    }
+    .post-card-date {
       font-family: var(--font-mono);
-      font-size: var(--t-sm);
+      font-size: var(--t-xs);
       text-transform: uppercase;
       letter-spacing: var(--ls-wide);
       color: var(--c-fg-muted);
+      margin: 0 0 var(--s-2) 0;
     }
-    /* Footer rules promoted to /components/footer.css (session J);
-       inline duplicates removed (session K). */
+    .post-card-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-2xl);
+      line-height: var(--lh-tight);
+      margin: 0 0 var(--s-3) 0;
+    }
+    .post-card-excerpt {
+      font-family: var(--font-body);
+      color: var(--c-fg-dim);
+      margin: 0;
+    }
+    .post-card-meta {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-start: var(--s-3);
+    }
   </style>
 </head>
 
@@ -61,11 +100,27 @@
   <main id="main">
     <article class="page">
       <header class="page-hero">
-        <p class="eyebrow">06 · Notes</p>
+        <p class="eyebrow">06 &middot; Notes</p>
         <h1>Blog</h1>
       </header>
 
-      <p class="empty-state">No posts yet.</p>
+      <div class="post-list">
+
+        <a class="post-card" href="/blog/the-easiest-case/">
+          <p class="post-card-date">2026 &middot; April 27</p>
+          <h2 class="post-card-title">The Easiest Case</h2>
+          <p class="post-card-excerpt">When a rapist is interrupted mid-act, no one claims that the rapist&rsquo;s right to act on his preference outweighs the victim&rsquo;s right not to be acted upon. So what does it mean that the biosphere has no nervous system to interrupt?</p>
+          <p class="post-card-meta">Read &rarr;</p>
+        </a>
+
+        <a class="post-card" href="/blog/load-bearing/">
+          <p class="post-card-date">2026 &middot; April 18</p>
+          <h2 class="post-card-title">Load-Bearing</h2>
+          <p class="post-card-excerpt">Anti-natalism, negative utilitarianism, EFILism, and their branches are almost airtight as systems once their overlapping arguments are allowed to complement one another. The house cannot be collapsed without sacrificing the assumptions on which any objector is standing.</p>
+          <p class="post-card-meta">Read &rarr;</p>
+        </a>
+
+      </div>
     </article>
   </main>
 
