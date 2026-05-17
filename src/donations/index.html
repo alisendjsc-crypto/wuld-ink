@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K26">
+  <link rel="license" href="/LICENSE">
+  <title>Support &mdash; wuld.ink</title>
+  <meta name="description" content="Donations keep the umbrella running. PayPal recurring, PayPal/CashApp/Venmo one-time. Nothing is gated behind a paywall.">
+
+  <link rel="canonical" href="https://wuld.ink/donations/">
+  <meta property="og:title" content="Support &mdash; wuld.ink">
+  <meta property="og:description" content="Donations keep the umbrella running. PayPal recurring, PayPal/CashApp/Venmo one-time. Nothing is gated behind a paywall.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/donations/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Support &mdash; wuld.ink">
+  <meta name="twitter:description" content="Donations keep the umbrella running. PayPal recurring, PayPal/CashApp/Venmo one-time.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K26">
+  <link rel="stylesheet" href="/components/footer.css?v=K26">
+
+  <!-- ============================================================
+       OPERATOR SETUP NOTES &mdash; PayPal subscription buttons
+       ------------------------------------------------------------
+       The 4 PayPal subscription buttons below ship with placeholder
+       hosted_button_id values (REPLACE_ME_*). They will NOT process
+       payments until you create the actual subscription buttons in
+       your PayPal account and paste the IDs here.
+
+       To create each subscription button:
+         1. Log into paypal.com (the evilisanihilis@live.com account).
+         2. Go to:  Tools  ->  All tools  ->  PayPal buttons.
+             (Alternate path:  Pay & Get Paid  ->  All tools  ->
+              PayPal buttons.)
+         3. Click "Create new button".
+         4. Button type:  "Subscriptions".
+         5. Item name:    "wuld.ink &mdash; Weekly support"
+            (or Bi-weekly / Monthly / Annually depending on which
+            of the four you are creating).
+         6. Currency:     USD.
+         7. Billing amount: pick a default (eg $5 weekly; $10
+            bi-weekly; $20 monthly; $200 annually) &mdash; donors can
+            still adjust at checkout via the "I want to give a
+            different amount" Customise option below.
+         8. Billing cycle: 1 Week / 2 Weeks / 1 Month / 1 Year.
+         9. Save the button. Click "Email" tab to get the
+            hosted_button_id  (string after "hosted_button_id=").
+        10. Paste each ID over the corresponding REPLACE_ME_* token
+            in this file.
+
+       Until the placeholders are filled, the buttons will show a
+       PayPal error page when clicked. The one-time tiers below
+       (PayPal.me + CashApp + Venmo) work immediately and are not
+       blocked by this setup task.
+       ============================================================ -->
+
+  <style>
+    .donations-page {
+      max-width: var(--w-text);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+
+    .donations-section {
+      margin-block: var(--s-8);
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+    }
+
+    .donations-section:first-of-type {
+      border-top: none;
+      padding-block-start: 0;
+    }
+
+    .donations-section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+
+    .donations-section-heading {
+      font-family: var(--font-headline);
+      font-size: var(--t-h2);
+      margin-block-end: var(--s-4);
+      color: var(--c-fg);
+    }
+
+    .donations-section-lede {
+      font-family: var(--font-body);
+      font-size: var(--t-base);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-5);
+      max-width: 42rem;
+    }
+
+    /* ---- PayPal subscription button row ---- */
+    .donations-paypal-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+      gap: var(--s-4);
+      margin-block: var(--s-5);
+    }
+
+    .donations-paypal-form {
+      margin: 0;
+    }
+
+    .donations-paypal-button {
+      width: 100%;
+      padding-block: var(--s-3);
+      padding-inline: var(--s-4);
+      background: var(--c-bg-soft, #141414);
+      color: var(--c-fg);
+      border: var(--bw-base) solid var(--c-border-strong);
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      cursor: pointer;
+      transition:
+        color var(--t-fast) var(--ease),
+        border-color var(--t-fast) var(--ease),
+        background var(--t-fast) var(--ease);
+    }
+
+    .donations-paypal-button:hover {
+      color: var(--c-accent);
+      border-color: var(--c-accent);
+      background: var(--c-bg);
+    }
+
+    .donations-paypal-cadence {
+      display: block;
+      font-size: var(--t-base);
+      color: var(--c-fg);
+      margin-block-end: var(--s-1);
+      letter-spacing: var(--ls-tight);
+      text-transform: none;
+    }
+
+    .donations-paypal-amount {
+      display: block;
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+    }
+
+    /* ---- One-time platform cards ---- */
+    .donations-platforms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: var(--s-5);
+      margin-block: var(--s-5);
+    }
+
+    .donations-platform {
+      padding: var(--s-5);
+      border: var(--bw-base) solid var(--c-border);
+      background: var(--c-bg);
+    }
+
+    .donations-platform-name {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+
+    .donations-platform-handle {
+      font-family: var(--font-headline);
+      font-size: var(--t-h4);
+      color: var(--c-fg);
+      margin-block-end: var(--s-3);
+      word-break: break-all;
+    }
+
+    .donations-platform-link {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      color: var(--c-accent);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+      padding-block-end: 2px;
+    }
+
+    .donations-platform-link:hover {
+      color: var(--c-accent-hover);
+      border-bottom-color: var(--c-accent-hover);
+    }
+
+    .donations-platform-note {
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-dim);
+      margin-block-start: var(--s-3);
+      font-style: italic;
+    }
+
+    /* ---- Closing note ---- */
+    .donations-tail {
+      margin-block-start: var(--s-9);
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-dim);
+      max-width: 42rem;
+    }
+
+    .donations-tail-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-2);
+    }
+  </style>
+</head>
+<body data-mode="dark">
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+        <a href="/recommendations/">Recommendations</a>
+        <a href="/archive/">Archive</a>
+        <a href="/preface/">About</a>
+        <a href="/donations/">Support</a>
+        <a href="/contact/">Contact</a>
+        <a href="/chat/">Chat</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="donations-page">
+
+    <header class="page-hero">
+      <p class="page-hero-eyebrow">13 &middot; Support</p>
+      <h1 class="page-hero-title">Support</h1>
+      <p class="page-intro">Nothing here is paywalled, and nothing here will ever be. If you contribute, it is because you want the umbrella to keep existing &mdash; the domain to remain renewed, the storage to keep returning bytes, the work to keep being produced under conditions that do not require it to perform for anyone. No tiered rewards. No exclusive content. No thank-you note unless you write first and ask for one.</p>
+    </header>
+
+    <!-- ====================================================
+         Section: PayPal subscriptions (recurring)
+         Placeholders REPLACE_ME_* must be replaced with the
+         hosted_button_id strings from PayPal after creating
+         the 4 subscription buttons. See HTML comment in
+         <head> for the operator-side setup procedure.
+         ==================================================== -->
+    <section class="donations-section">
+      <p class="donations-section-eyebrow">01 &middot; Recurring</p>
+      <h2 class="donations-section-heading">Recurring &mdash; PayPal</h2>
+      <p class="donations-section-lede">Only PayPal supports recurring donations directly. Pick a cadence below; you can adjust the default amount at PayPal&rsquo;s checkout. Cancel any time from your PayPal account.</p>
+
+      <div class="donations-paypal-row">
+        <form class="donations-paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="REPLACE_ME_WEEKLY_BUTTON_ID">
+          <button class="donations-paypal-button" type="submit">
+            <span class="donations-paypal-cadence">Weekly</span>
+            <span class="donations-paypal-amount">$5 default &middot; adjustable</span>
+          </button>
+        </form>
+
+        <form class="donations-paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="REPLACE_ME_BIWEEKLY_BUTTON_ID">
+          <button class="donations-paypal-button" type="submit">
+            <span class="donations-paypal-cadence">Bi-weekly</span>
+            <span class="donations-paypal-amount">$10 default &middot; adjustable</span>
+          </button>
+        </form>
+
+        <form class="donations-paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="REPLACE_ME_MONTHLY_BUTTON_ID">
+          <button class="donations-paypal-button" type="submit">
+            <span class="donations-paypal-cadence">Monthly</span>
+            <span class="donations-paypal-amount">$20 default &middot; adjustable</span>
+          </button>
+        </form>
+
+        <form class="donations-paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="REPLACE_ME_ANNUALLY_BUTTON_ID">
+          <button class="donations-paypal-button" type="submit">
+            <span class="donations-paypal-cadence">Annually</span>
+            <span class="donations-paypal-amount">$200 default &middot; adjustable</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         Section: One-time tiers across three platforms.
+         All three live immediately. Public handles supplied
+         by operator at K26 open.
+         ==================================================== -->
+    <section class="donations-section">
+      <p class="donations-section-eyebrow">02 &middot; One-time</p>
+      <h2 class="donations-section-heading">One-time &mdash; PayPal, CashApp, Venmo</h2>
+      <p class="donations-section-lede">Pick whichever platform you already use. Funds land in the same hands either way.</p>
+
+      <div class="donations-platforms">
+        <article class="donations-platform">
+          <p class="donations-platform-name">PayPal</p>
+          <p class="donations-platform-handle">paypal.me/JosiahSCooper</p>
+          <a class="donations-platform-link" href="https://paypal.me/JosiahSCooper" target="_blank" rel="noopener noreferrer">Send via PayPal &rarr;</a>
+        </article>
+
+        <article class="donations-platform">
+          <p class="donations-platform-name">CashApp</p>
+          <p class="donations-platform-handle">$evilisanihilis</p>
+          <a class="donations-platform-link" href="https://cash.app/$evilisanihilis" target="_blank" rel="noopener noreferrer">Send via CashApp &rarr;</a>
+          <p class="donations-platform-note">One-time only &mdash; CashApp does not support recurring at the platform level.</p>
+        </article>
+
+        <article class="donations-platform">
+          <p class="donations-platform-name">Venmo</p>
+          <p class="donations-platform-handle">@Josiah-Cooper-12</p>
+          <a class="donations-platform-link" href="https://venmo.com/u/Josiah-Cooper-12" target="_blank" rel="noopener noreferrer">Send via Venmo &rarr;</a>
+          <p class="donations-platform-note">One-time only &mdash; Venmo does not support recurring at the platform level.</p>
+        </article>
+      </div>
+    </section>
+
+    <aside class="donations-tail">
+      <p class="donations-tail-eyebrow">Where it goes</p>
+      <p>Cloudflare registrar renewal ($20/yr), R2 storage class fees (a few dollars per month at current bandwidth), occasional one-off costs for fonts, audio mastering, or back-end services. Anything beyond running-costs funds time spent producing the work the umbrella exists to hold. No advertising, no sponsorships, no algorithmic optimisation. If the costs are ever recouped in a given month, the surplus carries forward against months they are not.</p>
+    </aside>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <span class="footer-pending">
+        <a class="library-link" href="https://library.wuld.ink/">library.wuld.ink</a> &mdash; v3.7.2 stable
+        <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js?v=K26"></script>
+  <script src="/components/ambient-player.js?v=K26"></script>
+</body>
+</html>

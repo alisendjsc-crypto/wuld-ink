@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K26">
+  <link rel="license" href="/LICENSE">
+  <title>Chat &mdash; wuld.ink</title>
+  <meta name="description" content="Open IRC channel on libera.chat. Embedded web client; no account required; pick a nickname and join.">
+
+  <link rel="canonical" href="https://wuld.ink/chat/">
+  <meta property="og:title" content="Chat &mdash; wuld.ink">
+  <meta property="og:description" content="Open IRC channel on libera.chat. Embedded web client; no account required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/chat/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chat &mdash; wuld.ink">
+  <meta name="twitter:description" content="Open IRC channel on libera.chat. Embedded web client.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K26">
+  <link rel="stylesheet" href="/components/footer.css?v=K26">
+
+  <!-- ============================================================
+       OPERATOR SETUP NOTES &mdash; Libera.chat channel registration
+       ------------------------------------------------------------
+       The embedded Kiwi IRC client below connects visitors to
+       #wuld-ink on irc.libera.chat. The channel ITSELF still needs
+       to be registered so you own founder rights (topic, modes,
+       moderation). One-time operator-side task; do it once via the
+       embed below (or any IRC client) after K26 deploys.
+
+       STEP 1 &mdash; Register a NickServ account (one-time)
+         a. Open this page (/chat/) once deployed; the Kiwi embed
+            loads with the connect prompt.
+         b. Enter your nickname (suggest: WULD or AnomicIndividual87
+            or evilis &mdash; pick whichever you want as the channel
+            founder nick). Click Start.
+         c. Once connected, type in the message bar:
+              /msg NickServ REGISTER <password> <email>
+            Replace <password> with a strong password (write it
+            down) and <email> with woeinvsdnl@protonmail.com.
+         d. NickServ sends a verification token to that email.
+            Open the email, copy the token, then:
+              /msg NickServ VERIFY REGISTER <yournick> <token>
+
+       STEP 2 &mdash; Register the channel (one-time, requires nick)
+         a. Still connected as your registered nick, type:
+              /join #wuld-ink
+            (You will be the only member.)
+         b. Once in the channel:
+              /msg ChanServ REGISTER #wuld-ink
+            This makes you the channel founder. ChanServ confirms.
+         c. Set the topic:
+              /topic #wuld-ink wuld.ink :: open discussion :: be civil or be elsewhere
+         d. (Optional) Set modes:
+              /mode #wuld-ink +nt
+            (+n = no external messages, +t = only ops set topic)
+
+       STEP 3 &mdash; Verify the embed
+         a. Reload /chat/ on wuld.ink.
+         b. The embed should land directly in #wuld-ink.
+         c. If newcomers join without registering a nick, they get
+            assigned a Guest_NNNNN handle; that is libera.chat
+            default behaviour and is fine for casual readers.
+
+       Cost: $0 forever. Libera.chat is community-funded.
+       Maintenance: ~0 hours. ChanServ keeps the channel alive
+       whether anyone is in it or not.
+       ============================================================ -->
+
+  <style>
+    .chat-page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+
+    .chat-intro {
+      max-width: var(--w-text);
+      margin-block-end: var(--s-7);
+    }
+
+    .chat-rules {
+      margin-block-start: var(--s-5);
+      padding: var(--s-5);
+      border-left: var(--bw-thick) solid var(--c-accent);
+      background: var(--c-bg);
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-muted);
+      max-width: 42rem;
+    }
+
+    .chat-rules-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+
+    .chat-rules p { margin-block: var(--s-2); }
+
+    /* ---- Embed wrapper ---- */
+    .chat-embed-wrapper {
+      margin-block: var(--s-6);
+      border: var(--bw-base) solid var(--c-border-strong);
+      background: var(--c-bg);
+      overflow: hidden;
+      /* Aspect-ratio sane fallback for narrow viewports */
+      min-height: 600px;
+    }
+
+    .chat-embed-iframe {
+      width: 100%;
+      height: 75vh;
+      min-height: 600px;
+      max-height: 900px;
+      border: 0;
+      display: block;
+    }
+
+    /* ---- Fallback / direct-link block (no-JS or iframe-blocked) ---- */
+    .chat-fallback {
+      margin-block-start: var(--s-5);
+      padding: var(--s-5);
+      border: var(--bw-base) solid var(--c-border);
+      background: var(--c-bg);
+      max-width: 42rem;
+    }
+
+    .chat-fallback-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-2);
+    }
+
+    .chat-fallback-handle {
+      font-family: var(--font-mono);
+      font-size: var(--t-base);
+      color: var(--c-fg);
+      margin-block-end: var(--s-3);
+    }
+
+    .chat-fallback-link {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      color: var(--c-accent);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+      padding-block-end: 2px;
+      margin-right: var(--s-4);
+    }
+
+    .chat-fallback-link:hover {
+      color: var(--c-accent-hover);
+      border-bottom-color: var(--c-accent-hover);
+    }
+
+    .chat-fallback-note {
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-dim);
+      font-style: italic;
+      margin-block-start: var(--s-3);
+    }
+  </style>
+</head>
+<body data-mode="dark">
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+        <a href="/recommendations/">Recommendations</a>
+        <a href="/archive/">Archive</a>
+        <a href="/preface/">About</a>
+        <a href="/donations/">Support</a>
+        <a href="/contact/">Contact</a>
+        <a href="/chat/">Chat</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="chat-page">
+
+    <header class="page-hero">
+      <p class="page-hero-eyebrow">15 &middot; Chat</p>
+      <h1 class="page-hero-title">Chat</h1>
+      <div class="chat-intro">
+        <p class="page-intro">Open channel on libera.chat &mdash; <code>#wuld-ink</code>. Pick a nickname, click Start, talk. No account required for read-along; if you want to keep the same handle across visits, register it with NickServ once and it is yours.</p>
+
+        <div class="chat-rules">
+          <p class="chat-rules-eyebrow">House rules &mdash; informal</p>
+          <p>Disagreement is welcome. Bad faith is not. Trolling, slurs, harassment, and grooming attempts are removed without explanation. Spam vanishes on sight.</p>
+          <p>This is not a support channel and not a therapy channel. If you are in crisis, please call or text 988 (US Suicide &amp; Crisis Lifeline) or your local equivalent.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================================================
+         Kiwi IRC embed
+         Hosted client at kiwiirc.com points at libera.chat;
+         channel pre-filled via URL fragment. No tracking from
+         our side; libera.chat may keep connection logs per
+         their policy. Iframe is sandboxed by default browser
+         policy; we explicitly grant scripts + same-origin so
+         the IRC client functions.
+         ==================================================== -->
+    <div class="chat-embed-wrapper" role="region" aria-label="Live chat embed">
+      <iframe class="chat-embed-iframe"
+              src="https://kiwiirc.com/nextclient/irc.libera.chat/?nick=guest_?#wuld-ink"
+              title="wuld.ink IRC chat (libera.chat #wuld-ink)"
+              sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+              loading="lazy"
+              referrerpolicy="no-referrer">
+      </iframe>
+    </div>
+
+    <aside class="chat-fallback">
+      <p class="chat-fallback-eyebrow">If the embed will not load</p>
+      <p class="chat-fallback-handle">Server: <strong>irc.libera.chat:6697</strong> &middot; Channel: <strong>#wuld-ink</strong></p>
+      <a class="chat-fallback-link" href="https://kiwiirc.com/nextclient/irc.libera.chat/#wuld-ink" target="_blank" rel="noopener noreferrer">Open Kiwi client in new tab &rarr;</a>
+      <a class="chat-fallback-link" href="https://web.libera.chat/#wuld-ink" target="_blank" rel="noopener noreferrer">Open libera webchat &rarr;</a>
+      <p class="chat-fallback-note">Either link drops you into the same channel. Any IRC client works too &mdash; HexChat, mIRC, irssi, Quassel, etc.</p>
+    </aside>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <span class="footer-pending">
+        <a class="library-link" href="https://library.wuld.ink/">library.wuld.ink</a> &mdash; v3.7.2 stable
+        <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js?v=K26"></script>
+  <script src="/components/ambient-player.js?v=K26"></script>
+</body>
+</html>

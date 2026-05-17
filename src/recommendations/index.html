@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K26">
+  <link rel="license" href="/LICENSE">
+  <title>Recommendations &mdash; wuld.ink</title>
+  <meta name="description" content="Recommendations across film, books, sites, groups, work, art, and media. Operator-curated; not exhaustive; not for sale.">
+
+  <link rel="canonical" href="https://wuld.ink/recommendations/">
+  <meta property="og:title" content="Recommendations &mdash; wuld.ink">
+  <meta property="og:description" content="Recommendations across film, books, sites, groups, work, art, and media. Operator-curated.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/recommendations/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Recommendations &mdash; wuld.ink">
+  <meta name="twitter:description" content="Recommendations across film, books, sites, groups, work, art, and media.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K26">
+  <link rel="stylesheet" href="/components/footer.css?v=K26">
+
+  <style>
+    .rec-page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+    .rec-toc {
+      margin-block: var(--s-6) var(--s-9);
+      padding: var(--s-5);
+      border: var(--bw-base) solid var(--c-border);
+      background: var(--c-bg);
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      max-width: 38rem;
+    }
+    .rec-toc-eyebrow {
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-3);
+    }
+    .rec-toc ol {
+      list-style: none; padding: 0; margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+      gap: var(--s-2) var(--s-4);
+      counter-reset: rec-toc-counter;
+    }
+    .rec-toc li { counter-increment: rec-toc-counter; }
+    .rec-toc li::before {
+      content: counter(rec-toc-counter, decimal-leading-zero) "  ";
+      color: var(--c-accent);
+      font-variant-numeric: tabular-nums;
+    }
+    .rec-toc a {
+      color: var(--c-fg); text-decoration: none;
+      border-bottom: var(--bw-base) solid transparent;
+      transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+    }
+    .rec-toc a:hover { color: var(--c-accent); border-bottom-color: var(--c-accent); }
+    .rec-section {
+      margin-block: var(--s-9);
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+      scroll-margin-block-start: var(--s-7);
+    }
+    .rec-section-eyebrow {
+      font-family: var(--font-mono); font-size: var(--t-xs);
+      text-transform: uppercase; letter-spacing: var(--ls-wide);
+      color: var(--c-accent); margin-block-end: var(--s-2);
+    }
+    .rec-section-heading {
+      font-family: var(--font-headline); font-size: var(--t-h2);
+      margin-block-end: var(--s-3); color: var(--c-fg);
+    }
+    .rec-section-lede {
+      font-family: var(--font-body); font-size: var(--t-base);
+      color: var(--c-fg-muted); max-width: 42rem;
+      margin-block-end: var(--s-5); font-style: italic;
+    }
+    .rec-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      gap: var(--s-5);
+    }
+    .rec-card {
+      padding: var(--s-5);
+      border: var(--bw-base) solid var(--c-border);
+      background: var(--c-bg);
+    }
+    .rec-card-kind {
+      font-family: var(--font-mono); font-size: var(--t-xs);
+      text-transform: uppercase; letter-spacing: var(--ls-wide);
+      color: var(--c-fg-dim); margin-block-end: var(--s-2);
+    }
+    .rec-card-title {
+      font-family: var(--font-headline); font-size: var(--t-h4);
+      color: var(--c-fg); margin-block-end: var(--s-2);
+    }
+    .rec-card-note {
+      font-family: var(--font-body); font-size: var(--t-sm);
+      color: var(--c-fg-muted); line-height: 1.5;
+    }
+    .rec-card[data-status="placeholder"] {
+      opacity: 0.55; border-style: dashed;
+    }
+    .rec-card[data-status="placeholder"] .rec-card-title::after {
+      content: " &mdash; pending";
+      color: var(--c-fg-dim); font-style: italic;
+      font-size: 0.7em; letter-spacing: var(--ls-wide);
+    }
+  </style>
+</head>
+<body data-mode="dark">
+
+  <header class="site-header">
+    <div class="site-header-inner container">
+      <a href="/" class="site-mark">wuld.ink</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+        <a href="/recommendations/">Recommendations</a>
+        <a href="/archive/">Archive</a>
+        <a href="/preface/">About</a>
+        <a href="/donations/">Support</a>
+        <a href="/contact/">Contact</a>
+        <a href="/chat/">Chat</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="rec-page">
+
+    <header class="page-hero">
+      <p class="page-hero-eyebrow">16 &middot; Recommendations</p>
+      <h1 class="page-hero-title">Recommendations</h1>
+      <p class="page-intro">Pointers, not endorsements. Things that have done useful work on the operator&rsquo;s thinking, or made the surrounding world tolerable to spend time in, or refused to flatter their audience. No affiliate links, no paid placements, no rankings. Inclusion here is not a co-signature of everything the named party has ever said or done; it is a flag that something specific in their work warrants finding.</p>
+    </header>
+
+    <nav class="rec-toc" aria-label="Section index">
+      <p class="rec-toc-eyebrow">Sections</p>
+      <ol>
+        <li><a href="#film">Film</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#sites">Sites</a></li>
+        <li><a href="#groups">Groups</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#art">Art</a></li>
+        <li><a href="#media">Media</a></li>
+      </ol>
+    </nav>
+
+    <section class="rec-section" id="film">
+      <p class="rec-section-eyebrow">01 &middot; Film</p>
+      <h2 class="rec-section-heading">Film</h2>
+      <p class="rec-section-lede">Long-form moving image that refuses the consolation arc.</p>
+      <div class="rec-cards">
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Director / film</p>
+          <h3 class="rec-card-title">First entry</h3>
+          <p class="rec-card-note">Cards land here as the operator catalogues. Each card carries: who made it, what the work is, one sentence on why it earns the slot.</p>
+        </article>
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Director / film</p>
+          <h3 class="rec-card-title">Second entry</h3>
+          <p class="rec-card-note">Placeholder shape; no curation yet.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rec-section" id="books">
+      <p class="rec-section-eyebrow">02 &middot; Books</p>
+      <h2 class="rec-section-heading">Books</h2>
+      <p class="rec-section-lede">Long-form text that did work on the operator&rsquo;s thinking. Some via agreement, some via productive disagreement.</p>
+      <div class="rec-cards">
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Author &mdash; Title</p>
+          <h3 class="rec-card-title">First entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Author &mdash; Title</p>
+          <h3 class="rec-card-title">Second entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Author &mdash; Title</p>
+          <h3 class="rec-card-title">Third entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rec-section" id="sites">
+      <p class="rec-section-eyebrow">03 &middot; Sites</p>
+      <h2 class="rec-section-heading">Sites</h2>
+      <p class="rec-section-lede">Web destinations worth keeping in a bookmark folder. Often run by one person; rarely SEO-optimised; never advertising-dependent.</p>
+      <div class="rec-cards">
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Personal site</p>
+          <h3 class="rec-card-title">First entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Reference</p>
+          <h3 class="rec-card-title">Second entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rec-section" id="groups">
+      <p class="rec-section-eyebrow">04 &middot; Groups</p>
+      <h2 class="rec-section-heading">Groups</h2>
+      <p class="rec-section-lede">Collectives, forums, communities that hold space for the work this site is in conversation with.</p>
+      <div class="rec-cards">
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Community</p>
+          <h3 class="rec-card-title">First entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rec-section" id="work">
+      <p class="rec-section-eyebrow">05 &middot; Work</p>
+      <h2 class="rec-section-heading">Work</h2>
+      <p class="rec-section-lede">Individual essays, papers, posts, lectures &mdash; the unit of recommendation here is the piece, not the body of work.</p>
+      <div class="rec-cards">
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Essay</p>
+          <h3 class="rec-card-title">First entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Paper</p>
+          <h3 class="rec-card-title">Second entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rec-section" id="art">
+      <p class="rec-section-eyebrow">06 &middot; Art</p>
+      <h2 class="rec-section-heading">Art</h2>
+      <p class="rec-section-lede">Visual work &mdash; painting, photography, sculpture, mixed &mdash; outside the moving-image bracket.</p>
+      <div class="rec-cards">
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Artist</p>
+          <h3 class="rec-card-title">First entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Artist</p>
+          <h3 class="rec-card-title">Second entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rec-section" id="media">
+      <p class="rec-section-eyebrow">07 &middot; Media</p>
+      <h2 class="rec-section-heading">Media</h2>
+      <p class="rec-section-lede">Audio, music, podcasts, longform broadcast &mdash; the ear-only and the slow-watch.</p>
+      <div class="rec-cards">
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Album / project</p>
+          <h3 class="rec-card-title">First entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+        <article class="rec-card" data-status="placeholder">
+          <p class="rec-card-kind">Podcast / series</p>
+          <h3 class="rec-card-title">Second entry</h3>
+          <p class="rec-card-note">Placeholder.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <span class="footer-pending">
+        <a class="library-link" href="https://library.wuld.ink/">library.wuld.ink</a> &mdash; v3.7.2 stable
+        <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js?v=K26"></script>
+  <script src="/components/ambient-player.js?v=K26"></script>
+</body>
+</html>
