@@ -4,11 +4,17 @@
    Coordinates with ambient-player via wuld:overlay:open/close
    events (auto-pause/resume ambient audio while overlay is open).
 
-   Trigger: any element with data-theater-video-id="<YT_VIDEO_ID>".
+   Trigger: any element with data-theater-video-id="<YT_VIDEO_ID>" OR
+   data-theater-playlist-id="<YT_PLAYLIST_ID>" (K24l extension; opens
+   embed/videoseries?list=<ID> form). When both are present, video-id
+   wins (single-video path is the simpler default).
    Optional: data-theater-title="..." for aria-label (defaults to
    "Watch video").
 
-   Public surface: window.WuldTheater = { open(id, opts), close() }
+   Public surface:
+     window.WuldTheater = {
+       open(id, opts), openPlaylist(listId, opts), close()
+     }
    ============================================================ */
 
 (() => {
@@ -73,6 +79,21 @@
     return YT_HOST + "/embed/" + encodeURIComponent(videoId) + "?" + params.toString();
   }
 
+  function buildPlaylistSrc(playlistId) {
+    // K24l: embed/videoseries?list=<ID> form (different from single-video
+    // embed/<ID>). Same playback options. listType=playlist is implicit
+    // when videoseries path is used + list= param present.
+    const params = new URLSearchParams({
+      list: playlistId,
+      autoplay: "1",
+      modestbranding: "1",
+      rel: "0",
+      playsinline: "1",
+      iv_load_policy: "3"
+    });
+    return YT_HOST + "/embed/videoseries?" + params.toString();
+  }
+
   function open(videoId, opts) {
     if (!videoId) return;
     buildOverlay();
@@ -135,6 +156,51 @@
     }, 60);
   }
 
+  function openPlaylist(playlistId, opts) {
+    if (!playlistId) return;
+    buildOverlay();
+    opts = opts || {};
+    overlay.setAttribute("aria-label", opts.title || "Playlist");
+
+    lastFocused = document.activeElement;
+    frame.src = buildPlaylistSrc(playlistId);
+
+    requestAnimationFrame(() => {
+      overlay.setAttribute("data-open", "true");
+    });
+    document.body.classList.add("theater-open");
+
+    document.dispatchEvent(new CustomEvent("wuld:overlay:open", {
+      detail: { source: "theater-mode", playlistId: playlistId }
+    }));
+
+    escHandler = (e) => {
+      if (e.key === "Escape") { e.preventDefault(); close(); }
+    };
+    document.addEventListener("keydown", escHandler);
+
+    focusTrapHandler = (e) => {
+      if (e.key !== "Tab") return;
+      const focusables = [closeBtn, frame];
+      const current = document.activeElement;
+      const idx = focusables.indexOf(current);
+      if (e.shiftKey) {
+        if (idx <= 0) {
+          e.preventDefault();
+          focusables[focusables.length - 1].focus();
+        }
+      } else {
+        if (idx === focusables.length - 1) {
+          e.preventDefault();
+          focusables[0].focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", focusTrapHandler);
+
+    setTimeout(() => { if (closeBtn) closeBtn.focus(); }, 60);
+  }
+
   function close() {
     if (!overlay) return;
     overlay.setAttribute("data-open", "false");
@@ -168,14 +234,20 @@
   }
 
   function bindTriggers() {
-    // Delegated click: any [data-theater-video-id] anywhere triggers open
+    // Delegated click: data-theater-video-id OR data-theater-playlist-id.
+    // Video-id wins if both attrs are set on the same trigger.
     document.addEventListener("click", (e) => {
-      const trigger = e.target && e.target.closest && e.target.closest("[data-theater-video-id]");
+      const trigger = e.target && e.target.closest && e.target.closest("[data-theater-video-id],[data-theater-playlist-id]");
       if (!trigger) return;
       e.preventDefault();
       const videoId = trigger.getAttribute("data-theater-video-id");
-      const title = trigger.getAttribute("data-theater-title") || "Video";
-      open(videoId, { title: title });
+      const playlistId = trigger.getAttribute("data-theater-playlist-id");
+      const title = trigger.getAttribute("data-theater-title") || (playlistId ? "Playlist" : "Video");
+      if (videoId) {
+        open(videoId, { title: title });
+      } else if (playlistId) {
+        openPlaylist(playlistId, { title: title });
+      }
     });
   }
 
@@ -183,6 +255,7 @@
     bindTriggers();
     window.WuldTheater = {
       open: open,
+      openPlaylist: openPlaylist,
       close: close
     };
   }

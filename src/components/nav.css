@@ -33,13 +33,19 @@
   flex-wrap: wrap;       /* mobile fallback — nav wraps below mark */
 }
 
-/* ---------- Site mark (logo / wordmark) ----------
-   Same family + weight as nav links; size carries the hierarchy.
-   Session G fix: dropped font-weight:700 — was reading bolder than nav
-   strip while spec is same-family-at-different-sizes-only. */
+/* ---------- Site mark (logo) ----------
+   K24l: site-mark anchor now wraps a W.U.L.D logo IMG instead of the
+   "wuld.ink" wordmark. Brackets [ ] via pseudo-elements still flank.
+   Logo height matches nav-row at ~1.75rem; accessible name on anchor
+   via aria-label since img alt is empty (logo is decorative inside a
+   labeled link to home). */
 .site-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
   font-family: var(--font-mono);
   font-size: var(--t-h5);
+  line-height: 1;
   letter-spacing: var(--ls-tight);
   color: var(--c-fg);
   text-decoration: none;
@@ -47,16 +53,21 @@
   text-decoration-thickness: 0;
 }
 
+.site-mark-logo {
+  display: block;
+  height: 1.75rem;
+  width: auto;
+  /* Logo is a square PNG; height-locked to match nav-row */
+}
+
 .site-mark::before {
   content: "[";
   color: var(--c-accent);
-  margin-right: 0.1em;
 }
 
 .site-mark::after {
   content: "]";
   color: var(--c-accent);
-  margin-left: 0.1em;
 }
 
 .site-mark:hover {

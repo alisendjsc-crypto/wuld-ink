@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K24l">
+  <link rel="stylesheet" href="/components/theater-mode.css?v=K24l">
   <link rel="license" href="/LICENSE">
   <title>Archive &mdash; wuld.ink</title>
   <meta name="description" content="Defiant archiving and metacognitive exploration. Unlisted videos and excerpts from prior works (Love Void Love, The Point, Hatred, Forget the Plot, The Known and the Unknown).">
@@ -44,8 +45,9 @@
           "@type": "ListItem", "position": 1,
           "item": {
             "@type": "VideoObject",
-            "name": "Unlisted videos (playlist)",
+            "name": "Unlisted Videos",
             "description": "Curated unlisted YouTube playlist of older writings and select videos.",
+            "thumbnailUrl": "https://i.ytimg.com/vi/XbewprAqmT4/hqdefault.jpg",
             "embedUrl": "https://www.youtube-nocookie.com/embed/videoseries?list=PL5zDoTelkQ6qr1xXbAG9MYnlF8f9_7wrN",
             "uploadDate": "2026-05-16"
           }
@@ -54,7 +56,8 @@
           "@type": "ListItem", "position": 2,
           "item": {
             "@type": "VideoObject",
-            "name": "Selected video (44N6Z7zEl9k)",
+            "name": "Deadness In Essence",
+            "thumbnailUrl": "https://i.ytimg.com/vi/44N6Z7zEl9k/hqdefault.jpg",
             "embedUrl": "https://www.youtube-nocookie.com/embed/44N6Z7zEl9k",
             "uploadDate": "2026-05-16"
           }
@@ -63,7 +66,8 @@
           "@type": "ListItem", "position": 3,
           "item": {
             "@type": "VideoObject",
-            "name": "Selected video (bvX4YMekoH0)",
+            "name": "The Illusion of Good and Evil (Visual / Auditory Collage)",
+            "thumbnailUrl": "https://i.ytimg.com/vi/bvX4YMekoH0/hqdefault.jpg",
             "embedUrl": "https://www.youtube-nocookie.com/embed/bvX4YMekoH0",
             "uploadDate": "2026-05-16"
           }
@@ -78,7 +82,18 @@
         },
         {
           "@type": "ListItem", "position": 6,
-          "item": { "@type": "Book", "name": "Forget the Plot", "author": "Josiah S. Cooper", "datePublished": "2022-01" }
+          "item": {
+            "@type": "Book",
+            "name": "Forget the Plot",
+            "author": "Josiah S. Cooper",
+            "datePublished": "2022-01",
+            "image": [
+              "https://wuld.ink/assets/archive/ftp/page-001.jpg",
+              "https://wuld.ink/assets/archive/ftp/page-048.jpg",
+              "https://wuld.ink/assets/archive/ftp/page-060.jpg",
+              "https://wuld.ink/assets/archive/ftp/page-070.jpg"
+            ]
+          }
         },
         {
           "@type": "ListItem", "position": 7,
@@ -94,9 +109,9 @@
   </script>
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css">
-  <link rel="stylesheet" href="/components/footer.css">
-  <link rel="stylesheet" href="/components/mode-toggle.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K24l">
+  <link rel="stylesheet" href="/components/footer.css?v=K24l">
+  <link rel="stylesheet" href="/components/mode-toggle.css?v=K24l">
 
   <style>
     /* ============================================================
@@ -112,7 +127,8 @@
 
        Forget the Plot - reveal-architecture preserved per handoff
        Section 3: clean confession-spine transcripts are forbidden;
-       the wall IS the work. Awaits page-image asset drop.
+       the wall IS the work. K24l: 4 page-image renders shipped
+         (p.1/48/60/70 per book-Claude staked selection).
 
        Illustrations from K&U (K24k open question) - 30+ indexed,
        1 embedded in the docx; sourcing pending.
@@ -234,12 +250,56 @@
       aspect-ratio: 16 / 9;
       overflow: hidden;
       background-color: #111;
+      /* button reset (K24l: cards are theater-mode triggers now, not link-outs) */
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
+      display: block;
+    }
+    .archive-video-thumb-wrap:focus-visible {
+      outline: var(--bw-base) solid var(--c-focus);
+      outline-offset: 2px;
     }
     .archive-video-thumb {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform var(--t-mid) var(--ease), opacity var(--t-mid) var(--ease);
+    }
+    .archive-video-thumb-wrap:hover .archive-video-thumb,
+    .archive-video-thumb-wrap:focus-visible .archive-video-thumb {
+      transform: scale(1.03);
+      opacity: 0.78;
+    }
+    /* Play glyph overlay (K24l): centered triangle, accent color, scales on hover. */
+    .archive-video-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3.5rem;
+      line-height: 1;
+      color: var(--c-accent);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      pointer-events: none;
+      transition: transform var(--t-mid) var(--ease), color var(--t-fast) var(--ease);
+    }
+    .archive-video-thumb-wrap:hover .archive-video-play,
+    .archive-video-thumb-wrap:focus-visible .archive-video-play {
+      transform: translate(-50%, -50%) scale(1.12);
+      color: var(--c-accent-hover);
+    }
+    .archive-video-sub {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-muted);
+      letter-spacing: 0.04em;
+      margin: 0;
     }
     .archive-video-meta {
       padding: var(--s-4);
@@ -329,9 +389,12 @@
       color: var(--c-fg-muted);
     }
 
-    /* ---------- FtP placeholder (no-text discipline) ---------- */
+    /* ---------- FtP frame + page-image grid (K24l) ---------- */
+    /* Reveal-architecture: the page IS the work. Frame block holds the
+       framing-justification only; pages are displayed as images with
+       page-number captions, never as transcribed text. */
 
-    .archive-ftp-placeholder {
+    .archive-ftp-frame {
       margin-block: var(--s-5);
       padding: var(--s-5);
       border: var(--bw-thin) dashed var(--c-border);
@@ -340,11 +403,52 @@
       line-height: var(--lh-relaxed);
       color: var(--c-fg-muted);
     }
-    .archive-ftp-placeholder p {
+    .archive-ftp-frame-line {
       margin: 0;
+      color: var(--c-fg);
     }
-    .archive-ftp-placeholder p + p {
-      margin-block-start: var(--s-3);
+    .archive-ftp-frame-note {
+      margin: var(--s-3) 0 0 0;
+    }
+
+    .archive-ftp-pages {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--s-5);
+      margin-block: var(--s-5);
+    }
+    .archive-ftp-page {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+      border: var(--bw-thin) solid var(--c-border);
+      background-color: var(--c-bg-shade);
+      padding: var(--s-3);
+    }
+    .archive-ftp-page img {
+      width: 100%;
+      height: auto;
+      display: block;
+      background-color: #fff;
+    }
+    .archive-ftp-caption {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-muted);
+      letter-spacing: 0.04em;
+      display: flex;
+      gap: var(--s-3);
+      align-items: baseline;
+    }
+    .archive-ftp-page-num {
+      color: var(--c-accent);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      font-weight: 600;
+    }
+    .archive-ftp-page-ctx {
+      color: var(--c-fg-muted);
     }
 
     /* ---------- Other section: open questions ---------- */
@@ -380,13 +484,14 @@
     @media (max-width: 720px) {
       .archive-page-title { font-size: var(--t-h2); }
       .archive-videos { grid-template-columns: 1fr; }
+      .archive-ftp-pages { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body data-mode="dark">
 
   <header class="site-header">
-    <a class="site-mark" href="/" aria-label="wuld.ink home">wuld.ink</a>
+    <a class="site-mark" href="/" aria-label="wuld.ink home"><img class="site-mark-logo" src="/assets/logo/wuld-icon.png" alt="" width="32" height="32" loading="eager" decoding="async"></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/essays/">Essays</a>
       <a href="/argument-library/">Library</a>
@@ -409,7 +514,7 @@
     </header>
 
     <blockquote class="archive-epigraph">
-      The answer lies in the concept of defiant archiving and metacognitive exploration. Works like <em>Love Void Love: Writings of Things and Other Things</em>, <em>The Point</em>, <em>The Book of Nought</em>, and <em>The Known and the Unknown</em> serve as meticulous records of existential crisis. <em>The Point</em>, specifically, is noted as having been written during a period of intense mental health struggle, encompassing schizophrenia, benzodiazepine withdrawal, and severe panic attacks. The act of writing, therefore, becomes a crucial mechanism for metacognition&mdash;thinking about how and why we think, and observing the breakdown of the mind from a third-party perspective. It is an attempt to systematically map the boundaries of the void and document the failure of human consciousness.
+      The answer lies in the concept of defiant archiving and metacognitive exploration. Works like <em>Love Void Love: Writings of Things and Other Things</em>, <em>The Point</em>, <em>The Book of Nought</em>, and <em>The Known and the Unknown</em> serve as meticulous records of existential crisis. <em>The Point</em>, specifically, is noted as having been written during a period of intense mental health struggle, encompassing severe panic attacks and psychosomatic panic during the pandemic (circa 2021). The act of writing, therefore, becomes a crucial mechanism for metacognition&mdash;thinking about how and why we think, and observing the breakdown of the mind from a third-party perspective. It is an attempt to systematically map the boundaries of the void and document the failure of human consciousness.
       <cite>&mdash; Self-frame</cite>
     </blockquote>
 
@@ -426,39 +531,43 @@
         <span class="archive-section-eyebrow">A</span>
         <h2 class="archive-section-title" id="videos">Videos</h2>
       </header>
-      <p class="archive-section-note">Unlisted material and select link-outs. Cards open YouTube in a new tab; no embed loads on this page.</p>
+      <p class="archive-section-note">Unlisted material and select pieces. Click a thumbnail to watch in theater mode; the secondary link opens on YouTube in a new tab.</p>
 
       <div class="archive-videos">
 
         <article class="archive-video-card">
-          <a class="archive-video-thumb-wrap" href="https://www.youtube.com/playlist?list=PL5zDoTelkQ6qr1xXbAG9MYnlF8f9_7wrN" target="_blank" rel="noopener noreferrer" aria-label="Unlisted videos playlist on YouTube">
-            <img class="archive-video-thumb" src="https://i.ytimg.com/vi/44N6Z7zEl9k/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
-          </a>
+          <button class="archive-video-thumb-wrap" type="button" data-theater-playlist-id="PL5zDoTelkQ6qr1xXbAG9MYnlF8f9_7wrN" data-theater-title="Unlisted Videos &mdash; Evilis Anihilis Uls" aria-label="Play unlisted videos playlist in theater mode">
+            <img class="archive-video-thumb" src="https://i.ytimg.com/vi/XbewprAqmT4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+            <span class="archive-video-play" aria-hidden="true">&#9658;</span>
+          </button>
           <div class="archive-video-meta">
             <p class="archive-video-eyebrow">Playlist &middot; Unlisted</p>
-            <h3 class="archive-video-title">Older writings &mdash; unlisted playlist</h3>
-            <a class="archive-video-link" href="https://www.youtube.com/playlist?list=PL5zDoTelkQ6qr1xXbAG9MYnlF8f9_7wrN" target="_blank" rel="noopener noreferrer">Open playlist on YouTube &rarr;</a>
+            <h3 class="archive-video-title">Unlisted Videos</h3>
+            <a class="archive-video-link" href="https://www.youtube.com/playlist?list=PL5zDoTelkQ6qr1xXbAG9MYnlF8f9_7wrN" target="_blank" rel="noopener noreferrer">Open on YouTube &rarr;</a>
           </div>
         </article>
 
         <article class="archive-video-card">
-          <a class="archive-video-thumb-wrap" href="https://www.youtube.com/watch?v=44N6Z7zEl9k" target="_blank" rel="noopener noreferrer" aria-label="Selected video on YouTube">
+          <button class="archive-video-thumb-wrap" type="button" data-theater-video-id="44N6Z7zEl9k" data-theater-title="Deadness In Essence &mdash; WULD" aria-label="Play Deadness In Essence in theater mode">
             <img class="archive-video-thumb" src="https://i.ytimg.com/vi/44N6Z7zEl9k/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
-          </a>
+            <span class="archive-video-play" aria-hidden="true">&#9658;</span>
+          </button>
           <div class="archive-video-meta">
             <p class="archive-video-eyebrow">Video &middot; Selected</p>
-            <h3 class="archive-video-title">Selection &mdash; 44N6Z7zEl9k</h3>
+            <h3 class="archive-video-title">Deadness In Essence</h3>
             <a class="archive-video-link" href="https://www.youtube.com/watch?v=44N6Z7zEl9k" target="_blank" rel="noopener noreferrer">Open on YouTube &rarr;</a>
           </div>
         </article>
 
         <article class="archive-video-card">
-          <a class="archive-video-thumb-wrap" href="https://www.youtube.com/watch?v=bvX4YMekoH0" target="_blank" rel="noopener noreferrer" aria-label="Selected video on YouTube">
+          <button class="archive-video-thumb-wrap" type="button" data-theater-video-id="bvX4YMekoH0" data-theater-title="The Illusion of Good and Evil &mdash; Visual / Auditory Collage" aria-label="Play The Illusion of Good and Evil in theater mode">
             <img class="archive-video-thumb" src="https://i.ytimg.com/vi/bvX4YMekoH0/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
-          </a>
+            <span class="archive-video-play" aria-hidden="true">&#9658;</span>
+          </button>
           <div class="archive-video-meta">
-            <p class="archive-video-eyebrow">Video &middot; Selected</p>
-            <h3 class="archive-video-title">Selection &mdash; bvX4YMekoH0</h3>
+            <p class="archive-video-eyebrow">Video &middot; Digital Art</p>
+            <h3 class="archive-video-title">The Illusion of Good and Evil</h3>
+            <p class="archive-video-sub">Visual / Auditory Collage</p>
             <a class="archive-video-link" href="https://www.youtube.com/watch?v=bvX4YMekoH0" target="_blank" rel="noopener noreferrer">Open on YouTube &rarr;</a>
           </div>
         </article>
@@ -483,7 +592,7 @@
         <header class="archive-book-header">
           <p class="archive-book-meta">Book &middot; Dec 2021 &middot; The philosophical pass</p>
           <h3 class="archive-book-title">The Point</h3>
-          <p class="archive-book-frame">Numbered-fragment metaphysical nihilism, written through psychosis and benzodiazepine withdrawal.</p>
+          <p class="archive-book-frame">Numbered-fragment metaphysical nihilism, written through severe panic attacks and psychosomatic panic during the pandemic (circa 2021).</p>
         </header>
 
         <blockquote class="archive-excerpt">
@@ -599,10 +708,6 @@
           The Known and the Unknown indexes roughly thirty illustrations (&ldquo;Baby,&rdquo; &ldquo;The Door-way,&rdquo; &ldquo;Declaration,&rdquo; &ldquo;Self-Shadow,&rdquo; &ldquo;The Crawl [Self-Portrait],&rdquo; &amp;c.) but the source docx contains only one embedded image. The illustration assets are not in any provided file. Likely sourced from the Love Void Love ODT or originals the author holds. Drop into <code>src/assets/archive/illustrations/</code> when ready.
         </li>
         <li>
-          <strong>Forget the Plot &mdash; page images</strong>
-          Page renders of FtP (recommended: p.1, p.48, p.60, p.70 &mdash; the noise-wall, the page-turn break, the &ldquo;tired of being tired&rdquo; collapse, the visual implosion). Awaits author drop.
-        </li>
-        <li>
           <strong>Read-the-full-work links</strong>
           The Point and Forget the Plot have full clean text in uploaded PDFs. Adding a &ldquo;read full work&rdquo; affordance is a scope expansion to confirm separately &mdash; not assumed here.
         </li>
@@ -640,8 +745,9 @@
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
 
-  <script src="/components/nav.js" defer></script>
-  <script src="/components/mode-toggle.js" defer></script>
-  <script src="/components/ambient-player.js" defer></script>
+  <script src="/components/nav.js?v=K24l" defer></script>
+  <script src="/components/mode-toggle.js?v=K24l" defer></script>
+  <script src="/components/theater-mode.js?v=K24l" defer></script>
+<script src="/components/ambient-player.js?v=K24l" defer></script>
 </body>
 </html>
