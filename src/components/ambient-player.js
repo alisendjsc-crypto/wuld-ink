@@ -46,7 +46,8 @@
     lastPositionSec: 0,   // resume offset
     shuffleOn: true,
     loopOne: false,       // K24k: repeat current video on end
-    dismissed: false      // K24k: bar collapsed to sliver
+    dismissed: false,     // K24k: bar collapsed to sliver
+    userPaused: false     // K25: user-initiated pause; resume cues but doesn't play
   };
 
   let state    = readState();
@@ -60,6 +61,7 @@
   let overlayPauseResumeNeeded = false;  // K24k: was-playing memory across overlay
   let seekDragging = false;     // K24n: don't auto-update slider while user drags
   let loopGuardUntil = 0;       // K24n: ms-timestamp; loop-one re-fire guard
+  let firstInteractionHandler = null;  // K25: ref for unbind on ambient-off
 
   // ---------------- localStorage helpers ----------------
 
@@ -108,7 +110,11 @@
     const playerVars = {
       listType: "playlist",
       list: PLAYLIST_ID,
-      autoplay: state.on ? 1 : 0,
+      // K25: always autoplay=0 here. onPlayerReady is the single decision
+      // point for play vs cue, branching on state.on + state.userPaused.
+      // The old state.on?1:0 caused a brief wrong-track autoplay before
+      // resumeFromSavedState snapped to the saved video at T+600ms.
+      autoplay: 0,
       controls: 0,
       disablekb: 1,
       enablejsapi: 1,
@@ -138,12 +144,21 @@
     if (state.shuffleOn) {
       try { evt.target.setShuffle(true); } catch (_) {}
     }
-    setTimeout(resumeFromSavedState, 600);
 
-    if (state.on) {
-      attemptInitialPlay();
-    } else {
+    // K25: single decision point for initial play/cue. autoplay=0 in
+    // playerVars means the player is loaded but idle on ready. Three paths:
+    //   - !state.on              : stay cued; show off chrome
+    //   - state.userPaused       : load at saved position; remain paused
+    //   - state.on && !userPaused: play from saved position (or first track)
+    if (!state.on) {
       setStateAttr("off");
+      setTimeout(() => resumeFromSavedState("cue"), 600);
+    } else if (state.userPaused) {
+      setTimeout(() => resumeFromSavedState("cue"), 600);
+      setPlayPauseGlyph(false);
+    } else {
+      setTimeout(() => resumeFromSavedState("play"), 600);
+      attemptInitialPlay();
     }
 
     if (saveInterval) clearInterval(saveInterval);
@@ -153,19 +168,30 @@
     refreshTrackName();
   }
 
-  function resumeFromSavedState() {
+  function resumeFromSavedState(mode) {
+    // K25: mode = "play" (start playback) | "cue" (load but stay paused).
+    // The cue path uses playVideoAt + a queued pauseVideo workaround because
+    // the YT iframe API doesn't expose a playlist-aware cueVideoAt.
     if (!player || !state.currentVideoId) return;
+    if (mode == null) mode = "play";
     try {
       const playlist = player.getPlaylist();
       if (!playlist || !playlist.length) return;
       const idx = playlist.indexOf(state.currentVideoId);
-      if (idx >= 0) {
-        player.playVideoAt(idx);
-        if (state.lastPositionSec > 1) {
-          setTimeout(() => {
-            try { player.seekTo(state.lastPositionSec, true); } catch (_) {}
-          }, 800);
-        }
+      if (idx < 0) return;
+
+      try { player.playVideoAt(idx); } catch (_) {}
+      if (mode === "cue") {
+        setTimeout(() => { try { player.pauseVideo(); } catch (_) {} }, 200);
+      }
+      if (state.lastPositionSec > 1) {
+        setTimeout(() => {
+          try { player.seekTo(state.lastPositionSec, true); } catch (_) {}
+          // If cued, the seekTo can re-trigger play; re-pause as belt-and-suspenders.
+          if (mode === "cue") {
+            setTimeout(() => { try { player.pauseVideo(); } catch (_) {} }, 150);
+          }
+        }, 800);
       }
     } catch (_) {}
   }
@@ -189,13 +215,27 @@
     if (initInteractionBound) return;
     initInteractionBound = true;
     const events = ["click", "touchstart", "keydown"];
-    const handler = function() {
-      events.forEach(e => document.removeEventListener(e, handler, true));
+    firstInteractionHandler = function() {
+      events.forEach(e => document.removeEventListener(e, firstInteractionHandler, true));
+      firstInteractionHandler = null;
       initInteractionBound = false;
       try { player && player.playVideo(); } catch (_) {}
       showNeedsTap(false);
     };
-    events.forEach(e => document.addEventListener(e, handler, true));
+    events.forEach(e => document.addEventListener(e, firstInteractionHandler, true));
+  }
+
+  function unbindFirstInteraction() {
+    // K25: explicit teardown so an autoplay-fallback handler does not
+    // resurrect playback after the user has switched ambient off.
+    if (!firstInteractionHandler) {
+      initInteractionBound = false;
+      return;
+    }
+    const events = ["click", "touchstart", "keydown"];
+    events.forEach(e => document.removeEventListener(e, firstInteractionHandler, true));
+    firstInteractionHandler = null;
+    initInteractionBound = false;
   }
 
   function showNeedsTap(yes) {
@@ -329,9 +369,16 @@
     }
 
     // Loop-one near-end detection. Skip if duration unknown or trivially short.
+    // K25: also skip if the player is not currently PLAYING/BUFFERING - a
+    // paused track sitting near its end should not auto-restart underneath
+    // the user, and a paused-with-userPaused state must stay paused.
     if (state.loopOne && dur > 1 && cur >= dur - LOOP_END_PAD_S) {
+      let pst = -1;
+      try { pst = player.getPlayerState(); } catch (_) {}
+      const YTS = window.YT && window.YT.PlayerState;
+      const isLive = YTS && (pst === YTS.PLAYING || pst === YTS.BUFFERING);
       const now = Date.now();
-      if (now >= loopGuardUntil) {
+      if (isLive && !state.userPaused && now >= loopGuardUntil) {
         loopGuardUntil = now + LOOP_GUARD_MS;
         try {
           player.seekTo(0, true);
@@ -371,8 +418,12 @@
     if (!YTState) return;
     if (st === YTState.PLAYING || st === YTState.BUFFERING) {
       try { player.pauseVideo(); } catch (_) {}
+      state.userPaused = true;   // K25: distinct from state.on; persists across navigation
+      saveState();
     } else {
       try { player.playVideo(); } catch (_) {}
+      state.userPaused = false;  // K25: explicit resume clears the flag
+      saveState();
     }
   }
 
@@ -402,12 +453,19 @@
     setOnOffGlyph(state.on);
     setStateAttr(state.on ? null : "off");
     if (state.on) {
+      // K25: explicit re-engagement clears userPaused so a subsequent
+      // page-load resume call plays rather than stays cued.
+      state.userPaused = false;
       if (player) {
         try { player.playVideo(); } catch (_) {}
       } else {
         attemptInitialPlay();
       }
     } else {
+      // K25: clear any pending first-interaction handler so a stray click
+      // (or the same click that flipped this toggle) doesn't re-fire
+      // playVideo after ambient was switched off.
+      unbindFirstInteraction();
       if (player) {
         try { player.pauseVideo(); } catch (_) {}
       }

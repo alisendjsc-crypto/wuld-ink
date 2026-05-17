@@ -1,0 +1,244 @@
+/* ============================================================
+   wuld.ink - gallery component
+   Renders /gallery/ surface: hero, NSFW gate, plate grid, plate cards.
+   Pattern register: uniform grid (responsive 1 / 2 / 3 cols), mono
+   caption-below, neobrutalist hairline borders matching the rest of
+   the site. Cards are figure + figcaption; image is the figure, all
+   text lives in the caption with title + technique + body + epitaph.
+   ============================================================ */
+
+.gallery-page {
+  max-width: var(--w-max);
+  margin-inline: auto;
+  padding-inline: var(--s-5);
+  padding-block-end: var(--s-9);
+}
+
+/* ---------- Hero (shared shape with /watch/) ---------- */
+.gallery-page .page-hero {
+  padding-block: var(--s-8) var(--s-6);
+  border-bottom: var(--bw-base) solid var(--c-border);
+  margin-block-end: var(--s-7);
+}
+.gallery-page .page-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-mega);
+  color: var(--c-accent);
+  margin-block-end: var(--s-3);
+}
+.gallery-page .page-hero-title {
+  font-family: var(--font-headline);
+  font-size: var(--t-h1);
+  line-height: var(--lh-tight);
+  color: var(--c-fg);
+  margin-block-end: 0;
+}
+.gallery-page .page-intro {
+  font-family: var(--font-body);
+  font-size: var(--t-lead);
+  line-height: var(--lh-default);
+  color: var(--c-fg-muted);
+  max-width: var(--w-prose);
+  margin-block-end: var(--s-6);
+}
+
+/* ---------- NSFW gate bar ---------- */
+.gallery-nsfw-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  border: var(--bw-base) solid var(--c-border-strong);
+  padding: var(--s-4) var(--s-5);
+  margin-block-end: var(--s-7);
+  font-family: var(--font-mono);
+}
+
+.gallery-nsfw-toggle {
+  font: inherit;
+  font-size: var(--t-sm);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-fg);
+  background: transparent;
+  border: var(--bw-base) solid var(--c-border);
+  padding: var(--s-2) var(--s-4);
+  cursor: pointer;
+  transition:
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    background-color var(--t-fast) var(--ease);
+}
+.gallery-nsfw-toggle:hover {
+  color: var(--c-accent);
+  border-color: var(--c-accent);
+}
+.gallery-nsfw-toggle:focus-visible {
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+}
+.gallery-nsfw-toggle[aria-pressed="true"] {
+  color: var(--c-bg);
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+.gallery-nsfw-status {
+  font-size: var(--t-xs);
+  color: var(--c-fg-dim);
+  letter-spacing: var(--ls-wide);
+}
+
+/* ---------- Grid ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-7) var(--s-5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .gallery-grid { grid-template-columns: 1fr; gap: var(--s-7); }
+}
+
+/* ---------- Plate card ---------- */
+.gallery-plate {
+  display: block;
+  border: var(--bw-thin) solid var(--c-border);
+  padding: 0;
+  background: var(--c-bg);
+  position: relative;
+}
+
+.gallery-plate-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image area: hairline bottom border separates image from caption.
+   Aspect kept by image's intrinsic ratio; container does not crop. */
+.gallery-plate-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--c-bg-elevated);
+  border-bottom: var(--bw-thin) solid var(--c-border);
+}
+/* Treat broken images (R2 not yet populated) as a soft placeholder
+   so the card chrome and text stay visible. */
+.gallery-plate-img[alt]:after {
+  content: "image pending";
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--c-fg-dim);
+  text-align: center;
+  padding: var(--s-7) var(--s-4);
+  letter-spacing: var(--ls-wide);
+}
+
+.gallery-plate-caption {
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.gallery-plate-num {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-mega);
+  color: var(--c-accent);
+}
+
+.gallery-plate-title {
+  font-family: var(--font-headline);
+  font-size: var(--t-h4);
+  line-height: var(--lh-snug);
+  color: var(--c-fg);
+  font-style: italic;
+  margin: 0;
+}
+
+.gallery-plate-technique {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  line-height: var(--lh-snug);
+  color: var(--c-fg-dim);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.gallery-plate-body {
+  font-family: var(--font-body);
+  font-size: var(--t-base);
+  line-height: var(--lh-default);
+  color: var(--c-fg-muted);
+  margin: 0;
+}
+
+.gallery-plate-epitaph {
+  font-family: var(--font-body);
+  font-size: var(--t-sm);
+  line-height: var(--lh-snug);
+  color: var(--c-fg);
+  font-style: italic;
+  margin: 0;
+  padding-block-start: var(--s-3);
+  border-top: var(--bw-thin) solid var(--c-border);
+}
+
+.gallery-plate-epitaph::before {
+  content: "\2014 \00a0";
+  color: var(--c-accent);
+}
+
+/* ---------- NSFW gating rules ---------- */
+/* Default: NSFW plates hidden. body[data-nsfw-revealed] flips them. */
+.gallery-plate[data-nsfw="true"] {
+  display: none;
+}
+body[data-nsfw-revealed] .gallery-plate[data-nsfw="true"] {
+  display: block;
+}
+body[data-nsfw-revealed] .gallery-plate[data-nsfw="true"]::before {
+  content: "NSFW";
+  position: absolute;
+  top: var(--s-2);
+  right: var(--s-2);
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-mega);
+  color: var(--c-bg);
+  background: var(--c-accent);
+  padding: var(--s-1) var(--s-3);
+  border: var(--bw-base) solid var(--c-accent);
+}
+
+/* End-marker (homepage cross-link) hairline */
+.gallery-page .essay-end-marker {
+  margin-block-start: var(--s-8);
+  padding-block-start: var(--s-5);
+  border-top: var(--bw-thin) solid var(--c-border);
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  letter-spacing: var(--ls-wide);
+}
+.gallery-page .essay-end-marker a {
+  color: var(--c-fg-muted);
+  text-decoration: none;
+}
+.gallery-page .essay-end-marker a:hover {
+  color: var(--c-accent);
+}
