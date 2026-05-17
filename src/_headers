@@ -59,6 +59,21 @@
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=300
 
+# --- K24p exact-path experiment (K24o lxxi) ---
+# Wildcard /components/* rule silently rejected by Pages parser (other
+# wildcards in this file work; isolation case unknown). max-age=600 is
+# DISTINCT from 300 (wildcard intent) and 14400 (Pages origin observed)
+# to isolate wildcard handling vs full rule-block rejection. Probe post
+# K24p deploy with novel query string; branch on response:
+#   600   -> wildcard handling is the bug; enumerate /components/* as
+#            exact paths in K24q
+#   14400 -> deeper rule-block rejection (file-level or pathspec parse);
+#            accept cache-bust ritual as canonical mitigation
+#   300   -> wildcard worked all along; cache-revalidation timing artifact
+/components/ambient-player.js
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=600
+
 # --- Crawler-targeted files (short-cache to let updates propagate) ---
 /robots.txt
   Cache-Control: public, max-age=3600
