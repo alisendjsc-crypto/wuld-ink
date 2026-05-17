@@ -5,6 +5,14 @@
    navigation; first-interaction listener works around browser
    autoplay policy hard-block.
 
+   K24k extension:
+     - dismiss/restore (hairline sliver state; bar visibility
+       toggle distinct from audio toggle)
+     - loop-one (repeat current video on end)
+     - wuld:overlay:open/close listener (auto-pause when a
+       modal opens, e.g. theater-mode; auto-resume on close
+       if was playing)
+
    Public surface: window.WuldAmbient
    ============================================================ */
 
@@ -21,7 +29,9 @@
     volume: 40,           // 0..100
     currentVideoId: null, // resume target on next page
     lastPositionSec: 0,   // resume offset
-    shuffleOn: true
+    shuffleOn: true,
+    loopOne: false,       // K24k: repeat current video on end
+    dismissed: false      // K24k: bar collapsed to sliver
   };
 
   let state    = readState();
@@ -31,6 +41,7 @@
   let saveInterval = null;
   let initialPlayAttempted = false;
   let elements = {};            // cached DOM refs
+  let overlayPauseResumeNeeded = false;  // K24k: was-playing memory across overlay
 
   // ---------------- localStorage helpers ----------------
 
@@ -56,7 +67,6 @@
   function loadYouTubeAPI() {
     if (apiBooted) return;
     apiBooted = true;
-    // YT IFrame API uses a global callback. Define it before injecting the script.
     const prev = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = function() {
       if (typeof prev === "function") { try { prev(); } catch (_) {} }
@@ -90,11 +100,8 @@
       iv_load_policy: 3,
       fs: 0
     };
-    // origin param helps YouTube postMessage routing; only set when known.
     try { playerVars.origin = window.location.origin; } catch (_) {}
 
-    // Construct player into the <div id="ambient-iframe">. YT replaces the
-    // div with an <iframe>.
     player = new YT.Player("ambient-iframe", {
       host: "https://www.youtube-nocookie.com",
       width: "1",
@@ -113,8 +120,6 @@
     if (state.shuffleOn) {
       try { evt.target.setShuffle(true); } catch (_) {}
     }
-    // If we have a saved currentVideoId, try to resume that exact video.
-    // The playlist may not be fully loaded yet; defer briefly.
     setTimeout(resumeFromSavedState, 600);
 
     if (state.on) {
@@ -123,9 +128,6 @@
       setStateAttr("off");
     }
 
-    // Periodic state save (every STATE_SAVE_MS while playing) keeps the
-    // resume position fresh in case the user closes the tab without
-    // triggering beforeunload (e.g., mobile background-kill).
     if (saveInterval) clearInterval(saveInterval);
     saveInterval = setInterval(captureNowPlaying, STATE_SAVE_MS);
 
@@ -141,7 +143,6 @@
       if (idx >= 0) {
         player.playVideoAt(idx);
         if (state.lastPositionSec > 1) {
-          // Small extra delay so the video is loaded enough to seek.
           setTimeout(() => {
             try { player.seekTo(state.lastPositionSec, true); } catch (_) {}
           }, 800);
@@ -154,14 +155,10 @@
     if (initialPlayAttempted) return;
     initialPlayAttempted = true;
     try { player.playVideo(); } catch (_) {}
-    // After ~1.2s, check if playback actually started. If not, browser
-    // autoplay policy blocked us - bind first-interaction listener +
-    // surface the "tap to start" CTA.
     setTimeout(() => {
       if (!player) return;
       let st = -1;
       try { st = player.getPlayerState(); } catch (_) {}
-      // YT.PlayerState.PLAYING === 1, BUFFERING === 3
       if (st !== 1 && st !== 3) {
         bindFirstInteraction();
         showNeedsTap(true);
@@ -190,13 +187,21 @@
   function onPlayerStateChange(evt) {
     const YTState = window.YT && window.YT.PlayerState;
     if (!YTState) return;
-    // Glyph swap on playpause button
     if (evt.data === YTState.PLAYING) {
       setPlayPauseGlyph(true);
       showNeedsTap(false);
       refreshTrackName();
-    } else if (evt.data === YTState.PAUSED || evt.data === YTState.ENDED) {
+    } else if (evt.data === YTState.PAUSED) {
       setPlayPauseGlyph(false);
+    } else if (evt.data === YTState.ENDED) {
+      setPlayPauseGlyph(false);
+      // K24k: loop-one - restart current video on end
+      if (state.loopOne && player) {
+        try {
+          player.seekTo(0, true);
+          player.playVideo();
+        } catch (_) {}
+      }
     } else if (evt.data === YTState.CUED) {
       refreshTrackName();
     }
@@ -204,7 +209,6 @@
   }
 
   function onPlayerError(evt) {
-    // Video unavailable (e.g., region-locked or removed). Skip onward.
     try { player.nextVideo(); } catch (_) {}
   }
 
@@ -226,10 +230,27 @@
     elements.onoff.setAttribute("aria-pressed", on ? "true" : "false");
   }
 
+  function setLoopGlyph(on) {
+    if (!elements.loop) return;
+    elements.loop.textContent = on ? "[loop one]" : "[loop off]";
+    elements.loop.setAttribute("aria-pressed", on ? "true" : "false");
+  }
+
   function setStateAttr(s) {
     if (!elements.root) return;
     if (s) elements.root.setAttribute("data-state", s);
     else   elements.root.removeAttribute("data-state");
+  }
+
+  function setDismissedAttr(yes) {
+    if (!elements.root) return;
+    if (yes) {
+      elements.root.setAttribute("data-dismissed", "true");
+      document.body.classList.add("ambient-dismissed");
+    } else {
+      elements.root.removeAttribute("data-dismissed");
+      document.body.classList.remove("ambient-dismissed");
+    }
   }
 
   function refreshTrackName() {
@@ -287,12 +308,17 @@
     saveState();
   }
 
+  function loopToggle() {
+    state.loopOne = !state.loopOne;
+    setLoopGlyph(state.loopOne);
+    saveState();
+  }
+
   function ambientToggle() {
     state.on = !state.on;
     setOnOffGlyph(state.on);
     setStateAttr(state.on ? null : "off");
     if (state.on) {
-      // Boot or resume.
       if (player) {
         try { player.playVideo(); } catch (_) {}
       } else {
@@ -307,6 +333,18 @@
     saveState();
   }
 
+  function dismiss() {
+    state.dismissed = true;
+    setDismissedAttr(true);
+    saveState();
+  }
+
+  function restore() {
+    state.dismissed = false;
+    setDismissedAttr(false);
+    saveState();
+  }
+
   function setVolume(v) {
     const n = Math.max(0, Math.min(100, Math.round(v)));
     state.volume = n;
@@ -314,6 +352,36 @@
       try { player.setVolume(n); } catch (_) {}
     }
     saveState();
+  }
+
+  // ---------------- Overlay coordination (K24k) ----------------
+  // Custom-event channel: wuld:overlay:open / wuld:overlay:close
+  // Any overlay component (theater-mode, future lightbox, modal,
+  // full-screen reader) dispatches these events on document. The
+  // ambient player pauses on :open if it was playing, and resumes
+  // on :close. The state.on toggle is unchanged - the pause is a
+  // courtesy hold, not a user dismissal.
+
+  function onOverlayOpen() {
+    if (!player) return;
+    let st = -1;
+    try { st = player.getPlayerState(); } catch (_) {}
+    const YTState = window.YT && window.YT.PlayerState;
+    if (!YTState) return;
+    if (st === YTState.PLAYING || st === YTState.BUFFERING) {
+      overlayPauseResumeNeeded = true;
+      try { player.pauseVideo(); } catch (_) {}
+    } else {
+      overlayPauseResumeNeeded = false;
+    }
+  }
+
+  function onOverlayClose() {
+    if (!player) return;
+    if (overlayPauseResumeNeeded && state.on) {
+      try { player.playVideo(); } catch (_) {}
+    }
+    overlayPauseResumeNeeded = false;
   }
 
   // ---------------- Boot ----------------
@@ -329,6 +397,10 @@
       elements.shuffle.addEventListener("click", shuffleToggle);
       setShuffleGlyph(state.shuffleOn);
     }
+    if (elements.loop) {
+      elements.loop.addEventListener("click", loopToggle);
+      setLoopGlyph(state.loopOne);
+    }
     if (elements.onoff) {
       elements.onoff.addEventListener("click", ambientToggle);
       setOnOffGlyph(state.on);
@@ -337,6 +409,18 @@
       elements.volume.value = String(state.volume);
       elements.volume.addEventListener("input", (e) => {
         setVolume(parseInt(e.target.value, 10) || 0);
+      });
+    }
+    if (elements.dismiss) {
+      elements.dismiss.addEventListener("click", dismiss);
+    }
+    if (elements.sliver) {
+      elements.sliver.addEventListener("click", restore);
+      elements.sliver.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          restore();
+        }
       });
     }
   }
@@ -350,26 +434,25 @@
       playpause: document.getElementById("ambient-playpause"),
       skip: document.getElementById("ambient-skip"),
       shuffle: document.getElementById("ambient-shuffle"),
+      loop: document.getElementById("ambient-loop"),
       volume: document.getElementById("ambient-volume"),
-      onoff: document.getElementById("ambient-onoff")
+      onoff: document.getElementById("ambient-onoff"),
+      dismiss: document.getElementById("ambient-dismiss"),
+      sliver: document.getElementById("ambient-sliver")
     };
 
     bindControls();
     root.hidden = false;
 
     if (!state.on) setStateAttr("off");
+    if (state.dismissed) setDismissedAttr(true);
 
-    // Always boot the API even when state.on is false - so the user can
-    // toggle on without a page reload. (The iframe loads silently with
-    // autoplay=0; no network cost beyond YT's standard player chrome.)
     loadYouTubeAPI();
 
-    // Save on navigation
     window.addEventListener("beforeunload", () => {
       captureNowPlaying();
       saveState();
     });
-    // Save on tab visibility change (mobile background-kill mitigation)
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "hidden") {
         captureNowPlaying();
@@ -377,12 +460,18 @@
       }
     });
 
-    // Expose public surface
+    // K24k: overlay coordination via custom events
+    document.addEventListener("wuld:overlay:open", onOverlayOpen);
+    document.addEventListener("wuld:overlay:close", onOverlayClose);
+
     window.WuldAmbient = {
       toggle: ambientToggle,
       setVolume: setVolume,
       skip: skip,
       shuffleToggle: shuffleToggle,
+      loopToggle: loopToggle,
+      dismiss: dismiss,
+      restore: restore,
       getState: () => Object.assign({}, state)
     };
   }

@@ -110,6 +110,7 @@
         <a href="/music/">Music</a>
         <a href="/book/">Book</a>
         <a href="/blog/">Blog</a>
+        <a href="/archive/">Archive</a>
       </nav>
     </div>
   </header>
@@ -305,8 +306,11 @@
       <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
       <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
     </div>
+    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
 <script src="/components/ambient-player.js" defer></script>
 </body>

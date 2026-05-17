@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css">
+  <link rel="license" href="/LICENSE">
+  <title>Archive &mdash; wuld.ink</title>
+  <meta name="description" content="Defiant archiving and metacognitive exploration. Unlisted videos and excerpts from prior works (Love Void Love, The Point, Hatred, Forget the Plot, The Known and the Unknown).">
+
+  <link rel="canonical" href="https://wuld.ink/archive/">
+  <meta property="og:title" content="Archive &mdash; wuld.ink">
+  <meta property="og:description" content="Defiant archiving and metacognitive exploration. Unlisted videos and excerpts from prior works (Love Void Love, The Point, Hatred, Forget the Plot, The Known and the Unknown).">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/archive/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Archive &mdash; wuld.ink">
+  <meta name="twitter:description" content="Defiant archiving and metacognitive exploration. Unlisted videos and excerpts from prior works.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Archive",
+    "description": "Defiant archiving and metacognitive exploration. Unlisted videos and excerpts from prior works.",
+    "url": "https://wuld.ink/archive/",
+    "image": "https://wuld.ink/assets/og-default.png",
+    "inLanguage": "en",
+    "isPartOf": { "@id": "https://wuld.ink/#website" },
+    "author": {
+      "@type": "Person",
+      "name": "Josiah S. Cooper",
+      "alternateName": ["WULD", "AnomicIndividual87", "Evilis Anihilis Uls"]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem", "position": 1,
+          "item": {
+            "@type": "VideoObject",
+            "name": "Unlisted videos (playlist)",
+            "description": "Curated unlisted YouTube playlist of older writings and select videos.",
+            "embedUrl": "https://www.youtube-nocookie.com/embed/videoseries?list=PL5zDoTelkQ6qr1xXbAG9MYnlF8f9_7wrN",
+            "uploadDate": "2026-05-16"
+          }
+        },
+        {
+          "@type": "ListItem", "position": 2,
+          "item": {
+            "@type": "VideoObject",
+            "name": "Selected video (44N6Z7zEl9k)",
+            "embedUrl": "https://www.youtube-nocookie.com/embed/44N6Z7zEl9k",
+            "uploadDate": "2026-05-16"
+          }
+        },
+        {
+          "@type": "ListItem", "position": 3,
+          "item": {
+            "@type": "VideoObject",
+            "name": "Selected video (bvX4YMekoH0)",
+            "embedUrl": "https://www.youtube-nocookie.com/embed/bvX4YMekoH0",
+            "uploadDate": "2026-05-16"
+          }
+        },
+        {
+          "@type": "ListItem", "position": 4,
+          "item": { "@type": "Book", "name": "The Point", "author": "Josiah S. Cooper", "datePublished": "2021-12" }
+        },
+        {
+          "@type": "ListItem", "position": 5,
+          "item": { "@type": "Book", "name": "Hatred", "author": "Josiah S. Cooper", "datePublished": "2022" }
+        },
+        {
+          "@type": "ListItem", "position": 6,
+          "item": { "@type": "Book", "name": "Forget the Plot", "author": "Josiah S. Cooper", "datePublished": "2022-01" }
+        },
+        {
+          "@type": "ListItem", "position": 7,
+          "item": { "@type": "Book", "name": "The Known and the Unknown", "author": "Josiah S. Cooper", "datePublished": "2020", "isbn": "9798624372580" }
+        },
+        {
+          "@type": "ListItem", "position": 8,
+          "item": { "@type": "Book", "name": "Love Void Love: Writings of Things and Other Things", "author": "Josiah S. Cooper", "datePublished": "2019" }
+        }
+      ]
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css">
+  <link rel="stylesheet" href="/components/footer.css">
+  <link rel="stylesheet" href="/components/mode-toggle.css">
+
+  <style>
+    /* ============================================================
+       /archive/ (K24k) - mixed-content surface
+       3 sections: Videos / Writings / Other. Flat layout with
+       hairline horizontal rule + section eyebrow between blocks
+       (no nested cards / sub-headers). The reader's frame here is
+       "old stuff, mixed bag, browsable," not "structured taxonomy."
+
+       Books pull from organized_corpus_v2.txt at specific line
+       numbers staked by the book-Claude handoff. Quantities are
+       deliberate; the strength is in the cut.
+
+       Forget the Plot - reveal-architecture preserved per handoff
+       Section 3: clean confession-spine transcripts are forbidden;
+       the wall IS the work. Awaits page-image asset drop.
+
+       Illustrations from K&U (K24k open question) - 30+ indexed,
+       1 embedded in the docx; sourcing pending.
+       ============================================================ */
+
+    .archive-page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+
+    .archive-page-hero {
+      padding-block: var(--s-8) var(--s-6);
+      border-bottom: var(--bw-base) solid var(--c-border);
+      margin-block-end: var(--s-7);
+    }
+    .archive-page-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+      margin-block-end: var(--s-3);
+    }
+    .archive-page-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h1);
+      line-height: var(--lh-tight);
+      color: var(--c-fg);
+      margin: 0;
+    }
+    .archive-page-lede {
+      max-width: var(--w-readable);
+      margin-block-start: var(--s-5);
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-relaxed);
+      color: var(--c-fg-muted);
+    }
+
+    .archive-epigraph {
+      max-width: var(--w-readable);
+      margin-block: var(--s-7) var(--s-8);
+      padding-inline-start: var(--s-5);
+      border-inline-start: var(--bw-thick) solid var(--c-accent);
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-relaxed);
+      color: var(--c-fg);
+      font-style: italic;
+    }
+    .archive-epigraph cite {
+      display: block;
+      margin-block-start: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+    }
+
+    /* ---------- Section heading ---------- */
+
+    .archive-section {
+      margin-block-end: var(--s-9);
+    }
+    .archive-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--s-4);
+      margin-block-end: var(--s-6);
+      padding-block-end: var(--s-3);
+      border-bottom: var(--bw-thin) solid var(--c-border);
+    }
+    .archive-section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+    }
+    .archive-section-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h2);
+      color: var(--c-fg);
+      margin: 0;
+    }
+    .archive-section-note {
+      max-width: var(--w-readable);
+      margin-block-end: var(--s-6);
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      line-height: var(--lh-relaxed);
+      color: var(--c-fg-muted);
+    }
+
+    /* ---------- Videos grid ---------- */
+
+    .archive-videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+      gap: var(--s-5);
+    }
+    .archive-video-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--c-bg-elev, var(--c-bg));
+      border: var(--bw-thin) solid var(--c-border);
+      transition: border-color var(--t-fast, 120ms) var(--ease, ease);
+    }
+    .archive-video-card:hover,
+    .archive-video-card:focus-within {
+      border-color: var(--c-accent);
+    }
+    .archive-video-thumb-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background-color: #111;
+    }
+    .archive-video-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .archive-video-meta {
+      padding: var(--s-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+    .archive-video-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+    }
+    .archive-video-title {
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-snug);
+      color: var(--c-fg);
+      margin: 0;
+    }
+    .archive-video-link {
+      margin-block-start: var(--s-2);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .archive-video-link:hover { text-decoration: underline; }
+
+    /* ---------- Writings: per-book block ---------- */
+
+    .archive-book {
+      max-width: var(--w-readable);
+      margin-block-end: var(--s-9);
+    }
+    .archive-book-header {
+      margin-block-end: var(--s-5);
+    }
+    .archive-book-meta {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-2);
+    }
+    .archive-book-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h3);
+      color: var(--c-fg);
+      margin: 0 0 var(--s-2) 0;
+    }
+    .archive-book-frame {
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      font-style: italic;
+      color: var(--c-fg-muted);
+      margin: 0;
+    }
+
+    .archive-excerpt {
+      margin-block: var(--s-5);
+      padding: var(--s-5);
+      background-color: var(--c-bg-elev, var(--c-bg));
+      border-inline-start: var(--bw-thick) solid var(--c-border);
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-relaxed);
+      color: var(--c-fg);
+    }
+    .archive-excerpt p {
+      margin: 0;
+    }
+    .archive-excerpt p + p {
+      margin-block-start: var(--s-3);
+    }
+    .archive-excerpt .archive-excerpt-cite {
+      display: block;
+      margin-block-start: var(--s-4);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-fg-muted);
+    }
+
+    /* ---------- FtP placeholder (no-text discipline) ---------- */
+
+    .archive-ftp-placeholder {
+      margin-block: var(--s-5);
+      padding: var(--s-5);
+      border: var(--bw-thin) dashed var(--c-border);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      line-height: var(--lh-relaxed);
+      color: var(--c-fg-muted);
+    }
+    .archive-ftp-placeholder p {
+      margin: 0;
+    }
+    .archive-ftp-placeholder p + p {
+      margin-block-start: var(--s-3);
+    }
+
+    /* ---------- Other section: open questions ---------- */
+
+    .archive-other-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-5);
+      max-width: var(--w-readable);
+    }
+    .archive-other-list li {
+      padding: var(--s-4);
+      border-inline-start: var(--bw-base) solid var(--c-fg-muted);
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      line-height: var(--lh-relaxed);
+      color: var(--c-fg);
+    }
+    .archive-other-list li strong {
+      display: block;
+      margin-block-end: var(--s-2);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+    }
+
+    @media (max-width: 720px) {
+      .archive-page-title { font-size: var(--t-h2); }
+      .archive-videos { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-mode="dark">
+
+  <header class="site-header">
+    <a class="site-mark" href="/" aria-label="wuld.ink home">wuld.ink</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/essays/">Essays</a>
+      <a href="/argument-library/">Library</a>
+      <a href="/glossary/">Glossary</a>
+      <a href="/void-engine/">Void</a>
+      <a href="/watch/">Watch</a>
+      <a href="/music/">Music</a>
+      <a href="/book/">Book</a>
+      <a href="/blog/">Blog</a>
+      <a href="/archive/" aria-current="page">Archive</a>
+    </nav>
+  </header>
+
+  <main class="archive-page">
+
+    <header class="archive-page-hero">
+      <p class="archive-page-eyebrow">11 &middot; Archive</p>
+      <h1 class="archive-page-title">Archive</h1>
+      <p class="archive-page-lede">A discrete cabinet of disparate objects &mdash; clinical treatise next to baroque scream next to a noise-wall. Curated to show range, not completeness.</p>
+    </header>
+
+    <blockquote class="archive-epigraph">
+      The answer lies in the concept of defiant archiving and metacognitive exploration. Works like <em>Love Void Love: Writings of Things and Other Things</em>, <em>The Point</em>, <em>The Book of Nought</em>, and <em>The Known and the Unknown</em> serve as meticulous records of existential crisis. <em>The Point</em>, specifically, is noted as having been written during a period of intense mental health struggle, encompassing schizophrenia, benzodiazepine withdrawal, and severe panic attacks. The act of writing, therefore, becomes a crucial mechanism for metacognition&mdash;thinking about how and why we think, and observing the breakdown of the mind from a third-party perspective. It is an attempt to systematically map the boundaries of the void and document the failure of human consciousness.
+      <cite>&mdash; Self-frame</cite>
+    </blockquote>
+
+    <!-- ============================================================
+         Section A: Videos
+         Three link-out cards (no on-site embed by default).
+         Per K24k privacy discipline, embeds happen only at user
+         action via /music/ W-HOLE theater-mode (the singular
+         exception). Archive video cards open YouTube in a new tab.
+         ============================================================ -->
+
+    <section class="archive-section" aria-labelledby="videos">
+      <header class="archive-section-header">
+        <span class="archive-section-eyebrow">A</span>
+        <h2 class="archive-section-title" id="videos">Videos</h2>
+      </header>
+      <p class="archive-section-note">Unlisted material and select link-outs. Cards open YouTube in a new tab; no embed loads on this page.</p>
+
+      <div class="archive-videos">
+
+        <article class="archive-video-card">
+          <a class="archive-video-thumb-wrap" href="https://www.youtube.com/playlist?list=PL5zDoTelkQ6qr1xXbAG9MYnlF8f9_7wrN" target="_blank" rel="noopener noreferrer" aria-label="Unlisted videos playlist on YouTube">
+            <img class="archive-video-thumb" src="https://i.ytimg.com/vi/44N6Z7zEl9k/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          </a>
+          <div class="archive-video-meta">
+            <p class="archive-video-eyebrow">Playlist &middot; Unlisted</p>
+            <h3 class="archive-video-title">Older writings &mdash; unlisted playlist</h3>
+            <a class="archive-video-link" href="https://www.youtube.com/playlist?list=PL5zDoTelkQ6qr1xXbAG9MYnlF8f9_7wrN" target="_blank" rel="noopener noreferrer">Open playlist on YouTube &rarr;</a>
+          </div>
+        </article>
+
+        <article class="archive-video-card">
+          <a class="archive-video-thumb-wrap" href="https://www.youtube.com/watch?v=44N6Z7zEl9k" target="_blank" rel="noopener noreferrer" aria-label="Selected video on YouTube">
+            <img class="archive-video-thumb" src="https://i.ytimg.com/vi/44N6Z7zEl9k/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          </a>
+          <div class="archive-video-meta">
+            <p class="archive-video-eyebrow">Video &middot; Selected</p>
+            <h3 class="archive-video-title">Selection &mdash; 44N6Z7zEl9k</h3>
+            <a class="archive-video-link" href="https://www.youtube.com/watch?v=44N6Z7zEl9k" target="_blank" rel="noopener noreferrer">Open on YouTube &rarr;</a>
+          </div>
+        </article>
+
+        <article class="archive-video-card">
+          <a class="archive-video-thumb-wrap" href="https://www.youtube.com/watch?v=bvX4YMekoH0" target="_blank" rel="noopener noreferrer" aria-label="Selected video on YouTube">
+            <img class="archive-video-thumb" src="https://i.ytimg.com/vi/bvX4YMekoH0/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          </a>
+          <div class="archive-video-meta">
+            <p class="archive-video-eyebrow">Video &middot; Selected</p>
+            <h3 class="archive-video-title">Selection &mdash; bvX4YMekoH0</h3>
+            <a class="archive-video-link" href="https://www.youtube.com/watch?v=bvX4YMekoH0" target="_blank" rel="noopener noreferrer">Open on YouTube &rarr;</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Section B: Writings
+         Five books. Per-book frame + staked excerpts (no whole-book
+         dumps; the strength is the cut). Sources mapped to specific
+         line numbers in organized_corpus_v2.txt.
+         ============================================================ -->
+
+    <section class="archive-section" aria-labelledby="writings">
+      <header class="archive-section-header">
+        <span class="archive-section-eyebrow">B</span>
+        <h2 class="archive-section-title" id="writings">Writings</h2>
+      </header>
+
+      <article class="archive-book">
+        <header class="archive-book-header">
+          <p class="archive-book-meta">Book &middot; Dec 2021 &middot; The philosophical pass</p>
+          <h3 class="archive-book-title">The Point</h3>
+          <p class="archive-book-frame">Numbered-fragment metaphysical nihilism, written through psychosis and benzodiazepine withdrawal.</p>
+        </header>
+
+        <blockquote class="archive-excerpt">
+          <p>Non-existence = default because void remains void because void = void as opposed to the notion of existence or &lsquo;things themselves&rsquo; (i.e. non illusory independences of observance). Existence remains just as undefined as non-existence, whereas non-existence = at least logically deductible through a series of questions and analysis: What is a thing fundamentally, to the very core? How? And if you cannot answer these questions without postulations of infinity somethings or &lsquo;errors in the universe&rsquo; the answer will always = a void remains a void because void = void, logically, necessarily, absolutely, completely, totally, utterly and entirely.</p>
+          <p>With my acknowledgment of w-holes (replacement word for &lsquo;things&rsquo;) I must admit that our perceptual foundation of the world through the scientific method = undeniable in a concrete (supraliminal) sense. W-holes do not rely on my belief to = w-hole. I am however less and less certain of the due repercussions of my original positions. Have I really said anything new and original, or have I just reinvented language a little bit (flipped words upside down)? I can at least say with some certainty that I can present a very good game to play.</p>
+          <span class="archive-excerpt-cite">&mdash; The Point</span>
+        </blockquote>
+
+        <blockquote class="archive-excerpt">
+          <p>In regards to the &ldquo;logical narrative&rdquo;, of course, <em>I understand</em> that this is all anfractuous aporia &mdash; blatant &mdash; and tortuous impasse of &ldquo;paradox&rdquo;. It is itself. It means itself. That will never be untrue, but what it means, cannot be explicated ulteriorly as a universal impossibility. This is the unannouncing non-existence of intelligence. This is the profundity of knowing absolutely nothing. This is the limitation of everything. It is not the prevention or the inception or the termination, but it isn&rsquo;t what it isn&rsquo;t all the more.</p>
+          <span class="archive-excerpt-cite">&mdash; The Point</span>
+        </blockquote>
+      </article>
+
+      <article class="archive-book">
+        <header class="archive-book-header">
+          <p class="archive-book-meta">Book &middot; 2022 &middot; The affective pass</p>
+          <h3 class="archive-book-title">Hatred</h3>
+          <p class="archive-book-frame">Single sustained baroque scream; near-silent release.</p>
+        </header>
+
+        <blockquote class="archive-excerpt">
+          <p>Hatred is a tough feeling to overcome; the most resilient to change; the most inhospitable to any exemption of guilt or shame; a drought to the soul, that makes skin crawl, underneath blood boiling with veins akin to barb-wire &ndash; strangling the heart, an already asphyxiated muscle, unrelenting to the ash of history &ndash; pursuing like mad, fountains of saliva and sweat from every orifice, betrayal and self-deceit. Consciousness cannot be enough; the mind-eye of our whirling, whirring hour &ndash; scraping out of the wounds so sour &ndash; imagining a necessary escape through the portal and recess of what is. Monotony and reference to what isn&rsquo;t; repetitive motion; memory, nepotism and sameness &ndash; nescience, fear, estrangement, and annihilation.</p>
+          <span class="archive-excerpt-cite">&mdash; Hatred</span>
+        </blockquote>
+      </article>
+
+      <article class="archive-book">
+        <header class="archive-book-header">
+          <p class="archive-book-meta">Book &middot; Jan 2022 &middot; The experimental pass</p>
+          <h3 class="archive-book-title">Forget the Plot</h3>
+          <p class="archive-book-frame">76-page steganographic autobiography. The noise-wall is the work.</p>
+        </header>
+
+        <div class="archive-ftp-placeholder">
+          <p>[ The form carries the meaning, not the decoded sentence. ]</p>
+          <p>The corpus extraction strips the noise to expose the confession spine &mdash; useful for the writing, fatal as site content. Putting the clean spine here as readable text would turn a formal argument about meaning-into-entropy into a list of trauma confessions. That is the exact reductionism the book was built to defeat.</p>
+          <p>The book&rsquo;s site treatment, in priority order: (1) the page as image (the wall is the work); (2) optional reveal that surfaces an embedded line <em>without removing the noise around it</em>; (3) never a clean transcript of the confessions as the primary or default view.</p>
+          <p>Page-image assets are pending author drop.</p>
+        </div>
+      </article>
+
+      <article class="archive-book">
+        <header class="archive-book-header">
+          <p class="archive-book-meta">Book &middot; 2020 &middot; ISBN 9798624372580 &middot; The compendium precursor</p>
+          <h3 class="archive-book-title">The Known and the Unknown</h3>
+          <p class="archive-book-frame">Itself a compendium: <em>Void Love &middot; Mementos &middot; Esoteric Writings &middot; Illustrations</em>.</p>
+        </header>
+
+        <blockquote class="archive-excerpt">
+          <p>The empty room</p>
+          <p>Known and the Unknown.</p>
+          <p>&ldquo;What.&rdquo; or more aptly put &ldquo;.&rdquo;, was the way I felt best described my interpretation of my own original philosophy &mdash; &ldquo;Existence is impossible and will always be impossible. There is simply no-thing. Nothing. Naught at all.</p>
+          <p>&ldquo;A void remains a void because it is a void.</p>
+          <p>&ldquo;There was never anything, because there was no-thing to start with. (If a thing requires a thing to begin or exist, then there cannot be a first thing to start with by rule of &lsquo;cause and effect&rsquo;, else you argue the eternal (non-observable), infinite and imperceptible by logic and eye (&lsquo;proof&rsquo; by sense).</p>
+          <p>&ldquo;The universal and ostensibly insoluble question &lsquo;why does everything exist?&rsquo; cannot and will never be righteously answered, because it doesn&rsquo;t exist.&rdquo;</p>
+          <span class="archive-excerpt-cite">&mdash; Behold, Grey Incantation (JSC) &middot; The Known and the Unknown</span>
+        </blockquote>
+
+        <blockquote class="archive-excerpt">
+          <p>&lsquo;Real-World&rsquo;-Principles of Existence [Reality]&mdash;Ontology:</p>
+          <p>1. Logic is how you describe and not the description itself.<br>
+          2. The description itself is a representation of things themselves [depending, though-however, on whether these icons are not merely synthetic inventions of confusion or deliberate imagination].<br>
+          3. Words are symbols [&lsquo;pointers&rsquo;, so to speak, ideally] and not abstract-arbitrary creations [projections] of things themselves.<br>
+          4. Autogenesis [of originality, redundancy, similarity and &lsquo;true&rsquo; randomness] is non-guaranteed.<br>
+          5. Non-guaranteed means no prior determining factors.<br>
+          6. Void of reason does not equal prevention [limitation or restriction of inception&mdash;beginning of things themselves&mdash;from the void, literally], however, since logic is non-intrinsic [reference to above statement (1.)].<br>
+          6-2. Disappearance [deletion] is by definition illogical (without explanation), since dissipation and transmutation (solution-dissolution) are only categorized thoroughly through things themselves.<br>
+          7. A thing is what it is and no &lsquo;other&rsquo; [other thing&mdash;aside from itself] by its own nature.<br>
+          7-2. Things are what they are by their own definition.<br>
+          8. Inherent qualia [things themselves], beginnings and ends only come from things themselves [and or no-thing; deductible-traceable to an ultimate, essential origin of nothingness&mdash;non-thing&mdash;void].<br>
+          9. There is no ultimate, universal thing if a thing is not existent by its own nature.</p>
+          <span class="archive-excerpt-cite">&mdash; The Known and the Unknown &middot; Esoteric Writings</span>
+        </blockquote>
+
+        <blockquote class="archive-excerpt">
+          <p>Defeat is letting it continue. Defeat is feeding the machine because you were afraid to face what stopping would require of you. Defeat is the sunken cost fallacy of existence &mdash; the belief that because so much has already been suffered, something must be extracted from it, some meaning must be mined, some justification must eventually emerge from the rubble. It will not. The rubble is the point. The rubble is all there is.</p>
+          <span class="archive-excerpt-cite">&mdash; The Known and the Unknown &middot; closing pull</span>
+        </blockquote>
+      </article>
+
+      <article class="archive-book">
+        <header class="archive-book-header">
+          <p class="archive-book-meta">Book &middot; 2019 &middot; Folded into K&amp;U &middot; The personal-fragment substratum</p>
+          <h3 class="archive-book-title">Love Void Love &middot; Mementos</h3>
+          <p class="archive-book-frame">The rawest material. One pull, no more &mdash; the form closes the loop.</p>
+        </header>
+
+        <blockquote class="archive-excerpt">
+          <p>It&rsquo;s not your fault if you hate. It&rsquo;s not your fault if you do not love. It&rsquo;s not okay if we are blamed for not wanting to live. It&rsquo;s okay to admit that it&rsquo;s not okay. I have nowhere to go. I want to leave. I am not at home. I am not in peace. I do not love. I hate. I do not want to live. I love anyone who would help me. I would love anyone I have helped. I accept you, if you accept me. I want to believe you are more than I perceive&mdash;caring and considerate&mdash;completely non-ignorant; so stand up and kick it, please&mdash;kill me, kill me, kill me. Void love void.</p>
+          <span class="archive-excerpt-cite">&mdash; Love Void Love</span>
+        </blockquote>
+      </article>
+
+    </section>
+
+    <!-- ============================================================
+         Section C: Other
+         Open questions and pending asset relays. Honest accounting
+         of what isn't here yet, framed as gaps not failures.
+         ============================================================ -->
+
+    <section class="archive-section" aria-labelledby="other">
+      <header class="archive-section-header">
+        <span class="archive-section-eyebrow">C</span>
+        <h2 class="archive-section-title" id="other">Other</h2>
+      </header>
+      <p class="archive-section-note">Open questions and pending asset relays.</p>
+
+      <ul class="archive-other-list">
+        <li>
+          <strong>K&amp;U illustrations</strong>
+          The Known and the Unknown indexes roughly thirty illustrations (&ldquo;Baby,&rdquo; &ldquo;The Door-way,&rdquo; &ldquo;Declaration,&rdquo; &ldquo;Self-Shadow,&rdquo; &ldquo;The Crawl [Self-Portrait],&rdquo; &amp;c.) but the source docx contains only one embedded image. The illustration assets are not in any provided file. Likely sourced from the Love Void Love ODT or originals the author holds. Drop into <code>src/assets/archive/illustrations/</code> when ready.
+        </li>
+        <li>
+          <strong>Forget the Plot &mdash; page images</strong>
+          Page renders of FtP (recommended: p.1, p.48, p.60, p.70 &mdash; the noise-wall, the page-turn break, the &ldquo;tired of being tired&rdquo; collapse, the visual implosion). Awaits author drop.
+        </li>
+        <li>
+          <strong>Read-the-full-work links</strong>
+          The Point and Forget the Plot have full clean text in uploaded PDFs. Adding a &ldquo;read full work&rdquo; affordance is a scope expansion to confirm separately &mdash; not assumed here.
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <p class="page-footer-meta">
+      <span class="page-footer-mark">wuld.ink</span>
+      <span class="page-footer-sep">&middot;</span>
+      <span>Josiah S. Cooper</span>
+      <span class="page-footer-sep">&middot;</span>
+      <a class="library-link" href="https://library.wuld.ink/">library.wuld.ink</a>
+      <span class="page-footer-sep">&middot;</span>
+      <span>Licensed CC-BY-4.0</span>
+      <span class="page-footer-sep">&middot;</span>
+      <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+    </p>
+  </footer>
+
+  <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
+    <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
+    <div class="ambient-bar">
+      <span class="ambient-track" id="ambient-track">ambient</span>
+      <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
+      <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
+      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
+    </div>
+    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
+  </div>
+
+  <script src="/components/nav.js" defer></script>
+  <script src="/components/mode-toggle.js" defer></script>
+  <script src="/components/ambient-player.js" defer></script>
+</body>
+</html>

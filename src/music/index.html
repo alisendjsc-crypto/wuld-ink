@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/components/ambient-player.css">
+  <link rel="stylesheet" href="/components/theater-mode.css">
   <link rel="license" href="/LICENSE">
   <title>Music &mdash; wuld.ink</title>
   <meta name="description" content="Audio mirror — selected releases from W.U.L.D. Click any card to listen / purchase on Bandcamp; full audio stays on the canonical source.">
@@ -45,7 +46,16 @@
       "datePublished": "2019",
       "numTracks": 8,
       "image": "https://wuld.ink/assets/music/w-hole-cover.jpg",
-      "url": "https://wuld.bandcamp.com/album/w-hole-2"
+      "url": "https://wuld.bandcamp.com/album/w-hole-2",
+      "video": {
+        "@type": "VideoObject",
+        "name": "W-HOLE (music video)",
+        "description": "Music video for the album W-HOLE by W.U.L.D.",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/kUWzDpDf4aw",
+        "thumbnailUrl": "https://i.ytimg.com/vi/kUWzDpDf4aw/hqdefault.jpg",
+        "uploadDate": "2019",
+        "contentUrl": "https://www.youtube.com/watch?v=kUWzDpDf4aw"
+      }
     }
   }
   </script>
@@ -294,6 +304,7 @@
         <a href="/music/">Music</a>
         <a href="/book/">Book</a>
         <a href="/blog/">Blog</a>
+        <a href="/archive/">Archive</a>
       </nav>
     </div>
   </header>
@@ -363,6 +374,12 @@
             Listen on Bandcamp
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
+          <button class="theater-trigger" type="button"
+                  data-theater-video-id="kUWzDpDf4aw"
+                  data-theater-title="W-HOLE music video"
+                  aria-label="Watch W-HOLE music video">
+            Watch music video
+          </button>
         </div>
       </article>
 
@@ -398,9 +415,13 @@
       <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
       <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
     </div>
+    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
 <script src="/components/ambient-player.js" defer></script>
+  <script src="/components/theater-mode.js" defer></script>
 </body>
 </html>
