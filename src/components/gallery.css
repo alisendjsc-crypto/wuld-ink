@@ -242,3 +242,137 @@ body[data-nsfw-revealed] .gallery-plate[data-nsfw="true"]::before {
 .gallery-page .essay-end-marker a:hover {
   color: var(--c-accent);
 }
+
+/* ============================================================
+   Lightbox / enlarge overlay (K27)
+   Click a plate image → modal overlay with full-size view.
+   Close: click backdrop, click X, press Esc.
+   Navigate: arrow keys (prev/next plate), or click side arrows.
+   ============================================================ */
+.gallery-plate-img {
+  cursor: zoom-in;
+}
+
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.92);
+  padding: var(--s-5);
+  backdrop-filter: blur(4px);
+}
+
+.gallery-lightbox[data-open="true"] {
+  display: flex;
+}
+
+.gallery-lightbox-stage {
+  position: relative;
+  max-width: min(100vw - 4rem, 1400px);
+  max-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.gallery-lightbox-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 10rem);
+  height: auto;
+  width: auto;
+  border: var(--bw-thin) solid var(--c-border-strong);
+  background: var(--c-bg);
+  cursor: zoom-out;
+}
+
+.gallery-lightbox-caption {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  color: var(--c-fg);
+  text-align: center;
+  max-width: 60rem;
+  padding: 0 var(--s-4);
+}
+
+.gallery-lightbox-caption-num {
+  color: var(--c-accent);
+  letter-spacing: var(--ls-mega);
+  text-transform: uppercase;
+  margin-right: var(--s-3);
+}
+
+.gallery-lightbox-caption-title {
+  font-family: var(--font-headline);
+  font-style: italic;
+  font-size: var(--t-h4);
+  color: var(--c-fg);
+}
+
+.gallery-lightbox-close,
+.gallery-lightbox-prev,
+.gallery-lightbox-next {
+  position: absolute;
+  background: var(--c-bg);
+  color: var(--c-fg);
+  border: var(--bw-base) solid var(--c-border-strong);
+  font-family: var(--font-mono);
+  font-size: var(--t-base);
+  padding: var(--s-2) var(--s-4);
+  cursor: pointer;
+  transition:
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    background var(--t-fast) var(--ease);
+  z-index: 2;
+}
+
+.gallery-lightbox-close:hover,
+.gallery-lightbox-prev:hover,
+.gallery-lightbox-next:hover {
+  color: var(--c-bg);
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+.gallery-lightbox-close {
+  top: calc(-1 * var(--s-3));
+  right: calc(-1 * var(--s-3));
+}
+
+.gallery-lightbox-prev {
+  left: calc(-1 * var(--s-6));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gallery-lightbox-next {
+  right: calc(-1 * var(--s-6));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Narrow-viewport adjustments — arrows move below the image */
+@media (max-width: 760px) {
+  .gallery-lightbox-prev,
+  .gallery-lightbox-next {
+    top: auto;
+    bottom: calc(-1 * var(--s-7));
+    transform: none;
+  }
+  .gallery-lightbox-prev { left: 25%; }
+  .gallery-lightbox-next { right: 25%; }
+  .gallery-lightbox-close {
+    top: calc(-1 * var(--s-5));
+    right: 0;
+  }
+}
+
+/* Lock body scroll when lightbox open */
+body.gallery-lightbox-open {
+  overflow: hidden;
+}

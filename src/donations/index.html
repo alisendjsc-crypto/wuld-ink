@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K26">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K27">
   <link rel="license" href="/LICENSE">
   <title>Support &mdash; wuld.ink</title>
   <meta name="description" content="Donations keep the umbrella running. PayPal recurring, PayPal/CashApp/Venmo one-time. Nothing is gated behind a paywall.">
@@ -24,42 +24,36 @@
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K26">
-  <link rel="stylesheet" href="/components/footer.css?v=K26">
+  <link rel="stylesheet" href="/components/nav.css?v=K27">
+  <link rel="stylesheet" href="/components/footer.css?v=K27">
 
   <!-- ============================================================
-       OPERATOR SETUP NOTES &mdash; PayPal subscription buttons
+       OPERATOR SETUP NOTES &mdash; PayPal Donate button (K27 modern)
        ------------------------------------------------------------
-       The 4 PayPal subscription buttons below ship with placeholder
-       hosted_button_id values (REPLACE_ME_*). They will NOT process
-       payments until you create the actual subscription buttons in
-       your PayPal account and paste the IDs here.
+       K26 attempted to ship 4 classic-subscriptions hosted buttons
+       (weekly/bi-weekly/monthly/annually). PayPal&rsquo;s legacy
+       Subscriptions button maker (paypal.com/buttons/create) is
+       presumed deprecated &mdash; the path is gone in modern UI.
+       K27 pivots to PayPal&rsquo;s current Donations product: one
+       hosted button; donor picks amount + optional monthly toggle
+       at PayPal&rsquo;s checkout. Smaller engineering, modern product,
+       clears the architectural blocker.
 
-       To create each subscription button:
+       Setup (one-time, ~10 minutes):
          1. Log into paypal.com (your business account on woeinvsdnl@protonmail.com — NOT evilisanihilis@live.com, which is the personal account that holds R2 hosting). The business account was created K26 close to enable subscription/donation buttons; linked to bank for payout routing.
-         2. Go to:  Tools  ->  All tools  ->  PayPal buttons.
-             (Alternate path:  Pay & Get Paid  ->  All tools  ->
-              PayPal buttons.)
-         3. Click "Create new button".
-         4. Button type:  "Subscriptions".
-         5. Item name:    "wuld.ink &mdash; Weekly support"
-            (or Bi-weekly / Monthly / Annually depending on which
-            of the four you are creating).
-         6. Currency:     USD.
-         7. Billing amount: pick a default (eg $5 weekly; $10
-            bi-weekly; $20 monthly; $200 annually) &mdash; donors can
-            still adjust at checkout via the "I want to give a
-            different amount" Customise option below.
-         8. Billing cycle: 1 Week / 2 Weeks / 1 Month / 1 Year.
-         9. Save the button. Click "Email" tab to get the
+         2. Go to:  paypal.com/donate/buttons/manage
+            (Alternate path:  Pay &amp; Get Paid  ->  Donate buttons.)
+         3. Click "Create donate button" (or "Add new").
+         4. Suggested-amount tiles: leave blank OR pre-fill
+            $3 / $5 / $10 / $100 (donor can override at checkout).
+         5. Enable "Let donors give monthly" toggle.
+         6. Save the button. Click "Email" tab to get the
             hosted_button_id  (string after "hosted_button_id=").
-        10. Paste each ID over the corresponding REPLACE_ME_* token
-            in this file.
+         7. Paste it over REPLACE_ME_DONATE_BUTTON_ID below.
 
-       Until the placeholders are filled, the buttons will show a
-       PayPal error page when clicked. The one-time tiers below
-       (PayPal.me + CashApp + Venmo) work immediately and are not
-       blocked by this setup task.
+       Until the placeholder is filled, the button click shows a
+       PayPal error page. One-time tiers (PayPal.me + CashApp +
+       Venmo) work immediately and are not blocked by this setup.
        ============================================================ -->
 
   <style>
@@ -105,55 +99,94 @@
       max-width: 42rem;
     }
 
-    /* ---- PayPal subscription button row ---- */
-    .donations-paypal-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-      gap: var(--s-4);
-      margin-block: var(--s-5);
-    }
-
+    /* ---- PayPal Donate button (K27 modern Donations product) ---- */
     .donations-paypal-form {
-      margin: 0;
+      margin: var(--s-5) 0;
+      max-width: 32rem;
     }
 
     .donations-paypal-button {
       width: 100%;
-      padding-block: var(--s-3);
-      padding-inline: var(--s-4);
+      padding: var(--s-5) var(--s-6);
       background: var(--c-bg-soft, #141414);
       color: var(--c-fg);
-      border: var(--bw-base) solid var(--c-border-strong);
+      border: var(--bw-base) solid var(--c-accent);
       font-family: var(--font-mono);
-      font-size: var(--t-sm);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
+      text-align: left;
       cursor: pointer;
       transition:
         color var(--t-fast) var(--ease),
-        border-color var(--t-fast) var(--ease),
         background var(--t-fast) var(--ease);
     }
 
     .donations-paypal-button:hover {
-      color: var(--c-accent);
-      border-color: var(--c-accent);
-      background: var(--c-bg);
+      color: var(--c-bg);
+      background: var(--c-accent);
     }
 
-    .donations-paypal-cadence {
-      display: block;
-      font-size: var(--t-base);
-      color: var(--c-fg);
-      margin-block-end: var(--s-1);
-      letter-spacing: var(--ls-tight);
-      text-transform: none;
-    }
-
-    .donations-paypal-amount {
+    .donations-paypal-eyebrow {
       display: block;
       font-size: var(--t-xs);
-      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+    .donations-paypal-button:hover .donations-paypal-eyebrow { color: var(--c-bg); }
+
+    .donations-paypal-label {
+      display: block;
+      font-family: var(--font-headline);
+      font-size: var(--t-h3);
+      margin-block-end: var(--s-2);
+      text-transform: none;
+      letter-spacing: var(--ls-tight);
+    }
+
+    .donations-paypal-note {
+      display: block;
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-muted);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+    .donations-paypal-button:hover .donations-paypal-note { color: var(--c-bg); }
+
+    /* ---- K27 tab-disclaimer aside ---- */
+    .tab-disclaimer {
+      margin-block: var(--s-8) var(--s-5);
+      padding: var(--s-5);
+      border-left: var(--bw-thick) solid var(--c-accent);
+      background: var(--c-bg);
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-muted);
+      max-width: 42rem;
+    }
+    .tab-disclaimer p { margin-block: var(--s-2); }
+    .tab-disclaimer-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-3);
+    }
+    .tab-disclaimer-link {
+      margin-block-start: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      letter-spacing: var(--ls-wide);
+    }
+    .tab-disclaimer-link a {
+      color: var(--c-accent);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+    }
+    .tab-disclaimer-link a:hover {
+      color: var(--c-accent-hover);
+      border-bottom-color: var(--c-accent-hover);
     }
 
     /* ---- One-time platform cards ---- */
@@ -265,54 +298,27 @@
     </header>
 
     <!-- ====================================================
-         Section: PayPal subscriptions (recurring)
-         Placeholders REPLACE_ME_* must be replaced with the
-         hosted_button_id strings from PayPal after creating
-         the 4 subscription buttons. See HTML comment in
+         Section: PayPal Donate button (K27 modern architecture)
+         Replaces K26 4-button classic subscriptions row. Single
+         PayPal Donate button via the Donations product; donor picks
+         amount + optional monthly toggle at PayPal's own checkout.
+         REPLACE_ME_DONATE_BUTTON_ID gets the hosted_button_id from
+         paypal.com/donate/buttons/manage. See HTML comment in
          <head> for the operator-side setup procedure.
          ==================================================== -->
     <section class="donations-section">
-      <p class="donations-section-eyebrow">01 &middot; Recurring</p>
-      <h2 class="donations-section-heading">Recurring &mdash; PayPal</h2>
-      <p class="donations-section-lede">Only PayPal supports recurring donations directly. Pick a cadence below; you can adjust the default amount at PayPal&rsquo;s checkout. Cancel any time from your PayPal account.</p>
+      <p class="donations-section-eyebrow">01 &middot; Recurring or one-time</p>
+      <h2 class="donations-section-heading">Donate via PayPal</h2>
+      <p class="donations-section-lede">One button. Pick any amount at PayPal&rsquo;s checkout; tick the &ldquo;monthly&rdquo; option if you want it to recur. Suggested defaults $3 / $5 / $10 / $100, all adjustable. Cancel a recurring donation any time from your PayPal account.</p>
 
-      <div class="donations-paypal-row">
-        <form class="donations-paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="REPLACE_ME_WEEKLY_BUTTON_ID">
-          <button class="donations-paypal-button" type="submit">
-            <span class="donations-paypal-cadence">Weekly</span>
-            <span class="donations-paypal-amount">$5 default &middot; adjustable</span>
-          </button>
-        </form>
-
-        <form class="donations-paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="REPLACE_ME_BIWEEKLY_BUTTON_ID">
-          <button class="donations-paypal-button" type="submit">
-            <span class="donations-paypal-cadence">Bi-weekly</span>
-            <span class="donations-paypal-amount">$10 default &middot; adjustable</span>
-          </button>
-        </form>
-
-        <form class="donations-paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="REPLACE_ME_MONTHLY_BUTTON_ID">
-          <button class="donations-paypal-button" type="submit">
-            <span class="donations-paypal-cadence">Monthly</span>
-            <span class="donations-paypal-amount">$20 default &middot; adjustable</span>
-          </button>
-        </form>
-
-        <form class="donations-paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="REPLACE_ME_ANNUALLY_BUTTON_ID">
-          <button class="donations-paypal-button" type="submit">
-            <span class="donations-paypal-cadence">Annually</span>
-            <span class="donations-paypal-amount">$200 default &middot; adjustable</span>
-          </button>
-        </form>
-      </div>
+      <form class="donations-paypal-form" action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="REPLACE_ME_DONATE_BUTTON_ID">
+        <button class="donations-paypal-button" type="submit">
+          <span class="donations-paypal-eyebrow">PayPal</span>
+          <span class="donations-paypal-label">Donate &mdash; any amount, one-time or monthly</span>
+          <span class="donations-paypal-note">Routes to PayPal&rsquo;s hosted checkout. You choose the amount and whether to recur.</span>
+        </button>
+      </form>
     </section>
 
     <!-- ====================================================
@@ -353,6 +359,13 @@
       <p>Cloudflare registrar renewal ($20/yr), R2 storage class fees (a few dollars per month at current bandwidth), occasional one-off costs for fonts, audio mastering, or back-end services. Anything beyond running-costs funds time spent producing the work the umbrella exists to hold. No advertising, no sponsorships, no algorithmic optimisation. If the costs are ever recouped in a given month, the surplus carries forward against months they are not.</p>
     </aside>
 
+    <!-- K27 disclaimer aside — surface-specific scope; full legal at /disclaimers/ -->
+    <aside class="tab-disclaimer">
+      <p class="tab-disclaimer-eyebrow">Disclaimer</p>
+      <p>Donations are voluntary contributions to support the umbrella&rsquo;s ongoing operating costs and the author&rsquo;s time. They are not transactions for goods or services, not subject to refund as such, and do not establish a paid-supporter tier, reward structure, or contractual obligation. The umbrella claims no tax-exempt status; donations are not tax-deductible. Tax treatment in your jurisdiction is your affair. Routing platforms (PayPal, CashApp, Venmo) impose their own fees + terms; what reaches the umbrella is what each platform releases after their cut.</p>
+      <p class="tab-disclaimer-link"><a href="/disclaimers/">Full legal &amp; personal disclaimers &rarr;</a></p>
+    </aside>
+
   </main>
 
   <footer class="page-footer">
@@ -367,7 +380,7 @@
     </div>
   </footer>
 
-  <script src="/components/nav.js?v=K26"></script>
-  <script src="/components/ambient-player.js?v=K26"></script>
+  <script src="/components/nav.js?v=K27"></script>
+  <script src="/components/ambient-player.js?v=K27"></script>
 </body>
 </html>

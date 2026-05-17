@@ -19,17 +19,22 @@
    nav.js sets aria-current="page" on the matching link.
    ============================================================ */
 
+/* K27: vertical bloat trimmed; nav extends horizontally to both ends.
+   padding-block dropped from --s-4 to --s-2 (16px saved top+bot).
+   margin-block-end dropped from --s-7 to --s-4 (32px saved).
+   site-header-inner gap tightened so site-mark hugs left and nav
+   takes the remaining width with flex:1. */
 .site-header {
   border-bottom: var(--bw-base) solid var(--c-border-strong);
-  padding-block: var(--s-4);
-  margin-block-end: var(--s-7);
+  padding-block: var(--s-2);
+  margin-block-end: var(--s-4);
 }
 
 .site-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s-5);
+  gap: var(--s-3) var(--s-4);
   flex-wrap: wrap;       /* mobile fallback — nav wraps below mark */
 }
 
@@ -64,11 +69,17 @@
   color: var(--c-accent-hover);
 }
 
-/* ---------- Primary nav ---------- */
+/* ---------- Primary nav ----------
+   K27: flex:1 so nav takes all remaining width after site-mark;
+   justify-content: space-between spreads items to both ends.
+   Row gap shrunk to --s-1 so 2-row wraps stay tight vertically.
+   Column gap shrunk to --s-3 so more items fit per row. */
 .site-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-3) var(--s-5);
+  flex: 1 1 auto;
+  justify-content: space-between;
+  gap: var(--s-1) var(--s-3);
   font-family: var(--font-mono);
   font-size: var(--t-sm);
   text-transform: uppercase;
@@ -78,7 +89,7 @@
 .site-nav a {
   color: var(--c-fg-muted);
   text-decoration: none;
-  padding-block: var(--s-1);   /* enlarges hit target without disturbing rhythm */
+  padding-block: 2px;   /* minimal hit-target padding; nav-tighten K27 */
   border-bottom: var(--bw-base) solid transparent;
   transition:
     color var(--t-fast) var(--ease),

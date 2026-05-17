@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K26">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K27">
   <link rel="license" href="/LICENSE">
   <title>Gallery &mdash; wuld.ink</title>
   <meta name="description" content="The Void Engine gallery. Black-and-white and monochrome output, analog-decay register. Plates I-XXVII in batches 01-02.">
@@ -36,9 +36,9 @@
   </script>
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K26">
-  <link rel="stylesheet" href="/components/footer.css?v=K26">
-  <link rel="stylesheet" href="/components/gallery.css?v=K26">
+  <link rel="stylesheet" href="/components/nav.css?v=K27">
+  <link rel="stylesheet" href="/components/footer.css?v=K27">
+  <link rel="stylesheet" href="/components/gallery.css?v=K27">
 </head>
 <body data-mode="dark">
 
@@ -414,6 +414,24 @@
 
     <p class="essay-end-marker"><a href="/">&larr; wuld.ink</a></p>
 
+    <!-- ============================================================
+         Lightbox overlay (K27) - populated on click by gallery JS.
+         Lives at end of <main> so it stacks above plate content via
+         z-index. Hidden by default; toggled via [data-open] attr.
+         ============================================================ -->
+    <div class="gallery-lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Plate enlarged view" data-open="false">
+      <div class="gallery-lightbox-stage">
+        <button class="gallery-lightbox-close" id="gallery-lightbox-close" type="button" aria-label="Close enlarged view">[ close ]</button>
+        <button class="gallery-lightbox-prev" id="gallery-lightbox-prev" type="button" aria-label="Previous plate">[ &larr; ]</button>
+        <button class="gallery-lightbox-next" id="gallery-lightbox-next" type="button" aria-label="Next plate">[ &rarr; ]</button>
+        <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+        <div class="gallery-lightbox-caption">
+          <span class="gallery-lightbox-caption-num" id="gallery-lightbox-caption-num"></span>
+          <span class="gallery-lightbox-caption-title" id="gallery-lightbox-caption-title"></span>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <!-- ============================================================
@@ -428,7 +446,7 @@
     </div>
   </footer>
 
-  <script src="/components/nav.js?v=K26"></script>
+  <script src="/components/nav.js?v=K27"></script>
 
   <script>
     /* ============================================================
@@ -456,6 +474,95 @@
     })();
   </script>
 
+  <script>
+    /* ============================================================
+       Gallery lightbox (K27)
+       Click any plate image: open overlay with enlarged view.
+       Close: click backdrop, click [close], or press Esc.
+       Navigate: arrow keys (or [<-]/[->] side buttons).
+       Plates collected on load; NSFW-hidden plates skipped in nav
+       order automatically because visibility check is applied.
+       ============================================================ */
+    (function() {
+      var overlay = document.getElementById('gallery-lightbox');
+      var img = document.getElementById('gallery-lightbox-img');
+      var capNum = document.getElementById('gallery-lightbox-caption-num');
+      var capTitle = document.getElementById('gallery-lightbox-caption-title');
+      var btnClose = document.getElementById('gallery-lightbox-close');
+      var btnPrev = document.getElementById('gallery-lightbox-prev');
+      var btnNext = document.getElementById('gallery-lightbox-next');
+      if (!overlay || !img) return;
+
+      var plates = Array.prototype.slice.call(document.querySelectorAll('.gallery-plate'));
+      var currentIdx = -1;
+
+      function visiblePlates() {
+        return plates.filter(function(p) {
+          return p.offsetParent !== null;
+        });
+      }
+
+      function open(idx) {
+        var vis = visiblePlates();
+        if (!vis.length) return;
+        currentIdx = ((idx % vis.length) + vis.length) % vis.length;
+        var plate = vis[currentIdx];
+        var src = plate.querySelector('.gallery-plate-img').getAttribute('src');
+        var num = plate.querySelector('.gallery-plate-num');
+        var title = plate.querySelector('.gallery-plate-title');
+        img.setAttribute('src', src);
+        img.setAttribute('alt', title ? title.textContent : '');
+        capNum.textContent = num ? num.textContent : '';
+        capTitle.textContent = title ? title.textContent : '';
+        overlay.setAttribute('data-open', 'true');
+        document.body.classList.add('gallery-lightbox-open');
+      }
+
+      function close() {
+        overlay.setAttribute('data-open', 'false');
+        document.body.classList.remove('gallery-lightbox-open');
+        setTimeout(function() {
+          if (overlay.getAttribute('data-open') === 'false') {
+            img.setAttribute('src', '');
+          }
+        }, 200);
+      }
+
+      function step(delta) {
+        var vis = visiblePlates();
+        if (!vis.length || currentIdx < 0) return;
+        open(currentIdx + delta);
+      }
+
+      plates.forEach(function(plate) {
+        var plateImg = plate.querySelector('.gallery-plate-img');
+        if (!plateImg) return;
+        plateImg.addEventListener('click', function() {
+          var vis = visiblePlates();
+          var idx = vis.indexOf(plate);
+          if (idx === -1) return;
+          open(idx);
+        });
+      });
+
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', function() { step(-1); });
+      btnNext.addEventListener('click', function() { step(1); });
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) close();
+      });
+      img.addEventListener('click', close);
+
+      document.addEventListener('keydown', function(e) {
+        if (overlay.getAttribute('data-open') !== 'true') return;
+        if (e.key === 'Escape') { close(); }
+        else if (e.key === 'ArrowLeft') { step(-1); }
+        else if (e.key === 'ArrowRight') { step(1); }
+      });
+    })();
+  </script>
+
   <!-- ============================================================
        Ambient background player
        ============================================================ -->
@@ -475,7 +582,7 @@
     </div>
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
-  <script src="/components/ambient-player.js?v=K26" defer></script>
+  <script src="/components/ambient-player.js?v=K27" defer></script>
 
 </body>
 </html>

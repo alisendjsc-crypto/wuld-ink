@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K26">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K27">
   <link rel="license" href="/LICENSE">
   <title>Contact &mdash; wuld.ink</title>
   <meta name="description" content="Direct contact for wuld.ink. Form submissions land in a routed mailbox; replies arrive when they arrive.">
@@ -24,8 +24,8 @@
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K26">
-  <link rel="stylesheet" href="/components/footer.css?v=K26">
+  <link rel="stylesheet" href="/components/nav.css?v=K27">
+  <link rel="stylesheet" href="/components/footer.css?v=K27">
 
   <!-- ============================================================
        OPERATOR SETUP NOTES &mdash; Contact form delivery path
@@ -218,6 +218,42 @@
       font-style: italic;
       margin-block-start: var(--s-3);
     }
+
+    /* ---- K27 tab-disclaimer aside ---- */
+    .tab-disclaimer {
+      margin-block: var(--s-8) var(--s-5);
+      padding: var(--s-5);
+      border-left: var(--bw-thick) solid var(--c-accent);
+      background: var(--c-bg);
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-muted);
+      max-width: 42rem;
+    }
+    .tab-disclaimer p { margin-block: var(--s-2); }
+    .tab-disclaimer-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-3);
+    }
+    .tab-disclaimer-link {
+      margin-block-start: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      letter-spacing: var(--ls-wide);
+    }
+    .tab-disclaimer-link a {
+      color: var(--c-accent);
+      text-decoration: none;
+      border-bottom: var(--bw-base) solid var(--c-accent);
+    }
+    .tab-disclaimer-link a:hover {
+      color: var(--c-accent-hover);
+      border-bottom-color: var(--c-accent-hover);
+    }
   </style>
 </head>
 <body data-mode="dark">
@@ -258,7 +294,7 @@
       <h2 class="contact-section-heading">Send a message</h2>
       <p class="contact-section-lede">The form below routes through a hosted relay. Your email address is required only so a reply can find its way back if one is sent; it is not stored on this site.</p>
 
-      <form class="contact-form" action="REPLACE_ME_FORMSPREE_ENDPOINT" method="POST" novalidate>
+      <form class="contact-form" action="https://formspree.io/f/xpqnzqlr" method="POST" novalidate>
         <div class="contact-field">
           <label class="contact-field-label" for="contact-name">Name <span aria-hidden="true">(or pseudonym)</span></label>
           <input class="contact-field-input" type="text" id="contact-name" name="name" autocomplete="name" required>
@@ -297,11 +333,17 @@
       <p class="contact-section-lede">If you prefer not to use a third-party form relay, the alias below routes the same place.</p>
 
       <div class="contact-direct">
-        <span class="contact-direct-alias">REPLACE_ME_DIRECT_ALIAS</span>
-        <span>Forwarded mail; replies originate from the operator&rsquo;s reply address.</span>
-        <p class="contact-direct-note">Alias pending Cloudflare Email Routing setup &mdash; see HTML comment in &lt;head&gt; for operator-side procedure.</p>
+        <a class="contact-direct-alias" href="mailto:contact@wuld.ink">contact@wuld.ink</a>
+        <span>Forwarded mail via Cloudflare Email Routing; replies originate from the operator&rsquo;s reply address.</span>
       </div>
     </section>
+
+    <!-- K27 disclaimer aside — surface-specific scope; full legal at /disclaimers/ -->
+    <aside class="tab-disclaimer">
+      <p class="tab-disclaimer-eyebrow">Disclaimer</p>
+      <p>Form submissions route through <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Formspree</a>&rsquo;s free-tier relay; their privacy terms apply at the transport layer. The direct alias routes through Cloudflare Email Routing and lands at a privacy-routed mailbox. No reply is owed and none is promised; messages are not retained on this site beyond what passes through the relay.</p>
+      <p class="tab-disclaimer-link"><a href="/disclaimers/">Full legal &amp; personal disclaimers &rarr;</a></p>
+    </aside>
 
   </main>
 
@@ -317,7 +359,7 @@
     </div>
   </footer>
 
-  <script src="/components/nav.js?v=K26"></script>
-  <script src="/components/ambient-player.js?v=K26"></script>
+  <script src="/components/nav.js?v=K27"></script>
+  <script src="/components/ambient-player.js?v=K27"></script>
 </body>
 </html>
