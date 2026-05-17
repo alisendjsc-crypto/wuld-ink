@@ -1,0 +1,636 @@
+{
+  "spec_id": "real_world_examples_schema_v1",
+  "spec_version": "1.6",
+  "session": "4k-f",
+  "branch": "branch_4_epistemic_completion_and_corpus_expansion",
+  "sub_arc": "corpus_expansion",
+  "date_assembled": "2026-05-10",
+  "defamation_posture_note_v1_6": "Pairing \"speaker_attributed_unverified\" with \"deferred_corpus_scale_infeasible\" + documented \"speaker_attestation_basis\" demonstrates good-faith attribution with explicit epistemic-care gating — structurally the opposite of reckless disregard. Stronger legal posture than \"alleged\" framing (which carries misleading criminal-litigation overtones for publicly-staked philosophical positions of publicly-known proponents).",
+  "defamation_posture_note_v1_6_provenance": {
+    "carried_from": "canon v21.0 invariant speaker_attestation_extension_discipline_directive_session_canon_compaction.defamation_posture_note",
+    "carry_kind": "verbatim",
+    "purpose": "Surface the legal-posture framing inline on the schema spec, where downstream cluster-insertion authors reading the schema will encounter it without dereferencing back to the canon."
+  },
+  "scope": "Field-level schema specification for a 'realWorldExamples' corpus on the v3.6.1 JSON. Authority: governance for session 4e+ build-pass batches. Resolves schema_observations 1, 2, 4, 5, 6, 7, 8 from real_world_examples_scout_batch_1.json. Defers schema_observations 9, 10 to build-pass session protocol (not the field schema). Defers all structural-taxonomy questions (sibling-objection consideration, post-diagnostic-objector axis, Andreas-derived canonize recommendations) to dedicated sessions. Session 4k amendment: adds optional 'frame_inversion' field (enum, 4 values) to encode position-holder rhetorical moves the four-archetype model cannot capture. Non-breaking enum-extension per schema_evolution_notes.commitments[0]. Session 4k-b amendment: adds optional 'layer_skepticism' field (enum, 4 values) as orthogonal-axis encoding of the layer-attacked by post-diagnostic-objector-style critics. Resolves canon open_question on post-diagnostic-objector archetype-axis (recommended_default: orthogonal-axis option, not first-class archetype promotion). Non-breaking field-addition per schema_evolution_notes.commitments[0]. Session 4k-f amendment: adds optional 'refutation_variant_id' field (generic string field; values resolve to $.objections[*].refutationalVariants[*].variant_id) as corpus-side back-reference to refutationalVariants. Resolves open_question 'var_refutation_corpus_back_reference_field' from 4k-d. Generic field name (not VAR-scoped 'var_refutation_variant' from 4k-d patch's placeholder proposal) for forward-compatibility with the candidate (i) generalization of refutationalVariants to other OBJECTIONS entries; rename rationale documented in schema_evolution_notes. Non-breaking field-addition per schema_evolution_notes.commitments[0]. Backfilled across the 6 VAR-attached refutation-of-deployment instances: 4 to canonical variant_ids per 4k-d patch anchors, 2 to null (below-threshold candidates: playing-god single-premise frame-inversion-overlaid refusal; start-vs-continuation-distinction-against-promortalist-collapse already documented as candidate variant 5 in 4k-d patch). Session 4k-l amendment: AMENDS validation_rules.rules[2] (id='v3_one_quote_per_source'), the only mutation in this revision. Rule's keying RELAXED from per-source-URL to per-(source_url, attached_objections.objection_id-set-pairwise-disjoint). RATIONALE: at canon v8.5/v8.6 documentation of 3 standing v3 violations (Carrier 2x, Renegade 2x, Sukenick 3x = 7 quote-bearing instances across 3 source_urls), mechanical objection_id-set audit at 4k-l session open surfaced ZERO pairwise overlap within any of the three violating clusters: Carrier {antinatalism-misanthropic} vs {ai-fear, pinker-better-world, epistemic-humility}; Renegade Peterson {natural-reproduce, selfish-lazy, benatar-asymmetry-attack} vs Benatar {violence-as-reductio}; Sukenick {extinction-culture} vs {benatar-asymmetry-attack} vs {violence-as-reductio} — eleven distinct objection_ids attested across seven instances with zero pairwise overlap. None of the violations is the gaming pattern the original rule was designed to block (same source cited N times for same objection to inflate apparent coverage); all reflect the legitimate multi-attestation case where a long-form source vehicle (multi-paragraph blog post, 90-minute moderated debate, peer-reviewed journal article) carries distinct quotable attestations of distinct objections. PRUNE path (the named alternative in canon v8.5/v8.6) would null verbatim evidence for 4 of 11 legitimately-attested objections to remediate against a non-violating signal, was rejected on information-loss grounds. RELAX path with refined keying (per-(URL, objection-set-disjoint)) is strictly tighter than the canon-named RELAX form (per-(URL, session)) — semantic keying replaces pipeline-timing keying — and is what this session commits. The amended rule still blocks the gaming case (same source, same objection, multiple quotes). The pre-existing v3 note's multi-speaker carve-out is subsumed by the new keying and removed; multi-speaker cases naturally satisfy disjointness when the speakers attest distinct objections, and when they attest the same objection (rare) the dedup mechanism applies. Amendment severity: BREAKING for the original rule's text but NON-BREAKING for every record in the current 87-instance corpus (all pass under v3' as verified by audit). No schema-evolution-notes commitment is violated: rule amendments are not enumerated in the existing 7-commitment list, but the spirit of commitments[2] (enum value removals are breaking) extends naturally to rule-text revisions being breaking — hence the spec_version 1.4 -> 1.5 bump rather than a sub-minor revision. Session schema-extension amendment: bumps spec_version 1.5 -> 1.6; adds three optional speaker-attestation fields (short_quote_attestation_status, speaker_attestation_basis, verbatim_recovery_status) under example_record_schema chained after refutation_variant_id; appends three new blocking validation rules (v18, v19, v20); prepends defamation_posture_note_v1_6 preamble carried verbatim from canon v21.0 directive. Non-breaking field-addition per schema_evolution_notes.commitments[0]. Codifies the speaker_attestation_extension_discipline_directive registered as POINTER_ONLY in canon v21.0; unblocks cluster-insertion-session.",
+  "non_scope": [
+    "Construction of any actual realWorldExamples records. (Session 4e+.)",
+    "Decision to ADD new entries to OBJECTIONS array on the basis of parallel-structure-different-anchor accumulation. (Separate structural-addition session.)",
+    "Decision to ADD interlocutor-taxonomy axis distinct from the four archetypes (e.g. post-diagnostic-objector). (Separate session.)",
+    "Decision to canonize Andreas-derived defensive moves (framework-vs-actor distinction, cascade-math safeguard, two-layer architecture, censorship-reversal trap-door) into mechanisms / position registry. (Separate session — likely one session per move, since each is a structural addition with cross-references.)"
+  ],
+  "schema_target_location": {
+    "primary_authority": {
+      "file": "efilist_argument_library_v3_6_1.json",
+      "json_path": "$.realWorldExamples",
+      "shape": "array of example records (top-level)",
+      "rationale": "Top-level array model selected over nested-under-objection model. Many-to-many attachment is required to handle parallel-structure-different-anchor instances (e.g. ai-fear-002 / Lawfare Bartkus piece) without arbitrary assignment. Cross-references via attached_objections[] preserve full discourse-presence; nested-under-objection forces information loss at the schema level. Migration cost from one-to-one to many-to-many post-build-pass would be material; commit upfront."
+    },
+    "derived_views": {
+      "json_per_objection_index": {
+        "json_path": "$.objections[*].exampleIds",
+        "shape": "array of strings (instance_id values)",
+        "authority": "DERIVED — generated from $.realWorldExamples[*].attached_objections at build time. Do not hand-maintain. Build-pass tooling regenerates this index whenever realWorldExamples is updated."
+      },
+      "jsx_per_objection_embedded": {
+        "file": "efilist_argument_library_v3_6_1.jsx",
+        "shape": "array of full example records embedded inline as objection.examples",
+        "authority": "DERIVED — denormalized copy of the records referenced by exampleIds. Build-pass tooling regenerates the JSX from the JSON. Source of truth is the JSON top-level array; the JSX is a build artifact. Rationale: the frontend (index.html) consumes the JSX and renders inline; static rendering needs the records embedded. Cost: corpus duplication in JSX adds bytes proportional to corpus size. Acceptable through ~500 instances; reconsider chunking strategy if corpus grows beyond that."
+      }
+    }
+  },
+  "example_record_schema": {
+    "_doc": "Field definitions for a single record in the realWorldExamples array. Fields marked required:true must be present and non-null. Validation occurs at build-pass write time. Field order below is the canonical write-order; build-pass tooling preserves it.",
+    "instance_id": {
+      "type": "string",
+      "required": true,
+      "format": "kebab-case",
+      "pattern_recommended": "{objection_id}-{NNN} where the example primarily attaches to a single objection; {topic-slug}-{NNN} for genuinely multi-attached instances",
+      "uniqueness": "globally unique within $.realWorldExamples",
+      "_doc": "Identifier for cross-referencing. Stable across schema migrations. Build-pass tooling validates uniqueness."
+    },
+    "attached_objections": {
+      "type": "array",
+      "required": true,
+      "min_items": 1,
+      "items": {
+        "type": "object",
+        "fields": {
+          "objection_id": {
+            "type": "string",
+            "required": true,
+            "foreign_key": "$.objections[*].id"
+          },
+          "fit_to_trigger_phrases": {
+            "type": "enum",
+            "required": true,
+            "values": [
+              "exact",
+              "loose",
+              "partial",
+              "parallel-structure-different-anchor"
+            ],
+            "_doc": "Four-way spectrum (schema_observation 3). 'exact' = canonical trigger phrase appears verbatim. 'loose' = semantic match without verbatim trigger words. 'partial' = rhetorical structure present, trigger phrase absent. 'parallel-structure-different-anchor' = same rhetorical move deployed against a different empirical target than the objection canonically tracks. The last value is the taxonomically interesting one — accumulation signals a sibling objection may exist in the wild that the authorial taxonomy has not named."
+          },
+          "attachment_rationale": {
+            "type": "string",
+            "required": false,
+            "_doc": "Short prose (≤2 sentences) explaining why this instance attaches to this objection. Mandatory in spirit for fit_to_trigger_phrases ∈ {partial, parallel-structure-different-anchor}; recommended otherwise. Build-pass tooling SHOULD warn on missing rationale when fit is non-exact."
+          }
+        }
+      },
+      "_doc": "Resolves schema_observation 4 (one-to-many vs many-to-many). Each instance may attach to multiple objections with per-attachment fit-coding and rationale. Single-objection attachments are the common case but the schema supports many-to-many natively."
+    },
+    "source_url": {
+      "type": "string",
+      "required": true,
+      "format": "URL",
+      "_doc": "Live URL at capture time. Required even if the source decays — captures provenance."
+    },
+    "source_title": {
+      "type": "string",
+      "required": true
+    },
+    "source_byline": {
+      "type": "string",
+      "required": false,
+      "_doc": "Author or attribution string as printed in the source. Distinct from speaker_type (which is categorical)."
+    },
+    "source_publication": {
+      "type": "string",
+      "required": false,
+      "_doc": "Name of the venue (publication, platform, podcast, forum). Useful for institutional weighting at corpus scale."
+    },
+    "source_date": {
+      "type": "string",
+      "required": true,
+      "format": "ISO 8601 date (YYYY-MM-DD); 'circa YYYY' string allowed where exact date unavailable; null forbidden",
+      "_doc": "Publication / posting date of the source. Resolves schema_observation 5 (temporal anchoring)."
+    },
+    "accessed_date": {
+      "type": "string",
+      "required": true,
+      "format": "ISO 8601 date (YYYY-MM-DD)",
+      "_doc": "Date the scout/builder captured this instance. Required because real-world examples decay; the gap between source_date and accessed_date is itself evidence."
+    },
+    "archive_url": {
+      "type": "string",
+      "required": false,
+      "format": "URL or null",
+      "_doc": "Wayback Machine snapshot or equivalent archive URL. Schema-level: optional. Build-pass protocol level: REQUIRED attempt at capture time; null is acceptable only if snapshot creation fails. See build_pass_protocol.archive_policy below."
+    },
+    "corpus_decay_risk": {
+      "type": "enum",
+      "required": false,
+      "values": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "_doc": "Heuristic durability estimate for the source. low = academic journal, established publication, government archive. medium = Substack, WordPress, personal blog with stable history. high = Reddit thread, Twitter/X post, banned-subreddit material, forum thread on a small platform. Used by build-pass tooling to prioritize archival effort."
+    },
+    "source_register": {
+      "type": "string",
+      "required": false,
+      "_doc": "Free-form register descriptor (e.g. 'podcast_show_notes / substack_essay', 'national_security_journalism', 'medium_essay / autodidact_philosophy'). Captures discourse-context. Not enum-constrained because the register space is open."
+    },
+    "short_quote_under_15_words": {
+      "type": "string",
+      "required": false,
+      "max_words": 15,
+      "_doc": "Single short verbatim quote from the source, ≤15 words. Schema-level type-constrained (build-pass tooling MUST validate word count at write time). Resolves schema_observation 6 (copyright protocol). One quote per source maximum. No 'full_quote' or 'extended_quote' field exists in this schema by design — explicit footgun prevention."
+    },
+    "paraphrased_summary": {
+      "type": "string",
+      "required": true,
+      "length_guidance": "1-3 sentences",
+      "_doc": "Substantively-reworded summary in the corpus-builder's own words. Captures the instance's content without reproducing source phrasing. Build-pass tooling MAY flag suspected near-quotes (low-bar heuristic: long contiguous substring matches against source) but cannot fully validate paraphrase quality — that is a builder responsibility."
+    },
+    "rhetorical_move_observed": {
+      "type": "string",
+      "required": false,
+      "length_guidance": "1-3 sentences",
+      "_doc": "Analytic description of the rhetorical move the speaker is performing. Distinct from paraphrased_summary (which restates content) and from attachment_rationale (which justifies the objection attachment)."
+    },
+    "instance_polarity": {
+      "type": "enum",
+      "required": true,
+      "values": [
+        "deploys-against",
+        "deploys-for",
+        "neutral-attestation",
+        "refutation-of-deployment"
+      ],
+      "_doc": "Resolves schema_observation 1 (polarity must be first-class). 'deploys-against' = speaker uses the objection's rhetorical move to argue against AN. 'deploys-for' = speaker uses the same premise/structure but the conclusion runs toward AN (Anarchist Library / 'AN as revolution' is the type case). 'neutral-attestation' = the move appears in the source as a cataloged or attested-without-endorsement instance, including experiential disclosures and meta-discussions that don't take a position. 'refutation-of-deployment' = the speaker names the move in order to refute it (legendarykamil's instance falls deploys-against; emersongreen's instance falls refutation-of-deployment). NOTE: a separate speaker_stance field was considered (deploying / attesting / refuting / neutral-catalog) but is collapsed into polarity here — the four polarity values discriminate identically. If a future use case requires the distinction, polarity can be split into orthogonal stance + polarity fields without breaking existing records."
+    },
+    "speaker_type": {
+      "type": "enum",
+      "required": true,
+      "values": [
+        "organization",
+        "named_individual",
+        "pseudonymous_individual",
+        "anonymous",
+        "collective_byline"
+      ],
+      "_doc": "Resolves schema_observation 8 (speaker_type categorical). Enables corpus weighting and surfacing of institutionally-organized opposition. 'organization' = formal institutional voice (Marxist Student Federation as org). 'named_individual' = real-name byline (Émile P. Torres). 'pseudonymous_individual' = consistent handle without verified real-name link (legendarykamil). 'anonymous' = no identifying byline (Anarchist Library Anonymous). 'collective_byline' = author-collective with internal multi-voice (editorial 'we', anonymous-collective publications)."
+    },
+    "archetype_signal_observed": {
+      "type": "enum",
+      "required": true,
+      "values": [
+        "sophisticate",
+        "defender",
+        "drifter",
+        "blended",
+        "not-applicable",
+        "ambiguous"
+      ],
+      "_doc": "Resolves schema_observation 2 (archetype as observed-in-the-wild vs authorially-assigned). The four canonical archetypes are first-class taxonomy. 'not-applicable' covers allies (deploys-for polarity), counter-instances, and meta-analyses where the four-archetype model does not apply. 'ambiguous' is permitted but should be rare; build-pass tooling MAY flag corpora with >15% ambiguous instances as evidence the archetype model is under-resolved for that objection."
+    },
+    "archetype_signal_rationale": {
+      "type": "string",
+      "required": false,
+      "length_guidance": "1-2 sentences",
+      "_doc": "Brief prose justification for the archetype coding. Recommended for sophisticate / defender / drifter / blended. Required for 'ambiguous'."
+    },
+    "archetype_signal_additional_tags": {
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "_doc": "Open-vocabulary string array for emergent interlocutor-tags that aren't captured by the four canonical archetypes. Andreas-derived seed: 'post-diagnostic-objector' (a critic who concedes the descriptive layer of AN entirely and operates only at the prescriptive layer; the standard descriptive-layer rebuttal kit is wasted on this critic). Build-pass sessions MAY introduce new tags; build-pass session log records tag introductions. Tag accumulation is a feedback signal for the taxonomy expansion discussion (separate session). Schema discipline: additional_tags is descriptive metadata, NOT a taxonomy commitment — promoting a tag into a first-class archetype is a structural decision requiring its own session."
+    },
+    "frame_inversion": {
+      "type": "enum",
+      "required": false,
+      "values": [
+        "polarity-inversion-owning-the-frame",
+        "role-contingent-archetype-switch",
+        "objector-vocabulary-co-option",
+        "frame-inversion-self-application"
+      ],
+      "default": null,
+      "_doc": "Encodes position-holder rhetorical moves that the four canonical archetypes (sophisticate/defender/drifter/blended) cannot capture as identity-essential properties. Resolves the structural finding that archetypes are role-contingent rather than trait-stable. Field absence / null = no frame-inversion observed (the typical case). Enum values: (1) 'polarity-inversion-owning-the-frame' — position-holder takes a frame typically deployed against the position and re-routes it as evidence for the position. Strongly correlates with instance_polarity='deploys-for' but is the structural move, not the polarity itself. Type case: Inmendham owning the 'misanthropy' frame as warranted moral stance rather than disqualifier; Inmendham routing antinatalism-as-policy through the abolitionism-analogy. (2) 'role-contingent-archetype-switch' — same speaker occupies different canonical archetype depending on interlocutor / dialectical role. Per-instance tagging works because every member of the cross-instance pair carries the same value; thread_id links the pair. Type case: O'Connor performing sophisticate-attacks against Benatar in OCnBen while performing defender-explainer corrections against Hancock in HayBen. (3) 'objector-vocabulary-co-option' — position-holder uses objection-vocabulary to perform a different rhetorical move than the vocabulary canonically performs. Distinct from (1): speaker does not own the original frame; speaker redeploys it. Type case: Benatar invoking the theistic 'playing-god' frame (normally deployed against AN) to refuse a different objection-deployment (the VAR big-button thought-experiment), via epistemic-humility regarding stipulated perfect knowledge. (4) 'frame-inversion-self-application' — interlocutor weaponizes anti-AN vocabulary against their own anti-AN intuitions. Reflexive; the inverter and the inverted are the same agent. Type case: Hancock turning the 'epistemically humble about radical conclusions' move inward against his own AN-skeptical status-quo bias. Build-pass tooling SHOULD warn when instance_polarity='deploys-for' AND frame_inversion is absent — strong heuristic that frame-inversion coding was missed. Promotion criteria for a new enum value: ≥2 corpus-attested instances across ≥2 distinct source-vehicles, with rhetorical_move_observed text that materially diverges from the existing four values.",
+      "promotion_criteria_for_new_values": "New enum values may be added (non-breaking per schema_evolution_notes.commitments[1]) when ≥2 corpus-attested instances across ≥2 distinct source-vehicles surface a structurally-distinct rhetorical move not captured by the existing four. Spec_version bumps minor on each addition."
+    },
+    "layer_skepticism": {
+      "type": "enum",
+      "required": false,
+      "values": [
+        "descriptive-only",
+        "prescriptive-only",
+        "both",
+        "neither"
+      ],
+      "default": null,
+      "_doc": "Encodes WHICH layer of the antinatalism argument the speaker is skeptical of. Resolves the structural observation that the four canonical archetypes (sophisticate/defender/drifter/blended) under-resolve the post-diagnostic-objector cluster: a meaningful subset of sophisticated critics concede the descriptive layer (suffering is real, asymmetry holds, harm is structural) and attack only the prescriptive layer (the don't-procreate / extinct-humanity conclusions). Field absence / null = no layer-skepticism observed or coded; this is the default for the majority of the corpus (interlocutors who engage at neither layer cleanly, e.g. drifters and most defenders). Enum values: (1) 'descriptive-only' — speaker contests descriptive-layer claims (Benatar's asymmetry is wrong; suffering claims are exaggerated; lives are net-positive in fact) while leaving prescriptive untouched or implicitly granted. Rare among the corpus; most descriptive attacks pair with prescriptive ones. (2) 'prescriptive-only' — speaker explicitly grants descriptive claims (suffering exists, asymmetry plausible, harm structural) and attacks only the prescriptive entailments (we should extinct, mass-action licensed, frameworks-blame-via-advocate-behavior). CANONICAL POST-DIAGNOSTIC-OBJECTOR per Andreas-derived literature. Type case: the Andreas thread instances 1-7 + the Bolha Medium piece (explicit author self-disclosure: 'descriptive-layer-honest while prescriptive-layer-skeptical'). (3) 'both' — speaker contests both layers (descriptive: happiness data refutes asymmetry; prescriptive: extinction-robots reductio rejects the conclusion). Type case: Richard Carrier blog. Stronger than wholesale-rejection because the speaker explicitly works through both layers separately. (4) 'neither' — speaker does NOT perform layer-skepticism: either wholesale-dismisses without distinguishing layers (Musk diagnostic-dismissal as 'death cult') or operates outside the layer-skepticism frame entirely (Andreas-008 neutral-attestation discourse-care disclosure). 'neither' is an explicit coded value, distinct from field-absence (which signals 'not assessed' rather than 'assessed and found absent'). Architectural note: orthogonal to archetype_signal_observed — this field cross-cuts the four archetypes rather than competing with them, per session 4k-b structural-decision (option ii orthogonal-axis selected over option i first-class archetype promotion). Build-pass tooling SHOULD warn when archetype_signal_additional_tags contains 'post-diagnostic-objector' AND layer_skepticism is absent — strong heuristic that layer-skepticism coding was missed. Promotion criteria for a new enum value: ≥2 corpus-attested instances across ≥2 distinct source-vehicles, with rhetorical_move_observed text that materially diverges from the existing four values (e.g. a 'meta-layer' or 'cross-layer' move that the descriptive/prescriptive bipartition fails to capture).",
+      "promotion_criteria_for_new_values": "New enum values may be added (non-breaking per schema_evolution_notes.commitments[1]) when ≥2 corpus-attested instances across ≥2 distinct source-vehicles surface a structurally-distinct layer-engagement pattern not captured by the existing four. Spec_version bumps minor on each addition.",
+      "added_session": "4k-b"
+    },
+    "public_reach": {
+      "type": "enum",
+      "required": false,
+      "values": [
+        "high_reach_intellectual",
+        "named_specialist",
+        "niche_or_pseudonymous"
+      ],
+      "default": null,
+      "_doc": "Encodes the speaker's standing in public discourse — specifically the reach/propagation axis, not the fame/identifiability axis (per canon line 1774's design anchor: 'the framing axis is propagation, not fame'). Orthogonal to both archetype_signal_observed (the rhetorical-role the speaker performs) and speaker_type (the byline/identity taxonomy that does identifiability work). Resolves the structural observation that the corpus contains a meaningful spread of cultural-position registers (mass-audience celebrity intellectuals vs. credentialed-but-narrow-reach specialists vs. small-niche or pseudonymous participants) that materially affects how the speaker's deployment of an objection signals downstream — a Peterson-on-JRE deployment of violence-as-reductio carries different epistemic weight and corpus-propagation than the same move from an anonymous Reddit comment. Enum values: (1) 'high_reach_intellectual' — speaker has mass-audience platform (broadcast podcast network, mainstream press coverage, public-figure status); the rhetorical move propagates beyond the immediate context. Type cases: Peterson (Joe Rogan platform, AMP, Renegade Report, Biblical Series), Benatar (celebrity-philosopher reach via cross-platform podcast circuit), Alex O'Connor (CosmicSkeptic mass-audience YouTube), Sam Harris (Making Sense podcast). (2) 'named_specialist' — speaker is real-named with disciplinary or topic credibility but without mass-audience reach; rhetorical move propagates within domain/specialist networks. Type case: Bolha Medium piece (named author, domain-engaged analytic register, low cross-audience reach). (3) 'niche_or_pseudonymous' — speaker operates in a small-niche audience context AND/OR uses a pseudonymous/anonymous handle. Captures the unmarked-default of ordinary online AN discourse: Reddit threads, Twitter/X posts, pseudonymous-handle commenters, the Andreas thread, non-credentialed named individuals without significant public profile, and movement-internal small-audience YouTubers (Inmendham-on-Anton register). Naming follows canon line 1774's propagation-axis framing — 'niche' captures small-audience reach directly (orthogonal to credential), while 'pseudonymous' captures the typical identity-axis correlation. Eligible for prospective coding across the bulk of the existing corpus where speaker_type ∈ {pseudonymous_individual, anonymous} OR where speaker_type=named_individual without verifiable public-profile evidence. Field absence / null = dimension not coded, or dimension genuinely doesn't apply (e.g., speaker_type=organization or collective_byline where individual-reach doesn't compute cleanly). This is distinct from 'niche_or_pseudonymous' which is an affirmative coding of 'small-niche or pseudonymous reach'. Architectural note: orthogonal to archetype_signal_observed, speaker_type, frame_inversion, and layer_skepticism — public_reach cross-cuts all four. Empirically, high_reach_intellectual correlates with archetype_signal_observed=defender (Peterson register) and sophisticate (Harris/O'Connor register), but the correlation is not deterministic and the field carries independent information. The framing axis is REACH/PROPAGATION (how far the speaker's move travels in public discourse), NOT FAME (cultural recognition of the speaker as identity) and NOT CREDENTIAL (formal expertise of the speaker). A niche-but-named domain-expert with no mass-platform standing is named_specialist; a niche-and-pseudonymous high-engagement commenter is niche_or_pseudonymous; a mass-platform-named speaker is high_reach_intellectual.",
+      "promotion_criteria_for_new_values": "New enum values may be added (non-breaking per schema_evolution_notes.commitments[1]) when ≥2 corpus-attested instances across ≥2 distinct source-vehicles surface a structurally-distinct public-reach pattern not captured by the existing three values. Candidate future values flagged but NOT yet eligible: 'organizational_institutional' (if formal-org bylines warrant a coded value rather than null/absent treatment); 'medium_reach_professional' (mid-tier credentialed speakers between celebrity-intellectual and named-specialist, e.g. mid-tier academics with secondary podcast appearances). Spec_version bumps minor on each addition.",
+      "added_session": "4k-c"
+    },
+    "refutation_variant_id": {
+      "type": "string",
+      "required": false,
+      "default": null,
+      "foreign_key": "$.objections[*].refutationalVariants[*].variant_id",
+      "_doc": "Corpus-side back-reference to a refutationalVariants entry. Codes WHICH canonical refutational variant a refutation-of-deployment instance attests. The variants themselves live on $.objections[*].refutationalVariants[*] (introduced at session 4k-d for $.objections[?(@.id=='violence-as-reductio')]); this field is the reverse direction of the cross-reference (instance_id -> variant_id), complementing the variant's corpus_anchors[] (variant_id -> instance_id). Value must resolve to a variant_id declared on an objection that this instance attaches to (validation rule v17). Field name is GENERIC (refutation_variant_id, not VAR-scoped) for forward compatibility with the candidate generalization of refutationalVariants to other OBJECTIONS entries; the 4k-d patch's placeholder name 'var_refutation_variant' was VAR-specific and is superseded by this generic naming at the 4k-f decision boundary. Population semantics: non-null only when instance_polarity='refutation-of-deployment' AND at least one attached_objection has refutationalVariants declared on it AND the attested move structurally matches one of the canonical variant_ids. Null/absent semantics: either (a) instance is not refutation-of-deployment polarity (the majority case), or (b) the refutational move attested is below-threshold for any current canonical variant (candidate variants surfaced via open_question + below_threshold_variant_candidates documentation in the parent refutationalVariants patch), or (c) coding deferred. Below-threshold instances are tracked in the backfill patch's coding_rationale field per-instance, not collapsed into the field itself. Build-pass tooling SHOULD warn when instance_polarity='refutation-of-deployment' AND an attached objection has refutationalVariants AND refutation_variant_id is absent — strong heuristic that variant coding was missed. The field is the AUTHORITATIVE corpus-side reverse lookup; the parent refutationalVariants[].corpus_anchors[] preserves the OBJECTIONS-side forward lookup; both directions are maintained for tooling convenience (forward lookup via corpus_anchors avoids a full corpus scan; reverse lookup via this field enables per-instance variant-aware queries without dereferencing back to OBJECTIONS).",
+      "added_session": "4k-f"
+    },
+    "short_quote_attestation_status": {
+      "type": "enum",
+      "required": false,
+      "values": [
+        "verbatim_verified",
+        "speaker_attributed_unverified",
+        "paraphrased_summary"
+      ],
+      "default": "verbatim_verified",
+      "default_rationale": "Existing v1.5-conformant entries are implicitly verbatim_verified: every entry currently anchored to source_url + short_quote_under_15_words has passed v2-validator (15-token cap) and v3'-validator (one-quote-per-source-per-objection-set). Absence of this field on a v1.5 entry is interpreted as 'verbatim_verified' for forward-compatibility; no retroactive per-entry mutation required at v1.6 cut. The field becomes populated explicitly at cluster-insertion-session and any future build-pass session writing speaker_attributed_unverified or paraphrased_summary entries.",
+      "value_semantics": {
+        "verbatim_verified": "Quote is a verbatim utterance of the speaker, anchored to a recoverable source artifact (file + line, transcript timestamp, archived URL with stable page anchor, etc.). Passes v2-validator (≤15 whitespace-delimited tokens) by construction; passes v3'-validator by attached_objections set-disjointness with other quote-bearing records sharing source_url.",
+        "speaker_attributed_unverified": "Quote (or quote-shaped phrasing) is attributed to the named speaker on the basis of operator-attestation rather than a recoverable specific-utterance anchor. The operator has direct corpus-familiarity (e.g. >100 hours of speaker output viewed, or the rhetorical move is documented across multiple speaker venues without one canonical instance recoverable) but cannot produce file+line for the specific utterance. The short_quote_under_15_words field MAY be populated with a representative phrasing the speaker is attested to use; the speaker_attestation_basis field MUST document the attribution grounds; the verbatim_recovery_status field MUST document why the specific-utterance anchor is unavailable (search_exhausted vs deferred_corpus_scale_infeasible).",
+        "paraphrased_summary": "The short_quote_under_15_words content (if populated) is a composite reconstruction synthesized across multiple speaker utterances rather than any single verbatim utterance. NOT a verbatim quote claim. Use when the speaker articulates a shape across N venues with phrasing variation, and no single utterance is canonical. Note: field-name 'paraphrased_summary' on this enum overlaps lexically with the pre-existing top-level field also named 'paraphrased_summary' (index 13 in v1.5 example_record_schema). The two are distinct: this enum value categorizes the short_quote_under_15_words content; the top-level paraphrased_summary field holds a separate longer-form paraphrase. See open_question Q_v1_6_paraphrased_summary_namespace_overlap for cluster-insertion-session rename consideration."
+      },
+      "_doc": "Records the attestation status of the quote/paraphrase content carried by this instance. Resolves the structural observation that the existing schema (v1.5) implicitly assumed verbatim-anchored attestation for every quote-bearing entry, which the post-v3.7 cluster-insertion workflow cannot maintain at corpus scale for untranscribed-video speaker corpora. Pairs with verbatim_recovery_status (documents WHY a non-verbatim_verified record is non-verbatim) and speaker_attestation_basis (documents WHAT grounds the attribution). The three-field pairing is the canonical defamation-posture device: documented good-faith attribution with explicit epistemic-care gating, structurally the opposite of reckless disregard. See defamation_posture_note_v1_6 in the spec preamble for the directive-carried legal-posture statement.",
+      "orthogonality_note": "Orthogonal to instance_polarity (a quote can be deployment / refutation-of-deployment / neutral-attestation / endorsement under any attestation_status). Orthogonal to public_reach (high_reach_intellectual speakers can produce both verbatim_verified and speaker_attributed_unverified instances). Orthogonal to speaker_type (named_individual vs pseudonymous_individual cases both span the enum). Build-pass tooling: enum-range check is blocking (v18); cross-field coherence checks are flagged as open_question for cluster-insertion empirical review rather than committed as v1.6 blocking rules.",
+      "promotion_criteria_for_new_values": "New enum values may be added (non-breaking per schema_evolution_notes.commitments[1]) when ≥2 corpus-attested instances across ≥2 distinct source-vehicles surface a structurally-distinct attestation status not captured by the existing three. Candidate future values flagged but NOT yet eligible: 'machine_generated_paraphrase' (if LLM-mediated paraphrase generation enters the workflow); 'translated_verbatim' (if cross-language verbatim claims warrant explicit marking). Spec_version bumps minor on each addition.",
+      "added_session": "schema-extension"
+    },
+    "speaker_attestation_basis": {
+      "type": "string",
+      "required": false,
+      "required_when": "short_quote_attestation_status ∈ {speaker_attributed_unverified, paraphrased_summary}",
+      "default": null,
+      "length_guidance": "1-4 sentences",
+      "_doc": "Free-text statement of the grounds on which the speaker-attribution rests when short_quote_attestation_status is not verbatim_verified. Documents the operator's basis for the attribution: corpus-familiarity scope (hours viewed, venues sampled), pattern-recurrence count (≥N venues where the shape recurs), reasons no single utterance was canonized as the anchor. Example (from directive): 'operator has viewed >100 instances of speaker corpus articulating this shape; specific video-anchor unrecovered.' The field is the EVIDENTIARY component of the defamation-posture device — it makes the epistemic-care explicit per record. Build-pass tooling: presence is blocking when short_quote_attestation_status ≠ verbatim_verified (rule v20). Absence is acceptable when status = verbatim_verified (the verbatim anchor itself supplies the attestation grounds via source_url + short_quote_under_15_words).",
+      "example_values": [
+        "operator has viewed >100 instances of speaker corpus articulating this shape; specific video-anchor unrecovered.",
+        "speaker has articulated this conclusion across the 2019-2024 stream archive; phrasing varies across instances; no single utterance is canonical.",
+        "shape recurs in N≥10 sampled clips between [date-range]; operator coded as a composite paraphrase rather than canonizing any single utterance."
+      ],
+      "added_session": "schema-extension"
+    },
+    "verbatim_recovery_status": {
+      "type": "enum",
+      "required": false,
+      "values": [
+        "anchored",
+        "search_exhausted",
+        "deferred_corpus_scale_infeasible"
+      ],
+      "default": "anchored",
+      "default_rationale": "Existing v1.5-conformant entries have file+line / source_url + accessed_date anchors by construction; the implicit recovery_status is 'anchored'. Absence of this field on a v1.5 entry is interpreted as 'anchored' for forward-compatibility; no retroactive per-entry mutation required at v1.6 cut.",
+      "value_semantics": {
+        "anchored": "The specific utterance is recoverable: file + line for transcribed sources; archived URL + stable page anchor for web sources; transcript timestamp for podcasts; verifiable accessed_date + archive_url for ephemeral sources. The DEFAULT for v1.5-conformant entries and the expected value for verbatim_verified entries.",
+        "search_exhausted": "Operator has actively searched the speaker's available transcribed/searchable corpus for the specific utterance using documented grep-patterns / keyword-search / transcript-scan and not found a recoverable anchor. The search effort itself must be documentable (e.g. via speaker_attestation_basis or notes_for_schema). Distinct from deferred_corpus_scale_infeasible in that a search was performed; distinct from anchored in that the search did not yield a recoverable utterance.",
+        "deferred_corpus_scale_infeasible": "The speaker corpus is at a scale where exhaustive search for a specific utterance is infeasible (e.g. untranscribed video corpus of N+ hours, broadcast streams without searchable indexing, ephemeral social-platform content without archive coverage). Recovery is deferred not because of inattention but because the search-space is intractable at the project's resource scale. The CANONICAL pairing per the defamation_posture_note is speaker_attributed_unverified + deferred_corpus_scale_infeasible + speaker_attestation_basis populated — explicit good-faith attribution with documented epistemic-care gating."
+      },
+      "_doc": "Records the recoverability status of the specific utterance underlying the attestation. Pairs with short_quote_attestation_status to disambiguate non-verbatim cases: verbatim_verified should always be anchored; speaker_attributed_unverified must be either search_exhausted (with documented search) or deferred_corpus_scale_infeasible (with documented scale rationale); paraphrased_summary may be any non-anchored value (composite reconstructions are typically deferred_corpus_scale_infeasible). Build-pass tooling: enum-range check is blocking (v19); cross-field coherence checks (e.g. verbatim_verified × search_exhausted) flagged as open_question for cluster-insertion empirical review rather than committed as v1.6 blocking rules.",
+      "orthogonality_note": "Orthogonal in principle to all other fields but empirically correlated with short_quote_attestation_status (anchored typically pairs with verbatim_verified; deferred_corpus_scale_infeasible typically pairs with speaker_attributed_unverified). The independence is preserved at the schema level to support edge cases: e.g. a paraphrased_summary built from N anchored utterances might legitimately code anchored + paraphrased_summary; a speaker_attributed_unverified that operator later anchors but doesn't yet upgrade to verbatim_verified might transiently pair speaker_attributed_unverified + anchored. Cross-field coherence rules are deferred to cluster-insertion-session empirical review.",
+      "promotion_criteria_for_new_values": "New enum values may be added (non-breaking per schema_evolution_notes.commitments[1]) when ≥2 corpus-attested instances across ≥2 distinct source-vehicles surface a structurally-distinct recovery status not captured by the existing three. Candidate future values flagged but NOT yet eligible: 'partial_anchor' (if quote shape is anchored but specific phrasing varies across the anchor's revisions); 'third_party_paraphrase_only' (if no direct speaker-source is recoverable but a third-party paraphrase is). Spec_version bumps minor on each addition.",
+      "added_session": "schema-extension"
+    },
+    "engagement_context": {
+      "type": "string",
+      "required": false,
+      "length_guidance": "1-3 sentences",
+      "_doc": "Speaker / audience / setting description. Captures discourse situation: who is saying this, to whom, in what venue, under what conditions (e.g. post-Bartkus, in-response-to-X, organizational position vs personal essay)."
+    },
+    "thread_id": {
+      "type": "string",
+      "required": false,
+      "format": "kebab-case slug",
+      "_doc": "Optional grouping identifier for instances captured from the same discourse-thread. Resolves schema_observation 7 (speaker-as-atomic-unit). Each speaker quote is one instance; thread_id groups co-occurring instances. Example seed: the Andreas exchange would produce N instances under thread_id 'andreas-exchange-2026-05'. Allows the frontend to surface 'instances from the same exchange' as a UI affordance."
+    },
+    "notes_for_schema": {
+      "type": "string",
+      "required": false,
+      "_doc": "Builder-discovery notes — observations that may inform future schema revisions. Build-pass sessions accumulate notes here; periodic schema-review sessions consume them. Example: 'this instance is parallel-structure-different-anchor; if accumulated count reaches threshold, flag for sibling-objection consideration.' Treat as a structured-comments field, not as user-facing copy."
+    }
+  },
+  "validation_rules": {
+    "_doc": "Build-pass tooling enforcement requirements. These are NOT schema-defined types but session-protocol commitments. The build-pass tool MUST run all rules at write time; failures block the write.",
+    "rules": [
+      {
+        "id": "v1_unique_instance_id",
+        "rule": "instance_id is globally unique within $.realWorldExamples",
+        "severity": "blocking"
+      },
+      {
+        "id": "v2_quote_word_count",
+        "rule": "short_quote_under_15_words, if present, contains ≤15 whitespace-delimited tokens",
+        "severity": "blocking",
+        "note": "Strict token count, not character count. Whitespace-delimited. Punctuation attached to tokens does not separate them. The 15-cap is hard; the rule does not look at fairness, importance, or any qualitative factor."
+      },
+      {
+        "id": "v3_one_quote_per_source_per_objection_set",
+        "rule": "For any pair of records r1, r2 with r1.source_url == r2.source_url AND r1.short_quote_under_15_words is non-null AND r2.short_quote_under_15_words is non-null, the sets {a.objection_id for a in r1.attached_objections} and {a.objection_id for a in r2.attached_objections} MUST be disjoint. Equivalently: a single source_url may carry multiple non-null short_quote_under_15_words values provided no two of those records share any objection_id in their attached_objections lists.",
+        "severity": "blocking",
+        "note": "Amended at session 4k-l (spec_version 1.5) from the v1.4 rule text 'No two records with the same source_url may both have a non-null short_quote_under_15_words'. Rationale: see schema_evolution_notes.commitments session-4k-l entry. The amendment permits the multi-attestation case where one long-form source (blog post, podcast, journal article) attests several distinct objections via several distinct quotes (the post-4k-i corpus's Carrier / Renegade / Sukenick clusters), while still blocking the gaming case (one source cited multiple times for the same objection_id with multiple quotes to inflate apparent coverage). The v1.4 note's multi-speaker carve-out ('multi-speaker source ... only one carries a quote') is subsumed: when distinct speakers attest distinct objections from the same source, both can carry quotes under v3'; when distinct speakers attest the same objection (rare overlap case), the disjointness rule still requires a single-quote choice or migration of the second quote into paraphrased_summary. Implementation: for each source_url with >1 quote-bearing record, compute pairwise intersection of attached_objections.objection_id sets; flag any non-empty intersection as a v3' violation. Linear-time in records per URL. Tooling note: original v3 dedup-by-source_url logic should be replaced; build-pass tooling that has historically not enforced v3 at write time should be updated to enforce v3' at write time per the canon v8.5 audit clarification 2 observation."
+      },
+      {
+        "id": "v4_foreign_key_validity",
+        "rule": "Every objection_id in attached_objections[].objection_id resolves to an existing $.objections[*].id",
+        "severity": "blocking"
+      },
+      {
+        "id": "v5_date_format",
+        "rule": "source_date and accessed_date conform to ISO 8601 (YYYY-MM-DD); source_date additionally accepts 'circa YYYY' string",
+        "severity": "blocking"
+      },
+      {
+        "id": "v6_polarity_enum",
+        "rule": "instance_polarity ∈ exact enum values",
+        "severity": "blocking"
+      },
+      {
+        "id": "v7_archetype_enum",
+        "rule": "archetype_signal_observed ∈ exact enum values",
+        "severity": "blocking"
+      },
+      {
+        "id": "v8_speaker_type_enum",
+        "rule": "speaker_type ∈ exact enum values",
+        "severity": "blocking"
+      },
+      {
+        "id": "v9_fit_enum_per_attachment",
+        "rule": "Every attached_objections[].fit_to_trigger_phrases ∈ exact enum values",
+        "severity": "blocking"
+      },
+      {
+        "id": "v10_non_exact_fit_rationale_warning",
+        "rule": "If fit_to_trigger_phrases ∈ {partial, parallel-structure-different-anchor} and attachment_rationale is missing, emit warning",
+        "severity": "warning"
+      },
+      {
+        "id": "v11_ambiguous_archetype_rationale_required",
+        "rule": "If archetype_signal_observed = 'ambiguous', archetype_signal_rationale is required",
+        "severity": "blocking"
+      },
+      {
+        "id": "v12_no_full_quote_field",
+        "rule": "No record may contain any field named 'full_quote', 'extended_quote', 'long_quote', or other quote-length-bypassing field name",
+        "severity": "blocking",
+        "note": "Footgun prevention. The 15-word cap exists for fair-use reasons at corpus scale; adding a longer-quote field defeats the protocol."
+      },
+      {
+        "id": "v13_paraphrase_near_duplicate_check",
+        "rule": "paraphrased_summary should not contain a contiguous 10+ word substring of the source page content where the source is retrievable",
+        "severity": "warning",
+        "note": "Heuristic. Catches accidental quotation in paraphrase form. Triggers manual review, not blocking — false positives possible."
+      },
+      {
+        "rule_id": "frame_inversion_enum_constraint",
+        "rule": "If frame_inversion is present, value MUST be one of the declared enum values; null/absent is permitted (signals 'not observed')",
+        "severity": "error",
+        "added_session": "4k"
+      },
+      {
+        "rule_id": "frame_inversion_deploys_for_warning",
+        "rule": "If instance_polarity='deploys-for' AND frame_inversion is absent, emit warning — strong heuristic that frame-inversion coding was missed",
+        "severity": "warning",
+        "rationale": "Empirically (batches 1-7), every deploys-for instance attaching to objections in the descriptive layer carried a frame-inversion register (Inmendham misanthropy / Inmendham slavery-policy). The pattern may not hold universally but a missed-coding warning is cheap.",
+        "added_session": "4k"
+      },
+      {
+        "rule_id": "layer_skepticism_enum_constraint",
+        "rule": "If layer_skepticism is present, value MUST be one of the declared enum values; null/absent is permitted (signals 'not assessed').",
+        "severity": "error",
+        "added_session": "4k-b"
+      },
+      {
+        "rule_id": "layer_skepticism_post_diagnostic_objector_tag_warning",
+        "rule": "If archetype_signal_additional_tags contains 'post-diagnostic-objector' AND layer_skepticism is absent, emit warning — strong heuristic that layer-skepticism coding was missed.",
+        "severity": "warning",
+        "rationale": "Empirically (batches 1-4 backfill), every post-diagnostic-objector-tagged instance carries an assignable layer_skepticism value (8 prescriptive-only / 1 both / 2 neither / 0 descriptive-only across 11 instances). Build-pass tooling should prompt for explicit layer-skepticism coding when the post-diag-objector tag is applied. The pattern may not hold universally as the corpus grows but a missed-coding warning is cheap.",
+        "added_session": "4k-b"
+      },
+      {
+        "rule_id": "public_reach_enum_constraint",
+        "rule": "If public_reach is present, value MUST be one of the declared enum values {high_reach_intellectual, named_specialist, niche_or_pseudonymous}; null/absent is permitted (signals 'not coded' or 'dimension does not apply').",
+        "severity": "error",
+        "added_session": "4k-c"
+      },
+      {
+        "rule_id": "public_reach_high_reach_intellectual_tag_warning",
+        "rule": "If archetype_signal_additional_tags contains 'high_reach_intellectual' (the informal pre-formalization tag, per canon v7.2 line 1944 seeding pattern) AND public_reach is absent, emit warning — the informal tag was the pre-formalization seed for this field and should now map to public_reach='high_reach_intellectual'. Build-pass tooling SHOULD also flag retirement of the literal 'public_reach' value used as a meta-tag in archetype_signal_additional_tags (8 batch-4-and-batch-5 instances per session 4k-c audit); the formal field supersedes the meta-tag at canonical merge.",
+        "severity": "warning",
+        "rationale": "Empirically (batches 4-7), every instance with archetype_signal_additional_tags containing 'high_reach_intellectual' or the literal 'public_reach' meta-tag is a candidate for the formal public_reach field. The pre-formalization tagging convention is being preserved as historical receipt; the formal field is the canonical encoding going forward.",
+        "added_session": "4k-c"
+      },
+      {
+        "rule_id": "public_reach_named_specialist_tag_warning",
+        "rule": "If archetype_signal_additional_tags contains 'named_specialist' (the informal pre-formalization tag) AND public_reach is absent, emit warning — map to public_reach='named_specialist'.",
+        "severity": "warning",
+        "rationale": "Parallel to high_reach_intellectual warning. The named_specialist informal tag (1 batch-4 instance per audit) is the pre-formalization seed for this enum value.",
+        "added_session": "4k-c"
+      },
+      {
+        "rule_id": "refutation_variant_id_foreign_key_constraint",
+        "rule": "If refutation_variant_id is present, value MUST resolve to a variant_id declared in $.objections[*].refutationalVariants[*].variant_id; null/absent is permitted (signals 'not refutation-of-deployment polarity', 'below-threshold candidate', or 'coding deferred').",
+        "severity": "error",
+        "added_session": "4k-f"
+      },
+      {
+        "rule_id": "refutation_variant_id_polarity_constraint",
+        "rule": "If refutation_variant_id is non-null, instance_polarity MUST equal 'refutation-of-deployment'. The field codes a refutational move; deploys-against / deploys-for / neutral-attestation polarities cannot attest a refutational variant.",
+        "severity": "error",
+        "added_session": "4k-f"
+      },
+      {
+        "rule_id": "refutation_variant_id_attachment_constraint",
+        "rule": "If refutation_variant_id is non-null, at least one attached_objection's objection_id MUST have refutationalVariants declared on it (at v3.6.1 post-4k-e: only 'violence-as-reductio'; field is forward-compatible with future additions). Variant_id MUST resolve to a variant declared on that specific objection.",
+        "severity": "error",
+        "added_session": "4k-f"
+      },
+      {
+        "rule_id": "refutation_variant_id_missed_coding_warning",
+        "rule": "If instance_polarity='refutation-of-deployment' AND at least one attached_objection has refutationalVariants declared AND refutation_variant_id is absent, emit warning — strong heuristic that variant coding was missed or deferred. Acceptable resolution: explicit null coding with coding_rationale documenting below-threshold-candidate status, surfaced into the build-pass session's backfill patch document.",
+        "severity": "warning",
+        "rationale": "Empirically (4k-f backfill): 4 of 6 VAR-attached refutation-of-deployment instances coded to canonical variant_ids; 2 of 6 coded to null with documented below-threshold-candidate rationale. Pattern: missed coding is more costly than below-threshold-explicit-null, which surfaces candidate variants for future-mining promotion. Warning level appropriate; coding absence may be legitimate (deferred) or evidence of variant under-resolution.",
+        "added_session": "4k-f"
+      },
+      {
+        "id": "v18_short_quote_attestation_status_enum",
+        "rule": "short_quote_attestation_status, if present, ∈ {verbatim_verified, speaker_attributed_unverified, paraphrased_summary}",
+        "severity": "blocking",
+        "note": "Standard enum-range check. Absence is acceptable and treated as default value 'verbatim_verified' (per default_rationale on the field).",
+        "added_session": "schema-extension"
+      },
+      {
+        "id": "v19_verbatim_recovery_status_enum",
+        "rule": "verbatim_recovery_status, if present, ∈ {anchored, search_exhausted, deferred_corpus_scale_infeasible}",
+        "severity": "blocking",
+        "note": "Standard enum-range check. Absence is acceptable and treated as default value 'anchored' (per default_rationale on the field).",
+        "added_session": "schema-extension"
+      },
+      {
+        "id": "v20_speaker_attestation_basis_required_when_status_non_default",
+        "rule": "If short_quote_attestation_status ∈ {speaker_attributed_unverified, paraphrased_summary}, speaker_attestation_basis MUST be present and non-empty",
+        "severity": "blocking",
+        "note": "Enforces the defamation-posture-device's evidentiary component: non-verbatim attributions must carry their documented attribution grounds inline on the record. Absence of speaker_attestation_basis when status = verbatim_verified is acceptable (the verbatim anchor itself supplies the attestation grounds via source_url + short_quote_under_15_words). The conditional-required pattern is novel in v1.6; prior schema versions used unconditional required:true/false on each field.",
+        "added_session": "schema-extension"
+      }
+    ]
+  },
+  "build_pass_protocol": {
+    "_doc": "Operational governance for session 4e and subsequent build-pass batches. Distinct from the field-schema spec but co-authored here to avoid splitting decisions across artifacts.",
+    "archive_policy": {
+      "rule": "For every instance ingested, the build-pass session MUST attempt to create or retrieve a Wayback Machine snapshot. archive_url is populated with the snapshot URL on success or null on failure. corpus_decay_risk MUST be set to medium or high if archive_url is null.",
+      "mechanism_recommendation": "Use the Wayback Machine 'Save Page Now' endpoint where possible. For sources already snapshotted, retrieve the latest available snapshot URL via Wayback's CDX API.",
+      "tool_budget_implication": "Each instance adds one outbound HTTP request beyond the source-fetch. Estimate: 220 instances × 1-2 archive requests = 220-440 requests. Order of magnitude smaller than the search budget."
+    },
+    "corpus_density_targets": {
+      "min_instances_per_objection": 0,
+      "max_instances_per_objection": 5,
+      "target_instances_per_objection": "2-3 where available",
+      "_doc": "Resolves schema_observation 10. Density-driven, not parity-driven. Some objections will yield zero clean specimens; that is data, not failure. Build-pass session reports the per-objection yield with no inferred filler. Max-cap prevents corpus bloat on high-density objections (performative-contradiction, likely > 5 specimens available)."
+    },
+    "session_sequencing": {
+      "approach": "tier-by-tier OR by-objection-density-class",
+      "objections_per_session_target": "5-7",
+      "estimated_session_count_for_full_corpus": "10-15 build-pass sessions for 74 objections",
+      "_doc": "Resolves schema_observation 9. Multi-session arc analogous to but lighter than the v3.6.1 port branch."
+    },
+    "search_budget_per_session": {
+      "estimate": "15-30 web searches per session at 5-7 objections × 2-3 searches average",
+      "hazard": "Some objections will require 5+ searches for 1 specimen; budget overrun is the build-pass session's standard risk. Sessions that exhaust budget close with partial deliverable and queue remaining objections to the next batch."
+    },
+    "session_artifact_naming": {
+      "pattern": "real_world_examples_build_batch_{N}.json",
+      "_doc": "Each build-pass session emits a partial batch file. The full $.realWorldExamples array is assembled across batches at a consolidation point (separate session, when ~3-5 batches accumulated)."
+    },
+    "feedback_loops": {
+      "parallel_structure_accumulation": {
+        "rule": "If parallel-structure-different-anchor count for any objection reaches ≥3 across all batches, the next session log flags this objection for sibling-objection consideration. This is metadata, not an automatic taxonomy expansion — the structural-addition decision happens in a dedicated session.",
+        "rationale": "ai-fear's scout-pass already showed one parallel-structure case (Lawfare Bartkus piece). Andreas's Objection 5 (Bartkus-as-Logical-Terminus) is structurally identical. Two parallel cases already; build-pass may surface more. If pattern holds, 'violence-as-reductio' may merit its own OBJECTIONS entry."
+      },
+      "ambiguous_archetype_accumulation": {
+        "rule": "If archetype_signal_observed = 'ambiguous' rate exceeds 15% for any objection, flag for archetype-resolution review.",
+        "rationale": "Persistent ambiguity may indicate the four-archetype model is under-resolved for that objection — possibly evidence for archetype taxonomy expansion."
+      },
+      "additional_tags_promotion": {
+        "rule": "If an entry in archetype_signal_additional_tags appears in ≥5 instances across the corpus, queue a structural-addition session to consider promoting it to a first-class archetype or to a separate interlocutor-axis dimension.",
+        "rationale": "post-diagnostic-objector (Andreas-seeded) is the first candidate. Tag must earn promotion through observed frequency, not authorial intuition."
+      }
+    }
+  },
+  "polarity_decisions_summary": {
+    "_doc": "Compact summary of the binding decisions made in this spec for fast reference.",
+    "decisions": [
+      {
+        "observation_id": "1",
+        "decision": "COMMIT instance_polarity as 4-value enum; collapse the separate speaker_stance proposal into polarity (isomorphic)."
+      },
+      {
+        "observation_id": "2",
+        "decision": "COMMIT archetype_signal_observed as 6-value enum + archetype_signal_additional_tags open array."
+      },
+      {
+        "observation_id": "3",
+        "decision": "COMMIT fit_to_trigger_phrases as 4-value enum; place per-attachment (not per-instance), because a single instance can fit different objections at different precision levels."
+      },
+      {
+        "observation_id": "4",
+        "decision": "COMMIT many-to-many attachment via top-level realWorldExamples array + attached_objections[] cross-refs; objections carry derived exampleIds index."
+      },
+      {
+        "observation_id": "5",
+        "decision": "COMMIT source_date + accessed_date as required; archive_url as schema-optional but build-pass-protocol-required-attempt; corpus_decay_risk as enum."
+      },
+      {
+        "observation_id": "6",
+        "decision": "COMMIT short_quote_under_15_words with 15-token schema-level cap; one-quote-per-source as blocking validation rule; no full_quote field permitted."
+      },
+      {
+        "observation_id": "7",
+        "decision": "COMMIT speaker-as-atomic-unit; thread_id optional grouping field."
+      },
+      {
+        "observation_id": "8",
+        "decision": "COMMIT speaker_type as 5-value enum."
+      },
+      {
+        "observation_id": "9",
+        "decision": "DEFER to build_pass_protocol — not in field schema. Session sequencing target 5-7 objections per build-pass session; 10-15 sessions total."
+      },
+      {
+        "observation_id": "10",
+        "decision": "DEFER to build_pass_protocol — corpus density targets (min 0, max 5, target 2-3) live in session governance, not in field schema."
+      }
+    ]
+  },
+  "andreas_file_routing": {
+    "_doc": "Disposition of argument_library_andreas_objections_v1.md — added to project knowledge between sessions 4c and 4d. Eight extracted objections + four canonize recommendations + one interlocutor-tag recommendation. Routing decision: most of the file is structural-addition material out of scope for the schema-decision session. The file's contribution to 4d's schema commitments, in scope:",
+    "in_scope_contributions": [
+      "Validates speaker-as-atomic-unit + thread_id model: Andreas exchange would yield ~8 instances under thread_id 'andreas-exchange-2026-05'.",
+      "Validates archetype_signal_additional_tags affordance: 'post-diagnostic-objector' is the seed tag and exemplifies why open-vocabulary extension is necessary alongside the four canonical archetypes.",
+      "Validates parallel-structure-different-anchor enum value: Andreas Objection 5 (Bartkus as Logical Terminus) is structurally parallel to the scout's ai-fear-002 case — two independent confirmations that this fit category is needed.",
+      "Validates neutral-attestation polarity for experiential disclosure: Andreas Objection 8 (Admin Burnout) is not a logical objection but an experiential substrate disclosure; polarity = neutral-attestation + engagement_context carries the disclosure character."
+    ],
+    "deferred_to_separate_sessions": [
+      {
+        "item": "Andreas's eight objection-extractions as build-pass seed corpus",
+        "deferred_to": "session 4e (build-pass batch 1) — Andreas exchange should be one of batch 1's high-yield sources, generating ~8 instances under thread_id 'andreas-exchange-2026-05'.",
+        "estimated_yield": "8 instances across ~5-7 existing OBJECTIONS array entries; some attachments will be parallel-structure-different-anchor (cases 1, 5) and warrant tracking."
+      },
+      {
+        "item": "Andreas-recommended canonize moves: framework-vs-actor distinction, cascade-math safeguard, two-layer (structural/NU) architecture, censorship-reversal trap-door",
+        "deferred_to": "dedicated structural-addition session(s) — each is a candidate for promotion into mechanisms taxonomy (MAP_GRAPH_DATA mechType ∈ {defense, rhetorical, structural, cognitive, genuine}) or into a separate defensive-moves registry.",
+        "rationale": "Promotion of a defensive move is a taxonomy commitment, not a corpus addition. Each move requires its own audit: is it first-articulated in the Andreas exchange or does it appear in earlier corpus material under a different name? What mechType does it occupy? Does it cross-reference to existing positions? Compounding this into a build-pass session would re-create the exact scope-creep that scout-pass was designed to prevent."
+      },
+      {
+        "item": "post-diagnostic-objector as new first-class interlocutor-axis dimension",
+        "deferred_to": "dedicated archetype-axis session — earliest after build-pass accumulates ≥5 instances tagged with this label (per build_pass_protocol.feedback_loops.additional_tags_promotion).",
+        "rationale": "The four canonical archetypes (sophisticate / defender / drifter / blended) are a registered taxonomy commitment. Adding a fifth — or adding an orthogonal axis (descriptive-layer-skeptic vs prescriptive-layer-skeptic) — is a structural change requiring evidence accumulation first. Andreas alone is N=1."
+      },
+      {
+        "item": "sibling-objection consideration ('violence-as-reductio') triggered by parallel-structure accumulation across ai-fear-002 and Andreas Objection 5",
+        "deferred_to": "structural-addition session, triggered when parallel-structure-different-anchor count reaches the build_pass_protocol threshold (≥3 for any one objection).",
+        "rationale": "Two cases is a pattern; three is a signal. The threshold is set in build_pass_protocol; meeting it queues the session, not the addition."
+      }
+    ]
+  },
+  "out_of_scope_explicit": {
+    "_doc": "Items NOT decided in this session, listed to forestall scope drift in 4e+.",
+    "items": [
+      "Whether to commit realWorldExamples into v3.6.1 JSON as a top-level field IMMEDIATELY (vs. waiting until N batches accumulated). Recommendation: commit empty $.realWorldExamples = [] at session 4e's open, then build incrementally. Allows JSX/frontend wiring to develop in parallel. Final call deferred to 4e.",
+      "JSX rendering protocol: how the frontend surfaces examples per objection (collapsed-by-default, on-hover, dedicated tab). UI decision; out of scope for schema.",
+      "Whether to expose realWorldExamples on Map 0 / Map 1 visualizations. Visualization-data decision; out of scope.",
+      "Whether to track speaker demographics (age, gender, nationality) beyond speaker_type. Out of scope — privacy and methodology concerns warrant a separate decision if ever raised."
+    ]
+  },
+  "schema_evolution_notes": {
+    "_doc": "Forward compatibility commitments to reduce future migration cost.",
+    "commitments": [
+      "Field additions are non-breaking. New optional fields can be added in any spec_version increment without invalidating existing records.",
+      "Enum value additions are non-breaking. New values may be added to instance_polarity, archetype_signal_observed, speaker_type, fit_to_trigger_phrases without invalidating existing records, provided the spec_version is bumped.",
+      "Enum value removals are breaking. Spec major-version bump required; migration script required.",
+      "Field renames are breaking. Spec major-version bump required; migration script required.",
+      "instance_polarity split into orthogonal stance + polarity fields is a known FUTURE migration candidate, deliberately deferred because the 4-value collapse handles all observed cases cleanly. Splitting becomes warranted if a build-pass session surfaces a case where stance and polarity diverge in ways the collapsed encoding cannot capture.",
+      "Session 4k addition: 'frame_inversion' optional enum field added per the non-breaking field-addition commitment. Resolves open_question 'frame_inversion_archetype_axis'. Encodes the structural finding that the four canonical archetypes are role-contingent rather than trait-stable; the new field captures four distinct rhetorical moves the archetype model cannot represent as identity-essential properties. Backfilled across batches 1-7 (5 instances). See real_world_examples_frame_inversion_backfill_4k.json for the patch.",
+      "Session 4k-b addition: 'layer_skepticism' optional enum field added per the non-breaking field-addition commitment. Resolves canon open_question on post-diagnostic-objector archetype-axis (recommended_default: orthogonal-axis option ii selected over first-class archetype promotion option i, on the grounds that the post-diagnostic-objector pattern cross-cuts the four canonical archetypes rather than replacing one of them — a sophisticated critic can be sophisticate AND prescriptive-only-skeptic simultaneously, and the archetype + layer encodings together carry more information than either alone). Encodes which layer of the AN argument the speaker is skeptical of. Backfilled across batches 1-4 (11 instances; batches 5-7 contributed zero new post-diagnostic-objector-tagged instances). See real_world_examples_post_diagnostic_objector_backfill_4k_b.json for the patch. The four-archetype enum (archetype_signal_observed) is preserved unchanged; the post-diagnostic-objector tag in archetype_signal_additional_tags is preserved as a discursive-posture marker complementary to (not redundant with) the new field — see backfill patch for the audit clarifying the tag/field non-isomorphism (Musk JRE: tagged post-diagnostic-objector, layer_skepticism='neither').",
+      "Session 4k-c addition: 'public_reach' optional enum field added per the non-breaking field-addition commitment (commitments[0]). Resolves the canon-line-1774 design anchor and canon-line-1739 candidate '(e) public_reach schema formalization' standing at STRONGLY-met threshold post-4j-mine-3 (19 high_reach_intellectual + 1 named_specialist instances across 3 confirming batches, 4 distinct cross-source vehicles: Peterson / Benatar / O'Connor / Sam Harris). Encodes the speaker's reach/propagation in public discourse, orthogonal to archetype_signal_observed, speaker_type, frame_inversion, and layer_skepticism. Enum naming follows canon line 1774's 'high_reach_intellectual / named_specialist / niche_or_pseudonymous' commitment — explicitly NOT 'lay_or_pseudonymous' because the field's framing axis is propagation/reach (orthogonal to credential), not credential (which would conflate with speaker_type's identifiability work). Backfilled across batches 4-7 (20 instances; batches 1-3 contributed zero tagged instances, predating the informal public_reach seeding convention introduced in batch 4 per canon v7.2 line 1944). See real_world_examples_public_reach_backfill_4k_c.json for the patch. Third application of the orthogonal-axis structural-decision precedent committed in 4k-b: the public_reach pattern cross-cuts speaker_type (a Peterson-named-individual and a Peterson-pseudonymous-clone would share public_reach value but differ on speaker_type) and cross-cuts archetype_signal_observed (a Peterson-defender deployment and a Harris-sophisticate deployment can both be high_reach_intellectual). The literal 'public_reach' meta-tag in archetype_signal_additional_tags (8 batch-4-and-batch-5 instances) is noted as a coding artifact superseded by the formal field — preserved as historical receipt per the immutable-batch-receipts protocol, eligible for retirement at canonical merge. corpus_expansion sub-arc's structural-decision queue is now empty (frame_inversion via 4k, layer_skepticism via 4k-b, public_reach via 4k-c).",
+      "Session 4k-f addition: 'refutation_variant_id' optional string field added per the non-breaking field-addition commitment (commitments[0]). Resolves open_question 'var_refutation_corpus_back_reference_field' carried from 4k-d. Field is a corpus-side back-reference to $.objections[*].refutationalVariants[*].variant_id, complementing the OBJECTIONS-side forward lookup (refutationalVariants[].corpus_anchors[]). Field NAMING DEVIATION from 4k-d patch's placeholder proposal: 4k-d proposed 'var_refutation_variant' (VAR-scoped); 4k-f commits to 'refutation_variant_id' (generic, forward-compatible with the candidate (i) generalization of refutationalVariants to other OBJECTIONS entries). The 4k-d patch's name was explicitly proposed-only with DEFERRED decision status; the 4k-f rename does not violate the 4k-d patch commitments. Population at 4k-f close: 4 instances coded to canonical variant_ids, 2 instances explicitly null with below-threshold-candidate rationale. Three new validation rules (foreign_key, polarity, attachment) at error severity; one warning rule (missed_coding heuristic). See real_world_examples_var_refutation_back_reference_patch_4k_f.json for the backfill patch.",
+      "Session 4k-l amendment: validation_rules.rules[2] (id 'v3_one_quote_per_source' -> 'v3_one_quote_per_source_per_objection_set') keying RELAXED from per-source-URL to per-(source_url, attached_objections.objection_id-set-pairwise-disjoint). Resolves the schema-discipline backlog opened by canon v8.5/v8.6 audit clarifications regarding 3 standing v3 violations (Carrier 2x, Renegade 2x, Sukenick 3x). PATH SELECTED: refined-RELAX (path 'm' in canon v8.6 next_recommended_session, with refined keying replacing the canon-named per-(URL, session) keying). PATH REJECTED: PRUNE (would have nulled verbatim quotes on 4 of 11 legitimately-attested objections; rejected on information-loss grounds — see scope amendment note for full rationale). The amendment is BREAKING under commitments[2]'s 'enum value removals are breaking' principle extended to rule-text revisions (hence 1.4 -> 1.5 spec_version bump, not a sub-minor revision) but NON-BREAKING for all 87 records in the post-4k-k corpus, which uniformly pass under the new keying (verified by corpus-wide audit at session 4k-l open: 3 violating source_urls under v3, 0 under v3', 11 distinct objection_ids attested across the 7 previously-flagged instances with zero pairwise overlap). The rule's blocking severity is preserved; the rule's reach narrows to precisely the gaming pattern it was designed to catch. Build-pass tooling that has historically not enforced v3 at write time (per canon v8.5 audit clarification 2 observation) should be updated to enforce v3' at write time; the per-source pairwise-intersection check is linear-time in records per URL. The pre-existing v1.4 v3 note's multi-speaker carve-out ('multi-speaker source... only one carries a quote') is subsumed by the new keying and removed from the rule note. polarity_decisions_summary.decisions[5] retains its v1.4 wording 'one-quote-per-source as blocking validation rule' as a historical receipt of the v1.4 commitment; future revisions of that summary should reflect the v1.5 keying refinement when the next polarity-decisions audit session takes it up.",
+      "Session schema-extension addition: three optional speaker-attestation fields added per the non-breaking field-addition commitment (commitments[0]). Codifies the speaker_attestation_extension_discipline_directive registered in canon v21.0 (POINTER_ONLY) as canon-v21.1-ratified schema mutation. New fields: (1) short_quote_attestation_status (enum: verbatim_verified | speaker_attributed_unverified | paraphrased_summary; default verbatim_verified) — records the attestation status of the quote/paraphrase content. (2) speaker_attestation_basis (free-text, conditionally required when status ≠ verbatim_verified) — documents the operator's attribution grounds. (3) verbatim_recovery_status (enum: anchored | search_exhausted | deferred_corpus_scale_infeasible; default anchored) — records the recoverability status of the specific utterance. Three new blocking validation rules (v18, v19, v20) appended. The three-field pairing is the canonical defamation-posture device: documented good-faith attribution with explicit epistemic-care gating, structurally the opposite of reckless disregard. See defamation_posture_note_v1_6 in the spec preamble for the directive-carried legal-posture statement. Applies to ALL speaker-attributed quotes corpus-wide, not Inmendham-specific. Backfill semantics: existing v1.5-conformant entries are NOT mutated; the default-value rules on fields (1) and (3) mean absence is interpreted as verbatim_verified / anchored respectively. v2-validator and v3'-validator logic unchanged. New fields applicable from cluster-insertion-session onward; application of new fields to existing $.realWorldExamples entries is a separate downstream session (recommended next; per directive.sessions_blocked_until_codification, cluster-insertion-session was blocked on this codification and is now unblocked). JSX / index.html surface-parity for new fields is deferred to a dedicated surface-parity-session if/when entries actually use the new fields with non-default values. Namespace-overlap note: new enum value 'paraphrased_summary' on field (1) lexically overlaps with pre-existing top-level field name 'paraphrased_summary' (index 13 in v1.5 example_record_schema). The two are distinct objects in different lexical scopes; coexistence flagged as Q_v1_6_paraphrased_summary_namespace_overlap for cluster-insertion-session rename consideration if empirical confusion surfaces."
+    ]
+  },
+  "session_amended": "schema-extension",
+  "date_amended": "2026-05-14"
+}

@@ -1,0 +1,1779 @@
+{
+ "artifact": "rebuttal_grading_ledger.json",
+ "status": "REAL GRADES — supersedes the prior NULL/structural-fallback ledger",
+ "method": "Extracted REBUTTAL_STRENGTH const from combined.html via awk-slice -> node Function-eval (project pattern, hazard line 4070 avoided). Recomputed RSI = (v·s·c·r·a)^(1/5) and depth-modifiers per the in-file canonical functions. NOT fabricated — this is the project's own rubric applied to the project's own stored axis scores. Screenshot-verified (life-gift medium = 78.3% C).",
+ "rubric_ref": "see rebuttal_grading_coverage.json grade_system_FOUND",
+ "ungraded": [],
+ "grades": {
+  "life-gift": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.75,
+    "a": 0.75
+   },
+   "short": {
+    "rsi_pct": 76.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 78.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 79.9,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "just-depressed": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.78,
+    "a": 0.8
+   },
+   "short": {
+    "rsi_pct": 77.8,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 79.9,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 81.5,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "why-not-suicide": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "consent-both-ways": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "nihilism-label": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.75,
+    "a": 0.75
+   },
+   "short": {
+    "rsi_pct": 76.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 78.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 79.9,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "economy-population": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.78,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 78.8,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 80.9,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 82.5,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "benatar-asymmetry-attack": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.8,
+    "r": 0.72,
+    "a": 0.75
+   },
+   "short": {
+    "rsi_pct": 74.5,
+    "grade": "D"
+   },
+   "medium": {
+    "rsi_pct": 76.6,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 78.3,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "transhumanist-objection": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.75,
+    "a": 0.8
+   },
+   "short": {
+    "rsi_pct": 77.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 79.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 80.9,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "self-defeating": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.95
+   },
+   "short": {
+    "rsi_pct": 87.1,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 89.2,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 90.9,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "imposing-values": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.9,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 88.3,
+    "grade": "A"
+   },
+   "medium": {
+    "rsi_pct": 90.4,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 92.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "ai-fear": {
+   "graded": true,
+   "axes": {
+    "v": 0.88,
+    "s": 0.82,
+    "c": 0.88,
+    "r": 0.8,
+    "a": 0.82
+   },
+   "short": {
+    "rsi_pct": 80.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 82.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 83.9,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "violence-as-reductio": {
+   "graded": true,
+   "axes": {
+    "v": 0.86,
+    "s": 0.82,
+    "c": 0.84,
+    "r": 0.84,
+    "a": 0.83
+   },
+   "long": {
+    "rsi_pct": 83.8,
+    "grade": "B"
+   },
+   "headline_grade_long": "B",
+   "depths_note": "regrade touched responses.long only; responses.short/medium prose UNEDITED -> grades carried UNCHANGED, intentionally NOT recomputed/re-derived here (source = violence_as_reductio_strengthen_regrade_session; out-of-scope for ledger-sync). Cold grade commits long only.",
+   "grade_source": "coldgrade_violence_as_reductio_long.json (cold=true, sealed_consulted_before_commit=false, prose_md5 0bd12459bf3a4a1b377b689c227a23f2, rsi 0.8379 -> pct 83.8 band B; pre-committed)"
+  },
+  "natural-reproduce": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "gods-plan": {
+   "graded": true,
+   "axes": {
+    "v": 0.88,
+    "s": 0.82,
+    "c": 0.88,
+    "r": 0.78,
+    "a": 0.82
+   },
+   "short": {
+    "rsi_pct": 79.8,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 81.9,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 83.5,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "just-edgy": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "meaning-through-suffering": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "free-will-defense": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.82,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 82.6,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 84.7,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "most-people-happy": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.82,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 82.6,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 84.7,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "love-beauty-art": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.75,
+    "a": 0.75
+   },
+   "short": {
+    "rsi_pct": 76.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 78.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 79.9,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "joy-outweighs-harms": {
+   "graded": true,
+   "axes": {
+    "v": 0.86,
+    "s": 0.7,
+    "c": 0.76,
+    "r": 0.74,
+    "a": 0.78
+   },
+   "long": {
+    "rsi_pct": 76.6,
+    "grade": "C"
+   },
+   "headline_grade_long": "C",
+   "grade_source": "four_ungraded_grade_session cold grade; surface-attested tuple == index/combined REBUTTAL_STRENGTH (verified this session); ledger-sync as v3.7.2-recut pre-cut gate, mirrors canon-v28.2 VAR ledger-sync micro-pattern; no re-grade, no content mutation",
+   "depths_note": "long graded; short/medium prose unedited -> depth-modified grades derived at render, not separately committed (same posture as VAR /grades entry)"
+  },
+  "masochist-counterexample": {
+   "graded": true,
+   "axes": {
+    "v": 0.7,
+    "s": 0.62,
+    "c": 0.68,
+    "r": 0.66,
+    "a": 0.7
+   },
+   "long": {
+    "rsi_pct": 67.1,
+    "grade": "D"
+   },
+   "headline_grade_long": "D",
+   "grade_source": "four_ungraded_grade_session cold grade; surface-attested tuple == index/combined REBUTTAL_STRENGTH (verified this session); ledger-sync as v3.7.2-recut pre-cut gate, mirrors canon-v28.2 VAR ledger-sync micro-pattern; no re-grade, no content mutation",
+   "depths_note": "long graded; short/medium prose unedited -> depth-modified grades derived at render, not separately committed (same posture as VAR /grades entry)"
+  },
+  "procreative-liberty": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.82,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 83.6,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 85.7,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "negative-util-aggregation": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.75,
+    "a": 0.75
+   },
+   "short": {
+    "rsi_pct": 76.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 78.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 79.9,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "wild-animal-suffering-consistency": {
+   "graded": true,
+   "axes": {
+    "v": 0.89,
+    "s": 0.82,
+    "c": 0.85,
+    "r": 0.83,
+    "a": 0.86
+   },
+   "long": {
+    "rsi_pct": 85.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B",
+   "grade_source": "four_ungraded_grade_session cold grade; surface-attested tuple == index/combined REBUTTAL_STRENGTH (verified this session); ledger-sync as v3.7.2-recut pre-cut gate, mirrors canon-v28.2 VAR ledger-sync micro-pattern; no re-grade, no content mutation",
+   "depths_note": "long graded; short/medium prose unedited -> depth-modified grades derived at render, not separately committed (same posture as VAR /grades entry)"
+  },
+  "western-philosophy": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "antinatalism-misanthropic": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.8,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 79.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 81.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 83.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "speak-for-everyone": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "evolution-purpose": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "future-solve": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "extinction-culture": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.82,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 82.6,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 84.7,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "playing-god": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.9,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 88.4,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 90.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "policy-proposal": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.8,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 79.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 81.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 83.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "next-person-cure-cancer": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 88.3,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 89.9,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "pinker-better-world": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "privileged-first-world": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "selfish-lazy": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 83.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 85.4,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 87.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "consent-incoherent": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.88,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 87.9,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 89.9,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 91.6,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "suffering-makes-human": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 83.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 85.4,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 87.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "red-button-repugnant": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.88,
+    "r": 0.8,
+    "a": 0.75
+   },
+   "short": {
+    "rsi_pct": 79.8,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 81.8,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 83.4,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "slippery-slope-eugenics": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.9,
+    "a": 0.95
+   },
+   "short": {
+    "rsi_pct": 89.3,
+    "grade": "A"
+   },
+   "medium": {
+    "rsi_pct": 91.3,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 93.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "adoption-instead": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.75,
+    "a": 0.8
+   },
+   "short": {
+    "rsi_pct": 77.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 79.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 80.9,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "bitter-childhood": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.9,
+    "a": 0.95
+   },
+   "short": {
+    "rsi_pct": 89.3,
+    "grade": "A"
+   },
+   "medium": {
+    "rsi_pct": 91.3,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 93.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "cant-prove-nonexistence-better": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 83.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 85.4,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 87.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "animals-reproduce": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "overpopulation-addressed": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "hedonic-contrast": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 83.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 85.4,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 87.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "ableist-objection": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.82,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 83.6,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 85.7,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "change-your-mind": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "anthropic-principle": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 88.3,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 89.9,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "meta-ethical-pluralism": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.78,
+    "a": 0.8
+   },
+   "short": {
+    "rsi_pct": 80.8,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 82.8,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 84.5,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "heat-death-futility": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "happiness-is-choice": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 88.3,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 89.9,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "cherry-picking-worst": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "revealed-preference": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 83.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 85.4,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 87.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "social-contract": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 89.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "moral-progress": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "non-identity-problem": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.8
+   },
+   "short": {
+    "rsi_pct": 82.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 84.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 85.9,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "bradley-no-subject": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.75,
+    "a": 0.72
+   },
+   "short": {
+    "rsi_pct": 75.6,
+    "grade": "D"
+   },
+   "medium": {
+    "rsi_pct": 77.6,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 79.2,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "contractualism-scanlon": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.82,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 82.6,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 84.7,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "phenomenological-existentialism": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 88.3,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 89.9,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "harman-benign-creation": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.8,
+    "a": 0.75
+   },
+   "short": {
+    "rsi_pct": 80.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 82.2,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 83.8,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "population-ethics-paradoxes": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.85,
+    "r": 0.8,
+    "a": 0.75
+   },
+   "short": {
+    "rsi_pct": 79.1,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 81.2,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 82.8,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "boonin-critique": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.85,
+    "r": 0.8,
+    "a": 0.8
+   },
+   "short": {
+    "rsi_pct": 80.1,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 82.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 83.9,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "moral-particularism": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.9,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 88.3,
+    "grade": "A"
+   },
+   "medium": {
+    "rsi_pct": 90.4,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 92.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "performative-contradiction": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.95,
+    "c": 0.95,
+    "r": 0.95,
+    "a": 0.95
+   },
+   "short": {
+    "rsi_pct": 91.3,
+    "grade": "A"
+   },
+   "medium": {
+    "rsi_pct": 93.4,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 95.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "marxist-materialist": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.85,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 85.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.9,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "buddhist-objection": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.82,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 82.6,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 84.7,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "virtue-ethics-flourishing": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.8,
+    "a": 0.8
+   },
+   "short": {
+    "rsi_pct": 81.2,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 83.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 84.9,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "neuroscience-positive-states": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.82,
+    "c": 0.85,
+    "r": 0.72,
+    "a": 0.72
+   },
+   "short": {
+    "rsi_pct": 75.3,
+    "grade": "D"
+   },
+   "medium": {
+    "rsi_pct": 77.4,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 79.0,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "epistemic-humility": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.92,
+    "a": 0.95
+   },
+   "short": {
+    "rsi_pct": 89.7,
+    "grade": "A"
+   },
+   "medium": {
+    "rsi_pct": 91.8,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 93.4,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "incommensurability": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.95,
+    "r": 0.9,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 88.3,
+    "grade": "A"
+   },
+   "medium": {
+    "rsi_pct": 90.4,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 92.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "flow-states-csikszentmihalyi": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.85,
+    "r": 0.7,
+    "a": 0.72
+   },
+   "short": {
+    "rsi_pct": 74.5,
+    "grade": "D"
+   },
+   "medium": {
+    "rsi_pct": 76.5,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 78.1,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  },
+  "luxury-belief": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.95,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 85.3,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 87.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.9,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "pragmatist-objection": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.85,
+    "r": 0.8,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 81.1,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 83.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 84.9,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "survivor-testimony": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.9,
+    "r": 0.85,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 84.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 86.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 88.0,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "care-ethics": {
+   "graded": true,
+   "axes": {
+    "v": 0.9,
+    "s": 0.85,
+    "c": 0.85,
+    "r": 0.8,
+    "a": 0.85
+   },
+   "short": {
+    "rsi_pct": 81.1,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 83.3,
+    "grade": "B"
+   },
+   "long": {
+    "rsi_pct": 84.9,
+    "grade": "B"
+   },
+   "headline_grade_long": "B"
+  },
+  "rights-future-generations": {
+   "graded": true,
+   "axes": {
+    "v": 0.95,
+    "s": 0.9,
+    "c": 0.9,
+    "r": 0.9,
+    "a": 0.9
+   },
+   "short": {
+    "rsi_pct": 87.2,
+    "grade": "B"
+   },
+   "medium": {
+    "rsi_pct": 89.3,
+    "grade": "A"
+   },
+   "long": {
+    "rsi_pct": 91.0,
+    "grade": "A"
+   },
+   "headline_grade_long": "A"
+  },
+  "indigenous-philosophy": {
+   "graded": true,
+   "axes": {
+    "v": 0.85,
+    "s": 0.8,
+    "c": 0.8,
+    "r": 0.75,
+    "a": 0.8
+   },
+   "short": {
+    "rsi_pct": 76.1,
+    "grade": "C"
+   },
+   "medium": {
+    "rsi_pct": 78.3,
+    "grade": "C"
+   },
+   "long": {
+    "rsi_pct": 79.9,
+    "grade": "C"
+   },
+   "headline_grade_long": "C"
+  }
+ }
+}
