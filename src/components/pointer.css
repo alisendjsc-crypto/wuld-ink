@@ -1,0 +1,88 @@
+/* === discreet-pointer idiom (promoted K24q from N=3 inline) ===
+   The umbrella's discreet-pointer family. Surfaces auxiliary navigation
+   gestures that are visible but deprioritized: a sealed surface that
+   approved readers reach via a separate channel; an essay or section
+   that lives on its own page rather than inline; a project-shaped page
+   that lives below the destination grid.
+
+   N=3 at promote: .frame-pointer (K3 /glossary/), .cover-preface-pointer
+   (K14 /index.html cover), .book-section-pointer (K22 /book/). Each kept
+   as a distinct ruleset rather than extracted to a base class - the
+   visual variance is high (elevated-block vs small-inline vs dim-block)
+   and a forced base class would over-engineer for that variance.
+
+   New pointer surfaces add their own .* selector here. Do not consolidate
+   into a base .pointer class unless 3+ surfaces converge on identical
+   chrome treatment.
+*/
+
+/* --- .frame-pointer (K3, /glossary/ - links to /frame/) ---
+   Elevated block with accent left-border. Label + body + link. */
+.frame-pointer {
+  max-width: var(--w-wide);
+  margin-block-end: var(--s-8);
+  padding: var(--s-4) var(--s-5);
+  border-left: var(--bw-slab) solid var(--c-accent);
+  background-color: var(--c-bg-elevated);
+}
+.frame-pointer-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-mega);
+  color: var(--c-accent);
+  margin-block-end: var(--s-2);
+}
+.frame-pointer p {
+  font-family: var(--font-body);
+  font-size: var(--t-sm);
+  color: var(--c-fg);
+  margin-block-end: 0;
+}
+.frame-pointer a {
+  color: var(--c-fg);
+  text-decoration: none;
+  border-bottom: var(--bw-base) solid var(--c-accent);
+}
+.frame-pointer a:hover { color: var(--c-accent); }
+
+/* --- .cover-preface-pointer (K14, /index.html cover - links to /preface/) ---
+   Subordinate block below the descent link. Dim, no pulse, no bg. */
+.cover-preface-pointer {
+  display: block;
+  margin-block-start: var(--s-3);
+  font-size: 0.72rem;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-dim);
+  opacity: 0.7;
+}
+.cover-preface-pointer a {
+  color: inherit;
+  text-decoration: none;
+  padding-block: var(--s-1);
+  transition: color var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease);
+}
+.cover-preface-pointer a:hover {
+  color: var(--c-accent);
+  opacity: 1;
+}
+
+/* --- .book-section-pointer (K22, /book/ - links to /book/<section>/) ---
+   Small mono-uppercase inline link. Accent-underline navigation gesture
+   matching book-section-heading weight without competing with it. */
+.book-section-pointer {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  max-width: var(--w-prose);
+  margin-block-end: 0;
+}
+.book-section-pointer a {
+  color: var(--c-fg);
+  text-decoration: none;
+  border-bottom: var(--bw-base) solid var(--c-accent);
+  padding-block-end: 2px;
+  transition: color var(--t-fast) var(--ease);
+}
+.book-section-pointer a:hover { color: var(--c-accent); }
