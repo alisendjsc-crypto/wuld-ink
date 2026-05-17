@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K24l">
-  <link rel="stylesheet" href="/components/theater-mode.css?v=K24l">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K24m">
+  <link rel="stylesheet" href="/components/theater-mode.css?v=K24m">
   <link rel="license" href="/LICENSE">
   <title>Archive &mdash; wuld.ink</title>
   <meta name="description" content="Defiant archiving and metacognitive exploration. Unlisted videos and excerpts from prior works (Love Void Love, The Point, Hatred, Forget the Plot, The Known and the Unknown).">
@@ -74,7 +74,13 @@
         },
         {
           "@type": "ListItem", "position": 4,
-          "item": { "@type": "Book", "name": "The Point", "author": "Josiah S. Cooper", "datePublished": "2021-12" }
+          "item": { "@type": "Book", "name": "The Point", "author": "Josiah S. Cooper", "datePublished": "2021-12",
+          "associatedMedia": {
+            "@type": "MediaObject",
+            "contentUrl": "https://wuld.ink/assets/archive/the-point.pdf",
+            "encodingFormat": "application/pdf",
+            "contentSize": "2734200"
+          } }
         },
         {
           "@type": "ListItem", "position": 5,
@@ -97,7 +103,30 @@
         },
         {
           "@type": "ListItem", "position": 7,
-          "item": { "@type": "Book", "name": "The Known and the Unknown", "author": "Josiah S. Cooper", "datePublished": "2020", "isbn": "9798624372580" }
+          "item": { "@type": "Book", "name": "The Known and the Unknown", "author": "Josiah S. Cooper", "datePublished": "2020", "isbn": "9798624372580",
+          "image": [
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-01-supertrifector.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-02-grid-index-factor.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-03-psycho-delic-pattern.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-04-baby.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-05-here.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-06-ftigh.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-07-the-doorway.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-08-self-shadow.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-09-2020-self-shadow.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-10-2013.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-11-the-trail-self-portrait.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-12-see-er.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-13-evilis-anihilis-uls-2012.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-14-grey-in-the-sunlight.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-15-accrosonic-baldwin-acoustic-piano.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-16-prelude-i-april-7th-2012.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-17-time.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-18-snowy-winter-in-tucson.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-19-the-crawl.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-20-the-mangled-image.jpg",
+            "https://wuld.ink/assets/archive/k-and-u/illustrations/illustration-21-mementos-unlisted-videos.jpg"
+          ] }
         },
         {
           "@type": "ListItem", "position": 8,
@@ -109,9 +138,9 @@
   </script>
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K24l">
-  <link rel="stylesheet" href="/components/footer.css?v=K24l">
-  <link rel="stylesheet" href="/components/mode-toggle.css?v=K24l">
+  <link rel="stylesheet" href="/components/nav.css?v=K24m">
+  <link rel="stylesheet" href="/components/footer.css?v=K24m">
+  <link rel="stylesheet" href="/components/mode-toggle.css?v=K24m">
 
   <style>
     /* ============================================================
@@ -486,12 +515,101 @@
       .archive-videos { grid-template-columns: 1fr; }
       .archive-ftp-pages { grid-template-columns: 1fr; }
     }
-  </style>
+  
+      /* K&U illustrations gallery (K24m; N=1 inline) */
+      .archive-ku-gallery {
+        margin-block-start: var(--s-6);
+        padding-block-start: var(--s-5);
+        border-block-start: var(--bw-thin) solid var(--c-border);
+      }
+      .archive-ku-gallery-frame {
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        color: var(--c-fg-muted);
+        margin-block-end: var(--s-5);
+        max-width: 60ch;
+      }
+      .ku-ill-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: var(--s-4);
+      }
+      .ku-ill-fig {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-2);
+      }
+      .ku-ill-link {
+        display: block;
+        border: var(--bw-thin) solid var(--c-border);
+        background: #000;
+        text-decoration: none;
+        transition: border-color var(--t-fast, 120ms) var(--ease, ease);
+      }
+      .ku-ill-link:hover,
+      .ku-ill-link:focus-visible {
+        border-color: var(--c-accent);
+        outline: none;
+      }
+      .ku-ill-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 18rem;
+        object-fit: contain;
+        background: #000;
+      }
+      .ku-ill-cap {
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        color: var(--c-fg);
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+      }
+      .ku-ill-num {
+        color: var(--c-accent);
+        margin-inline-end: 0.4em;
+      }
+      @media (max-width: 480px) {
+        .ku-ill-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--s-3); }
+      }
+    
+      /* [ Read full work ] affordance (K24m; N=1 inline) */
+      .archive-read-full {
+        margin-block-start: var(--s-5);
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+      }
+      .archive-read-full-link {
+        color: var(--c-fg);
+        text-decoration: none;
+        border-block-end: var(--bw-thin) solid var(--c-accent);
+        padding-block-end: 1px;
+        transition: color var(--t-fast, 120ms) var(--ease, ease),
+                    border-color var(--t-fast, 120ms) var(--ease, ease);
+      }
+      .archive-read-full-link:hover,
+      .archive-read-full-link:focus-visible {
+        color: var(--c-accent);
+      }
+      .archive-read-full-pending {
+        color: var(--c-fg-muted);
+        border-block-end: var(--bw-thin) dashed var(--c-fg-muted);
+        padding-block-end: 1px;
+      }
+      .archive-read-full-meta {
+        color: var(--c-fg-muted);
+        margin-inline-start: 0.4em;
+      }
+    </style>
 </head>
 <body data-mode="dark">
 
   <header class="site-header">
-    <a class="site-mark" href="/" aria-label="wuld.ink home"><img class="site-mark-logo" src="/assets/logo/wuld-icon.png" alt="" width="32" height="32" loading="eager" decoding="async"></a>
+    <a class="site-mark" href="/">wuld.ink</a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/essays/">Essays</a>
       <a href="/argument-library/">Library</a>
@@ -514,7 +632,7 @@
     </header>
 
     <blockquote class="archive-epigraph">
-      The answer lies in the concept of defiant archiving and metacognitive exploration. Works like <em>Love Void Love: Writings of Things and Other Things</em>, <em>The Point</em>, <em>The Book of Nought</em>, and <em>The Known and the Unknown</em> serve as meticulous records of existential crisis. <em>The Point</em>, specifically, is noted as having been written during a period of intense mental health struggle, encompassing severe panic attacks and psychosomatic panic during the pandemic (circa 2021). The act of writing, therefore, becomes a crucial mechanism for metacognition&mdash;thinking about how and why we think, and observing the breakdown of the mind from a third-party perspective. It is an attempt to systematically map the boundaries of the void and document the failure of human consciousness.
+      The answer lies in the concept of defiant archiving and metacognitive exploration. Works like <em>Love Void Love: Writings of Things and Other Things</em>, <em>The Point</em>, <em>The Book of Nought</em>, and <em>The Known and the Unknown</em> serve as meticulous records of existential crisis. <em>The Point</em>, specifically, is noted as having been written during a period of intense mental health struggle, encompassing severe panic attacks and non-epileptic-psychogenic-pseudo-seizures during the pandemic (circa 2021). The act of writing, therefore, becomes a crucial mechanism for metacognition&mdash;thinking about how and why we think, and observing the breakdown of the mind from a third-party perspective. It is an attempt to systematically map the boundaries of the void and document the failure of human consciousness.
       <cite>&mdash; Self-frame</cite>
     </blockquote>
 
@@ -592,7 +710,7 @@
         <header class="archive-book-header">
           <p class="archive-book-meta">Book &middot; Dec 2021 &middot; The philosophical pass</p>
           <h3 class="archive-book-title">The Point</h3>
-          <p class="archive-book-frame">Numbered-fragment metaphysical nihilism, written through severe panic attacks and psychosomatic panic during the pandemic (circa 2021).</p>
+          <p class="archive-book-frame">Numbered-fragment metaphysical nihilism, written through severe panic attacks and non-epileptic-psychogenic-pseudo-seizures during the pandemic (circa 2021).</p>
         </header>
 
         <blockquote class="archive-excerpt">
@@ -605,7 +723,11 @@
           <p>In regards to the &ldquo;logical narrative&rdquo;, of course, <em>I understand</em> that this is all anfractuous aporia &mdash; blatant &mdash; and tortuous impasse of &ldquo;paradox&rdquo;. It is itself. It means itself. That will never be untrue, but what it means, cannot be explicated ulteriorly as a universal impossibility. This is the unannouncing non-existence of intelligence. This is the profundity of knowing absolutely nothing. This is the limitation of everything. It is not the prevention or the inception or the termination, but it isn&rsquo;t what it isn&rsquo;t all the more.</p>
           <span class="archive-excerpt-cite">&mdash; The Point</span>
         </blockquote>
-      </article>
+  
+        <p class="archive-read-full">
+          <a class="archive-read-full-link" href="/assets/archive/the-point.pdf" target="_blank" rel="noopener">[ Read full work &middot; PDF ]</a> <span class="archive-read-full-meta">2.6&nbsp;MB &middot; 2021</span>
+        </p>
+          </article>
 
       <article class="archive-book">
         <header class="archive-book-header">
@@ -618,7 +740,12 @@
           <p>Hatred is a tough feeling to overcome; the most resilient to change; the most inhospitable to any exemption of guilt or shame; a drought to the soul, that makes skin crawl, underneath blood boiling with veins akin to barb-wire &ndash; strangling the heart, an already asphyxiated muscle, unrelenting to the ash of history &ndash; pursuing like mad, fountains of saliva and sweat from every orifice, betrayal and self-deceit. Consciousness cannot be enough; the mind-eye of our whirling, whirring hour &ndash; scraping out of the wounds so sour &ndash; imagining a necessary escape through the portal and recess of what is. Monotony and reference to what isn&rsquo;t; repetitive motion; memory, nepotism and sameness &ndash; nescience, fear, estrangement, and annihilation.</p>
           <span class="archive-excerpt-cite">&mdash; Hatred</span>
         </blockquote>
-      </article>
+  
+        <p class="archive-read-full">
+          <span class="archive-read-full-pending">[ Read full work &middot; PDF mirror pending ]</span>
+          <span class="archive-read-full-meta">~26&nbsp;MB</span>
+        </p>
+          </article>
 
       <article class="archive-book">
         <header class="archive-book-header">
@@ -668,11 +795,139 @@
           <span class="archive-excerpt-cite">&mdash; The Known and the Unknown &middot; Esoteric Writings</span>
         </blockquote>
 
-        <blockquote class="archive-excerpt">
-          <p>Defeat is letting it continue. Defeat is feeding the machine because you were afraid to face what stopping would require of you. Defeat is the sunken cost fallacy of existence &mdash; the belief that because so much has already been suffered, something must be extracted from it, some meaning must be mined, some justification must eventually emerge from the rubble. It will not. The rubble is the point. The rubble is all there is.</p>
-          <span class="archive-excerpt-cite">&mdash; The Known and the Unknown &middot; closing pull</span>
-        </blockquote>
-      </article>
+  
+        <div class="archive-ku-gallery" aria-label="K&amp;U illustrations gallery">
+          <p class="archive-ku-gallery-frame">Twenty-one illustrations from <em>The Known and the Unknown</em>, extracted from the source ODT. Click any image to open the full file.</p>
+          <div class="ku-ill-grid">
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-01-supertrifector.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-01-supertrifector.jpg" alt="K&amp;U illustration 1: Supertrifector" width="1200" height="1200" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">01</span> Supertrifector</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-02-grid-index-factor.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-02-grid-index-factor.jpg" alt="K&amp;U illustration 2: Grid Index Factor" width="1200" height="1200" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">02</span> Grid Index Factor</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-03-psycho-delic-pattern.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-03-psycho-delic-pattern.jpg" alt="K&amp;U illustration 3: Psycho-delic Pattern" width="1200" height="1200" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">03</span> Psycho-delic Pattern</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-04-baby.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-04-baby.jpg" alt="K&amp;U illustration 4: &quot;Baby&quot;" width="1200" height="1200" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">04</span> &quot;Baby&quot;</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-05-here.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-05-here.jpg" alt="K&amp;U illustration 5: Here" width="1200" height="675" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">05</span> Here</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-06-ftigh.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-06-ftigh.jpg" alt="K&amp;U illustration 6: &quot;FTIGH&quot;" width="1200" height="900" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">06</span> &quot;FTIGH&quot;</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-07-the-doorway.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-07-the-doorway.jpg" alt="K&amp;U illustration 7: &quot;The Doorway&quot;" width="1200" height="675" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">07</span> &quot;The Doorway&quot;</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-08-self-shadow.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-08-self-shadow.jpg" alt="K&amp;U illustration 8: &quot;Self Shadow&quot; (2017)" width="720" height="960" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">08</span> &quot;Self Shadow&quot; (2017)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-09-2020-self-shadow.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-09-2020-self-shadow.jpg" alt="K&amp;U illustration 9: &quot;2020 Self-Shadow&quot;" width="1200" height="899" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">09</span> &quot;2020 Self-Shadow&quot;</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-10-2013.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-10-2013.jpg" alt="K&amp;U illustration 10: 2013" width="900" height="1200" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">10</span> 2013</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-11-the-trail-self-portrait.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-11-the-trail-self-portrait.jpg" alt="K&amp;U illustration 11: &quot;The Trail: Self Portrait&quot; (2011)" width="1196" height="1200" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">11</span> &quot;The Trail: Self Portrait&quot; (2011)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-12-see-er.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-12-see-er.jpg" alt="K&amp;U illustration 12: &quot;See-er&quot; (2012)" width="1200" height="675" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">12</span> &quot;See-er&quot; (2012)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-13-evilis-anihilis-uls-2012.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-13-evilis-anihilis-uls-2012.jpg" alt="K&amp;U illustration 13: Evilis Anihilis Uls 2012" width="1200" height="1106" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">13</span> Evilis Anihilis Uls 2012</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-14-grey-in-the-sunlight.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-14-grey-in-the-sunlight.jpg" alt="K&amp;U illustration 14: &quot;Grey in the Sunlight&quot; (Approx. May of 2018)" width="1200" height="675" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">14</span> &quot;Grey in the Sunlight&quot; (Approx. May of 2018)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-15-accrosonic-baldwin-acoustic-piano.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-15-accrosonic-baldwin-acoustic-piano.jpg" alt="K&amp;U illustration 15: Accrosonic Baldwin Acoustic Piano (1948)" width="1200" height="900" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">15</span> Accrosonic Baldwin Acoustic Piano (1948)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-16-prelude-i-april-7th-2012.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-16-prelude-i-april-7th-2012.jpg" alt="K&amp;U illustration 16: Prelude, I (Insanity to Come) April, 7th 2012" width="1200" height="965" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">16</span> Prelude, I (Insanity to Come) April, 7th 2012</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-17-time.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-17-time.jpg" alt="K&amp;U illustration 17: &quot;Time&quot; (2012-2018 Collage)" width="1200" height="1200" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">17</span> &quot;Time&quot; (2012-2018 Collage)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-18-snowy-winter-in-tucson.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-18-snowy-winter-in-tucson.jpg" alt="K&amp;U illustration 18: &quot;Snowy Winter in Tucson&quot; (rare event, early 2019)" width="1200" height="675" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">18</span> &quot;Snowy Winter in Tucson&quot; (rare event, early 2019)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-19-the-crawl.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-19-the-crawl.jpg" alt="K&amp;U illustration 19: &quot;The Crawl&quot; (Mid to Late 2014, Self-portrait)" width="1200" height="675" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">19</span> &quot;The Crawl&quot; (Mid to Late 2014, Self-portrait)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-20-the-mangled-image.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-20-the-mangled-image.jpg" alt="K&amp;U illustration 20: &quot;The Mangled Image&quot; (charcoal drawing from approx. May of 2018)" width="812" height="1200" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">20</span> &quot;The Mangled Image&quot; (charcoal drawing from approx. May of 2018)</figcaption>
+        </figure>
+        <figure class="ku-ill-fig">
+          <a class="ku-ill-link" href="/assets/archive/k-and-u/illustrations/illustration-21-mementos-unlisted-videos.jpg" target="_blank" rel="noopener">
+            <img class="ku-ill-img" src="/assets/archive/k-and-u/illustrations/illustration-21-mementos-unlisted-videos.jpg" alt="K&amp;U illustration 21: &quot;Mementos: Unlisted Videos [2010-2019]&quot;" width="1200" height="675" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="ku-ill-cap"><span class="ku-ill-num">21</span> &quot;Mementos: Unlisted Videos [2010-2019]&quot;</figcaption>
+        </figure>
+          </div>
+        </div>
+          </article>
 
       <article class="archive-book">
         <header class="archive-book-header">
@@ -687,31 +942,6 @@
         </blockquote>
       </article>
 
-    </section>
-
-    <!-- ============================================================
-         Section C: Other
-         Open questions and pending asset relays. Honest accounting
-         of what isn't here yet, framed as gaps not failures.
-         ============================================================ -->
-
-    <section class="archive-section" aria-labelledby="other">
-      <header class="archive-section-header">
-        <span class="archive-section-eyebrow">C</span>
-        <h2 class="archive-section-title" id="other">Other</h2>
-      </header>
-      <p class="archive-section-note">Open questions and pending asset relays.</p>
-
-      <ul class="archive-other-list">
-        <li>
-          <strong>K&amp;U illustrations</strong>
-          The Known and the Unknown indexes roughly thirty illustrations (&ldquo;Baby,&rdquo; &ldquo;The Door-way,&rdquo; &ldquo;Declaration,&rdquo; &ldquo;Self-Shadow,&rdquo; &ldquo;The Crawl [Self-Portrait],&rdquo; &amp;c.) but the source docx contains only one embedded image. The illustration assets are not in any provided file. Likely sourced from the Love Void Love ODT or originals the author holds. Drop into <code>src/assets/archive/illustrations/</code> when ready.
-        </li>
-        <li>
-          <strong>Read-the-full-work links</strong>
-          The Point and Forget the Plot have full clean text in uploaded PDFs. Adding a &ldquo;read full work&rdquo; affordance is a scope expansion to confirm separately &mdash; not assumed here.
-        </li>
-      </ul>
     </section>
 
   </main>
@@ -745,9 +975,9 @@
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
 
-  <script src="/components/nav.js?v=K24l" defer></script>
-  <script src="/components/mode-toggle.js?v=K24l" defer></script>
-  <script src="/components/theater-mode.js?v=K24l" defer></script>
-<script src="/components/ambient-player.js?v=K24l" defer></script>
+  <script src="/components/nav.js?v=K24m" defer></script>
+  <script src="/components/mode-toggle.js?v=K24m" defer></script>
+  <script src="/components/theater-mode.js?v=K24m" defer></script>
+<script src="/components/ambient-player.js?v=K24m" defer></script>
 </body>
 </html>

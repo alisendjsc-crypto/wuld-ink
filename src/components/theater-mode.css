@@ -72,11 +72,17 @@
   justify-content: center;
   background-color: rgba(10, 10, 10, 0.95);
   opacity: 0;
+  /* K24m bug fix: backdrop must not intercept clicks when closed.
+     Without pointer-events:none on baseline, the fixed/inset:0/z:1000
+     overlay continues catching every click on the page after close
+     (only opacity transitions; element stays in DOM). */
+  pointer-events: none;
   transition: opacity 200ms var(--ease, ease);
 }
 
 .theater-mode[data-open="true"] {
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* ---------- Iframe container ---------- */

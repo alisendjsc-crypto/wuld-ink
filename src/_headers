@@ -51,7 +51,8 @@
 
 # --- Components (CSS + JS shared across surfaces) ---
 # K24l: TTL dropped 86400 -> 300 to prevent edge-cache stale-HIT masking
-# deploys. Versioned ?v=K24l query-string on imports forces fresh fetches
+# deploys. Versioned ?v=<K-session> query-string on imports forces fresh
+# fetches each session (bumped per K-session per K24l lesson lxv)
 # per deploy regardless of TTL. Component files are < 15 KB each so the
 # bandwidth cost of short TTL is negligible.
 /components/*
