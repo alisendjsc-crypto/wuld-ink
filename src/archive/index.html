@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K24m">
-  <link rel="stylesheet" href="/components/theater-mode.css?v=K24m">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K24n">
+  <link rel="stylesheet" href="/components/theater-mode.css?v=K24n">
   <link rel="license" href="/LICENSE">
   <title>Archive &mdash; wuld.ink</title>
   <meta name="description" content="Defiant archiving and metacognitive exploration. Unlisted videos and excerpts from prior works (Love Void Love, The Point, Hatred, Forget the Plot, The Known and the Unknown).">
@@ -130,7 +130,13 @@
         },
         {
           "@type": "ListItem", "position": 8,
-          "item": { "@type": "Book", "name": "Love Void Love: Writings of Things and Other Things", "author": "Josiah S. Cooper", "datePublished": "2019" }
+          "item": { "@type": "Book", "name": "Love Void Love: Writings of Things and Other Things", "author": "Josiah S. Cooper", "datePublished": "2019",
+          "associatedMedia": {
+            "@type": "MediaObject",
+            "contentUrl": "https://wuld.ink/assets/archive/love-void-love.pdf",
+            "encodingFormat": "application/pdf",
+            "contentSize": "4214804"
+          } }
         }
       ]
     }
@@ -138,9 +144,9 @@
   </script>
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K24m">
-  <link rel="stylesheet" href="/components/footer.css?v=K24m">
-  <link rel="stylesheet" href="/components/mode-toggle.css?v=K24m">
+  <link rel="stylesheet" href="/components/nav.css?v=K24n">
+  <link rel="stylesheet" href="/components/footer.css?v=K24n">
+  <link rel="stylesheet" href="/components/mode-toggle.css?v=K24n">
 
   <style>
     /* ============================================================
@@ -940,6 +946,10 @@
           <p>It&rsquo;s not your fault if you hate. It&rsquo;s not your fault if you do not love. It&rsquo;s not okay if we are blamed for not wanting to live. It&rsquo;s okay to admit that it&rsquo;s not okay. I have nowhere to go. I want to leave. I am not at home. I am not in peace. I do not love. I hate. I do not want to live. I love anyone who would help me. I would love anyone I have helped. I accept you, if you accept me. I want to believe you are more than I perceive&mdash;caring and considerate&mdash;completely non-ignorant; so stand up and kick it, please&mdash;kill me, kill me, kill me. Void love void.</p>
           <span class="archive-excerpt-cite">&mdash; Love Void Love</span>
         </blockquote>
+
+        <p class="archive-read-full">
+          <a class="archive-read-full-link" href="/assets/archive/love-void-love.pdf" target="_blank" rel="noopener">[ Read full work &middot; PDF ]</a> <span class="archive-read-full-meta">4.2&nbsp;MB &middot; 139pp &middot; 2019</span>
+        </p>
       </article>
 
     </section>
@@ -964,6 +974,8 @@
     <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
     <div class="ambient-bar">
       <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
       <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
       <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
@@ -975,9 +987,9 @@
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
 
-  <script src="/components/nav.js?v=K24m" defer></script>
-  <script src="/components/mode-toggle.js?v=K24m" defer></script>
-  <script src="/components/theater-mode.js?v=K24m" defer></script>
-<script src="/components/ambient-player.js?v=K24m" defer></script>
+  <script src="/components/nav.js?v=K24n" defer></script>
+  <script src="/components/mode-toggle.js?v=K24n" defer></script>
+  <script src="/components/theater-mode.js?v=K24n" defer></script>
+<script src="/components/ambient-player.js?v=K24n" defer></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K24m">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K24n">
   <link rel="license" href="/LICENSE">
   <title>Argument Library — wuld.ink</title>
   <meta name="description" content="EFIList v3.7.1 — 78 objections / 5 tiers / 34 mechanisms / 136 attested deployments / 4-archetype interlocutor model. Full substrate live at library.wuld.ink.">
@@ -38,8 +38,8 @@
   </script>
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K24m">
-  <link rel="stylesheet" href="/components/footer.css?v=K24m">
+  <link rel="stylesheet" href="/components/nav.css?v=K24n">
+  <link rel="stylesheet" href="/components/footer.css?v=K24n">
 
   <style>
     .page {
@@ -81,7 +81,7 @@
       color: var(--c-fg-muted);
     }
     .status-card p:last-child { margin-block-end: 0; }
-    /* Footer rules promoted to /components/footer.css?v=K24m (session J);
+    /* Footer rules promoted to /components/footer.css?v=K24n (session J);
        inline duplicates removed (session K). */
   </style>
 </head>
@@ -134,11 +134,13 @@
     </div>
   </footer>
 
-  <script src="/components/nav.js?v=K24m"></script>
+  <script src="/components/nav.js?v=K24n"></script>
   <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
     <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
     <div class="ambient-bar">
       <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
       <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
       <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
@@ -149,6 +151,6 @@
     </div>
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
-<script src="/components/ambient-player.js?v=K24m" defer></script>
+<script src="/components/ambient-player.js?v=K24n" defer></script>
 </body>
 </html>

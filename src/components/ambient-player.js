@@ -8,10 +8,25 @@
    K24k extension:
      - dismiss/restore (hairline sliver state; bar visibility
        toggle distinct from audio toggle)
-     - loop-one (repeat current video on end)
+     - loop-one (repeat current video on end) [FIXED K24n]
      - wuld:overlay:open/close listener (auto-pause when a
        modal opens, e.g. theater-mode; auto-resume on close
        if was playing)
+
+   K24n extension:
+     - seek slider (in-track skip/replay) wired to a 500ms
+       setInterval polling loop reading getCurrentTime /
+       getDuration; updates slider value when not being
+       dragged; seekTo(value) on input
+     - MM:SS / MM:SS time readout (tabular-nums) right of slider
+     - loop-one BUG FIX: in playlist mode (listType:playlist)
+       the YT iframe API only fires YTState.ENDED at playlist
+       end, never per-video. K24k's ENDED-hooked loop-one was
+       therefore inert. K24n moves loop detection into the
+       polling loop: when state.loopOne AND duration > 0 AND
+       currentTime >= duration - 0.5s, seekTo(0)+playVideo().
+       loopGuardUntil timestamp prevents double-fire within
+       the same near-end window.
 
    Public surface: window.WuldAmbient
    ============================================================ */
@@ -39,9 +54,12 @@
   let apiBooted = false;        // YT iframe API script loaded?
   let initInteractionBound = false;
   let saveInterval = null;
+  let pollInterval = null;      // K24n: tick loop for seek/time/loop-one
   let initialPlayAttempted = false;
   let elements = {};            // cached DOM refs
   let overlayPauseResumeNeeded = false;  // K24k: was-playing memory across overlay
+  let seekDragging = false;     // K24n: don't auto-update slider while user drags
+  let loopGuardUntil = 0;       // K24n: ms-timestamp; loop-one re-fire guard
 
   // ---------------- localStorage helpers ----------------
 
@@ -131,6 +149,7 @@
     if (saveInterval) clearInterval(saveInterval);
     saveInterval = setInterval(captureNowPlaying, STATE_SAVE_MS);
 
+    startPolling();
     refreshTrackName();
   }
 
@@ -195,13 +214,8 @@
       setPlayPauseGlyph(false);
     } else if (evt.data === YTState.ENDED) {
       setPlayPauseGlyph(false);
-      // K24k: loop-one - restart current video on end
-      if (state.loopOne && player) {
-        try {
-          player.seekTo(0, true);
-          player.playVideo();
-        } catch (_) {}
-      }
+      // K24n: ENDED in playlist mode only fires at playlist-end (never
+      // per-video), so loop-one detection moved to the polling loop.
     } else if (evt.data === YTState.CUED) {
       refreshTrackName();
     }
@@ -276,6 +290,75 @@
       if (typeof t === "number" && isFinite(t)) state.lastPositionSec = Math.max(0, t);
       saveState();
     } catch (_) {}
+  }
+
+  // ---------------- K24n: polling loop (seek + time + loop-one) ----------------
+
+  const POLL_MS         = 500;   // tick rate; balance smoothness vs cost
+  const LOOP_END_PAD_S  = 0.5;   // trigger seekTo(0) within this of end
+  const LOOP_GUARD_MS   = 1500;  // suppress re-fire within this window
+
+  function startPolling() {
+    if (pollInterval) clearInterval(pollInterval);
+    pollInterval = setInterval(pollTick, POLL_MS);
+  }
+
+  function stopPolling() {
+    if (pollInterval) { clearInterval(pollInterval); pollInterval = null; }
+  }
+
+  function pollTick() {
+    if (!player) return;
+    let cur = 0, dur = 0;
+    try { cur = player.getCurrentTime() || 0; } catch (_) {}
+    try { dur = player.getDuration()   || 0; } catch (_) {}
+
+    if (!isFinite(cur) || !isFinite(dur)) return;
+
+    // Update slider if not being dragged + duration is known.
+    if (elements.seek && !seekDragging && dur > 0) {
+      const pct = Math.max(0, Math.min(1000, Math.round((cur / dur) * 1000)));
+      if (elements.seek.value !== String(pct)) {
+        elements.seek.value = String(pct);
+      }
+    }
+
+    // Update readout.
+    if (elements.time) {
+      elements.time.textContent = fmtTime(cur) + " / " + fmtTime(dur);
+    }
+
+    // Loop-one near-end detection. Skip if duration unknown or trivially short.
+    if (state.loopOne && dur > 1 && cur >= dur - LOOP_END_PAD_S) {
+      const now = Date.now();
+      if (now >= loopGuardUntil) {
+        loopGuardUntil = now + LOOP_GUARD_MS;
+        try {
+          player.seekTo(0, true);
+          player.playVideo();
+        } catch (_) {}
+      }
+    }
+  }
+
+  function fmtTime(sec) {
+    if (!isFinite(sec) || sec < 0) return "0:00";
+    const total = Math.floor(sec);
+    const m = Math.floor(total / 60);
+    const s = total % 60;
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
+  function onSeekInput(e) {
+    if (!player) return;
+    const pct = parseInt(e.target.value, 10) || 0;
+    let dur = 0;
+    try { dur = player.getDuration() || 0; } catch (_) {}
+    if (!isFinite(dur) || dur <= 0) return;
+    const target = Math.max(0, Math.min(dur, (pct / 1000) * dur));
+    try { player.seekTo(target, true); } catch (_) {}
+    // Clear loop guard so a user-initiated seek can re-trigger loop if landing near end.
+    loopGuardUntil = 0;
   }
 
   // ---------------- Public controls ----------------
@@ -423,6 +506,20 @@
         }
       });
     }
+    if (elements.seek) {
+      elements.seek.addEventListener("input", onSeekInput);
+      // Drag-guard: while user holds the thumb, suppress auto-update from polling.
+      const dragOn  = () => { seekDragging = true; };
+      const dragOff = () => { seekDragging = false; };
+      elements.seek.addEventListener("mousedown",   dragOn);
+      elements.seek.addEventListener("touchstart",  dragOn, { passive: true });
+      elements.seek.addEventListener("keydown",     dragOn);
+      window.addEventListener("mouseup",   dragOff);
+      window.addEventListener("touchend",  dragOff);
+      window.addEventListener("touchcancel", dragOff);
+      elements.seek.addEventListener("keyup", dragOff);
+      elements.seek.addEventListener("blur",  dragOff);
+    }
   }
 
   function init() {
@@ -431,6 +528,8 @@
     elements = {
       root: root,
       track: document.getElementById("ambient-track"),
+      seek: document.getElementById("ambient-seek"),
+      time: document.getElementById("ambient-time"),
       playpause: document.getElementById("ambient-playpause"),
       skip: document.getElementById("ambient-skip"),
       shuffle: document.getElementById("ambient-shuffle"),

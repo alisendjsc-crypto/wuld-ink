@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/components/ambient-player.css?v=K24m">
+<link rel="stylesheet" href="/components/ambient-player.css?v=K24n">
 <title>Void Engine — wuld.ink</title>
 <meta name="description" content="Triptych instrument — Void Engine (analog &amp; nihilist generative lexicon), Signal Engine (992-track frequency index), Transmission (ambient visual). wuld.ink umbrella.">
   <link rel="canonical" href="https://wuld.ink/void-engine/">
@@ -40,7 +40,7 @@
 <!-- wuld.ink umbrella tokens (cascade BEFORE canonical inline <style>; canonical's :root names are disjoint from wuld.ink's --c-*/--font-*/--s-*) -->
 <link rel="stylesheet" href="/tokens.css">
 <link rel="stylesheet" href="/base.css">
-<link rel="stylesheet" href="/components/nav.css?v=K24m">
+<link rel="stylesheet" href="/components/nav.css?v=K24n">
 <style>
 /* ─── GLOBAL RESET & SHARED ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -4337,11 +4337,13 @@ updateHUD();
   <a href="/disclaimers/" style="color:#8a847b;text-decoration:none;border-bottom:1px solid #2a2a2a">legal &amp; personal disclaimers</a>
 </footer>
 
-<script src="/components/nav.js?v=K24m"></script>
+<script src="/components/nav.js?v=K24n"></script>
   <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
     <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
     <div class="ambient-bar">
       <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
       <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
       <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
@@ -4352,6 +4354,6 @@ updateHUD();
     </div>
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
-<script src="/components/ambient-player.js?v=K24m" defer></script>
+<script src="/components/ambient-player.js?v=K24n" defer></script>
 </body>
 </html>

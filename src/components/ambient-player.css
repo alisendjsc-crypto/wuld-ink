@@ -16,11 +16,23 @@
        click anywhere on sliver to restore (also Enter/Space when
        focused via Tab)
 
+   K24n extension:
+     - seek slider (between track name + play button) for in-track
+       skip/replay; wired to polling loop reading getCurrentTime /
+       getDuration
+     - MM:SS / MM:SS time readout (tabular-nums) right of slider;
+       hides at 480px
+     - loop-one fix: ENDED event never fires per-video in playlist
+       mode (only at playlist-end), so loop detection moves to the
+       polling loop near-end check at currentTime >= duration - 0.5s
+
    Markup (injected before </body> on each surface):
    <div class="ambient-player" id="ambient-player" hidden>
      <div class="ambient-iframe-wrap"><div id="ambient-iframe"></div></div>
      <div class="ambient-bar">
        <span class="ambient-track" id="ambient-track">.</span>
+       <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+       <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
        <button class="ambient-btn" id="ambient-playpause" aria-label="Play / pause">[play]</button>
        <button class="ambient-btn" id="ambient-skip" aria-label="Skip">[skip]</button>
        <button class="ambient-btn ambient-toggle" id="ambient-shuffle" aria-pressed="true">[shuffle on]</button>
@@ -207,6 +219,72 @@ body.ambient-dismissed { padding-bottom: 8px; }
   outline-offset: 2px;
 }
 
+/* ---------- K24n: seek slider + time readout ---------- */
+/* Brutalist seek slider matching .ambient-volume register; wider (~6rem)
+   because the track length is the load-bearing affordance. Polling loop
+   updates the value on each tick when not being dragged. */
+.ambient-seek {
+  flex-shrink: 0;
+  width: 6rem;
+  height: 1rem;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ambient-seek::-webkit-slider-runnable-track {
+  width: 100%;
+  height: var(--bw-thick, 4px);
+  background-color: var(--c-border);
+  border: none;
+}
+.ambient-seek::-moz-range-track {
+  width: 100%;
+  height: var(--bw-thick, 4px);
+  background-color: var(--c-border);
+  border: none;
+}
+
+.ambient-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0.6rem;
+  height: 0.9rem;
+  margin-top: -2px;
+  background-color: var(--c-accent);
+  border: var(--bw-thin) solid var(--c-accent);
+  border-radius: 0;
+  cursor: pointer;
+}
+.ambient-seek::-moz-range-thumb {
+  width: 0.6rem;
+  height: 0.9rem;
+  background-color: var(--c-accent);
+  border: var(--bw-thin) solid var(--c-accent);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.ambient-seek:focus-visible::-webkit-slider-thumb {
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+}
+.ambient-seek:focus-visible::-moz-range-thumb {
+  outline: var(--bw-base) solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+/* Mono tabular-nums readout so digits don't shift width as time advances. */
+.ambient-time {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs, 0.75rem);
+  font-variant-numeric: tabular-nums;
+  color: var(--c-fg-muted);
+  white-space: nowrap;
+}
+
 /* ---------- Sliver (dismissed state) ---------- */
 /* Hidden by default; shown when data-dismissed="true". */
 .ambient-sliver {
@@ -231,11 +309,13 @@ body.ambient-dismissed { padding-bottom: 8px; }
 
 /* ---------- State-driven hide for [off] ---------- */
 .ambient-player[data-state="off"] .ambient-btn:not(#ambient-onoff):not(#ambient-dismiss),
-.ambient-player[data-state="off"] .ambient-volume {
+.ambient-player[data-state="off"] .ambient-volume,
+.ambient-player[data-state="off"] .ambient-seek {
   opacity: 0.4;
   pointer-events: none;
 }
-.ambient-player[data-state="off"] .ambient-track {
+.ambient-player[data-state="off"] .ambient-track,
+.ambient-player[data-state="off"] .ambient-time {
   opacity: 0.5;
 }
 
@@ -274,7 +354,13 @@ body.high-contrast .ambient-sliver {
     font-size: 0.6875rem;
   }
   .ambient-track {
-    max-width: 6rem;
+    max-width: 4rem;
+  }
+  .ambient-seek {
+    width: 2.5rem;
+  }
+  .ambient-time {
+    display: none;
   }
   .ambient-volume {
     width: 2.5rem;

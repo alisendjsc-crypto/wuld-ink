@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K24m">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K24n">
   <link rel="license" href="/LICENSE">
   <title>the NothinGist &mdash; Glossary &mdash; wuld.ink</title>
   <meta name="description" content="Some entries in this glossary are delivered by the work, not the reference layer. The NothinGist resolves in Malgré Tout, in sequence.">
@@ -41,15 +41,15 @@
   </script>
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K24m">
-  <link rel="stylesheet" href="/components/glossary.css?v=K24m">
-  <link rel="stylesheet" href="/components/audio-player.css?v=K24m">
-  <link rel="stylesheet" href="/components/mode-toggle.css?v=K24m">
-  <link rel="stylesheet" href="/components/footer.css?v=K24m">
+  <link rel="stylesheet" href="/components/nav.css?v=K24n">
+  <link rel="stylesheet" href="/components/glossary.css?v=K24n">
+  <link rel="stylesheet" href="/components/audio-player.css?v=K24n">
+  <link rel="stylesheet" href="/components/mode-toggle.css?v=K24n">
+  <link rel="stylesheet" href="/components/footer.css?v=K24n">
 
   <style>
     /* K23: discreet inline style for the work-delivered pointer block.
-       N=1 — promote to /components/glossary.css?v=K24m if a second
+       N=1 — promote to /components/glossary.css?v=K24n if a second
        work-delivered entry ever surfaces (per book-Claude Exchange 8
        legibility-as-category framing, future staged devices would
        share this rendering as a class, not a one-off). */
@@ -184,13 +184,15 @@
     </div>
   </footer>
 
-  <script src="/components/audio-player.js?v=K24m"></script>
-  <script src="/components/mode-toggle.js?v=K24m"></script>
-  <script src="/components/nav.js?v=K24m"></script>
+  <script src="/components/audio-player.js?v=K24n"></script>
+  <script src="/components/mode-toggle.js?v=K24n"></script>
+  <script src="/components/nav.js?v=K24n"></script>
   <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
     <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
     <div class="ambient-bar">
       <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
       <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
       <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
@@ -201,6 +203,6 @@
     </div>
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
-<script src="/components/ambient-player.js?v=K24m" defer></script>
+<script src="/components/ambient-player.js?v=K24n" defer></script>
 </body>
 </html>
