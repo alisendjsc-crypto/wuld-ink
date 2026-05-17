@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K27">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K28">
   <link rel="license" href="/LICENSE">
   <title>Chat &mdash; wuld.ink</title>
   <meta name="description" content="Open IRC channel on libera.chat. Embedded web client; no account required; pick a nickname and join.">
@@ -24,14 +24,15 @@
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K27">
-  <link rel="stylesheet" href="/components/footer.css?v=K27">
+  <link rel="stylesheet" href="/components/nav.css?v=K28">
+  <link rel="stylesheet" href="/components/footer.css?v=K28">
 
   <!-- ============================================================
        OPERATOR SETUP NOTES &mdash; Libera.chat channel registration
        ------------------------------------------------------------
-       The embedded Kiwi IRC client below connects visitors to
-       #wuld-ink on irc.libera.chat. The channel ITSELF still needs
+       CTA-pair-with-fallback (K28; Kiwi iframe scrapped) routes
+       visitors to #wuld-ink on irc.libera.chat via libera.chat's
+       own webchat or Kiwi nextclient. The channel ITSELF still needs
        to be registered so you own founder rights (topic, modes,
        moderation). One-time operator-side task; do it once via the
        embed below (or any IRC client) after K26 deploys.
@@ -64,9 +65,8 @@
             (+n = no external messages, +t = only ops set topic)
 
        STEP 3 &mdash; Verify the embed
-         a. Reload /chat/ on wuld.ink.
-         b. The embed should land directly in #wuld-ink.
-         c. If newcomers join without registering a nick, they get
+         a. Either CTA on /chat/ should land you in #wuld-ink.
+         b. If newcomers join without registering a nick, they get
             assigned a Guest_NNNNN handle; that is libera.chat
             default behaviour and is fine for casual readers.
 
@@ -110,9 +110,15 @@
 
     .chat-rules p { margin-block: var(--s-2); }
 
-    /* ---- CTA bar above iframe (K27: escape hatch when iframe stalls) ---- */
-    .chat-embed-cta {
+    /* ---- K28: CTA pair (iframe scrapped per operator testing) ---- */
+    .chat-cta-pair {
       margin-block-start: var(--s-6);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-4);
+    }
+    @media (min-width: 720px) {
+      .chat-cta-pair { grid-template-columns: 1fr 1fr; }
     }
     .chat-embed-cta-link {
       display: block;
@@ -125,9 +131,13 @@
         background var(--t-fast) var(--ease),
         color var(--t-fast) var(--ease);
     }
+    .chat-cta-secondary {
+      border-color: var(--c-border-strong);
+    }
     .chat-embed-cta-link:hover {
       background: var(--c-accent);
       color: var(--c-bg);
+      border-color: var(--c-accent);
     }
     .chat-embed-cta-eyebrow {
       display: block;
@@ -142,7 +152,7 @@
     .chat-embed-cta-label {
       display: block;
       font-family: var(--font-headline);
-      font-size: var(--t-h3);
+      font-size: var(--t-h4);
       margin-block-end: var(--s-2);
     }
     .chat-embed-cta-note {
@@ -152,35 +162,6 @@
       color: var(--c-fg-muted);
     }
     .chat-embed-cta-link:hover .chat-embed-cta-note { color: var(--c-bg); }
-
-    /* ---- Embed wrapper ---- */
-    .chat-embed-wrapper {
-      margin-block: var(--s-5) var(--s-3);
-      border: var(--bw-base) solid var(--c-border-strong);
-      background: var(--c-bg);
-      overflow: hidden;
-      min-height: 500px;
-    }
-
-    .chat-embed-iframe {
-      width: 100%;
-      height: 60vh;
-      min-height: 500px;
-      max-height: 800px;
-      border: 0;
-      display: block;
-    }
-
-    .chat-embed-note {
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      color: var(--c-fg-dim);
-      text-align: center;
-      padding: var(--s-3);
-      margin: 0;
-      border-top: var(--bw-base) solid var(--c-border);
-      background: var(--c-bg);
-    }
 
     /* ---- K27 tab-disclaimer aside ---- */
     .tab-disclaimer {
@@ -271,8 +252,8 @@
 <body data-mode="dark">
 
   <header class="site-header">
-    <div class="site-header-inner container">
-      <a href="/" class="site-mark">wuld.ink</a>
+    <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink"><img src="/assets/site-banner-1920.webp" srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w" sizes="100vw" width="1920" height="443" alt="W.U.L.D.: Incorporated" decoding="async" loading="eager"></a>
+    <div class="site-header-inner">
       <nav class="site-nav" aria-label="Primary">
         <a href="/essays/">Essays</a>
         <a href="/argument-library/">Library</a>
@@ -310,39 +291,32 @@
     </header>
 
     <!-- ====================================================
-         Kiwi IRC embed (K27: URL pattern fix + CTA escape hatch)
-         Kiwi nextclient is frame-friendly (libera web client blocks
-         iframe via CSP frame-ancestors). K26 path-based URL was
-         unreliable; switched to query-parameter form (Kiwi's
-         recommended). Above-iframe CTA links to web.libera.chat
-         in new tab as guaranteed-working escape path when iframe
-         stalls or refuses to connect.
+         K28: Kiwi iframe scrapped per operator testing.
+         Tried URL-pattern fix (K27 path&rarr;query), no resolve.
+         Failure mode appears client-side (third-party cookie /
+         WebSocket / browser-extension layer); no protocol fix
+         from our side. The CTA pair below is the contract; libera
+         webchat is primary, Kiwi nextclient is secondary fallback.
+         Both open in new tabs and drop the user directly into
+         #wuld-ink on libera.chat. Channel is registered + alive.
          ==================================================== -->
-    <div class="chat-embed-cta" role="region" aria-label="Open chat in new tab">
-      <a class="chat-embed-cta-link" href="https://web.libera.chat/?channel=#wuld-ink" target="_blank" rel="noopener noreferrer">
-        <span class="chat-embed-cta-eyebrow">Recommended &mdash; libera webchat</span>
-        <span class="chat-embed-cta-label">Open #wuld-ink in a new tab &rarr;</span>
-        <span class="chat-embed-cta-note">Most reliable path. Opens libera.chat&rsquo;s own web client. Pick a nick and join.</span>
+    <div class="chat-cta-pair" role="region" aria-label="Open chat in new tab">
+      <a class="chat-embed-cta-link chat-cta-primary" href="https://web.libera.chat/?channel=#wuld-ink" target="_blank" rel="noopener noreferrer">
+        <span class="chat-embed-cta-eyebrow">Primary &mdash; libera webchat</span>
+        <span class="chat-embed-cta-label">Open #wuld-ink &rarr;</span>
+        <span class="chat-embed-cta-note">Libera&rsquo;s own web client. Pick a nick, click Start, talk. No account required for read-along.</span>
+      </a>
+      <a class="chat-embed-cta-link chat-cta-secondary" href="https://kiwiirc.com/nextclient/?server=irc.libera.chat&amp;channel=%23wuld-ink&amp;nick=guest_?" target="_blank" rel="noopener noreferrer">
+        <span class="chat-embed-cta-eyebrow">Alt &mdash; Kiwi nextclient</span>
+        <span class="chat-embed-cta-label">Open via Kiwi &rarr;</span>
+        <span class="chat-embed-cta-note">Slightly different UI. Same channel, same server. Try this if libera webchat does not load.</span>
       </a>
     </div>
 
-    <div class="chat-embed-wrapper" role="region" aria-label="Live chat embed (inline)">
-      <iframe class="chat-embed-iframe"
-              src="https://kiwiirc.com/nextclient/?server=irc.libera.chat&amp;channel=%23wuld-ink&amp;nick=guest_?"
-              title="wuld.ink IRC chat (libera.chat #wuld-ink)"
-              sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
-              loading="lazy"
-              referrerpolicy="no-referrer">
-      </iframe>
-      <p class="chat-embed-note">Inline client via Kiwi. If it stalls on &ldquo;couldn&rsquo;t connect&rdquo;, the CTA above is the working path.</p>
-    </div>
-
     <aside class="chat-fallback">
-      <p class="chat-fallback-eyebrow">If the embed will not load</p>
-      <p class="chat-fallback-handle">Server: <strong>irc.libera.chat:6697</strong> &middot; Channel: <strong>#wuld-ink</strong></p>
-      <a class="chat-fallback-link" href="https://web.libera.chat/?channel=#wuld-ink" target="_blank" rel="noopener noreferrer">Open libera webchat in new tab &rarr;</a>
-      <a class="chat-fallback-link" href="https://kiwiirc.com/nextclient/irc.libera.chat/#wuld-ink" target="_blank" rel="noopener noreferrer">Open Kiwi client (alt) &rarr;</a>
-      <p class="chat-fallback-note">Either link drops you into the same channel. Any IRC client works too &mdash; HexChat, mIRC, irssi, Quassel, etc.</p>
+      <p class="chat-fallback-eyebrow">Connect from an IRC client instead</p>
+      <p class="chat-fallback-handle">Server: <strong>irc.libera.chat:6697</strong> (TLS) &middot; Channel: <strong>#wuld-ink</strong></p>
+      <p class="chat-fallback-note">Any IRC client works &mdash; HexChat, mIRC, irssi, Quassel, WeeChat, KVIrc, Konversation. Point at the server above and <code>/join #wuld-ink</code>. The webchat options above need no install; the IRC-client route is for people who prefer it.</p>
     </aside>
 
     <!-- K27 disclaimer aside — surface-specific scope; full legal at /disclaimers/ -->
@@ -366,7 +340,7 @@
     </div>
   </footer>
 
-  <script src="/components/nav.js?v=K27"></script>
-  <script src="/components/ambient-player.js?v=K27"></script>
+  <script src="/components/nav.js?v=K28"></script>
+  <script src="/components/ambient-player.js?v=K28"></script>
 </body>
 </html>

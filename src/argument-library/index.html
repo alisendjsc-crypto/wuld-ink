@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K27">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K28">
   <link rel="license" href="/LICENSE">
   <title>Argument Library — wuld.ink</title>
-  <meta name="description" content="EFIList v3.7.2 — 78 objections / 5 tiers / 34 mechanisms / 136 attested deployments / 4-archetype interlocutor model. Full substrate live at library.wuld.ink.">
+  <meta name="description" content="EFIList v3.7.2 archived as terminal. The library catalogues how people argue against the claim that it is better never to have been, traced to mechanism and grounded in deployments observed in the wild. Live at library.wuld.ink.">
 
   <link rel="canonical" href="https://wuld.ink/argument-library/">
   <meta property="og:title" content="Argument Library — wuld.ink">
-  <meta property="og:description" content="EFIList v3.7.2 — 78 objections / 5 tiers / 34 mechanisms / 136 attested deployments / 4-archetype interlocutor model. Full substrate live at library.wuld.ink.">
+  <meta property="og:description" content="EFIList v3.7.2 archived as terminal. The library catalogues how people argue against the claim that it is better never to have been, traced to mechanism and grounded in deployments observed in the wild. Live at library.wuld.ink.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wuld.ink/argument-library/">
   <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
@@ -20,14 +20,14 @@
   <meta property="og:site_name" content="wuld.ink">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Argument Library — wuld.ink">
-  <meta name="twitter:description" content="EFIList v3.7.2 — 78 objections / 5 tiers / 34 mechanisms / 136 attested deployments / 4-archetype interlocutor model. Full substrate live at library.wuld.ink.">
+  <meta name="twitter:description" content="EFIList v3.7.2 archived as terminal. The library catalogues how people argue against the claim that it is better never to have been, traced to mechanism and grounded in deployments observed in the wild. Live at library.wuld.ink.">
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Argument Library",
-    "description": "EFIList v3.7.2 — 78 objections / 5 tiers / 34 mechanisms / 136 attested deployments / 4-archetype interlocutor model. Full substrate live at library.wuld.ink.",
+    "description": "EFIList v3.7.2 archived as terminal. The library catalogues how people argue against the claim that it is better never to have been, traced to mechanism and grounded in deployments observed in the wild. Live at library.wuld.ink.",
     "url": "https://wuld.ink/argument-library/",
     "image": "https://wuld.ink/assets/og-default.png",
     "inLanguage": "en",
@@ -38,8 +38,8 @@
   </script>
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K27">
-  <link rel="stylesheet" href="/components/footer.css?v=K27">
+  <link rel="stylesheet" href="/components/nav.css?v=K28">
+  <link rel="stylesheet" href="/components/footer.css?v=K28">
 
   <style>
     .page {
@@ -81,7 +81,32 @@
       color: var(--c-fg-muted);
     }
     .status-card p:last-child { margin-block-end: 0; }
-    /* Footer rules promoted to /components/footer.css?v=K27 (session J);
+    .library-extract,
+    .library-entry,
+    .library-participate {
+      max-width: var(--w-prose);
+      margin-block-end: var(--s-7);
+    }
+    .library-extract p,
+    .library-entry p,
+    .library-participate p {
+      font-family: var(--font-body);
+      color: var(--c-fg);
+      margin-block-end: 0;
+    }
+    .lib-section-heading {
+      font-family: var(--font-headline);
+      font-size: var(--t-h4);
+      color: var(--c-fg);
+      margin-block-end: var(--s-3);
+      letter-spacing: var(--ls-tight);
+    }
+    .library-participate {
+      border-top: var(--bw-base) solid var(--c-border);
+      padding-block-start: var(--s-6);
+      margin-block-start: var(--s-7);
+    }
+    /* Footer rules promoted to /components/footer.css?v=K28 (session J);
        inline duplicates removed (session K). */
   </style>
 </head>
@@ -90,8 +115,8 @@
   <a href="#main" class="skip-link">Skip to content</a>
 
   <header class="site-header">
-    <div class="site-header-inner container">
-      <a href="/" class="site-mark">wuld.ink</a>
+    <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink"><img src="/assets/site-banner-1920.webp" srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w" sizes="100vw" width="1920" height="443" alt="W.U.L.D.: Incorporated" decoding="async" loading="eager"></a>
+    <div class="site-header-inner">
       <nav class="site-nav" aria-label="Primary">
         <a href="/essays/">Essays</a>
         <a href="/argument-library/">Library</a>
@@ -120,14 +145,23 @@
       </header>
 
       <p class="lede">
-        EFIList <span style="font-family: var(--font-mono); color: var(--c-fg-muted);">v3.7.2</span> — 78 objections, four-archetype interlocutor model, force-directed visualization maps.
+        The substrate has stabilized &mdash; <span style="font-family: var(--font-mono); color: var(--c-fg-muted);">v3.7.2</span>, archived as terminal, no scheduled successor. The deferral this section once held is spent; there is nothing left to wait for, and nothing here is provisional.
       </p>
 
-      <div class="status-card" role="note">
-        <p class="status-card-label">Status</p>
-        <p>The full library substrate (<code>v3.7.2</code>: 78 objections / 5 tiers / 34 mechanisms / 136 attested real-world deployments / 4-archetype interlocutor model) lives at <strong><a href="https://library.wuld.ink/">library.wuld.ink</a></strong> as an independent application — single-file substrate, md5-locked, served via Cloudflare Pages.</p>
-        <p>Editorial extracts — the coda, canonical objection long-forms, a static Map 1 frame — land under this section once the library substrate stabilizes.</p>
-      </div>
+      <section class="library-extract" aria-labelledby="lib-extract-h">
+        <h2 id="lib-extract-h" class="lib-section-heading">The extract, plainly</h2>
+        <p>The library catalogues how people argue against the claim that it is better never to have been &mdash; every objection treated as a live move someone actually makes, not a strawman, traced to the mechanism that carries it and grounded in deployments observed in the wild. It does not argue back in order to win; it maps the terrain and grades how well each rebuttal actually holds, weak ones included, in the open. The coda is the part that does not pretend: the suffering-priority floor is not derived from anything more basic, and the coda says so outright &mdash; it states the axiom as a stake rather than a proof, then asks why the demand to justify it always falls on the one who would spare a life and never on the one who imposes one.</p>
+      </section>
+
+      <section class="library-entry" aria-labelledby="lib-entry-h">
+        <h2 id="lib-entry-h" class="lib-section-heading">One click</h2>
+        <p>The taxonomy and the force-directed Map 1, the attested real-world deployments, and the coda are all live at <strong><a href="https://library.wuld.ink/">library.wuld.ink</a></strong> &mdash; single file, no build step, works offline. Read the objections until they feel familiar; read the coda after; then return to the objections changed.</p>
+      </section>
+
+      <section class="library-participate" aria-labelledby="lib-part-h">
+        <h2 id="lib-part-h" class="lib-section-heading">Read the code, see the mechanics, participate</h2>
+        <p>Source repository: <a href="https://github.com/alisendjsc-crypto/efilist-argument-library"><code>alisendjsc-crypto/efilist-argument-library</code></a>. CC-BY-4.0 prose / MIT code. Issues + pull requests welcome from anyone tracking the same terrain.</p>
+      </section>
     </article>
   </main>
 
@@ -140,7 +174,7 @@
     </div>
   </footer>
 
-  <script src="/components/nav.js?v=K27"></script>
+  <script src="/components/nav.js?v=K28"></script>
   <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
     <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
     <div class="ambient-bar">
@@ -157,6 +191,6 @@
     </div>
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
-<script src="/components/ambient-player.js?v=K27" defer></script>
+<script src="/components/ambient-player.js?v=K28" defer></script>
 </body>
 </html>

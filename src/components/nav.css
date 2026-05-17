@@ -1,18 +1,17 @@
 /* ============================================================
    wuld.ink — site nav component
    Promoted from essay.html template-local CSS in session B.
-   Markup contract (session G: 7 items, Watch added between Void and Book):
+   K28 markup contract (banner + nav row, .container dropped):
      <header class="site-header">
-       <div class="site-header-inner container">
-         <a href="/" class="site-mark">wuld.ink</a>
+       <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink">
+         <img src="/assets/site-banner-1920.webp"
+              srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w"
+              sizes="100vw" width="1920" height="443"
+              alt="W.U.L.D.: Incorporated" decoding="async" loading="eager">
+       </a>
+       <div class="site-header-inner">
          <nav class="site-nav" aria-label="Primary">
-           <a href="/essays/">Essays</a>
-           <a href="/argument-library/">Library</a>
-           <a href="/glossary/">Glossary</a>
-           <a href="/void-engine/">Void</a>
-           <a href="/watch/">Watch</a>
-           <a href="/book/">Book</a>
-           <a href="/blog/">Blog</a>
+           ... 15 nav entries ...
          </nav>
        </div>
      </header>
@@ -20,25 +19,53 @@
    ============================================================ */
 
 /* K27: vertical bloat trimmed; nav extends horizontally to both ends.
-   padding-block dropped from --s-4 to --s-2 (16px saved top+bot).
-   margin-block-end dropped from --s-7 to --s-4 (32px saved).
-   site-header-inner gap tightened so site-mark hugs left and nav
-   takes the remaining width with flex:1. */
+   K28: banner band added above nav (slim, full-viewport-width WebP);
+   .site-mark text-wordmark removed (banner is the new brand mark);
+   .container constraint dropped from .site-header-inner so nav reaches
+   viewport edges; padding-inline added to keep edge breathing room. */
 .site-header {
   border-bottom: var(--bw-base) solid var(--c-border-strong);
-  padding-block: var(--s-2);
   margin-block-end: var(--s-4);
+  background-color: var(--c-bg);
 }
 
+/* ---------- Banner band ---------- */
+.site-banner {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  text-decoration: none;
+  background-color: var(--c-bg);
+}
+
+.site-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 22vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 640px) {
+  .site-banner img {
+    max-height: 28vw;
+  }
+}
+
+/* ---------- Nav row (full viewport width, no container max) ---------- */
 .site-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s-3) var(--s-4);
-  flex-wrap: wrap;       /* mobile fallback — nav wraps below mark */
+  gap: var(--s-1) var(--s-3);
+  flex-wrap: wrap;
+  padding-inline: var(--s-5);
+  padding-block: var(--s-2);
 }
 
-/* ---------- Site mark (wordmark) ---------- */
+/* ---------- Site mark (legacy text wordmark — retained for legacy
+   accessibility / fallback; banner supersedes site-wide K28) ---------- */
 .site-mark {
   font-family: var(--font-mono);
   font-size: var(--t-h5);
@@ -46,34 +73,16 @@
   letter-spacing: var(--ls-tight);
   color: var(--c-fg);
   text-decoration: none;
-  /* Beat base.css link defaults */
   text-decoration-thickness: 0;
 }
 
-.site-mark::before {
-  content: "[";
-  color: var(--c-accent);
-}
-
-.site-mark::after {
-  content: "]";
-  color: var(--c-accent);
-}
-
-.site-mark:hover {
-  color: var(--c-fg);   /* mark itself stays steady; brackets carry the affect */
-}
-
+.site-mark::before { content: "["; color: var(--c-accent); }
+.site-mark::after  { content: "]"; color: var(--c-accent); }
+.site-mark:hover { color: var(--c-fg); }
 .site-mark:hover::before,
-.site-mark:hover::after {
-  color: var(--c-accent-hover);
-}
+.site-mark:hover::after { color: var(--c-accent-hover); }
 
-/* ---------- Primary nav ----------
-   K27: flex:1 so nav takes all remaining width after site-mark;
-   justify-content: space-between spreads items to both ends.
-   Row gap shrunk to --s-1 so 2-row wraps stay tight vertically.
-   Column gap shrunk to --s-3 so more items fit per row. */
+/* ---------- Primary nav (K27 carries: flex:1 + space-between) ---------- */
 .site-nav {
   display: flex;
   flex-wrap: wrap;
@@ -89,7 +98,7 @@
 .site-nav a {
   color: var(--c-fg-muted);
   text-decoration: none;
-  padding-block: 2px;   /* minimal hit-target padding; nav-tighten K27 */
+  padding-block: 2px;
   border-bottom: var(--bw-base) solid transparent;
   transition:
     color var(--t-fast) var(--ease),
@@ -106,17 +115,16 @@
   outline-offset: 2px;
 }
 
-/* Current page — solid underline in accent, fg color lifted */
 .site-nav a[aria-current="page"] {
   color: var(--c-fg);
   border-bottom-color: var(--c-accent);
 }
 
-/* ---------- Narrow viewports ---------- */
 @media (max-width: 640px) {
   .site-header-inner {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--s-2);
   }
   .site-nav {
     width: 100%;
