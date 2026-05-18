@@ -44,24 +44,26 @@
 .site-banner img {
   display: block;
   width: 100%;
-  height: 5rem;            /* ~80px sliver showing wordmark band */
+  height: 9rem;            /* K28b: ~144px non-home, figure visible at upper portion */
   object-fit: cover;
-  object-position: center 78%;   /* bias toward wordmark which sits at ~bottom of image */
+  object-position: center 15%;  /* figure sits y=20-180 of 443; 15% centers it */
 }
 
-/* Homepage extra-trim — cover animation needs the vertical real estate.
-   Triggered by body.home (present on /index.html since K10). */
+/* Homepage variant — cover animation needs the vertical real estate AND
+   the wordmark is the right brand-mark here (figure is duplicated by the
+   cover animation below). Tight sliver focused on the W.U.L.D. text at
+   image y=382-425 (87-96% of height). Triggered by body.home class. */
 body.home .site-banner img {
-  height: 3.5rem;          /* ~56px on / only */
-  object-position: center 82%;
+  height: 4rem;            /* ~64px sliver on / */
+  object-position: center bottom;  /* bottom 64px of image = wordmark band */
 }
 
 @media (max-width: 640px) {
   .site-banner img {
-    height: 3.25rem;       /* ~52px on narrow viewports */
+    height: 6rem;          /* ~96px mobile non-home */
   }
   body.home .site-banner img {
-    height: 2.5rem;        /* ~40px on / + narrow */
+    height: 3rem;          /* ~48px mobile home */
   }
 }
 
