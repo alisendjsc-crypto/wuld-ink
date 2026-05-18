@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K29a">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
   <link rel="license" href="/LICENSE">
   <title>Recommendations &mdash; wuld.ink</title>
-  <meta name="description" content="Recommendations across film, books, sites, groups, work, art, and media. Operator-curated; not exhaustive; not for sale.">
+  <meta name="description" content="Pointers across film, books, sites, groups, work, art, and media; not exhaustive; not for sale.">
 
   <link rel="canonical" href="https://wuld.ink/recommendations/">
   <meta property="og:title" content="Recommendations &mdash; wuld.ink">
-  <meta property="og:description" content="Recommendations across film, books, sites, groups, work, art, and media. Operator-curated.">
+  <meta property="og:description" content="Recommendations across film, books, sites, groups, work, art, and media.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wuld.ink/recommendations/">
   <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
@@ -24,9 +24,9 @@
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K29a">
-  <link rel="stylesheet" href="/components/footer.css?v=K29a">
-  <link rel="stylesheet" href="/components/theater-mode.css?v=K29a">
+  <link rel="stylesheet" href="/components/nav.css?v=K30">
+  <link rel="stylesheet" href="/components/footer.css?v=K30">
+  <link rel="stylesheet" href="/components/theater-mode.css?v=K30">
 
   <style>
     .rec-page {
@@ -181,6 +181,31 @@
     .rec-featured-trigger:focus-visible .rec-featured-play {
       background: rgba(196, 30, 58, 0.35);
     }
+
+    .rec-page-disclaimer,
+    .rec-section-disclaimer {
+      margin-block: var(--s-5) var(--s-7);
+      padding: var(--s-4) var(--s-5);
+      border-inline-start: var(--bw-thick) solid var(--c-accent);
+      background: var(--c-bg-elev);
+      max-width: 48rem;
+    }
+    .rec-section-disclaimer { margin-block: var(--s-3) var(--s-5); }
+    .rec-disclaimer-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+    .rec-disclaimer-body {
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-muted);
+      line-height: var(--lh-base);
+      margin: 0;
+    }
   </style>
 </head>
 <body data-mode="dark">
@@ -216,6 +241,11 @@
       <p class="page-intro">Pointers, not endorsements. Things that have done useful work on the operator&rsquo;s thinking, or made the surrounding world tolerable to spend time in, or refused to flatter their audience. No affiliate links, no paid placements, no rankings. Inclusion here is not a co-signature of everything the named party has ever said or done; it is a flag that something specific in their work warrants finding. The lead anchor below is Have a Nice Life&rsquo;s <em>There is No Food</em>; the rest follows.</p>
     </header>
 
+    <aside class="rec-page-disclaimer" role="note">
+      <p class="rec-disclaimer-eyebrow">Disclaimer</p>
+      <p class="rec-disclaimer-body">No party listed on this page has been contacted regarding their inclusion. None of the named individuals, organizations, labels, publishers, or platforms have endorsed this site, indicated awareness of these listings, or consented to their use as recommendations. Recommendation is not co-signature; inclusion is not affiliation. See the <a href="/disclaimers/">disclaimers page</a> for the longer form.</p>
+    </aside>
+
     <nav class="rec-toc" aria-label="Section index">
       <p class="rec-toc-eyebrow">Sections</p>
       <ol>
@@ -236,7 +266,7 @@
 
       <article class="rec-card rec-card-featured" data-status="live">
         <p class="rec-card-kind">Featured &middot; Have a Nice Life</p>
-        <h3 class="rec-card-title">There is No Food <span class="rec-card-subtitle">(Unofficial Video)</span></h3>
+        <h3 class="rec-card-title"><a href="https://en.wikipedia.org/wiki/Have_a_Nice_Life" target="_blank" rel="noopener noreferrer">There is No Food</a> <span class="rec-card-subtitle">(Unofficial Video)</span></h3>
         <button class="rec-featured-trigger" type="button"
                 data-theater-video-id="876ESd4YECg"
                 data-theater-title="Have a Nice Life — There is No Food (Unofficial Video)"
@@ -248,21 +278,21 @@
                width="480" height="360">
           <span class="rec-featured-play" aria-hidden="true">&#9654;</span>
         </button>
-        <p class="rec-card-note">Operator-flagged as a load-bearing one. The unofficial video&rsquo;s pacing is the right vessel for the track &mdash; long enough to let the song get under, slow enough to refuse spectacle. Click to open the in-page theater player; or watch <a href="https://www.youtube.com/watch?v=876ESd4YECg" target="_blank" rel="noopener noreferrer">on YouTube directly</a>.</p>
+        <p class="rec-card-note">The unofficial video&rsquo;s pacing is the right vessel for the track &mdash; long enough to let the song get under, slow enough to refuse spectacle. Click to open the in-page theater player; or watch <a href="https://www.youtube.com/watch?v=876ESd4YECg" target="_blank" rel="noopener noreferrer">on YouTube directly</a>.</p>
       </article>
 
       <div class="rec-cards">
 
         <article class="rec-card" data-status="live">
           <p class="rec-card-kind">Iannis Xenakis &mdash; composer</p>
-          <h3 class="rec-card-title">Xenakis</h3>
-          <p class="rec-card-note">Architect-trained Greek-French composer; stochastic methods, granular textures, mathematical forms applied to orchestral and electroacoustic work. Operator-flagged album: <a href="https://music.youtube.com/watch?v=_fOz84YItXQ" target="_blank" rel="noopener noreferrer">[album link]</a>. The piece <em>&ldquo;&Eacute;veryali&rdquo;</em> in particular: <a href="https://music.youtube.com/watch?v=QAhxuM-O8Cs" target="_blank" rel="noopener noreferrer">[track]</a>.</p>
+          <h3 class="rec-card-title"><a href="https://en.wikipedia.org/wiki/Iannis_Xenakis" target="_blank" rel="noopener noreferrer">Xenakis</a></h3>
+          <p class="rec-card-note">Architect-trained Greek-French composer; stochastic methods, granular textures, mathematical forms applied to orchestral and electroacoustic work. Album: <a href="https://music.youtube.com/watch?v=_fOz84YItXQ" target="_blank" rel="noopener noreferrer">[album link]</a>. The piece <em>&ldquo;&Eacute;veryali&rdquo;</em> in particular: <a href="https://music.youtube.com/watch?v=QAhxuM-O8Cs" target="_blank" rel="noopener noreferrer">[track]</a>.</p>
         </article>
 
         <article class="rec-card" data-status="live">
           <p class="rec-card-kind">Luigi Nono &mdash; composer</p>
-          <h3 class="rec-card-title">Luigi Nono</h3>
-          <p class="rec-card-note">Italian post-serialist; political conscience embedded in late-modernist procedure. <a href="https://music.youtube.com/watch?v=6yw4i1w4QKE" target="_blank" rel="noopener noreferrer">[operator-flagged piece]</a>.</p>
+          <h3 class="rec-card-title"><a href="https://en.wikipedia.org/wiki/Luigi_Nono" target="_blank" rel="noopener noreferrer">Luigi Nono</a></h3>
+          <p class="rec-card-note">Italian post-serialist; political conscience embedded in late-modernist procedure. <a href="https://music.youtube.com/watch?v=6yw4i1w4QKE" target="_blank" rel="noopener noreferrer">[listen]</a>.</p>
         </article>
 
         <article class="rec-card" data-status="live">
@@ -303,7 +333,7 @@
 
         <article class="rec-card" data-status="live">
           <p class="rec-card-kind">Swans &mdash; 1991 / 1996</p>
-          <h3 class="rec-card-title">Swans</h3>
+          <h3 class="rec-card-title"><a href="https://en.wikipedia.org/wiki/Swans_(band)" target="_blank" rel="noopener noreferrer">Swans</a></h3>
           <p class="rec-card-note"><em>&ldquo;Love Will Save You&rdquo;</em> from <em>White Light from the Mouth of Infinity</em> &mdash; the rare Swans track where the title is the argument. And the album <em>Kill the Child</em>: <a href="https://music.youtube.com/watch?v=qTqul_usXjA" target="_blank" rel="noopener noreferrer">[full album]</a>.</p>
         </article>
 
@@ -315,8 +345,8 @@
 
         <article class="rec-card" data-status="live">
           <p class="rec-card-kind">Navicon Torture Technologies &mdash; power electronics</p>
-          <h3 class="rec-card-title">NTT</h3>
-          <p class="rec-card-note">Leo Sabatto&rsquo;s vehicle; PE/death-industrial with a vocabulary closer to clinical despair than to scene-aggression. Operator-flagged track: <a href="https://music.youtube.com/watch?v=DH7QyhpvyEE" target="_blank" rel="noopener noreferrer">[listen]</a>.</p>
+          <h3 class="rec-card-title"><a href="https://www.wehavealwaysbeenhere.com/" target="_blank" rel="noopener noreferrer">NTT</a></h3>
+          <p class="rec-card-note">Leo Sabatto&rsquo;s vehicle; PE/death-industrial with a vocabulary closer to clinical despair than to scene-aggression. <a href="https://music.youtube.com/watch?v=DH7QyhpvyEE" target="_blank" rel="noopener noreferrer">[listen]</a>.</p>
         </article>
 
         <article class="rec-card" data-status="live">
@@ -329,6 +359,12 @@
           <p class="rec-card-kind">Otep &mdash; 2002</p>
           <h3 class="rec-card-title"><a href="https://en.wikipedia.org/wiki/Sevas_Tra" target="_blank" rel="noopener noreferrer">Jonestown Tea</a></h3>
           <p class="rec-card-note">From <em>Sevas Tra</em>. Nu-metal era, but the title-track-class metaphor here lands harder than most of the genre&rsquo;s output of that decade. <a href="https://music.youtube.com/search?q=Otep+Jonestown+Tea" target="_blank" rel="noopener noreferrer">[listen]</a></p>
+        </article>
+
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Grouper &mdash; 2008</p>
+          <h3 class="rec-card-title"><a href="https://en.wikipedia.org/wiki/Dragging_a_Dead_Deer_Up_a_Hill" target="_blank" rel="noopener noreferrer">Heavy Water / I&rsquo;d Rather Be Sleeping</a></h3>
+          <p class="rec-card-note">From Liz Harris&rsquo;s <em>Dragging a Dead Deer Up a Hill</em>. Tape-saturated drone-folk in muted vocal-and-guitar register; the album foregrounds the medium&rsquo;s decay as part of the song&rsquo;s structure. <a href="https://music.youtube.com/search?q=Grouper+Heavy+Water+Id+Rather+Be+Sleeping" target="_blank" rel="noopener noreferrer">[listen]</a></p>
         </article>
 
       </div>
@@ -412,17 +448,17 @@
       <div class="rec-cards">
         <article class="rec-card" data-status="live">
           <p class="rec-card-kind">Power electronics / label</p>
-          <h3 class="rec-card-title">We Have Always Been Here</h3>
+          <h3 class="rec-card-title"><a href="https://www.wehavealwaysbeenhere.com/" target="_blank" rel="noopener noreferrer">We Have Always Been Here</a></h3>
           <p class="rec-card-note">Annihilvs Power Electronics&rsquo; archive and label catalogue. Self-published, self-distributed, no mediation. <a href="https://www.wehavealwaysbeenhere.com/" target="_blank" rel="noopener noreferrer">wehavealwaysbeenhere.com</a>.</p>
         </article>
         <article class="rec-card" data-status="live">
           <p class="rec-card-kind">Band / direct catalogue</p>
-          <h3 class="rec-card-title">Lower Your Head &mdash; MSW</h3>
+          <h3 class="rec-card-title"><a href="https://en.wikipedia.org/wiki/Hell_(American_band)" target="_blank" rel="noopener noreferrer">Lower Your Head &mdash; MSW</a></h3>
           <p class="rec-card-note">MSW from the band Hell (Salem, Oregon) selling direct. Bandcamp/big-cartel storefront rather than label-mediated. <a href="https://loweryourhead.bigcartel.com/" target="_blank" rel="noopener noreferrer">loweryourhead.bigcartel.com</a>.</p>
         </article>
         <article class="rec-card" data-status="live">
           <p class="rec-card-kind">Independent label</p>
-          <h3 class="rec-card-title">Enemieslist</h3>
+          <h3 class="rec-card-title"><a href="https://en.wikipedia.org/wiki/Enemies_List_Home_Recordings" target="_blank" rel="noopener noreferrer">Enemieslist</a></h3>
           <p class="rec-card-note">Have a Nice Life&rsquo;s home label. Tagline <em>&ldquo;No Fun. Not Ever. Since 2005.&rdquo;</em> survives every redesign and stays accurate. <a href="https://enemieslist.net/" target="_blank" rel="noopener noreferrer">enemieslist.net</a>.</p>
         </article>
       </div>
@@ -431,12 +467,51 @@
     <section class="rec-section" id="groups">
       <p class="rec-section-eyebrow">05 &middot; Groups</p>
       <h2 class="rec-section-heading">Groups</h2>
-      <p class="rec-section-lede">Collectives, forums, communities that hold space for the work this site is in conversation with.</p>
+      <p class="rec-section-lede">Organizations and resources operating in adjacent space. Linked but not affiliated.</p>
+      <aside class="rec-section-disclaimer" role="note">
+        <p class="rec-disclaimer-eyebrow">Disclaimer</p>
+        <p class="rec-disclaimer-body">None of the groups listed below have been contacted regarding their inclusion here. They have not been informed of this recommendation, have not endorsed this site, and are not affiliated with it in any way. Listing is a pointer at relevant work, not co-signature in either direction.</p>
+      </aside>
       <div class="rec-cards">
-        <article class="rec-card" data-status="placeholder">
-          <p class="rec-card-kind">Community</p>
-          <h3 class="rec-card-title">First entry</h3>
-          <p class="rec-card-note">Placeholder.</p>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Antinatalist advocacy</p>
+          <h3 class="rec-card-title"><a href="https://antinatalistadvocacy.org/" target="_blank" rel="noopener noreferrer">Antinatalist Advocacy</a></h3>
+          <p class="rec-card-note">Nonprofit advancing antinatalist philosophy through outreach and education.</p>
+        </article>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Antinatalist organization</p>
+          <h3 class="rec-card-title"><a href="https://www.stophavingkids.org/" target="_blank" rel="noopener noreferrer">Stop Having Kids</a></h3>
+          <p class="rec-card-note">Antinatalist organization centered on public outreach and visible street action.</p>
+        </article>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Web resource</p>
+          <h3 class="rec-card-title"><a href="https://anti-procreation.wixsite.com/advocacy" target="_blank" rel="noopener noreferrer">Advocacy for Anti-Procreation</a></h3>
+          <p class="rec-card-note">Independent web hub collecting anti-procreation arguments and resources.</p>
+        </article>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Reference manual</p>
+          <h3 class="rec-card-title"><a href="https://www.peacefulpillhandbook.com/" target="_blank" rel="noopener noreferrer">The Peaceful Pill Handbook</a></h3>
+          <p class="rec-card-note">Reference manual on end-of-life options compiled by Philip Nitschke and Fiona Stewart.</p>
+        </article>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Advocacy organization</p>
+          <h3 class="rec-card-title"><a href="https://www.exitinternational.net/" target="_blank" rel="noopener noreferrer">Exit International</a></h3>
+          <p class="rec-card-note">Voluntary euthanasia advocacy organization founded by Philip Nitschke.</p>
+        </article>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Child-safety nonprofit</p>
+          <h3 class="rec-card-title"><a href="https://www.missingkids.org/home?lang=en-US" target="_blank" rel="noopener noreferrer">Missing Kids (NCMEC)</a></h3>
+          <p class="rec-card-note">National Center for Missing &amp; Exploited Children &mdash; clearinghouse for cases involving missing or exploited minors in the United States.</p>
+        </article>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Reproductive healthcare</p>
+          <h3 class="rec-card-title"><a href="https://www.plannedparenthood.org/" target="_blank" rel="noopener noreferrer">Planned Parenthood</a></h3>
+          <p class="rec-card-note">Reproductive healthcare and sexual-health education organization operating across the United States.</p>
+        </article>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Think tank</p>
+          <h3 class="rec-card-title"><a href="https://sentience.ch/en/" target="_blank" rel="noopener noreferrer">Sentience Politics</a></h3>
+          <p class="rec-card-note">Effective-altruism-aligned think tank focused on animal welfare and policy questions arising from sentience.</p>
         </article>
       </div>
     </section>
@@ -446,10 +521,10 @@
       <h2 class="rec-section-heading">Work</h2>
       <p class="rec-section-lede">Individual essays, papers, posts, lectures &mdash; the unit of recommendation here is the piece, not the body of work.</p>
       <div class="rec-cards">
-        <article class="rec-card" data-status="placeholder">
-          <p class="rec-card-kind">Essay</p>
-          <h3 class="rec-card-title">First entry</h3>
-          <p class="rec-card-note">Placeholder.</p>
+        <article class="rec-card" data-status="live">
+          <p class="rec-card-kind">Lior Sukenick &mdash; bioethics paper</p>
+          <h3 class="rec-card-title"><a href="https://www.cambridge.org/core/journals/cambridge-quarterly-of-healthcare-ethics/article/end-of-sentience/238C74BB9D4771263299566CBC2BAE69" target="_blank" rel="noopener noreferrer">End of Sentience</a></h3>
+          <p class="rec-card-note">Cambridge Quarterly of Healthcare Ethics. Argues for ethical and legal frameworks around end-of-sentience decisions; tracks how the sentience criterion reshapes the existing end-of-life debate.</p>
         </article>
         <article class="rec-card" data-status="placeholder">
           <p class="rec-card-kind">Paper</p>
@@ -491,8 +566,8 @@
     </div>
   </footer>
 
-  <script src="/components/nav.js?v=K29a"></script>
-  <script src="/components/ambient-player.js?v=K29a"></script>
-  <script src="/components/theater-mode.js?v=K29a" defer></script>
+  <script src="/components/nav.js?v=K30"></script>
+  <script src="/components/ambient-player.js?v=K30"></script>
+  <script src="/components/theater-mode.js?v=K30" defer></script>
 </body>
 </html>

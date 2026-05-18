@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/components/ambient-player.css?v=K29a">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
   <link rel="license" href="/LICENSE">
   <title>Chat &mdash; wuld.ink</title>
   <meta name="description" content="Open IRC channel on libera.chat. Embedded web client; no account required; pick a nickname and join.">
@@ -24,22 +24,22 @@
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
   <link rel="stylesheet" href="/tokens.css">
   <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/components/nav.css?v=K29a">
-  <link rel="stylesheet" href="/components/footer.css?v=K29a">
+  <link rel="stylesheet" href="/components/nav.css?v=K30">
+  <link rel="stylesheet" href="/components/footer.css?v=K30">
 
   <!-- ============================================================
        OPERATOR SETUP NOTES &mdash; Libera.chat channel registration
        ------------------------------------------------------------
-       CTA-pair-with-fallback (K28; Kiwi iframe scrapped) routes
-       visitors to #wuld-ink on irc.libera.chat via libera.chat's
-       own webchat or Kiwi nextclient. The channel ITSELF still needs
-       to be registered so you own founder rights (topic, modes,
-       moderation). One-time operator-side task; do it once via the
-       embed below (or any IRC client) after K26 deploys.
+       Single libera webchat CTA (K30; Kiwi alternate scrapped after
+       it showed the same failure pattern as the K28-retired iframe)
+       routes visitors to #wuld-ink on irc.libera.chat. The channel
+       ITSELF still needs to be registered so you own founder rights
+       (topic, modes, moderation). One-time operator-side task; do
+       it once via the libera webchat link below (or any IRC client).
 
        STEP 1 &mdash; Register a NickServ account (one-time)
-         a. Open this page (/chat/) once deployed; the Kiwi embed
-            loads with the connect prompt.
+         a. Open this page (/chat/) once deployed; click the libera
+            webchat CTA. The libera connect prompt loads in a new tab.
          b. Enter your nickname (suggest: WULD or AnomicIndividual87
             or evilis &mdash; pick whichever you want as the channel
             founder nick). Click Start.
@@ -110,15 +110,10 @@
 
     .chat-rules p { margin-block: var(--s-2); }
 
-    /* ---- K28: CTA pair (iframe scrapped per operator testing) ---- */
-    .chat-cta-pair {
+    /* ---- K30: CTA solo (Kiwi alternate scrapped per operator testing) ---- */
+    .chat-cta-solo {
       margin-block-start: var(--s-6);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--s-4);
-    }
-    @media (min-width: 720px) {
-      .chat-cta-pair { grid-template-columns: 1fr 1fr; }
+      max-width: 38rem;
     }
     .chat-embed-cta-link {
       display: block;
@@ -130,9 +125,6 @@
       transition:
         background var(--t-fast) var(--ease),
         color var(--t-fast) var(--ease);
-    }
-    .chat-cta-secondary {
-      border-color: var(--c-border-strong);
     }
     .chat-embed-cta-link:hover {
       background: var(--c-accent);
@@ -291,25 +283,18 @@
     </header>
 
     <!-- ====================================================
-         K28: Kiwi iframe scrapped per operator testing.
-         Tried URL-pattern fix (K27 path&rarr;query), no resolve.
-         Failure mode appears client-side (third-party cookie /
-         WebSocket / browser-extension layer); no protocol fix
-         from our side. The CTA pair below is the contract; libera
-         webchat is primary, Kiwi nextclient is secondary fallback.
-         Both open in new tabs and drop the user directly into
-         #wuld-ink on libera.chat. Channel is registered + alive.
+         K30: Kiwi alternate scrapped per operator testing (K28
+         retired the iframe; K30 retires the Kiwi CTA after the
+         alternate showed the same failure pattern as the embed).
+         Libera webchat is the only chat entry point; an IRC-client
+         route remains as fallback for clients who prefer native.
+         Channel is registered + alive on irc.libera.chat #wuld-ink.
          ==================================================== -->
-    <div class="chat-cta-pair" role="region" aria-label="Open chat in new tab">
-      <a class="chat-embed-cta-link chat-cta-primary" href="https://web.libera.chat/?channel=#wuld-ink" target="_blank" rel="noopener noreferrer">
-        <span class="chat-embed-cta-eyebrow">Primary &mdash; libera webchat</span>
+    <div class="chat-cta-solo" role="region" aria-label="Open chat in new tab">
+      <a class="chat-embed-cta-link" href="https://web.libera.chat/?channel=#wuld-ink" target="_blank" rel="noopener noreferrer">
+        <span class="chat-embed-cta-eyebrow">Open &mdash; libera webchat</span>
         <span class="chat-embed-cta-label">Open #wuld-ink &rarr;</span>
         <span class="chat-embed-cta-note">Libera&rsquo;s own web client. Pick a nick, click Start, talk. No account required for read-along.</span>
-      </a>
-      <a class="chat-embed-cta-link chat-cta-secondary" href="https://kiwiirc.com/nextclient/?server=irc.libera.chat&amp;channel=%23wuld-ink&amp;nick=guest_?" target="_blank" rel="noopener noreferrer">
-        <span class="chat-embed-cta-eyebrow">Alt &mdash; Kiwi nextclient</span>
-        <span class="chat-embed-cta-label">Open via Kiwi &rarr;</span>
-        <span class="chat-embed-cta-note">Slightly different UI. Same channel, same server. Try this if libera webchat does not load.</span>
       </a>
     </div>
 
@@ -322,7 +307,7 @@
     <!-- K27 disclaimer aside — surface-specific scope; full legal at /disclaimers/ -->
     <aside class="tab-disclaimer">
       <p class="tab-disclaimer-eyebrow">Disclaimer</p>
-      <p>libera.chat is community-operated; their <a href="https://libera.chat/policies" target="_blank" rel="noopener noreferrer">network policies</a> govern your connection. The Kiwi IRC embed routes via <a href="https://kiwiirc.com/" target="_blank" rel="noopener noreferrer">kiwiirc.com</a>; their terms apply at the transport layer. Channel founder may moderate at discretion. Content shared in #wuld-ink is not under this site&rsquo;s CC-BY-4.0 license unless explicitly stated by the author.</p>
+      <p>libera.chat is community-operated; their <a href="https://libera.chat/policies" target="_blank" rel="noopener noreferrer">network policies</a> govern your connection. Channel founder may moderate at discretion. Content shared in #wuld-ink is not under this site&rsquo;s CC-BY-4.0 license unless explicitly stated by the author.</p>
       <p class="tab-disclaimer-link"><a href="/disclaimers/">Full legal &amp; personal disclaimers &rarr;</a></p>
     </aside>
 
@@ -340,7 +325,7 @@
     </div>
   </footer>
 
-  <script src="/components/nav.js?v=K29a"></script>
-  <script src="/components/ambient-player.js?v=K29a"></script>
+  <script src="/components/nav.js?v=K30"></script>
+  <script src="/components/ambient-player.js?v=K30"></script>
 </body>
 </html>

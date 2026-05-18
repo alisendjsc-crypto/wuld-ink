@@ -24,7 +24,8 @@
    .container constraint dropped from .site-header-inner so nav reaches edges.
    K28a→K28b: banner sized differently per page; cover not pushed below fold.
    K29: dedicated homepage wordmark asset eliminates object-position guesswork
-   on home; non-home rules unchanged from K28b figure-focused contract. */
+   on home; non-home rules unchanged from K28b figure-focused contract.
+   K30: middot interpunct spacer between nav entries via ::after pseudo. */
 .site-header {
   border-bottom: var(--bw-base) solid var(--c-border-strong);
   margin-block-end: var(--s-4);
@@ -124,6 +125,23 @@ body.home .site-banner img {
     border-color var(--t-fast) var(--ease);
 }
 
+/* K30: middot interpunct spacer between nav entries.
+   ::after on each link; suppressed on :last-child. Pointer-events:none
+   so the spacer is not interactive. color uses muted fg so it reads
+   as separator chrome rather than text. */
+.site-nav a::after {
+  content: " \00B7";
+  margin-inline-start: var(--s-3);
+  color: var(--c-fg-dim);
+  pointer-events: none;
+  text-decoration: none;
+  border-bottom: none;
+}
+.site-nav a:last-child::after {
+  content: "";
+  margin-inline-start: 0;
+}
+
 .site-nav a:hover {
   color: var(--c-accent);
   border-bottom-color: var(--c-accent);
@@ -150,5 +168,11 @@ body.home .site-banner img {
   }
   .site-nav a {
     font-size: var(--t-xs);
+  }
+  /* K30: suppress interpunct spacers on mobile column-stack layout
+     so each line ends cleanly without a trailing middot. */
+  .site-nav a::after {
+    content: "";
+    margin-inline-start: 0;
   }
 }
