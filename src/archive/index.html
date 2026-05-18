@@ -634,6 +634,66 @@
         color: var(--c-fg-muted);
         margin-inline-start: 0.4em;
       }
+
+      /* ---------- Images section (K32a) ---------- */
+      .archive-images-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+        gap: var(--s-6);
+      }
+      .archive-image-card {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-3);
+      }
+      .archive-image-link {
+        display: block;
+        border: var(--bw-thin) solid var(--c-border);
+        background: #000;
+        text-decoration: none;
+        transition: border-color var(--t-fast, 120ms) var(--ease, ease);
+      }
+      .archive-image-link:hover,
+      .archive-image-link:focus-visible {
+        border-color: var(--c-accent);
+        outline: none;
+      }
+      .archive-image-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #0a0a0a;
+      }
+      .archive-image-cap {
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-2);
+      }
+      .archive-image-kind {
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-mega);
+        color: var(--c-accent);
+        margin: 0;
+      }
+      .archive-image-title {
+        font-family: var(--font-headline);
+        font-size: var(--t-h3);
+        color: var(--c-fg);
+        margin: 0;
+      }
+      .archive-image-note {
+        font-family: var(--font-body);
+        font-size: var(--t-sm);
+        line-height: var(--lh-relaxed);
+        color: var(--c-fg-muted);
+        margin: 0;
+      }
+      @media (max-width: 640px) {
+        .archive-images-grid { grid-template-columns: 1fr; }
+      }
     </style>
 </head>
 <body data-mode="dark">
@@ -1005,6 +1065,82 @@
         </p>
       </article>
 
+    </section>
+
+    <!-- ============================================================
+         Section C: Images (K32a)
+         Operator-curated visual artifacts: 2 photo composites,
+         2 self-portraits, 1 concept-art diagram. R2-hosted WebP.
+         Click any image to open at full resolution in a new tab.
+         Caption placeholders are mechanical scaffolds; chat-side
+         editorial rename + note-refinement carries forward.
+         ============================================================ -->
+
+    <section class="archive-section" aria-labelledby="images">
+      <header class="archive-section-header">
+        <span class="archive-section-eyebrow">C</span>
+        <h2 class="archive-section-title" id="images">Images</h2>
+      </header>
+      <p class="archive-section-note">Visual artifacts and self-images. Click any image to open at full resolution in a new tab.</p>
+
+      <div class="archive-images-grid">
+
+        <figure class="archive-image-card">
+          <a class="archive-image-link" href="https://audio.wuld.ink/archive/images/the-e-collage.webp" target="_blank" rel="noopener noreferrer">
+            <img class="archive-image-img" src="https://audio.wuld.ink/archive/images/the-e-collage.webp" alt="the e-the e-eCollage &mdash; dark six-by-six photo composite" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="archive-image-cap">
+            <p class="archive-image-kind">Composite &middot; undated</p>
+            <h3 class="archive-image-title">the e-the e-eCollage</h3>
+            <p class="archive-image-note">Six-by-six photo composite. Dark, muted register; personal artifacts, rooms, self-images, abstract textures. Filename suggests preparation for a print artifact.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="archive-image-card">
+          <a class="archive-image-link" href="https://audio.wuld.ink/archive/images/photo-mosaic.webp" target="_blank" rel="noopener noreferrer">
+            <img class="archive-image-img" src="https://audio.wuld.ink/archive/images/photo-mosaic.webp" alt="Six-by-six photo composite &mdash; sky studies, lens flares, urban scenes" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="archive-image-cap">
+            <p class="archive-image-kind">Composite &middot; undated</p>
+            <h3 class="archive-image-title">Mosaic</h3>
+            <p class="archive-image-note">Six-by-six photo composite. Sky studies, lens-flare experiments, self-images, urban scenes.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="archive-image-card">
+          <a class="archive-image-link" href="https://audio.wuld.ink/archive/images/self-portrait-2023.webp" target="_blank" rel="noopener noreferrer">
+            <img class="archive-image-img" src="https://audio.wuld.ink/archive/images/self-portrait-2023.webp" alt="Black-and-white close self-portrait &mdash; 2023-02-22" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="archive-image-cap">
+            <p class="archive-image-kind">Self-portrait &middot; 2023</p>
+            <h3 class="archive-image-title">Untitled (2023-02-22)</h3>
+            <p class="archive-image-note">Black-and-white close portrait. High contrast, low-key lighting.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="archive-image-card">
+          <a class="archive-image-link" href="https://audio.wuld.ink/archive/images/with-cat-2020.webp" target="_blank" rel="noopener noreferrer">
+            <img class="archive-image-img" src="https://audio.wuld.ink/archive/images/with-cat-2020.webp" alt="Color portrait with black cat &mdash; 2020-11-18" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="archive-image-cap">
+            <p class="archive-image-kind">Self-portrait &middot; 2020</p>
+            <h3 class="archive-image-title">Untitled (2020-11-18)</h3>
+            <p class="archive-image-note">Color portrait with black cat. Indoor daylight.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="archive-image-card">
+          <a class="archive-image-link" href="https://audio.wuld.ink/archive/images/black-box-of-inaccessibility.webp" target="_blank" rel="noopener noreferrer">
+            <img class="archive-image-img" src="https://audio.wuld.ink/archive/images/black-box-of-inaccessibility.webp" alt="Black Box of Inaccessibility &mdash; 3D-rendered diagram with figure, sight lines, and opaque cube" loading="lazy" decoding="async">
+          </a>
+          <figcaption class="archive-image-cap">
+            <p class="archive-image-kind">Diagram &middot; concept</p>
+            <h3 class="archive-image-title">Black Box of Inaccessibility</h3>
+            <p class="archive-image-note">3D-rendered diagram. Figure and opaque cube; sight-lines labeled <em>awareness</em>, <em>speculation and belief</em>. Illustrates the glossary entry of the same name.</p>
+          </figcaption>
+        </figure>
+
+      </div>
     </section>
 
   </main>
