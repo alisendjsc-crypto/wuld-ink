@@ -19,17 +19,20 @@
    ============================================================ */
 
 /* K27: vertical bloat trimmed; nav extends horizontally to both ends.
-   K28: banner band added above nav (slim, full-viewport-width WebP);
+   K28: banner band added above nav (slim WebP);
    .site-mark text-wordmark removed (banner is the new brand mark);
-   .container constraint dropped from .site-header-inner so nav reaches
-   viewport edges; padding-inline added to keep edge breathing room. */
+   .container constraint dropped from .site-header-inner so nav reaches viewport edges.
+   K28a: banner trimmed to sliver (5rem default / 3.5rem on homepage).
+   object-position: center bottom keeps wordmark in frame while top
+   silhouette gets cropped. Homepage gets a body-scoped tighter rule
+   so the cover animation isn't pushed below the fold. */
 .site-header {
   border-bottom: var(--bw-base) solid var(--c-border-strong);
   margin-block-end: var(--s-4);
   background-color: var(--c-bg);
 }
 
-/* ---------- Banner band ---------- */
+/* ---------- Banner band (K28a: text-focused sliver) ---------- */
 .site-banner {
   display: block;
   width: 100%;
@@ -41,15 +44,24 @@
 .site-banner img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 22vh;
+  height: 5rem;            /* ~80px sliver showing wordmark band */
   object-fit: cover;
-  object-position: center;
+  object-position: center 78%;   /* bias toward wordmark which sits at ~bottom of image */
+}
+
+/* Homepage extra-trim — cover animation needs the vertical real estate.
+   Triggered by body.home (present on /index.html since K10). */
+body.home .site-banner img {
+  height: 3.5rem;          /* ~56px on / only */
+  object-position: center 82%;
 }
 
 @media (max-width: 640px) {
   .site-banner img {
-    max-height: 28vw;
+    height: 3.25rem;       /* ~52px on narrow viewports */
+  }
+  body.home .site-banner img {
+    height: 2.5rem;        /* ~40px on / + narrow */
   }
 }
 
@@ -64,8 +76,7 @@
   padding-block: var(--s-2);
 }
 
-/* ---------- Site mark (legacy text wordmark — retained for legacy
-   accessibility / fallback; banner supersedes site-wide K28) ---------- */
+/* ---------- Site mark (legacy text wordmark — banner supersedes K28) ---------- */
 .site-mark {
   font-family: var(--font-mono);
   font-size: var(--t-h5);
