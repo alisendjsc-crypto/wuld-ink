@@ -251,6 +251,51 @@
       color: var(--c-fg-muted);
     }
 
+    /* ---------- Archive disclaimer (K34a) ---------- */
+
+    .archive-disclaimer {
+      max-width: var(--w-readable);
+      margin-block: var(--s-6) var(--s-8);
+      padding-block: var(--s-5);
+      border-block: var(--bw-base) solid var(--c-border);
+    }
+    .archive-disclaimer-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-mega);
+      color: var(--c-accent);
+      margin-block-end: var(--s-4);
+    }
+    .archive-disclaimer-body p {
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-relaxed);
+      color: var(--c-fg);
+      margin-block-end: var(--s-4);
+    }
+    .archive-disclaimer-body p:last-child { margin-block-end: 0; }
+    .archive-disclaimer-warning {
+      margin-block-start: var(--s-6);
+      padding-inline-start: var(--s-4);
+      border-inline-start: var(--bw-thick) solid var(--c-accent);
+    }
+    .archive-disclaimer-warning-label {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-3);
+    }
+    .archive-disclaimer-warning p {
+      font-family: var(--font-body);
+      font-size: var(--t-md);
+      line-height: var(--lh-relaxed);
+      color: var(--c-fg);
+      margin-block-end: 0;
+    }
+
     /* ---------- Section heading ---------- */
 
     .archive-section {
@@ -728,6 +773,20 @@
       <h1 class="archive-page-title">Archive</h1>
       <p class="archive-page-lede">A discrete cabinet of disparate objects &mdash; clinical treatise next to baroque scream next to a noise-wall. Curated to show range, not completeness.</p>
     </header>
+
+    <aside class="archive-disclaimer" aria-labelledby="archive-disclaimer-label">
+      <p class="archive-disclaimer-eyebrow" id="archive-disclaimer-label">Archive disclaimer</p>
+      <div class="archive-disclaimer-body">
+        <p>The views, statements, and creative output collected here do not necessarily represent my current beliefs. The archive is preserved as it stood; revising by erasure would falsify the record.</p>
+        <p>Over the years I have been willing to change my mind when I believed an idea I held was legitimately challenged. I have acquiesced when I encountered what I took to be a superior position, and I have countered aggressively when I thought I could. The aim, when there is one, is to remain humble &mdash; knowing the limits of what I can know &mdash; and honest about what I actually think and feel. It is not anything less or more than itself.</p>
+        <p>I have biases, I have inclinations; those are what they are, too. If an idea is impeccable, it will withstand any argument presented to it. Open-mindedness, from this angle, isn’t believing whatever you are told &mdash; it is being open, then scrutinizing what you encounter against what you already hold, conceding when what you hold is no longer sufficient, and admitting your bias.</p>
+        <p>The unlisted videos section in particular contains material I no longer hold to &mdash; sometimes in part, sometimes wholesale. Some of it I would not make today, would not argue today, would not endorse today.</p>
+      </div>
+      <div class="archive-disclaimer-warning" role="note">
+        <p class="archive-disclaimer-warning-label">A note on content</p>
+        <p>Much of the material here &mdash; the unlisted strata especially, and older creative work generally &mdash; addresses depression, suicidality, despair, and related subjects in unguarded form. The content may affect mental health negatively. If you are presently struggling, consider whether engaging with this is in your interest right now. If you are in crisis, please reach out to a mental-health professional or a crisis line in your region.</p>
+      </div>
+    </aside>
 
     <blockquote class="archive-epigraph">
       The answer lies in the concept of defiant archiving and metacognitive exploration. Works like <em>Love Void Love: Writings of Things and Other Things</em>, <em>The Point</em>, <em>The Book of Nought</em>, and <em>The Known and the Unknown</em> serve as meticulous records of existential crisis. <em>The Point</em>, specifically, is noted as having been written during a period of intense mental health struggle, encompassing severe panic attacks and non-epileptic-psychogenic-pseudo-seizures during the pandemic (circa 2021). The act of writing, therefore, becomes a crucial mechanism for metacognition&mdash;thinking about how and why we think, and observing the breakdown of the mind from a third-party perspective. It is an attempt to systematically map the boundaries of the void and document the failure of human consciousness.
