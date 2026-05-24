@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}git status — wuld-gui{% endblock %}
+{% block content %}
+  <p class="meta-row"><a href="{{ url_for('index') }}">← back to ops</a></p>
+  <h2>Working tree</h2>
+  {% if status.strip() %}
+    <pre class="log">{{ status }}</pre>
+  {% else %}
+    <p class="ok">clean</p>
+  {% endif %}
+  <h2>Recent commits</h2>
+  <pre class="log">{{ log }}</pre>
+  <p class="meta-row">Repo: <code>{{ repo_root }}</code></p>
+{% endblock %}

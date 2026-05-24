@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Preview — {{ op.title }}{% endblock %}
+{% block content %}
+  <p class="meta-row"><a href="{{ url_for('op_form', name=op_name) }}">← back to form</a></p>
+  <h2>Preview: {{ op.title }}</h2>
+  <p class="blurb">{{ changes_summary }}</p>
+
+  <h3>Files affected ({{ files|length }})</h3>
+  <ul>{% for f in files %}<li><code>{{ f }}</code></li>{% endfor %}</ul>
+
+  <h3>Diff</h3>
+  <pre class="diff">{{ diff }}</pre>
+
+  <h3>Commit + push</h3>
+  <form method="POST" action="{{ url_for('op_commit', name=op_name) }}">
+    {# Re-submit all form values so /commit can re-compute identically #}
+    {% for field in op.fields %}
+      {% set fname = field[0] %}
+      {% set ftype = field[2] %}
+      {% set v = values.get(fname, '') %}
+      {% if ftype == 'checkbox' %}
+        {% if v %}<input type="hidden" name="{{ fname }}" value="1">{% endif %}
+      {% else %}
+        <input type="hidden" name="{{ fname }}" value="{{ v }}">
+      {% endif %}
+    {% endfor %}
+    <label>
+      <span class="lbl-text">Commit message</span>
+      <input type="text" name="commit_message" value="{{ commit_message }}">
+    </label>
+    <div class="actions">
+      <button type="submit" name="push" value="yes">Write, commit &amp; push</button>
+      <button type="submit" name="push" value="no" class="secondary">Write + stage only (no commit)</button>
+      <a href="{{ url_for('op_form', name=op_name) }}" class="meta-row">cancel</a>
+    </div>
+  </form>
+{% endblock %}

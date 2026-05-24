@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ op.title }} — wuld-gui{% endblock %}
+{% block content %}
+  <p class="meta-row"><a href="{{ url_for('index') }}">← back to ops</a></p>
+  <h2>{{ op.title }}</h2>
+  <p class="blurb">{{ op.blurb }}</p>
+
+  <form method="POST" action="{{ url_for('op_preview', name=op_name) }}">
+    {% for field in op.fields %}
+      {# field is tuple: (name, label, type, options_or_help) #}
+      {% set fname = field[0] %}
+      {% set flabel = field[1] %}
+      {% set ftype = field[2] %}
+      {% set fextra = field[3] %}
+      {% set v = (values or {}).get(fname, '') %}
+      <label>
+        <span class="lbl-text">{{ flabel }}</span>
+        {% if ftype == 'text' %}
+          <input type="text" name="{{ fname }}" value="{{ v }}">
+          {% if fextra %}<span class="lbl-help">{{ fextra }}</span>{% endif %}
+        {% elif ftype == 'textarea' %}
+          <textarea name="{{ fname }}">{{ v }}</textarea>
+          {% if fextra %}<span class="lbl-help">{{ fextra }}</span>{% endif %}
+        {% elif ftype == 'select' %}
+          <select name="{{ fname }}">
+            {% for opt in fextra %}
+              <option value="{{ opt }}" {% if v == opt %}selected{% endif %}>{{ opt }}</option>
+            {% endfor %}
+          </select>
+        {% elif ftype == 'checkbox' %}
+          <input type="checkbox" name="{{ fname }}" value="1" {% if v %}checked{% endif %}>
+          {% if fextra %}<span class="lbl-help">{{ fextra }}</span>{% endif %}
+        {% endif %}
+      </label>
+    {% endfor %}
+
+    <div class="actions">
+      <input type="submit" value="Preview diff">
+      <a href="{{ url_for('index') }}" class="meta-row">cancel</a>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Result — {{ op_name }}{% endblock %}
+{% block content %}
+  <p class="meta-row"><a href="{{ url_for('index') }}">← back to ops</a></p>
+  <h2>Result: {{ op_name }}</h2>
+  {% if ok %}
+    <p class="ok">success</p>
+  {% else %}
+    <p class="err">failed — inspect log below + verify repo state via <a href="{{ url_for('status') }}">git status</a></p>
+  {% endif %}
+  <pre class="log">{{ log }}</pre>
+  <p><a href="{{ url_for('index') }}">Run another operation →</a></p>
+{% endblock %}

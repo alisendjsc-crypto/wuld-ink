@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}wuld-gui — operations{% endblock %}
+{% block content %}
+  <p class="meta-row">Repo: <code>{{ repo_root }}</code></p>
+
+  <h2>Mechanical operations</h2>
+  <p class="blurb">Each operation shows a diff preview before writing. Nothing commits until you click "Commit &amp; push".</p>
+
+  <div class="ops-grid">
+    {% for name, op in ops.items() %}
+      <a class="op-card" href="{{ url_for('op_form', name=name) }}">
+        <div class="op-title">{{ op.title }}</div>
+        <div class="op-blurb">{{ op.blurb }}</div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <h2>Current git status</h2>
+  {% if git_status.strip() %}
+    <pre class="log">{{ git_status }}</pre>
+  {% else %}
+    <p class="ok">clean working tree</p>
+  {% endif %}
+
+  <h2>Heavier judgment ops</h2>
+  <p class="blurb">
+    For authoring essay/glossary/blog body prose, picking eyebrow classifications,
+    writing disclaimer text, deciding cross-link placement, or any operation
+    requiring LLM judgment — see <code>docs/wuld-ink-non-cowork-guide.md</code>
+    and use regular claude.ai with that document loaded as context.
+  </p>
+{% endblock %}
