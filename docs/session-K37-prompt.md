@@ -1,53 +1,133 @@
 session-K37-prompt.md
 Upload this at the start of K37 so Cowork knows the scope.
 
-K37 primary scope — flexible (no marquee carry-forward from K36)
+**ALSO UPLOAD:** `cowork_repo_update_handout_v33_0.md` (library-Claude handout, dated 2026-05-23) — contains the full file-by-file plan for the v3.7.2 → v3.7.3 library repo advance. K37 marquee depends on it.
 
-K36 + K36a shipped lightly (root .gitignore dedupe + CRLF strip + K33 cxlv truncation marker + /archive/ Position 3 video card swap). K36 closing confirmed all deploy 200; K36a closing confirmed Position 3 card renders correctly with "Video · Vlog" eyebrow inference. K37 opens without a clear marquee scope from carry-forwards alone — operator picks at session-open. Same shape as K36 open.
+---
 
-AQ at open is the right call unless operator pre-commits in this prompt.
+K37 primary scope — MARQUEE: library v3.7.3 advance + wuld.ink link refresh
 
-Track shapes (lightest → heaviest, recommendation-ordered)
+K36 + K36a closed without a marquee carry. Between K36a close and K37 open, library-Claude shipped a v33.0 canon update that needs to land on the `efilist-argument-library` repo as v3.7.3 (PATCH-class, invariants byte-identical to v3.7-stable). Operator brought this handout at K36a close + asked Cowork to absorb as K37 marquee.
 
-Track (a) — MAINTENANCE LIGHT (~30-50 calls). No new builds. Close operator-elective deferred items operator wants to clear; refresh any drift from K36 close.
+**Two-repo scope this session** (departure from K34/K35/K36/K36a single-repo norm):
+1. Cross-repo: `alisendjsc-crypto/efilist-argument-library` — 3 file replacements + 5 new files + 4 docs refreshed + optional CHANGELOG + optional git tag.
+2. In-repo: `alisendjsc-crypto/wuld-ink` — grep for library version refs (any `v3.7.0`/`v3.7.1`/`v3.7.2` strings in `src/` or docs/) and bump to `v3.7.3` where they appear in user-visible link text or anchors.
+
+**Scope-override note:** wuld-ink CLAUDE.md's "Cowork is NOT FOR" section lists EFIList project work as out-of-scope and "Out of scope for K37" reiterates this in the prompt's standard template. Operator's K37 upload explicitly overrides this default for the library publication round. K37-Cowork should NOT extend this override to other cross-repo work — it applies only to the v3.7.3 advance described in the handout.
+
+---
+
+Track shapes (rescoped for K37; marquee first, then fallback tracks if marquee finishes early or operator pivots)
+
+Track (MARQUEE) — LIBRARY v3.7.3 ADVANCE + WULD.INK LINK REFRESH (~80-120 calls).
+
+Library-side (cross-repo to `alisendjsc-crypto/efilist-argument-library`):
+
+* Pre-flight: locate the v3.7.3 delivery artifacts. K20 shipped via `scripts/publish-library-v3-7.ps1` on operator-side — check if handout's artifacts are staged there OR in uploads/ OR in operator's working folder. If unclear, AQ operator at session open.
+* Replace 3 artifacts: `efilist_argument_library_v3_7_2.{json,jsx}` + `index_v3_7_2.html` → `_v3_7_3` variants (md5s in handout).
+* Add 5 new files: `rwe.html` (~552 KB stats view), `v3_7_cut_invariants.json`, `corpus_statistics_spec.md`, `sort_feature_spec.md`. Per handout recommendation, DEFER `granular_variation_candidates.md` + `project_canon_v33_0.json` unless operator wants public.
+* Verify-and-preserve 2 already-at-v3.7.3 files (`combined.html`, `coda_v3_7.html`) — md5 check only.
+* Verify-and-preserve 3 release-set carriers (`v3prime_validator_v1_6.py`, `real_world_examples_schema_v1_6.json`, `rebuttal_grading_ledger.json`) — md5 check only.
+* Refresh 4 docs: `README.md` (version strings + corpus counts), `STATISTICS.md` (re-derive numbers from v3.7.3 corpus), `CITATION.cff` (`version:` + `date-released:`), `instructions.md` (filename refs).
+* Optional: add `CHANGELOG.md` (per handout suggestion 1), git tag `v3.7.3` (per existing K20 tag convention), README screenshot refresh.
+* Open AQs from handout: include `project_canon_v33_0.json`? include `granular_variation_candidates.md`? add CHANGELOG.md? tag commit?
+* Commit message draft provided in handout — adapt or use verbatim.
+
+wuld.ink-side (in-repo):
+
+* Grep `src/` + `docs/` for any library version string references (`v3.7.0`, `v3.7.1`, `v3.7.2`).
+* Locate the live link from wuld.ink → library; verify which surface(s) point at library (likely homepage card or footer or essays/argument-library page).
+* Refresh link text and/or filename pointers to v3.7.3 where applicable.
+* If library subdomain is auto-routing to latest (per K20 Cloudflare Pages auto-deploy), the link itself may not need a change — just verify it resolves to v3.7.3 content post-publication.
+
+Standing discipline: K20 used `scripts/publish-library-v3-7.ps1` (281L, 9 steps, 3 Y/n gates) for the v3.7-stable publish — that script may be adaptable to v3.7.3 or need version-bump editing. Check script first.
+
+Track (a) — MAINTENANCE LIGHT FALLBACK (~30-50 calls). If marquee finishes early or operator wants to bundle small items into K37 close:
 
 * K36a eyebrow QA — operator decides if "Video · Vlog" inference fits "Not A Joke" or wants different classification (~1 call atomic Python eyebrow swap if change requested).
-* Old `.png`/`.jpg` cleanup in R2 `gallery/` (~75 MB unreferenced, K33 carry; operator R2-dashboard task — Cowork can produce manifest of unreferenced files but operator does the dashboard click).
-* `outputs/k34-dev-doc-hits.txt` scratchpad verify (sandbox-self-cleaned per K36 clxii expectation; check + close).
-* Standard verify pass + handoff.
+* Old `.png`/`.jpg` cleanup in R2 `gallery/` (~75 MB unreferenced, K33 carry; operator R2-dashboard task).
+* `outputs/k34-dev-doc-hits.txt` scratchpad verify (sandbox-self-cleaned per K36 clxii expectation).
 
-Track (b) — GUI EXTENSIONS (~50-80 calls). Operator brings real-use feedback from `tools/wuld-gui/` after extended use; Cowork extends. Likely additions (best guesses, not commitments):
+Track (b)-(f) — DEFERRED unless marquee + maintenance both finish under envelope. (GUI extensions, content fill, new tab/section, cross-Claude round for other projects, Photos-3-001 picks.)
 
-* `&middot;`/`&mdash;` embedded-entity handling on `<sub>` lines + essay tags (K35 carry).
-* Card-eyebrow-swap operation (K36a surfaced as canonical ~1-call pattern; promote to first-class GUI op).
-* "Reorder cards within section" operation (drag-position UI).
-* "Scaffold new essay page from template" — copies `src/templates/essay.html` to `src/essays/<slug>/index.html`, fills slug + title placeholders, leaves body for chat-side authoring.
-* "Scaffold new glossary entry from template" — same shape.
-* "Add to blog index" — currently no blog-card pattern exists.
-* Each new op: ~10-15 calls; budget by count.
+---
 
-Track (c) — CONTENT FILL via handout-mode + Cowork verify (~30-50 calls). Operator authors content in regular claude.ai (handout-loaded) for one of the remaining placeholder surfaces; Cowork verifies + ships via GUI or atomic Python. Candidates:
+Diagnostic-first opening (template)
 
-* `/recommendations/` Work section (2 placeholders).
-* `/recommendations/` Groups section (1 placeholder per K31 narrative; likely already filled at K30 — verify before scoping).
-* `/glossary/` body fills for shell-now entries (alogical-isness, contextus-claudit, and the ~8 other forthcoming entries).
+```bash
+cd /sessions/<NEW>/mnt/wuld-ink
 
-Track (d) — NEW TAB / SECTION BUILD (~100-150 calls). Operator brings clear scope at session-open. Candidates surfaced across prior K-sessions:
+# 1. HEAD + drift
+git log -3 --oneline
+git status --short 2>&1 | head -20
 
-* Watch tab NSFW sub-section (K25 carry, dormant since gallery NSFW pattern landed at K27).
-* /chat/ IRC channel NickServ + ChanServ registration verification (K26 carry; may already be done per K28 prompt operator note).
-* /ne-hoc-fiat/ outline content fill (currently scaffold + lede + status; outline section placeholder per K10 ship).
-* /book/nothingist/ updates (chat-side draft pending per CLAUDE.md refs).
+# 2. K36/K36a artifact verification
+git rev-parse HEAD                       # expect a67051c (K36a commit) or newer if any drift commits landed
+md5sum CLAUDE.md                         # expect 9d91956d... if K36a commit landed clean (first 8 hex)
+wc -lc CLAUDE.md                         # expect ~499 lines / ~123,878 bytes
+ls tools/wuld-gui/                       # expect app.py + ops.py + templates/ + README + requirements + .gitignore
+test -f docs/wuld-ink-non-cowork-guide.md && echo "handout present" || echo "MISSING"
+test -f docs/session-K37-prompt.md && echo "K37 prompt present" || echo "K37 prompt MISSING"
+test -f docs/cowork_repo_update_handout_v33_0.md && echo "library handout filed" || echo "library handout pending upload"
 
-Track (e) — CROSS-CLAUDE COORD ROUND (~50-100 calls). Operator surfaces new exchange with book-Claude / library-Claude / successor-Claude. Cowork relays + verifies + updates the relevant `docs/*-coordination.md`.
+# 3. Tail-byte audit on production HTML (K31 cxxviii standing)
+bad=0; nul=0; cr=0
+while IFS= read -r f; do
+  tail -c 8 "$f" | grep -q '</html>' || bad=$((bad+1))
+  [ "$(tr -d -c '\0' < "$f" | wc -c)" != "0" ] && nul=$((nul+1))
+  [ "$(tr -d -c '\r' < "$f" | wc -c)" != "0" ] && cr=$((cr+1))
+done < <(find src -name '*.html' -type f)
+echo "production HTML | tail-bad: $bad | NUL: $nul | CR: $cr (expect 0/0/0)"
 
-Track (f) — PHOTOS-3-001 PICKS WORKFLOW (~50-80 calls per batch of 10-15). Operator drops 10-15 selected photos into `images/archive/Photos-3-001/_picks/`. Cowork inspects via multimodal Read, identifies via on-image-content + filename metadata, optimizes to WebP at q85 m6 max-2400px (K33 cxlvii anchor), generates R2 upload manifest, appends cards to `/archive/` Section C: Images. Operator-side R2 drag-drop + git push + cache-bust pending after Cowork manifest delivery.
+# 4. Root meta-file tail + CR audit (K33 cxlv + K36 clxi extended discipline)
+for f in CLAUDE.md CLAUDE-history.md README.md .gitignore; do
+  cr=$(tr -d -c '\r' < "$f" | wc -c)
+  printf "%-22s tail: " "$f:"
+  tail -c 50 "$f" | tr -d '\n'
+  printf " | CR: %d\n" "$cr"
+done
 
-Default recommendation if operator silent
+# 5. Deploy verify (K36/K36a didn't touch /components; smoke unchanged 200s)
+for u in 'https://wuld.ink/' 'https://wuld.ink/archive/' 'https://wuld.ink/recommendations/'; do
+  printf '%-72s ' "$u"
+  curl -sI -m 8 "$u" 2>/dev/null | head -1
+done
 
-AQ at session-open with tracks (a)-(f). Recommend (a) maintenance light as default + offer (b) GUI extensions as cheapest add-on if operator has specific GUI feedback or (f) Photos-3-001 if operator has selected picks ready.
+# 6. Uploads inventory — expect session-K37-prompt + library handout
+ls -la /sessions/<NEW>/mnt/uploads/
 
-Carry-forwards from K36 (in priority order)
+# 7. K22 viii index corruption watch
+git status --short 2>&1 | grep -o 'unknown index entry format 0x[0-9a-f]*' || echo "no corruption signature"
+
+# 8. OneDrive sandbox-view (expect ABSENT; N=24 at K37 if streak holds)
+test -d /sessions/<NEW>/mnt/C:/Users/y_m_a/OneDrive && echo PRESENT || echo ABSENT
+
+# 9. CLAUDE.md size watch (trim threshold ~195 KB)
+stat -c%s CLAUDE.md   # expect ~123,878 + drift; ~60% capacity
+
+# 10. Library-publication prep — locate v3.7.3 delivery artifacts
+ls -la /sessions/<NEW>/mnt/uploads/*.json 2>/dev/null    # corpus JSON?
+ls -la /sessions/<NEW>/mnt/uploads/*.jsx 2>/dev/null     # JSX?
+ls -la /sessions/<NEW>/mnt/uploads/index*.html 2>/dev/null
+test -f scripts/publish-library-v3-7.ps1 && echo "K20 publish script present" || echo "publish script absent"
+```
+
+---
+
+AQ discipline for K37
+
+* MARQUEE pre-commits scope; expect minimal AQ unless artifact-location ambiguous OR operator wants to address handout's 4 open questions inline:
+  1. Add `project_canon_v33_0.json` to library repo? (handout recommends NO — keep internal)
+  2. Add `granular_variation_candidates.md`? (handout recommends NO)
+  3. Add CHANGELOG.md? (operator decision)
+  4. Tag commit `v3.7.3`? (operator decision; K20 used tags so default-yes)
+* If artifacts staged operator-side and not in uploads/: AQ where to find them.
+* Mid-session AQ per K34 cli for scope-disagreement >5x via on-disk classification.
+* K35 clx: if uploaded prompt's K-number doesn't match expected, STOP and verify before atomic action.
+
+---
+
+Carry-forwards from K36 (preserved as fallback / informational)
 
 Verification (operator-side, ~0 Cowork calls — assumed done at K36 close):
 
@@ -55,9 +135,9 @@ Verification (operator-side, ~0 Cowork calls — assumed done at K36 close):
 * K36a commit landed clean (`2e527a6` → `a67051c`); deploy verified 200 OK at K36a close.
 * /archive/ Position 3 card renders correctly with "Video · Vlog" eyebrow + "Dec. 31st, 2014" sub + thumbnail loaded.
 
-Operator-elective deferred items (skip unless surfaced):
+Operator-elective deferred items (skip unless surfaced or marquee finishes early):
 
-* K36a eyebrow QA — if operator wants "Video · Vlog" changed to different classification, surface at K37 open (~1 call).
+* K36a eyebrow QA — if operator wants "Video · Vlog" changed, surface at K37 open (~1 call).
 * K35 carry — GUI `<sub>`-with-`&middot;` embedded entity handling (operator-elective).
 * K34 carry — Borderline category (v) session-prefix cleanup on substantive provenance comments (operator-elective; NOT recommended per K34 clii).
 * K34 carry — `outputs/k34-dev-doc-hits.txt` scratchpad (likely sandbox-self-cleaned per K36 clxii; verify at K37 open).
@@ -65,6 +145,8 @@ Operator-elective deferred items (skip unless surfaced):
 * K33 carry — Old `.png`/`.jpg` cleanup in R2 `gallery/` (~75 MB unreferenced; operator dashboard work).
 * K33 carry — Photos-3-001 picks workflow when operator wants to extend `/archive/` Section C.
 * K33 cxlv — CLOSED at K36 via append-marker. No longer carries.
+
+---
 
 Standing discipline (load into K37 working memory; full corpus in docs/wuld-ink-non-cowork-guide.md):
 
@@ -84,102 +166,61 @@ Standing discipline (load into K37 working memory; full corpus in docs/wuld-ink-
 * K35 clviii: K27 ci pattern applies to Python files too — `py_compile` catches Python truncation instantly.
 * K35 clix: 60/40 GUI/handout split is stable; expand path-selector table rather than re-litigating the split.
 * K35 clx: when uploaded prompt's K-number doesn't match diagnostic-derived expected K-number, STOP and verify before atomic action.
-* K36 clxi: extend session-open tail-byte audit to CR audit on root meta-files (.gitignore, CLAUDE.md, README.md) — catches Windows-side CRLF drift between sessions.
-* K36 clxii: sandbox `/outputs/` scratchpads self-clean between sessions — no explicit cleanup needed for sandbox-only artifacts.
-* K36 clxiii: pre-flight check on per-subdir `.gitignore` files before adding to root — don't double-cover.
-* K36 clxiv: per-card video swap in JSON-LD-bearing surfaces has 5 ID instances (data-theater-id + img src + json-thumb + json-embed + link-href), not 4.
+* K36 clxi: extend session-open tail-byte audit to CR audit on root meta-files — catches Windows-side CRLF drift between sessions.
+* K36 clxii: sandbox `/outputs/` scratchpads self-clean between sessions.
+* K36 clxiii: pre-flight check on per-subdir `.gitignore` files before adding to root.
+* K36 clxiv: per-card video swap in JSON-LD-bearing surfaces has 5 ID instances.
 * K26 xcvii: cache-bump only when `/components/*` touched.
 * K24q: discreet-pointer idiom; don't promote inline CSS to component until N=3 convergence.
 
-Diagnostic-first opening (template)
+Cross-repo discipline (K20 carry, relevant to K37 marquee):
 
-```bash
-cd /sessions/<NEW>/mnt/wuld-ink
+* Library repo is `alisendjsc-crypto/efilist-argument-library` on Cloudflare Pages (auto-deploys on push, like wuld.ink).
+* K20 lesson: sandbox-clone-to-Windows-mount BLOCKED by vmwp.exe on ANY mounted folder where sandbox writes .git/. Library publication ran operator-side via `scripts/publish-library-v3-7.ps1`. Same constraint likely applies at K37 — Cowork-side library work limits to artifact prep + md5 verification + commit-message authorship; operator runs the actual git push.
+* K20 publish script has 9 steps + 3 Y/n gates. Adaptable; check if it needs version-bump editing or full rewrite for v3.7.3.
+* License: NOASSERTION flag (K21) still applies — SPDX doesn't recognize CC-BY-4.0 + MIT dual-license; operator-side library GitHub repo description update can be bundled if convenient.
 
-# 1. HEAD + drift
-git log -3 --oneline
-git status --short 2>&1 | head -20
-
-# 2. K36/K36a artifact verification
-git rev-parse HEAD                       # expect a67051c (K36a commit) or newer if any drift commits landed
-md5sum CLAUDE.md                         # expect 9d91956d... if K36a commit landed clean (first 8 hex)
-wc -lc CLAUDE.md                         # expect ~499 lines / ~123,878 bytes
-ls tools/wuld-gui/                       # expect app.py + ops.py + templates/ + README + requirements + .gitignore
-test -f docs/wuld-ink-non-cowork-guide.md && echo "handout present" || echo "MISSING"
-
-# 3. Tail-byte audit on production HTML (K31 cxxviii standing)
-bad=0; nul=0; cr=0
-while IFS= read -r f; do
-  tail -c 8 "$f" | grep -q '</html>' || bad=$((bad+1))
-  [ "$(tr -d -c '\0' < "$f" | wc -c)" != "0" ] && nul=$((nul+1))
-  [ "$(tr -d -c '\r' < "$f" | wc -c)" != "0" ] && cr=$((cr+1))
-done < <(find src -name '*.html' -type f)
-echo "production HTML | tail-bad: $bad | NUL: $nul | CR: $cr (expect 0/0/0)"
-
-# 4. Root meta-file tail + CR audit (K33 cxlv + K36 clxi extended discipline)
-for f in CLAUDE.md CLAUDE-history.md README.md .gitignore; do
-  cr=$(tr -d -c '\r' < "$f" | wc -c)
-  printf "%-22s tail: " "$f:"
-  tail -c 50 "$f" | tr -d '\n'
-  printf " | CR: %d\n" "$cr"
-done
-
-# 5. Deploy verify (K36 + K36a didn't touch /components; smoke unchanged 200s)
-for u in 'https://wuld.ink/' 'https://wuld.ink/archive/' 'https://wuld.ink/recommendations/'; do
-  printf '%-72s ' "$u"
-  curl -sI -m 8 "$u" 2>/dev/null | head -1
-done
-
-# 6. Uploads inventory
-ls -la /sessions/<NEW>/mnt/uploads/
-
-# 7. K22 viii index corruption watch
-git status --short 2>&1 | grep -o 'unknown index entry format 0x[0-9a-f]*' || echo "no corruption signature"
-
-# 8. OneDrive sandbox-view (expect ABSENT; N=24 at K37 if streak holds)
-test -d /sessions/<NEW>/mnt/C:/Users/y_m_a/OneDrive && echo PRESENT || echo ABSENT
-
-# 9. CLAUDE.md size watch (trim threshold ~195 KB)
-stat -c%s CLAUDE.md   # expect ~123,878 + drift; ~60% capacity
-```
-
-AQ discipline for K37
-
-* 0 AQ at open if operator pre-commits scope in this prompt OR uploads/ resolves all scope axes.
-* 1-3 AQ at open if scope shape ambiguous OR operator silent. Bundle track-shape options + any specific feedback operator wants ordered.
-* Mid-session AQ per K34 cli for scope-disagreement >5x via on-disk classification.
-* K35 clx: if uploaded prompt's K-number doesn't match expected, STOP and verify before atomic action.
+---
 
 Out of scope for K37
 
 * Authoring new essay/glossary/blog body content (deflect to handout + chat-side per project CLAUDE.md).
 * Major architectural pivots (stack, registrar, hosting).
-* EFIList project work (different repo).
+* EFIList project work OUTSIDE the v3.7.3 publication round (override is scoped to handout-described scope only; do not extend to other cross-repo work).
 * Major K22 vii subagent trim (CLAUDE.md at ~60% capacity; K37-K40 comfortable).
+
+---
 
 Session-close handoff template
 
-Standard K-session close: CLAUDE.md narrative addition + carry-forward refresh + PowerShell commit+push block.
+Standard K-session close: CLAUDE.md narrative addition + carry-forward refresh + PowerShell commit+push block(s).
+
+**Two-commit-target session this time** (cross-repo). Two PowerShell blocks expected:
+1. Library repo commit+push (in `efilist-argument-library/`)
+2. wuld-ink commit+push (in `wuld-ink/`)
 
 Use `curl.exe -sI` (not bare `curl`) in PowerShell verify blocks per K36-close lesson — PowerShell aliases `curl` to `Invoke-WebRequest` which rejects curl flags.
 
-Single-commit pattern preferred unless deferred drift needs to be picked up separately (rare; K35 absorbed K34 base commit was the last instance).
-
-If K37 touches `/components/*` (e.g., a GUI extension that requires component work, or a bug-fix on ambient-player), cache-bump K30 → K37 (note: K34/K35/K36 did NOT bump from K30 per K26 xcvii; next bump moves site from K30 directly to K37, skipping K31-K36).
+If K37 touches `/components/*` on wuld-ink (unlikely given marquee scope): cache-bump K30 → K37.
 
 If K37 adds new patterns to GUI: update the handout's path-selector table + section "The 7 mechanical patterns" → "The N mechanical patterns".
 
+---
+
 Tool budget envelopes
 
-* Track (a) maintenance light: 30-50 calls
-* Track (b) GUI extensions: 50-80 calls (varies by pattern count)
-* Track (c) content fill: 30-50 calls (mostly atomic Python passes)
-* Track (d) new tab/section: 100-150 calls
-* Track (e) cross-Claude round: 50-100 calls
-* Track (f) Photos-3-001 picks: 50-80 calls per batch of 10-15
+* MARQUEE (library v3.7.3 + wuld.ink link refresh): 80-120 calls
+* Track (a) maintenance light: 30-50 calls (add-on if marquee finishes under envelope)
+* Track (b) GUI extensions: 50-80 calls (deferred)
+* Track (c) content fill: 30-50 calls (deferred)
+* Track (d) new tab/section: 100-150 calls (deferred)
+* Track (e) cross-Claude round for non-library projects: 50-100 calls (deferred)
+* Track (f) Photos-3-001 picks: 50-80 calls per batch (deferred)
 
-CLAUDE.md narrative addition: ~2-10 KB per session depending on scope. Trim threshold (~195 KB) at ~60% capacity. K37-K40 still comfortable; no trim needed at K37 open.
+CLAUDE.md narrative addition: ~8-15 KB expected (cross-repo session = richer narrative). Trim threshold (~195 KB) at ~60% capacity. K37-K40 still comfortable; no trim needed at K37 open.
 
-Note to Cowork at K37 open: K36 + K36a closed lightly with no marquee carry. K37 likely lighter unless operator surfaces specific scope. Don't assume a marquee workstream — diagnostic-first opening → AQ on track shape with maintenance-light as recommended default → adjust per operator direction.
+---
 
-If anything surfaces operator-side between K36a close and K37 open (real-use GUI bugs, deploy issues, content needs, K36a eyebrow QA), mention in K37 opening message and Cowork adjusts scope accordingly.
+Note to Cowork at K37 open: Marquee is library v3.7.3 publication round + wuld.ink-side link refresh. Don't conflate with K35-style structural builds or K36-style maintenance — this is a cross-repo publication operation pattern-matching K20's v3.7-stable shape. Diagnostic-first opening → AQ on artifact location (if uploads/ doesn't have them) → execute marquee → standard K-session close with two PowerShell blocks.
+
+If anything surfaces operator-side between K36a close and K37 open (real-use GUI bugs, deploy issues, K36a eyebrow QA, OR additional library-Claude addenda), mention in K37 opening message and Cowork adjusts scope accordingly.
