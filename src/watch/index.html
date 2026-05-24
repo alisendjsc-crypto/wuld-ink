@@ -48,27 +48,24 @@
 
   <style>
     /* ============================================================
-       /watch/ — video mirror with FACADE pattern (session G).
+       /watch/ — video mirror, link-out card grid with click-to-play.
 
        Cards render as static thumbnails + a play-button overlay on
-       page load. ZERO YouTube iframes load until the visitor clicks.
+       page load. No YouTube iframes load until the visitor clicks.
        On click, the thumb-wrap's contents are swapped for a
        youtube-nocookie.com iframe (autoplay=1, rel=0, modestbranding=1).
 
-       Thumbnails come from i.ytimg.com (YouTube's image CDN). That
-       is the only cross-origin asset on initial render; ytimg does
-       not set tracking cookies in the user's browser session for
-       youtube.com. Full privacy discipline would mean caching thumbs
-       on R2 — a future polish, not session-G scope.
+       Thumbnails come from i.ytimg.com (YouTube's image CDN) — the
+       only cross-origin asset on initial render. ytimg does not set
+       tracking cookies for youtube.com on this surface. Fuller privacy
+       discipline would mean caching thumbs on R2; deferred.
 
        Card → iframe swap is handled by the inline <script> at the
-       bottom of <body>. No external JS. With JS disabled, clicking a
-       card does nothing and visitors fall through to the channel CTA
-       above (graceful degradation).
+       bottom of <body>. No external JS. Without JS, clicking does
+       nothing and visitors fall through to the channel CTA above.
 
-       To refresh the curated grid: re-scrape the channel and paste
-       new <article class="video-card"> blocks; dates here are
-       approximated from relative timestamps captured at scrape time.
+       To refresh the curated grid: swap in new <article class="video-card">
+       blocks (data-video-id + thumbnail src + title + date).
        ============================================================ */
 
     .watch-page {
@@ -178,7 +175,7 @@
       outline-offset: 2px;
     }
 
-    /* Thumb wrap — facade container, swapped with iframe on click */
+    /* Thumb wrap — swapped with iframe on click */
     .video-thumb-wrap {
       position: relative;
       aspect-ratio: 16 / 9;
@@ -403,11 +400,8 @@
       </a>
     </div>
 
-    <!-- ============================================================
-         Video grid — facade cards (8 most recent at scrape time)
-         Dates approximated from relative timestamps. To refresh:
-         re-scrape channel and paste new .video-card blocks.
-         ============================================================ -->
+    <!-- Video grid. To refresh: swap in new <article class="video-card">
+         blocks (data-video-id + thumbnail src + title + date). -->
     <h2 class="video-grid-heading">Selected uploads</h2>
 
     <div class="video-grid">
@@ -552,7 +546,7 @@
 
   <script>
     /* ============================================================
-       Facade activator + theater mode.
+       Click-to-play activator + theater mode.
 
        On click/Enter/Space: activate the card. Swap thumb-wrap for
        youtube-nocookie.com iframe; add .video-card--active to the
@@ -565,7 +559,7 @@
        Dismissing: click outside any card OR press Escape. Tears down
        the iframe so background audio stops.
 
-       No-op without JS — clicking does nothing, channel CTA above
+       No-op without JS — clicking does nothing; channel CTA above
        remains the canonical path.
        ============================================================ */
     (function () {

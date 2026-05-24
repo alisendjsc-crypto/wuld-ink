@@ -240,7 +240,7 @@ li::marker {
   margin-block-end: var(--s-2);
 }
 
-/* ---------- Endnote ref (placeholder; full impl TBD per open Q) ---------- */
+/* ---------- Endnote ref ---------- */
 .endnote-ref {
   font-family: var(--font-mono);
   font-size: 0.7em;
