@@ -186,7 +186,10 @@ select:hover{border-color:var(--blood)}
 .perm-bar{background:var(--dp1);border:1px solid var(--bdr);padding:8px 14px;font-size:10px;color:var(--mist);display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 .perm-bar span{color:var(--ash)}
 .perm-bar .pv{color:var(--amber);font-weight:700;font-size:12px}
-.sidebar{width:188px;flex-shrink:0;display:flex;flex-direction:column;gap:3px;position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto}
+.sidebar{width:188px;flex-shrink:0;display:flex;flex-direction:column;gap:3px;position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--blood) transparent}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--blood);border-radius:0}
+.sidebar::-webkit-scrollbar-track{background:transparent}
 .srch{width:100%;background:var(--dp1);border:1px solid var(--bdr);color:var(--ash);padding:7px 10px;font-family:var(--mono);font-size:11px;outline:none;transition:border-color .12s;margin-bottom:7px}
 .srch:focus{border-color:var(--blood)}
 .srch::placeholder{color:var(--mist)}
@@ -324,10 +327,14 @@ select{font-size:13px}
 #void-engine-wrap.readable .ctx-title{font-size:16px!important}
 #void-engine-wrap.readable .ctx-src{font-size:15px!important}
 #void-engine-wrap.readable .sb-stat{font-size:16px!important;line-height:2.5!important}
-#void-engine-wrap.readable .diag-opt{font-size:16px!important;padding:13px 16px!important}
-#void-engine-wrap.readable .diag-qlbl{font-size:16px!important}
-#void-engine-wrap.readable .diag-qsub{font-size:16px!important}
+#void-engine-wrap.readable .diag-opt{font-size:20px!important;padding:17px 20px!important;line-height:1.6!important}
+#void-engine-wrap.readable .diag-qlbl{font-size:19px!important;margin-bottom:7px!important;letter-spacing:.09em!important}
+#void-engine-wrap.readable .diag-qsub{font-size:20px!important;line-height:1.6!important;margin-bottom:16px!important}
 #void-engine-wrap.readable .diag-hdr h2{font-size:40px!important}
+#void-engine-wrap.readable .diag-hdr p{font-size:15px!important;letter-spacing:.11em!important}
+#void-engine-wrap.readable .diag-q{padding:26px 30px!important;margin-bottom:30px!important}
+#void-engine-wrap.readable .diag-opts{gap:11px!important}
+#void-engine-wrap.readable .diag-progress{font-size:14px!important;margin-top:13px!important}
 #void-engine-wrap.readable .lbl{font-size:16px!important}
 #void-engine-wrap.readable .b-in{font-size:17px!important}
 #void-engine-wrap.readable .card{padding:22px!important}
@@ -405,11 +412,24 @@ select{font-size:13px}
 .corp-rcat{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--mist);margin-bottom:5px}
 .corp-rtext{font-size:12px;color:var(--mist);line-height:1.75}
 
-/* ── CORPUS API MODE [STRIPPED on wuld.ink port per Exchange 3 B1 lock] ──
-   Removed: .corp-mode-row, .corp-mode-btn*, .corp-api-section*, .corp-api-row,
-   .corp-api-note, .corp-key-in*, .corp-key-status*, .corp-api-badge,
-   .corp-loading, .corp-spin, @keyframes spin.
-   Public port runs Corpus Analyzer in local mode only — no Anthropic API. */
+/* ── CORPUS API MODE ── */
+.corp-mode-row{display:flex;gap:2px}
+.corp-mode-btn{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;padding:3px 10px;border:1px solid rgba(200,148,10,.25);background:transparent;color:var(--mist);cursor:pointer;transition:all .12s}
+.corp-mode-btn.on{background:var(--amber);color:var(--void);border-color:var(--amber)}
+.corp-mode-btn:hover:not(.on){border-color:var(--amber);color:var(--amber)}
+.corp-api-section{background:rgba(200,148,10,.05);border:1px solid rgba(200,148,10,.2);padding:11px 13px;margin-bottom:13px;display:none}
+.corp-api-section.on{display:block}
+.corp-api-note{font-size:11px;color:var(--mist);margin-bottom:9px;line-height:1.75}
+.corp-api-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.corp-key-in{flex:1;min-width:200px;background:var(--dp2);border:1px solid rgba(200,148,10,.3);color:var(--bone);padding:5px 10px;font-family:var(--mono);font-size:11px;outline:none;transition:border-color .12s}
+.corp-key-in:focus{border-color:var(--amber)}
+.corp-key-status{font-size:10px;text-transform:uppercase;letter-spacing:.07em;margin-top:7px;color:var(--mist)}
+.corp-key-status.ok{color:var(--gd)}
+.corp-key-status.err{color:var(--red)}
+.corp-api-badge{font-size:9px;background:var(--amber);color:var(--void);padding:1px 5px;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle;margin-left:5px}
+.corp-loading{display:flex;align-items:center;gap:8px;padding:18px 0;color:var(--mist);font-size:12px;font-family:var(--serif);font-style:italic}
+.corp-spin{width:14px;height:14px;border:2px solid rgba(200,148,10,.2);border-top-color:var(--amber);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 
 /* ─── TRANSMISSION SCOPED CSS ─── */
@@ -595,49 +615,6 @@ select{font-size:13px}
   .tlist{max-height:calc(100vh - 420px)}
 }
 
-/* ─── wuld.ink D'' chrome integration + Transmission β layering (Exchange 7 D7) ───
-   Loaded AFTER all canonical engine CSS so these rules win cascade specificity.
-   When Transmission is active, the trans-engine-wrap hoists out of normal flow
-   and floats full-viewport at z-index:0. Site-header (z-index:9991) + #engine-toggle
-   (canonical z-index:9990) + page-footer (z-index:9991) remain opaque bands above,
-   framing the void per the threshold-crossing argument locked at A5.
-   Void Engine + Signal Engine are unaffected — they stay in normal document flow.
-   ────────────────────────────────────────────────────────────────────────────────── */
-
-/* β rule 1 — float Transmission wrap full-bleed under chrome when active. */
-#trans-engine-wrap.active {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  width: 100vw;
-  height: 100vh;
-}
-
-/* β rule 2 — HUD chrome offsets so Transmission overlays clear wuld.ink chrome bands.
-   Site-header (~64px) + engine-toggle sticky (~40px) at top = ~104px occlusion.
-   Page-footer (~50px) at bottom occlusion.
-   Suite-Claude's D7 β: "HUD elements take small offset-adjust under β". */
-#trans-engine-wrap.active #t-corner-tl {
-  top: calc(104px + 16px);
-}
-#trans-engine-wrap.active #t-corner-br,
-#trans-engine-wrap.active #t-hud {
-  bottom: calc(50px + 16px);
-}
-
-/* β rule 3 — z-index promotion on chrome bands (in case browser stacking
-   contexts shift; backstop for the inline z-index:20 on site-header + footer). */
-.site-header { position: relative; z-index: 9991; }
-.page-footer { position: relative; z-index: 9991; }
-
-/* β rule 4 — when Transmission active, suppress accidental document scroll
-   (the trans wrap is fixed, so its 100vh height shouldn't push page taller). */
-body:has(#trans-engine-wrap.active) {
-  overflow: hidden;
-}
-
-/* End of D'' β additions */
-
 </style>
 </head>
 <body>
@@ -737,6 +714,8 @@ body:has(#trans-engine-wrap.active) {
       <input type="text" class="s-in" id="seed-in" placeholder="seed...">
       <label class="tl"><input type="checkbox" class="tcb" id="wt"> weight :1.4</label>
       <label class="tl" title="Exclude Normative/Ironic from Chaos roll"><input type="checkbox" class="tcb" id="chaos-shield" checked> <span style="color:rgba(200,148,10,.7)">shield normative</span></label>
+      <label class="tl" title="Append active LoRA stack's trigger blob to compiled prompt. Stack chosen via dropdown. Off by default. Stack-wide append, fires for any selected modifiers."><input type="checkbox" class="tcb" id="stack-trig" onchange="updateOutput()"> <span style="color:rgba(200,148,10,.7)">stack triggers</span></label>
+      <select id="stack-sel" onchange="updateOutput()" title="Active LoRA stack — WULD Standard (Herbst Photo + GrainScape + Chiaroscuro + FineArtPhoto) | Documentary B&amp;W (GrainScape + Silver Gelatin)"><option value="WULD Standard">WULD</option><option value="Documentary B&amp;W">Doc B&amp;W</option></select>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-left:auto">
         <button class="btn bp" id="copy-pos" onclick="doCopyPos()" disabled>&#9654; COPY POSITIVE</button>
         <button class="btn bs" onclick="doChaos()">&#9889; CHAOS</button>
@@ -788,6 +767,9 @@ body:has(#trans-engine-wrap.active) {
   <button class="pbtn" onclick="loadPreset('heatloss')">Heat Death</button>
   <button class="pbtn" onclick="loadPreset('parasite')">Host Manipulation</button>
   <button class="pbtn" onclick="loadPreset('quantum_horror')">Quantum Horror</button>
+  <button class="pbtn" onclick="loadPreset('corpus_visum')">Corpus Visum</button>
+  <button class="pbtn" onclick="loadPreset('anatomia_ruina')">Anatomia Ruina</button>
+  <button class="pbtn" onclick="loadPreset('sub_rosa')">Sub Rosa</button>
 </div>
 <div class="chips-panel">
   <div class="chips-hdr">
@@ -806,13 +788,24 @@ body:has(#trans-engine-wrap.active) {
   <div class="corp-hdr">
     <div style="display:flex;align-items:center;gap:11px">
       <span>&#9672; CORPUS.ANALYSIS</span>
-      <!-- corp-mode-row [STRIPPED per Exchange 3 B1 — local mode only on public port] -->
+      <div class="corp-mode-row">
+        <button class="corp-mode-btn on" id="cm-local" onclick="setCorpMode('local')">LOCAL</button>
+        <button class="corp-mode-btn" id="cm-api" onclick="setCorpMode('api')">DEEP &mdash; API</button>
+      </div>
     </div>
     <button class="btn bs" style="font-size:10px;padding:3px 10px" onclick="closeCorpus()">&#10005; CLOSE</button>
   </div>
   <div class="corp-body">
-    <!-- #corp-api-sec [STRIPPED per Exchange 3 B1 — Anthropic API path removed from public port] -->
-    <p class="corp-intro">Write any fragment &mdash; a phrase, a line, a feeling, a passage. Local mode matches vocabulary and philosophical territory.</p>
+    <div class="corp-api-section" id="corp-api-sec">
+      <div class="corp-api-note">Sends your fragment to the Anthropic API for philosophical resonance analysis. Your key is stored locally in this browser and never transmitted elsewhere. <a href="https://console.anthropic.com/settings/keys" target="_blank" style="color:var(--amber);text-decoration:none">Get a key &rarr;</a></div>
+      <div class="corp-api-row">
+        <input type="password" class="corp-key-in" id="corp-key-in" placeholder="sk-ant-api03-...">
+        <button class="btn ba" style="font-size:10px;padding:4px 11px" onclick="saveApiKey()">SAVE KEY</button>
+        <button class="btn br" style="font-size:10px;padding:4px 9px" onclick="clearApiKey()">CLEAR</button>
+      </div>
+      <div class="corp-key-status" id="corp-key-status"></div>
+    </div>
+    <p class="corp-intro">Write any fragment &mdash; a phrase, a line, a feeling, a passage. Local mode matches vocabulary and philosophical territory. Deep mode sends it to Claude for semantic resonance analysis.</p>
     <textarea class="corp-input" id="corp-input" placeholder="the panic making certain things larger...&#10;the reel runs, stark blurry grainy...&#10;the context closes..."></textarea>
     <div class="corp-controls">
       <button class="btn ba" onclick="runCorpus()">&#9672; ANALYZE FRAGMENT</button>
@@ -1038,32 +1031,6 @@ function switchEngine(which) {
     if (typeof startTransmission === 'function') startTransmission();
   }
 }
-
-// ─── HASH-ROUTE SHIM (wuld.ink D'' port — Exchange 7 D5 = α) ───────
-// Deep-links: /void-engine/#sig | #signal → Signal Engine
-//             /void-engine/#trans | #transmission → Transmission
-//             /void-engine/#void | bare URL → Void Engine (default)
-// Suite canonical ships without URL routing; routing belongs to the
-// wuld.ink umbrella, not the instrument.
-function _hashToEngine(){
-  const h = (location.hash || '').toLowerCase().replace(/^#/, '');
-  if (h === 'sig' || h === 'signal') return 'sig';
-  if (h === 'trans' || h === 'transmission') return 'trans';
-  if (h === 'void' || h === '') return 'void';
-  return null;
-}
-function _applyHashRoute(){
-  const target = _hashToEngine();
-  if (target) switchEngine(target);
-}
-window.addEventListener('hashchange', _applyHashRoute);
-if (document.readyState === 'loading') {
-  window.addEventListener('DOMContentLoaded', function(){
-    if (location.hash) _applyHashRoute();
-  });
-} else if (location.hash) {
-  _applyHashRoute();
-}
 </script>
 
 <script>
@@ -1131,6 +1098,9 @@ cp17:{d:"Glass backed by dark velvet. The positive appears only by implication. 
 cp18:{d:"Double-X film pushed two stops. The development process applied as violence to silver halide crystals. Confirmed working combination.",s:"Source: Illogically Is Nano Banana prompt suite — character seed style suffix / tested working combination (Images 1-4)"},
 cp19:{d:"Potato starch as color filter — the Autochrome. The earliest successful color photograph. The grain is literal starch.",s:"Source: Autochrome Lumière process / 1907 color photography"},
 cp20:{d:"The salt print: the earliest photograph. Image held in the paper fibers themselves. Warm, impermanent, experimental chemistry.",s:"Source: Salt print / 1840s Talbot process / earliest photographic process"},
+cp21:{d:"Macro on skin — the surface read as topography rather than as body. No orientation cue, no scale reference. Skin as terrain.",s:"Source: Library gap-fill — skin-macro register / 2026-05-27 curation"},
+cp22:{d:"The scar studied as geological feature. No narrative supplied for the injury. The body as a record of events it did not choose.",s:"Source: Library gap-fill — skin-macro register / cicatrix study / 2026-05-27 curation"},
+cp23:{d:"A long exposure of an empty room. The photograph as a record of nothing happening for a measurable interval. The dust motes write the only available sentence.",s:"Source: Library gap-fill — duration register / long-exposure stillness / 2026-05-27 curation"},
 ff01:{d:"A figure whose hair is the color of overexposed film stock. Not blonde — something the lab produced rather than nature.",s:"Source: Illogically Is — character development notes / figure aesthetic register"},
 ff02:{d:"Dark hair with its own gravity. An expression suspended between devastation and stoicism. The body knows before the face decides.",s:"Source: Personal Mementos — A Life Inside / character register"},
 ff03:{d:"A figure covered in the residue of having been somewhere before this. The dust or ash is accumulated, not applied.",s:"Source: Personal Mementos — A Life Inside / Synthesis Categories — psychogenic passages"},
@@ -1176,6 +1146,11 @@ le15:{d:"The fire exit stairwell: green emergency light, metal handrail, the doo
 le16:{d:"A break room at 2am respiting nothing. The vending machines lit and humming. The corkboard notices for events already concluded.",s:"Source: Liminal space aesthetics / institutional respite space after hours"},
 le17:{d:"Customs hall infrastructure running without bodies to process. The queue barriers for a crowd that has not arrived.",s:"Source: Sanguinolentum Vestigium — bureaucratic systems / architecture of controlled movement"},
 le18:{d:"Machines still cycling at 4am with no one present to receive the output. The laundromat as late-capitalism's most honest architecture.",s:"Source: Liminal space category / 24-hour infrastructure aesthetics"},
+le19:{d:"The architecture of light industry left running on no instruction. Pallets, weeds, the truck cab — function suspended without ceremony.",s:"Source: Liminal Space expansion — 2026-05-27 curation / outdoor-liminal register / industrial overgrowth"},
+le20:{d:"A field reduced to ankle-deep reflection days after the event. The horizon featureless, the crop submerged, the utility pole composing the only vertical.",s:"Source: Liminal Space expansion — 2026-05-27 curation / outdoor-liminal register / flooded field reference"},
+le21:{d:"Collective space at the hour when no collective exists to occupy it. Board-formed concrete and civic sculpture sharing a material decision about silence.",s:"Source: Liminal Space expansion — 2026-05-27 curation / outdoor-liminal register / Brutalist plaza"},
+le22:{d:"The gap in the row carrying more presence than the houses that flank it. The municipality has filed a notice; nothing has resulted from it.",s:"Source: Liminal Space expansion — 2026-05-27 curation / outdoor-liminal register / vacant lot reference"},
+le23:{d:"The decommissioned dock as the edge of a system that has stopped accepting cargo. The high-water mark remains; the traffic does not.",s:"Source: Liminal Space expansion — 2026-05-27 curation / outdoor-liminal register / coastal industrial"},
 la01:{d:"One light source. Everything else: surrendered. The chiaroscuro that takes Caravaggio's logic to its conclusion and removes the candles.",s:"Source: Illogically Is — tenebrism reference / chiaroscuro lighting / Music Supervision doc"},
 la02:{d:"Charcoal and ash. The palette of aftermath. The image as evidence of an event not yet named.",s:"Source: AmorphicGestalt — Clinical Abjection lighting / charcoal dissolution aesthetics"},
 la03:{d:"A single incandescent bulb proving it matters more than everything else in the room. The only honest light source is the one that admits its limitations.",s:"Source: Illogically Is storyboard — Scene 12: amber bulb above figure / final coda"},
@@ -1189,6 +1164,7 @@ la10:{d:"CRT monitor as the sole light source. Cold blue-grey. The light of some
 la11:{d:"Emergency exit red: the permanent crisis light for the crisis that hasn't arrived. The space in the color of pending catastrophe.",s:"Source: Sanguinolentum Vestigium — infrastructure indifference / emergency signage"},
 la12:{d:"The lights still on for a gathering that dispersed. The stage light that doesn't know the performance ended.",s:"Source: Personal Mementos — aftermath imagery / 'at long last inner silence'"},
 la13:{d:"A monitor at default settings pushing photons into whoever is in front of it. Indifference as an illumination strategy.",s:"Source: Architectural Expansion doc — technology as indifferent system"},
+la14:{d:"Air rendered visible by suspended dust in motionless light. The atmosphere documented as substance rather than absence. The room's breath held.",s:"Source: Library gap-fill — environmental-stillness register / 2026-05-27 curation"},
 cg01:{d:"Crimson and black. The palette of the document that indicts. The color of dried blood on official paper.",s:"Source: Sanguinolentum Vestigium — visual color language / invocation sequence"},
 cg02:{d:"Cold teal on a black field. The color of metal just before it becomes cold enough to hurt. No warmth permitted.",s:"Source: AmorphicGestalt — cold aesthetic palette / Architectural Expansion doc"},
 cg03:{d:"Amber and terracotta: nostalgia weaponized against itself. The beautiful warm light of a wrong memory.",s:"Source: Illogically Is storyboard — warm lens reference / ironic warm grade"},
@@ -1201,6 +1177,10 @@ cg09:{d:"VHS color bleed. The red channel advancing beyond its designated border
 cg10:{d:"Bleach bypass: color without conviction. Silver with too much. The image carrying both structures simultaneously.",s:"Source: Film processing — bleach bypass / silver retention technique"},
 cg11:{d:"The image retaining only what could not be removed without the subject disappearing. Information at minimum.",s:"Source: Void / Dissolution visual strategy / tonal annihilation"},
 cg12:{d:"The grey-flat grade of severe depression as a formal color decision. Clinical and accurate and without theatrical enhancement.",s:"Source: Personal Mementos — 'grey fog of uncertainty' passage / phenomenological color report"},
+cg13:{d:"The warmth that came from neglect rather than design. Yellow-brown tonal cast of an interior that has lived next to a habit. The color of paper near a cigarette.",s:"Source: Color Grade expansion — 2026-05-27 curation / warm-decay register / smoke-stain reference"},
+cg14:{d:"Low-pressure sodium: the warmth of municipal infrastructure, not hearth. The color of the parking lot at 3am rather than the color of comfort.",s:"Source: Color Grade expansion — 2026-05-27 curation / warm-decay register / sodium streetlight reference"},
+cg15:{d:"Warmth as duration rather than welcome. The color of a vigil that has been held too long.",s:"Source: Color Grade expansion — 2026-05-27 curation / warm-decay register / candle-decay reference"},
+cg16:{d:"The warm cast that has stopped being comforting and become evidence of neglect. Bare bulb in a basement or a service corridor.",s:"Source: Color Grade expansion — 2026-05-27 curation / warm-decay register / dirty incandescent reference"},
 gr01:{d:"Objects in relationships that are emotionally coherent rather than physically possible. The dream's internal logic applied to a photographic surface.",s:"Source: Synthesis Categories — surrealist compositional logic / Dali structural grammar"},
 gr02:{d:"Still life in the memento mori tradition. Omnia Vanitas. The skull and the clock and the extinguished candle making the argument in objects.",s:"Source: Sanguinolentum Vestigium — 'Omnia Vanitas' litany / vanitas tradition"},
 gr03:{d:"The face doubled along a central vertical axis. Neither half quite matching. The bilateral mirror as approximation, not fact.",s:"Source: AmorphicGestalt — bilateral symmetry prompt / uncanny bilateral duplication"},
@@ -1312,6 +1292,44 @@ bt11:{d:"Most organisms produced by sexual reproduction do not reach reproductiv
 bt12:{d:"The false vacuum phase transition: already occurred at the edges of the frame, propagating inward at light speed. No witness survives to report. No prior cause required.",s:"Source: Architectural Expansion doc — false vacuum / vacuum decay / acausal catastrophe"},
 bt13:{d:"The body kept alive past the desire for termination. Apoptosis suppressed at the level of the whole organism. The container that outlasts the desire of its contents to be released.",s:"Source: Architectural Expansion doc — apoptosis subversion / Personal Mementos: sleep forever, deathless death / Sanguinolentum Vestigium"},
 bt14:{d:"Heat death rendered as a color: not black, not white, but the grey of everything converging to the same temperature. Maximum entropy. The last frame before information disappears into uniformity.",s:"Source: Architectural Expansion doc — heat death / maximum entropy / Sanguinolentum Vestigium: Labor Sine Fructu"},
+fe01:{d:"The shoulder catalogued the way Bernd Becher catalogued a water tower: a single structural fact under one hard light. Sensuality removed by the precision of the rendering.",s:"Source: Figure / Exposed section — 2026-05-27 curation / Becher-typology applied to anatomy"},
+fe02:{d:"The back as Brutalist column. Each vertebra a structural event the camera is obligated to record. No address to the viewer because the architecture does not address anyone.",s:"Source: Figure / Exposed section — 2026-05-27 curation / Brutalist-anatomical reading"},
+fe03:{d:"Ribs articulated as structural members. The body holds itself together the same way a building does — and fails the same way.",s:"Source: Figure / Exposed section — 2026-05-27 curation / anatomical-as-architectural register"},
+fe04:{d:"The iliac crest read as topographical feature. The hip stops being a sensual term and becomes a coordinate.",s:"Source: Figure / Exposed section — 2026-05-27 curation / anatomy-as-geometry"},
+fe05:{d:"Richter's photographic-painting logic applied to the standing nude. Half the body absorbed by ground, the rest rendered as cold data. The figure does not look back because Richter's paintings do not look back.",s:"Source: Figure / Exposed section — 2026-05-27 curation / Richter chiaroscuro lineage"},
+fe06:{d:"The figure as the only warm body in a building that has outlived its purpose. The architecture remembers ceremony; the body declines to perform one.",s:"Source: Figure / Exposed section — 2026-05-27 curation / sacral-architecture residue"},
+fe07:{d:"The body filed alongside cooling towers and gasometers. Equal weight given to figure and infrastructure because the camera makes no distinction.",s:"Source: Figure / Exposed section — 2026-05-27 curation / industrial-typology cataloguing"},
+fe08:{d:"Stillness so prolonged it has stopped being a posture. The water is cold because warmth would be an event.",s:"Source: Figure / Exposed section — 2026-05-27 curation / interior-stillness register"},
+fe09:{d:"The cloth and the skin documented as the same kind of material. Disclosure without eroticism because the camera refuses to rank them.",s:"Source: Figure / Exposed section — 2026-05-27 curation / drape-as-equal-matter"},
+fe10:{d:"Posture held long enough that it has stopped being a choice. The corner provides only geometry, not comfort.",s:"Source: Figure / Exposed section — 2026-05-27 curation / interior-posture residue"},
+fe11:{d:"The chapel's last and unwilling penitent. The architecture remembers the gesture; the body produces it without consent or belief.",s:"Source: Figure / Exposed section — 2026-05-27 curation / sacral-residue posture"},
+fe12:{d:"Throat and collarbones catalogued the way Becher catalogues a roofline. The light reads the structure; the structure does not perform for the light.",s:"Source: Figure / Exposed section — 2026-05-27 curation / Becher-typology applied to anatomy"},
+fe13:{d:"Mid-century social-realist print quality turned on its only subject. The body documented rather than presented — the grain doing more compositional work than the pose.",s:"Source: Figure / Exposed section — 2026-05-27 curation / documentary-print register"},
+fe14:{d:"Anatomy stated by absence. Where the flesh thins, the light passes through; everywhere else, the figure is only edge.",s:"Source: Figure / Exposed section — 2026-05-27 curation / silhouette-as-anatomy"},
+fe15:{d:"The body recorded as a time-document. Scars and bruises composing the image more than the unbroken skin between them.",s:"Source: Figure / Exposed section — 2026-05-27 curation / body-as-archive"},
+fe16:{d:"The body as it actually holds itself when no one is performing it. Commercial-photography postures forbidden by their own honesty.",s:"Source: Figure / Exposed section — 2026-05-27 curation / unstudied-posture register"},
+fe17:{d:"The body as transient occupant of architecture designed for surveillance, not habitation. The figure leaves the frame rather than arrives in it.",s:"Source: Figure / Exposed section — 2026-05-27 curation / institutional-architecture register"},
+fe18:{d:"The hands establishing a smaller composition within the larger one of the body. The gesture of the body cataloguing itself.",s:"Source: Figure / Exposed section — 2026-05-27 curation / self-containment gesture"},
+fe19:{d:"The body undefended against weather and against the camera in equal measure. The cold is the only event.",s:"Source: Figure / Exposed section — 2026-05-27 curation / exterior-exposure register"},
+fe20:{d:"19th-century post-mortem photography without commitment to it. The figure breathing but indistinguishable in posture from one who has stopped.",s:"Source: Figure / Exposed section — 2026-05-27 curation / post-mortem photographic lineage"},
+fe21:{d:"Two figures, no addressing gesture. The pairing structural rather than relational — the room contains them; they do not contain each other.",s:"Source: Library gap-fill — paired-figure register / contemplative-not-erotic / 2026-05-27 curation"},
+fe22:{d:"Caravaggio's Doubting Thomas with the religious specificity removed. The touch is verification, not comfort. Examination as the only available form of attention.",s:"Source: Library gap-fill — paired-figure register / Doubting Thomas axis / 2026-05-27 curation"},
+fe23:{d:"A pairing that reads as a single body in two postures. The doubling formal rather than narrative — the chiaroscuro identical, the two figures composing a structural symmetry.",s:"Source: Library gap-fill — paired-figure register / mirror-inverse composition / 2026-05-27 curation"},
+fe24:{d:"Two bodies in the same room are not necessarily in the same time. One held sharp; one held in motion-blur. The frame admits the temporal discrepancy as a formal condition.",s:"Source: Library gap-fill — paired-figure register / asynchronous temporality / 2026-05-27 curation"},
+ap01:{d:"Apophatic communion — the wound studied as object rather than event. The body holds what passed through it without explanation.",s:"Source: Apophatica section — 2026-05-27 curation / via-negativa wound-as-object"},
+ap02:{d:"The body's own betrayal staged as quiet rite. No witness, no audience, no naming of what stained the cloth — apophatic because the cause refuses to declare itself.",s:"Source: Apophatica section — 2026-05-27 curation / pastoral via-negativa"},
+ap03:{d:"The image-object eroding faster than the body it once held. The photographic medium itself becoming the subject — the figure absent by being recorded.",s:"Source: Apophatica section — 2026-05-27 curation / medium-erosion via-negativa"},
+ap04:{d:"A rite stripped of its creed. The body holds the gesture; the meaning of the gesture has gone elsewhere. Atavistic-contemplative without occult tells.",s:"Source: Apophatica section — 2026-05-27 curation / unspecified-rite register"},
+ap05:{d:"Identity erased through the act of being printed. The face dissolves at viewing distance — closer inspection finds only the apparatus of reproduction.",s:"Source: Apophatica section — 2026-05-27 curation / print-grain erasure"},
+ap06:{d:"The composed face declining to perform its own grief. The smallest possible signifier of suffering held still — apophatic precisely because everything else is withheld.",s:"Source: Apophatica section — 2026-05-27 curation / withheld-affect register"},
+ap07:{d:"The universal mark passing through both subjects without naming itself. Two identities dissolving into shared stain — the wash neither blood nor pigment, only signifier.",s:"Source: Apophatica section — 2026-05-27 curation / double-exposure stain register"},
+ap08:{d:"Surveillance-typology of the self. The subject and its catalogued parts coexisting in the same frame — the body archived as if by its own forensic conclusion.",s:"Source: Apophatica section — 2026-05-27 curation / forensic-typology register"},
+ap09:{d:"Identity as compound of its own overlapping ghosts. No single face fully present; the self appearing only in the time-blur between its instances.",s:"Source: Apophatica section — 2026-05-27 curation / tintype-temporal register"},
+ap10:{d:"The body as combustion event — the direction of motion deliberately ambiguous, the figure either resolving from ash or dissolving into it. Apophatic because the question is left open.",s:"Source: Apophatica section — 2026-05-27 curation / combustion-ambiguity register"},
+ap11:{d:"Self-effacement performed without violence. The obscurer identical to the obscured — the gesture neither protective nor seductive, simply the closing of the face from view.",s:"Source: Apophatica section — 2026-05-27 curation / self-effacement register"},
+ap12:{d:"The body holding its own silence as a private and unwitnessed act. Contained self-silencing — no audience implied, no audience addressed.",s:"Source: Apophatica section — 2026-05-27 curation / sub-rosa containment"},
+ap13:{d:"The covering refuses to declare its function. The figure reads as load-bearing structure for its own shroud — vestment, garment, or weight, the image leaves it unsaid.",s:"Source: Apophatica section — 2026-05-27 curation / unspecified-covering register"},
+ap14:{d:"Geological-time consumption without violence. The body yielding to environmental accumulation as if collapsing into the substrate over centuries — slow burial as still-life.",s:"Source: Apophatica section — 2026-05-27 curation / slow-burial register"},
 
 };
 
@@ -1359,6 +1377,9 @@ cp17:"The ambrotype is a negative. The dark velvet behind it creates the illusio
 cp18:"Pushed two stops: the developer works longer, the grain grows, the shadows crush, the highlights blow. Development as pressure applied to silver halide crystals until they confess. Confirmed working combination.",
 cp19:"Potato starch dyed red, green, blue-violet, pressed against glass. The mottled grain is the starch making itself visible. The earliest color photography is also the most organic.",
 cp20:"The image held in the paper fibers themselves, not in an emulsion on top of them. The paper and the image are the same object. This seemed miraculous in 1841 and still does.",
+cp21:"At sufficient magnification, skin stops being recognizable as skin. The pore field reads as a planetary surface — craters, vellus hairs as small standing objects, the texture asserting itself before identification can occur. The body abstracts when you look at it closely enough.",
+cp22:"The scar is not a wound. The wound has finished. What remains is the body's structural revision of itself in response to the event it could not refuse. The cicatrix studied without narrative becomes a record kept on the body by a process the body did not initiate.",
+cp23:"The shutter held open long enough that the room's duration becomes the subject. Nothing moves in the frame; the photograph records what nothing-moving looks like over the duration of nothing-moving. Dust motes write the only available sentence — vertical streaks of attendance.",
 ff01:"The hair is the color of overexposed film stock left too long in the light. She carries the film's own damage as a physical attribute.",
 ff02:"The expression suspended at the precise moment between devastation and stoicism — the face in transit between two states, before the decision to continue with either.",
 ff03:"The dust or ash accumulated rather than applied. Accumulated substance is evidence. Applied substance is costume. Her surface is a record of prior location.",
@@ -1404,6 +1425,11 @@ le15:"The fire exit stairwell: designed entirely for an emergency that has not y
 le16:"The break room at 2am respiting nothing. The vending machines lit for no customer. The corkboard notices for events already concluded.",
 le17:"The customs hall infrastructure functioning without travelers. Barriers arranged for a queue that has not materialized. Bureaucratic architecture running without bodies to control.",
 le18:"The laundromat at 4am. The machines cycling for no one. The space of intimate strangers, emptied of the strangers, running anyway.",
+le19:"The yard does not require an occupant to remain a yard. The pallets stack themselves into compositions; the security pole stands without function; the weeds rise through the concrete with no notice taken. Industry as the persistence of its own infrastructure after the work has gone elsewhere.",
+le20:"The flood arrived, did its work, and is leaving. The water that remains is not the event but the aftermath of the event — what the field is holding while it decides what to do with what was deposited in it. The horizon offers no scale; the utility pole offers only a vertical.",
+le21:"Brutalist civic architecture was built for a public that has not been seen using it. The plaza opens and closes daily without remark. The board-formed concrete shows the wood grain of a form that was struck once and stored. The plaza will accept the public when the public arrives.",
+le22:"Every suburban street produces one of these. The structure demolished, the lot fenced, the notice posted, nothing replacing what was removed. The gap in the row of houses is more present than the houses themselves because the gap is undecided and the houses have stopped negotiating with their own existence.",
+le23:"The port facility was decommissioned according to a schedule established elsewhere. The dock has not yet been demolished. The bollards remain because the cost of removing them exceeds the cost of leaving them. The channel admits no traffic, and the absence of traffic has become the condition the facility is now organized around.",
 la01:"One light source. Everything else: surrendered. The chiaroscuro taken to its conclusion — the darkness not atmospheric but structural, the absence of justification for what remains in the dark.",
 la02:"Charcoal and ash. The palette of aftermath. The image as evidence of an event for which there is no name yet.",
 la03:"A single bulb proving it matters more than everything else in the room. The only honest light source — it admits its limitations by showing them. The rest of the world does not exist outside this radius.",
@@ -1417,6 +1443,7 @@ la10:"CRT monitors as the only light source. Cold blue-grey. The light of someth
 la11:"Emergency exit red: the permanent crisis light for the crisis that has not yet arrived. The space rendered continuously in the color of pending catastrophe.",
 la12:"The lights still on for a gathering that dispersed. The stage light that does not know the performance ended. The quality of light after something has concluded without informing the lighting system.",
 la13:"The monitor at default settings, too bright and too blue. The light of a machine applying photons to whoever is in front of it without having been calibrated for human presence.",
+la14:"The air is a substance. Normally it photographs as absence; under oblique light with suspended particulate, it photographs as itself. The room's atmosphere becomes the room's subject. Nothing has moved through this column of light in long enough for it to have stopped meaning anything.",
 cg01:"Crimson and dead black. The palette of the document that indicts. The red not warm — the red as warning. The color of dried blood on institutional paperwork.",
 cg02:"Cold teal on absolute black. The color of metal at low temperature. Beautiful and damaging to touch for long. No warmth permitted.",
 cg03:"Amber and terracotta: the warm grade of the wrong memory. Beautiful and inaccurate. Nostalgia weaponized against itself.",
@@ -1429,6 +1456,10 @@ cg09:"The red channel advancing beyond its designated border. VHS color bleed. A
 cg10:"Bleach bypass: the silver stayed. The color has lost confidence. Something between two states that should not coexist in the same emulsion.",
 cg11:"The image retaining only what could not be removed without the subject disappearing. Information at minimum. Not dramatic dark — informationally stripped.",
 cg12:"The grey-flat grade of severe depression as phenomenological report, not metaphor. The world when the brain has ceased to assign it significance.",
+cg13:"Smoke stain as color grade. Paper preserved near a habit for thirty years and consulted later as evidence of what its environment was. The warmth is not generous; it is degraded.",
+cg14:"Low-pressure sodium emits at 589 nanometers — a single wavelength near-monochrome. Under sodium light, the world's colors are not rendered incorrectly; they are not rendered at all. Only amber remains, and amber's absence.",
+cg15:"The candle does not generate enough light to claim the whole room, and yet the room is what the candle illuminates. The warmth is not the warmth of generosity. It is the warmth of duration — what has been held in this color long enough for the color to become a position.",
+cg16:"The bulb is older than anyone in the building. The fixture has been cleaned by no one. The yellowing in the highlights is the glass itself volunteering its information. Warmth as the residue of a system not maintained.",
 gr01:"The grammar of a dream applied to a photographic surface. Objects in relationships that are emotionally coherent rather than physically possible.",
 gr02:"Omnia Vanitas. The skull, the clock, the extinguished candle making the argument in objects. The still life as the only philosophical tradition that puts its evidence in a bowl.",
 gr03:"The face doubled along a central axis, neither half quite matching. Bilateral symmetry in the human face is always an approximation. Repetition makes this visible — and strange.",
@@ -1540,6 +1571,44 @@ bt11:"For most species, most offspring do not survive to reproductive maturity. 
 bt12:"The false vacuum phase transition, if initiated, produces a bubble of true vacuum expanding at c. Inside the bubble, the physical constants are different. The bubble arrives without warning because it travels at light speed. The last thing any observer inside the bubble perceives is the edge of the bubble arriving. No time for the observer to register what is happening.",
 bt13:"The desire for nothingness is a recognizable interior state. Sleep forever. Deathless death. The biological systems do not accommodate this request. The heart continues. The neurons fire. The parasite — which may be the genome, which may be the survival instinct, which may be the same thing — suppresses the termination sequence the organism has attempted to initiate. Continuation is enforced.",
 bt14:"Heat death is not an explosion. It is not a singularity. It is a color. Everything approaching the same temperature, the same entropy, the same undifferentiated grey. The last star cools. The last black hole evaporates. The universe achieves equilibrium: maximum entropy, no available work, no temperature differential. Not darkness. The grey of everything that has finished.",
+ap01:"Apophatic communion — the wound studied as still-life rather than event. The hand rests nearby without staunching gesture or urgency because urgency would imply a story the image declines to tell. The flesh holds what passed through it; the cause refuses to declare itself.",
+ap02:"The body's own betrayal staged as quiet rite. No witness, no audience, no naming of what has stained the cloth. The forest provides no source for the seepage; the via negativa works by what the image refuses to identify.",
+ap03:"The image-object eroding faster than the body it once held. The photographic medium becoming the subject — the figure absent by being recorded incorrectly. Negation operates through the disintegration of the means by which presence was proposed.",
+ap04:"A rite stripped of its creed. The body holds the gesture without specifying which gesture, the ceremony stripped of every signifier that would let the viewer name a tradition. Atavistic-contemplative without occult tells.",
+ap05:"Identity erased by the act of being printed. The face dissolves into halftone dots at viewing distance — closer inspection finds only the apparatus of reproduction. The face is being printed out of the print.",
+ap06:"The composed face declining to perform its grief. The smallest possible signifier of suffering held still. Apophatic because what is shown is so minimal that everything else must be inferred — and inference is refused as much as it is invited.",
+ap07:"Two identities dissolving into shared stain. The wash neither blood nor pigment specifically — only the universal mark passing through both subjects without naming itself. The mark refuses to decide what it is.",
+ap08:"Surveillance-typology of the self. The figure and its catalogued parts coexisting in the same frame — body archived alongside its own forensic conclusion. The image is a report on the subject filed by the subject.",
+ap09:"Identity as compound of its own overlapping ghosts. No single face fully present; the self appears only in the time-blur between its instances. The tintype damage has aligned itself with the philosophical proposition.",
+ap10:"The body as combustion event — the direction of motion deliberately ambiguous. Either resolving from ash or dissolving into it; the image declines to specify. Apophatic because the question of what is happening is left unanswered as a formal decision.",
+ap11:"Self-effacement performed without violence. The obscurer is identical to the obscured. The gesture is neither protective nor seductive — simply the closing of the face from being seen. The body has decided against participation.",
+ap12:"The body holding its own silence as a private and unwitnessed act. Contained self-silencing — no audience implied, no audience addressed. The gesture exists for the body that performs it.",
+ap13:"The covering refuses to declare its function. Not vestment, not garment — only weight. The body reads as load-bearing structure for its own shroud, and the image leaves the nature of the covering unsaid as a formal choice.",
+ap14:"Geological-time consumption without violence. The body yielding to environmental accumulation as if collapsing into the substrate over centuries. Slow burial presented as still-life — the subject and its consumption indistinguishable from each other.",
+fe01:"Bernd Becher photographed water towers as inventory rather than icon. The same camera turned on a shoulder finds no reason to make the shoulder iconic. The light grazes; the rest of the body abdicates from the composition. A single anatomical fact unaccompanied by argument.",
+fe02:"The vertebral column read as Brutalist column — load-bearing, sequential, repetitive in its module, structural before it is biological. The back does not address the viewer because no Brutalist structure addresses anyone. Address requires intention; the spine merely persists.",
+fe03:"Skin thin enough to disclose its substructure. The rib cage in raking light reads as the same kind of evidence as a beam visible through plaster — what was meant to be hidden has stopped being hidden. The body and the building share this honesty under duress.",
+fe04:"The iliac crest as topographical event. The hip stops being a sensual term and becomes a coordinate the camera is obligated to record. No glamour pose extends the form; the form extends only to the limit the skeleton imposes on it.",
+fe05:"Gerhard Richter's photographic-painting logic applied to a standing nude — half the figure absorbed into ground, the other half rendered as cold information. Richter's paintings do not look back. Neither does this one.",
+fe06:"The body inside an architecture that has outlived the rite it was built for. The columns remember the gesture; the figure declines to produce it. The only warm body in a building designed to receive a different kind of attention.",
+fe07:"Industrial inventory extended to the body. The cooling tower and the figure both photographed as catalogue items — equal compositional weight, no hierarchical distinction. The camera makes no claim that one is more interesting than the other.",
+fe08:"Stillness held long enough that the room temperature has equilibrated with the water and the water with the body. There is nothing left for time to do. The failed plumbing is the only implied sound; the body has agreed to wait.",
+fe09:"The cloth and the skin documented as the same kind of matter. The drape carries as much compositional weight as what it half-conceals — disclosure without eroticism because the camera refuses to rank the materials in front of it.",
+fe10:"A posture that has stopped being a choice. The corner provides geometry, not comfort. The spine dominates the composition because the spine is the only structural element either the body or the room is willing to commit to.",
+fe11:"The architecture remembers the gesture; the body produces it without consent or belief. The chapel's last and unwilling penitent — a posture completed by a body that no longer subscribes to the proposition the posture once defended.",
+fe12:"A throat catalogued the way Becher catalogued a roofline. Single grazing light tracing the line from chin to sternal notch. Anatomy elevated to formal subject matter — the light reads the structure; the structure does not perform.",
+fe13:"Mid-century social-realist photography turned on its only available subject. The body documented rather than presented; the grain doing more compositional work than the pose. The print quality of a humanist project that has run out of other people to photograph.",
+fe14:"Anatomy stated by absence. The flesh thins enough at the ear and the hand for light to pass through; everywhere else, the figure is only edge contour. The body proves itself by what the light is willing to refuse.",
+fe15:"The body as archive of its own duration. The surgical scar at the abdomen and the faded bruise on the thigh do more compositional work than the unbroken skin between them. The image records what time has chosen to leave visible.",
+fe16:"The body as it actually holds itself when no one is performing it. The spine producing a slow S-curve no commercial-photography pose would permit. Honesty as the posture commercial work has banned.",
+fe17:"Institutional architecture designed for surveillance, not habitation. The body walks away from the camera because the corridor exists to direct movement, not to receive presence. The figure leaves the frame rather than arrives in it.",
+fe18:"The hands establishing a smaller composition within the larger composition of the body. Not modesty — self-containment. The body cataloguing itself, the way one might place objects in a box one has decided to close.",
+fe19:"The body undefended against the weather and against the camera in equal measure. The skin shows the cold in raised hair and bluish undertone. The rain is the only event the frame admits.",
+fe20:"19th-century post-mortem photography without committing to it. The figure breathing but indistinguishable in posture from one who has stopped. The composition references the tradition without joining it.",
+fe21:"Two figures in the same room are not necessarily a pair. The composition admits both bodies without asserting a relationship between them. The room is the subject; the figures are inventory. Pairing as the absence of pairing — the photograph refuses to provide a narrative the bodies have not provided.",
+fe22:"Caravaggio's Doubting Thomas: the apostle's finger entering the wound to verify the resurrection. Strip the resurrection from the gesture and what remains is examination — one body reaching toward a mark on another body for confirmation. The touch is contemplative, not consolatory. Verification is the only consolation it offers.",
+fe23:"The two figures share enough morphology that the eye reads them as one body in two postures. The doubling is formal — the chiaroscuro identical, the framing symmetric. The image is not about a relationship; it is about the proposition that one body can occupy two postures simultaneously if the frame is willing to admit it.",
+fe24:"Two bodies in the same frame can be in different times. Long shutter on one, fast shutter on the other — the moving figure writes itself as a smear of presence, the stationary figure asserts itself as a fact. The image documents the temporal discrepancy as an architectural condition of the room rather than as a photographic error.",
 
 };
 
@@ -1550,34 +1619,49 @@ const DIAG_Q=[
   {t:'Arrested — motion suspended between states',ids:['ff04','ff14','vd13']},
   {t:'Accumulated — the body retains what cannot be spoken',ids:['pd03','ff16','pd09']},
   {t:'Evacuated — the self already departed',ids:['fp03','ff13','vd03']},
+  {t:'Withheld — the body declining to declare itself',ids:['ap11','ap12','ap13']},
 ]},
 {id:'q2',label:'II. SITE OF OCCURRENCE',sub:'Ubi factum est?',hint:'Architecture and space',opts:[
   {t:'Institutional — never designed for comfort, only persistence',ids:['ir04','le11','la09']},
   {t:'Liminal — threshold as permanent address',ids:['le03','le08','ff15']},
   {t:'Post-occupancy — function intact, purpose removed',ids:['ir03','le02','la12']},
   {t:'Subterranean / infrastructural — the system running',ids:['ir05','ir07','le12']},
+  {t:'Exposed — body and architecture equally subject to documentation',ids:['fe06','fe07','fe17']},
 ]},
 {id:'q3',label:'III. TEMPORAL REGISTER',sub:'Quando accidit?',hint:'At what moment',opts:[
   {t:'The perpetual instant — no before, no after, only this',ids:['vd12','pd08','fp01']},
   {t:'Aftermath — the lights still on for the dispersed gathering',ids:['la12','le16','ir03']},
   {t:'3AM threshold — end of one thing, start of nothing',ids:['le08','le18','ir09']},
   {t:'Duration collapsed — long exposure, the specific dissolved',ids:['vd07','at06','cp07']},
+  {t:'Post-event — the wound studied as still-life rather than incident',ids:['ap01','ap02','fe15']},
 ]},
 {id:'q4',label:'IV. ATMOSPHERIC PRESSURE',sub:'Quale lumen?',hint:'Quality of light and air',opts:[
   {t:'Forensic — flat total flash, the light of what cannot be undone',ids:['la05','ca04','cp18']},
   {t:'Erratic — fluorescent flicker, the light that cannot commit',ids:['la09','rv03','ir10']},
   {t:'Compressed — one source, everything else surrendered to dark',ids:['la01','la03','cg11']},
   {t:'Cold and merciless — every surface equally illuminated',ids:['la08','cg04','ca03']},
+  {t:'Grazing — single hard sidelight raking surface, rest absorbed',ids:['fe01','fe03','fe14']},
 ]},
 {id:'q5',label:'V. DEGREE OF DISSOLUTION',sub:'Quantum manet?',hint:'How present is the subject',opts:[
   {t:'Present — but made of static, edges uncommitted',ids:['ff11','at20','vd01']},
   {t:'Half-erased — becoming the white space that precedes nothing',ids:['ff13','vd02','at18']},
   {t:'Signal only — presence inferential, information at minimum',ids:['vd14','vd10','cg12']},
   {t:'Already memory — the reel runs, it was and never will be again',ids:['fp04','vd09','at05']},
+  {t:'Subsumed — figure merging with substrate or covering',ids:['ap10','ap13','ap14']},
 ]},
 ];
 
 // ── DATABASE ─────────────────────────────────────────────────────────
+// ── STACK_TRIGGERS ──────────────────────────────────────────────
+// LoRA-stack trigger phrases. Appended to compiled positive prompt
+// when the STACK TRIGGERS toggle is on. Stack-level, not per-entry —
+// reflects how LoRA triggers actually fire (stack-wide regardless
+// of subject). Future stacks: add a key here.
+const STACK_TRIGGERS={
+  'WULD Standard':'grainy, moody, analog texture, film grain, Kodak Portra 400',
+  'Documentary B&W':'silver gelatin print, archival photograph, high contrast monochrome, documentary realism, black and white film'
+};
+
 const DB=[
 // AESTHETIC & TEXTURE
 {id:'at01',cat:'Aesthetic & Texture',sub:null,title:'Xerox Degradation',text:'high-contrast photocopy, heavy toner malfunction, dirty distressed paper, uneven exposure, scanner drag, low-fi zine aesthetic, fifth-generation reproduction at the edge of legibility, the content being consumed by the medium'},
@@ -1623,6 +1707,9 @@ const DB=[
 {id:'cp18',cat:'Camera & Process',sub:null,title:'Kodak Double-X Pushed',text:'35mm Kodak Eastman Double-X negative film pushed two stops in development, extreme increase in contrast and grain, harsh gradient between interior dark and exterior blinding overexposure, the development process as a form of violence applied to silver halide crystals'},
 {id:'cp19',cat:'Camera & Process',sub:null,title:'Autochrome Plate',text:'autochrome color plate, potato-starch diopter filter, mottled grain structure, soft diffused color, impressionistic tonality, luminous shadows, hazy edge definition, the earliest color photograph — the image as approximation rather than record'},
 {id:'cp20',cat:'Camera & Process',sub:null,title:'Salt Print / 1840s Process',text:'earliest photographic salt print, matte surface with embedded image in paper fibers, warm sepia-mauve tones, soft indistinct edges, watercolor-like translucency, experimental chemistry, the image as material evidence rather than representation, the photograph before it knew it was a photograph'},
+{id:'cp21',cat:'Camera & Process',sub:null,title:'Macro Pore Field',text:'extreme macro lens close to bare skin, pore-level detail with the fine pale hairs catching grazing light, the surface read as topography rather than as body, no orientation cue indicating which part of the body is shown, the skin as terrain photographed without scale reference'},
+{id:'cp22',cat:'Camera & Process',sub:null,title:'Cicatrix Macro',text:'macro close on a healed scar across pale skin, the raised tissue pale and slightly waxy in contrast to surrounding flesh, no narrative supplied for the injury, the scar studied as geological feature with its own ridges and depressions, the body presented as a record of events it did not choose'},
+{id:'cp23',cat:'Camera & Process',sub:null,title:'Long Exposure / Empty Interior',text:'multi-minute long-exposure photograph of a bare interior with no figure or moving element, dust motes registered as faint vertical streaks where they have drifted across the frame during the exposure, the room\'s own duration captured rather than any event within it, the photograph as a record of nothing happening for a measurable interval'},
 // FIGURE / SUBJECT — FEMALE
 {id:'ff01',cat:'Figure / Subject',sub:'Female',title:'The Pale-Haired Figure',text:'a young woman whose hair is light — not blonde exactly the color of old film stock left too long in the light — worn loose falling across the face partially obscuring one eye; her face carries the quality of someone who has been looked at too much and seen too little; she wears a slip of white or near-white almost weightless fabric; bare collarbone bare feet; a posture of arrested motion; one hand resting against nothing'},
 {id:'ff02',cat:'Figure / Subject',sub:'Female',title:'The Dark-Haired Figure',text:'a young woman late twenties with dark heavy hair falling past the shoulder carrying its own gravity — not styled not undone simply present; face wide at the jaw eyes deep-set and the color of water in shadow; thin-strapped chemise in faded black or deepest charcoal translucent where it meets the lower back; her expression suspended at the precise moment between devastation and stoicism; kneeling or crouching on a bare floor arms loose one hand open'},
@@ -1672,6 +1759,11 @@ const DB=[
 {id:'le16',cat:'Liminal Space',sub:null,title:'The Break Room After Closing',text:'an institutional break room at 2am — the vending machines still lit humming; the microwave clock blinking; the table with mismatched chairs; the notices on the corkboard for events that have already occurred; the specific desolation of a space designed for brief human respite that currently respites nothing'},
 {id:'le17',cat:'Liminal Space',sub:null,title:'The Customs Hall / Empty',text:'an airport customs hall with no travelers — the serpentine queue barriers in place for a crowd that has not arrived; the inspection stations staffed by nobody; the overhead signage pointing to destinations the empty hall cannot access; the bureaucratic architecture of controlled movement operating without bodies to control'},
 {id:'le18',cat:'Liminal Space',sub:null,title:'The Overnight Laundromat',text:'a 24-hour laundromat at 4am — the machines running or stopped; fluorescent strips overhead; the plastic chairs in a row; the specific social intimacy of the space where strangers bring their dirty laundry; emptied of everyone but the machines still cycling'},
+{id:'le19',cat:'Liminal Space',sub:null,title:'Derelict Yard / Industrial Overgrowth',text:'an outdoor industrial yard fenced and forgotten, pallets stacked askew, weeds risen through cracked concrete and around abandoned drums, a security floodlight pole still standing without bulb or function, the rusted shell of one truck cab at the perimeter, the architecture of light industry left running on no instruction'},
+{id:'le20',cat:'Liminal Space',sub:null,title:'Flooded Field at Dusk',text:'a flat agricultural field in standing water from a flood event days or weeks past, the water reflective and shallow ankle-deep at most, the crop reduced to dark stubble breaking the surface, a single utility pole and its reflection composing the frame, the horizon featureless, the light low and the color register grey-amber'},
+{id:'le21',cat:'Liminal Space',sub:null,title:'Brutalist Plaza at Dawn',text:'a large concrete public plaza at first light, the surface raw board-formed concrete the color of overcast sky, civic sculpture in the same material as the ground, no human figure and no movement, the wind carrying nothing, the architecture of collective space at the hour when no collective exists to occupy it'},
+{id:'le22',cat:'Liminal Space',sub:null,title:'Abandoned Suburban Lot',text:'a fenced rectangular lot at the edge of a residential street, foundation visible where a structure was demolished and never replaced, weeds at waist height, a notice from the municipality faded on a wooden stake, the surrounding houses occupied but turned away from the lot, the gap in the row carrying more presence than the houses that flank it'},
+{id:'le23',cat:'Liminal Space',sub:null,title:'Coastal Industrial / Decommissioned Dock',text:'the edge of a decommissioned port facility at low tide, concrete pilings stained with the high-water mark, mooring bollards corroded, the channel beyond holding no traffic, gantry cranes visible at distance in inoperative postures, gulls absent or indifferent, the smell of brine and rust implied through visual register alone'},
 // LIGHTING & ATMOSPHERE
 {id:'la01',cat:'Lighting & Atmosphere',sub:null,title:'Chiaroscuro / Isolation',text:'near-total black environment with a single isolated warm source sculpting one surface, the surrounding darkness not dramatic but structural, the light justifying itself in a world that has given up on justification, everything outside the light radius simply gone'},
 {id:'la02',cat:'Lighting & Atmosphere',sub:null,title:'Charcoal Dust Dissolution',text:'charcoal spatter and particle dissolution on pale ground, monochrome dust-and-ash palette, edges unraveling into void, graphite smear and soot bloom, figure emerging from disintegration rather than resolution, the image as evidence of an event that has not yet been named'},
@@ -1686,6 +1778,7 @@ const DB=[
 {id:'la11',cat:'Lighting & Atmosphere',sub:null,title:'Emergency Exit Sign Red',text:'the red glow of an emergency exit sign as sole light source — everything in the space bathed in crisis-red without the crisis, the emergency light that runs continuously whether or not there is an emergency, the space rendered in the color of pending catastrophe that never arrives'},
 {id:'la12',cat:'Lighting & Atmosphere',sub:null,title:'Aftermath Light',text:'the specific quality of light in a space immediately after something has ended — the lights still on for a gathering that has dispersed; the light continuing to illuminate nothing it was meant to illuminate; the quality of a stage after the performance; the light that does not know it is no longer needed'},
 {id:'la13',cat:'Lighting & Atmosphere',sub:null,title:'The Uncalibrated Monitor',text:'light from a monitor or screen that has been left at default uncalibrated settings — too bright too blue at midnight, the light that does not simulate daylight but simply pushes photons into the face of whoever is in front of it, the light of the machine being indifferent to the body it illuminates'},
+{id:'la14',cat:'Lighting & Atmosphere',sub:null,title:'Suspended Dust / Motionless Air',text:'the air rendered visible by suspended dust catching a single oblique light source, the dust column motionless because the air itself is motionless, the atmosphere documented as substance rather than absence, the room\'s breath held'},
 // COLOR GRADE
 {id:'cg01',cat:'Color Grade',sub:null,title:'Crimson and Black',text:'duotone crimson-red and dead black, brutally cropped composition, heavy inked border with organic ink bleed and tear degradation, coarse halftone screen print, extreme macro cropping removing conventional legibility, the red as warning rather than beauty'},
 {id:'cg02',cat:'Color Grade',sub:null,title:'Cold Teal / Black Field',text:'pure black field, cold slate-teal accent only, monochrome teal-grey palette, stark negative space as primary element, the darkness as more present than the light, color of metal just before it becomes cold enough to hurt'},
@@ -1699,6 +1792,10 @@ const DB=[
 {id:'cg10',cat:'Color Grade',sub:null,title:'Bleach Bypass Silver',text:'bleach bypass process retaining silver in emulsion, the image carrying both monochromatic silver structure and remaining color information simultaneously, colors desaturated and blacks dense, the aesthetic of a world where color has not been removed but has simply lost confidence'},
 {id:'cg11',cat:'Color Grade',sub:null,title:'Total Tonal Annihilation',text:'image crushed to near-total black with only a sliver of information surviving — not dramatically dark but informationally stripped, the data reduced to the minimum required for recognition, the picture that has retained only what could not be removed without the subject disappearing entirely'},
 {id:'cg12',cat:'Color Grade',sub:null,title:'Grey Fog Grade',text:'the specific grey-flat grade of severe depression as a color decision — not dramatically dark but robbed of saturation depth and tonal range, the world as it appears when the brain has ceased to assign it significance, clinical and accurate and without theatrical enhancement'},
+{id:'cg13',cat:'Color Grade',sub:null,title:'Nicotine Stain Grade',text:'an overall yellow-brown tonal cast as if the image has been preserved in a smoke-stained interior for several decades, highlights pulled toward dirty cream, midtones a warm amber-ochre, whites refusing to be white, the color of paper that has lived next to a cigarette habit, the warmth not generous but degraded'},
+{id:'cg14',cat:'Color Grade',sub:null,title:'Sodium Streetlamp Warm',text:'low-pressure sodium-vapor color grade, monochromatic amber-orange across the entire image regardless of original local color, almost no blue or green information surviving, the warmth of municipal infrastructure rather than hearth, the color of the parking lot at 3am rather than the color of comfort'},
+{id:'cg15',cat:'Color Grade',sub:null,title:'Candle Decay Warm',text:'low-key interior warm grade pulled toward red-amber, the warmth of a small unstable light source in a large dim room, highlights blooming warm and shadows holding deep brown rather than black, the color of a vigil that has been held too long, warmth as duration rather than welcome'},
+{id:'cg16',cat:'Color Grade',sub:null,title:'Dirty Incandescent',text:'tungsten bulb warm grade with the dust and yellowing of a fixture that has not been cleaned in years, highlights slightly green-yellow from oxidized glass, midtones a tired ochre, the color of a bare bulb in a basement or a service corridor, the warm cast that has stopped being comforting and become evidence of neglect'},
 // COMPOSITIONAL GRAMMAR
 {id:'gr01',cat:'Compositional Grammar',sub:null,title:'Surrealist Tableau',text:'surrealist composite staging, allegorical density — multiple symbolic registers layered simultaneously, the logical grammar of a dream applied to a photographic surface, objects in relationships that are emotionally rather than physically coherent, impossible shadows cast by objects that cannot cast them'},
 {id:'gr02',cat:'Compositional Grammar',sub:null,title:'Memento Mori Still Life',text:'still life in the memento mori tradition, objects arranged with cold scientific neutrality, the skull and the clock and the extinguished candle, Omnia Vanitas, the composition as an argument made in objects rather than words'},
@@ -1820,6 +1917,48 @@ const DB=[
 {id:'sd13',cat:'Sound / Duration',sub:null,title:'The Sustained Note',text:'the fermata extended to the duration of the entire image — the single held pitch that has become the environment rather than the event; the drone as the condition of the image rather than its content; the sustained thing held so long that duration has become the subject rather than the vehicle; the visual equivalent of the long tone sustained past all convention'},
 {id:'sd14',cat:'Sound / Duration',sub:null,title:'Low Frequency as Architecture',text:'sub-bass as primary structural element — the frequency perceived in the sternum before the ear registers it; the image constructed in the register of infrasound, pipe organ pedal tones, and seismic event; the visual equivalent of music that exists at the lower threshold of human perception where the body receives what the ear cannot fully process; the frequency felt as pressure rather than heard as sound'},
 
+// FIGURE / EXPOSED
+{id:'fe01',cat:'Figure / Exposed',sub:null,title:'Bare Shoulder Turned',text:'the figure\'s bare shoulder rendered with the precision of a Bernd Becher water-tower elevation, single hard sodium light grazing the clavicle and dying along the trapezius, the rest of the body absorbed into the shadow that occupies the lower two-thirds of the frame, no warmth in the rendering, the anatomical fact stated without seduction'},
+{id:'fe02',cat:'Figure / Exposed',sub:null,title:'Spine as Architecture',text:'the bare back turned fully toward the camera, vertebrae catalogued as individual structural events, the spine read as Brutalist column from sacral base to scapular crest, no face no orientation toward the viewer, the body presented as object of typology rather than subject of address'},
+{id:'fe03',cat:'Figure / Exposed',sub:null,title:'Ribcage Visibility / Low Sidelight',text:'the rib cage visible beneath thin skin in low raking sidelight, individual ribs articulated without softening, the sternum a vertical line of bone-shadow at the chest\'s center, no idealization of weight or proportion, the body as a structure that breathes and decays in equal measure'},
+{id:'fe04',cat:'Figure / Exposed',sub:null,title:'Hip-Bone Topology',text:'the iliac crest catching the single warm sliver of light, the hip a geometric event rather than a sensual one, the body weight shifted slightly to one side producing the asymmetry the camera records as data, no glamour-pose extension of the form, the anatomy stated as observation'},
+{id:'fe05',cat:'Figure / Exposed',sub:null,title:'Half-Turn / Chiaroscuro Standing Nude',text:'a nude femme figure half-turned away from the camera, weight on the back leg, near arm fallen at the side, no acknowledgment of the lens, the lit half of the body rendered in cold-grey skin tone against a black ground that consumes the unlit half entirely, Richter photographic-painting logic applied to standing nude'},
+{id:'fe06',cat:'Figure / Exposed',sub:null,title:'Cathedral Nude',text:'a bare figure standing in the nave of a derelict concrete cathedral, dim sodium light through broken stained glass, body half-absorbed into shadow, hand trailing along a rust-streaked column, expression contemplative and turned away, the figure as the only warm body in an architecture that has outlived its function'},
+{id:'fe07',cat:'Figure / Exposed',sub:null,title:'Becher Typology / Bare Figure',text:'a single nude figure photographed against a Becher-typology industrial backdrop — cooling tower, gasometer, concrete blast wall — figure centered as if catalogued, frontal but with no gaze toward camera, equal weight given to body and structure, the image as a deadpan inventory item rather than a portrait'},
+{id:'fe08',cat:'Figure / Exposed',sub:null,title:'Bath / Cold Water Stillness',text:'the figure partially submerged in cold grey water in a derelict tiled bathroom, shoulders and clavicles above the surface, ribs visible at the inhalation, the body held in the posture of someone who has been still for a long time, the room\'s failed plumbing as the only implied sound'},
+{id:'fe09',cat:'Figure / Exposed',sub:null,title:'Drape / Material Equivalence',text:'the bare figure partially wrapped in a heavy unbleached canvas drape, drape failing at the shoulder and falling open at the hip, the fabric carrying as much compositional weight as the skin it half-conceals, no eroticism in the disclosure — the cloth and the body equally documented as material'},
+{id:'fe10',cat:'Figure / Exposed',sub:null,title:'Curled / Concrete Corner',text:'the nude figure curled on the floor against a corner of unfinished concrete wall, knees drawn up, arms wrapped around the shins, head turned down and away, the spine rendered as the dominant compositional line, the body posture of someone who has been in this position long enough that the position has stopped being a choice'},
+{id:'fe11',cat:'Figure / Exposed',sub:null,title:'Kneeling / Abandoned Apse',text:'the bare figure kneeling on cracked terrazzo in the apse of an abandoned chapel, hands open and resting on the thighs, head bowed, no devotional intent only the residual posture of a building that once demanded the gesture, the figure as the chapel\'s last and unwilling penitent'},
+{id:'fe12',cat:'Figure / Exposed',sub:null,title:'Throat / Collarbone Light Study',text:'the figure\'s throat and collarbones isolated in a tight close composition, head tilted slightly back and away from camera, the line from chin to sternal notch traced by a single grazing light, the rest of the body absent from the frame, anatomy elevated to formal subject matter the way a Bernd Becher catalogues a roofline'},
+{id:'fe13',cat:'Figure / Exposed',sub:null,title:'Full Nude / Silver-Gelatin Documentary',text:'a full-length nude rendered in silver-gelatin black-and-white register, deep blacks consuming half the figure, grain coarse enough to function as a second layer of composition, the body documented rather than presented, the print quality of mid-century social-realist photography turned on its only subject'},
+{id:'fe14',cat:'Figure / Exposed',sub:null,title:'Backlit Silhouette / Translucent Edge',text:'the bare figure backlit by a single bare bulb against a wall of cracked plaster, body reduced to silhouette with rim-light defining only the edge contour, occasional translucency at the ear and the hand where the flesh thins enough for light to pass through, anatomy stated by absence rather than presence'},
+{id:'fe15',cat:'Figure / Exposed',sub:null,title:'Time-Document Body',text:'the bare body bearing the marks of its own duration — surgical scar at the abdomen, faded bruises along the thigh, dark circles beneath the eyes, the body recorded as a time-document rather than as an aesthetic object, the imperfections more compositionally important than the unbroken expanses of skin'},
+{id:'fe16',cat:'Figure / Exposed',sub:null,title:'Postural Asymmetry / Unstudied Stance',text:'the nude figure standing in unstudied asymmetry, weight collapsed onto one hip, opposite shoulder dropped, the spine producing a slow S-curve that no commercial-photography pose would permit, the body as it actually holds itself when no one is performing it'},
+{id:'fe17',cat:'Figure / Exposed',sub:null,title:'Sodium-Lit Hallway / Receding Figure',text:'the bare figure walking away from camera down a long sodium-lit institutional hallway, harsh amber from above flattening the scapular landscape, the figure leaving the frame rather than arriving in it, the body as transient occupant of architecture designed for surveillance rather than habitation'},
+{id:'fe18',cat:'Figure / Exposed',sub:null,title:'Hands as Self-Containment',text:'the nude figure with hands brought to the chest or the abdomen — not in modesty but in self-containment, the hands establishing a smaller composition within the larger one of the body, the gesture of the body cataloguing itself'},
+{id:'fe19',cat:'Figure / Exposed',sub:null,title:'Rain / Concrete Courtyard',text:'a bare figure standing in slow rain on a flooded concrete courtyard at twilight, water pooling around the bare feet, skin showing the cold in raised hairs and bluish undertone, no shelter or covering in the frame, the body undefended against weather and against the camera in equal measure'},
+{id:'fe20',cat:'Figure / Exposed',sub:null,title:'Mortuary-Coded Repose',text:'the nude figure lying on a stripped metal frame in a bare-walled room, supine, eyes closed, arms at sides, the composition referencing 19th-century post-mortem photography without committing to it — the figure breathing but indistinguishable in posture from one who has stopped'},
+{id:'fe21',cat:'Figure / Exposed',sub:null,title:'Two Backs Turned',text:'two bare figures seen from behind, standing several feet apart in a bare-walled room, neither acknowledging the other, weight on different legs producing minor asymmetry between them, no contact and no addressing gesture, the pairing structural rather than relational — the room contains two bodies that have not arranged themselves with respect to each other'},
+{id:'fe22',cat:'Figure / Exposed',sub:null,title:'Examination / Doubting Thomas Axis',text:'two bare figures, one standing with arm slightly extended, the other reaching forward with a single hand to touch a marked area on the first figure\'s side, the gesture examination rather than affection — contemplative inspection of a healed wound or scar, the composition referencing Caravaggio\'s Doubting Thomas with the religious specificity removed, the touch a verification rather than a comfort'},
+{id:'fe23',cat:'Figure / Exposed',sub:null,title:'Mirror-Inverse Pair',text:'two bare figures composed as a near-symmetry — one kneeling and one standing, or one facing left and one facing right, the bodies similar enough in build that the pairing reads as a single body in two postures rather than two individuals, the chiaroscuro identical on both, the doubling formal rather than narrative'},
+{id:'fe24',cat:'Figure / Exposed',sub:null,title:'Asynchronous Pair',text:'two bare figures sharing the frame in different temporal registers, one held in motion-blur at slow shutter and the other rendered perfectly sharp, the moving figure walking past or behind the stationary one, neither aware of the other\'s temporal condition, the image admitting that two bodies in the same room are not necessarily in the same time'},
+
+// APOPHATICA — figure/face defined by what is being subtracted from it; pre-religious, body-anchored, contemplative-closed-inward
+{id:'ap01',cat:'Apophatica',sub:null,title:'Glass Communion',text:'macro photograph of skin holding embedded fragments of broken glass, a hand resting nearby without urgency or staunching gesture, no causation depicted, the post-event surface presented as still-life, warm low-key light pooling on bare flesh, the wound studied as object rather than event'},
+{id:'ap02',cat:'Apophatica',sub:null,title:'Pastoral Defilement',text:'a figure in ceremonial white slip or nightgown seated on autumn forest floor, dark seepage spreading into the fabric from no visible source, late-afternoon woodland light, fallen leaves and bare earth — the body\'s own betrayal staged as quiet rite without witness or audience'},
+{id:'ap03',cat:'Apophatica',sub:null,title:'Wet Emulsion Drift',text:'a figure barely-legible behind warped silver gelatin emulsion damage, the photographic medium itself dissolving around the subject, distorted contours and chemical drift across the plate, monochrome with visible solvent erosion — the image-object eroding faster than the body it once held'},
+{id:'ap04',cat:'Apophatica',sub:null,title:'Geometric Officiant',text:'a nude figure photographed from behind, contained inside an abstract polygonal frame, holding an unidentified geometric object aloft, ceremonial composition stripped of all religious iconography or recognizable creed, flat black ground, the body presented as instrument of an unspecified and unfinished rite'},
+{id:'ap05',cat:'Apophatica',sub:null,title:'Halftone Effacement',text:'a face decomposing into print-screen halftone dots, identity collapsing into pure reproduction-grain, high-contrast black and white, features dissolving into abstract pattern at viewing distance, the zine-aesthetic erasure of an individual through the act of being printed'},
+{id:'ap06',cat:'Apophatica',sub:null,title:'Contained Tear',text:'a tight portrait, single tear caught mid-track on the cheek, no theatricality or visible distress in the rest of the face, monochrome with shallow depth of field, the smallest possible signifier of suffering held still — the composed face declining to perform its own grief'},
+{id:'ap07',cat:'Apophatica',sub:null,title:'Sanguinary Overlay',text:'two faces double-exposed through deep red ink-wash, individual identity dissolving into shared stain, paper-grain texture and crease damage across the image, the wash neither blood nor pigment specifically — simply the universal mark passing through both subjects without naming itself'},
+{id:'ap08',cat:'Apophatica',sub:null,title:'Evidence-Board Body',text:'a full figure standing in an empty room paired with an adjacent grid of dissected features — eyes, mouth, hand, isolated fragments pinned beside — the subject presented as surveillance-typology of itself, 35mm grain, archival collage, body and its catalogued parts coexisting in the same frame'},
+{id:'ap09',cat:'Apophatica',sub:null,title:'Tintype Compound',text:'multiple overlapping exposures of similar female faces on damaged tintype, identity registered as time-blur, edges cracked and crystallized from chemical age, the self appearing as compound of its own overlapping ghosts — no single face fully present, each only partial'},
+{id:'ap10',cat:'Apophatica',sub:null,title:'Particulate Emergence',text:'a face resolving from or dissolving into a cloud of dust and ash — direction of motion deliberately ambiguous — the body as combustion event, subject and atomization indistinguishable, monochrome with dense particulate texture, no clear boundary between figure and the matter consuming or releasing it'},
+{id:'ap11',cat:'Apophatica',sub:null,title:'Hair-Veil Erasure',text:'a figure with face fully obscured by their own long hair, self-effacement performed without violence or theatricality, the obscurer identical to the obscured, low-key light, the gesture neither protective nor seductive — simply the closing of the face from being seen'},
+{id:'ap12',cat:'Apophatica',sub:null,title:'Sub Rosa Gesture',text:'a hand placed against the figure\'s own mouth or fingers laced deep into their own hair, contained self-silencing, no audience implied or addressed, tight crop on the gesture itself — the body holding its own silence as a private and unwitnessed act'},
+{id:'ap13',cat:'Apophatica',sub:null,title:'The Pelt Drape',text:'a figure beneath a heavy fabric covering of indeterminate type, not vestment, not garment, only weight, the body reading as load-bearing structure for its own shroud, no face visible, contemplative stillness — the covering refusing to declare its function'},
+{id:'ap14',cat:'Apophatica',sub:null,title:'Subsidence',text:'a figure half-consumed by accumulated dust, ash, or fine sediment rising against the body, geological-time consumption without violence or event, slow burial presented as still-life, the subject yielding to environmental accumulation as if collapsing into the substrate over centuries'},
+
 ];
 
 // ── PRESETS ────────────────────────────────────────────────────────
@@ -1843,6 +1982,9 @@ tape_intimacy:{ids:['sd03','sd12','at05','cp07','ff03','la12','cg07'],base:'Tape
 heatloss:{ids:['bt01','bt04','bt14','vd01','cg11','vd13','la08'],base:'Heat death — thermodynamic decay toward maximum entropy, featuring'},
 parasite:{ids:['bt05','bt08','bt10','bt13','pd03','ca05','ff16'],base:'Host manipulation — the body as incubator, enforced continuation, featuring'},
 quantum_horror:{ids:['bt02','bt03','bt12','vd12','fp01','vd05','pd01'],base:'Acausal horror — the false vacuum, the Boltzmann Brain, the instant without prior state, featuring'},
+corpus_visum:{ids:['fe07','fe18','fe20','ap08','ap11','la08','cg04'],base:'Corpus Visum — the body presented for unbroken attention, neither offered nor refused, featuring'},
+anatomia_ruina:{ids:['ap01','ap02','ap09','ap14','fe04','fe13','cp15'],base:'Anatomia Ruina — anatomy in ruin, the body marked and held still as still-life, featuring'},
+sub_rosa:{ids:['ap03','ap06','ap10','ap11','ap12','la09','cg12'],base:'Sub Rosa — the contemplative-closed-inward register, what occurs beneath the rose and is not declared, featuring'},
 };
 
 const SUB_MAP={'Figure / Subject':['all','Female','Non-Binary','Philosophical']};
@@ -1978,21 +2120,26 @@ function updateOutput(){
   const ar=document.getElementById('sel-ar').value,res=document.getElementById('sel-res').value;
   const qual=document.getElementById('sel-q').value,seed=document.getElementById('seed-in').value;
   const posItems=Array.from(posSet).map(id=>DB.find(d=>d.id===id)).filter(Boolean);
+  const stackTrig=document.getElementById('stack-trig');
+  const stackSel=document.getElementById('stack-sel');
+  const activeStack=stackSel?stackSel.value:'WULD Standard';
+  const trigText=(stackTrig&&stackTrig.checked&&STACK_TRIGGERS[activeStack])?STACK_TRIGGERS[activeStack]:'';
+
   if(!posItems.length){box.className='out e';box.textContent='[Awaiting modifier selection — compile from cards below]';stat.textContent='0W / 0M';updateNegOutput();return;}
   const wText=t=>wt?'('+t+':1.4)':t;
   let out='';
   if(fmt==='json'){
     const grouped={};posItems.forEach(i=>{if(!grouped[i.cat])grouped[i.cat]=[];grouped[i.cat].push(i.text);});
-    out=JSON.stringify({$schema:'void-engine-v5',meta:{quality:qual||'raw',resolution:res||'4k',...(ar?{aspect_ratio:ar}:{}),...(seed?{seed:parseInt(seed)}:{})},base_prompt:base,modifiers:grouped},null,2);
+    out=JSON.stringify({$schema:'void-engine-v5',meta:{quality:qual||'raw',resolution:res||'4k',...(ar?{aspect_ratio:ar}:{}),...(seed?{seed:parseInt(seed)}:{}),...(trigText?{stack_triggers:trigText,active_stack:activeStack}:{})},base_prompt:base,modifiers:grouped},null,2);
   } else if(fmt==='video'){
     const motion=posItems.filter(i=>i.cat==='Runway / Video');
     const still=posItems.filter(i=>i.cat!=='Runway / Video');
-    out='=== NANO BANANA BASE IMAGE PROMPT ===\n\n'+base+' '+still.map(i=>wText(i.text)).join(', ')+'.';
+    out='=== NANO BANANA BASE IMAGE PROMPT ===\n\n'+base+' '+still.map(i=>wText(i.text)).join(', ')+(trigText?', '+trigText:'')+'.';
     const x=[ar&&'ar:'+ar,res&&'res:'+res,qual&&'q:'+qual,seed&&'seed:'+seed].filter(Boolean);
     if(x.length)out+='\n['+x.join(' | ')+']';
     if(motion.length)out+='\n\n=== RUNWAY GEN-4.5 VIDEO PROMPT ===\n\n'+motion.map(i=>i.text).join(' ');
   } else {
-    out=base+' '+posItems.map(i=>wText(i.text)).join(', ')+'.';
+    out=base+' '+posItems.map(i=>wText(i.text)).join(', ')+(trigText?', '+trigText:'')+'.';
     const x=[ar&&'ar:'+ar,res&&'res:'+res,qual&&'q:'+qual,seed&&'seed:'+seed].filter(Boolean);
     if(x.length)out+='\n['+x.join(' | ')+']';
   }
@@ -2156,15 +2303,187 @@ function compileDiag(){
 }
 
 
-// ── CORPUS API MODE [STRIPPED on wuld.ink port per Exchange 3 B1 lock] ──
-//   Removed (~180 lines / ~7.8 KB):
-//     let corpMode, function setCorpMode, function checkApiKeyStatus,
-//     function saveApiKey, function clearApiKey, async function runCorpusAPI,
-//     async function _runCorpusApiMode (full API-mode implementation).
-//   Removed identifiers: corpMode, setCorpMode, checkApiKeyStatus, saveApiKey,
-//     clearApiKey, runCorpusAPI, _runCorpusApiMode.
-//   Removed network surface: zero fetch() calls remain on this port.
-//   Suite canonical retains the full API path; only the public port is local-only.
+// ── CORPUS API MODE ───────────────────────────────────────────────
+let corpMode='local'; // 'local' | 'api'
+
+function setCorpMode(mode){
+  corpMode=mode;
+  document.getElementById('cm-local').classList.toggle('on',mode==='local');
+  document.getElementById('cm-api').classList.toggle('on',mode==='api');
+  const apiSec=document.getElementById('corp-api-sec');
+  if(apiSec)apiSec.classList.toggle('on',mode==='api');
+  if(mode==='api') checkApiKeyStatus();
+}
+
+function checkApiKeyStatus(){
+  const key=localStorage.getItem('void-engine-api-key')||'';
+  const st=document.getElementById('corp-key-status');
+  const inp=document.getElementById('corp-key-in');
+  if(key){
+    if(st){st.textContent='Key stored: '+key.substring(0,12)+'…';st.className='corp-key-status ok';}
+    if(inp)inp.placeholder='Key saved — enter new key to replace';
+  } else {
+    if(st){st.textContent='No key stored — enter your Anthropic API key above';st.className='corp-key-status';}
+  }
+}
+
+function saveApiKey(){
+  const inp=document.getElementById('corp-key-in');
+  const key=(inp&&inp.value.trim())||'';
+  const st=document.getElementById('corp-key-status');
+  if(!key){
+    if(st){st.textContent='Enter a key first';st.className='corp-key-status err';}
+    return;
+  }
+  if(!key.startsWith('sk-')){
+    if(st){st.textContent='Key should start with sk-ant-…';st.className='corp-key-status err';}
+    return;
+  }
+  localStorage.setItem('void-engine-api-key',key);
+  if(inp){inp.value='';inp.placeholder='Key saved — enter new key to replace';}
+  if(st){st.textContent='Key stored: '+key.substring(0,12)+'…';st.className='corp-key-status ok';}
+}
+
+function clearApiKey(){
+  localStorage.removeItem('void-engine-api-key');
+  const inp=document.getElementById('corp-key-in');
+  const st=document.getElementById('corp-key-status');
+  if(inp){inp.value='';inp.placeholder='sk-ant-api03-...';}
+  if(st){st.textContent='Key cleared';st.className='corp-key-status err';}
+}
+
+async function runCorpusAPI(fragment){
+  const key=localStorage.getItem('void-engine-api-key')||'';
+  if(!key) throw new Error('NO_KEY');
+
+  // Build compressed lexicon — id | title | category | 18-word DS excerpt
+  const lex=DB
+    .filter(d=>d.cat!=='Normative / Ironic')
+    .map(d=>{
+      const dsWords=(DS[d.id]||d.text).split(/\s+/).slice(0,18).join(' ');
+      return d.id+'|'+d.title+'|'+d.cat+'|'+dsWords;
+    }).join('\n');
+
+  const sys=`You analyze text fragments for resonance with a curated lexicon of analog photographic, nihilist philosophical, liminal space, and psychogenic modifiers. The project is VOID ENGINE — drawing from philosophical pessimism (Illogically Is, Sanguinolentum Vestigium, Personal Mementos), analog photography, and liminal space aesthetics. Return ONLY valid JSON, no other text.`;
+
+  const usr=`Fragment: "${fragment}"
+
+Lexicon (id|title|category|excerpt):
+${lex}
+
+Select 8-12 IDs with strongest philosophical, emotional, and aesthetic resonance with the fragment. Prioritize unexpected but accurate connections. Return: {"ids":["id1","id2",...],"reasoning":"one sentence about the dominant resonance territory"}`;
+
+  const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key':key,
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true'
+    },
+    body:JSON.stringify({
+      model:'claude-haiku-4-5-20251001',
+      max_tokens:400,
+      system:sys,
+      messages:[{role:'user',content:usr}]
+    })
+  });
+
+  if(!resp.ok){
+    const err=await resp.json().catch(()=>({}));
+    const msg=(err.error&&err.error.message)||'HTTP '+resp.status;
+    if(resp.status===401)throw new Error('INVALID_KEY');
+    if(resp.status===403)throw new Error('FORBIDDEN: '+msg);
+    throw new Error(msg);
+  }
+
+  const data=await resp.json();
+  const raw=(data.content&&data.content[0]&&data.content[0].text)||'{}';
+  const clean=raw.replace(/```json|```/g,'').trim();
+  return JSON.parse(clean);
+}
+
+// ── API MODE IMPLEMENTATION ──────────────────────────────────────
+async function _runCorpusApiMode(){
+  const input=(document.getElementById('corp-input')||{}).value||'';
+  if(!input.trim()){
+    const st=document.getElementById('corp-status');
+    if(st)st.textContent='Enter a fragment to analyze.';
+    return;
+  }
+
+  const key=localStorage.getItem('void-engine-api-key')||'';
+  if(!key){
+    const st=document.getElementById('corp-status');
+    if(st)st.textContent='No API key — enter it in the section above.';
+    const apiSec=document.getElementById('corp-api-sec');
+    if(apiSec)apiSec.classList.add('on');
+    return;
+  }
+
+  const el=document.getElementById('corp-results');
+  const st=document.getElementById('corp-status');
+  if(el)el.innerHTML='<div class="corp-loading"><div class="corp-spin"></div>Sending fragment to Claude for resonance analysis&hellip;</div>';
+  if(st)st.textContent='';
+
+  try{
+    const result=await runCorpusAPI(input);
+    const ids=(result.ids||[]).filter(id=>DB.find(d=>d.id===id));
+    const reasoning=result.reasoning||'';
+
+    if(!ids.length){
+      if(el)el.innerHTML='<div class="corp-empty">No resonances returned. Try rephrasing the fragment.</div>';
+      if(st)st.textContent='0 resonances';
+      return;
+    }
+
+    // Build scored results array from API IDs (order = affinity rank)
+    const scored=ids.map((id,i)=>({
+      entry:DB.find(d=>d.id===id),
+      score:ids.length-i,
+      fromApi:true
+    })).filter(x=>x.entry);
+
+    corpLastResults=scored;
+    corpLastTokens=[];
+
+    if(st)st.textContent=scored.length+' resonances found (API)';
+
+    // Show reasoning if present
+    let reasonHtml='';
+    if(reasoning){
+      reasonHtml=`<div style="font-family:var(--serif);font-style:italic;font-size:12px;color:var(--mist);border-left:2px solid var(--amber);padding-left:10px;margin-bottom:11px;line-height:1.8">${reasoning}</div>`;
+    }
+    const maxS=scored.length;
+    if(el)el.innerHTML='<div class="corp-found">'+scored.length+' RESONANCES <span class="corp-api-badge">DEEP / API</span></div>'+
+      reasonHtml+
+      scored.map(({entry,score})=>{
+        const pct=Math.min(100,Math.round((score/maxS)*100));
+        const inPos=posSet.has(entry.id);
+        return `<div class="corp-result${inPos?' corp-active':''}" id="cres-${entry.id}">
+          <div class="corp-rhdr">
+            <div class="corp-rtitle">${entry.title}</div>
+            <div class="corp-rbar"><div class="corp-rfill" style="width:${pct}%"></div></div>
+            <div class="corp-rpct">${pct}%</div>
+          </div>
+          <div class="corp-rcat">${entry.sub?entry.sub+' &middot; ':''}${entry.cat}</div>
+          <div class="corp-rtext">${entry.text.substring(0,110)}&hellip;</div>
+          <button class="btn ${inPos?'bp':'bs'}" style="font-size:10px;padding:3px 11px;margin-top:8px" onclick="corpToggle('${entry.id}',this)">${inPos?'&#10003; ADDED':'+ ADD TO POSITIVE'}</button>
+        </div>`;
+      }).join('');
+
+  } catch(e){
+    const msg=e.message||'Unknown error';
+    let friendly='';
+    if(msg==='NO_KEY') friendly='No API key stored. Enter your key above.';
+    else if(msg==='INVALID_KEY') friendly='API key invalid or expired. Check your key.';
+    else if(msg.includes('Failed to fetch')||msg.includes('NetworkError')||msg.includes('CORS'))
+      friendly='Network error — this may be a CORS restriction when running from a local file. Try opening the file via a local server (python3 -m http.server) or use Local mode.';
+    else friendly='API error: '+msg;
+    if(el)el.innerHTML='<div class="corp-empty" style="color:var(--red)">'+friendly+'</div>';
+    if(st)st.textContent='Error';
+  }
+}
 
 
 // ── CORPUS ANALYSIS ───────────────────────────────────────────────
@@ -2409,7 +2728,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
 // ── ARCHIVE ───────────────────────────────────────────────────────
-const ARCH_KEY='wuld.ink:void-engine:archive';
+const ARCH_KEY='void-engine-v5:archive';
 
 function archGetAll(){
   try{return JSON.parse(localStorage.getItem(ARCH_KEY)||'[]');}
@@ -2519,9 +2838,10 @@ function toggleArchive(){
 }
 
 
-// ── CORPUS DISPATCHER (local-only on wuld.ink port — see B1 strip above) ──
-var runCorpus=function(){
-  _runCorpusLocalMode();
+// ── CORPUS DISPATCHER (mode-aware) ───────────────────────────────
+var runCorpus=async function(){
+  if(corpMode==='local') _runCorpusLocalMode();
+  else await _runCorpusApiMode();
 };
 
 
