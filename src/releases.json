@@ -1,0 +1,65 @@
+[
+  {
+    "id": "2026-05-31-changelog",
+    "date": "2026-05-31",
+    "summary": "Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.",
+    "sections": []
+  },
+  {
+    "id": "2026-05-31-library-v3-8-3",
+    "date": "2026-05-31",
+    "summary": "Argument Library updated to v3.8.3 — expanded corpus (81 objections, 35 mechanisms), now framed as actively maintained rather than archived.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-05-30-void-engine-310",
+    "date": "2026-05-30",
+    "summary": "Void Engine lexicon expanded to 310 entries across 19 categories.",
+    "sections": [
+      "/void-engine/"
+    ]
+  },
+  {
+    "id": "2026-05-18-archive-expansion",
+    "date": "2026-05-18",
+    "summary": "Archive expanded with additional video selections and a content disclaimer.",
+    "sections": [
+      "/archive/"
+    ]
+  },
+  {
+    "id": "2026-05-17-gallery-recs-tabs",
+    "date": "2026-05-17",
+    "summary": "Gallery images optimized for faster loading; Recommendations filled out across film, books, art, groups, and media; Support, Contact, and Chat tabs added.",
+    "sections": [
+      "/gallery/",
+      "/recommendations/",
+      "/donations/",
+      "/contact/",
+      "/chat/"
+    ]
+  },
+  {
+    "id": "2026-05-16-music-watch-ambient",
+    "date": "2026-05-16",
+    "summary": "Music and Watch pages added, the Archive opened, and a site-wide ambient background player introduced.",
+    "sections": [
+      "/music/",
+      "/watch/",
+      "/archive/"
+    ]
+  },
+  {
+    "id": "2026-05-11-launch",
+    "date": "2026-05-11",
+    "summary": "wuld.ink registered and launched — the umbrella for all of WULD's philosophical output. Core surfaces stood up: Essays, Glossary, Book, and Blog.",
+    "sections": [
+      "/essays/",
+      "/glossary/",
+      "/book/",
+      "/blog/"
+    ]
+  }
+]

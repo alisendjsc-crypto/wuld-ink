@@ -176,3 +176,42 @@ body.home .site-banner img {
     margin-inline-start: 0;
   }
 }
+
+/* ============================================================
+   K43 — changelog nav-glow indicator.
+   A nav item gets .nav-updated (set by nav.js) when its section
+   changed since the visitor last visited that section. Subtle
+   blood-red text-glow pulse — NOT a notification dot/badge.
+   State lives in localStorage; visiting the section clears it.
+   ============================================================ */
+@keyframes nav-glow-pulse {
+  0%, 100% {
+    color: var(--c-accent);
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    color: var(--c-accent-hover, var(--c-accent));
+    text-shadow: 0 0 6px var(--c-accent), 0 0 2px var(--c-accent);
+  }
+}
+
+.site-nav a.nav-updated {
+  color: var(--c-accent);
+  animation: nav-glow-pulse 2.6s var(--ease, ease-in-out) infinite;
+}
+
+/* The interpunct separator must not inherit the glow. */
+.site-nav a.nav-updated::after {
+  color: var(--c-fg-dim);
+  text-shadow: none;
+}
+
+/* Motion-sensitive visitors: drop the pulse, keep a steady accent marker. */
+@media (prefers-reduced-motion: reduce) {
+  .site-nav a.nav-updated {
+    animation: none;
+    color: var(--c-accent);
+    border-bottom-color: var(--c-accent);
+    text-shadow: 0 0 4px var(--c-accent);
+  }
+}

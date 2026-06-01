@@ -32,6 +32,67 @@
     return 0;
   }
 
+  function sectionOf(href) {
+    return normalize(new URL(href, window.location.origin).pathname);
+  }
+
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  // K43 — glow nav items whose section changed since the visitor last
+  // saw it. Single source of truth: /releases.json (each release lists
+  // the nav sections it touched). First-ever visit is treated as
+  // caught-up so nothing mass-glows; visiting a section clears its flag.
+  function navGlow(links, here) {
+    var SEEN_KEY = "wuld:seen";
+    fetch("/releases.json", { cache: "no-cache" })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (releases) {
+        if (!Array.isArray(releases) || releases.length === 0) return;
+        var sorted = releases.slice().sort(function (a, b) {
+          return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
+        });
+        var sectionLatest = {};
+        sorted.forEach(function (rel) {
+          (rel.sections || []).forEach(function (sec) {
+            var s = normalize(sec);
+            if (!(s in sectionLatest)) sectionLatest[s] = rel.id;
+          });
+        });
+
+        var raw = lsGet(SEEN_KEY);
+        if (raw === null) {
+          // First-ever visit: record current state, glow nothing.
+          lsSet(SEEN_KEY, JSON.stringify(sectionLatest));
+          return;
+        }
+        var seen;
+        try { seen = JSON.parse(raw) || {}; } catch (e) { seen = {}; }
+
+        var hereNorm = normalize(here);
+        var dirty = false;
+        links.forEach(function (a) {
+          var sec = sectionOf(a.getAttribute("href"));
+          var latest = sectionLatest[sec];
+          if (!latest) { a.classList.remove("nav-updated"); a.removeAttribute("title"); return; }
+          var onSection = sec === hereNorm || hereNorm.indexOf(sec + "/") === 0;
+          if (onSection) {
+            if (seen[sec] !== latest) { seen[sec] = latest; dirty = true; }
+            a.classList.remove("nav-updated");
+            a.removeAttribute("title");
+          } else if (seen[sec] !== latest) {
+            a.classList.add("nav-updated");
+            a.setAttribute("title", "Updated since your last visit");
+          } else {
+            a.classList.remove("nav-updated");
+            a.removeAttribute("title");
+          }
+        });
+        if (dirty) lsSet(SEEN_KEY, JSON.stringify(seen));
+      })
+      .catch(function () {});
+  }
+
   function init() {
     const nav = document.querySelector(".site-nav");
     if (!nav) return;
@@ -53,6 +114,8 @@
 
     links.forEach((a) => a.removeAttribute("aria-current"));
     if (best) best.setAttribute("aria-current", "page");
+
+    navGlow(links, here);
   }
 
   if (document.readyState === "loading") {

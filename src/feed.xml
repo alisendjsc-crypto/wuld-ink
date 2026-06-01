@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wuld.ink — changelog</title>
+    <link>https://wuld.ink/changelog/</link>
+    <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Changes to wuld.ink — for posterity and transparency.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 01 Jun 2026 01:50:19 +0000</lastBuildDate>
+    <item>
+      <title>Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.</title>
+      <link>https://wuld.ink/changelog/#2026-05-31-changelog</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-31-changelog</guid>
+      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
+      <description>Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.</description>
+    </item>
+    <item>
+      <title>Argument Library updated to v3.8.3 — expanded corpus (81 objections, 35 mechanisms), now framed as actively maintained rather than archived.</title>
+      <link>https://wuld.ink/changelog/#2026-05-31-library-v3-8-3</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-31-library-v3-8-3</guid>
+      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
+      <description>Argument Library updated to v3.8.3 — expanded corpus (81 objections, 35 mechanisms), now framed as actively maintained rather than archived. (Sections: /argument-library/)</description>
+    </item>
+    <item>
+      <title>Void Engine lexicon expanded to 310 entries across 19 categories.</title>
+      <link>https://wuld.ink/changelog/#2026-05-30-void-engine-310</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-30-void-engine-310</guid>
+      <pubDate>Sat, 30 May 2026 00:00:00 +0000</pubDate>
+      <description>Void Engine lexicon expanded to 310 entries across 19 categories. (Sections: /void-engine/)</description>
+    </item>
+    <item>
+      <title>Archive expanded with additional video selections and a content disclaimer.</title>
+      <link>https://wuld.ink/changelog/#2026-05-18-archive-expansion</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-18-archive-expansion</guid>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <description>Archive expanded with additional video selections and a content disclaimer. (Sections: /archive/)</description>
+    </item>
+    <item>
+      <title>Gallery images optimized for faster loading; Recommendations filled out across film, books, art, groups, and media; Support, Contact, and Chat tabs added.</title>
+      <link>https://wuld.ink/changelog/#2026-05-17-gallery-recs-tabs</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-17-gallery-recs-tabs</guid>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <description>Gallery images optimized for faster loading; Recommendations filled out across film, books, art, groups, and media; Support, Contact, and Chat tabs added. (Sections: /gallery/, /recommendations/, /donations/, /contact/, /chat/)</description>
+    </item>
+    <item>
+      <title>Music and Watch pages added, the Archive opened, and a site-wide ambient background player introduced.</title>
+      <link>https://wuld.ink/changelog/#2026-05-16-music-watch-ambient</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-16-music-watch-ambient</guid>
+      <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+      <description>Music and Watch pages added, the Archive opened, and a site-wide ambient background player introduced. (Sections: /music/, /watch/, /archive/)</description>
+    </item>
+    <item>
+      <title>wuld.ink registered and launched — the umbrella for all of WULD's philosophical output. Core surfaces stood up: Essays, Glossary, Book, and Blog.</title>
+      <link>https://wuld.ink/changelog/#2026-05-11-launch</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-11-launch</guid>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <description>wuld.ink registered and launched — the umbrella for all of WULD's philosophical output. Core surfaces stood up: Essays, Glossary, Book, and Blog. (Sections: /essays/, /glossary/, /book/, /blog/)</description>
+    </item>
+  </channel>
+</rss>

@@ -106,3 +106,27 @@
   color: var(--c-fg);
   border-bottom-color: var(--c-accent);
 }
+
+/* K43 — changelog + feed links row, below the primary footer line. */
+.page-footer .footer-meta {
+  justify-content: flex-start;
+  gap: var(--s-4);
+  margin-block-start: var(--s-3);
+}
+.page-footer .changelog-link {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color var(--motion-fast, 150ms) ease, border-bottom-color var(--motion-fast, 150ms) ease;
+}
+.page-footer .changelog-link::before { content: "\21BB  "; color: var(--c-accent); }
+.page-footer .changelog-link:hover,
+.page-footer .changelog-link:focus-visible {
+  color: var(--c-fg);
+  border-bottom-color: var(--c-accent);
+}

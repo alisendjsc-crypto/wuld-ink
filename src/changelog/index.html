@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
+  <link rel="license" href="/LICENSE">
+  <title>Changelog &mdash; wuld.ink</title>
+  <meta name="description" content="Every change this site receives, logged for posterity and transparency. Subscribe to the feed &mdash; no email, no tracking.">
+
+  <link rel="canonical" href="https://wuld.ink/changelog/">
+  <meta property="og:title" content="Changelog &mdash; wuld.ink">
+  <meta property="og:description" content="Every change this site receives, logged for posterity and transparency. Subscribe to the feed &mdash; no email, no tracking.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/changelog/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Changelog &mdash; wuld.ink">
+  <meta name="twitter:description" content="Every change this site receives, logged for posterity and transparency.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Changelog",
+    "description": "Every change this site receives, logged for posterity and transparency.",
+    "url": "https://wuld.ink/changelog/",
+    "image": "https://wuld.ink/assets/og-default.png",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://wuld.ink/#website"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K43">
+  <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
+  <link rel="stylesheet" href="/components/footer.css?v=K43">
+
+  <style>
+    .page {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-10);
+    }
+    .page-hero {
+      border-bottom: var(--bw-base) solid var(--c-border);
+      padding-block-end: var(--s-6);
+      margin-block-end: var(--s-7);
+    }
+    .changelog-lede {
+      font-family: var(--font-body);
+      color: var(--c-fg-dim);
+      max-width: var(--w-prose);
+      margin: var(--s-4) 0 0 0;
+    }
+    /* ---- Notifications / subscribe panel ---- */
+    .changelog-subscribe {
+      max-width: var(--w-prose);
+      border: var(--bw-base) solid var(--c-border-strong);
+      border-left: 3px solid var(--c-accent);
+      padding: var(--s-5);
+      margin-block: var(--s-7);
+      font-family: var(--font-body);
+      color: var(--c-fg-dim);
+    }
+    .changelog-subscribe-head {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin: 0 0 var(--s-3) 0;
+    }
+    .changelog-subscribe p { margin: 0 0 var(--s-3) 0; }
+    .changelog-subscribe p:last-child { margin-bottom: 0; }
+    .changelog-subscribe a {
+      color: var(--c-accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--mo-base);
+    }
+    .changelog-subscribe a:hover,
+    .changelog-subscribe a:focus-visible { border-bottom-color: var(--c-accent); }
+    /* ---- History list (timeline) ---- */
+    .changelog-list { list-style: none; margin: 0; padding: 0; max-width: var(--w-prose); }
+    .changelog-entry {
+      border-left: var(--bw-base) solid var(--c-border);
+      padding: 0 0 var(--s-7) var(--s-5);
+      position: relative;
+    }
+    .changelog-entry::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 7px;
+      width: 8px;
+      height: 8px;
+      background: var(--c-accent);
+    }
+    .changelog-entry:last-child { padding-bottom: 0; }
+    .changelog-date {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin: 0 0 var(--s-2) 0;
+    }
+    .changelog-summary {
+      font-family: var(--font-body);
+      font-size: var(--t-lg, 1.15rem);
+      line-height: 1.4;
+      color: var(--c-fg);
+      margin: 0 0 var(--s-3) 0;
+    }
+    .changelog-sections { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; }
+    .changelog-chip {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      text-decoration: none;
+      border: var(--bw-base) solid var(--c-border);
+      padding: 2px var(--s-2);
+      transition: color var(--mo-base), border-color var(--mo-base);
+    }
+    .changelog-chip:hover,
+    .changelog-chip:focus-visible { color: var(--c-accent); border-color: var(--c-accent); }
+    .changelog-status { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--c-fg-dim); }
+    .changelog-noscript { font-family: var(--font-body); color: var(--c-fg-dim); }
+  </style>
+</head>
+
+<body data-audio-base="https://audio.wuld.ink">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink"><img src="/assets/site-banner-1920.webp" srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w" sizes="100vw" width="1920" height="443" alt="W.U.L.D.: Incorporated" decoding="async" loading="eager"></a>
+    <div class="site-header-inner">
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+        <a href="/recommendations/">Recommendations</a>
+        <a href="/archive/">Archive</a>
+        <a href="/preface/">About</a>
+        <a href="/donations/">Support</a>
+        <a href="/contact/">Contact</a>
+        <a href="/chat/">Chat</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="page">
+      <header class="page-hero">
+        <p class="eyebrow">Site record</p>
+        <h1>Changelog</h1>
+        <p class="changelog-lede">Every change this site receives, logged here for posterity and transparency &mdash; the human-readable face of what the umbrella is doing over time.</p>
+      </header>
+
+      <aside class="changelog-subscribe" aria-label="Notifications">
+        <p class="changelog-subscribe-head">Notifications</p>
+        <p>Subscribe to the <a href="/feed.xml">RSS feed</a> to be notified when the site changes. No email, no account, no tracking &mdash; your reader polls the feed; this site never learns you subscribed.</p>
+        <p>When you return, any section in the top navigation that changed since your last visit will <strong>glow</strong>. Visiting that section clears it. This is remembered only in your own browser.</p>
+        <p>Have something to say? For now, reach me via <a href="/contact/">Contact</a> or the <a href="/chat/">IRC channel</a>. A comment board is planned.</p>
+      </aside>
+
+      <ol class="changelog-list" id="changelog-list">
+        <li class="changelog-status" id="changelog-status">Loading the change history&hellip;</li>
+      </ol>
+      <noscript>
+        <p class="changelog-noscript">JavaScript is off, so the rendered history is unavailable. Read the raw change feed at <a href="/feed.xml">/feed.xml</a>.</p>
+      </noscript>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+    </div>
+    <div class="page-footer-inner footer-meta">
+      <a class="changelog-link" href="/changelog/">Changelog</a>
+      <a class="changelog-link" href="/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+    var list = document.getElementById("changelog-list");
+    var status = document.getElementById("changelog-status");
+    if (!list) return;
+    var MONTHS = ["January","February","March","April","May","June",
+                  "July","August","September","October","November","December"];
+    var LABELS = {
+      "/essays/":"Essays","/argument-library/":"Library","/glossary/":"Glossary",
+      "/void-engine/":"Void","/gallery/":"Gallery","/watch/":"Watch","/music/":"Music",
+      "/book/":"Book","/blog/":"Blog","/recommendations/":"Recommendations",
+      "/archive/":"Archive","/preface/":"About","/donations/":"Support",
+      "/contact/":"Contact","/chat/":"Chat"
+    };
+    function fmtDate(iso) {
+      var p = String(iso).split("-");
+      return MONTHS[(+p[1]) - 1] + " " + (+p[2]) + ", " + p[0];
+    }
+    fetch("/releases.json", { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function (rel) {
+      if (!Array.isArray(rel)) throw new Error("bad feed");
+      rel = rel.slice().sort(function (a, b) {
+        return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
+      });
+      if (status && status.parentNode) status.parentNode.removeChild(status);
+      rel.forEach(function (e) {
+        var li = document.createElement("li");
+        li.className = "changelog-entry";
+        if (e.id) li.id = e.id;
+        var date = document.createElement("p");
+        date.className = "changelog-date";
+        date.textContent = fmtDate(e.date);
+        li.appendChild(date);
+        var sum = document.createElement("p");
+        sum.className = "changelog-summary";
+        sum.textContent = e.summary || "";
+        li.appendChild(sum);
+        if (e.sections && e.sections.length) {
+          var chips = document.createElement("p");
+          chips.className = "changelog-sections";
+          e.sections.forEach(function (s) {
+            var a = document.createElement("a");
+            a.className = "changelog-chip";
+            a.href = s;
+            a.textContent = LABELS[s] || s;
+            chips.appendChild(a);
+          });
+          li.appendChild(chips);
+        }
+        list.appendChild(li);
+      });
+    }).catch(function () {
+      if (status) status.textContent = "Could not load the change history. Read the raw feed at /feed.xml.";
+    });
+  })();
+  </script>
+  <script src="/components/nav.js?v=K43"></script>
+  <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
+    <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
+    <div class="ambient-bar">
+      <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
+      <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
+      <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
+      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
+    </div>
+    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
+  </div>
+<script src="/components/ambient-player.js?v=K30" defer></script>
+</body>
+</html>
