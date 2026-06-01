@@ -52,6 +52,7 @@
       })
       .then(function (data) {
         if (loading) loading.hidden = true;
+        applyOpenState(root, !(data && data.open === false));
         renderThread(root, (data && data.comments) || []);
       })
       .catch(function () {
@@ -109,6 +110,31 @@
   function renderError(root) {
     var thread = root.querySelector(".cb-thread");
     if (thread) thread.innerHTML = '<li class="cb-empty">Could not load the board right now. Try again in a moment, or reach me via <a href="/contact/">Contact</a>.</li>';
+  }
+
+  /* --------------------------- open / closed ----------------------------- */
+  // K46 kill-switch: when the API reports the board closed, hide the post form and
+  // show a notice; the existing thread stays readable. Fail-open: a missing flag
+  // is treated as open.
+  function applyOpenState(root, isOpen) {
+    var form = root.querySelector(".cb-form");
+    var notice = root.querySelector(".cb-closed-notice");
+    if (isOpen) {
+      if (form) form.hidden = false;
+      if (notice) notice.hidden = true;
+      return;
+    }
+    if (form) form.hidden = true;
+    if (!notice) {
+      notice = document.createElement("p");
+      notice.className = "cb-closed-notice";
+      notice.setAttribute("role", "status");
+      var anchor = form || root.querySelector(".cb-loading") || root.querySelector(".cb-thread");
+      if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(notice, anchor);
+      else root.appendChild(notice);
+    }
+    notice.hidden = false;
+    notice.textContent = "The board is temporarily closed to new messages. Existing notes remain below.";
   }
 
   /* ------------------------------- post ---------------------------------- */

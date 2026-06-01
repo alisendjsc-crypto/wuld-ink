@@ -179,3 +179,15 @@
 /* When comment-board.js flips live it adds body.board-live; /chat/ uses that
    to compact the libera CTA into a small "for live chat" affordance. The rule
    itself lives in /chat/'s inline style so this component stays page-agnostic. */
+
+/* ---- closed state (K46 kill-switch) ------------------------------------- */
+.cb-closed-notice {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+  border: var(--bw-base) solid var(--c-border);
+  border-inline-start: 3px solid var(--c-accent);
+  padding: var(--s-4);
+  margin-block-end: var(--s-6);
+}

@@ -223,6 +223,73 @@ Hard-refresh `https://wuld.ink/chat/`: the board appears above a compact
 
 ---
 
+## Step 9 — Board controls: kill-switch + purge (K46)
+
+Beyond the honeypot + rate-limit, the board has an **emergency kill-switch** and
+**bulk purge**, both toggled from `/admin`. For a real spam flood (an actor
+rotating IPs under the rate limit), you can stop new posts instantly and clear
+junk in bulk instead of deleting one comment at a time.
+
+**Standing this up is two commands** — the Worker code + schema already ship in
+this repo:
+
+```
+# 1. add the settings table (idempotent: CREATE IF NOT EXISTS + INSERT OR IGNORE;
+#    does NOT touch existing comments — safe to re-run any time)
+wrangler d1 execute wuld-comments --remote --file=./schema.sql
+
+# 2. redeploy the Worker (new endpoints + the /admin controls)
+wrangler deploy
+```
+
+No Access changes, no new bindings.
+
+**What changed**
+
+- A `settings` table holds `board_open` (`'1'` open / `'0'` closed).
+- `GET /api/comments` now returns an `open` flag. When `false`, the frontend
+  hides the post form and shows "board temporarily closed" — the thread stays
+  readable.
+- `POST /api/comments` returns **403 `board_closed`** while the board is closed.
+- **Fail-OPEN:** if the `settings` table is somehow missing or a read errors, the
+  board is treated as open — so the gap between deploy and the migration never
+  bricks posting (worst case the toggle just isn't available yet).
+
+**In `/admin`** (a control panel above the comments):
+
+- **board: OPEN / CLOSED** + a `close board` / `open board` button — flips
+  `board_open` instantly, no redeploy, reachable anywhere you can OTP-login.
+- **purge:** `hide all visible` (reversible soft-blackout, sets `hidden=1`) ·
+  `delete hidden` (permanently clears the hidden pile) · `delete ALL` (nukes
+  every comment; guarded by a typed `DELETE ALL` confirm).
+- Both are `POST /api/admin/{board-state,purge}` — same Access gate + same-origin
+  CSRF check as the existing moderation actions.
+
+**Smoke test (operator)** — PowerShell. POST bodies use `Invoke-RestMethod`, not
+`curl.exe -d` (PS 5.1 mangles inline JSON to native curl; GET is fine via curl):
+
+```powershell
+# board is OPEN by default. In /admin click "close board", then:
+Invoke-RestMethod -Method Post -Uri https://wuld.ink/api/comments `
+  -ContentType application/json -Body '{"body":"should be refused","board":"global"}'
+#   -> throws (HTTP 403 {"error":"board_closed"}) — the throw IS the expected signal
+
+# reopen in /admin ("open board"), then post a throwaway:
+Invoke-RestMethod -Method Post -Uri https://wuld.ink/api/comments `
+  -ContentType application/json -Body '{"body":"purge me","board":"global"}'
+#   -> 201. Then in /admin click "delete ALL", type DELETE ALL, confirm.
+
+# verify empty (GET is fine via curl.exe):
+curl.exe -s https://wuld.ink/api/comments
+#   -> {"board":"global","comments":[],"open":true}
+```
+
+**Turnstile is intentionally NOT added** (the K43 escalation). Kill-switch + purge
+are the fallback; a CAPTCHA goes on the post form only if real spam actually
+appears — no friction with no proven need.
+
+---
+
 ## Reverting to zero-PII (dropping email)
 
 If you decide the optional-email field isn't worth the liability:

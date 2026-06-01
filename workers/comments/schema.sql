@@ -24,3 +24,15 @@ CREATE INDEX IF NOT EXISTS idx_comments_board ON comments(board, hidden, created
 
 -- Rate-limit query: WHERE ip_hash=? AND created_at > (now - window)
 CREATE INDEX IF NOT EXISTS idx_comments_ratelimit ON comments(ip_hash, created_at);
+
+-- =============================================================================
+-- settings -- key/value board controls (K46)
+-- board_open: '1' = accepting posts, '0' = kill-switch engaged (refuse new posts).
+-- INSERT OR IGNORE keeps a schema re-apply from resetting the operator's chosen
+-- state. The Worker fails OPEN if this table is somehow absent.
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS settings (
+  key   TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+);
+INSERT OR IGNORE INTO settings (key, value) VALUES ('board_open', '1');

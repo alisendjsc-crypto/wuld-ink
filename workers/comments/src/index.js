@@ -73,6 +73,29 @@ export default {
   },
 };
 
+/* ----------------------------- settings (kill-switch) -------------------- */
+// board_open lives in the D1 `settings` table (K46). Fail-OPEN: if the table is
+// missing (migration not yet run) or a read errors, treat the board as OPEN so a
+// transient hiccup never bricks posting.
+async function getSetting(env, key, fallback) {
+  try {
+    const row = await env.DB.prepare(`SELECT value FROM settings WHERE key = ?`).bind(key).first();
+    return row && typeof row.value === "string" ? row.value : fallback;
+  } catch {
+    return fallback;
+  }
+}
+async function setSetting(env, key, value) {
+  await env.DB.prepare(
+    `INSERT INTO settings (key, value) VALUES (?, ?)
+     ON CONFLICT(key) DO UPDATE SET value = excluded.value`
+  ).bind(key, String(value)).run();
+}
+async function isBoardOpen(env) {
+  const v = await getSetting(env, "board_open", "1");
+  return v !== "0"; // anything but an explicit "0" is open
+}
+
 /* ----------------------------- public: list ----------------------------- */
 async function listComments(url, env, request) {
   const board = (url.searchParams.get("board") || "global").slice(0, 64);
@@ -83,7 +106,8 @@ async function listComments(url, env, request) {
       ORDER BY created_at DESC, id DESC
       LIMIT ${LIST_LIMIT}`
   ).bind(board).all();
-  return json({ board, comments: results || [] }, 200, cors(env, request));
+  const open = await isBoardOpen(env);
+  return json({ board, comments: results || [], open }, 200, cors(env, request));
 }
 
 /* ---------------------------- public: create ----------------------------- */
@@ -91,6 +115,11 @@ async function createComment(request, env) {
   let data;
   try { data = await request.json(); }
   catch { return json({ error: "invalid_json" }, 400, cors(env, request)); }
+
+  // Kill-switch (K46): when the board is closed, refuse all new posts.
+  if (!(await isBoardOpen(env))) {
+    return json({ error: "board_closed" }, 403, cors(env, request));
+  }
 
   // Honeypot: a bot filled the hidden field. Return a benign success; store nothing.
   if (typeof data.hp === "string" && data.hp.trim() !== "") {
@@ -135,6 +164,31 @@ async function adminAction(action, request, env) {
   let data;
   try { data = await request.json(); }
   catch { return json({ error: "invalid_json" }, 400); }
+
+  // ---- Board-wide actions (no single comment id) ------------------------
+  if (action === "board-state") {
+    const open = data.open === true || data.open === 1 || data.open === "1" || data.open === "true";
+    await setSetting(env, "board_open", open ? "1" : "0");
+    return json({ ok: true, open });
+  }
+  if (action === "purge") {
+    const scope = String(data.scope || "");
+    if (scope === "hide-all") {
+      const r = await env.DB.prepare(`UPDATE comments SET hidden = 1 WHERE hidden = 0`).run();
+      return json({ ok: true, scope, affected: (r.meta && r.meta.changes) || 0 });
+    }
+    if (scope === "delete-hidden") {
+      const r = await env.DB.prepare(`DELETE FROM comments WHERE hidden = 1`).run();
+      return json({ ok: true, scope, affected: (r.meta && r.meta.changes) || 0 });
+    }
+    if (scope === "delete-all") {
+      const r = await env.DB.prepare(`DELETE FROM comments`).run();
+      return json({ ok: true, scope, affected: (r.meta && r.meta.changes) || 0 });
+    }
+    return json({ error: "bad_scope" }, 400);
+  }
+
+  // ---- Per-comment actions (require a valid id) -------------------------
   const id = parseInt(data.id, 10);
   if (!Number.isInteger(id) || id < 1) return json({ error: "bad_id" }, 400);
 
@@ -162,6 +216,7 @@ async function adminAction(action, request, env) {
 
 /* --------------------------- admin: moderation UI ------------------------ */
 async function adminHtml(env, adminEmail) {
+  const boardOpen = await isBoardOpen(env);
   const { results } = await env.DB.prepare(
     `SELECT id, board, name, email, body, created_at, hidden
        FROM comments
@@ -226,9 +281,32 @@ async function adminHtml(env, adminEmail) {
   .act-del:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
   .act-status{font-size:.7rem;color:var(--dim)}
   .empty{color:var(--dim);font-style:italic}
+  .ctl{border:1px solid var(--rule);background:var(--raised);padding:1rem 1rem .6rem;margin-bottom:1.5rem}
+  .ctl-row{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:.3rem 0 .5rem}
+  .ctl-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);min-width:3.5rem}
+  .ctl-state{font-size:.78rem;letter-spacing:.12em;padding:0 .45rem;border:1px solid var(--rule)}
+  .ctl-state.is-open{color:var(--fg);border-color:var(--rule)}
+  .ctl-state.is-closed{color:#fff;background:var(--accent);border-color:var(--accent)}
+  .ctl-hint{font-size:.68rem;color:var(--dim);font-style:italic}
+  .act-danger:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 </style></head><body>
 <h1>moderation</h1>
 <p class="sub">signed in as <b>${esc(adminEmail || "operator")}</b> &middot; <b>${rows.length}</b> total &middot; <b>${visible}</b> visible &middot; <b>${hidden}</b> hidden &middot; store-raw / escape-on-render</p>
+<section class="ctl" aria-label="Board controls">
+  <div class="ctl-row">
+    <span class="ctl-label">board</span>
+    <span class="ctl-state ${boardOpen ? "is-open" : "is-closed"}" id="board-state">${boardOpen ? "OPEN" : "CLOSED"}</span>
+    <button class="act" id="btn-toggle" data-open="${boardOpen ? "1" : "0"}">${boardOpen ? "close board" : "open board"}</button>
+    <span class="ctl-hint">closing refuses new posts instantly &mdash; the thread stays readable</span>
+  </div>
+  <div class="ctl-row">
+    <span class="ctl-label">purge</span>
+    <button class="act" id="btn-hide-all">hide all visible</button>
+    <button class="act" id="btn-del-hidden">delete hidden</button>
+    <button class="act act-danger" id="btn-del-all">delete ALL</button>
+    <span class="act-status" id="purge-status"></span>
+  </div>
+</section>
 ${rows.length ? cards : '<p class="empty">no comments yet.</p>'}
 <script>
 const post=async(action,payload)=>{
@@ -239,6 +317,7 @@ const post=async(action,payload)=>{
 const setStatus=(id,msg)=>{const el=document.querySelector('.act-status[data-id="'+id+'"]');if(el)el.textContent=msg;};
 document.addEventListener('click',async(e)=>{
   const b=e.target.closest('.act');if(!b)return;
+  if(b.closest('.ctl'))return; // control-panel buttons are wired separately below
   const id=parseInt(b.dataset.id,10);
   try{
     if(b.classList.contains('act-save')){
@@ -254,6 +333,25 @@ document.addEventListener('click',async(e)=>{
     }
   }catch(err){setStatus(id,'error: '+err.message);}
 });
+// ---- board controls: kill-switch + purge (K46) ----
+const ctlStatus=(m)=>{const el=document.getElementById('purge-status');if(el)el.textContent=m;};
+const tgl=document.getElementById('btn-toggle');
+if(tgl)tgl.addEventListener('click',async()=>{
+  const willOpen=tgl.dataset.open==='0';
+  if(!willOpen&&!confirm('Close the board? New posts are refused immediately. The thread stays readable; reopen here any time.'))return;
+  try{await post('board-state',{open:willOpen});location.reload();}
+  catch(err){ctlStatus('error: '+err.message);}
+});
+const purge=async(scope)=>{
+  try{const r=await post('purge',{scope});ctlStatus(scope+': '+(r.affected||0)+' affected');setTimeout(()=>location.reload(),800);}
+  catch(err){ctlStatus('error: '+err.message);}
+};
+const hb=document.getElementById('btn-hide-all');
+if(hb)hb.addEventListener('click',()=>{if(confirm('Hide ALL visible comments? Reversible - unhide individually, or delete the hidden pile later.'))purge('hide-all');});
+const dh=document.getElementById('btn-del-hidden');
+if(dh)dh.addEventListener('click',()=>{if(confirm('Permanently delete every HIDDEN comment? This cannot be undone.'))purge('delete-hidden');});
+const da=document.getElementById('btn-del-all');
+if(da)da.addEventListener('click',()=>{const t=prompt('This permanently deletes EVERY comment on the board. Type  DELETE ALL  to confirm:');if(t==='DELETE ALL')purge('delete-all');else ctlStatus('delete-all cancelled');});
 </script>
 </body></html>`;
 }
