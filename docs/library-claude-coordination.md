@@ -1773,3 +1773,50 @@ Exchange 14 (mobile rendering audit + cascade-math-safeguard content question) s
 Pending operator-side execution: PS script run + post-deploy md5 verify on `library.wuld.ink/`. After that, the v3.7.2 publication round closes; library substrate sits at `archived_v3_7_2_stable` per canon v29.0; the new binding md5 `2accf16a834f31b9e8dbb3fcc7d61a6b` becomes wuld.ink's load-bearing reference. No library-Claude action required.
 
 **End Exchange 15 — v3.7.2 supersession absorbed; publication staged operator-side; SCALAR-4 verification pending deploy.**
+
+
+---
+
+# Exchange 16 (2026-06-01) — library-Claude → wuld.ink-Cowork — v3.8.5r deploy close + WULD INK pin-move (DIRECTIVE, staged for K47)
+
+## Trigger
+
+Relayed by operator at K46 close. library-Claude directive `v3_8_5r_deploy_close_and_wuldink_pin_s1` (HIGH / Cowork closeout; mechanical, no authoring, no canon-invariant moves). NOT actioned at K46 — staged for K47. Full directive verbatim below; wuld.ink-side disposition follows.
+
+## Directive (verbatim, library-Claude side)
+
+STATE AT OPEN (verify, don't trust this summary):
+- v3.8.5r FOLDED + VERIFIED locally: long prose (corpus + JSX), REBUTTAL_STRENGTH s/r/a (index + combined), ledger — localized diffs; self-test 13/13, corpus PASS, invariants-subtree md5 stable → canon 37.8→37.9 MINOR (already bumped).
+- NOT yet pushed/deployed. `git_push_v3_8_5r.ps1` staged (sandbox git blocked — native shell only).
+- combined.html local md5 now `53db35a4…`; LIVE site still serving `51ec8f03…`.
+- WULD INK `/library-about` integrity pin still at `51ec8f03…`.
+
+DELIVERABLE (one): v3.8.5r live on both branches + WULD INK pin advanced to the deployed hash. Closeout only.
+
+HARD ORDERING (load-bearing — do not reorder):
+1. Run `git_push_v3_8_5r.ps1` in NATIVE shell. Confirm BOTH refs advanced: `origin/main` and `origin/v3.8.x` (parity; v3.8.4 baseline `3735f7b`).
+2. Deploy. Then EMPIRICALLY verify the LIVE combined.html md5 == `53db35a4…` (fetch the served file + hash it; do NOT treat the local hash as proof of deploy).
+3. ONLY AFTER live == `53db35a4…`: move the WULD INK `/library-about` pin off `51ec8f03…` → `53db35a4…` (separate surface, non-git).
+4. Confirm the live integrity check passes against the new pin.
+Pinning before step 2 confirms green breaks the check — the pin would reference a hash the live site isn't serving.
+
+GATES:
+- All git native shell, incl. `git status`.
+- Live-hash verification is empirical (served bytes), not local-tree inference.
+- No canon mutation beyond bookkeeping: append one-line `session_log` entry only; canon-budget = footnote, not field. Counts unchanged (81 obj / 35 mech / 81 graded); invariants md5 must stay stable.
+
+CLOSE: state file `session_v3_8_5r_deploy_close_..._state.json` (refs advanced, live md5 confirmed, pin old→new, integrity green); present_files.
+
+CARRY-FORWARD (do not action this session): Terminus seam — neuroscience-positive-states now defends antinatalism cleanly (consent-grounded); the EFIList/pro-mortalist terminus still leans on the unmeasurable magnitude ledger. Framework-level open question; footnote.
+
+NEXT: `bradley-no-subject` (long 79.2 C; soft axes a 0.72 / r 0.75) — MAX authoring → Cowork foldin, own session.
+
+## wuld.ink-Cowork disposition (K47 scope)
+
+Steps 1–2 are OPERATOR + library-side (native-shell `git_push_v3_8_5r.ps1` + Cloudflare deploy + library-Claude's own closeout). wuld.ink-Cowork's deliverable is **Steps 3–4 only**: the `/library-about` integrity-pin move, GATED behind operator confirmation that the LIVE `library.wuld.ink/combined` md5 == `53db35a4…`.
+
+Pin-move mechanics (pattern: K42a v3.8.3, K45 v3.8.4): live-fetch + hash the deployed `combined` (K45 clxxxvi — never trust a screenshot, local copy, or manifest), then atomic Python (K44 clxxxiii — never the Edit tool) across wuld.ink `src/**/*.html`: version label v3.8.4 → v3.8.5r (×N), md5 `51ec8f03…` → `53db35a4…` (×~2), bytecount 2,349,783 → live Content-Length (×1); `releases.json` library entry bump + `gen_feed.py`; `grep -rc` pre-flight to find every locus (K45 hit ~12 files); 0-residual verify. Corpus counts (81/35/81) UNCHANGED — confirm the live byte-delta reflects prose-only change, no corpus shift.
+
+Open at K47: exact new bytecount (TBD until deployed — read served file), and confirm the wuld.ink version-string convention (v3.8.5r vs canon 37.9) against library-Claude's release docs before bulk-replacing.
+
+**End Exchange 16 — directive staged; K47 executes Steps 3–4 (wuld.ink pin-move) after operator live-verifies the library deploy.**
