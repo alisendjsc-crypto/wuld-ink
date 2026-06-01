@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="/components/nav.css?v=K43">
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
+  <link rel="stylesheet" href="/components/comment-board.css?v=K44">
 
   <!-- ============================================================
        OPERATOR SETUP NOTES &mdash; Libera.chat channel registration
@@ -240,6 +241,31 @@
       font-style: italic;
       margin-block-start: var(--s-3);
     }
+
+    /* ---- K44: when the board goes live (body.board-live, set by comment-board.js),
+         the IRC CTA demotes to a "for live chat" affordance below the board.
+         display:none until then, so nothing changes while the board is dormant. ---- */
+    .chat-live-divider { display: none; }
+    body.board-live .chat-live-divider {
+      display: block;
+      margin-block-start: var(--s-8);
+      padding-block-start: var(--s-5);
+      border-block-start: var(--bw-base) solid var(--c-border);
+    }
+    .chat-live-divider-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+      margin-block-end: var(--s-2);
+    }
+    .chat-live-divider-note {
+      font-family: var(--font-body);
+      font-size: var(--t-sm);
+      color: var(--c-fg-muted);
+      max-width: 42rem;
+    }
   </style>
 </head>
 <body data-mode="dark">
@@ -282,6 +308,55 @@
         </div>
       </div>
     </header>
+
+    <!-- ====================================================
+         K44: comment board. DORMANT until comment-board.js flips
+         BOARD.live=true (K45, after the Worker in workers/comments/
+         is deployed). While dormant this <section> stays hidden and
+         the page renders exactly as before. Store raw on the server,
+         escape on render in the component. Backend + runbook:
+         workers/comments/README.md
+         ==================================================== -->
+    <section id="comment-board" class="comment-board" hidden aria-label="Message board">
+      <p class="cb-eyebrow">Message board</p>
+      <h2 class="cb-heading">Leave a message</h2>
+      <p class="cb-intro">A quick, public note &mdash; for me or anyone reading. Anonymous is fine; add a name if you want it attributed. Email is optional and private: I am the only one who sees it, and only so I can reply. The house rules above apply.</p>
+
+      <form class="cb-form" autocomplete="on" novalidate>
+        <div class="cb-row">
+          <div class="cb-field">
+            <label class="cb-label" for="cb-name">Name <span class="cb-opt">(optional)</span></label>
+            <input class="cb-input" id="cb-name" name="name" type="text" maxlength="80" autocomplete="nickname">
+          </div>
+          <div class="cb-field">
+            <label class="cb-label" for="cb-email">Email <span class="cb-opt">(optional, private &mdash; only I see it)</span></label>
+            <input class="cb-input" id="cb-email" name="email" type="email" maxlength="254" autocomplete="email">
+          </div>
+        </div>
+        <div class="cb-field">
+          <label class="cb-label" for="cb-body">Message</label>
+          <textarea class="cb-textarea" id="cb-body" name="body" maxlength="2000" required></textarea>
+        </div>
+        <!-- honeypot: real people never see or fill this; bots do -->
+        <div class="cb-hp" aria-hidden="true">
+          <label for="cb-website">Website</label>
+          <input id="cb-website" name="hp" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="cb-form-foot">
+          <button class="cb-submit" type="submit">Post message</button>
+          <span class="cb-charcount" aria-hidden="true">0 / 2000</span>
+          <span class="cb-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+
+      <p class="cb-loading" hidden>Loading messages&hellip;</p>
+      <ol class="cb-thread" aria-label="Messages"></ol>
+    </section>
+
+    <div class="chat-live-divider">
+      <p class="chat-live-divider-eyebrow">Prefer live chat?</p>
+      <p class="chat-live-divider-note">The board above is for quick asynchronous notes. For real-time conversation during rare live events, the IRC channel is below.</p>
+    </div>
 
     <!-- ====================================================
          K30: Kiwi alternate scrapped per operator testing (K28
@@ -348,6 +423,7 @@
     <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
   </div>
 
+  <script src="/components/comment-board.js?v=K44"></script>
   <script src="/components/ambient-player.js?v=K30"></script>
 </body>
 </html>

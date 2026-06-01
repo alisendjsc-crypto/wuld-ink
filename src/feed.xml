@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Jun 2026 01:50:19 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2026 02:48:42 +0000</lastBuildDate>
+    <item>
+      <title>A comment board is coming to the Chat page — a quick public note for me or anyone reading, anonymous or signed. The groundwork shipped this round; it goes live once the backend is wired up.</title>
+      <link>https://wuld.ink/changelog/#2026-05-31-comment-board</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-31-comment-board</guid>
+      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
+      <description>A comment board is coming to the Chat page — a quick public note for me or anyone reading, anonymous or signed. The groundwork shipped this round; it goes live once the backend is wired up.</description>
+    </item>
     <item>
       <title>Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.</title>
       <link>https://wuld.ink/changelog/#2026-05-31-changelog</link>

@@ -1,0 +1,16 @@
+{
+  "name": "wuld-comments",
+  "version": "1.0.0",
+  "private": true,
+  "description": "wuld.ink comment board — Cloudflare Worker + D1. Anonymous-or-named comments, Access-gated moderation. Owned-stack, zero third-party tracking.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "schema:remote": "wrangler d1 execute wuld-comments --remote --file=./schema.sql",
+    "schema:local": "wrangler d1 execute wuld-comments --local --file=./schema.sql",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^3"
+  }
+}

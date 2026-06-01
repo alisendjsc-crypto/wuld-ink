@@ -1,0 +1,47 @@
+# =============================================================================
+# wuld.ink comment board — Cloudflare Worker config
+# =============================================================================
+# This Worker is the umbrella's first DYNAMIC surface. It is NOT deployed by
+# Cowork — the operator stands it up via the runbook in README.md (K45).
+# Nothing here touches the live Pages site until the routes below are bound
+# AND the frontend flag BOARD.live is flipped to true (src/components/comment-board.js).
+# =============================================================================
+
+name = "wuld-comments"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# ---- D1 (SQLite) binding -----------------------------------------------------
+# Operator fills `database_id` after running:  wrangler d1 create wuld-comments
+# (the create command prints the id; paste it here, then apply schema.sql).
+[[d1_databases]]
+binding = "DB"
+database_name = "wuld-comments"
+database_id = "REPLACE_ME_AFTER_D1_CREATE"
+
+# ---- Routes (same-origin so the frontend calls /api/* with NO CORS) ----------
+# These intercept the two paths in front of Pages. Everything else still serves
+# from Pages. Requires the wuld.ink zone be on this Cloudflare account (it is).
+[[routes]]
+pattern = "wuld.ink/api/*"
+zone_name = "wuld.ink"
+
+[[routes]]
+pattern = "wuld.ink/admin*"
+zone_name = "wuld.ink"
+
+# ---- Non-secret vars ---------------------------------------------------------
+# IP_SALT is a SECRET — set it with `wrangler secret put IP_SALT` (NOT here).
+[vars]
+ALLOWED_ORIGIN = "https://wuld.ink"
+ADMIN_EMAIL = "alisendjsc@gmail.com"
+# Fill these two AFTER creating the Access application (see README step 6) to
+# turn on cryptographic admin-JWT verification (defense-in-depth behind Access).
+# Until then the Worker falls back to "require the Access header present" — which
+# is safe ONLY because Cloudflare Access is the real gate. Set them ASAP.
+ACCESS_TEAM_DOMAIN = ""   # e.g. "wuld.cloudflareaccess.com"
+ACCESS_AUD = ""           # Access application Audience (AUD) tag, from the app overview
+
+# ---- Observability (optional; free) -----------------------------------------
+[observability]
+enabled = true

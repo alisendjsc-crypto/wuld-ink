@@ -1,0 +1,181 @@
+/* =============================================================================
+ * comment-board.css — wuld.ink message board (K44)
+ * Mono/neobrutalist site chrome. Reads as the site's own surface, not a widget.
+ * The board section is `hidden` until comment-board.js flips it live (K45).
+ * ===========================================================================*/
+
+.comment-board {
+  max-width: var(--w-text);
+  margin-block: var(--s-7) var(--s-8);
+}
+
+.cb-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-accent);
+  margin-block-end: var(--s-2);
+}
+
+.cb-heading {
+  font-family: var(--font-headline);
+  font-size: var(--t-h4);
+  margin-block: 0 var(--s-3);
+}
+
+.cb-intro {
+  font-family: var(--font-body);
+  font-size: var(--t-sm);
+  color: var(--c-fg-muted);
+  margin-block-end: var(--s-5);
+  max-width: 42rem;
+}
+
+/* ---- post form ---------------------------------------------------------- */
+.cb-form {
+  border: var(--bw-base) solid var(--c-border);
+  background: var(--c-bg);
+  padding: var(--s-5);
+  margin-block-end: var(--s-7);
+}
+
+.cb-row {
+  display: flex;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+.cb-row .cb-field { flex: 1 1 14rem; }
+
+.cb-field { margin-block-end: var(--s-4); }
+
+.cb-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+  margin-block-end: var(--s-2);
+}
+.cb-label .cb-opt { color: var(--c-fg-dim); text-transform: none; letter-spacing: 0; }
+
+.cb-input,
+.cb-textarea {
+  width: 100%;
+  background: var(--c-bg-raised, #141414);
+  color: var(--c-fg);
+  border: var(--bw-base) solid var(--c-border);
+  font-family: var(--font-body);
+  font-size: var(--t-base);
+  padding: var(--s-3);
+}
+.cb-textarea {
+  min-height: 6rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+.cb-input:focus,
+.cb-textarea:focus {
+  outline: none;
+  border-color: var(--c-accent);
+}
+
+/* honeypot — visually + audibly hidden, but present for bots */
+.cb-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+
+.cb-form-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  margin-block-start: var(--s-2);
+}
+
+.cb-submit {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  background: var(--c-bg);
+  color: var(--c-fg);
+  border: var(--bw-base) solid var(--c-accent);
+  padding: var(--s-3) var(--s-5);
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.cb-submit:hover:not(:disabled) { background: var(--c-accent); color: var(--c-bg); }
+.cb-submit:disabled { opacity: .5; cursor: default; }
+
+.cb-charcount {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--c-fg-dim);
+  letter-spacing: var(--ls-wide);
+}
+.cb-charcount.is-over { color: var(--c-accent); }
+
+.cb-status {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-fg-muted);
+  min-height: 1em;
+}
+.cb-status.is-error { color: var(--c-accent); }
+
+/* ---- thread ------------------------------------------------------------- */
+.cb-thread {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cb-comment {
+  border-block-start: var(--bw-base) solid var(--c-border);
+  padding-block: var(--s-4);
+}
+.cb-comment:first-child { border-block-start: none; }
+
+.cb-comment-meta {
+  display: flex;
+  gap: var(--s-4);
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: var(--ls-wide);
+  margin-block-end: var(--s-2);
+}
+.cb-comment-name { color: var(--c-fg); }
+.cb-comment-name.cb-anon { color: var(--c-fg-dim); font-style: italic; }
+.cb-comment-time { color: var(--c-fg-dim); }
+
+.cb-comment-body {
+  font-family: var(--font-body);
+  font-size: var(--t-base);
+  color: var(--c-fg);
+  line-height: 1.6;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.cb-empty,
+.cb-loading {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--t-sm);
+  color: var(--c-fg-dim);
+  padding-block: var(--s-4);
+}
+
+/* ---- IRC demotion: only once the board is live -------------------------- */
+/* When comment-board.js flips live it adds body.board-live; /chat/ uses that
+   to compact the libera CTA into a small "for live chat" affordance. The rule
+   itself lives in /chat/'s inline style so this component stays page-agnostic. */

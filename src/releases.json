@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-05-31-comment-board",
+    "date": "2026-05-31",
+    "summary": "A comment board is coming to the Chat page — a quick public note for me or anyone reading, anonymous or signed. The groundwork shipped this round; it goes live once the backend is wired up.",
+    "sections": []
+  },
+  {
     "id": "2026-05-31-changelog",
     "date": "2026-05-31",
     "summary": "Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.",
