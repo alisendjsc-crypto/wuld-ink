@@ -2,8 +2,10 @@
   {
     "id": "2026-05-31-comment-board",
     "date": "2026-05-31",
-    "summary": "A comment board is coming to the Chat page — a quick public note for me or anyone reading, anonymous or signed. The groundwork shipped this round; it goes live once the backend is wired up.",
-    "sections": []
+    "summary": "The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed.",
+    "sections": [
+      "/chat/"
+    ]
   },
   {
     "id": "2026-05-31-changelog",
@@ -12,9 +14,9 @@
     "sections": []
   },
   {
-    "id": "2026-05-31-library-v3-8-3",
+    "id": "2026-05-31-library-v3-8-4",
     "date": "2026-05-31",
-    "summary": "Argument Library updated to v3.8.3 — expanded corpus (81 objections, 35 mechanisms), now framed as actively maintained rather than archived.",
+    "summary": "Argument Library updated to v3.8.4 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.",
     "sections": [
       "/argument-library/"
     ]

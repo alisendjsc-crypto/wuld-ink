@@ -14,7 +14,7 @@
   var BOARD = {
     apiBase: "/api",     // same-origin Worker route (wuld.ink/api/*). K45: confirm.
     board: "global",
-    live: false,         // <-- K45 FLIP TO true AFTER WORKER DEPLOY + SMOKE TEST
+    live: true,         // <-- K45 FLIP TO true AFTER WORKER DEPLOY + SMOKE TEST
     maxBody: 2000,
     maxName: 80,
     maxEmail: 254,

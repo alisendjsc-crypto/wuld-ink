@@ -17,7 +17,7 @@ compatibility_date = "2025-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "wuld-comments"
-database_id = "REPLACE_ME_AFTER_D1_CREATE"
+database_id = "fbae13d3-7ec2-4c09-96a8-031046241f5a"
 
 # ---- Routes (same-origin so the frontend calls /api/* with NO CORS) ----------
 # These intercept the two paths in front of Pages. Everything else still serves
@@ -39,8 +39,8 @@ ADMIN_EMAIL = "alisendjsc@gmail.com"
 # turn on cryptographic admin-JWT verification (defense-in-depth behind Access).
 # Until then the Worker falls back to "require the Access header present" — which
 # is safe ONLY because Cloudflare Access is the real gate. Set them ASAP.
-ACCESS_TEAM_DOMAIN = ""   # e.g. "wuld.cloudflareaccess.com"
-ACCESS_AUD = ""           # Access application Audience (AUD) tag, from the app overview
+ACCESS_TEAM_DOMAIN = "wuld.cloudflareaccess.com"   # e.g. "wuld.cloudflareaccess.com"
+ACCESS_AUD = "dc2e385e80a87134f6050a63e4701ddf89d62387c0a89d9d8a3a9b1da04a350b"           # Access application Audience (AUD) tag, from the app overview
 
 # ---- Observability (optional; free) -----------------------------------------
 [observability]

@@ -6,13 +6,13 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Jun 2026 02:48:42 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2026 04:08:50 +0000</lastBuildDate>
     <item>
-      <title>A comment board is coming to the Chat page — a quick public note for me or anyone reading, anonymous or signed. The groundwork shipped this round; it goes live once the backend is wired up.</title>
+      <title>The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed.</title>
       <link>https://wuld.ink/changelog/#2026-05-31-comment-board</link>
       <guid isPermaLink="false">wuld.ink:2026-05-31-comment-board</guid>
       <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
-      <description>A comment board is coming to the Chat page — a quick public note for me or anyone reading, anonymous or signed. The groundwork shipped this round; it goes live once the backend is wired up.</description>
+      <description>The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed. (Sections: /chat/)</description>
     </item>
     <item>
       <title>Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.</title>
@@ -22,11 +22,11 @@
       <description>Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.</description>
     </item>
     <item>
-      <title>Argument Library updated to v3.8.3 — expanded corpus (81 objections, 35 mechanisms), now framed as actively maintained rather than archived.</title>
-      <link>https://wuld.ink/changelog/#2026-05-31-library-v3-8-3</link>
-      <guid isPermaLink="false">wuld.ink:2026-05-31-library-v3-8-3</guid>
+      <title>Argument Library updated to v3.8.4 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.</title>
+      <link>https://wuld.ink/changelog/#2026-05-31-library-v3-8-4</link>
+      <guid isPermaLink="false">wuld.ink:2026-05-31-library-v3-8-4</guid>
       <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
-      <description>Argument Library updated to v3.8.3 — expanded corpus (81 objections, 35 mechanisms), now framed as actively maintained rather than archived. (Sections: /argument-library/)</description>
+      <description>Argument Library updated to v3.8.4 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived. (Sections: /argument-library/)</description>
     </item>
     <item>
       <title>Void Engine lexicon expanded to 310 entries across 19 categories.</title>

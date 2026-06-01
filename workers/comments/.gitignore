@@ -1,0 +1,7 @@
+# wrangler local state + deploy cache — never commit
+.wrangler/
+# local dev secrets (wrangler secret put stores remotely; this is for `wrangler dev`)
+.dev.vars
+.dev.vars.*
+# node
+node_modules/
