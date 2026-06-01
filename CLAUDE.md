@@ -323,7 +323,34 @@ Tool budget: projected 40-70 main-context calls (code + runbook, no live test po
 
 **`<p>` margin-inline:auto audit:** N/A (comment board build; no centering work).
 
-### Carry-forwards to K45
+**K45 (2026-05-31, operator-standup session via Cowork + Claude-in-Chrome):** Track (g) Phase 2 STEP 2 -- comment board BACKEND STANDUP + GO-LIVE + library v3.8.4 cross-ref refresh. The K44 carry ("operator stands up the backend") executed live: operator ran the runbook CLI; Cowork drove the Cloudflare Access dashboard through the Chrome extension (first dashboard-automation session). Sequence: (1) `npm i -g wrangler` + `wrangler login`; (2) `wrangler d1 create wuld-comments` -> D1 id `fbae13d3-7ec2-4c09-96a8-031046241f5a` (WNAM), Cowork pasted it into wrangler.toml via atomic bash; (3) schema applied --remote (table + 2 indexes; count 0); (4) `wrangler secret put IP_SALT` (random 64-hex piped); (5) `wrangler deploy` -> Worker live, routes `wuld.ink/api/*` + `wuld.ink/admin*` bound; public GET returned `{"board":"global","comments":[]}`; (6) Cowork drove Chrome to create Access self-hosted app **"wuld comments admin"** (app id `50e15617-18d6-4e76-b230-d5f72282dc3f`) with TWO destinations `wuld.ink/admin` + `wuld.ink/api/admin` (both -- action endpoints covered), policy "wuld comments admin" (id `8e7ae819-ef4e-4656-a29d-ea41d6a810c5`) Allow + Include Emails alisendjsc@gmail.com, OTP login, 24h session; captured AUD `dc2e385e80a87134f6050a63e4701ddf89d62387c0a89d9d8a3a9b1da04a350b` + team domain `wuld.cloudflareaccess.com`; (7) set ACCESS_TEAM_DOMAIN + ACCESS_AUD in wrangler.toml + redeploy -> cryptographic Access-JWT verification (JWKS RS256) active; (8) /admin moderation smoke PASSED end-to-end in prod (post via Invoke-RestMethod -> list -> hide -> delete; escape-on-render + no-email display + confirm-dialog all confirmed); (9) board flipped live -- BOARD.live=true + cache-bump K44->K45 on /chat/ board assets + changelog "comment-board" entry coming->live + /chat/-tagged; (10) operator ran `D:\k45-publish.ps1` (single commit: board live + library v3.8.4 + backend config + .wrangler gitignore); board confirmed LIVE on /chat/ with inaugural anonymous comment. SSL note: intermittent ERR_SSL_PROTOCOL_ERROR during the session was Microsoft Edge-specific (resolved on its own / on browser-switch; curl + other browsers fine) -- not a wuld.ink fault.
+
+**K45 library v3.8.4 cross-ref refresh** (routed to Cowork from the library-Claude chat). wuld.ink had pinned stale v3.8.3. Live-verified the deployed `library.wuld.ink/combined` -> md5 `51ec8f037ca451dcbd8817e45171ba8b` / **2,349,783 bytes** (NOT the operator's Downloads `combined.html`, a stale `4f3413bb...` / 2,247,094 B build -- live-verify caught it). Atomic pass over src/**/*.html: version v3.8.3->v3.8.4 x34 across 12 files + md5 `e475e0ea8a0b9e36ab5cddfd8bac59d2`->`51ec8f03...` x2 + byte count 2,349,639->2,349,783 x1; corpus counts (81 obj / 35 mech / 136 RWE / 5 tiers) UNCHANGED (live +144 byte delta confirms no corpus change); releases.json library entry bumped v3.8.3->v3.8.4; feed regenerated; 0 residual v3.8.3.
+
+**K45 lessons logged:**
+
+(clxxxv) **Cowork can drive the Cloudflare Zero-Trust dashboard via the Chrome extension -- viable for owner-side config Cowork's own tools cannot do.** K44 clxxxiv called the operator dashboard standup "outside Cowork"; K45 revises that -- Cowork drove the entire Access app creation (self-hosted app + 2 destinations + policy + AUD/team capture) through Chrome MCP, while the operator handled only the wrangler CLI (D1 create / deploy / secret) and the email-OTP login (which Cowork cannot complete). Pattern: Chrome MCP handles dashboard FORM-FILLING + READS; operator handles CLI + anything needing a secret or email-code. Split the standup by "form vs credential," not "dashboard vs not."
+
+(clxxxvi) **Integrity pins MUST be live-verified -- K45 caught TWO wrong hashes for one file.** The library-Claude screenshot rendered the OLD md5 with 2 chars dropped (30 vs 32), AND the operator's local Downloads/combined.html was a stale build (`4f3413bb...` / 2,247,094 B) that did NOT match the deployed file. Only hashing the LIVE `library.wuld.ink/combined` (`curl.exe -sL .../combined -o t; Get-FileHash -Algorithm MD5 t`) gave truth (`51ec8f03...` / 2,349,783 B). Had either wrong value been pinned, /library-about would fail verification end-to-end (the K37a clxvi failure). Lock: wuld.ink integrity pins derive ONLY from a live fetch+hash of the deployed artifact -- never a manifest, screenshot, canon attestation, or local working copy. Strengthens K37 clxvi + K41 clxxviii to "live-verify, full stop."
+
+(clxxxvii) **Windows PowerShell 5.1 mangles inline JSON to curl.exe -- use Invoke-RestMethod for POST bodies.** `curl.exe ... -d '{"k":"v"}'` returned the Worker's `invalid_json` because PS 5.1 strips embedded double-quotes when building the native command line. `Invoke-RestMethod -Method Post -ContentType application/json -Body '{"k":"v"}'` sends correct JSON. Runbook note: GET via curl.exe is fine; POST-with-JSON-body uses Invoke-RestMethod. The real board form is unaffected (JS JSON.stringify). The `invalid_json` response positively confirmed the Worker's body-validation guard fires.
+
+**`<p>` margin-inline:auto audit:** N/A (backend standup + cross-ref refresh; no centering work).
+
+### Carry-forwards to K46
+
+### Closed at K45-tail
+
+- **K44 NEW -- Operator stands up the backend + runs publish.** CLOSED at K45. Backend fully stood up (D1 + Worker + Access app + IP_SALT secret); /admin moderation smoke passed in prod; board flipped live + `D:\k45-publish.ps1` pushed; board confirmed LIVE on /chat/ with inaugural comment.
+- **K42a/K41 carry -- /library-about v3.8.x integrity refresh.** CLOSED at K45 -- live-verified v3.8.4 pin (`51ec8f037ca451dcbd8817e45171ba8b` / 2,349,783 B) written across 12 files; 0 residual v3.8.3.
+
+### Carries to K46 (NEW from K45)
+
+- **K45 NEW -- Operator confirms K45 deploy at K46 open.** PRESUMED-CLOSED (live board screenshot + inaugural comment + library v3.8.4 in same push). Verify at K46 open: HEAD advanced past `75b6599`; wuld.ink/chat/ board renders; /library-about reads v3.8.4 + md5 `51ec8f03...`; library.wuld.ink/combined md5 == `51ec8f037ca451dcbd8817e45171ba8b`.
+- **K45 NEW -- Inaugural test comment ("test", anonymous) in D1 `wuld-comments`.** Operator-elective: delete via /admin if unwanted, or keep as the first post.
+- **K45 NEW -- Phase 2 remainder (per K43 lock):** Cloudflare Turnstile only if real spam appears; per-page comment keying later; email newsletter stays DEFERRED (RSS-only). Optional-email column is droppable via `ALTER TABLE comments DROP COLUMN email` (README) if the PII is reconsidered.
+- **K45 size watch:** CLAUDE.md ~166 KB post-K45 (~85% of the ~195 KB trim threshold). Trim ADVISABLE at K46-K47 open (K22 vii subagent pattern); move K36-K41 narratives to CLAUDE-history.md, keep K42-K45.
+- **Operator-elective long tail (unchanged):** chat-side prose polish; `_redirects` `/rwe.html` shortcut; README screenshot; R2 gallery .png/.jpg cleanup (~75 MB); Photos-3-001 picks; /void-engine/ meta-description judgment; `D:\k37-library-staging` + `D:\k44-publish.ps1` + `D:\k45-publish.ps1` cleanup.
 
 ### Closed at K44-tail
 
@@ -652,6 +679,8 @@ Tool budget: projected 40-70 main-context calls (code + runbook, no live test po
 - **R2 subscription:** activated on PayPal `evilisanihilis@live.com`. Free tier 10GB/1M Class A/10M Class B. Overage authorization signed.
 - **TLS minimum on R2 custom domain:** 1.2 (post-E2 bump from 1.0 default). Edge still negotiates higher in practice; this enforces the floor.
 - **Cloudflare Rules — Redirect Rules:** 1/10 used. Order 1 = "Redirect from WWW to root [Template]" — Active. URI Full wildcard `r"https://www.*"` → `https://${1}` at 301 with preserve-query-string.
+
+- **Comment board (K45):** D1 database `wuld-comments` id `fbae13d3-7ec2-4c09-96a8-031046241f5a` (WNAM). Worker `wuld-comments` (source `workers/comments/`), routes `wuld.ink/api/*` + `wuld.ink/admin*`. Secret `IP_SALT` set via wrangler (not in repo). Cloudflare Access app **"wuld comments admin"** id `50e15617-18d6-4e76-b230-d5f72282dc3f`, AUD `dc2e385e80a87134f6050a63e4701ddf89d62387c0a89d9d8a3a9b1da04a350b`, team domain `wuld.cloudflareaccess.com`, policy `8e7ae819-ef4e-4656-a29d-ea41d6a810c5` (Allow / Include Emails alisendjsc@gmail.com / OTP), gating BOTH `/admin` and `/api/admin/*`. Board LIVE on /chat/ (BOARD.live=true; board assets at `?v=K45`). One global board ("global"). Moderation UI at `wuld.ink/admin` (Access email-OTP).
 
 ### Resolved decisions
 
