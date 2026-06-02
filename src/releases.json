@@ -3,7 +3,9 @@
     "id": "2026-06-01-void-engine-334",
     "date": "2026-06-01",
     "summary": "The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it.",
-    "sections": ["/void-engine/"]
+    "sections": [
+      "/void-engine/"
+    ]
   },
   {
     "id": "2026-05-31-comment-board",
@@ -20,9 +22,9 @@
     "sections": []
   },
   {
-    "id": "2026-06-01-library-v3-8-5r",
+    "id": "2026-06-01-library-v3-8-6",
     "date": "2026-06-01",
-    "summary": "Argument Library updated to v3.8.5r — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.",
+    "summary": "Argument Library updated to v3.8.6 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.",
     "sections": [
       "/argument-library/"
     ]
