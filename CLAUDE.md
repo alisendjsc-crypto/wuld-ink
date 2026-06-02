@@ -219,6 +219,30 @@ Tool budget: projected 40-70 main-context calls (code + runbook, no live test po
 
 **`<p>` margin-inline:auto audit:** N/A (backend hardening; no centering work).
 
+**K47 (2026-06-01):** Track (library) -- v3.8.5r deploy close + wuld.ink `/library-about` integrity pin-move (library-Claude directive `v3_8_5r_deploy_close_and_wuldink_pin_s1`, coord Exchange 16). Mechanical closeout, no authoring. Operator deployed v3.8.5r library-side via the hardened `push_v3_8_5r.ps1` (commit `59dbe7d` on main + v3.8.x parity from baseline `3735f7b`; canon 37.8->37.9 MINOR, prose-only -- neuroscience-positive-states long re-author + REBUTTAL_STRENGTH s/r/a regrade + ledger). Live `library.wuld.ink/combined` verified `53db35a40ce265217855021ffe7ba838` / 2,349,783 B (3x curl agree). Cowork then moved the wuld.ink pin via the NEW `tools/library-pin.py`: md5 `51ec8f03`->`53db35a4` (x2 library-about), version `v3.8.4`->`v3.8.5r` (x34 / 13 files), bytecount unchanged (byte-identical release; only s/r/a score digits moved); releases.json library entry bumped + feed regen; 0 residual; 57 HTML 0/0/0/0. Integrity check passes (pin == live).
+
+**NEW standing tooling (retires per-release archaeology):** `tools/library-pin.py` (gate-enforced one-command pin-move -- live-fetches via curl 3x, REFUSES unless live==manifest.pin.new AND != current pin; consumes library-Claude's `release_vX.json`); `tools/verify-live-library.ps1` (operator GREEN/STILL/UNEXPECTED/UNSTABLE check); `tools/library-pin-state.json` (current-pin record, auto-updated on --apply); `docs/library-release-manifest-spec.md` (ratifies the `release.json` contract + the 4-step flow: library-Claude writes manifest -> operator preflight+push -> verify.ps1 -> Cowork library-pin.py). Collapses the ~15-call pin-move to one command.
+
+K47 lessons:
+
+(clxxxviii) **Live-verify the library MUST use curl, never urllib/requests.** Cloudflare served Python urllib a 504-byte-larger body with a different md5 (`15ca0f4b` vs canonical `51ec8f03`); urllib on `/combined.html` got 403. The canonical md5 + the operator curl.exe verify both speak curl. Both new tools fetch via curl; 3x-agreement defends a one-shot edge-cache transient (observed once). Strengthens K45 clxxxvi with the client-matters finding.
+
+(clxxxix) **Vet cross-Claude production scripts before the operator runs them -- 5 bugs caught across two relays.** library-Claude preflight shipped 3 (the `h`->`Get-History` alias ate its hash helper; default `combined_v3_8_0.html` vs repo `combined.html`; canon `.version` vs `.canon_version`); push v1 had 2 (`rebuttal_grading_ledger_v3_8_0.json` + a drifting hardcoded session-state name). Root cause underneath: native git nonzero exits do NOT trip PowerShell `$ErrorActionPreference="Stop"`, so a bad `git add` stages nothing, commits nothing, and still prints "committed" -- silent success. Cowork flagged all; library-Claude hardened (GitOrDie wrapper + glob the session file + assert 7-staged + assert HEAD-advanced). LOCK: when Cowork is downstream of a cross-Claude-authored script that touches a repo, read it + scan the bug-class before run; a second instance cannot see the first's working-tree filenames.
+
+(cxc) **library-pin.py date stamp uses sandbox UTC -- corrected to operator-local.** `datetime.date.today()` ran in the sandbox (UTC, hours ahead), stamping releases.json `2026-06-02`; corrected to env date `2026-06-01`. Future runs should accept `--date` or read operator-local.
+
+### Closed at K47-tail
+
+- **K47 directive (Steps 3-4 wuld.ink pin-move).** CLOSED -- pin advanced `51ec8f03`->`53db35a4` / v3.8.4->v3.8.5r across 13 src files + releases.json + feed; 0 residual; 57 HTML 0/0/0/0; integrity green (pin==live).
+- **GATE (operator deploy v3.8.5r + live==53db35a4).** CLOSED -- hardened `push_v3_8_5r.ps1` committed `59dbe7d` + pushed both branches; Cloudflare deployed; live verified `53db35a4` (3x curl agree).
+
+### Carries to K48 (NEW from K47)
+
+- **K47 NEW -- Operator commits + pushes wuld-ink.** Single commit: pin-move (13 src HTML + releases.json + feed.xml) + 4 new tooling files (tools/library-pin.py, tools/library-pin-state.json, tools/verify-live-library.ps1, docs/library-release-manifest-spec.md) + this CLAUDE.md narrative. `git add -A; git commit; git push origin main`. Pages redeploys wuld.ink (~30s); hard-refresh `/library-about/` -> reads `v3.8.5r` + md5 `53db35a4`.
+- **K47 NEW -- Standing manifest contract live.** `release_vX.json` (library-Claude writes per release) + the 4-step flow retire the archaeology; adoption depends on library-Claude producing the manifest each release (it already computes the values in self-test). Contract: `docs/library-release-manifest-spec.md`.
+- **K48 INBOUND (library-side, own session) -- `bradley-no-subject`** (long 79.2 C; soft axes a 0.72 / r 0.75): MAX authoring -> Cowork foldin. Separate session after the pin landed.
+- **K47 carry (framework footnote, DO NOT action) -- terminus seam:** neuroscience-positive-states now defends antinatalism cleanly (consent-grounded); the EFIList/pro-mortalist terminus still leans on the unmeasurable magnitude ledger. Framework-level open question; footnote only.
+
 ### Carry-forwards to K47
 
 ### Closed at K46-tail

@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Jun 2026 04:08:50 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 00:18:46 +0000</lastBuildDate>
+    <item>
+      <title>Argument Library updated to v3.8.5r — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.</title>
+      <link>https://wuld.ink/changelog/#2026-06-01-library-v3-8-5r</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-01-library-v3-8-5r</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Argument Library updated to v3.8.5r — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed.</title>
       <link>https://wuld.ink/changelog/#2026-05-31-comment-board</link>
@@ -20,13 +27,6 @@
       <guid isPermaLink="false">wuld.ink:2026-05-31-changelog</guid>
       <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
       <description>Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.</description>
-    </item>
-    <item>
-      <title>Argument Library updated to v3.8.4 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.</title>
-      <link>https://wuld.ink/changelog/#2026-05-31-library-v3-8-4</link>
-      <guid isPermaLink="false">wuld.ink:2026-05-31-library-v3-8-4</guid>
-      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
-      <description>Argument Library updated to v3.8.4 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived. (Sections: /argument-library/)</description>
     </item>
     <item>
       <title>Void Engine lexicon expanded to 310 entries across 19 categories.</title>
