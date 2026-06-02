@@ -58,3 +58,7 @@ docs/cowork_orientation_v*.md
 docs/library_claude_coordination_EXCHANGE_*_FRAGMENT.md
 
 images/
+
+# Python bytecache (tools/, etc.)
+__pycache__/
+*.pyc
