@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Jun 2026 00:18:46 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 01:03:24 +0000</lastBuildDate>
+    <item>
+      <title>The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it.</title>
+      <link>https://wuld.ink/changelog/#2026-06-01-void-engine-334</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-01-void-engine-334</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <description>The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it. (Sections: /void-engine/)</description>
+    </item>
     <item>
       <title>Argument Library updated to v3.8.5r — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.</title>
       <link>https://wuld.ink/changelog/#2026-06-01-library-v3-8-5r</link>

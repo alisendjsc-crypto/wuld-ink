@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-01-void-engine-334",
+    "date": "2026-06-01",
+    "summary": "The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it.",
+    "sections": ["/void-engine/"]
+  },
+  {
     "id": "2026-05-31-comment-board",
     "date": "2026-05-31",
     "summary": "The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed.",
