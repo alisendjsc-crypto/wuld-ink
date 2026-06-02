@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-01-void-engine-glow",
+    "date": "2026-06-01",
+    "summary": "The Void Engine now flags what's new for you — fresh prompts and categories glow until you've seen them (remembered on your device, no tracking). Plus a pinned stat header, model-agnostic targeting copy, site-matched accent colors, a clearer Diagnosis form, and a new figure-DNA prompt filter for the figure sets. Still 334 prompts across 19 categories.",
+    "sections": [
+      "/void-engine/"
+    ]
+  },
+  {
     "id": "2026-06-01-void-engine-334",
     "date": "2026-06-01",
     "summary": "The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it.",

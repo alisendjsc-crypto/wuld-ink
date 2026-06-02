@@ -71,15 +71,15 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 #engine-toggle button:hover{color:#aaa}
 #engine-toggle button.active-void{
   color:#cc2020;background:rgba(180,24,24,.08);
-  box-shadow:inset 0 -2px 0 #cc2020;
+  box-shadow:inset 0 -2px 0 #cc2020,0 2px 18px -3px rgba(204,32,32,.5);text-shadow:0 0 10px rgba(204,32,32,.55);
 }
 #engine-toggle button.active-sig{
   color:#1e9484;background:rgba(30,148,132,.08);
-  box-shadow:inset 0 -2px 0 #1e9484;
+  box-shadow:inset 0 -2px 0 #1e9484,0 2px 18px -3px rgba(30,148,132,.5);text-shadow:0 0 10px rgba(40,188,168,.5);
 }
 #engine-toggle button.active-trans{
   color:#706d65;background:rgba(255,255,255,.03);
-  box-shadow:inset 0 -2px 0 rgba(255,255,255,.15);
+  box-shadow:inset 0 -2px 0 rgba(255,255,255,.15),0 2px 16px -4px rgba(255,255,255,.2);
 }
 #engine-toggle .divider{
   width:1px;height:24px;background:rgba(255,255,255,.1);
@@ -114,7 +114,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .hdr-brand h1 span{color:var(--red);font-style:normal;font-family:var(--mono);font-size:15px;letter-spacing:.1em}
 .hdr-brand p{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);margin-top:5px;max-width:560px;line-height:1.9}
 @keyframes flicker{0%,100%{opacity:1}91%{opacity:1}92.5%{opacity:.65}93.5%{opacity:1}97%{opacity:.8}98%{opacity:1}}
-.quote-bar{font-family:var(--serif);font-style:italic;font-size:11px;color:var(--mist);border-left:2px solid var(--blood);padding-left:10px;max-width:360px;line-height:1.85;transition:opacity .6s}
+.quote-bar{font-family:var(--serif);font-style:italic;font-size:11px;color:var(--mist);border-left:2px solid var(--red);box-shadow:-3px 0 11px -5px rgba(204,32,32,.6);padding-left:12px;max-width:360px;line-height:1.85;transition:opacity .6s}
 .stat-pills{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
 .pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 11px;border:1px solid}
 .pill-g{color:var(--gd);border-color:var(--gdk);background:var(--gg)}
@@ -187,10 +187,10 @@ select:hover{border-color:var(--blood)}
 .perm-bar{background:var(--dp1);border:1px solid var(--bdr);padding:8px 14px;font-size:10px;color:var(--mist);display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 .perm-bar span{color:var(--ash)}
 .perm-bar .pv{color:var(--amber);font-weight:700;font-size:12px}
-.sidebar{width:188px;flex-shrink:0;display:flex;flex-direction:column;gap:3px;position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--blood) transparent}
-.sidebar::-webkit-scrollbar{width:6px}
-.sidebar::-webkit-scrollbar-thumb{background:var(--blood);border-radius:0}
-.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar{width:188px;flex-shrink:0;display:flex;flex-direction:column;gap:3px;position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:hidden}
+.cat-scroll::-webkit-scrollbar{width:6px}
+.cat-scroll::-webkit-scrollbar-thumb{background:var(--blood);border-radius:0}
+.cat-scroll::-webkit-scrollbar-track{background:transparent}
 .srch{width:100%;background:var(--dp1);border:1px solid var(--bdr);color:var(--ash);padding:7px 10px;font-family:var(--mono);font-size:11px;outline:none;transition:border-color .12s;margin-bottom:7px}
 .srch:focus{border-color:var(--blood)}
 .srch::placeholder{color:var(--mist)}
@@ -200,7 +200,7 @@ select:hover{border-color:var(--blood)}
 .cn{font-size:9px;color:var(--mist);background:var(--dp2);padding:1px 5px}
 .cat-btn.on .cn{color:var(--red);background:rgba(122,16,16,.25)}
 .sb-div{height:1px;background:var(--bdr);margin:5px 0}
-.sb-stat{font-size:11px;color:var(--mist);padding:5px 10px;line-height:2.1}
+.sb-stat{font-size:11px;color:var(--mist);padding:5px 10px 7px;line-height:2.1;border-bottom:1px solid var(--bdr);flex-shrink:0}
 .sb-stat strong{color:var(--ash)}
 .grid{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:7px;align-content:start}
 .card{border:1px solid var(--bdr);padding:12px;cursor:pointer;transition:all .13s;display:flex;flex-direction:column;gap:7px;background:var(--dp1)}
@@ -306,13 +306,13 @@ select{font-size:13px}
 .ds-active-bar{font-size:13px;padding:9px 15px}
 .ds-panel{font-size:13px;line-height:1.95}
 .diag-hdr h2{font-size:34px}
-.diag-hdr p{font-size:14px}
+.diag-hdr p{font-size:15px}
 .diag-q{padding:18px 20px;margin-bottom:20px}
-.diag-qlbl{font-size:14px}
-.diag-qsub{font-size:14px}
+.diag-qlbl{font-size:16px}
+.diag-qsub{font-size:16px}
 .diag-opts{gap:7px}
-.diag-opt{font-size:14px;padding:11px 14px}
-.diag-progress{font-size:12px}
+.diag-opt{font-size:16px;padding:12px 15px}
+.diag-progress{font-size:13px}
 /* ── LEGIBILITY+ MODE ── */
 #void-engine-wrap.readable{font-size:20px;line-height:1.88}
 #void-engine-wrap.readable .quote-bar{font-size:18px!important;line-height:2.3!important}
@@ -616,6 +616,24 @@ select{font-size:13px}
   .tlist{max-height:calc(100vh - 420px)}
 }
 
+
+/* -- new-entry red-halation: glow until interacted; localStorage void-new-seen -- */
+.card.is-new{border-color:rgba(204,32,32,.42);animation:newglow 3.2s ease-in-out infinite}
+.card.is-new .ctitle{color:rgba(246,176,166,.9)}
+.card.is-new .cdot{background:var(--red);border-color:var(--hot);box-shadow:0 0 6px rgba(255,51,51,.5)}
+.card.is-new:hover{animation:none;border-color:rgba(204,32,32,.62)}
+@keyframes newglow{0%,100%{box-shadow:0 0 0 1px rgba(204,32,32,.20),0 0 9px 1px rgba(180,24,24,.15)}50%{box-shadow:0 0 0 1px rgba(204,32,32,.34),0 0 17px 3px rgba(204,32,32,.26)}}
+
+.cat-scroll{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:3px;scrollbar-width:thin;scrollbar-color:var(--blood) transparent}
+.cat-btn.cat-new{animation:newglow 3.2s ease-in-out infinite}
+.cat-btn.cat-new .cn{color:var(--hot)}
+.feat-new{animation:newglow 3.2s ease-in-out infinite}
+.posf-suggest{animation:newglow 3.2s ease-in-out infinite}
+
+/* diag legibility v2: italic subtitle bigger + brighter; options/labels up */
+.diag-qsub{font-size:19px!important;line-height:1.7!important;color:var(--ash)!important}
+.diag-qlbl{font-size:17px!important}
+.diag-opt{font-size:18px!important;padding:14px 17px!important}
 </style>
 </head>
 <body>
@@ -674,11 +692,11 @@ select{font-size:13px}
 <header class="hdr">
   <div class="hdr-brand">
     <h1><span>VOID ENGINE</span> — Sanguinolentum Vestigium</h1>
-    <p>Analog &amp; Nihilist Generative Lexicon v5.0 &mdash; Nano Banana 2 / Pro + Runway Gen-4.5 &mdash; right-click any card for plain description &amp; source</p>
+    <p>Analog &amp; Nihilist Generative Lexicon v5.0 &mdash; for any modern image / video generator &mdash; right-click any card for plain description &amp; source</p>
   </div>
   <div class="stat-pills">
     <div class="pill pill-g"><span class="dot"></span>SYSTEM ONLINE</div>
-    <div class="pill pill-r">TARGET: NB2 / PRO / GEN-4.5</div>
+    <div class="pill pill-r">TARGET: ANY IMAGE / VIDEO MODEL</div>
     <button class="read-btn" id="read-btn" onclick="toggleReadable()" title="Enhanced legibility — increases all text one size class further, brightens contrast">&#9635; LEGIBILITY+</button>
     <div class="quote-bar" id="qbar">Nothing is alright and never will be.</div>
   </div>
@@ -715,7 +733,7 @@ select{font-size:13px}
       <input type="text" class="s-in" id="seed-in" placeholder="seed...">
       <label class="tl"><input type="checkbox" class="tcb" id="wt"> weight :1.4</label>
       <span style="position:relative;display:inline-block">
-        <button type="button" class="btn ba" onclick="toggleChaosScope()" title="Choose which categories CHAOS rerolls. Unchecked = kept this round. Pin locks a category's current roll; categories with sub-registers can drill to a single sub.">&#9638; SCOPE (<span id="chaos-scope-n">0</span>)</button>
+        <button type="button" class="btn ba" data-newfeat="scope" onclick="markFeatSeen('scope');toggleChaosScope()" title="Choose which categories CHAOS rerolls. Unchecked = kept this round. Pin locks a category's current roll; categories with sub-registers can drill to a single sub.">&#9638; SCOPE (<span id="chaos-scope-n">0</span>)</button>
         <div id="chaos-scope-pop" style="display:none;position:absolute;top:100%;left:0;z-index:50;margin-top:4px;min-width:240px;max-height:330px;overflow:auto;background:#0c0c0c;border:1px solid rgba(200,148,10,.4);padding:8px;box-shadow:0 6px 24px rgba(0,0,0,.6)">
           <div style="display:flex;gap:5px;margin-bottom:7px;flex-wrap:wrap;border-bottom:1px solid rgba(200,148,10,.2);padding-bottom:6px">
             <button type="button" class="btn bs" style="font-size:10px;padding:3px 7px" onclick="chaosSetFav()" title="Josiah favorites">&#9733; FAVES</button>
@@ -727,6 +745,7 @@ select{font-size:13px}
       </span>
       <label class="tl" title="Append active LoRA stack's trigger blob to compiled prompt. Stack chosen via dropdown. Off by default. Stack-wide append, fires for any selected modifiers."><input type="checkbox" class="tcb" id="stack-trig" onchange="updateOutput()"> <span style="color:rgba(200,148,10,.7)">stack triggers</span></label>
       <select id="stack-sel" onchange="updateOutput()" title="Active LoRA stack — WULD Standard (Herbst Photo + GrainScape + Chiaroscuro + FineArtPhoto) | Documentary B&amp;W (GrainScape + Silver Gelatin)"><option value="WULD Standard">WULD</option><option value="Documentary B&amp;W">Doc B&amp;W</option></select>
+      <select id="posfilter-sel" onchange="onPosFilterChange()" title="Figure DNA - appends a recurring-figure body/aesthetic block (siblings of the v5 white-void baseline) to the compiled prompt. Populates only when figure cards are selected; off by default."><option value="">figure DNA: none</option></select>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-left:auto">
         <button class="btn bp" id="copy-pos" onclick="doCopyPos()" disabled>&#9654; COPY POSITIVE</button>
         <button class="btn bs" onclick="doChaos()">&#9889; CHAOS</button>
@@ -840,11 +859,12 @@ select{font-size:13px}
 
 <div class="row" style="margin-top:13px">
   <div class="sidebar" id="sidebar">
+    <div class="sb-stat">Total: <strong id="st-total">0</strong><br>Positive: <strong id="st-pos" style="color:var(--green)">0</strong><br>Negative: <strong id="st-neg" style="color:var(--red)">0</strong><br>Visible: <strong id="st-vis">0</strong></div>
     <input type="text" class="srch" id="srch" placeholder="/ search..." oninput="doSearch()">
+    <div class="cat-scroll">
     <button class="cat-btn on" id="c-All" onclick="setCat('All')">ALL <span class="cn" id="n-All">0</span></button>
     <div id="cat-btns"></div>
-    <div class="sb-div"></div>
-    <div class="sb-stat">Total: <strong id="st-total">0</strong><br>Positive: <strong id="st-pos" style="color:var(--green)">0</strong><br>Negative: <strong id="st-neg" style="color:var(--red)">0</strong><br>Visible: <strong id="st-vis">0</strong></div>
+    </div>
   </div>
   <div class="col" style="flex:1;gap:7px">
     <div id="sub-row" style="display:none"><div class="sub-tabs" id="sub-tabs"></div></div>
@@ -1795,6 +1815,28 @@ const STACK_TRIGGERS={
   'Documentary B&W':'silver gelatin print, archival photograph, high contrast monochrome, documentary realism, black and white film'
 };
 
+// -- POS_FILTERS (figure-DNA registry) --
+// Positive "Prompt Filter" blocks: recurring-figure body + WULD aesthetic
+// tail, appended to the compiled positive prompt when a variant is chosen in
+// #posfilter-sel. Scope-gated: a variant is only offered (and only injected)
+// when a selected card's category is in its `scope` -- keeps the nude figure
+// block out of pure still-life / architecture prompts. Siblings of the on-disk
+// v5 white-void baseline (IMG_GEN_WHITE_VOID_DISSOLUTION.md). Mascot excluded
+// on purpose (own DNA). Future register-filters drop in here.
+const POS_FILTERS=[
+  {id:'fdna0',label:'Baseline - v5 canonical',scope:['Figure / Exposed','Figure / Subject','Void / Dissolution','Luminous-Void','Apophatica'],text:"young woman in her early to mid 20's not older than 30, naked, long dark hair, grey eyes, deep-set eyes, defined arched brows, defined nose ridge, full lips with pronounced cupid's bow, asymmetric features, visible skin texture, buxom butt, bigger breasts, wide thick hips and thighs, faint freckling. Extreme analog film grain, halation, desaturation, blur, and distortion, austere and surreal juxtaposition, documentary austerity, vernacular photography"},
+  {id:'fdna1',label:'Gaunt / ascetic',scope:['Figure / Exposed','Figure / Subject','Void / Dissolution','Luminous-Void','Apophatica'],text:"woman in her mid 20's not older than 30, naked, thick long dark hair falling heavy past the shoulders and across one cheek, grey deep-set eyes, sharp arched brows, hollowed cheeks, prominent collarbones, a spare ascetic frame, small breasts, narrow hips, flat stomach, visible skin texture, faint freckling, downcast contemplative stillness. Extreme analog film grain, halation, desaturation, blur, and distortion, austere and surreal juxtaposition, documentary austerity, vernacular photography"},
+  {id:'fdna2',label:'Fuller / heavier',scope:['Figure / Exposed','Figure / Subject','Void / Dissolution','Luminous-Void','Apophatica'],text:"woman in her late 20's, naked, long dark hair loose past the shoulders, grey deep-set eyes, full face with soft jaw, a heavy soft body, full rounded belly with a low crease, broad soft hips, heavy thighs, fleshy upper arms, full low-hanging breasts, dimpled and stretch-marked skin texture, faint freckling, downcast inward stillness. Extreme analog film grain, halation, desaturation, blur, and distortion, austere and surreal juxtaposition, documentary austerity, vernacular photography"},
+  {id:'fdna3',label:'Androgynous-lean',scope:['Figure / Exposed','Figure / Subject','Void / Dissolution','Luminous-Void','Apophatica'],text:"an adult in their mid 20's not younger, naked, dark hair to the jaw in unstyled heavy locks, grey deep-set eyes, strong straight brows, a flat lean torso, small breasts, narrow straight hips, squared shoulders, slim muscled forearms, ambiguous androgynous build, visible skin texture, faint freckling, plain unposed stance, downcast contemplative stillness. Extreme analog film grain, halation, desaturation, blur, and distortion, austere and surreal juxtaposition, documentary austerity, vernacular photography"},
+  {id:'fdna4',label:'Older register (30s-40s)',scope:['Figure / Exposed','Figure / Subject','Void / Dissolution','Luminous-Void','Apophatica'],text:"woman in her late 30's to early 40's, naked, long dark hair threaded with grey loose past the shoulders, grey deep-set eyes, faint lines at the eyes and mouth, softened jawline, slight loosening at the neck and upper arms, a natural mature body, soft midsection, broad hips, heavy breasts settled low, visible skin texture, faint freckling, downcast inward stillness. Extreme analog film grain, halation, desaturation, blur, and distortion, austere and surreal juxtaposition, documentary austerity, vernacular photography"},
+  {id:'fdna5',label:'Alternate coloring - deep skin',scope:['Figure / Exposed','Figure / Subject','Void / Dissolution','Luminous-Void','Apophatica'],text:"woman in her mid 20's, naked, dark brown skin with warm undertone, thick black hair in dense coils past the shoulders, dark deep-set eyes, broad nose, full lips, strong brows, a natural full body, broad hips, heavy thighs, soft stomach, full breasts, visible skin texture, faint stretch marks, downcast contemplative stillness. Extreme analog film grain, halation, desaturation, blur, and distortion, austere and surreal juxtaposition, documentary austerity, vernacular photography"}
+];
+let posfChoice='';try{posfChoice=localStorage.getItem('void-posfilter')||'';}catch(e){posfChoice='';}
+function relevantPosFilters(items){const cats=new Set((items||[]).map(i=>i.cat));return POS_FILTERS.filter(f=>f.scope.some(c=>cats.has(c)));}
+function posFilterText(items){if(!posfChoice)return'';const f=POS_FILTERS.find(x=>x.id===posfChoice);if(!f)return'';const cats=new Set((items||[]).map(i=>i.cat));return f.scope.some(c=>cats.has(c))?f.text:'';}
+function refreshPosFilter(items){const sel=document.getElementById('posfilter-sel');if(!sel)return;const rel=relevantPosFilters(items);let html;if(!rel.length){html='<option value="">- none relevant -</option>';}else{html='<option value="">figure DNA: none</option>';rel.forEach(function(f){html+='<option value="'+f.id+'">'+f.label+'</option>';});}sel.innerHTML=html;const applied=(posfChoice&&rel.some(function(f){return f.id===posfChoice;}))?posfChoice:'';sel.value=applied;sel.disabled=!rel.length;sel.classList.toggle('posf-suggest',rel.length>0&&!applied);}
+function onPosFilterChange(){const sel=document.getElementById('posfilter-sel');if(!sel)return;posfChoice=sel.value;try{localStorage.setItem('void-posfilter',posfChoice);}catch(e){}sel.classList.remove('posf-suggest');updateOutput();}
+
 const DB=[
 // AESTHETIC & TEXTURE
 {id:'at01',cat:'Aesthetic & Texture',sub:null,title:'Xerox Degradation',text:'high-contrast photocopy, heavy toner malfunction, dirty distressed paper, uneven exposure, scanner drag, low-fi zine aesthetic, fifth-generation reproduction at the edge of legibility, the content being consumed by the medium'},
@@ -1957,12 +1999,12 @@ const DB=[
 {id:'vd12',cat:'Void / Dissolution',sub:null,title:'The Acausal Instant',text:'the image as a single instant that did not arrive from a prior state and will not produce a subsequent one — no before no after only this, the photograph as evidence of existence without causation, illogically is, the universe simply being without consulting logic'},
 {id:'vd13',cat:'Void / Dissolution',sub:null,title:'Stasis as Subject',text:'an image in which nothing moves nothing changes nothing will change — the stasis is not peace but the condition of a thing that has reached the end of its variation, everything already determined and therefore everything equivalent, the stillness that contains everything'},
 {id:'vd14',cat:'Void / Dissolution',sub:null,title:'The Lightless Photograph',text:'an image that approaches the condition of having no image — a field of near-darkness in which the subject is present only as inference, the photograph that represents darkness by being darkness, the image as an accurate record of the absence of light in the place it was taken'},
-{id:'vd15',cat:'Void / Dissolution',sub:null,title:'Indeterminate Scale',text:'an image that refuses to declare its own scale — the subject suspended between the microscopic and the vast with no reference admitted to settle it, a surface that could be skin or terrain or the cooling crust of a star, the loss of scale as a loss of the thing itself, the object that cannot be placed in the world because the world has been withheld from around it'},
-{id:'vd16',cat:'Void / Dissolution',sub:null,title:'Generation Loss',text:'an image degraded by its own re-encoding — not film grain and not tape hiss but the lossy forgetting of the codec, block artifacts and mosquito noise blooming around every edge, the subject smeared by a compression that discards what it deems unimportant until almost everything has been deemed unimportant, the digital photograph eating itself one save at a time, generation loss as the machine equivalent of decay'},
-{id:'vd17',cat:'Void / Dissolution',sub:null,title:'Erasure by Averaging',text:'a composite in which many exposures or many faces have been averaged into a single featureless mean — individuality dissolved not by subtraction but by summation, every specific detail cancelled against its opposite until only a soft symmetrical nothing remains, the face that belongs to no one because it was made from everyone, erasure achieved through too much rather than too little'},
-{id:'vd18',cat:'Void / Dissolution',sub:null,title:'Spectral Estrangement',text:'the familiar world rendered in a spectrum no eye was built to read — thermal bloom, infrared inversion, false-color mapping that assigns the wrong brightness to everything, the subject made unrecognizable not by distortion of form but by the wrong wavelength, representation dissolved because the light reporting it is light we were never meant to see, the world as the machine registers it with us subtracted from the loop'},
-{id:'vd19',cat:'Void / Dissolution',sub:null,title:'The Redacted Frame',text:'an image partially excised as if censored — hard black bars and cut rectangles removing regions of the picture by authority rather than by entropy, the void here imposed rather than natural, information withheld by a hand that decided you would not see it, the redaction itself becoming the subject because absence placed deliberately reads louder than anything left visible around it'},
-{id:'vd20',cat:'Void / Dissolution',sub:null,title:'Heat Death',text:'the image as the final state of everything — all gradients resolved, all difference spent, the frame settled into a single uniform tepid grey in which no event can occur because no difference remains to drive one, maximum entropy rendered as a flat field that is not dark and not bright but simply equalized, the photograph of the end of time when there is nothing left for time to do'},
+{id:'vd15',new:1,cat:'Void / Dissolution',sub:null,title:'Indeterminate Scale',text:'an image that refuses to declare its own scale — the subject suspended between the microscopic and the vast with no reference admitted to settle it, a surface that could be skin or terrain or the cooling crust of a star, the loss of scale as a loss of the thing itself, the object that cannot be placed in the world because the world has been withheld from around it'},
+{id:'vd16',new:1,cat:'Void / Dissolution',sub:null,title:'Generation Loss',text:'an image degraded by its own re-encoding — not film grain and not tape hiss but the lossy forgetting of the codec, block artifacts and mosquito noise blooming around every edge, the subject smeared by a compression that discards what it deems unimportant until almost everything has been deemed unimportant, the digital photograph eating itself one save at a time, generation loss as the machine equivalent of decay'},
+{id:'vd17',new:1,cat:'Void / Dissolution',sub:null,title:'Erasure by Averaging',text:'a composite in which many exposures or many faces have been averaged into a single featureless mean — individuality dissolved not by subtraction but by summation, every specific detail cancelled against its opposite until only a soft symmetrical nothing remains, the face that belongs to no one because it was made from everyone, erasure achieved through too much rather than too little'},
+{id:'vd18',new:1,cat:'Void / Dissolution',sub:null,title:'Spectral Estrangement',text:'the familiar world rendered in a spectrum no eye was built to read — thermal bloom, infrared inversion, false-color mapping that assigns the wrong brightness to everything, the subject made unrecognizable not by distortion of form but by the wrong wavelength, representation dissolved because the light reporting it is light we were never meant to see, the world as the machine registers it with us subtracted from the loop'},
+{id:'vd19',new:1,cat:'Void / Dissolution',sub:null,title:'The Redacted Frame',text:'an image partially excised as if censored — hard black bars and cut rectangles removing regions of the picture by authority rather than by entropy, the void here imposed rather than natural, information withheld by a hand that decided you would not see it, the redaction itself becoming the subject because absence placed deliberately reads louder than anything left visible around it'},
+{id:'vd20',new:1,cat:'Void / Dissolution',sub:null,title:'Heat Death',text:'the image as the final state of everything — all gradients resolved, all difference spent, the frame settled into a single uniform tepid grey in which no event can occur because no difference remains to drive one, maximum entropy rendered as a flat field that is not dark and not bright but simply equalized, the photograph of the end of time when there is nothing left for time to do'},
 // CLINICAL ABJECTION
 {id:'ca01',cat:'Clinical Abjection',sub:null,title:'Surgical Theater',text:'dark surrealist tableau set in an operating theater, harsh fluorescent surgical lighting casting clinical shadows, sterile surgical drape translucent against warm flesh tone, cold precision of medical procedure applied to a subject that does not require it, the body as object of procedure rather than subject of experience'},
 {id:'ca02',cat:'Clinical Abjection',sub:null,title:'Skin as Specimen',text:'extreme close-up treating skin as a landscape — pores craters follicles the topography of dermis rendered with macro photographic precision, wet and glistening, the body reduced to its material substrate, the clinical gaze that sees flesh rather than person, the body misidentified as only a body'},
@@ -2097,12 +2139,12 @@ const DB=[
 {id:'ap12',cat:'Apophatica',sub:null,title:'Sub Rosa Gesture',text:'a hand placed against the figure\'s own mouth or fingers laced deep into their own hair, contained self-silencing, no audience implied or addressed, tight crop on the gesture itself — the body holding its own silence as a private and unwitnessed act'},
 {id:'ap13',cat:'Apophatica',sub:null,title:'The Pelt Drape',text:'a figure beneath a heavy fabric covering of indeterminate type, not vestment, not garment, only weight, the body reading as load-bearing structure for its own shroud, no face visible, contemplative stillness — the covering refusing to declare its function'},
 {id:'ap14',cat:'Apophatica',sub:null,title:'Subsidence',text:'a figure half-consumed by accumulated dust, ash, or fine sediment rising against the body, geological-time consumption without violence or event, slow burial presented as still-life, the subject yielding to environmental accumulation as if collapsing into the substrate over centuries'},
-{id:'ap15',cat:'Apophatica',sub:null,title:'Tenebrist Residue',text:'a bare figure all but swallowed by surrounding low-key black, only a narrow raking light finding the rim of one shoulder, the edge of the jaw, the ridge of a hip, the rest of the body subtracted into unlit ground until form survives as a few disconnected planes, no setting and no source named, photoreal 35mm grain, the figure defined entirely by the little the dark consents to return'},
-{id:'ap16',cat:'Apophatica',sub:null,title:'Centripetal Fold',text:'a bare figure curled tightly closed around its own center on a dark ground, knees drawn to the chest and arms folded inward and head bowed into the cavity of the body, the closed posture turning the figure away from every sightline at once, low-key light grazing only the outer curve of the back and shoulder, photoreal 35mm grain, contemplative withdrawal rendered as a body subtracting itself by enclosure'},
-{id:'ap17',cat:'Apophatica',sub:null,title:'Excised Figure',text:'a heavily grained dark field in which the body is present only as the silhouette-shaped absence where the grain stops, the textured ground carrying all the information and the figure carrying none, no interior detail and no lit surface, the subject reading as the one region the image declines to fill, photoreal 35mm grain, the body known purely as the hole it leaves in the surrounding density'},
-{id:'ap18',cat:'Apophatica',sub:null,title:'Abraded Plate',text:'a photoreal portrait of a bare figure in which the emulsion has been physically scraped and sanded away across the face and upper chest, bright bare substrate showing where the image used to be, the unabraded remainder holding low-key grain and contemplative stillness, no violence implied in the removal only erasure, the surface worked back to nothing exactly where the subject was most itself'},
-{id:'ap19',cat:'Apophatica',sub:null,title:'Silvering Bloom',text:'a bare figure on an aged photographic print consumed by silver-mirror tarnish and foxing, metallic bloom and rust-spotted stains spreading across the body and dissolving its surface from within the medium itself, the decay belonging to the print and not the subject, photoreal low-key grain beneath the corrosion, the image eaten by the slow chemistry of its own material'},
-{id:'ap20',cat:'Apophatica',sub:null,title:'Stillwater Subtraction',text:'a bare figure half-submerged in black still water, the flat meniscus cutting cleanly across the body so that everything below the line is lost to lightless depth and only what rises above the surface holds form, no current and no event, the dark water absorbing rather than reflecting, photoreal 35mm grain, the body subtracted at the exact horizontal where the still surface begins'},
+{id:'ap15',new:1,cat:'Apophatica',sub:null,title:'Tenebrist Residue',text:'a bare figure all but swallowed by surrounding low-key black, only a narrow raking light finding the rim of one shoulder, the edge of the jaw, the ridge of a hip, the rest of the body subtracted into unlit ground until form survives as a few disconnected planes, no setting and no source named, photoreal 35mm grain, the figure defined entirely by the little the dark consents to return'},
+{id:'ap16',new:1,cat:'Apophatica',sub:null,title:'Centripetal Fold',text:'a bare figure curled tightly closed around its own center on a dark ground, knees drawn to the chest and arms folded inward and head bowed into the cavity of the body, the closed posture turning the figure away from every sightline at once, low-key light grazing only the outer curve of the back and shoulder, photoreal 35mm grain, contemplative withdrawal rendered as a body subtracting itself by enclosure'},
+{id:'ap17',new:1,cat:'Apophatica',sub:null,title:'Excised Figure',text:'a heavily grained dark field in which the body is present only as the silhouette-shaped absence where the grain stops, the textured ground carrying all the information and the figure carrying none, no interior detail and no lit surface, the subject reading as the one region the image declines to fill, photoreal 35mm grain, the body known purely as the hole it leaves in the surrounding density'},
+{id:'ap18',new:1,cat:'Apophatica',sub:null,title:'Abraded Plate',text:'a photoreal portrait of a bare figure in which the emulsion has been physically scraped and sanded away across the face and upper chest, bright bare substrate showing where the image used to be, the unabraded remainder holding low-key grain and contemplative stillness, no violence implied in the removal only erasure, the surface worked back to nothing exactly where the subject was most itself'},
+{id:'ap19',new:1,cat:'Apophatica',sub:null,title:'Silvering Bloom',text:'a bare figure on an aged photographic print consumed by silver-mirror tarnish and foxing, metallic bloom and rust-spotted stains spreading across the body and dissolving its surface from within the medium itself, the decay belonging to the print and not the subject, photoreal low-key grain beneath the corrosion, the image eaten by the slow chemistry of its own material'},
+{id:'ap20',new:1,cat:'Apophatica',sub:null,title:'Stillwater Subtraction',text:'a bare figure half-submerged in black still water, the flat meniscus cutting cleanly across the body so that everything below the line is lost to lightless depth and only what rises above the surface holds form, no current and no event, the dark water absorbing rather than reflecting, photoreal 35mm grain, the body subtracted at the exact horizontal where the still surface begins'},
 // LUMINOUS-VOID
 {id:'lv01',cat:'Luminous-Void',sub:null,title:'Walking-Away Dissolution',text:'receding figure walking away from camera in an infinite pale field, mid-stride, the trailing leg and far arm bleeding into white at the contour where diffuse light from above meets skin, near leg and shoulder holding form, faint shadow at the heel as the only anchor, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the body being absorbed by the field rather than departing from it'},
 {id:'lv02',cat:'Luminous-Void',sub:null,title:'Frontal Half-Erasure',text:'standing three-quarter to camera in an infinite pale field, diffuse light from above and slightly to one side, the lit half of the body luminance-matched to the field with contour dissolving where light meets skin, shadow-side holds form intact, hands loose at the sides, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the asymmetry of erasure as the formal subject'},
@@ -2112,18 +2154,18 @@ const DB=[
 {id:'lv06',cat:'Luminous-Void',sub:null,title:'Half-Emergent in Pale Field',text:'figure half-emergent from an infinite pale field as if rising from or descending into a luminous plane of indeterminate medium — neither liquid nor floor nor surface but pure luminance — the lower body absent below an arbitrary horizontal line where field-luminance and skin-luminance merge completely, upper body in three-quarter posture with one arm crossed loosely at the chest, head turned slightly downward, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, partial body as completed composition'},
 {id:'lv07',cat:'Luminous-Void',sub:null,title:'Rim-Lit Side Standing',text:'standing figure in full side-profile in an infinite pale field, soft diffuse light rim-lighting the back contour from shoulder to hip to calf, the front of the body in low-key shadow holding solid form, hands loose at sides, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the figure presented as luminance-edge rather than as form, rim-light as the only structural information in the image'},
 {id:'lv08',cat:'Luminous-Void',sub:null,title:'Full Side Profile',text:'figure in pure full-side profile standing in an infinite pale field, body weight on the planted leg with the other leg slightly forward, arms loose at sides, face turned in profile with hair tucked behind the ear, the diffuse light approximately omnidirectional so the contour reads cleanly without rim or shadow emphasis, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the body as silhouette-against-luminance — apophatic by being shown only as outline'},
-{id:'lv09',cat:'Luminous-Void',sub:null,title:'Supine Dissolution',text:'figure lying supine in an infinite pale field seen from above and slightly to one side, the upward-facing planes of the brow and collarbone and hip and shin catching the diffuse overhead light and dissolving where skin-luminance meets field-luminance, the shadowed flanks and the hollow of the throat holding form, arms loose at the sides, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the recumbent body flattening into the plane it rests on, horizontality as the dissolving axis'},
-{id:'lv10',cat:'Luminous-Void',sub:null,title:'Dorsal Study, Static',text:'figure standing still with the back fully to camera in an infinite pale field, framed from mid-thigh upward, the shoulder blades and the channel of the spine and the curve of the trapezius the only topography in the image, the outer contour of both shoulders and the flanks bleeding into white where the diffuse light wraps the edges, the spinal furrow holding the deepest value, head upright with hair gathered off the neck, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the dorsal surface as a landscape that erases at its own horizon'},
-{id:'lv11',cat:'Luminous-Void',sub:null,title:'Forearms Over the Eyes',text:'standing figure in an infinite pale field with both forearms crossed and raised over the eyes and brow, head tilted slightly back, the raised forearms catching the diffuse overhead light and dissolving from the elbows outward where skin-luminance meets field-luminance, the lower face and jaw and throat left visible and holding form, torso and shoulders solid, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, self-occlusion of the sight rather than the face, the limbs that hide the eyes relinquished to the void first'},
-{id:'lv12',cat:'Luminous-Void',sub:null,title:'Upright Kneel',text:'figure kneeling upright in an infinite pale field with the weight settled back on the heels and the torso fully vertical, facing camera, hands resting open on the thighs, head level and gaze lowered, the whole frontal plane of the chest and thighs luminance-matched to the field so the front of the body reads as barely-there while the contours at the sides and the shadow beneath the chin hold form, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, frontal stillness as a posture of waiting without object'},
-{id:'lv13',cat:'Luminous-Void',sub:null,title:'Near-Total Erasure',text:'figure dissolved almost entirely into an infinite pale field, roughly nine-tenths of the body luminance-matched into white and gone, only a single region surviving as evidence, the shadowed underside of the jaw and one clavicle or the crease behind a bent knee holding the faintest grey, the rest of the form inferred only by the eye completing what is no longer there, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, dissolution carried to the threshold where one residual shadow is all that withholds the image from being empty'},
-{id:'lv14',cat:'Luminous-Void',sub:null,title:'Turning, Motion-Softened',text:'figure caught mid-turn in an infinite pale field, the body rotating between facing-away and facing-camera so the leading shoulder and hip smear softly across the field in the duration of the exposure, the trailing contour comparatively sharp, the blurred leading edge and the diffuse high-key light merging into one indeterminate brightness, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, slow rotation rendering the body as two orientations failing to resolve into one, motion as a second mode of dissolution'},
-{id:'lv15',cat:'Luminous-Void',sub:null,title:'Seated, Facing the Light',text:'a bare figure seated upright and facing directly into the diffuse high-key source in an infinite pale field, the front plane of the torso and thighs washed to the same luminance as the field so the body reads as a seated outline filled with the brightness it faces, only the underside of the breasts and the soft shadow beneath the ribs and the hollow of the lap surviving as faint grey, the hands resting open and still, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, a figure erased from the front by the very light it sits facing'},
-{id:'lv16',cat:'Luminous-Void',sub:null,title:'Reaching, Far Hand Gone',text:'a bare figure with one arm extended fully into an infinite pale field, the reaching limb thinning as it travels from the still-formed shoulder outward until the forearm and hand luminance-match into white and are gone, the gesture completing in absence so the arm appears to reach into its own erasure, the near body and the opposite shoulder holding contour, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, a limb dissolving along its length so that reach and disappearance become the same motion'},
-{id:'lv17',cat:'Luminous-Void',sub:null,title:'Two Figures, Parallel Erasure',text:'two bare figures standing apart in an infinite pale field, not touching and not facing each other, each turned a different way and each dissolving independently into the surrounding white, the nearer figure holding more contour and the farther one already half-reclaimed by the field, the gap between them filled with the same luminance that is erasing them both, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, two separate solitudes consumed by one shared brightness rather than a pair joined to each other'},
-{id:'lv18',cat:'Luminous-Void',sub:null,title:'Over the Shoulder',text:'a bare figure seen from behind in an infinite pale field, the head turned back over one shoulder toward the camera, the dorsal planes of the back and shoulders holding form while the returning face is caught at the angle where the diffuse light strikes it most directly and bleeds the cheek and brow into white, the look arriving as a near-erased glance, the turned jaw and one eye the last surviving detail, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, a backward look dissolving at the instant it meets the lens'},
-{id:'lv19',cat:'Luminous-Void',sub:null,title:'Reclining on the Side',text:'a bare figure reclining on one side in an infinite pale field, the body laid out low and horizontal with the hip rising highest and the shoulder beyond it and the dip of the waist between, the uppermost edge where the diffuse light grazes most directly dissolving into white along its whole length so the top of the body is lost and only the lower mass holds faint grey against the field, the face and the folded arm quiet and inward, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the recumbent body erased along its upper contour where the grazing light is strongest'},
-{id:'lv20',cat:'Luminous-Void',sub:null,title:'Hair as Last Density',text:'a bare head-and-shoulders study in an infinite pale field, the face and throat and the tops of the shoulders luminance-matched into white until they are nearly gone, the only surviving density the darker mass of the hair holding faint tonal weight where every other surface has bleached away, the features inferred beneath the hair rather than seen, the body cropped close so the field presses in on all sides, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the figure reduced to the one region dark enough to resist the light, the hair as the last evidence of a head'},
+{id:'lv09',new:1,cat:'Luminous-Void',sub:null,title:'Supine Dissolution',text:'figure lying supine in an infinite pale field seen from above and slightly to one side, the upward-facing planes of the brow and collarbone and hip and shin catching the diffuse overhead light and dissolving where skin-luminance meets field-luminance, the shadowed flanks and the hollow of the throat holding form, arms loose at the sides, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the recumbent body flattening into the plane it rests on, horizontality as the dissolving axis'},
+{id:'lv10',new:1,cat:'Luminous-Void',sub:null,title:'Dorsal Study, Static',text:'figure standing still with the back fully to camera in an infinite pale field, framed from mid-thigh upward, the shoulder blades and the channel of the spine and the curve of the trapezius the only topography in the image, the outer contour of both shoulders and the flanks bleeding into white where the diffuse light wraps the edges, the spinal furrow holding the deepest value, head upright with hair gathered off the neck, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the dorsal surface as a landscape that erases at its own horizon'},
+{id:'lv11',new:1,cat:'Luminous-Void',sub:null,title:'Forearms Over the Eyes',text:'standing figure in an infinite pale field with both forearms crossed and raised over the eyes and brow, head tilted slightly back, the raised forearms catching the diffuse overhead light and dissolving from the elbows outward where skin-luminance meets field-luminance, the lower face and jaw and throat left visible and holding form, torso and shoulders solid, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, self-occlusion of the sight rather than the face, the limbs that hide the eyes relinquished to the void first'},
+{id:'lv12',new:1,cat:'Luminous-Void',sub:null,title:'Upright Kneel',text:'figure kneeling upright in an infinite pale field with the weight settled back on the heels and the torso fully vertical, facing camera, hands resting open on the thighs, head level and gaze lowered, the whole frontal plane of the chest and thighs luminance-matched to the field so the front of the body reads as barely-there while the contours at the sides and the shadow beneath the chin hold form, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, frontal stillness as a posture of waiting without object'},
+{id:'lv13',new:1,cat:'Luminous-Void',sub:null,title:'Near-Total Erasure',text:'figure dissolved almost entirely into an infinite pale field, roughly nine-tenths of the body luminance-matched into white and gone, only a single region surviving as evidence, the shadowed underside of the jaw and one clavicle or the crease behind a bent knee holding the faintest grey, the rest of the form inferred only by the eye completing what is no longer there, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, dissolution carried to the threshold where one residual shadow is all that withholds the image from being empty'},
+{id:'lv14',new:1,cat:'Luminous-Void',sub:null,title:'Turning, Motion-Softened',text:'figure caught mid-turn in an infinite pale field, the body rotating between facing-away and facing-camera so the leading shoulder and hip smear softly across the field in the duration of the exposure, the trailing contour comparatively sharp, the blurred leading edge and the diffuse high-key light merging into one indeterminate brightness, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, slow rotation rendering the body as two orientations failing to resolve into one, motion as a second mode of dissolution'},
+{id:'lv15',new:1,cat:'Luminous-Void',sub:null,title:'Seated, Facing the Light',text:'a bare figure seated upright and facing directly into the diffuse high-key source in an infinite pale field, the front plane of the torso and thighs washed to the same luminance as the field so the body reads as a seated outline filled with the brightness it faces, only the underside of the breasts and the soft shadow beneath the ribs and the hollow of the lap surviving as faint grey, the hands resting open and still, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, a figure erased from the front by the very light it sits facing'},
+{id:'lv16',new:1,cat:'Luminous-Void',sub:null,title:'Reaching, Far Hand Gone',text:'a bare figure with one arm extended fully into an infinite pale field, the reaching limb thinning as it travels from the still-formed shoulder outward until the forearm and hand luminance-match into white and are gone, the gesture completing in absence so the arm appears to reach into its own erasure, the near body and the opposite shoulder holding contour, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, a limb dissolving along its length so that reach and disappearance become the same motion'},
+{id:'lv17',new:1,cat:'Luminous-Void',sub:null,title:'Two Figures, Parallel Erasure',text:'two bare figures standing apart in an infinite pale field, not touching and not facing each other, each turned a different way and each dissolving independently into the surrounding white, the nearer figure holding more contour and the farther one already half-reclaimed by the field, the gap between them filled with the same luminance that is erasing them both, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, two separate solitudes consumed by one shared brightness rather than a pair joined to each other'},
+{id:'lv18',new:1,cat:'Luminous-Void',sub:null,title:'Over the Shoulder',text:'a bare figure seen from behind in an infinite pale field, the head turned back over one shoulder toward the camera, the dorsal planes of the back and shoulders holding form while the returning face is caught at the angle where the diffuse light strikes it most directly and bleeds the cheek and brow into white, the look arriving as a near-erased glance, the turned jaw and one eye the last surviving detail, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, a backward look dissolving at the instant it meets the lens'},
+{id:'lv19',new:1,cat:'Luminous-Void',sub:null,title:'Reclining on the Side',text:'a bare figure reclining on one side in an infinite pale field, the body laid out low and horizontal with the hip rising highest and the shoulder beyond it and the dip of the waist between, the uppermost edge where the diffuse light grazes most directly dissolving into white along its whole length so the top of the body is lost and only the lower mass holds faint grey against the field, the face and the folded arm quiet and inward, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the recumbent body erased along its upper contour where the grazing light is strongest'},
+{id:'lv20',new:1,cat:'Luminous-Void',sub:null,title:'Hair as Last Density',text:'a bare head-and-shoulders study in an infinite pale field, the face and throat and the tops of the shoulders luminance-matched into white until they are nearly gone, the only surviving density the darker mass of the hair holding faint tonal weight where every other surface has bleached away, the features inferred beneath the hair rather than seen, the body cropped close so the field presses in on all sides, no studio backdrop and no floor seam and no horizon and no architecture, photoreal 35mm grain monochrome high-key, the figure reduced to the one region dark enough to resist the light, the hair as the last evidence of a head'},
 {id:'mc01',cat:'Mascot / Yūrei-Veiled',sub:null,title:'Canonical Chest-Up Anchor',text:'chest-up to mid-torso framing, head-on confrontational simplicity, head bowed approximately twenty degrees down from level, slight forward lean permitted but never braced, the figure absorbed into near-black ambient ground except where the single deep red rim catches the hair edge and the outer shoulder line, body otherwise more absent than present, the single torso scar visible as a small dark mark at the abdomen, no fill light, the rim describes silhouette without revealing volume'},
 {id:'mh03',cat:'Mascot / Yūrei-Veiled',sub:'Human Variant',title:'Warm-Lamp Bare Back',text:'chest-to-thigh framing with the figure seated on the edge of a low bed seen from behind and slightly to one side, the bare back and the long line of the spine turned toward the camera, a single low warm lamp on a bedside table as the only light source casting a soft amber fall across one shoulder blade and the curve of the lower back, the rest of the room sinking into warm-edged shadow, head bowed and the dark hair falling forward away from the camera so the nape is left bare, hands resting loosely in the lap on the far side out of view, the unbroken back unmarked by any wound, the body recorded quietly as it sits in the lamplight'},
 {id:'mh04',cat:'Mascot / Yūrei-Veiled',sub:'Human Variant',title:'Curled Overhead',text:'high documentary angle looking straight down onto the figure lying on a bare mattress on the floor, the body curled inward with the knees drawn up toward the chest and the spine curved away from the lens so the whole pose closes around itself, bare but self-occluded by the curl, flat cold overcast light from an unseen window falling evenly across the hip and the shoulder, the mattress ticking and the bare floorboards recorded plainly, the head tucked low with dark hair spilling across the face and the mattress, the hands drawn in near the chest, no wound anywhere on the closed body, photographed from above without comment or arrangement'},
@@ -2192,7 +2234,7 @@ let diagSel={};
 
 function boot(){
   document.getElementById('n-All').textContent=DB.length;
-  buildNQ();buildCats();render();updateStats();updatePerm();
+  buildNQ();buildCats();render();updateStats();updatePerm();updateCatGlow();initFeatGlow();
   ['base-in','seed-in','sel-ar','sel-res','sel-q'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',updateOutput);});
   document.getElementById('wt').addEventListener('change',updateOutput);
   document.addEventListener('click',function(e){if(!e.target.closest('#ctx-menu'))hideCtx();});
@@ -2264,13 +2306,18 @@ function getFiltered(){
   });
 }
 
+let newSeen;try{newSeen=new Set(JSON.parse(localStorage.getItem('void-new-seen')||'[]'));}catch(e){newSeen=new Set();}
+function markNewSeen(id){if(!newSeen.has(id)){newSeen.add(id);try{localStorage.setItem('void-new-seen',JSON.stringify([...newSeen]));}catch(e){}}var el=document.getElementById('card-'+id);if(el)el.classList.remove('is-new');if(typeof updateCatGlow==='function')updateCatGlow();}
+function updateCatGlow(){var hot=new Set();(typeof DB!=='undefined'?DB:[]).forEach(function(d){if(d.new&&!newSeen.has(d.id))hot.add(d.cat);});document.querySelectorAll('#cat-btns .cat-btn').forEach(function(b){b.classList.remove('cat-new');});hot.forEach(function(name){var el=document.getElementById('c-'+name.replace(/[^a-z0-9]/gi,'_'));if(el)el.classList.add('cat-new');});}
+function markFeatSeen(k){if(!newSeen.has('feat:'+k)){newSeen.add('feat:'+k);try{localStorage.setItem('void-new-seen',JSON.stringify([...newSeen]));}catch(e){}}var el=document.querySelector('[data-newfeat="'+k+'"]');if(el)el.classList.remove('feat-new');}
+function initFeatGlow(){document.querySelectorAll('[data-newfeat]').forEach(function(el){if(!newSeen.has('feat:'+el.getAttribute('data-newfeat')))el.classList.add('feat-new');});}
 function render(){
   const g=document.getElementById('grid');
   const items=getFiltered();
   if(!items.length){g.innerHTML='<div class="no-res">[ no entries match ]</div>';return;}
   g.innerHTML=items.map(d=>{
     const pos=posSet.has(d.id),neg=negSet.has(d.id),isNorm=d.cat==='Normative / Ironic';
-    return `<div class="card${pos?' on':''}${neg?' non':''}${isNorm?' norm-card':''}" id="card-${d.id}" onclick="togglePos('${d.id}')" oncontextmenu="return showCtx(event,'${d.id}')">
+    return `<div class="card${pos?' on':''}${neg?' non':''}${isNorm?' norm-card':''}${(d.new&&!newSeen.has(d.id))?' is-new':''}" id="card-${d.id}" onclick="markNewSeen('${d.id}');togglePos('${d.id}')" oncontextmenu="markNewSeen('${d.id}');return showCtx(event,'${d.id}')">
       <div class="ct"><div class="ctitle">${d.title}${isNorm?' <span style="font-size:8px;color:rgba(200,148,10,.5);font-weight:400">IRONIC</span>':''}</div><div class="cdot"></div></div>
       <div class="ctext">${d.text}</div>
       <div class="ds-panel${deepScan&&posSet.has(d.id)?' visible':''}" id="ds-${d.id}">${DS[d.id]||''}</div>
@@ -2315,26 +2362,28 @@ function updateOutput(){
   const ar=document.getElementById('sel-ar').value,res=document.getElementById('sel-res').value;
   const qual=document.getElementById('sel-q').value,seed=document.getElementById('seed-in').value;
   const posItems=Array.from(posSet).map(id=>DB.find(d=>d.id===id)).filter(Boolean);
+  refreshPosFilter(posItems);
   const stackTrig=document.getElementById('stack-trig');
   const stackSel=document.getElementById('stack-sel');
   const activeStack=stackSel?stackSel.value:'WULD Standard';
   const trigText=(stackTrig&&stackTrig.checked&&STACK_TRIGGERS[activeStack])?STACK_TRIGGERS[activeStack]:'';
+  const posfText=posFilterText(posItems);
 
   if(!posItems.length){box.className='out e';box.textContent='[Awaiting modifier selection — compile from cards below]';stat.textContent='0W / 0M';updateNegOutput();return;}
   const wText=t=>wt?'('+t+':1.4)':t;
   let out='';
   if(fmt==='json'){
     const grouped={};posItems.forEach(i=>{if(!grouped[i.cat])grouped[i.cat]=[];grouped[i.cat].push(i.text);});
-    out=JSON.stringify({$schema:'void-engine-v5',meta:{quality:qual||'raw',resolution:res||'4k',...(ar?{aspect_ratio:ar}:{}),...(seed?{seed:parseInt(seed)}:{}),...(trigText?{stack_triggers:trigText,active_stack:activeStack}:{})},base_prompt:base,modifiers:grouped},null,2);
+    out=JSON.stringify({$schema:'void-engine-v5',meta:{quality:qual||'raw',resolution:res||'4k',...(ar?{aspect_ratio:ar}:{}),...(seed?{seed:parseInt(seed)}:{}),...(trigText?{stack_triggers:trigText,active_stack:activeStack}:{}),...(posfText?{figure_filter:posfText}:{})},base_prompt:base,modifiers:grouped},null,2);
   } else if(fmt==='video'){
     const motion=posItems.filter(i=>i.cat==='Runway / Video');
     const still=posItems.filter(i=>i.cat!=='Runway / Video');
-    out='=== NANO BANANA BASE IMAGE PROMPT ===\n\n'+base+' '+still.map(i=>wText(i.text)).join(', ')+(trigText?', '+trigText:'')+'.';
+    out='=== NANO BANANA BASE IMAGE PROMPT ===\n\n'+base+' '+still.map(i=>wText(i.text)).join(', ')+(trigText?', '+trigText:'')+(posfText?', '+posfText:'')+'.';
     const x=[ar&&'ar:'+ar,res&&'res:'+res,qual&&'q:'+qual,seed&&'seed:'+seed].filter(Boolean);
     if(x.length)out+='\n['+x.join(' | ')+']';
     if(motion.length)out+='\n\n=== RUNWAY GEN-4.5 VIDEO PROMPT ===\n\n'+motion.map(i=>i.text).join(' ');
   } else {
-    out=base+' '+posItems.map(i=>wText(i.text)).join(', ')+(trigText?', '+trigText:'')+'.';
+    out=base+' '+posItems.map(i=>wText(i.text)).join(', ')+(trigText?', '+trigText:'')+(posfText?', '+posfText:'')+'.';
     const x=[ar&&'ar:'+ar,res&&'res:'+res,qual&&'q:'+qual,seed&&'seed:'+seed].filter(Boolean);
     if(x.length)out+='\n['+x.join(' | ')+']';
   }
