@@ -1,0 +1,42 @@
+{
+  "release": "v3.8.21",
+  "canon": {
+    "version": "37.17",
+    "bump": "MINOR",
+    "invariant_block_changed": false
+  },
+  "git": {
+    "baseline": "0caba9d",
+    "head": "7a1a7ad",
+    "branches": [
+      "main",
+      "v3.8.x"
+    ],
+    "parity_required": true
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "d0dc59b570956c6450d8158423845cb8",
+      "size_bytes": 2386389,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "33f55ff4804b44550a61404d51c38f6e",
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "20189fb80ffac37f105749b8c2496605",
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "68d5bb33fdb819ccfe9e2a3c70bdddab",
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "b996db1630cbf326924ecbb95dea0797",
+    "new": "d0dc59b570956c6450d8158423845cb8",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "wuld.ink: pin /library-about to EFIList v3.8.21 (joy-outweighs-harms sadist-aggregation strengthen)\n\nLibrary deploy 7a1a7ad (combined d0dc59b5 / 2,386,389 B) live-verified curl x3. Pin b996db16 -> d0dc59b5, label v3.8.19 -> v3.8.21 across 12 src HTML + releases.json + feed.xml + pin-state.json. joy long 83.0/B -> 84.6/B (cold); canon MINOR 37.16 -> 37.17."
+}

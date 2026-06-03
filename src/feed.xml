@@ -6,13 +6,13 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Jun 2026 05:12:50 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2026 22:30:21 +0000</lastBuildDate>
     <item>
-      <title>Argument Library updated to v3.8.19 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.</title>
-      <link>https://wuld.ink/changelog/#2026-06-02-library-v3-8-19</link>
-      <guid isPermaLink="false">wuld.ink:2026-06-02-library-v3-8-19</guid>
-      <pubDate>Tue, 02 Jun 2026 00:00:00 +0000</pubDate>
-      <description>Argument Library updated to v3.8.19 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived. (Sections: /argument-library/)</description>
+      <title>Argument Library updated to v3.8.21 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.</title>
+      <link>https://wuld.ink/changelog/#2026-06-03-library-v3-8-21</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-03-library-v3-8-21</guid>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Argument Library updated to v3.8.21 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived. (Sections: /argument-library/)</description>
     </item>
     <item>
       <title>The Void Engine now flags what's new for you — fresh prompts and categories glow until you've seen them (remembered on your device, no tracking). Plus a pinned stat header, model-agnostic targeting copy, site-matched accent colors, a clearer Diagnosis form, and a new figure-DNA prompt filter for the figure sets. Still 334 prompts across 19 categories.</title>
