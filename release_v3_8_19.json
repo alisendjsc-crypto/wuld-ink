@@ -1,0 +1,42 @@
+{
+  "release": "v3.8.19",
+  "canon": {
+    "version": "37.16",
+    "bump": "MINOR",
+    "invariant_block_changed": false
+  },
+  "git": {
+    "baseline": "4f6073b",
+    "head": "eec84c0",
+    "branches": [
+      "main",
+      "v3.8.x"
+    ],
+    "parity_required": true
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "b996db1630cbf326924ecbb95dea0797",
+      "size_bytes": 2382565,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "b0cf7fdacacc982051c523ae4fb0b63e",
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "548df8589aa0abb2ffc2c7488a8d31d1",
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "3d15885350b3f4dde8bfdb67b1559108",
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "dfa3258b3b44a9f82ea41b90d4f707d1",
+    "new": "b996db1630cbf326924ecbb95dea0797",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "wuld.ink: pin /library-about to EFIList v3.8.19 (short/medium coherence reconciliation)\n\nLibrary deploy eec84c0 (combined b996db16 / 2,382,565 B) live-verified. Pin dfa3258b -> b996db16, label v3.8.17 -> v3.8.19 across 12 src HTML + releases.json + feed.xml + pin-state.json."
+}
