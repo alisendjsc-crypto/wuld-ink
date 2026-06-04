@@ -165,6 +165,9 @@ K58 lesson (ccii): **When extending a hash-attestation line, derive the hash MET
 
 **`<p>` margin-inline:auto audit:** N/A (housekeeping; no centering work).
 
+**K59a (2026-06-03, same-day addendum):** Operator executed panel compaction + the index sledgehammer mid-evening; three findings. (1) `backward_gap_audit_v3_8_14.json` RESCUED from the panel into the efilist repo root (12,867 B, md5 `78107281`, json-parses clean) and committed same-day — the K60-open commit carry is CLOSED early. (2) Two over-deletions caught by the fresh-index `git status` and restored via `git restore`: `combined.html` (the REPO copy is the live-served artifact — the un-mount ratification covered the Claude.ai panel copy ONLY) + `v3_9_compaction_checklist.md` (committed K58 reference). Nothing had been pushed; live never at risk. (3) Index verdict FINAL: even a fresh index (`del .git\index` + `git read-tree HEAD`, configs off) is unreadable by sandbox git 2.34.1 (`0x32380000`) — a git-version ceiling, NOT operator-fixable; PERMANENT posture: efilist sandbox gates = object-level (`ls-tree`/`show`) + filesystem-md5; do NOT retry index fixes at K60+. K60 bring-list reduced to: capacity %, Library-Claude sequencing answer, cluster-A handoff files (queue K61).
+
+
 ### Closed at K59-tail
 
 - **K58 carry — Operator runs the ONE PS block (TWO repos).** CLOSED at K59 open — efilist `b250d6c` + wuld-ink `77d9533`, both trees as expected; the 5 staged deletions unstaged + files tracked at HEAD.
