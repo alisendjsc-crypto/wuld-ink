@@ -1,0 +1,42 @@
+{
+  "release": "v3.8.22",
+  "canon": {
+    "version": "37.18",
+    "bump": "MINOR",
+    "invariant_block_changed": false
+  },
+  "git": {
+    "baseline": "7a1a7ad",
+    "head": "60e0d99",
+    "branches": [
+      "main",
+      "v3.8.x"
+    ],
+    "parity_required": true
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "15ffaebf55d225d107432c62df0a661f",
+      "size_bytes": 2391247,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "1d393c48fc7f7d182ffdf589a15e7529",
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "2dd6d5c2ce33430bbbf9702d394bb189",
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "6ac568fcd2e9ba712063ded7d239ddb0",
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "d0dc59b570956c6450d8158423845cb8",
+    "new": "15ffaebf55d225d107432c62df0a661f",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "wuld.ink: pin /library-about to EFIList v3.8.22 (solipsism p-zombie reciprocity strengthen)\n\nLibrary deploy 60e0d99 (combined 15ffaebf / 2,391,247 B) live-verified curl x3. Pin d0dc59b5 -> 15ffaebf, label v3.8.21 -> v3.8.22 across 12 src HTML + releases.json + feed.xml + pin-state.json. solipsism long 85.2/B -> 87.0/B (cold); sources -> 7 (Nagel); canon MINOR 37.17 -> 37.18. v3.8 line CONTENT-COMPLETE."
+}
