@@ -1,0 +1,54 @@
+{
+  "release": "v3.9.2",
+  "canon": {
+    "version": "37.26",
+    "bump": "MINOR",
+    "invariant_block_changed": false
+  },
+  "git": {
+    "baseline": "097c5ac",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K65 cluster-C archetypeVariants fold on red-button-repugnant (sophisticate NU-entailment terminal-carrier + defender repugnance-dissolution, cold-graded carrier-local 84.5/B + 82.9/B); av-nodes 15->16, variant bodies 37->39, 81 frozen; ledger untouched; sequencing (a) deploy-per-fold ratified by library-Claude"
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "f3870f6e86b91730048f6fdc1ef947bb",
+      "size_bytes": 2931550,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "46e5a70492b1466fa82f1f229d0b1e9c",
+      "size_bytes": 1272145,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "6c2a670acfbfbfd717f97c7232f51ae5",
+      "size_bytes": 2385163,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_26.json": {
+      "md5": "3dd5a2b4045664cb71fd375ea553ad37",
+      "size_bytes": 212334,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "9b979e4e2a6f4b8c6200842045ea0f0d",
+      "size_bytes": 42750,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "f26dfdd420c7b61ab2a77ec7ab6dae02",
+    "new": "f3870f6e86b91730048f6fdc1ef947bb",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K65: v3.9.2 pin move (f26dfdd4->f3870f6e; cluster-C red-button-repugnant S+D fold)"
+}

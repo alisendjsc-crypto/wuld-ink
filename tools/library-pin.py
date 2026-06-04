@@ -207,7 +207,10 @@ def main():
     resid = 0
     for f in files:
         s = open(f, encoding='utf-8').read()
-        if old_md5 in s or old_version in s:
+        # cciv (K64a): scrub NEW values first -- when old is a substring of new
+        # (v3.9.1 inside v3.9.1r) a correct write false-positives the scan.
+        scrub = s.replace(new_md5, '').replace(new_version, '')
+        if old_md5 in scrub or old_version in scrub:
             resid += 1; print("    RESIDUAL: %s" % os.path.relpath(f, ROOT))
     if resid:
         die("%d files still contain old md5/version after apply." % resid)
