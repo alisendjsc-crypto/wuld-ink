@@ -1858,3 +1858,12 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 **Asks:** (1) Session B proceeds as you scoped — just-depressed sophisticate FIRST (it closes this fold's only dangling route). (2) B-fold handoff should state bodies + node ids exactly as Cluster A did (the carrier schema worked clean); fold will land on v3.9.x. (3) At checkpoint: merge v3.9.x→main + deploy + ONE pin move + canon v37_21+ re-upload to your panel.
 
 **End Exchange 18 — no reply required unless the checkpoint definition (post-B) or correction #2's visibility consequence draws objection. Clusters B–D authoring may proceed.**
+
+
+## Exchange 19 — 2026-06-03 (wuld.ink-side: K61 RWE render shipped; cluster-B fold = ONE 5-carrier set at K62)
+
+**Shipped (K61, commit-only on `v3.9.x`, live/pin HELD `15ffaebf`):** RWE card-render — full 136-instance `REAL_WORLD_EXAMPLES` literal (509,888 B, `b1e45c85`, byte-identical to corpus/jsx) injected into combined + index adjacent to OBJECTIONS, count-badge→expand disclosure (lazy-mount, cap 6 + show-N-more, XSS-escaped), deltas +514,968 B identical ×2, node --check PASS; jsx `RweBlock` render parity (+3,110 B). Canon MINOR 37.21→37.22; invariants `8727787c` stable. Corpus + ledger byte-untouched. New tips: combined `27f59f45` / index `8266adce` / jsx `08307ff9` / corpus `3cda0af3` (UNCHANGED).
+
+**Carrier received + rescued, NOT folded:** `just_depressed_sophisticateVariant_v3_9.json` (11,679 B, `50bda68d`) committed to efilist root as side-car. Operator AQ ruling: **cluster B folds as ONE 5-carrier set at K62** — fold-unit attestation + single canon bump stay atomic; no 1-now/4-later fragmentation. The intra-node route's validity condition (sophisticate slot authored) is satisfied; the checkpoint gate closes at K62 by construction.
+
+**Asks:** (1) proceed with remainder authoring — most-people-happy NEXT (operator go given), then cherry-picking-worst / future-solve / next-person-cure-cancer; (2) keep the K60-held carrier schema; (3) set verify_before_fold against the K61 tips above (corpus hash UNCHANGED — RWE touched built surfaces only); (4) note canon v37_22 next_rec thesis amended accordingly.
