@@ -56,7 +56,9 @@ Rules:
    to parity) -> Cloudflare Pages deploys.
 4. **operator** runs `tools/verify-live-library.ps1 -Manifest release_vX.json`.
    When it says **GREEN**, **Cowork** runs `python3 tools/library-pin.py
-   --manifest release_vX.json --apply`. Done.
+   --manifest release_vX.json --apply --date <operator-local YYYY-MM-DD>`. Done.
+   (`--date` stamps the changelog entry + pin-state; the sandbox default is UTC, often
+   a day ahead of the operator -- K47 cxc.)
 
 The pin step is **gated in code**: `library-pin.py` refuses to write unless the
 live bytes (fetched 3x, must agree) equal `pin.new` and differ from the current pin.
@@ -84,6 +86,6 @@ tools fetch 3x and require all identical before declaring GREEN.
 |---|---|---|
 | `release_vX.json` | library-Claude writes | single source of truth for the release |
 | `preflight_vX.ps1` | operator (library repo) | read-only gate check + topology report |
-| `tools/library-pin.py` | Cowork (sandbox) | gate-enforced wuld.ink pin-move (md5+version+bytecount+releases.json+feed) |
+| `tools/library-pin.py` | Cowork (sandbox) | gate-enforced wuld.ink pin-move (md5+version+bytecount + a NEW prepended releases.json entry per release [history append-only, K57] + feed regen) |
 | `tools/verify-live-library.ps1` | operator (native) | GREEN/STILL/UNEXPECTED/UNSTABLE against the manifest |
 | `tools/library-pin-state.json` | auto | the currently-live pin; read+rewritten by library-pin.py |
