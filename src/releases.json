@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-04-library-v3-9-1r",
+    "date": "2026-06-04",
+    "summary": "Argument Library v3.9.1r — correction to the v3.9.1 sweep: in the combined LEGIBLE + HIGH-CONTRAST mode the new example cards rendered as dark slabs on the light page; the light surface now wins that stack. Byte-neutral, no content change.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-04-library-v3-9-1",
     "date": "2026-06-04",
     "summary": "Argument Library v3.9.1 — legibility sweep: real-world-example cards re-registered to the library's fixed-px type scale with full legible / high-contrast mode adaptation, UI chrome labels lifted off the sub-10px floor, and 14 rebuttal grade-bands corrected against the canonical band rule; 81 objections / 35 mechanisms / 136 examples / 15 variant carriers held.",

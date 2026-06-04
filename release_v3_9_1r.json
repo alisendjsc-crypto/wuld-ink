@@ -1,0 +1,54 @@
+{
+  "release": "v3.9.1r",
+  "canon": {
+    "version": "37.25",
+    "bump": "MINOR",
+    "invariant_block_changed": false
+  },
+  "git": {
+    "baseline": "a841aee",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K64a BOTH-mode cascade correction (byte-neutral reorder of the K64 RWE mode-override blocks; legible wins the legible+high-contrast stack); revision-suffix per K47 v3.8.5r precedent"
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "f26dfdd420c7b61ab2a77ec7ab6dae02",
+      "size_bytes": 2926583,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "3dc2ca64e839dacf99cf0000a903a699",
+      "size_bytes": 1321042,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "b529c95c02880c2c2ea33636772623ca",
+      "size_bytes": 1267178,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "ebbd64961b741931be0197188c35ece5",
+      "size_bytes": 2380196,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_25.json": {
+      "md5": "ac182f6a297af54c130bba9940b9bca8",
+      "size_bytes": 212065,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "9b979e4e2a6f4b8c6200842045ea0f0d",
+      "size_bytes": 42750,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "eeb52b8e5423ffe027022cffa9327127",
+    "new": "f26dfdd420c7b61ab2a77ec7ab6dae02",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K64a: v3.9.1r pin move (eeb52b8e->f26dfdd4; BOTH-mode cascade correction, byte-neutral)"
+}
