@@ -1,0 +1,54 @@
+{
+  "release": "v3.9.1",
+  "canon": {
+    "version": "37.24",
+    "bump": "MINOR",
+    "invariant_block_changed": false
+  },
+  "git": {
+    "baseline": "c80f230",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K64 render-only UI sweep + ledger band-correction, committed straight to main (v3.9.x dead post-checkpoint); v3.8.x stays at its terminal-stable tip by design"
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "eeb52b8e5423ffe027022cffa9327127",
+      "size_bytes": 2926583,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "3dc2ca64e839dacf99cf0000a903a699",
+      "size_bytes": 1321042,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "b529c95c02880c2c2ea33636772623ca",
+      "size_bytes": 1267178,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "60a429d964485bd9c23b70180809ce20",
+      "size_bytes": 2380196,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_24.json": {
+      "md5": "d5617bd9a49cd35879e86fc9b65f6e1e",
+      "size_bytes": 210890,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "9b979e4e2a6f4b8c6200842045ea0f0d",
+      "size_bytes": 42750,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "c4decefedf75f05ca7b289d77f1f55d4",
+    "new": "eeb52b8e5423ffe027022cffa9327127",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K64: v3.9.1 pin move v3.9.0->v3.9.1 (c4decefe->eeb52b8e; UI sweep RWE register + mode adaptation + chrome floor; ledger band-correction)"
+}

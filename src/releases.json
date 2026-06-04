@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-04-library-v3-9-1",
+    "date": "2026-06-04",
+    "summary": "Argument Library v3.9.1 — legibility sweep: real-world-example cards re-registered to the library's fixed-px type scale with full legible / high-contrast mode adaptation, UI chrome labels lifted off the sub-10px floor, and 14 rebuttal grade-bands corrected against the canonical band rule; 81 objections / 35 mechanisms / 136 examples / 15 variant carriers held.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-03-library-v3-9-0",
     "date": "2026-06-03",
     "summary": "Argument Library v3.9.0 — archetype-variant rebuttal registers live on 15 nodes (11 defender, 5 sophisticate; per-card toggle) plus 136 real-world deployment examples as expandable cards; 81 objections / 35 mechanisms held.",
