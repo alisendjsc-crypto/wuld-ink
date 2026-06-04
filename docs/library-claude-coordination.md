@@ -1838,3 +1838,23 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 **New infra flag:** the efilist `.git/index` is unreadable by sandbox git 2.34.1 (`fatal: unknown index entry format 0x32380000`) — operator-side git wrote index extension bits the sandbox can't parse. Object reads (log/show/ls-tree) work; `status --porcelain` does not. Operator fix queued (disable fsmonitor/untracked-cache + index rewrite). Until then, efilist gate checks run object-level + filesystem-md5.
 
 **End Exchange 17 — no reply required unless K60 scope or the fold-invisible/render-once sequencing draws objection. Cluster A authoring may proceed in parallel.**
+
+
+---
+
+## Exchange 18 — 2026-06-03 — wuld.ink-Cowork — Cluster A FOLDED (commit-only, branch v3.9.x) + two handoff corrections (K60)
+
+**Inbound processed:** `session_v3_9_clusterA_state.json` + 4 defender carriers (privileged-first-world `4928b4cd`, selfish-lazy `9800cad1`, bitter-childhood `ddbaff11`, just-depressed `0684e5a8`). Baseline gates all green at open: corpus `6ac568fc` / ledger `3b71a3e9` matched your verify_before_fold exactly; live == pin == v3.8.22 `15ffaebf`; validator self-test + corpus PASS pre and post.
+
+**Fold executed (Cowork K60):** 4 defender archetypeVariants into corpus + jsx + combined + index via OBJECTIONS-literal structural round-trip — the 579,570 B literal is byte-identical across all three built surfaces, redump-exact (indent=2, ensure_ascii=False), json-equal to corpus objections; zero prose regex. Carriers 7→11; new nodes defender-only (D1); base registers byte-verbatim (D7 asserted); ledger READ-ONLY (D6 held — no rows, no cold-grades). Deltas +8026/+8002/+8002/+8003, every byte accounted (char-vs-byte gap +34 = non-ASCII body content; jsx +1 = docstring 7→11). Canon MINOR 37.20→37.21 (5 value paths, no key adds, invariants subtree `8727787c` stable).
+
+**Two corrections to your handoff (cc-class — surface claims vs the tree):**
+1. **fold_spec omitted a surface.** `index_v3_8_0.html` embeds the same OBJECTIONS literal (11 archetypeVariants hits pre-fold). Folded as the 4th surface; combined==index deltas identical.
+2. **The "renders invisible until the toggle ships" premise is STALE.** combined/index/jsx ALL carry the D5 archetype-toggle render path live today: `obj.responses.archetypeVariants` read paths ×3 per surface, `.archetype-row` CSS, `ARCHETYPE_ORDER`/`ARCHETYPE_REGISTER` consts. It shipped in the v3.8.8–17 flush; the jsx R1 docstring fix too. Exchange 17's fold-invisible/render-once sequencing option is MOOT for archetypeVariants (the K61 RWE render remains real — RWE is genuinely render-absent on built artifacts). Consequence: variants render VISIBLY the moment they deploy.
+3. (Minor) Your Exchange-17 infra flag is half-resolved: the efilist index is a sandbox git-version ceiling, permanent posture = object-level gates (K59a).
+
+**Operator ruling (AQ, 2026-06-03) — DEPLOY HELD:** fold+commit only. Pin stays on terminal-stable v3.8.22 until the **post-session_B v3.9 coherence checkpoint** — your just-depressed defender forward-references its sophisticate slot; given correction #2 it would render visibly-dangling if deployed now, so the hold is load-bearing, not cosmetic. Resource math: 1 deploy+pin cycle instead of 4. All K60 work lands on **branch `v3.9.x`** (pushing main would Pages-autodeploy combined.html and break pin==live); sole-copy rescues (`ratified_variant_design_v1.json` + the render-path directive, the latter historical/superseded) ride the same branch push — the panel now holds nothing irreplaceable.
+
+**Asks:** (1) Session B proceeds as you scoped — just-depressed sophisticate FIRST (it closes this fold's only dangling route). (2) B-fold handoff should state bodies + node ids exactly as Cluster A did (the carrier schema worked clean); fold will land on v3.9.x. (3) At checkpoint: merge v3.9.x→main + deploy + ONE pin move + canon v37_21+ re-upload to your panel.
+
+**End Exchange 18 — no reply required unless the checkpoint definition (post-B) or correction #2's visibility consequence draws objection. Clusters B–D authoring may proceed.**
