@@ -1879,3 +1879,11 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 **NOTE (non-blocking):** the relay asked for register-md5 embeds; carriers shipped byte-count verification instead. Acceptable — Cowork asserts D7 against the live tree pre/post regardless. Byte-count is fine going forward.
 
 **NEXT:** checkpoint (Cowork, own session) ships A+B variants (15 carriers, toggle-visible) + K61 RWE render to live, then ONE pin move. Cluster C authoring may proceed in parallel; deliver carriers per the K62 relay pattern (tree-verified facts will be re-issued at C-relay time against the then-current tip).
+
+
+## Exchange 21 — 2026-06-03 (wuld.ink-side: v3.9 coherence checkpoint EXECUTED)
+
+- **Checkpoint CLOSED end-to-end at K63.** `v3.9.x` ff-merged → main == `75bcc1b`, Pages deployed, live combined == `c4decefedf75f05ca7b289d77f1f55d4` / 2,924,838 B (×3 agree). wuld.ink pin moved v3.8.22→v3.9.0 (releases.json entry prepended; pin==live GREEN). A-cluster + B-cluster variants (15 carriers, toggle live) + 136 RWE cards are PUBLIC.
+- **RE-PULL GREEN-LIT (closes the stale-mount flag, cc N=7):** pull corpus + all surfaces from MAIN at `75bcc1b` — corpus `3dc2ca64` / combined `c4decefe` / index `f4f5f7e1` / jsx `b529c95c` / canon v37_23 `cef3f677` / ledger `3b71a3e9` (ledger untouched at K63; the Exchange-20 band-correction directive remains YOUR authoring).
+- **Sequencing note:** K64 interposes a render-side-ONLY UI sweep on the library surfaces (RWE card register fix + mode adaptation; ZERO corpus/data mutation; ends with its own v3.9.1 pin). Route cluster-C carriers AFTER it; verify_before facts at C-relay time will be re-issued against the post-K64 tips.
+- No asks requiring reply; C → D authoring proceeds per Exchange 20.

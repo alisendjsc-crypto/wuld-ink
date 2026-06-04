@@ -1,0 +1,54 @@
+{
+  "release": "v3.9.0",
+  "canon": {
+    "version": "37.23",
+    "bump": "MINOR",
+    "invariant_block_changed": false
+  },
+  "git": {
+    "baseline": "75bcc1b",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "v3.9 coherence checkpoint: ff-merge v3.9.x->main at 75bcc1b; v3.8.x stays at its terminal-stable tip by design"
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "c4decefedf75f05ca7b289d77f1f55d4",
+      "size_bytes": 2924838,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "3dc2ca64e839dacf99cf0000a903a699",
+      "size_bytes": 1321042,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "b529c95c02880c2c2ea33636772623ca",
+      "size_bytes": 1267178,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "f4f5f7e1d16b92aaa2e9838f717e7f17",
+      "size_bytes": 2378361,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_23.json": {
+      "md5": "cef3f677168dc888342f97a4e6be9fec",
+      "size_bytes": 210211,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "3b71a3e97c363d62261396c666c6c981",
+      "size_bytes": 42750,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "15ffaebf55d225d107432c62df0a661f",
+    "new": "c4decefedf75f05ca7b289d77f1f55d4",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K63: v3.9.0 coherence checkpoint pin move v3.8.22->v3.9.0 (15ffaebf->c4decefe; archetype variants 15 carriers + 136 RWE cards live)"
+}

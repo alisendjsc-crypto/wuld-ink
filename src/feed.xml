@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 04 Jun 2026 01:01:16 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jun 2026 07:16:05 +0000</lastBuildDate>
+    <item>
+      <title>Argument Library v3.9.0 — archetype-variant rebuttal registers live on 15 nodes (11 defender, 5 sophisticate; per-card toggle) plus 136 real-world deployment examples as expandable cards; 81 objections / 35 mechanisms held.</title>
+      <link>https://wuld.ink/changelog/#2026-06-03-library-v3-9-0</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-03-library-v3-9-0</guid>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Argument Library v3.9.0 — archetype-variant rebuttal registers live on 15 nodes (11 defender, 5 sophisticate; per-card toggle) plus 136 real-world deployment examples as expandable cards; 81 objections / 35 mechanisms held. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>Argument Library updated to v3.8.22 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.</title>
       <link>https://wuld.ink/changelog/#2026-06-03-library-v3-8-22</link>
