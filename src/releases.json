@@ -1,5 +1,13 @@
 [
  {
+   "id": "2026-06-04-library-v3-9-6",
+   "date": "2026-06-04",
+   "summary": "Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched.",
+   "sections": [
+     "/argument-library/"
+   ]
+ },
+ {
   "id": "2026-06-04-library-v3-9-5",
   "date": "2026-06-04",
   "summary": "Library v3.9.5 — graph-view legibility (maintenance). The display toggle's LEGIBLE and BOTH modes now apply a typographic treatment inside the three graph views instead of only repainting the theme: node labels step up in size and weight behind a semi-opaque halo-chip, so they read against dense linework without enlarging the graph itself, and the side panels and methodology panels ride the same legibility scale. Graph tabs default to STANDARD on entry — the layout-optimal view — and restore your prior reading mode on leave; an explicit mode choice made inside a graph sticks. Graph geometry, data, and zoom are untouched.",

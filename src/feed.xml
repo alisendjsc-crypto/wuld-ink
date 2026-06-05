@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jun 2026 06:13:17 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2026 07:07:24 +0000</lastBuildDate>
+    <item>
+      <title>Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched.</title>
+      <link>https://wuld.ink/changelog/#2026-06-04-library-v3-9-6</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-04-library-v3-9-6</guid>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>Library v3.9.5 — graph-view legibility (maintenance). The display toggle's LEGIBLE and BOTH modes now apply a typographic treatment inside the three graph views instead of only repainting the theme: node labels step up in size and weight behind a semi-opaque halo-chip, so they read against dense linework without enlarging the graph itself, and the side panels and methodology panels ride the same legibility scale. Graph tabs default to STANDARD on entry — the layout-optimal view — and restore your prior reading mode on leave; an explicit mode choice made inside a graph sticks. Graph geometry, data, and zoom are untouched.</title>
       <link>https://wuld.ink/changelog/#2026-06-04-library-v3-9-5</link>

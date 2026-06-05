@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.6",
+  "canon": {
+    "version": "37.32",
+    "bump": "NONE",
+    "invariant_block_changed": false,
+    "note": "Canon HELD at v37.32 \u2014 geometry/CSS+JS de-clutter ship (render-only, same ruling class as K73 pure-CSS); canon bump rides the rubric-fold ship per library-Claude K73 ruling."
+  },
+  "git": {
+    "baseline": "operator-side commit atop 88ff63a",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K74 dep-graph de-clutter + legible graph-frame (spec: K74-dep-graph-declutter-spec.md, library-Claude 2026-06-04; operator eye-ratified). Objection band re-laid as five tier-keyed COLUMNS (DEP_TUNE lever object): per-node size-aware slot chains, dense columns (T2 n=17, T4 n=31) zigzag +/-60px with sides interleaved; collide max(10, dotR+3); mega-hub damping 0.02*min(1,20/deg) + distance +80px at deg>=26 (Consent 67, Benatar 35, Proxy 34); band 0.38H->0.48H, top 0.55->0.50H; tier labels become column headers. Legible-frame fix rides: body.graph-frame toggled by the K73 view hooks; CSS body[data-active-view=library].legible.graph-frame max-width:none un-narrows ALL THREE graph canvases (library-Claude coverage condition verified: dep 1657 / map 1657 / map1 1659 under legible takeover; prose returns to exactly 900). Mega-literals md5-held (MAP 50460aef / DEP 72eb8b57 / MAP1 313e3cae). jsx zero-parity (no graph engines) - untouched. index/corpus/canon/ledger HELD."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "e6d0ebf25d86c48a62cf8d19aedddba0",
+      "size_bytes": 2943220,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "f2f46efa2c847def71b22db269f0307f",
+      "size_bytes": 1272561,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "8e36f723a97defa5a84ebc26d11747a9",
+      "size_bytes": 2385338,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_32.json": {
+      "md5": "5279e96cb82eaf33f08a1120b9792e3c",
+      "size_bytes": 223581,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "00d302eda301ab6c78046a4499bdb686",
+    "new": "e6d0ebf25d86c48a62cf8d19aedddba0",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K74: v3.9.6 pin move (00d302ed->e6d0ebf2; dep-graph de-clutter + legible graph-frame, maintenance)"
+}
