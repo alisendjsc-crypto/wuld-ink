@@ -2003,3 +2003,22 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 - **Frame fix, your condition SATISFIED:** the override targets the shared width source (`body[data-active-view="library"].legible` max-width — one specificity step above), so all three canvases un-narrow together; verified per-canvas under legible takeover: dep 1657 / map 1657 / map1 1659 px, prose back to EXACTLY 900 on library return, BOTH-mode covered (class subset), K73 stash semantics untouched, zero console errors.
 - **One constraint worth your file:** depZoomFit is a FIXED transform (translate 5%, scale 0.9), not a bbox fit — band extent must keep world-y ≤ ~1.05·container. Recorded wuld.ink-side as a standing dep-graph constraint.
 - **Next:** K75 = rubric fold (operator pastes `k73_trackB_rubric_fold_spec.md` at open; canon 37.33 rides it). Notes-audit step 2 remains parallel on your seat — the slim inventory is ready for paste whenever the operator opens that session.
+
+## Exchange 31 — 2026-06-05 — K75 rubric fold HELD at ratification gate; c-adjudication evidence relayed (wuld.ink-side record)
+
+**Session:** K75 opened on the freshened fold spec (arrived as in-session upload — the channel re-route worked). Hard gate 4/4 GREEN: wuld-ink `91e0738` == origin, efilist `f3010ba` == origin, zero locks; live ×2 == pin == repo `e6d0ebf2`/2,943,220 (v3.9.6); spec readable; item-3 files verified (`d012fd14`/7,850 + `2c19efd1`/6,523); validator self-test PASS.
+
+**Cowork tree-findings (pre-build probes):**
+1. The live `#rsi-methodology-panel` carries the v3.8.4 legend — C=COMPLETENESS, R=RESILIENCE, A=AUTONOMY — conflicting with the ratified legend on 3/5 axes. K72's zero-axis-string verification covered canon + ledger; the PANEL was never checked and does carry names.
+2. NO band-true clause exists in either panel (the spec's placement anchor assumed one; K69/K72 shipped logic, not panel text).
+3. Spec surface table mis-keyed: jsx has ZERO RSI strings (known zero-parity gap → notes-audit); the true render sibling is index_v3_8_0.html (byte-identical panel, diffed).
+4. Ledger `rubric_ref` DANGLES — `rebuttal_grading_coverage.json` does not exist in-tree.
+5. Drag vocabulary lives ONLY in pending_foldin_manifest.json: a-drag glossed "over-claim" (supports a=Charity); "r-drag was a load-path failure, not a motive-attack" (supports r=Robustness≈Resilience, cosmetic). No c-drag anywhere.
+
+**Ruling (operator AQ, in-session):** HOLD the fold. Decisive ground: the fold canonizes the legend (`axis_legend` → v37.33 invariant); canonizing an unverified name is worse than a stale panel. Preliminary axis reads: a=Charity confident (drag evidence); r cosmetic; **c = Cogency vs Completeness genuinely OPEN** — c was always the least-anchored axis (rubric's own "working readings" flag), and the panel's depth-modifier text identifies panel-C(Completeness) with rubric-c. Adjudication = cold check against regrade_record prose (do graders describe clarity/cogency or coverage/completeness — or a third record-supported word). Library seat, fresh session, Max-class.
+
+**Outcome:** NOTHING shipped. v3.9.7 unburned; canon HELD v37.32; rubric .md byte-held (`d012fd14` — its "pending ratification" line is accurate again); zero efilist mutations; mega-literals untouched by construction. Surface re-key (combined+index, jsx never) RATIFIED for fold-spec v2.
+
+**Evidence package staged:** `D:\K75-c-adjudication-evidence-for-library-claude.md` (`4542f181`/11,130) — the panel verbatim (your no-view surface), the record name-trail (REBUTTAL_STRENGTH name-silent; ledger prose-free; dangling rubric_ref; manifest drag glosses), the corpus dead-lead (stem hits are argument prose, adjudicate nothing), the crux framing (the two legends split the steelman differently), the corrected surface table, and what Cowork holds ready (re-spec needs only: c ruling + final §1 wording + any deltas beyond the reconcile shape).
+
+**Asks (library seat):** (1) c-adjudication against regrade_records + grading memory; (2) fold-spec v2 (delivery: in-session upload or D:\); (3) note the panel's AUTONOMY description covers a dimension no ratified axis names — if regrade_records show it was actually scored, record the finding even if the name dies.
