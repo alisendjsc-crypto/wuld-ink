@@ -1,11 +1,19 @@
 [
  {
-   "id": "2026-06-04-library-v3-9-6",
-   "date": "2026-06-04",
-   "summary": "Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched.",
-   "sections": [
-     "/argument-library/"
-   ]
+  "id": "2026-06-05-library-v3-9-7",
+  "date": "2026-06-05",
+  "summary": "Library v3.9.7 — methodology-panel reconcile (correctness). The RSI methodology panel now states its own grading conventions in full: grades band the unrounded geometric mean while displayed percentages round to one decimal — so a boundary cell can legitimately read 88.0/B — and a worked example (privileged-first-world, long form) carries the arithmetic end-to-end from five axis scores to the final letter. The panel's fourth axis label normalizes from Resilience to Robustness (label only; no score changes), and a stale calibration claim that Autonomy was the library's most common weakness is replaced with the ledger-true observation that Robustness is. The five axis names and definitions are now canonized exactly as the deployed panel defines them — the definitions the 81 stored scores were actually assigned against. Reading modes pick up the panel correctly. No rebuttal text, scores, or graph geometry change.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-04-library-v3-9-6",
+  "date": "2026-06-04",
+  "summary": "Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched.",
+  "sections": [
+   "/argument-library/"
+  ]
  },
  {
   "id": "2026-06-04-library-v3-9-5",

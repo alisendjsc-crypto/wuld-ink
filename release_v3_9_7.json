@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.7",
+  "canon": {
+    "version": "37.33",
+    "bump": "MINOR (37.32 -> 37.33)",
+    "invariant_block_changed": false,
+    "note": "axis_legend ADDED (canonical five-axis RSI legend recovered from the deployed #rsi-methodology-panel; keyset 37->38; placed adjacent to rsi_grading_convention); invariants subtree serialized-identical pre==post (ZERO invariant entries revised) => MINOR. Canon bump rides this fold per the K73 ruling."
+  },
+  "git": {
+    "baseline": "operator-side commit atop f3010ba",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K76 axis-legend reconcile fold (fold-spec v2: axis_legend_reconcile_authoring, library-Claude 2026-06-05; operator AQ ratified ship + all three detail calls). c-adjudication INVERSION: the deployed panel is RIGHT and AUTHORITATIVE (81 ledger scores assigned against it); ratified legend v=Validity s=Soundness c=Completeness r=Robustness a=Autonomy. Panel reconcile spliced byte-identical into combined+index (+985 panel both): V/S/C/A glosses KEPT; Resilience->Robustness all 5 occurrences; BANDING CONVENTION clause added (band unrounded / display round-1dp / 88.0-B boundary optic); worked example appended at anchor rsi-worked-example (PFW long, frozen numbers == rubric == axis_legend); stale 'most common weakness is Autonomy' calibration sentence replaced ledger-true (Robustness: mean 0.838, sole-drag 32/81); formula lowercased. CSS riders per-file architecture: base+HC #rsi-methodology-panel pre rules + K76 legible ID rules (closes the K73 class-vs-ID scope gap). Rubric re-authored COMMITTED d012fd14->b96b01c5/8,802 (c Cogency->Completeness, a Charity->Autonomy). jsx zero-parity UNTOUCHED; corpus+ledger byte-held; NO ledger score/key change."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "729b4f5cbcd40f11b62470e702a64277",
+      "size_bytes": 2944946,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "f2f46efa2c847def71b22db269f0307f",
+      "size_bytes": 1272561,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "7a46aaba5850ff85a1a25608187b0e36",
+      "size_bytes": 2386923,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_33.json": {
+      "md5": "39471b3e820f2537db707924a5ad0893",
+      "size_bytes": 232611,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "e6d0ebf25d86c48a62cf8d19aedddba0",
+    "new": "729b4f5cbcd40f11b62470e702a64277",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K76: v3.9.7 pin move (e6d0ebf2->729b4f5c; axis-legend reconcile fold — panel reconcile + rubric + canon 37.33)"
+}
