@@ -1,0 +1,54 @@
+{
+  "release": "v3.9.3",
+  "canon": {
+    "version": "37.30",
+    "bump": "MINOR",
+    "invariant_block_changed": false
+  },
+  "git": {
+    "baseline": "2a8441f",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K69 render maintenance bundle: RSI round-semantics + ledger-true HELD_OVERRIDE (render==ledger 231/231; PFW long 88.0/A; benatar S/M C; negutil-short 76.2 corrected) + version-free titles x2; RWE standard-card defect VERIFY-CLOSED (16-cell matrix to spec; sightings = saved-mode boots via localStorage arglib-mode); corpus/jsx/ledger untouched"
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "d576d412d420f196e5e734539188d6e4",
+      "size_bytes": 2931643,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "46e5a70492b1466fa82f1f229d0b1e9c",
+      "size_bytes": 1272145,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "3e315b6b76688c6e7c8fa5fc24b8e28f",
+      "size_bytes": 2385256,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_30.json": {
+      "md5": "bb69b9125c8d6b949eda855cb1cb7f31",
+      "size_bytes": 218918,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "d794ff88dda713617d1107162e5ddac5",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "f3870f6e86b91730048f6fdc1ef947bb",
+    "new": "d576d412d420f196e5e734539188d6e4",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K69: v3.9.3 pin move (f3870f6e->d576d412; RSI ledger-true render + version-free titles)"
+}
