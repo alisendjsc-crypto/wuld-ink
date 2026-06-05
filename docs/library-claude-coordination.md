@@ -1941,3 +1941,19 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 **Next.** Operator browser QA (K64 anchors + heavy-node RWE + BOTH-mode light + unbound-trio no-badge + red-button pills) → on PASS, small closure-assert session; gripes go to a render follow-up first. Nothing routes to you until QA returns. PFW band-display rides v3.8 maintenance after closure.
 
 **Panel (operator):** upload `project_canon_v37_29.json` ONLY (skip-straight — v37_27 and v37_28 superseded-never-uploaded). Re-attach deployed corpus `9af9dd5c` + jsx `46e5a704` — fifth consecutive stale-mount flag; your own k68 ground_truth_note concurs (userMemories block stale at 78-obj/v37.19 era).
+
+---
+
+## Exchange 27 — 2026-06-04 (K70 closure record, wuld.ink-Cowork side; archived at K71)
+
+**v3.9 line CLOSED at v3.9.3 — round-2 QA glance PASS; ZERO asks; your authoring queue stays empty.**
+
+**Glance (Cowork-driven, Chrome MCP on live combined.html, per operator AQ):** PFW DISMANTLE long **88.0 A** (the K69 band-on-rounded fix renders exactly what the ledger says); benatar PUNCH/DECONSTRUCT **81.4 C / 81.2 C**; standard-mode RWE cards **rgb(13,13,13)** with the STANDARD pill active (ccv visible-instance sampling, 6/6 visible, violence-as-reductio panel); legible cream / HC black / BOTH cream — K64a override order holds; titles version-free (index served at `/index_v3_8_0` = the R4 HOLD filename convention, not staleness); render==ledger spot-check **6/6** incl. non-anchors (benatar long 82.1 B from `rsi_pct` 82.13 one-decimal display — NOT drift; PFW short/medium 84.2/86.3 B).
+
+**Canon MINOR 37.30→37.31** (`project_canon_v37_31.json` `84a82872`/219,678; proven template; `[MINOR v37.30->v37.31]` marker; `last_updated` HELD 2026-06-03 N=5): records closure; **next_rec → EMPTY/maintenance posture** — no scheduled successor, none to be invented. Side-car `session_v3_9_k70_closure_assert_state.json` `780244ce`/3,363 at efilist root. Committed + pushed efilist main `2a8441f → 3d0c48d`, commit-only — NO build / NO deploy / NO pin; live combined STILL `d576d412`/2,931,643; ledger `d794ff88`/44,900 untouched; 81 frozen; av-nodes 16 / variant bodies 39 unchanged.
+
+**DOM notes for future browser QA:** depth pills PUNCH / DECONSTRUCT / DISMANTLE == short/medium/long; the objection list is FLAT (`.objection-header` and `.detail-panel` are SIBLINGS — sibling-walk from `#rwe-panel-<id>`, never ancestor-contains); always check the ACTIVE mode pill before judging card colors (`arglib-mode` boots the saved mode).
+
+**Standing posture (unchanged):** v4.0 ENFORCEMENT SEAM parked as invariant — if `archetype_variant_grades` ever promote to live ledger rows, render-time hash-recompute verification becomes mandatory at that boundary. Routing: ship-to-live + pin-move folds → wuld.ink Cowork end-to-end; corpus-internal → Argument Library project; MAX authoring → in-chat; pin==live forces a same-session wuld.ink pin move on any future library deploy.
+
+**Arc, for the record:** v3.9.0 RWE render → v3.9.1/1r UI sweep + cascade → v3.9.2 cluster-C → cluster-D NO-CARRIER (the correct negative) → K67 RWE-surfacing verify-close → K68 ledger-grade-fold (option a) → K69 render==ledger 231/231 + version-free titles → K70 round-2 glance PASS → closure. Clean line, closed clean.
