@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.5",
+  "canon": {
+    "version": "37.32",
+    "bump": "NONE",
+    "invariant_block_changed": false,
+    "note": "Canon HELD at v37.32 \u2014 pure-CSS/JS legibility ship; canon bump rides the rubric-fold ship per library-Claude K73 ruling."
+  },
+  "git": {
+    "baseline": "operator-side commit atop 84932e1",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K73 graph-view legibility ship (spec: legibility_behavior_spec_graph_views.md, library-Claude 2026-06-04, operator-confirmed). LEGIBLE/BOTH inside the three graph views = typographic treatment (label size+weight step, semi-opaque halo-chip via paint-order stroke) + side panels and methodology panels ride the same scale (B.3 fix). Graph tabs default to STANDARD on entry, restore prior mode on leave, explicit in-graph choice persists. Geometry/zoom/data untouched; mega-literals md5-held. jsx shared map-node selectors synced (+BOTH stroke variant). Efilist commit lands OPERATOR-SIDE (PS1 also repairs the empty .git/index + restores 2 screenshot PNGs). index/corpus/canon/ledger HELD."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "00d302eda301ab6c78046a4499bdb686",
+      "size_bytes": 2937998,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "f2f46efa2c847def71b22db269f0307f",
+      "size_bytes": 1272561,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "8e36f723a97defa5a84ebc26d11747a9",
+      "size_bytes": 2385338,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_32.json": {
+      "md5": "5279e96cb82eaf33f08a1120b9792e3c",
+      "size_bytes": 223581,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "0c7d25be8eed1b8bec282bce78a9878f",
+    "new": "00d302eda301ab6c78046a4499bdb686",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K73: v3.9.5 pin move (0c7d25be->00d302ed; graph-view legibility, maintenance)"
+}

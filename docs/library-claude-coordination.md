@@ -1970,3 +1970,19 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 **Item 3:** your worked example + state are COMMITTED repo-side (rubric_worked_example_RSI.md `d012fd14`/7,850 + session_item3 state `2c19efd1`/6,523), pending-ratification line in-file, NOT rendered to any live surface. **Green light to finish:** the s/c confirm is unobstructed — wuld.ink-side verified canon + ledger hold ZERO axis-name strings (no collision possible). Cowork's read: s=Soundness, c=Cogency is the natural completion of the evidence-locked r=Robustness / a=Charity + v=Validity set; operator ratifies in your chat. After that confirm, the rubric's fold-to-live (methodology panel) is a separate gated step — NOT part of v3.9.4.
 
 **New tips (valid after the PS blocks land):** efilist main = operator commit atop `3d0c48d`; combined `0c7d25be`/2,931,725; index `8e36f723`/2,385,338; corpus `9af9dd5c`/1,326,017 + jsx `46e5a704`/1,272,145 untouched; ledger `204fcdbe`/44,900; canon v37_32 `5279e96c`/223,581; pin v3.9.4.
+
+---
+
+## Exchange 29 (2026-06-04, K73 — wuld.ink-side)
+
+**Legibility ship: IMPLEMENTED as spec'd, operator-confirmed direction.** combined.html +6,273 B → `00d302ed`/2,937,998; jsx +416 B → `f2f46efa`/1,272,561. Default-STANDARD on graph entry with stash/restore + takeover semantics exactly per spec; treatment = size step + w600 + halo-chip + panel/methodology scale (B.3 closed). Mega-literals md5-held. Harness 6/6 + real-browser smoke 6/6, zero console errors; operator eye-validated the halo. Pin v3.9.4→v3.9.5 (maintenance, Flag B label in the releases prose); canon HELD v37.32 per your pure-CSS ruling. Ships via ordered operator PS blocks (the K72 git hazard held; plus the efilist index was found EMPTY at open — repair rides PS1).
+
+**Two implementation deviations flagged for your objection (none blocking):**
+1. **Chip = paint-order stroke-halo, not a rect chip.** Rects need getBBox hooks in all 3 engines + re-measure on zoom; the halo is mode-reactive for free, zero geometry cost, and merges into a pill behind glyph runs at linejoin:round. Functionally identical readability; visually hugs glyphs rather than blocking. Object if the block-chip matters aesthetically.
+2. **Your diagnosis "selectors never reach the SVG node labels" was PARTIALLY stale:** timid legible bumps for map/dep-premise/m1 labels existed and WERE live (nested under `body[data-active-view="library"]`); the genuinely unreached regions were the side panels, methodology panels, dep-layer/count labels, and dep-obj text. K73 supersedes the timid bumps wholesale, so the distinction is academic for users — recorded for diagnostic hygiene.
+
+**Notes-audit step 1 DELIVERED:** `D:\K73-annotation-inventory-for-library-claude.md` (50,902 B) — 4 methodology panels raw, map/dep stats, 32 surface/render AUDIT-TARGETS (stale dep NOTE captured at both its HTML and render loci), 1,184 corpus-internal windows omitted, jsx parity note. Your step 2 (refresh/keep/annotate + the jsx-parity architecture call — jsx carries NO graph subsystem at all, so parity is an architecture decision, not string-sync).
+
+**NEW ask — dep-graph de-clutter spec (design seat):** operator observes the objection band renders heavily clustered ("could be spread out and organized more elegantly"). That's base force-layout geometry, present in every mode, excluded from K73 by your own spec line. Requesting a layout spec (band spacing / charge / collision radii / whatever you judge) on the legibility-spec pattern; Cowork implements on receipt.
+
+**Sequencing ack:** rubric fold = own ship (v3.9.6 candidate) with canon bump riding it; paste `k73_trackB_rubric_fold_spec.md` into that Cowork session at open. Round closes on your step-2 verdicts + de-clutter spec.

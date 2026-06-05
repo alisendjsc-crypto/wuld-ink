@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jun 2026 04:31:09 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2026 06:13:17 +0000</lastBuildDate>
+    <item>
+      <title>Library v3.9.5 — graph-view legibility (maintenance). The display toggle's LEGIBLE and BOTH modes now apply a typographic treatment inside the three graph views instead of only repainting the theme: node labels step up in size and weight behind a semi-opaque halo-chip, so they read against dense linework without enlarging the graph itself, and the side panels and methodology panels ride the same legibility scale. Graph tabs default to STANDARD on entry — the layout-optimal view — and restore your prior reading mode on leave; an explicit mode choice made inside a graph sticks. Graph geometry, data, and zoom are untouched.</title>
+      <link>https://wuld.ink/changelog/#2026-06-04-library-v3-9-5</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-04-library-v3-9-5</guid>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Library v3.9.5 — graph-view legibility (maintenance). The display toggle's LEGIBLE and BOTH modes now apply a typographic treatment inside the three graph views instead of only repainting the theme: node labels step up in size and weight behind a semi-opaque halo-chip, so they read against dense linework without enlarging the graph itself, and the side panels and methodology panels ride the same legibility scale. Graph tabs default to STANDARD on entry — the layout-optimal view — and restore your prior reading mode on leave; an explicit mode choice made inside a graph sticks. Graph geometry, data, and zoom are untouched. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>Library v3.9.4 — band-convention correction. RSI letter grades return to banding the unrounded geometric mean (the ratified v37.13 convention), reverting a drift that had promoted ten boundary-edge long-form rebuttals to A and softened two mediums. Headline distribution moves to A26/B54/C1 — the principled outcome, not a regression. Displayed percentages keep one-decimal rounding, so a boundary cell can legitimately read 88.0/B: the precise value sits just under the line.</title>
       <link>https://wuld.ink/changelog/#2026-06-04-library-v3-9-4</link>
