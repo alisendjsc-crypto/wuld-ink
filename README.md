@@ -16,8 +16,8 @@ Live at [`wuld.ink`](https://wuld.ink) — single auto-deployed Cloudflare Pages
 | Essays | `/essays/` | Live — Sanguinolentum Vestigium, Alogically Is, Architecture of Moral Disaster, A Life Inside |
 | Book *Malgré Tout* | `/book/` (+ `/book/nothingist/`) | Live — cover + Mementos; chapters forthcoming |
 | Glossary | `/glossary/` | Live — coined-vocabulary index (live + scaffolded entries) |
-| Argument Library entry-point | `/argument-library/` | Live — surfaces v3.8.7 count + substrate cross-link |
-| About the Library | `/library-about/` | Live — integrity-pinned to `library.wuld.ink` v3.8.7 |
+| Argument Library entry-point | `/argument-library/` | Live — surfaces the live library count + substrate cross-link |
+| About the Library | `/library-about/` | Live — integrity-pinned to the current `library.wuld.ink` release |
 | Long-form library extracts | `/coda/`, `/violence-as-reductio/`, `/why-not-suicide/` | Scaffold — editorial extraction pending |
 | Blog | `/blog/` | Live — The Easiest Case + Load-Bearing |
 | Void Engine instrument | `/void-engine/` | Live — 334-prompt generative lexicon (19 categories) + Signal / Transmission triptych |
@@ -39,7 +39,7 @@ Live at [`wuld.ink`](https://wuld.ink) — single auto-deployed Cloudflare Pages
 
 The systematic objection corpus lives in a separate repository (`alisendjsc-crypto/efilist-argument-library`) and is served from `library.wuld.ink` as a single-file Cloudflare Pages deploy.
 
-- **Substrate:** `combined.html` v3.8.7 (md5 `c3a2571246f67adff3971f3da69c97a8`, 2,363,948 bytes). Three surfaces behind an outer hash router (`#/library` / `#/rwe` / `#/coda`).
+- **Substrate:** `combined.html` — the current release's version, md5, and byte count are pinned live on [`/library-about/`](https://wuld.ink/library-about/) (this README deliberately carries no version literals). Three surfaces behind an outer hash router (`#/library` / `#/rwe` / `#/coda`).
 - **Corpus:** 81 objections / 5 tiers / 35 mechanisms / 136 attested real-world deployments / 4-archetype interlocutor model.
 - **License:** CC-BY-4.0 (content) + MIT (code).
 - **Status:** actively maintained (not archived); served live at `library.wuld.ink`, with wuld.ink's `/library-about` integrity-pinned to the deployed md5. Cross-link grammar: `library.wuld.ink/#/rwe/<objection-id>` (RWE surface; per-objection deep-link); `library.wuld.ink/#/library` (surface-level).

@@ -129,9 +129,9 @@ Visual anchor reference: `alisendjsc-crypto.github.io/efilist-argument-library` 
 
 ---
 
-## Current state (as of 2026-06-04, post-K68 close)
+## Current state (as of 2026-06-04, post-K70 close)
 
-**Status:** Sessions A → K69 complete (K69 = render follow-up + maintenance bundle: A verify-closed, render==ledger 231/231, pin v3.9.3; v3.9 closure waits only on the round-2 operator glance). See CLAUDE-history.md for per-session narratives.
+**Status:** Sessions A → K70 complete (K70 = v3.9 closure-assert: round-2 glance PASS, Cowork-driven via Chrome MCP; canon v37.31 commit-only — library v3.9 line CLOSED at v3.9.3, live `d576d412`). See CLAUDE-history.md for per-session narratives.
 
 ### Closed at K61-tail
 
@@ -237,6 +237,27 @@ Visual anchor reference: `alisendjsc-crypto.github.io/efilist-argument-library` 
 - **ENFORCEMENT SEAM parked (v4.0 obligation, unchanged from K68):** the cross-ref records coherence, doesn't enforce; hash-recompute verification becomes mandatory if v4.0 promotes `archetype_variant_grades` to live rows.
 - **verify_before tips for K70+:** efilist main `2a8441f`; combined `d576d412`/2,931,643; index `3e315b6b`/2,385,256; corpus `9af9dd5c`/1,326,017; jsx `46e5a704`/1,272,145; ledger `d794ff88`/44,900; canon NOW v37_30 `bb69b912`/218,918.
 - **K69 size watch:** CLAUDE.md ~163 KB post-K69 (~84%). Trim at K70–K71 (move K65–K66 narratives per pattern) before heavy new narrative.
+
+### Closed at K70-tail
+
+- **K69 carry — Operator runs the ONE PS block (wuld-ink ONLY).** CLOSED at K70 open — HEAD `78d8cf3` exact, tree clean, no stale locks.
+- **K69 carry — Closure-QA round 2 (operator glance → assert).** CLOSED — glance executed COWORK-SIDE via Chrome MCP per operator AQ ("Use Chrome to double check"); all anchors PASS; closure asserted same session.
+- **K69 carry — Operator panel (v37_30 upload + headline A26/B54/C1 → A36/B44/C1).** CLOSED at open per operator confirmation (2026-06-04, post-K69); verify-don't-redo honored.
+- **v3.9 line.** CLOSED at v3.9.3. EMPTY/maintenance posture (K68b ratification, executed at canon 37.31); no successor scheduled.
+
+**K70 (2026-06-04):** Track (library v3.9 closure-assert, Path A commit-only) — **round-2 glance PASS → canon 37.30→37.31 + K70 state side-car + README de-version rider; NO build / NO deploy / NO pin; live stays `d576d412`/2,931,643.** Hard gate 5/5 GREEN (wuld-ink `78d8cf3` exact-clean / efilist `2a8441f` HEAD==main clean / canon `bb69b912`/218,918 / ledger `d794ff88`/44,900 / live ×2 == pin). Glance COWORK-DRIVEN (operator AQ ruling): Chrome MCP on live combined — PFW DISMANTLE **88.0 A**; benatar PUNCH/DECONSTRUCT **81.4 C / 81.2 C**; standard-mode RWE cards **rgb(13,13,13) with STANDARD pill active** (ccv visible-instance sampling, 6/6 visible, violence-as-reductio panel); legible cream / hc black / BOTH cream — K64a order holds; titles version-free (combined rendered; index live==repo `3e315b6b` served at `/index_v3_8_0` — the v3_8_0 FILENAME is the R4 HOLD convention, not staleness); render==ledger spot-check **6/6** incl. non-anchors (benatar long 82.1 B — ledger `rsi_pct` 82.13, one-decimal display; PFW short/medium 84.2/86.3 B). DOM notes for future probes: depth pills are **PUNCH / DECONSTRUCT / DISMANTLE** == short/medium/long (proven by respLen 240/1200/2112 + ledger agreement); the objection list is FLAT — `.objection-header` and `.detail-panel` are SIBLINGS, so find a node's block by sibling-walk back from `#rwe-panel-<id>`, never ancestor-contains (an ancestor query returns the first header globally); operator saved-mode `legible` restored at end (no footprint). Two ledger-probe corrections en route (raw-0.x rsi assumption — schema is display-scale `rsi_pct`; strict equality vs one-decimal display on 82.13) — the validate-gate blocked BOTH pre-write; compose passed first run post-correction. Canon MINOR **37.30→37.31** (`project_canon_v37_31.json` NEW `84a82872`/219,678; round-trip serializer PROVEN byte-identical on 37_30 pre-compose; flat-diff exactly 7 value paths + slr append 34→35; `last_updated` HELD 2026-06-03 N=5; invariants + compaction index serialized-identical; keyset incl. `after`; `[MINOR v37.30->v37.31]` marker): records v3.9 CLOSURE ASSERTED + next_rec → **EMPTY/maintenance posture** (no scheduled successor; v4.0 ENFORCEMENT SEAM parked as invariant, not pointer). Side-car `session_v3_9_k70_closure_assert_state.json` `780244ce`/3,363 (glance evidence + gate facts + arc), efilist root. README rider: 3 stale pins (v3.8.7 / `c3a25712` / 2,363,948 B) → version-free phrasing pointing at `/library-about/` — the README staleness class killed (it sat outside the pin tool's `src/**/*.html` loci and re-staled every release). Tool budget: projected 8–14; actual ~16 substantive (the glance moved Cowork-side at the AQ, +7 browser calls). Recovery overhead: two pre-write gate catches + two browser-probe reworks; ZERO wrong bytes written.
+
+**`<p>` margin-inline:auto audit:** N/A (closure assert; no wuld.ink page work).
+
+### Carries to K71 (NEW from K70)
+
+- **Operator runs TWO PS blocks (independent, either order).** (1) efilist commit-only, 2-file md5 gate: `project_canon_v37_31.json` `84a82872`/219,678 + `session_v3_9_k70_closure_assert_state.json` `780244ce`/3,363 — foreach staging per cciii, push main; NO served-artifact change — post-verify live combined STILL `d576d412` via `curl.exe -sL`. (2) wuld-ink 2-file gate: CLAUDE.md + README.md — root-meta only, no consequential Pages rebuild.
+- **Operator panel:** upload `project_canon_v37_31.json` (replaces v37_30, which WAS uploaded — no skip-straight needed).
+- **Posture:** v3.9 CLOSED at v3.9.3; canon next_rec = EMPTY/maintenance — no successor session scheduled, none should be invented. Any future library deploy still forces the same-session pin move (pin==live).
+- **ENFORCEMENT SEAM parked (v4.0 obligation, unchanged):** if v4.0 promotes `archetype_variant_grades` to live ledger rows, render-time hash-recompute verification becomes mandatory at that boundary.
+- **verify_before tips for K71+ (NO deploy at K70):** efilist main `2a8441f` → post-PS tip; combined `d576d412`/2,931,643; index `3e315b6b`/2,385,256; corpus `9af9dd5c`/1,326,017; jsx `46e5a704`/1,272,145; ledger `d794ff88`/44,900; canon NOW v37_31 `84a82872`/219,678.
+- **K70 size watch: trim MANDATORY at K71 open** (CLAUDE.md ~167 KB / ~86%) — move K65–K66 narratives per pattern AND consider the policy upgrade: move CLOSED carries-sections (the K38–K63 layers) wholesale to CLAUDE-history.md (~30–40 KB reclaim; pure archaeology).
+- **Housekeeping (operator-elective, zero urgency):** `D:\` spent prompt/relay files (K24m/K24n/K34/K42/K43 prompts; K60–K66 relays; session-K69-prompt.md) — `del` at convenience; content archived in coordination docs / CLAUDE-history.md.
 
 ### Carries to K67 (NEW from K65/K66)
 
