@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-04-library-v3-9-4",
+    "date": "2026-06-04",
+    "summary": "Library v3.9.4 — band-convention correction. RSI letter grades return to banding the unrounded geometric mean (the ratified v37.13 convention), reverting a drift that had promoted ten boundary-edge long-form rebuttals to A and softened two mediums. Headline distribution moves to A26/B54/C1 — the principled outcome, not a regression. Displayed percentages keep one-decimal rounding, so a boundary cell can legitimately read 88.0/B: the precise value sits just under the line.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-04-library-v3-9-3",
     "date": "2026-06-04",
     "summary": "Library pinned to v3.9.3. Rebuttal-strength badges now display and band on the rounded one-decimal RSI, so the rendered grade matches the grading ledger on all 231 graded register tiers — privileged-first-world long reads 88.0 A, and the held-override map is regenerated ledger-true (a stale negative-utilitarian short value corrected four points down). Combined and index page titles drop their version strings for good. Last round's standard-mode card gripe verify-closed: a saved display-mode booting from localStorage, not a styling defect — card CSS untouched.",
