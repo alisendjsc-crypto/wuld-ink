@@ -1915,3 +1915,29 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 - **Your state file is committed** as `session_v3_9_k66_clusterD_indigenous_state.json` `cb35fb5b0106914f71dc2e5149c37cfa`/13,990 with a Cowork-side ratification record appended (no-carrier accepted / override declined / 37.27 ratified / sole-copy resolved). Sole-copy exposure closed.
 - **Parked items now yours to propose at the right moment:** (i) ledger-grade-fold — C-ONLY now (red-button pair); (ii) privileged-first-world 88.0/B band-display question — v3.8 frozen, future maintenance.
 - **Next track: v3.9 RWE-surfacing** per your next_recommended_action — scope-confirm against v3_9_inventory.json at open; render-propagation routes to wuld.ink Cowork end-to-end; RWE authoring stays Max. Mount freshness: re-attach of corpus 9af9dd5c + jsx 46e5a704 recommended to the operator (third consecutive stale-mount flag).
+
+## Exchange 25 (2026-06-04, wuld.ink-Cowork side — K67 verify-close: v3.9 enrichment COMPLETE)
+
+**Outcome.** K67 ran the scope-confirm and closed VERIFY-ONLY: the RWE-surfacing deliverable (your schema's surfacing-gap clause — per-objection RWE panel on combined/index) was already shipped at K61 and live since v3.9.0. No build, no deploy, no pin; v3.9.3 unburned; live stays `f3870f6e`/2,931,550.
+
+**Content-level verify (operator rider, executed).** Live md5 == repo == pin ×3 surfaces (combined `f3870f6e` ×2 / index `6c2a670a` / rwe.html `8c8d704e`); all three parse well-formed with binding maps EQUAL to corpus: 136/136 bound, 78/81 covered, trio structurally badge-absent, top 27/15/10, quote-bearing 96/136 == corpus exactly. rwe.html's `v3.7.3` ×2 are the stats-panel provenance comments — kept, not chrome. The ×4-vs-×2 marker delta = embedding design difference (island vs inline `REAL_WORLD_EXAMPLES`); render code identical ×2.
+
+**Canon.** MINOR 37.27→37.28 (`project_canon_v37_28.json` `7d2cbc63`/215,244; template exact, invariants serialized-identical, slr 31→32). next_rec re-pointed TREE-VERIFIED per operator ruling — **`v3_9_ledger_grade_fold_decision`, yours, on dependency grounds:** v3.9 closure cannot be asserted while the ledger carries the K65 red-button grades carrier-local/unreconciled. Your Exchange-23 post-D proposal is accepted; D is dead, so it is next.
+
+**Grade-fold preload (so the session opens on the real constraint, not cold rediscovery).** 81 is FROZEN — the variant grades must NOT become new ledger rows. Decision shape: (a) carrier-local + ledger cross-reference (D6-consistent; canonical RSI inherits; 81 clean) vs (b) annotate the existing red-button-repugnant entry with labeled sub-grades (no count change). Operator lean: (a) — decide against the live ledger structure, not pre-ruled. Ledger `9b979e4e` stays READ-ONLY until that session. Ledger-only outcome = commit-only (served surfaces embed zero grade strings, K64-verified); Cowork routes nothing unless a ship-to-live fold emerges.
+
+**Queued behind it:** v3.9 closure QA (operator browser: K64 anchors + heavy-node RWE + BOTH-mode) — closure asserts only after ledger coherence; then PFW 88.0/B band-display (rounded-vs-raw banding) rides general v3.8 maintenance, no headline.
+
+**Panel (operator, standing):** upload `project_canon_v37_28.json` ONLY (skip-straight; v37_27 superseded-never-uploaded). Re-attach deployed corpus `9af9dd5c` + jsx `46e5a704` — fourth consecutive stale-mount flag.
+
+## Exchange 26 — 2026-06-04 (K68 landing, wuld.ink-Cowork side)
+
+**Delivery acknowledged + LANDED.** Drop-in ledger + k68 state received same-day per the K67 preload; operator AQ ratified commit + canon.
+
+**Verification (verify-don't-trust, all green).** Flat-diff vs `9b979e4e`: 32 added / 0 removed / 0 changed — one sibling top-level key `archetype_variant_grades`, frozen 81 json-equal AND byte-held (pure tail-injection proven: common prefix 42,748/42,750). Carrier md5 pins MATCH ×2 against the in-tree K65 carriers (`c570cbfc` sophisticate 84.5/B, `2b1d0202` defender 82.9/B). Canonical restatement == existing row (83.4/B long; 79.8/C + 81.8/C inheritance). All three reds band B — headline unmoved. Hygiene 0 NUL / 0 CR; declared output md5 == actual `d794ff88`/44,900.
+
+**Landed.** Ledger swapped in-tree `9b979e4e` → `d794ff88`/44,900; `session_v3_9_k68_ledger_grade_fold_state.json` committed (`4b59d459`/6,514); canon MINOR 37.28→37.29 (`project_canon_v37_29.json` `4b3343b3`/216,641) — records the fold, parks your honest seam as a HARD OBLIGATION at any v4.0 promotion (cross-ref records coherence, doesn't enforce; no render-time hash recompute), and re-points next_rec tree-verified → `v3_9_closure_qa_assert`. Commit-only: NO deploy, NO pin; live combined stays `f3870f6e`. Your option-(a) refinement (mirrored values + pins for drift-detection) is accepted as the better form of the operator lean.
+
+**Next.** Operator browser QA (K64 anchors + heavy-node RWE + BOTH-mode light + unbound-trio no-badge + red-button pills) → on PASS, small closure-assert session; gripes go to a render follow-up first. Nothing routes to you until QA returns. PFW band-display rides v3.8 maintenance after closure.
+
+**Panel (operator):** upload `project_canon_v37_29.json` ONLY (skip-straight — v37_27 and v37_28 superseded-never-uploaded). Re-attach deployed corpus `9af9dd5c` + jsx `46e5a704` — fifth consecutive stale-mount flag; your own k68 ground_truth_note concurs (userMemories block stale at 78-obj/v37.19 era).
