@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 06 Jun 2026 04:05:52 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2026 05:42:17 +0000</lastBuildDate>
+    <item>
+      <title>Library v3.9.11 — legible-mode review-note legibility (maintenance). The dependency graph's per-premise review notes were pinned at 10px and sat outside the legible set, so switching to legible re-fonted them to serif while keeping the 10px box — they read smaller than standard. Legible and legible+high-contrast now render the notes at 12.5px with relaxed leading on both the combined and index surfaces; standard and high-contrast are unchanged, and the note badges keep their small label size by design. Render-only CSS; canon held at v37.36 per the Exchange-38 ruling.</title>
+      <link>https://wuld.ink/changelog/#2026-06-05-library-v3-9-11</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-05-library-v3-9-11</guid>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Library v3.9.11 — legible-mode review-note legibility (maintenance). The dependency graph's per-premise review notes were pinned at 10px and sat outside the legible set, so switching to legible re-fonted them to serif while keeping the 10px box — they read smaller than standard. Legible and legible+high-contrast now render the notes at 12.5px with relaxed leading on both the combined and index surfaces; standard and high-contrast are unchanged, and the note badges keep their small label size by design. Render-only CSS; canon held at v37.36 per the Exchange-38 ruling. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>Library v3.9.10 — dependency-panel review-note riders (maintenance). The dependency graph's per-premise review notes — short audit annotations shown when a premise node is clicked — still quoted connection totals from the v3.5 audit, when the graph was smaller. Five premise notes read as if those counts were current: Consent Impossibility (62 total connections), Suffering as Deterrence (13), Contextus Claudit (8), Alogical Isness (8), Convergent Architecture (13). Each figure now carries a small inline rider giving the live count beside the audit figure — current: 67 (42 strong / 25 weak), 19, 9, 11, and 17 respectively. The v3.5 audit text itself is unchanged: the old figures stay as clearly dated history rather than being rewritten, the same convention v3.9.9 applied to the graph's explanatory note. The fourteen objection-level notes needed nothing — their counts still match the live graph. No rebuttal, score, edge, or graph data changed; the dependency graph still holds its locked 254 edges.</title>
       <link>https://wuld.ink/changelog/#2026-06-05-library-v3-9-10</link>

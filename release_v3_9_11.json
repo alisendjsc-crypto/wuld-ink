@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.11",
+  "canon": {
+    "version": "37.36",
+    "bump": "NONE (HELD at v37.36)",
+    "invariant_block_changed": false,
+    "note": "Render-only CSS legibility fix; Exchange-38 ruling binds: maintenance class, NO canon bump, trace carried in this pin record + releases.json prose. Historical status-class treatment NOT ridden (deferred pending the Exchange-36 Q2 spec)."
+  },
+  "git": {
+    "baseline": "operator-side commit atop dd80f5e (K81 state side-car commit)",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K82 legible dep-review-note fix (K81 operator gripe; Exchange 38 green-light). The dependency graph's per-premise review notes (.dep-review-note, hard 10px) sat outside the K73 legible set, so legible mode re-fonted them serif at 10px -- reading SMALLER than standard. K73-pattern legible rules added x2 surfaces (combined: flat body[data-active-view=\"library\"].legible selector spliced after the K74 graph-frame rule; index: flat body.legible per its architecture): font-size 12.5px, line-height 1.75. Standard/HC untouched; BOTH takes the size + HC colors (K64a order; browser-QA'd 6/6 file:// matrix incl. Convergent Architecture spot + clean standard re-entry; badge chip held 8px by operator eye-call). combined a7277981->c436e720/2,945,490 (+277); index_v3_8_0.html 632cc7a1->36b11ffe/2,387,362 (+172). jsx SOLE-CARRIER exempt; corpus/canon/ledger byte-held."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "c436e7208ced7bce015e6143d5195037",
+      "size_bytes": 2945490,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "f2f46efa2c847def71b22db269f0307f",
+      "size_bytes": 1272561,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "36b11ffea96413bd9f5c0d007527bf72",
+      "size_bytes": 2387362,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_36.json": {
+      "md5": "eaca97a9d8304c196067a67e1a439be8",
+      "size_bytes": 240829,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "a72779819e08f08782e570022954111b",
+    "new": "c436e7208ced7bce015e6143d5195037",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K82: v3.9.11 pin move (a7277981->c436e720; legible dep-review-note fix)"
+}
