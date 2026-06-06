@@ -1,161 +1,169 @@
 [
- {
-  "id": "2026-06-05-library-v3-9-7",
-  "date": "2026-06-05",
-  "summary": "Library v3.9.7 — methodology-panel reconcile (correctness). The RSI methodology panel now states its own grading conventions in full: grades band the unrounded geometric mean while displayed percentages round to one decimal — so a boundary cell can legitimately read 88.0/B — and a worked example (privileged-first-world, long form) carries the arithmetic end-to-end from five axis scores to the final letter. The panel's fourth axis label normalizes from Resilience to Robustness (label only; no score changes), and a stale calibration claim that Autonomy was the library's most common weakness is replaced with the ledger-true observation that Robustness is. The five axis names and definitions are now canonized exactly as the deployed panel defines them — the definitions the 81 stored scores were actually assigned against. Reading modes pick up the panel correctly. No rebuttal text, scores, or graph geometry change.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-04-library-v3-9-6",
-  "date": "2026-06-04",
-  "summary": "Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-04-library-v3-9-5",
-  "date": "2026-06-04",
-  "summary": "Library v3.9.5 — graph-view legibility (maintenance). The display toggle's LEGIBLE and BOTH modes now apply a typographic treatment inside the three graph views instead of only repainting the theme: node labels step up in size and weight behind a semi-opaque halo-chip, so they read against dense linework without enlarging the graph itself, and the side panels and methodology panels ride the same legibility scale. Graph tabs default to STANDARD on entry — the layout-optimal view — and restore your prior reading mode on leave; an explicit mode choice made inside a graph sticks. Graph geometry, data, and zoom are untouched.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-04-library-v3-9-4",
-  "date": "2026-06-04",
-  "summary": "Library v3.9.4 — band-convention correction. RSI letter grades return to banding the unrounded geometric mean (the ratified v37.13 convention), reverting a drift that had promoted ten boundary-edge long-form rebuttals to A and softened two mediums. Headline distribution moves to A26/B54/C1 — the principled outcome, not a regression. Displayed percentages keep one-decimal rounding, so a boundary cell can legitimately read 88.0/B: the precise value sits just under the line.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-04-library-v3-9-3",
-  "date": "2026-06-04",
-  "summary": "Library pinned to v3.9.3. Rebuttal-strength badges now display and band on the rounded one-decimal RSI, so the rendered grade matches the grading ledger on all 231 graded register tiers — privileged-first-world long reads 88.0 A, and the held-override map is regenerated ledger-true (a stale negative-utilitarian short value corrected four points down). Combined and index page titles drop their version strings for good. Last round's standard-mode card gripe verify-closed: a saved display-mode booting from localStorage, not a styling defect — card CSS untouched.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-04-library-v3-9-2",
-  "date": "2026-06-04",
-  "summary": "Argument Library v3.9.2 — cluster-C archetype variants live: red-button-repugnant now carries a sophisticate register (the NU-entails-omnicide formal reductio, met on person-affecting/ex-ante ground) and a defender register (the public-square repugnance charge, dissolved against the thought-experiment's own stipulations). 16 nodes / 39 variant bodies; 81 objections and the grading ledger unchanged. Integrity pin f26dfdd4 → f3870f6e.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-04-library-v3-9-1r",
-  "date": "2026-06-04",
-  "summary": "Argument Library v3.9.1r — correction to the v3.9.1 sweep: in the combined LEGIBLE + HIGH-CONTRAST mode the new example cards rendered as dark slabs on the light page; the light surface now wins that stack. Byte-neutral, no content change.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-04-library-v3-9-1",
-  "date": "2026-06-04",
-  "summary": "Argument Library v3.9.1 — legibility sweep: real-world-example cards re-registered to the library's fixed-px type scale with full legible / high-contrast mode adaptation, UI chrome labels lifted off the sub-10px floor, and 14 rebuttal grade-bands corrected against the canonical band rule; 81 objections / 35 mechanisms / 136 examples / 15 variant carriers held.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-03-library-v3-9-0",
-  "date": "2026-06-03",
-  "summary": "Argument Library v3.9.0 — archetype-variant rebuttal registers live on 15 nodes (11 defender, 5 sophisticate; per-card toggle) plus 136 real-world deployment examples as expandable cards; 81 objections / 35 mechanisms held.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-03-library-v3-8-22",
-  "date": "2026-06-03",
-  "summary": "Argument Library updated to v3.8.22 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.",
-  "sections": [
-   "/argument-library/"
-  ]
- },
- {
-  "id": "2026-06-01-void-engine-glow",
-  "date": "2026-06-01",
-  "summary": "The Void Engine now flags what's new for you — fresh prompts and categories glow until you've seen them (remembered on your device, no tracking). Plus a pinned stat header, model-agnostic targeting copy, site-matched accent colors, a clearer Diagnosis form, and a new figure-DNA prompt filter for the figure sets. Still 334 prompts across 19 categories.",
-  "sections": [
-   "/void-engine/"
-  ]
- },
- {
-  "id": "2026-06-01-void-engine-334",
-  "date": "2026-06-01",
-  "summary": "The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it.",
-  "sections": [
-   "/void-engine/"
-  ]
- },
- {
-  "id": "2026-05-31-comment-board",
-  "date": "2026-05-31",
-  "summary": "The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed.",
-  "sections": [
-   "/chat/"
-  ]
- },
- {
-  "id": "2026-05-31-changelog",
-  "date": "2026-05-31",
-  "summary": "Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.",
-  "sections": []
- },
- {
-  "id": "2026-05-30-void-engine-310",
-  "date": "2026-05-30",
-  "summary": "Void Engine lexicon expanded to 310 entries across 19 categories.",
-  "sections": [
-   "/void-engine/"
-  ]
- },
- {
-  "id": "2026-05-18-archive-expansion",
-  "date": "2026-05-18",
-  "summary": "Archive expanded with additional video selections and a content disclaimer.",
-  "sections": [
-   "/archive/"
-  ]
- },
- {
-  "id": "2026-05-17-gallery-recs-tabs",
-  "date": "2026-05-17",
-  "summary": "Gallery images optimized for faster loading; Recommendations filled out across film, books, art, groups, and media; Support, Contact, and Chat tabs added.",
-  "sections": [
-   "/gallery/",
-   "/recommendations/",
-   "/donations/",
-   "/contact/",
-   "/chat/"
-  ]
- },
- {
-  "id": "2026-05-16-music-watch-ambient",
-  "date": "2026-05-16",
-  "summary": "Music and Watch pages added, the Archive opened, and a site-wide ambient background player introduced.",
-  "sections": [
-   "/music/",
-   "/watch/",
-   "/archive/"
-  ]
- },
- {
-  "id": "2026-05-11-launch",
-  "date": "2026-05-11",
-  "summary": "wuld.ink registered and launched — the umbrella for all of WULD's philosophical output. Core surfaces stood up: Essays, Glossary, Book, and Blog.",
-  "sections": [
-   "/essays/",
-   "/glossary/",
-   "/book/",
-   "/blog/"
-  ]
- }
+  {
+    "id": "2026-06-05-library-v3-9-8",
+    "date": "2026-06-05",
+    "summary": "Library v3.9.8 — panel corrections (maintenance). Three small text fixes to the library's explanatory panels, with no change to any rebuttal, score, or graph geometry. The dependency-graph notes no longer claim Autonomy is the system's most common weakness — a stale line that contradicted the methodology panel, which correctly identifies Robustness — and the Autonomy note now describes what the graph actually shows: which responses lean on contested foundational premises and so persuade a determined skeptic least. The masthead drops its version number, which had drifted out of date; the live version lives in the changelog and the integrity pin, not the title. And the list of highest-scoring entries now reads 'include' rather than 'are', since the four named entries are examples drawn from a larger set of ten that score top marks on all five axes, not the whole set.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-05-library-v3-9-7",
+    "date": "2026-06-05",
+    "summary": "Library v3.9.7 — methodology-panel reconcile (correctness). The RSI methodology panel now states its own grading conventions in full: grades band the unrounded geometric mean while displayed percentages round to one decimal — so a boundary cell can legitimately read 88.0/B — and a worked example (privileged-first-world, long form) carries the arithmetic end-to-end from five axis scores to the final letter. The panel's fourth axis label normalizes from Resilience to Robustness (label only; no score changes), and a stale calibration claim that Autonomy was the library's most common weakness is replaced with the ledger-true observation that Robustness is. The five axis names and definitions are now canonized exactly as the deployed panel defines them — the definitions the 81 stored scores were actually assigned against. Reading modes pick up the panel correctly. No rebuttal text, scores, or graph geometry change.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-04-library-v3-9-6",
+    "date": "2026-06-04",
+    "summary": "Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-04-library-v3-9-5",
+    "date": "2026-06-04",
+    "summary": "Library v3.9.5 — graph-view legibility (maintenance). The display toggle's LEGIBLE and BOTH modes now apply a typographic treatment inside the three graph views instead of only repainting the theme: node labels step up in size and weight behind a semi-opaque halo-chip, so they read against dense linework without enlarging the graph itself, and the side panels and methodology panels ride the same legibility scale. Graph tabs default to STANDARD on entry — the layout-optimal view — and restore your prior reading mode on leave; an explicit mode choice made inside a graph sticks. Graph geometry, data, and zoom are untouched.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-04-library-v3-9-4",
+    "date": "2026-06-04",
+    "summary": "Library v3.9.4 — band-convention correction. RSI letter grades return to banding the unrounded geometric mean (the ratified v37.13 convention), reverting a drift that had promoted ten boundary-edge long-form rebuttals to A and softened two mediums. Headline distribution moves to A26/B54/C1 — the principled outcome, not a regression. Displayed percentages keep one-decimal rounding, so a boundary cell can legitimately read 88.0/B: the precise value sits just under the line.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-04-library-v3-9-3",
+    "date": "2026-06-04",
+    "summary": "Library pinned to v3.9.3. Rebuttal-strength badges now display and band on the rounded one-decimal RSI, so the rendered grade matches the grading ledger on all 231 graded register tiers — privileged-first-world long reads 88.0 A, and the held-override map is regenerated ledger-true (a stale negative-utilitarian short value corrected four points down). Combined and index page titles drop their version strings for good. Last round's standard-mode card gripe verify-closed: a saved display-mode booting from localStorage, not a styling defect — card CSS untouched.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-04-library-v3-9-2",
+    "date": "2026-06-04",
+    "summary": "Argument Library v3.9.2 — cluster-C archetype variants live: red-button-repugnant now carries a sophisticate register (the NU-entails-omnicide formal reductio, met on person-affecting/ex-ante ground) and a defender register (the public-square repugnance charge, dissolved against the thought-experiment's own stipulations). 16 nodes / 39 variant bodies; 81 objections and the grading ledger unchanged. Integrity pin f26dfdd4 → f3870f6e.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-04-library-v3-9-1r",
+    "date": "2026-06-04",
+    "summary": "Argument Library v3.9.1r — correction to the v3.9.1 sweep: in the combined LEGIBLE + HIGH-CONTRAST mode the new example cards rendered as dark slabs on the light page; the light surface now wins that stack. Byte-neutral, no content change.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-04-library-v3-9-1",
+    "date": "2026-06-04",
+    "summary": "Argument Library v3.9.1 — legibility sweep: real-world-example cards re-registered to the library's fixed-px type scale with full legible / high-contrast mode adaptation, UI chrome labels lifted off the sub-10px floor, and 14 rebuttal grade-bands corrected against the canonical band rule; 81 objections / 35 mechanisms / 136 examples / 15 variant carriers held.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-03-library-v3-9-0",
+    "date": "2026-06-03",
+    "summary": "Argument Library v3.9.0 — archetype-variant rebuttal registers live on 15 nodes (11 defender, 5 sophisticate; per-card toggle) plus 136 real-world deployment examples as expandable cards; 81 objections / 35 mechanisms held.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-03-library-v3-8-22",
+    "date": "2026-06-03",
+    "summary": "Argument Library updated to v3.8.22 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-01-void-engine-glow",
+    "date": "2026-06-01",
+    "summary": "The Void Engine now flags what's new for you — fresh prompts and categories glow until you've seen them (remembered on your device, no tracking). Plus a pinned stat header, model-agnostic targeting copy, site-matched accent colors, a clearer Diagnosis form, and a new figure-DNA prompt filter for the figure sets. Still 334 prompts across 19 categories.",
+    "sections": [
+      "/void-engine/"
+    ]
+  },
+  {
+    "id": "2026-06-01-void-engine-334",
+    "date": "2026-06-01",
+    "summary": "The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it.",
+    "sections": [
+      "/void-engine/"
+    ]
+  },
+  {
+    "id": "2026-05-31-comment-board",
+    "date": "2026-05-31",
+    "summary": "The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed.",
+    "sections": [
+      "/chat/"
+    ]
+  },
+  {
+    "id": "2026-05-31-changelog",
+    "date": "2026-05-31",
+    "summary": "Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.",
+    "sections": []
+  },
+  {
+    "id": "2026-05-30-void-engine-310",
+    "date": "2026-05-30",
+    "summary": "Void Engine lexicon expanded to 310 entries across 19 categories.",
+    "sections": [
+      "/void-engine/"
+    ]
+  },
+  {
+    "id": "2026-05-18-archive-expansion",
+    "date": "2026-05-18",
+    "summary": "Archive expanded with additional video selections and a content disclaimer.",
+    "sections": [
+      "/archive/"
+    ]
+  },
+  {
+    "id": "2026-05-17-gallery-recs-tabs",
+    "date": "2026-05-17",
+    "summary": "Gallery images optimized for faster loading; Recommendations filled out across film, books, art, groups, and media; Support, Contact, and Chat tabs added.",
+    "sections": [
+      "/gallery/",
+      "/recommendations/",
+      "/donations/",
+      "/contact/",
+      "/chat/"
+    ]
+  },
+  {
+    "id": "2026-05-16-music-watch-ambient",
+    "date": "2026-05-16",
+    "summary": "Music and Watch pages added, the Archive opened, and a site-wide ambient background player introduced.",
+    "sections": [
+      "/music/",
+      "/watch/",
+      "/archive/"
+    ]
+  },
+  {
+    "id": "2026-05-11-launch",
+    "date": "2026-05-11",
+    "summary": "wuld.ink registered and launched — the umbrella for all of WULD's philosophical output. Core surfaces stood up: Essays, Glossary, Book, and Blog.",
+    "sections": [
+      "/essays/",
+      "/glossary/",
+      "/book/",
+      "/blog/"
+    ]
+  }
 ]

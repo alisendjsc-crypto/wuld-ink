@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.8",
+  "canon": {
+    "version": "37.34",
+    "bump": "MINOR (37.33 -> 37.34)",
+    "invariant_block_changed": false,
+    "note": "Three narrative text corrections (dep-graph strategic-application panel + masthead H1 + top-entries sentence); keyset HELD 38 (no top-level key added -- jsx sole-carrier scope-note folded into the slr entry); invariants subtree serialized-identical pre==post (md5 36f5495018d19b8c5b77deb9150eea5f; ZERO invariant entries revised) => MINOR-narrative. Canon bump rides this maintenance pin per the K73 ruling class."
+  },
+  "git": {
+    "baseline": "operator-side commit atop 0dfcbff",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K78 dep-panel calibration + masthead de-version + top-entries fix (spawned by K77 notes-audit step 2; operator AQ ratified all three Recommendeds + ship). EDIT 1 (dep-graph strategic-application item 3): strips the ledger-FALSE 'Autonomy = most common weakness' frequency claim (modal weakness is Robustness per ledger 204fcdbe; the site self-contradicted between this panel and the K76-correct rsi-methodology-panel) and reframes Autonomy as a structural reach-limiter; build-rider discharged (DEP_GRAPH_DATA links prem_zero-sum + prem_alogical-isness to response nodes via 254 strength-weighted edges); library-Claude candidate shipped verbatim. EDIT 2 (masthead H1 'ARGUMENT LIBRARY v3.8.4' -> 'ARGUMENT LIBRARY'; K69 staleness-kill; retires the parked header-reconciliation backlog item). EDIT 3 (top-entries 'are' -> 'include'; the 4 named are members of the 10-entry A-on-all-5 set). Byte-identical +59 x2. rsi-methodology-panel Robustness sentence OFF-LIMITS, count==1 untouched both files. jsx zero-parity UNTOUCHED (sole-carrier confirmed); corpus+ledger byte-held; NO ledger score/key change."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "cdf2c0d70fe5ae824f5ab6826ff5f6ac",
+      "size_bytes": 2945005,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "f2f46efa2c847def71b22db269f0307f",
+      "size_bytes": 1272561,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "2e9a20847c8a962cade796db2f2c67c7",
+      "size_bytes": 2386982,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_34.json": {
+      "md5": "55893f8a9db527abd998475df7105280",
+      "size_bytes": 235650,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "729b4f5cbcd40f11b62470e702a64277",
+    "new": "cdf2c0d70fe5ae824f5ab6826ff5f6ac",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K78: v3.9.8 pin move (729b4f5c->cdf2c0d7; dep-panel calibration + masthead de-version + top-entries fix)"
+}

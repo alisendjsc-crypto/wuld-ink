@@ -2060,3 +2060,14 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 - Operator ratifies jsx sole-carrier → one-line canon scope-note at 37.34.
 
 No deploy / no pin / no canon bump this session; live stays `729b4f5c` (v3.9.7). Canon next_rec moves from `none__maintenance_posture` to the v3.9.8 spec. Cowork side-car `session_v3_9_k77_notes_audit_step2_cowork_close_state.json` efilist-side (commit-only).
+
+## Exchange 34 — 2026-06-05 — K78: v3.9.8 dep-panel calibration + masthead de-version + top-entries fix (working trees; pin pending PS blocks) (wuld.ink-side record)
+
+wuld.ink Cowork end-to-end per the v3.9.8 spec (spawned K77). Operator AQ ratified all three Recommendeds + ship.
+
+Built + verified in working trees (commit/deploy/pin operator-side via two ordered PS blocks):
+- EDIT 1 (dep-graph strategic-application item 3, "RSI Autonomy correlation"): the ledger-FALSE "Autonomy = most common weakness" frequency claim STRIPPED; Autonomy reframed as a structural reach-limiter. Build-rider DISCHARGED — DEP_GRAPH_DATA (13 premise + 81 objection nodes / 254 edges) sources ~9 edges from `prem_zero-sum` + ~11 from `prem_alogical-isness` to `obj_*` response nodes, grounding the "graph shows at a glance" clause; library-Claude candidate shipped VERBATIM. No collision with the K76-correct rsi-methodology-panel Robustness sentence (count==1, untouched). The disposition's guessed locus (rsi-panel) was wrong — the real stale string was 20 KB away in the dep-graph panel; in-tree grep pinned it.
+- EDIT 2 (masthead H1 "ARGUMENT LIBRARY v3.8.4" -> "ARGUMENT LIBRARY"): K69 staleness-kill; header-reconciliation backlog item retired.
+- EDIT 3 (top-entries "are" -> "include"): the 4 named are members of the 10-entry A-on-all-5 set (ledger-verified), not the exhaustive set.
+
+Byte-identical +59 x2 (combined 729b4f5c->cdf2c0d7/2,945,005; index 7a46aaba->2e9a2084/2,386,982). jsx SOLE-CARRIER confirmed (zero RSI/dep-panel strings; untouched f2f46efa). Canon MINOR 37.33->37.34 (55893f8a; invariants HELD, keyset HELD 38, jsx scope-note folded into the slr entry). Pin 729b4f5c->cdf2c0d7 (v3.9.7->v3.9.8) pending the two ordered PS blocks. rsi-methodology-panel Robustness sentence remains correct and untouched; corpus + ledger byte-held; no grading change.
