@@ -1,5 +1,13 @@
 [
   {
+ "id": "2026-06-05-library-v3-9-10",
+ "date": "2026-06-05",
+ "summary": "Library v3.9.10 — dependency-panel review-note riders (maintenance). The dependency graph's per-premise review notes — short audit annotations shown when a premise node is clicked — still quoted connection totals from the v3.5 audit, when the graph was smaller. Five premise notes read as if those counts were current: Consent Impossibility (62 total connections), Suffering as Deterrence (13), Contextus Claudit (8), Alogical Isness (8), Convergent Architecture (13). Each figure now carries a small inline rider giving the live count beside the audit figure — current: 67 (42 strong / 25 weak), 19, 9, 11, and 17 respectively. The v3.5 audit text itself is unchanged: the old figures stay as clearly dated history rather than being rewritten, the same convention v3.9.9 applied to the graph's explanatory note. The fourteen objection-level notes needed nothing — their counts still match the live graph. No rebuttal, score, edge, or graph data changed; the dependency graph still holds its locked 254 edges.",
+ "sections": [
+  "/argument-library/"
+ ]
+},
+  {
     "id": "2026-06-05-library-v3-9-9",
     "date": "2026-06-05",
     "summary": "Library v3.9.9 — dependency-graph note correction (maintenance). One explanatory note beneath the dependency graph carried stale figures: it described Consent Impossibility as the source of 62 edges, 28% of all dependencies, with a 40/22 strong-weak split — numbers from the v3.5 audit, when the graph was smaller. The note now reports the current graph: Consent Impossibility sources 67 edges, 42 strong and 25 weak, which is 26% of the 254 dependencies the graph actually holds. The older v3.5 audit figures are kept but clearly marked as history rather than read as current. No rebuttal, score, edge, or graph geometry changed — only the wording of the note; the dependency graph still holds its locked 254 edges. Version and provenance continue to live in the changelog and the integrity pin, not in the note.",

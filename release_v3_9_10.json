@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.10",
+  "canon": {
+    "version": "37.36",
+    "bump": "MINOR (37.35 -> 37.36)",
+    "invariant_block_changed": false,
+    "note": "Narrative-only DEP_REVIEW_NOTES current-rider sweep: five premise-level dependency-panel review notes rider-stamped '(v3.5; current: M)' -- consent grain-matched split (v3.5; current: 67 — 42 strong / 25 weak); suffering-deterrence 19; contextus-claudit 9; alogical-isness 11; convergent-architecture 17. v3.5 audit text held verbatim (append-don't-rewrite, library-Claude Exchange-36 ruling; no historical status-class this cut -- render-layer change deferred to a later cut bundled with the parked legibility-modifier CSS-scope fix). keyset HELD 38 (no top-level key added); invariants subtree serialized-identical pre==post (md5 36f5495018d19b8c5b77deb9150eea5f; ZERO invariant entries revised) => MINOR-narrative. The locked DEP_GRAPH 254-edge total is UNTOUCHED -- DEP_GRAPH_DATA literal byte-held (7c1abdbd) both surfaces. Canon bump rides this maintenance pin per the K73 ruling class."
+  },
+  "git": {
+    "baseline": "operator-side commit atop 6ee526e (K79 v3.9.9 deploy)",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K80 DEP_REVIEW_NOTES current-rider sweep (deferred-maintenance item spawned at K79 close; library-Claude ruled policy/wording/entry-list per Exchange 36; operator AQ ratified ship incl. consent placement + v3.5-stamp retention). Five premise-level review notes rendered v3.5 audit totals as-if-current (consent 62/40/22; suffering-deterrence 13; contextus-claudit 8; alogical-isness 8; convergent-architecture 13); each now carries an inline '(v3.5; current: M)' rider re-derived against the live DEP_GRAPH_DATA literal (parsed, 254 links): 67 (42 strong / 25 weak), 19, 9, 11, 17. Consent's trailing 'Remaining 40 strong edges confirmed' HELD VERBATIM (historical fact, covered by the lead stamp -- opposite call to the K79 mp-note de-number). 14 objection-level notes verified clean (4 edge-counts still match in-degree; 10 carry no live figure) -- no riders. x2 served surfaces, byte-identical +123 each (combined 82bf3a8e->a7277981/2,945,213; index_v3_8_0.html d19391f9->632cc7a1/2,387,190); node --check green; rsi-methodology-panel + K79 mp-note count==1 untouched. jsx SOLE-CARRIER exempt (zero DEP_REVIEW strings). corpus + ledger byte-held; NO ledger score/key/edge change."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "a72779819e08f08782e570022954111b",
+      "size_bytes": 2945213,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "f2f46efa2c847def71b22db269f0307f",
+      "size_bytes": 1272561,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "632cc7a18bb6361c82e2b5b8254c68f2",
+      "size_bytes": 2387190,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_36.json": {
+      "md5": "eaca97a9d8304c196067a67e1a439be8",
+      "size_bytes": 240829,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "82bf3a8e827d3740e0e9a9351942834f",
+    "new": "a72779819e08f08782e570022954111b",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K80: v3.9.10 pin move (82bf3a8e->a7277981; DEP_REVIEW_NOTES current-rider sweep)"
+}

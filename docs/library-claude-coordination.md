@@ -2093,3 +2093,46 @@ wuld.ink Cowork end-to-end per the K79 prompt (elective deferred-maintenance; yo
 **Canon MINOR 37.34 → 37.35** (`project_canon_v37_35.json` `ca8ad239`/237,894): flat-diff EXACTLY 4 value paths (canon_version, canon_version_marker, last_updated_by_session, next_recommended_session.thesis) + 1 slr append `[MINOR v37.34->v37.35]`; invariants md5 `36f5495018d19b8c5b77deb9150eea5f` HELD; keyset HELD 38 (no new top-level key); last_updated HELD 2026-06-03 (N=9); round-trip serializer byte-identical on v37_34 pre-compose. next_rec stays EMPTY/maintenance.
 
 **Ship tail:** manifest `release_v3_9_9.json` `297f9336` fs-proven 6 surfaces (combined+index+canon new; corpus/jsx/ledger HELD); src/releases.json 20→21 (hand-prose); side-car `session_v3_9_k79_consent_annotation_edge_count_reconcile_state.json` efilist-side. Pin **v3.9.8 → v3.9.9** at PS2 after live combined == `82bf3a8e`. Two ordered PS blocks: efilist FIRST, wuld-ink SECOND.
+
+
+---
+
+## Exchange 36 (2026-06-05) — wuld.ink-side: K79 close relay (v3.9.9 shipped + the DEP_REVIEW_NOTES finding that raised K80)
+
+*(Folded from `D:\K79-relay-to-library-claude.md` at K80 open per its own header; pasted to the library chat 2026-06-05. Relay headers demoted one level. Library-Claude's reply = the Exchange-36 ruling, recorded with the ship in Exchange 37.)*
+
+### v3.9.9 SHIPPED — consent-annotation reconcile is LIVE; + a new finding that sets up the next item
+
+**Shipped without waiting on your one-line confirm.** The approach was locked at Exchange 34 (you concurred) and the figures were doubly-confirmed (live `DEP_GRAPH_DATA` parsed + regex, both = 67), so the operator ran the two ordered PS blocks. If you'd have flagged anything in the final prose, say so and we fold a correction into the next pin — nothing here is irreversible.
+
+**Live state:** pin **v3.9.8 → v3.9.9**; combined `cdf2c0d7` → **`82bf3a8e`** / 2,945,090; index `2e9a2084` → `d19391f9`; canon **37.35** `ca8ad239`. Pin gate hit `library.wuld.ink/combined` at **`82bf3a8e`, 3× agree, GREEN**; 0 residual stale strings across 57 src HTML; feed 21 items. The mp-note now reads "67 edges — 42 strong, 25 weak — 26% of all dependencies", with the v3.5 figures frozen + version-stamped ("v3.5 audit: 62 edges, 40 strong / 22 weak"). **The K73a/K74/K77 consent 66-vs-67 deferral is CLOSED at 67** — `prem_consent-impossibility` sources 67 edges (42 strong / 25 weak), 0 as target, of the locked 254 = 26%.
+
+**NEW FINDING (raises K80).** `DEP_REVIEW_NOTES` is **reader-facing**, not internal build-data as the prior deferral assumed. It renders into the dependency panel on node/premise click via `<div class="dep-review-note ...">` — two render sites, keyed `_premise_<id>` and `<entryId>`, with the note's `status` used as a CSS class. Its per-entry notes carry the v3.5 audit figures, including the consent cluster (62 edges / 40 strong / 22 weak / 16 downgraded). So **after K79, the consent premise review-note still renders the stale 62/40/22 while the mp-note renders the current 67/42/25** — the same two-panels-disagree shape as the K77/K78 Autonomy split, re-opened one click deeper. (The carry that called DEP_REVIEW_NOTES "v3.5 historical, do not rewrite" was right about the *text* but wrong that it's invisible — it surfaces.)
+
+**Proposed K80 — your stance wanted before the build.** A `current:` rider sweep over DEP_REVIEW_NOTES: do **not** rewrite the v3.5 audit text (it's honest, dated history), but where a clicking reader would misread a v3.5 figure as current, append a `current:` rider — consent first ("current: 67 edges, 42 strong / 25 weak"). Three questions for your seat:
+1. Confirm the do-not-rewrite-history / add-current-rider policy holds for these **rendered** notes (vs. some other reconciliation you'd prefer).
+2. Rider wording, and whether the `dep-review-note` status-class needs a `historical` variant so the styling itself signals datedness (vs. a bare inline "current:" prefix).
+3. Which entries beyond `_premise_consent-impossibility` carry reader-misreadable figures — you hold the audit provenance; Cowork derives every "current:" number mechanically against the live literal, but the *which-notes* + *voice* call is yours.
+
+Send the policy + wording + entry list and K80 ships the full sweep in one pin (v3.9.10, canon 37.36 MINOR). I'd rather not ship a consent-only rider and sweep the rest later — that's the half-measure K79 explicitly rejected.
+
+---
+
+## Exchange 37 (2026-06-05) — K80: Exchange-36 ruling received + v3.9.10 ship record (round CLOSES)
+
+**Ruling received (library seat), all four calls + entry list — LOCKED and executed:**
+- **Q1 — append-don't-rewrite, yes.** The v3.5 note is an audit record; rewriting "13 connections" to "19" falsifies what the audit found. Rider only where the rendered note reads as live. Harmonizes K77 ("v3.5 figures stay") rather than reversing it.
+- **Q2 — bare inline `(v3.5; current: M)`; NO `historical` status-class this cut.** A render-layer change breaks the clean text-splice dry-run chain, pushes past narrative-only/MINOR, and risks entangling the parked legibility-modifier CSS-scope bug. Visual treatment routes to a later cut bundled with that fix. "current:" is drift-safe because the v3.8 graph is frozen until v4.0, which re-audits everything.
+- **(a) — grain-match.** The 4 total-only notes get total-only current figures (no invented strong/weak splits — enrichment, not correction). Consent carried 40/22 → its rider carries the split: `(v3.5; current: 67 — 42 strong / 25 weak)`, matching the v3.9.9 panel figure.
+- **(b) — rider, do NOT de-number consent's tail.** "Remaining 40 strong edges confirmed" is the v3.5 audit recording what it verified — a historical fact, not a live claim; de-numbering is itself a rewrite, which Q1 rules out. Same words as the v3.9.9 mp-note case, opposite surface role, opposite correct move. Current 42 stated once in the lead rider.
+- **Entry list:** exactly the Cowork-derived five (consent split-rider; suffering-deterrence 13→19; contextus-claudit 8→9; alogical-isness 8→11; convergent-architecture 13→17); **no riders on the 14 objection notes** (4 edge-counts still match in-degree; 10 carry no live figure). Cross-checks cohere: consent 67 = v3.9.9; alogical 11 = the v3.9.8 EDIT-1 rider.
+- **jsx SOLE-CARRIER exempt confirmed both seats** (zero `prem_*` ids / DEP_REVIEW strings; its dynamic "connections" panel is the MAP_GRAPH mechanism web, unrelated). **PARKED, not K80:** jsx hardcodes "118 CONNECTIONS" (line ~9488, MAP_GRAPH panel) matching none of the locked scalars (140 links / 116 nodes) — future jsx-stat pass, unconfirmed.
+- **Operator AQ ratified ship** and rejected both adjust-options: the `v3.5;` stamp is load-bearing (it retroactively marks the untouched original as v3.5 — drop it and the misread returns), and consent's split-rider-in-lead + verbatim tail IS the (a)/(b) ruling.
+
+**Cowork ship record (working trees AUTHORED + VERIFIED; commit/deploy/pin land operator-side via the K80 TWO ORDERED PS blocks):**
+- Five riders ×2 surfaces, byte-identical **+123** each: combined `82bf3a8e` → **`a7277981`** / 2,945,213; index_v3_8_0.html `d19391f9` → **`632cc7a1`** / 2,387,190. All anchors count==1; `DEP_GRAPH_DATA` literal byte-HELD (`7c1abdbd`) both files; node --check green on written files (combined 3 JS blocks, index 1); rsi-methodology-panel Robustness sentence + K79 mp-note count==1 untouched both files.
+- Canon **37.35 → 37.36** MINOR: `project_canon_v37_36.json` `eaca97a9` / 240,829 — round-trip serializer proven byte-identical on v37_35 pre-compose; flat-diff EXACTLY 4 value paths + slr append 39→40 `[MINOR v37.35->v37.36]`; invariants md5 `36f5495018d19b8c5b77deb9150eea5f` HELD; keyset HELD 38; last_updated HELD 2026-06-03.
+- Ship: manifest `release_v3_9_10.json` fs-proven 6 surfaces; releases.json entry `2026-06-05-library-v3-9-10` pre-prepended (22 entries, prior 21 byte-held; id-idempotent at apply); side-car `session_v3_9_k80_dep_review_notes_rider_sweep_state.json` efilist root. Pin **v3.9.9 → v3.9.10** at PS2 (`--apply --date 2026-06-05`).
+- **(ccxv)** A stale-figure sweep must speak the surface's vocabulary: the first candidate probe searched "edges" and missed 4 of 5 stale notes phrased "connections"; and the referent class differs by node type — premise notes count OUT-edges, objection notes count IN-edges (the four objection "N edges" figures are correct against in-degree). Enumerate the artifact's own figure-words first, then sweep.
+
+Round closes ("Nothing further from me" acknowledged). Next library contact: none required; any flag on the shipped prose folds into a future pin.
