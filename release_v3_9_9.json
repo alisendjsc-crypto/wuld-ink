@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.9",
+  "canon": {
+    "version": "37.35",
+    "bump": "MINOR (37.34 -> 37.35)",
+    "invariant_block_changed": false,
+    "note": "Narrative-only dependency-graph annotation reconcile (one mp-note): the stale v3.5 edge-count/percent/strong-weak split hard-updated to the live figure (67 edges / 42 strong / 25 weak / 26% of 254), v3.5 audit figures version-stamped. keyset HELD 38 (no top-level key added); invariants subtree serialized-identical pre==post (md5 36f5495018d19b8c5b77deb9150eea5f; ZERO invariant entries revised) => MINOR-narrative. The locked DEP_GRAPH 254-edge total is UNTOUCHED -- no node/edge/strength data changed. Canon bump rides this maintenance pin per the K73 ruling class."
+  },
+  "git": {
+    "baseline": "operator-side commit atop e2a9832 (K78 v3.9.8 deploy)",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K79 consent-annotation edge-count reconcile (elective deferred-maintenance closing the K73a/K74/K77 consent 66-vs-67 item; library-Claude concurred Exchange 34; operator AQ ratified ship). One dep-graph 'load-bearing' mp-note hard-updated, x2 served surfaces, byte-identical +85 each (combined cdf2c0d7->82bf3a8e/2,945,090; index_v3_8_0.html 2e9a2084->d19391f9/2,387,067). Re-derived against the live DEP_GRAPH_DATA literal (JSON-parsed + regex cross-checked): prem_consent-impossibility sources 67 edges (42 strong / 25 weak), 0 as target -- a pure foundational source, same class as zero-sum / alogical-isness -- out of the locked 254-edge total = 26%. The paragraph carried THREE stale-as-live figures (62 edges / 28% / 40-22 split / a '40 remaining strong edges' count); FIX = hard-update + version-stamped history (whole-paragraph-rider REJECTED): exactly one figure reads present-tense, v3.5 audit figures frozen + version-stamped (percent DROPPED -- stale ~221 denominator, not 254), trailing live count de-numbered to 'the current strong edges'. rsi-methodology-panel OFF-LIMITS, count==1 untouched both files. jsx SOLE-CARRIER exempt (no dep-graph strings). corpus + ledger byte-held; NO ledger score/key/edge change."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "82bf3a8e827d3740e0e9a9351942834f",
+      "size_bytes": 2945090,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "f2f46efa2c847def71b22db269f0307f",
+      "size_bytes": 1272561,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "d19391f949d16042e9b1bb54a2d79c02",
+      "size_bytes": 2387067,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_35.json": {
+      "md5": "ca8ad23923456051e10103767f3118d6",
+      "size_bytes": 237894,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "cdf2c0d70fe5ae824f5ab6826ff5f6ac",
+    "new": "82bf3a8e827d3740e0e9a9351942834f",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K79: v3.9.9 pin move (cdf2c0d7->82bf3a8e; consent-annotation edge-count reconcile)"
+}

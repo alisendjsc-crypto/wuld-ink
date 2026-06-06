@@ -2071,3 +2071,25 @@ Built + verified in working trees (commit/deploy/pin operator-side via two order
 - EDIT 3 (top-entries "are" -> "include"): the 4 named are members of the 10-entry A-on-all-5 set (ledger-verified), not the exhaustive set.
 
 Byte-identical +59 x2 (combined 729b4f5c->cdf2c0d7/2,945,005; index 7a46aaba->2e9a2084/2,386,982). jsx SOLE-CARRIER confirmed (zero RSI/dep-panel strings; untouched f2f46efa). Canon MINOR 37.33->37.34 (55893f8a; invariants HELD, keyset HELD 38, jsx scope-note folded into the slr entry). Pin 729b4f5c->cdf2c0d7 (v3.9.7->v3.9.8) pending the two ordered PS blocks. rsi-methodology-panel Robustness sentence remains correct and untouched; corpus + ledger byte-held; no grading change.
+
+
+---
+
+## Exchange 35 — 2026-06-05 — K79: v3.9.9 consent-annotation edge-count reconcile — DRY-VALIDATE for your one-line confirm (wuld.ink-side record)
+
+wuld.ink Cowork end-to-end per the K79 prompt (elective deferred-maintenance; you CONCURRED in the Exchange 34 reply). Approach + figures are settled; this is the requested last look before the two ordered PS blocks. Confirm count==1 / Δ-md5 / final prose, or flag.
+
+**Re-derived against the live `DEP_GRAPH_DATA` literal** (JSON-parsed + regex cross-check, both = 67): node `prem_consent-impossibility` sources **67** edges (**42 strong / 25 weak**), **0** as target — a pure foundational source, same class as zero-sum / alogical-isness — out of the locked **254**-edge total = **26%**. DEP_GRAPH 254-edge total UNTOUCHED (narrative-only). The K73a/K74/K77 consent 66-vs-67 deferral closes at **67**.
+
+**Stale-as-live figures the one mp-note carried (all three killed):** leading "62 edges, 28% of all dependencies" (28% = stale ~221 v3.5 denominator); a present-tense "40/22 strong/weak split"; a "40 remaining strong edges" count. Fix = hard-update + version-stamped history (whole-paragraph-rider REJECTED — it would leave the false 62/28% standing behind a caveat).
+
+**Final prose (ships verbatim, ×2 surfaces; em-dashes are `&mdash;` entities in the HTML):**
+> Consent Impossibility's dominance (67 edges — 42 strong, 25 weak — 26% of all dependencies) is both a strength and a vulnerability. The v3.5 audit downgraded 16 edges from strong to weak through close reading of all LONG responses. Two entries (life-gift, hedonic-contrast) had zero consent language; the remaining 14 had consent density under 12% with alternative premises carrying the argumentative weight. That audit's corrected split — v3.5 audit: 62 edges, 40 strong / 22 weak — distinguished structural load-bearing from tangential invocation, the distinction the current strong edges still mark: responses where consent is genuinely load-bearing, where removal of the consent premise would collapse the argument.
+
+**Dry-validate:** old div count==1 in BOTH surfaces; byte-identical splice **+85** each; `<`/`>` balance Δ0 (no tag change); rsi-methodology-panel Robustness sentence count==1 untouched both files; jsx SOLE-CARRIER exempt (no dep-graph strings).
+- combined.html `cdf2c0d7`/2,945,005 → `82bf3a8e`/2,945,090
+- index_v3_8_0.html `2e9a2084`/2,386,982 → `d19391f9`/2,387,067
+
+**Canon MINOR 37.34 → 37.35** (`project_canon_v37_35.json` `ca8ad239`/237,894): flat-diff EXACTLY 4 value paths (canon_version, canon_version_marker, last_updated_by_session, next_recommended_session.thesis) + 1 slr append `[MINOR v37.34->v37.35]`; invariants md5 `36f5495018d19b8c5b77deb9150eea5f` HELD; keyset HELD 38 (no new top-level key); last_updated HELD 2026-06-03 (N=9); round-trip serializer byte-identical on v37_34 pre-compose. next_rec stays EMPTY/maintenance.
+
+**Ship tail:** manifest `release_v3_9_9.json` `297f9336` fs-proven 6 surfaces (combined+index+canon new; corpus/jsx/ledger HELD); src/releases.json 20→21 (hand-prose); side-car `session_v3_9_k79_consent_annotation_edge_count_reconcile_state.json` efilist-side. Pin **v3.9.8 → v3.9.9** at PS2 after live combined == `82bf3a8e`. Two ordered PS blocks: efilist FIRST, wuld-ink SECOND.

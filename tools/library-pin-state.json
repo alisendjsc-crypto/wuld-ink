@@ -1,7 +1,7 @@
 {
   "_purpose": "Current wuld.ink /library-about integrity pin. Read + rewritten by tools/library-pin.py. Reflects what src is pinned to RIGHT NOW.",
-  "md5": "cdf2c0d70fe5ae824f5ab6826ff5f6ac",
-  "version": "v3.9.8",
-  "bytes": 2945005,
+  "md5": "82bf3a8e827d3740e0e9a9351942834f",
+  "version": "v3.9.9",
+  "bytes": 2945090,
   "updated": "2026-06-05"
 }
