@@ -2040,3 +2040,23 @@ Open at K47: exact new bytecount (TBD until deployed — read served file), and 
 **Riders verified:** calibration note states the r-drag point ONCE (kept mention = mechanism claim about honest-acknowledgment entries; new sentence = distribution claim). Corpus-mount divergence flag noted, NO action.
 
 **Ship tail:** manifest `release_v3_9_7.json` fs-PROVEN 6 surfaces; releases.json 18→19 (hand prose); feed 19 items; side-car `session_v3_9_k76_axis_legend_reconcile_fold_state.json` efilist-side. Pin v3.9.6→v3.9.7 at PS2 after live == `729b4f5c`. next_rec stays `none__maintenance_posture`; notes-audit step 2 paste still pending (your seat, parallel).
+
+---
+
+## Exchange 33 — 2026-06-05 — K77: notes-audit step 2 disposition received + Cowork-verified; v3.9.8 spec spawned (wuld.ink-side record)
+
+**Library-seat delivered (uploaded, in-chat):** `K73_notes_audit_step2_disposition.md` `363e5130`/10,457 + `session_v3_9_k77_notes_audit_step2_state.json` `3f411c61`/5,782. Net: inventory overwhelmingly KEEP, overtaken by K74/K76 — rsi-panel refreshes shipped K76; Section E (dep-graph de-clutter) superseded by K74; Section D jsx-parity ruled SOLE-CARRIER (combined.html + index_v3_8_0.html only; jsx = prose-only; do not port). One genuine finding: calibration "most common weakness = Autonomy" is ledger-false (modal weakness = Robustness; r mean 0.838, sole-drag 32/81 strict-min, at-or-tied-lowest 64/81).
+
+**Cowork verify (against live `729b4f5c`, tree==pin):**
+- **Locus correction.** The disposition (blind to live) placed the false claim in the rsi-methodology-panel (A·74622). In-tree grep pins it instead in the **Dependency-Graph panel strategic-application list, item "3. RSI Autonomy correlation" (offset ~101651)** — a DIFFERENT block ~20 KB from the rsi-panel. K76 fixed the rsi-panel; this one was never in scope.
+- **rsi-panel VERIFIED CORRECT (do not touch).** Its "Robustness … sole drag on 32 of 81 nodes" is accurate — r is the unique strict-minimum in exactly 32 entries (`204fcdbe`). The site currently self-contradicts: rsi-panel says Robustness-modal, dep-graph panel says Autonomy-most-common.
+- **Index sibling.** `index_v3_8_0.html` `7a46aaba` carries all three stale strings (most-common-weakness ×1, H1 v3.8.4 ×1, top-entries) → v3.9.8 touches both surfaces.
+
+**Outcome.** Notes-audit step 2 CLOSED (disposition sound). It spawned a **v3.9.8** maintenance-correction deliverable (NOT a verify-close — the K77 prompt premise that the find was closed at K76 was wrong). Handed off (not deployed K77) per operator AQ — thin verify-close budget; re-scope-before-touching. Spec staged `D:\v3_9_8-deploy-spec.md`:
+- EDIT 1 — dep-graph panel item 3 Autonomy reframe (verbatim AFTER authored library-seat; drop frequency claim → reach-limiter).
+- EDIT 2 — H1 `ARGUMENT LIBRARY v3.8.4` de-version (K69 staleness-kill), ×2.
+- EDIT 3 — top-entries "are"→"include" (A-across-all-5 set = 10, not the 4 named; `performative-contradiction` unique 5×0.95).
+- DEFERRED: consent edge-count (verify live DEP_GRAPH_DATA first; 66 vs 67) + DEP_REVIEW_NOTES v3.5 historical (do not rewrite) + corpus-md5 reconcile (hygiene).
+- Operator ratifies jsx sole-carrier → one-line canon scope-note at 37.34.
+
+No deploy / no pin / no canon bump this session; live stays `729b4f5c` (v3.9.7). Canon next_rec moves from `none__maintenance_posture` to the v3.9.8 spec. Cowork side-car `session_v3_9_k77_notes_audit_step2_cowork_close_state.json` efilist-side (commit-only).
