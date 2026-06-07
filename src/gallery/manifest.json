@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "media_base": "https://audio.wuld.ink",
-  "updated": "2026-06-06",
+  "updated": "2026-06-07",
   "plates": [
     {
       "id": "plate-01-subject-reduced-to-screen",
@@ -11,7 +11,7 @@
       "technique": "Halftone separation; torn dot-screen; the face survives only as the place the dots refuse to land.",
       "body": "A head in profile, rendered entirely in print decay. There is no skin here — only the absence the screen leaves where a skin would be. The pattern doesn't describe the face; it withholds in the shape of one. You are not looking at a person. You are looking at the resolution at which a person stops.",
       "epitaph": "Resolved at the point where I disappear.",
-      "series": "",
+      "series": "batch-01",
       "order": 1,
       "tier": "standard",
       "content_flags": [],
