@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-06-library-v3-9-12",
+    "date": "2026-06-06",
+    "summary": "Argument Library v3.9.12 — MechanismWeb resync: the React artifact's v3.7-frozen mechanism graph (34 mechanisms / 78 objections / 133 connections) re-synced to the canonical 35 / 81 / 140, and its masthead counts now render from the data itself instead of hard-coded numbers. The library page's served bytes are unchanged; this is a data-artifact and provenance move.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-06-gallery-manifest-vessel",
     "date": "2026-06-06",
     "summary": "Gallery becomes the admin-arc vessel: all 27 plates extracted to /gallery/manifest.json (now the single source of truth), the grid client-renders from it, and a consent interstitial fronts NSFW-flagged plates - flagged images stay out of the page entirely until consent. Captions and the K27 lightbox carry over unchanged.",

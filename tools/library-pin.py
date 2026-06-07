@@ -172,8 +172,10 @@ def main():
             gate = ('UNSTABLE', "live varied across fetches (edge cache mid-propagation) -- re-run shortly")
         else:
             print("\n  live     : %s  %s B   (%s; %dx agree)" % (live_md5, commafmt(live_bytes), args.url, args.tries))
-            if live_md5 == old_md5:
+            if live_md5 == old_md5 and old_md5 != new_md5:
                 gate = ('CLOSED', "live still serving the OLD pin -- deploy has not landed")
+            # old==new => byte-identical release: combined deploy is a no-op; the gate's
+            # job degenerates to 'live serves exactly the pinned bytes' (K84, first such pin).
             elif live_md5 != new_md5:
                 gate = ('MISMATCH', "live md5 != manifest new (%s) -- live is serving something else" % new_md5)
             else:

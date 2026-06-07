@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.12",
+  "canon": {
+    "version": "37.37",
+    "bump": "MINOR (v37.36->v37.37)",
+    "invariant_block_changed": false,
+    "note": "Canonicity restoration rides this ship per the K81a ruling: jsx GRAPH_DATA was a v3.7-frozen ancestor (34/78/133) of the locked 35/81/140 scalar. Resync + render-from-data masthead + vintage marker. invariants/compaction-index/keyset_delta_ledger serialized-identical; keyset HELD 38."
+  },
+  "git": {
+    "baseline": "operator-side commit atop e88aea2 (K82a ship commit)",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K84 jsx MechanismWeb resync (Exchange-38 branch-1, both seats concurred at K81a; displaced once by K83 gallery). GRAPH_DATA <- combined MAP_GRAPH_DATA verbatim (strict superset: +mech_Metaphysical_Deflation, +3 obj, +7 links); masthead spans render-from-data (static-label staleness class killed on jsx); header vintage stamped. jsx f2f46efa->029a91d8/1,265,927 (-6,634). combined/index/corpus/ledger BYTE-HELD — first pin where the version moves and combined bytes don't (pin.old == pin.new)."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "c436e7208ced7bce015e6143d5195037",
+      "size_bytes": 2945490,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "029a91d85a3671c0c3ccbff831912002",
+      "size_bytes": 1265927,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "36b11ffea96413bd9f5c0d007527bf72",
+      "size_bytes": 2387362,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_37.json": {
+      "md5": "2e001e8692c41025d8faa288ab45226e",
+      "size_bytes": 242719,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "c436e7208ced7bce015e6143d5195037",
+    "new": "c436e7208ced7bce015e6143d5195037",
+    "rule": "move ONLY after live combined == new (deploy must land first); old==new is CORRECT for this release — combined bytes held, only the version string and jsx/canon surface records move"
+  },
+  "commit_message": "K84: v3.9.12 pin move (combined bytes HELD c436e720; jsx resync f2f46efa->029a91d8; canon v37.37)"
+}
