@@ -392,12 +392,14 @@ Visual anchor reference: `alisendjsc-crypto.github.io/efilist-argument-library` 
 
 **`<p>` margin-inline:auto audit:** N/A (Worker build; no wuld.ink page work).
 
+**K85a (2026-06-06, same-day landing record):** Operator ran the K85 ONE PS block GREEN — wuld-ink `9db7efa`→**`e937ecc`** (5-file gate OK ×5; 5 files changed, 955+/2−, 4× workers/admin created; push accepted; LIVE OK combined HELD `c436e720` — v3.9.12 pin==live). Operator panel carry CLOSED in the same message: `project_canon_v37_37.json` uploaded. K86 prompt staged at `D:\session-K86-prompt.md` (default: standup verification + landing record — the standup itself is operator-side per `workers/admin/README.md`; smoke commits will move wuld-ink HEAD + manifest.json, expected). K85a bookkeeping ~3 calls; ONE 1-file wuld-ink PS block at close (CLAUDE.md).
+
 ### Carries to K86 (NEW from K85)
 
-- **Operator runs ONE PS block (wuld-ink ONLY; NO efilist block, NO pin).** 5-file md5 gate (4× workers/admin + CLAUDE.md, hashes in the close message) → lock clean → foreach staging per cciii → commit → push main. Pages rebuilds but `src/` is byte-held → same served bytes. Rider: live combined assert STILL `c436e720` via curl.exe.
+- **K85 PS block: CLOSED at K85a (same-day, transcript-verified)** — wuld-ink `9db7efa`→`e937ecc`; gate OK ×5; live combined HELD `c436e720`. Only the K85a 1-file block (CLAUDE.md) remains outstanding.
 - **K86 default = operator standup + smoke per `workers/admin/README.md`** (steps 1–6: NEW Access app on admin.wuld.ink → AUD into wrangler.toml + commit → fine-grained PAT → `wrangler secret put GITHUB_PAT` → `wrangler deploy` → smoke incl. auth wall, 409 overwrite proof, plate-01 series→batch-01 first-commit smoke). Cowork session only if smoke fails or for arc session 3.
 - **Arc session 3 (AFTER the vertical proves out):** port `tools/wuld-gui/ops.py` patterns as Worker forms. Do not fold into standup.
-- **Operator panel:** `project_canon_v37_37.json` upload was in-progress at the K85 AQ — verify-don't-redo at K86.
+- **Operator panel: CLOSED at K85a** — operator confirmed `project_canon_v37_37.json` uploaded.
 - **Parked unchanged:** dep render-count 66-vs-67 relay (flagged in Exchange 39) · historical status-class pending Exchange-36 Q2 · combined/index static `#map-stats` mastheads → render-from-data at the v4.0 data-touch · corpus-md5 filename reconcile (hygiene).
 - **Posture:** v3.9 stays CLOSED; **v3.9.12 = current pin** (pin==live curl-verified at K85 open); canon v37_37; next_rec EMPTY/maintenance. Any future library deploy still forces the same-session wuld.ink pin move (pin==live).
 - **ENFORCEMENT SEAM parked (v4.0 obligation, unchanged):** if v4.0 promotes `archetype_variant_grades` to live ledger rows, render-time hash-recompute verification becomes mandatory at that boundary.
