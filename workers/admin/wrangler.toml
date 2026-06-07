@@ -37,8 +37,9 @@ bucket_name = "wuld-audio"
 ADMIN_EMAIL = "alisendjsc@gmail.com"
 ACCESS_TEAM_DOMAIN = "wuld.cloudflareaccess.com"
 # NEW Access application for admin.wuld.ink (do NOT reuse the comments app's
-# AUD — different app, different audience). Fill after README step 2.
-ACCESS_AUD = "REPLACE_ME_ACCESS_AUD"
+# AUD — different app, different audience). App "wuld gallery admin",
+# policy admin-only (Allow / Emails alisendjsc@gmail.com), created 2026-06-06.
+ACCESS_AUD = "fde49635231ba2ac60e2b29cb1a0e9e819bb89dd536a29da8b454e7ad28dd09d"
 GITHUB_REPO = "alisendjsc-crypto/wuld-ink"
 GITHUB_BRANCH = "main"
 MANIFEST_PATH = "src/gallery/manifest.json"
