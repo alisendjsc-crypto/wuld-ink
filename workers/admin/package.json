@@ -1,0 +1,6 @@
+{
+  "name": "wuld-gallery-admin",
+  "private": true,
+  "type": "module",
+  "description": "wuld.ink gallery admin CMS Worker (K85) — Access-gated R2 upload + manifest commits via GitHub Contents API"
+}

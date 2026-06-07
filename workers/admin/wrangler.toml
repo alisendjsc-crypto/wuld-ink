@@ -1,0 +1,50 @@
+# =============================================================================
+# wuld.ink gallery admin CMS — Cloudflare Worker config (K85, arc session 2)
+# =============================================================================
+# NOT deployed by Cowork — the operator stands it up via README.md (K86+).
+# Lives on its OWN custom domain (admin.wuld.ink) because the comments worker
+# already owns wuld.ink/api/* + wuld.ink/admin* — a second worker cannot
+# overlap those patterns, and /api/* would shadow any new API path on the zone.
+#
+# CONTENT ops only: image upload -> R2 (bucket wuld-audio, prefix gallery/),
+# manifest entries -> git commits via the GitHub Contents API. Every CMS
+# action = ONE commit (audit trail + rollback free; Pages auto-deploys).
+# =============================================================================
+
+name = "wuld-gallery-admin"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# ---- Custom domain ----------------------------------------------------------
+# `custom_domain = true` makes `wrangler deploy` create the DNS record + cert
+# on the wuld.ink zone automatically. No dashboard DNS work needed.
+[[routes]]
+pattern = "admin.wuld.ink"
+custom_domain = true
+
+# ---- R2 binding ---------------------------------------------------------------
+# K83 AQ-LOCKED: KEEP bucket wuld-audio, prefix gallery/. The bucket already
+# serves the 27 live plates via https://audio.wuld.ink — a new bucket buys
+# zero directness and costs a 27-object migration.
+[[r2_buckets]]
+binding = "GALLERY_BUCKET"
+bucket_name = "wuld-audio"
+
+# ---- Non-secret vars ----------------------------------------------------------
+# GITHUB_PAT is a SECRET — set with `wrangler secret put GITHUB_PAT` (NOT here).
+# Fine-grained, contents:read+write on alisendjsc-crypto/wuld-ink ONLY.
+[vars]
+ADMIN_EMAIL = "alisendjsc@gmail.com"
+ACCESS_TEAM_DOMAIN = "wuld.cloudflareaccess.com"
+# NEW Access application for admin.wuld.ink (do NOT reuse the comments app's
+# AUD — different app, different audience). Fill after README step 2.
+ACCESS_AUD = "REPLACE_ME_ACCESS_AUD"
+GITHUB_REPO = "alisendjsc-crypto/wuld-ink"
+GITHUB_BRANCH = "main"
+MANIFEST_PATH = "src/gallery/manifest.json"
+R2_PREFIX = "gallery/"
+MEDIA_BASE = "https://audio.wuld.ink"
+
+# ---- Observability (free) -----------------------------------------------------
+[observability]
+enabled = true
