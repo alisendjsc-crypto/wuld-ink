@@ -40,6 +40,58 @@
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
   <link rel="stylesheet" href="/components/gallery.css?v=K30">
+  <style>
+    /* K83: withheld cards + consent interstitial + empty state.
+       Page-local; gallery.css?v=K30 is byte-held. No animation
+       anywhere => prefers-reduced-motion safe by construction. */
+    .gallery-plate-withheld { border-style: dashed; }
+    .gallery-withheld-inner { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+    .gallery-withheld-note { font-family: var(--font-mono); font-size: var(--t-xs); line-height: var(--lh-default); color: var(--c-fg-dim); margin: 0; letter-spacing: 0.01em; }
+    .gallery-empty { font-family: var(--font-mono); font-size: var(--t-sm); color: var(--c-fg-dim); margin: 0; padding: var(--s-7) 0; grid-column: 1 / -1; text-align: center; letter-spacing: var(--ls-wide); }
+    .gallery-consent { position: fixed; inset: 0; z-index: 200; display: none; background: rgba(10, 10, 10, 0.92); }
+    .gallery-consent[data-open="true"] { display: flex; align-items: center; justify-content: center; padding: var(--s-5); }
+    .gallery-consent-box { max-width: 34rem; background: var(--c-bg); border: var(--bw-thin) solid var(--c-accent); padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4); }
+    .gallery-consent-label { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-mega); text-transform: uppercase; color: var(--c-accent); margin: 0; }
+    .gallery-consent-text { font-family: var(--font-body); font-size: var(--t-base); line-height: var(--lh-default); color: var(--c-fg); margin: 0; }
+    .gallery-consent-fine { font-family: var(--font-mono); font-size: var(--t-xs); line-height: var(--lh-default); color: var(--c-fg-dim); margin: 0; }
+    .gallery-consent-actions { display: flex; gap: var(--s-4); flex-wrap: wrap; }
+    .gallery-consent-btn { font-family: var(--font-mono); font-size: var(--t-sm); background: none; border: var(--bw-thin) solid var(--c-border); color: var(--c-fg); padding: var(--s-3) var(--s-4); cursor: pointer; }
+    .gallery-consent-btn:hover { border-color: var(--c-accent); color: var(--c-accent); }
+    .gallery-consent-btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+    .gallery-consent-btn--confirm { border-color: var(--c-accent); color: var(--c-accent); }
+  </style>
+  <!-- ============================================================
+       K83 - manifest-driven gallery (vessel for the admin-CMS arc)
+
+       SOURCE OF TRUTH: /gallery/manifest.json
+         { schema_version: 1,
+           media_base: "https://audio.wuld.ink",  (R2 bucket wuld-audio, prefix gallery/)
+           updated: "YYYY-MM-DD",
+           plates: [ { id, r2key, num, title, technique, body, epitaph,
+                       series, order, tier: "standard"|"sealed",
+                       content_flags: ["nsfw", ...], added: "YYYY-MM-DD" } ] }
+       - Grid client-renders from the manifest, sorted by order.
+       - The admin Worker (sessions 2-3 of this arc) PUTs images to R2
+         and commits manifest entries via the GitHub Contents API; this
+         page changes only when its code changes.
+       - "note" from the original schema sketch maps to "technique";
+         body/epitaph carry the per-plate editorial register.
+       - tier "sealed" is RESERVED (never rendered here) for a possible
+         future split room; in-room gating runs on content_flags.
+
+       CONSENT DISCIPLINE (not security):
+       - Plates flagged "nsfw" render as withheld cards; their image
+         element does NOT enter the DOM until the visitor passes the
+         consent interstitial (18+ / AI-generated / no real persons).
+       - Consent persists in localStorage "wuld:gallery-consent"; the
+         reveal state itself resets per visit by design.
+       - Decline closes the dialog and leaves plates withheld; the
+         standard tier of the room stays public and indexed.
+
+       RENDER NOTES: dark-only surface (an image grid is not a heavy-
+       read container; reader/HC stay scoped to prose pages). Local
+       preview needs an http server - manifest fetch fails on file://.
+       ============================================================ -->
 </head>
 <body data-mode="dark">
 
@@ -71,14 +123,17 @@
     <header class="page-hero">
       <p class="page-hero-eyebrow">12 &middot; Gallery</p>
       <h1 class="page-hero-title">The Void Engine &mdash; Gallery</h1>
-      <p class="page-intro">Exhibition handout in the form of a wall. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation. The images were not made to be understood. They were made to be looked at until looking becomes uncomfortable, and then a little longer. Currently: plates I&ndash;XXVII, batches 01&ndash;02.</p>
+      <p class="page-intro">Exhibition handout in the form of a wall. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation. The images were not made to be understood. They were made to be looked at until looking becomes uncomfortable, and then a little longer. <span id="gallery-current">Currently: plates I&ndash;XXVII, batches 01&ndash;02.</span></p>
     </header>
 
-    <!-- NSFW gate: defaults OFF; click reveals plates with [data-nsfw="true"].
-         Batches 01-02 are SFW-but-intense; no plate currently carries the
-         flag. Toggle ships anyway so the pattern is in place when an NSFW
-         batch arrives. Pattern: body[data-nsfw-revealed] + per-card display
-         rule in gallery.css. -->
+    <!-- K83 consent gate: reveal of [data-nsfw] plates now runs through a
+         consent interstitial (18+ / AI-generated / no real persons). Until
+         consent, flagged plates render as withheld cards with no image
+         element in the DOM (consent-discipline, not security). localStorage
+         "wuld:gallery-consent" persists consent; reveal resets per visit.
+         CSS contract unchanged: body[data-nsfw-revealed] + per-card rule
+         in gallery.css. Currently 0 plates flagged; the gate is dormant
+         until an NSFW batch lands via the admin tool. -->
     <div class="gallery-nsfw-bar" role="region" aria-label="Sensitive content gate">
       <button class="gallery-nsfw-toggle" id="gallery-nsfw-toggle" type="button" aria-pressed="false">
         [ NSFW &mdash; hidden ]
@@ -86,331 +141,8 @@
       <span class="gallery-nsfw-status" id="gallery-nsfw-status">0 plates currently flagged in this batch range.</span>
     </div>
 
-    <section class="gallery-grid" aria-label="Plates">
-      <article class="gallery-plate" data-plate="01" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-01-subject-reduced-to-screen.webp" alt="Plate I &mdash; Subject, Reduced to Screen">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate I</span>
-            <h2 class="gallery-plate-title">Subject, Reduced to Screen</h2>
-            <p class="gallery-plate-technique">Halftone separation; torn dot-screen; the face survives only as the place the dots refuse to land.</p>
-            <p class="gallery-plate-body">A head in profile, rendered entirely in print decay. There is no skin here &mdash; only the absence the screen leaves where a skin would be. The pattern doesn't describe the face; it withholds in the shape of one. You are not looking at a person. You are looking at the resolution at which a person stops.</p>
-            <p class="gallery-plate-epitaph">Resolved at the point where I disappear.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="02" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-02-one-saline-datum.webp" alt="Plate II &mdash; One Saline Datum">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate II</span>
-            <h2 class="gallery-plate-title">One Saline Datum</h2>
-            <p class="gallery-plate-technique">Soft-focus monochrome; available light; a single tracked tear, recorded without comment.</p>
-            <p class="gallery-plate-body">The temptation is to call this grief and move on, satisfied. The work declines that. It does not present sorrow; it presents one drop of fluid catching what light there was, on a face that has stopped performing for the lens. The eyes are not asking you for anything. That is the part that holds you.</p>
-            <p class="gallery-plate-epitaph">Do not mistake the measurement for the feeling.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="03" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-03-the-embrace-does-not-hold.webp" alt="Plate III &mdash; The Embrace Does Not Hold">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate III</span>
-            <h2 class="gallery-plate-title">The Embrace Does Not Hold</h2>
-            <p class="gallery-plate-technique">Single long exposure; arterial red; two bodies recorded across the duration it takes one of them to leave.</p>
-            <p class="gallery-plate-body">Two figures, close enough to be one. The red is not warmth &mdash; it is the color a darkroom uses so the image can exist without being seen. One face is turning out of the frame, already partly motion, already partly gone. The holding is real. The keeping is not.</p>
-            <p class="gallery-plate-epitaph">I was here for the length of the exposure.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="04" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-04-turned-mid-erasure.webp" alt="Plate IV &mdash; Turned, Mid-Erasure">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate IV</span>
-            <h2 class="gallery-plate-title">Turned, Mid-Erasure</h2>
-            <p class="gallery-plate-technique">Red-state long exposure; the subject caught at the instant of looking back, smeared by the looking.</p>
-            <p class="gallery-plate-body">She has turned toward something behind her, and the turn cost her the edges of her own face. The dark does most of the picture's work; she occupies only the small region the dark has not yet claimed. This is not a portrait of a woman. It is a portrait of the moment a woman becomes difficult to keep.</p>
-            <p class="gallery-plate-epitaph">Look away and I finish leaving.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="05" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-05-audience-of-one-shadow.webp" alt="Plate V &mdash; Audience of One Shadow">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate V</span>
-            <h2 class="gallery-plate-title">Audience of One Shadow</h2>
-            <p class="gallery-plate-technique">Coarse magenta halftone on textured stock; a seated figure and the silhouette that watches it.</p>
-            <p class="gallery-plate-body">A body folded down to its smallest possible footprint &mdash; knees up, arms closed around the knees &mdash; and beside it, in hard black, the profile of a head that is only outline. The seated figure has detail and is vulnerable. The watching figure has no detail and is not. The image lets you decide which one is you.</p>
-            <p class="gallery-plate-epitaph">Someone is always the dark half of the picture.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="06" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-06-quiet-catastrophe-of-erasure.webp" alt="Plate VI &mdash; The Quiet Catastrophe of Erasure">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate VI</span>
-            <h2 class="gallery-plate-title">The Quiet Catastrophe of Erasure</h2>
-            <p class="gallery-plate-technique">Pale halftone landscape; a standing figure in a flat field, dispersing upward into the dot-screen at the head.</p>
-            <p class="gallery-plate-body">The figure stands where a figure would stand. From the shoulders up it is becoming weather &mdash; the print pattern opening, the head scattering into the sky as though resolution were something a body could run out of. Nothing dramatic happens. That is the catastrophe. It is quiet because erasure usually is.</p>
-            <p class="gallery-plate-epitaph">No event. Only the slow subtraction.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="07" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-07-ophelia-without-the-river.webp" alt="Plate VII &mdash; Ophelia, Without the River">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate VII</span>
-            <h2 class="gallery-plate-title">Ophelia, Without the River</h2>
-            <p class="gallery-plate-technique">Double-exposed monochrome film; recumbent figure among spent flowers and turned earth; vertical bleed.</p>
-            <p class="gallery-plate-body">The pose quotes a painting you already know &mdash; the floating woman, the flowers, the surrender. The work takes the river away and leaves her in dirt. No water to make it beautiful, no current to make it a story. Just a body laid in a field with cut flowers going over, and a second exposure ghosting through her like a thought she didn't finish.</p>
-            <p class="gallery-plate-epitaph">Take away the water and it is only the ground.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="08" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-08-the-same-field-later.webp" alt="Plate VIII &mdash; The Same Field, Later">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate VIII</span>
-            <h2 class="gallery-plate-title">The Same Field, Later</h2>
-            <p class="gallery-plate-technique">Aged contact print; emulsion damage and fold-wear at the borders; the recumbent figure again, horizontal, further gone.</p>
-            <p class="gallery-plate-body">A companion to the plate before it, but the print has aged inside the image &mdash; the paper torn, foxed, fold-creased, as though the photograph were recovered rather than made. She is still among the flowers. The difference is only time, and time has been applied to the document, not to her. The flowers are sharper than the face now. They lasted better.</p>
-            <p class="gallery-plate-epitaph">The paper remembers worse than the field does.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="09" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-09-archival-no-caption-survives.webp" alt="Plate IX &mdash; Archival: No Caption Survives">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate IX</span>
-            <h2 class="gallery-plate-title">Archival: No Caption Survives</h2>
-            <p class="gallery-plate-technique">Lith print on rag; ferric bloom and frost-fern decay invading from every edge; vertical.</p>
-            <p class="gallery-plate-body">A standing figure, mostly consumed. The chemistry that should have fixed the image instead ate it &mdash; black frost creeping in from the margins, the body grainy to the point of refusal. Whatever was written under this picture is gone with everything else. The work keeps the figure only to demonstrate that keeping failed.</p>
-            <p class="gallery-plate-epitaph">Whatever this was, it was not labeled in time.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="10" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-10-hands-against-the-developer.webp" alt="Plate X &mdash; Hands Against the Developer">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate X</span>
-            <h2 class="gallery-plate-title">Hands Against the Developer</h2>
-            <p class="gallery-plate-technique">Lith print; double-exposed head; ink-splatter and water-staining across the lower field; vertical.</p>
-            <p class="gallery-plate-body">A doubled face, the two heads not quite agreeing on where the face is. Below, arms crossed up over the chest in the oldest defensive posture there is. The damage runs in diagonals over the body like something was thrown at the print after it dried. The gesture is protective. It did not protect the image.</p>
-            <p class="gallery-plate-epitaph">I covered myself and the picture still got out.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="11" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-11-bleed-through-diptych.webp" alt="Plate XI &mdash; Bleed-Through (Diptych)">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XI</span>
-            <h2 class="gallery-plate-title">Bleed-Through (Diptych)</h2>
-            <p class="gallery-plate-technique">Saturated red wash over cracked emulsion; two faces, one nearly negative, sharing a single ruined surface.</p>
-            <p class="gallery-plate-body">Two faces in the same blood-light, one resolving toward white, one collapsing toward black, both fractured by the same cracks running through the material they're printed on. It reads as a diptych that was never two panels &mdash; one image that split under pressure. You are not meant to tell them apart. You are meant to notice you tried.</p>
-            <p class="gallery-plate-epitaph">Two of us, one wound in the paper.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="12" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-12-pre-lacero-rupture-iv.webp" alt="Plate XII &mdash; Pre-Lacero: Rupture IV">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XII</span>
-            <h2 class="gallery-plate-title">Pre-Lacero: Rupture IV</h2>
-            <p class="gallery-plate-technique">Monochrome portrait viewed through stacked, creased acetate frames; the face doubled by its own framing.</p>
-            <p class="gallery-plate-body">A face seen through layer on layer of crumpled transparent material, each layer a frame that fails to contain it. The doubling isn't an effect laid over the face &mdash; it's the face refusing to stay inside the rectangles drawn around it. Fourth in a sequence that names what it is before it happens. This is the state before the tear.</p>
-            <p class="gallery-plate-epitaph">Frame me again. I will still be in two places.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="13" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-13-the-ward-in-five-frames.webp" alt="Plate XIII &mdash; The Ward, in Five Frames">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XIII</span>
-            <h2 class="gallery-plate-title">The Ward, in Five Frames</h2>
-            <p class="gallery-plate-technique">Cyanotype strip; five-panel sequence; institutional interiors and a face with the features sanded off.</p>
-            <p class="gallery-plate-body">A horizontal strip in process-blue, brushed at the edges where the chemistry ran out: a lit television no one watches, a figure standing in a doorway full of light, a portrait whose face has been worn smooth to nothing. It does not narrate. It sequences &mdash; the way a building sequences you, room to room, until the last frame is just your face with the identifying parts removed.</p>
-            <p class="gallery-plate-epitaph">Down the hall, through the door, and then no face.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="14" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-14-intake-triptych.webp" alt="Plate XIV &mdash; Intake (Triptych)">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XIV</span>
-            <h2 class="gallery-plate-title">Intake (Triptych)</h2>
-            <p class="gallery-plate-technique">Blue-toned triptych; stairwell, waiting room, portrait; the figure doubled at the moment of arrival.</p>
-            <p class="gallery-plate-body">Three panels. A figure descending a stairwell, doubled by the descent. A single person seated in a grid of empty institutional chairs, small in the middle of a room built for a crowd. A face in close, grain-heavy, looking at nothing in particular and meaning it. Together they describe a procedure no one names while it is being done to them.</p>
-            <p class="gallery-plate-epitaph">I came in. The room was already this empty.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="15" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-15-unspoken-deposits.webp" alt="Plate XV &mdash; Unspoken Deposits">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XV</span>
-            <h2 class="gallery-plate-title">Unspoken Deposits</h2>
-            <p class="gallery-plate-technique">Crumpled, photocopied poster stock; a figure doubled across the fold; titled in the print itself.</p>
-            <p class="gallery-plate-body">The image carries its own title, set small and low in the toner like a caption that gave up being explanatory. A figure repeated across the crease of cheap paper, degraded by the copy of a copy. What was deposited, and by whom, and into what, the work does not say. The deposits are unspoken. That is the entire holding.</p>
-            <p class="gallery-plate-epitaph">Something was left here. No one will say what.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="16" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-16-pushed-2-stops-past-the-subject.webp" alt="Plate XVI &mdash; Pushed +2 Stops Past the Subject">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XVI</span>
-            <h2 class="gallery-plate-title">Pushed +2 Stops Past the Subject</h2>
-            <p class="gallery-plate-technique">Contact-sheet wall grid; mixed frames and halftone tiles; the artist's process note left in the image, handwritten.</p>
-            <p class="gallery-plate-body">A wall of frames pinned edge to edge &mdash; a face recurring through them, blurred at the mouth in one, screened to dots in another, a silhouette at a bright window in a third. A handwritten note has been left in the grid stating the film and that it was pushed two stops. The note is the only certain thing in the picture. Everything it was supposed to describe has moved.</p>
-            <p class="gallery-plate-epitaph">Overexposed on purpose. The person still didn&rsquo;t hold.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="17" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-17-subject-itemized.webp" alt="Plate XVII &mdash; Subject, Itemized">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XVII</span>
-            <h2 class="gallery-plate-title">Subject, Itemized</h2>
-            <p class="gallery-plate-technique">Monochrome interior with a standing blurred figure, beside a pasted grid of isolated eyes, mouths, a hand.</p>
-            <p class="gallery-plate-body">On the left, a person standing in a bare room, out of focus, refusing to resolve. On the right, the same person taken apart and pinned up in pieces &mdash; an eye, an eye, a mouth, a mouth, an open hand &mdash; each fragment sharper than the whole ever was. The work makes the method visible: to see the subject clearly you had to stop letting it be one.</p>
-            <p class="gallery-plate-epitaph">Clear, now that I am in pieces.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="18" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-18-four-exposures-no-agreement.webp" alt="Plate XVIII &mdash; Four Exposures, No Agreement">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XVIII</span>
-            <h2 class="gallery-plate-title">Four Exposures, No Agreement</h2>
-            <p class="gallery-plate-technique">Aged contact frame; four motion double-exposures of one head; a rule-of-thirds grid scored over the whole; emulsion rot at the border.</p>
-            <p class="gallery-plate-body">Four times the same face, and four times it has moved before the shutter finished with it. The grid laid over the plate is the apparatus insisting on an order the subject will not supply. You can line the panels up; they will not agree on where the face was.</p>
-            <p class="gallery-plate-epitaph">Count me again. I keep coming out different.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="19" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-19-second-face-arrives-late.webp" alt="Plate XIX &mdash; The Second Face Arrives Late">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XIX</span>
-            <h2 class="gallery-plate-title">The Second Face Arrives Late</h2>
-            <p class="gallery-plate-technique">Single long exposure, doubled; the duplicate dragged leftward into hair-streak; tile-grid emulsion damage; aged stock.</p>
-            <p class="gallery-plate-body">The head is tilted down and tired, and a second version of it is still catching up from the left, smeared across the time the exposure took. It is not two people. It is one person photographed for slightly too long, so the leaving got into the picture with the staying.</p>
-            <p class="gallery-plate-epitaph">Half of me hadn&rsquo;t finished turning.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="20" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-20-sharp-only-where-she-wont-look.webp" alt="Plate XX &mdash; Sharp Only Where She Won&rsquo;t Look">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XX</span>
-            <h2 class="gallery-plate-title">Sharp Only Where She Won&rsquo;t Look</h2>
-            <p class="gallery-plate-technique">Mixed register; blurred multi-pass sequence at left with halftone block insets; one sharp frame at right; abraded border.</p>
-            <p class="gallery-plate-body">On the left the face is dragged through several of itself and broken into screened blocks &mdash; an eye, a forearm &mdash; none of it resolving. On the right is the only frame in focus, and in it she has pressed both fists into her eyes. The picture is clear exactly where the subject has stopped looking back.</p>
-            <p class="gallery-plate-epitaph">I see best the part of me that quit watching.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="21" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-21-standing-next-to-the-evidence-of-herself.webp" alt="Plate XXI &mdash; Standing Next to the Evidence of Herself">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XXI</span>
-            <h2 class="gallery-plate-title">Standing Next to the Evidence of Herself</h2>
-            <p class="gallery-plate-technique">Long exposure with lateral motion ghosting; halftone fragment grid composited at left; soiled slip; cracked print border.</p>
-            <p class="gallery-plate-body">She stands in a dirtied slip while motion-blurred copies sweep past her, and beside her, in hard screened tiles, are her own eyes and hand pinned up out of context. The standing figure is the subject; the grid is the file the subject has been entered into. The work shows both at once so you cannot pretend the second is the same as the first.</p>
-            <p class="gallery-plate-epitaph">They kept the pieces. They did not keep me.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="22" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-22-face-runs-before-it-sets.webp" alt="Plate XXII &mdash; The Face Runs Before It Sets">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XXII</span>
-            <h2 class="gallery-plate-title">The Face Runs Before It Sets</h2>
-            <p class="gallery-plate-technique">Aerosol-and-carbon decay over a downturned face; vertical run-off at the left margin; sepia-grey cast.</p>
-            <p class="gallery-plate-body">A face made mostly of soot, looking down and away, the chemistry running off the bottom-left edge before it could fix. The eyes hold a little light; everything around them is being lost at the speed of a drip. It is not a portrait of a person so much as a record of how fast one stops being legible.</p>
-            <p class="gallery-plate-epitaph">Photograph me faster than I leave.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="23" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-23-specimen-sheet-features-unassembled.webp" alt="Plate XXIII &mdash; Specimen Sheet: Features, Unassembled">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XXIII</span>
-            <h2 class="gallery-plate-title">Specimen Sheet: Features, Unassembled</h2>
-            <p class="gallery-plate-technique">Soft-focus monochrome tiled into a fragment grid; partial eyes, noses, mouths; fine even grain.</p>
-            <p class="gallery-plate-body">The face has been cut into a sheet of soft tiles &mdash; an eye here, a mouth two tiles down &mdash; and no arrangement of them rebuilds a head. The softness is clinical, not tender; this is how a thing looks when it has been catalogued rather than seen. The sheet is complete. The person is not on it.</p>
-            <p class="gallery-plate-epitaph">All of me is here and none of me is.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="24" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-24-strips-two-faces-survive-the-grime.webp" alt="Plate XXIV &mdash; Strips, Two Faces Survive the Grime">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XXIV</span>
-            <h2 class="gallery-plate-title">Strips, Two Faces Survive the Grime</h2>
-            <p class="gallery-plate-technique">Vertical torn-strip composite; heavy carbon grime; two faces partially resolved among ruined columns.</p>
-            <p class="gallery-plate-body">The image is shredded into upright columns, most of them given over to dirt, and two faces have come partway through the damage to look out. They are not rescued &mdash; they are simply the parts the grime has not reached yet. The composition does not ask which face is whose; it only shows the ruin is not finished.</p>
-            <p class="gallery-plate-epitaph">The dark stopped here for now.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="25" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-25-the-same-strips-burned-to-white.webp" alt="Plate XXV &mdash; The Same Strips, Burned to White">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XXV</span>
-            <h2 class="gallery-plate-title">The Same Strips, Burned to White</h2>
-            <p class="gallery-plate-technique">Vertical-strip composite, overexposed past the subject; emulsion bleached to light; faces dissolving upward into white.</p>
-            <p class="gallery-plate-body">The same column structure as the plate before, but the loss has reversed direction &mdash; the faces are not sinking into black, they are being burned out by white. Erasure does not require darkness; light, given enough of it, removes a face just as completely. Nothing here was added. Something was over-given until it was gone.</p>
-            <p class="gallery-plate-epitaph">They left the lamp on me until I wasn&rsquo;t there.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="26" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-26-center-holds-edges-do-not.webp" alt="Plate XXVI &mdash; Center Holds, Edges Do Not">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XXVI</span>
-            <h2 class="gallery-plate-title">Center Holds, Edges Do Not</h2>
-            <p class="gallery-plate-technique">Horizontal row of strip-faces; central face most resolved; flanking faces decaying into particulate toward both margins.</p>
-            <p class="gallery-plate-body">A line of faces runs across the frame, and only the one in the middle has been allowed to stay frontal and intact. To either side the same face thins into dust the further it gets from center, as if attention had a radius and this is where it ran out. The middle is not safe. It is only last.</p>
-            <p class="gallery-plate-epitaph">I am the part you haven&rsquo;t lost yet.</p>
-          </figcaption>
-        </figure>
-      </article>
-      <article class="gallery-plate" data-plate="27" data-nsfw="false">
-        <figure class="gallery-plate-figure">
-          <img loading="lazy" decoding="async" class="gallery-plate-img" src="https://audio.wuld.ink/gallery/plate-27-one-eye-kept-the-rest-given-to-dust.webp" alt="Plate XXVII &mdash; One Eye Kept, the Rest Given to Dust">
-          <figcaption class="gallery-plate-caption">
-            <span class="gallery-plate-num">Plate XXVII</span>
-            <h2 class="gallery-plate-title">One Eye Kept, the Rest Given to Dust</h2>
-            <p class="gallery-plate-technique">Single face emerging from carbon dispersion; one eye holding a hard highlight; hair turning particulate; low key.</p>
-            <p class="gallery-plate-body">A face surfaces out of a cloud of its own grain, and one eye has caught a single hard light while the rest is being handed back to the dust. The look is not pleading. It is the flat attention of something that has already done its accounting and found the number low.</p>
-            <p class="gallery-plate-epitaph">Keep the eye. I don&rsquo;t need the rest.</p>
-          </figcaption>
-        </figure>
-      </article>
+    <section class="gallery-grid" id="gallery-grid" aria-label="Plates">
+      <noscript><p class="gallery-empty">This gallery renders from /gallery/manifest.json and needs JavaScript. The plates exist; the script is the curator.</p></noscript>
     </section>
 
     <p class="essay-end-marker"><a href="/">&larr; wuld.ink</a></p>
@@ -430,6 +162,21 @@
           <span class="gallery-lightbox-caption-num" id="gallery-lightbox-caption-num"></span>
           <span class="gallery-lightbox-caption-title" id="gallery-lightbox-caption-title"></span>
         </div>
+      </div>
+    </div>
+
+    <!-- K83 consent interstitial: opens when a visitor first asks to
+         reveal flagged plates; nothing image-like precedes consent. -->
+    <div class="gallery-consent" id="gallery-consent" role="dialog" aria-modal="true" aria-labelledby="gallery-consent-label" data-open="false">
+      <div class="gallery-consent-box">
+        <p class="gallery-consent-label" id="gallery-consent-label">Consent gate</p>
+        <p class="gallery-consent-text">The plates behind this gate are flagged: disturbing, violent, or sexually explicit registers, including anatomical content. Everything here is AI-generated. No photographs. No real, identifiable persons.</p>
+        <p class="gallery-consent-text">Proceed only if you are 18 or older and choose to look.</p>
+        <div class="gallery-consent-actions">
+          <button class="gallery-consent-btn gallery-consent-btn--confirm" id="gallery-consent-confirm" type="button">[ I am 18+ &mdash; reveal ]</button>
+          <button class="gallery-consent-btn" id="gallery-consent-decline" type="button">[ keep hidden ]</button>
+        </div>
+        <p class="gallery-consent-fine">Your choice is stored on this device only (localStorage). Flagged plates never enter the page before consent &mdash; consent-discipline, not security.</p>
       </div>
     </div>
 
@@ -455,59 +202,161 @@
 
   <script>
     /* ============================================================
-       Gallery NSFW gate
-       Toggle the body-level [data-nsfw-revealed] attribute; CSS does
-       the per-card display swap. Button glyph + aria-pressed track
-       state. State NOT persisted across sessions by design - revisit
-       intent should reset.
+       K83 - manifest renderer + consent gate + lightbox
+       Grid renders from /gallery/manifest.json (order-sorted).
+       Flagged plates ("nsfw" in content_flags): withheld card, no
+       image element in the DOM, until the consent interstitial
+       passes. Consent -> localStorage "wuld:gallery-consent"; the
+       reveal state itself resets per visit (K-era intent kept).
+       Lightbox is the K27 logic adapted to event delegation so
+       re-renders never orphan listeners. Esc/arrows unchanged.
        ============================================================ */
     (function() {
-      var btn = document.getElementById('gallery-nsfw-toggle');
-      if (!btn) return;
-      btn.addEventListener('click', function() {
-        var revealed = document.body.hasAttribute('data-nsfw-revealed');
-        if (revealed) {
-          document.body.removeAttribute('data-nsfw-revealed');
-          btn.setAttribute('aria-pressed', 'false');
-          btn.textContent = '[ NSFW \u2014 hidden ]';
-        } else {
-          document.body.setAttribute('data-nsfw-revealed', 'true');
-          btn.setAttribute('aria-pressed', 'true');
-          btn.textContent = '[ NSFW \u2014 visible ]';
-        }
-      });
-    })();
-  </script>
+      'use strict';
+      var CONSENT_KEY = 'wuld:gallery-consent';
+      var grid = document.getElementById('gallery-grid');
+      if (!grid) return;
+      var statusEl = document.getElementById('gallery-nsfw-status');
+      var toggleBtn = document.getElementById('gallery-nsfw-toggle');
+      var heroCurrent = document.getElementById('gallery-current');
+      var consentEl = document.getElementById('gallery-consent');
+      var consentYes = document.getElementById('gallery-consent-confirm');
+      var consentNo = document.getElementById('gallery-consent-decline');
 
-  <script>
-    /* ============================================================
-       Gallery lightbox (K27)
-       Click any plate image: open overlay with enlarged view.
-       Close: click backdrop, click [close], or press Esc.
-       Navigate: arrow keys (or [<-]/[->] side buttons).
-       Plates collected on load; NSFW-hidden plates skipped in nav
-       order automatically because visibility check is applied.
-       ============================================================ */
-    (function() {
+      var MEDIA_BASE = 'https://audio.wuld.ink';
+      var PLATES = [];
+      var revealed = false;
+
+      function hasConsent() {
+        try { return !!localStorage.getItem(CONSENT_KEY); } catch (e) { return false; }
+      }
+      function storeConsent() {
+        try { localStorage.setItem(CONSENT_KEY, new Date().toISOString()); } catch (e) {}
+      }
+      function isGated(p) { return (p.content_flags || []).indexOf('nsfw') !== -1; }
+      function isSealed(p) { return p.tier === 'sealed'; }
+
+      function el(tag, cls, text) {
+        var n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text) n.textContent = text;
+        return n;
+      }
+
+      function plateCard(p) {
+        var art = el('article', 'gallery-plate');
+        art.setAttribute('data-plate', (p.order < 10 ? '0' : '') + p.order);
+        if (isGated(p)) art.setAttribute('data-nsfw', 'true');
+        var fig = el('figure', 'gallery-plate-figure');
+        var img = document.createElement('img');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.className = 'gallery-plate-img';
+        img.src = MEDIA_BASE + '/' + p.r2key;
+        img.alt = 'Plate ' + p.num + ' — ' + p.title;
+        fig.appendChild(img);
+        var cap = el('figcaption', 'gallery-plate-caption');
+        cap.appendChild(el('span', 'gallery-plate-num', 'Plate ' + p.num));
+        cap.appendChild(el('h2', 'gallery-plate-title', p.title));
+        if (p.technique) cap.appendChild(el('p', 'gallery-plate-technique', p.technique));
+        if (p.body) cap.appendChild(el('p', 'gallery-plate-body', p.body));
+        if (p.epitaph) cap.appendChild(el('p', 'gallery-plate-epitaph', p.epitaph));
+        fig.appendChild(cap);
+        art.appendChild(fig);
+        return art;
+      }
+
+      function withheldCard(p) {
+        var art = el('article', 'gallery-plate gallery-plate-withheld');
+        art.setAttribute('data-plate', (p.order < 10 ? '0' : '') + p.order);
+        var inner = el('div', 'gallery-withheld-inner');
+        inner.appendChild(el('span', 'gallery-plate-num', 'Plate ' + p.num));
+        inner.appendChild(el('p', 'gallery-withheld-note',
+          'Withheld. Flagged: ' + (p.content_flags || []).join(', ') +
+          '. Reveal runs through the consent gate above.'));
+        art.appendChild(inner);
+        return art;
+      }
+
+      function render() {
+        grid.textContent = '';
+        var visible = PLATES.filter(function(p) { return !isSealed(p); });
+        if (!visible.length) {
+          grid.appendChild(el('p', 'gallery-empty', 'The gallery is empty. The vessel precedes the cargo.'));
+          if (statusEl) statusEl.textContent = '0 plates currently flagged in this batch range.';
+          return;
+        }
+        var gated = 0;
+        visible.forEach(function(p) {
+          if (isGated(p)) {
+            gated++;
+            grid.appendChild(revealed ? plateCard(p) : withheldCard(p));
+          } else {
+            grid.appendChild(plateCard(p));
+          }
+        });
+        if (statusEl) statusEl.textContent = gated + (gated === 1 ? ' plate' : ' plates') + ' currently flagged in this batch range.';
+        if (heroCurrent) heroCurrent.textContent = 'Currently: ' + visible.length + ' plates.';
+      }
+
+      function setToggleUI() {
+        if (revealed) {
+          document.body.setAttribute('data-nsfw-revealed', 'true');
+        } else {
+          document.body.removeAttribute('data-nsfw-revealed');
+        }
+        if (toggleBtn) {
+          toggleBtn.setAttribute('aria-pressed', revealed ? 'true' : 'false');
+          toggleBtn.textContent = revealed ? '[ NSFW — visible ]' : '[ NSFW — hidden ]';
+        }
+      }
+
+      function openConsent() {
+        if (!consentEl) return;
+        consentEl.setAttribute('data-open', 'true');
+        if (consentYes) consentYes.focus();
+      }
+      function closeConsent() {
+        if (consentEl) consentEl.setAttribute('data-open', 'false');
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+          if (revealed) { revealed = false; setToggleUI(); render(); return; }
+          if (hasConsent()) { revealed = true; setToggleUI(); render(); return; }
+          openConsent();
+        });
+      }
+      if (consentYes) {
+        consentYes.addEventListener('click', function() {
+          storeConsent();
+          closeConsent();
+          revealed = true;
+          setToggleUI();
+          render();
+        });
+      }
+      if (consentNo) {
+        consentNo.addEventListener('click', function() { closeConsent(); });
+      }
+
+      /* ---- lightbox (K27 logic, delegation-adapted) ---- */
       var overlay = document.getElementById('gallery-lightbox');
-      var img = document.getElementById('gallery-lightbox-img');
+      var lbImg = document.getElementById('gallery-lightbox-img');
       var capNum = document.getElementById('gallery-lightbox-caption-num');
       var capTitle = document.getElementById('gallery-lightbox-caption-title');
       var btnClose = document.getElementById('gallery-lightbox-close');
       var btnPrev = document.getElementById('gallery-lightbox-prev');
       var btnNext = document.getElementById('gallery-lightbox-next');
-      if (!overlay || !img) return;
-
-      var plates = Array.prototype.slice.call(document.querySelectorAll('.gallery-plate'));
       var currentIdx = -1;
 
       function visiblePlates() {
-        return plates.filter(function(p) {
-          return p.offsetParent !== null;
+        return Array.prototype.slice.call(grid.querySelectorAll('.gallery-plate')).filter(function(p) {
+          return p.offsetParent !== null && p.querySelector('.gallery-plate-img');
         });
       }
 
-      function open(idx) {
+      function lbOpen(idx) {
         var vis = visiblePlates();
         if (!vis.length) return;
         currentIdx = ((idx % vis.length) + vis.length) % vis.length;
@@ -515,56 +364,75 @@
         var src = plate.querySelector('.gallery-plate-img').getAttribute('src');
         var num = plate.querySelector('.gallery-plate-num');
         var title = plate.querySelector('.gallery-plate-title');
-        img.setAttribute('src', src);
-        img.setAttribute('alt', title ? title.textContent : '');
+        lbImg.setAttribute('src', src);
+        lbImg.setAttribute('alt', title ? title.textContent : '');
         capNum.textContent = num ? num.textContent : '';
         capTitle.textContent = title ? title.textContent : '';
         overlay.setAttribute('data-open', 'true');
         document.body.classList.add('gallery-lightbox-open');
       }
 
-      function close() {
+      function lbClose() {
         overlay.setAttribute('data-open', 'false');
         document.body.classList.remove('gallery-lightbox-open');
         setTimeout(function() {
           if (overlay.getAttribute('data-open') === 'false') {
-            img.setAttribute('src', '');
+            lbImg.setAttribute('src', '');
           }
         }, 200);
       }
 
-      function step(delta) {
+      function lbStep(delta) {
         var vis = visiblePlates();
         if (!vis.length || currentIdx < 0) return;
-        open(currentIdx + delta);
+        lbOpen(currentIdx + delta);
       }
 
-      plates.forEach(function(plate) {
-        var plateImg = plate.querySelector('.gallery-plate-img');
-        if (!plateImg) return;
-        plateImg.addEventListener('click', function() {
+      if (overlay && lbImg) {
+        grid.addEventListener('click', function(e) {
+          var t = e.target;
+          if (!t || !t.classList || !t.classList.contains('gallery-plate-img')) return;
+          var plate = t.closest('.gallery-plate');
+          if (!plate) return;
           var vis = visiblePlates();
           var idx = vis.indexOf(plate);
-          if (idx === -1) return;
-          open(idx);
+          if (idx !== -1) lbOpen(idx);
         });
-      });
+        btnClose.addEventListener('click', lbClose);
+        btnPrev.addEventListener('click', function() { lbStep(-1); });
+        btnNext.addEventListener('click', function() { lbStep(1); });
+        overlay.addEventListener('click', function(e) {
+          if (e.target === overlay) lbClose();
+        });
+        lbImg.addEventListener('click', lbClose);
+        document.addEventListener('keydown', function(e) {
+          if (consentEl && consentEl.getAttribute('data-open') === 'true') {
+            if (e.key === 'Escape') closeConsent();
+            return;
+          }
+          if (overlay.getAttribute('data-open') !== 'true') return;
+          if (e.key === 'Escape') { lbClose(); }
+          else if (e.key === 'ArrowLeft') { lbStep(-1); }
+          else if (e.key === 'ArrowRight') { lbStep(1); }
+        });
+      }
 
-      btnClose.addEventListener('click', close);
-      btnPrev.addEventListener('click', function() { step(-1); });
-      btnNext.addEventListener('click', function() { step(1); });
-
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) close();
-      });
-      img.addEventListener('click', close);
-
-      document.addEventListener('keydown', function(e) {
-        if (overlay.getAttribute('data-open') !== 'true') return;
-        if (e.key === 'Escape') { close(); }
-        else if (e.key === 'ArrowLeft') { step(-1); }
-        else if (e.key === 'ArrowRight') { step(1); }
-      });
+      /* ---- boot ---- */
+      fetch('/gallery/manifest.json', { cache: 'no-cache' })
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(function(m) {
+          MEDIA_BASE = (m.media_base || MEDIA_BASE).replace(/\/+$/, '');
+          PLATES = (m.plates || []).slice().sort(function(a, b) { return (a.order || 0) - (b.order || 0); });
+          setToggleUI();
+          render();
+        })
+        .catch(function() {
+          grid.textContent = '';
+          grid.appendChild(el('p', 'gallery-empty', 'The manifest failed to load. The plates are unharmed — reload, or return later.'));
+        });
     })();
   </script>
 

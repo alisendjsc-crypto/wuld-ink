@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 06 Jun 2026 05:42:17 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2026 03:38:25 +0000</lastBuildDate>
+    <item>
+      <title>Gallery becomes the admin-arc vessel: all 27 plates extracted to /gallery/manifest.json (now the single source of truth), the grid client-renders from it, and a consent interstitial fronts NSFW-flagged plates - flagged images stay out of the page entirely until consent. Captions and the K27 lightbox carry over unchanged.</title>
+      <link>https://wuld.ink/changelog/#2026-06-06-gallery-manifest-vessel</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-06-gallery-manifest-vessel</guid>
+      <pubDate>Sat, 06 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery becomes the admin-arc vessel: all 27 plates extracted to /gallery/manifest.json (now the single source of truth), the grid client-renders from it, and a consent interstitial fronts NSFW-flagged plates - flagged images stay out of the page entirely until consent. Captions and the K27 lightbox carry over unchanged. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Library v3.9.11 — legible-mode review-note legibility (maintenance). The dependency graph's per-premise review notes were pinned at 10px and sat outside the legible set, so switching to legible re-fonted them to serif while keeping the 10px box — they read smaller than standard. Legible and legible+high-contrast now render the notes at 12.5px with relaxed leading on both the combined and index surfaces; standard and high-contrast are unchanged, and the note badges keep their small label size by design. Render-only CSS; canon held at v37.36 per the Exchange-38 ruling.</title>
       <link>https://wuld.ink/changelog/#2026-06-05-library-v3-9-11</link>
