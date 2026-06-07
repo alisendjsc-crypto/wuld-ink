@@ -94,3 +94,39 @@ Interim/manual paths stay valid: R2 dashboard drag-drop for objects; hand-editin
 | 409 `sha_conflict` | manifest raced a concurrent commit — retried once, then surfaced; re-try the action |
 | 415 `content_mismatch` | declared type ≠ magic bytes — re-export the image |
 | 429 `rate_capped` | >30 writes/min — wait |
+
+## Site-edit endpoints (K86 — arc session 3)
+
+tools/wuld-gui/ops.py patterns ported as Worker endpoints; admin-page sections 4–7.
+Flow: **preview → diff-confirm → commit**. No direct-commit path. Commit grain:
+`site-admin: <pattern> <detail>`; every action = one commit; rollback = `git revert`.
+
+| pattern | target | notes |
+|---|---|---|
+| `video-watch` | `src/watch/index.html` | add video card; position blank = append, `1` = first |
+| `rec-card` | `src/recommendations/index.html` | section = media/film/books/sites/groups/work/art; note allows inline markup (ops.py design) |
+| `text-swap` | any `src/**` file | find must be unique unless replace-all; tag-balance delta blocks commit unless explicitly allowed |
+| `cache-bump` | src HTML | `?v=K<old>` -> `?v=K<new>`; ONE commit via the Git Data API (ref CAS) |
+
+- `POST /api/site/preview` `{pattern, params}` -> summary, BEFORE/AFTER excerpt (single-file) or per-file occurrence list (cache-bump), `tag_delta`, `expected` (file sha / head commit).
+- `POST /api/site/commit` `{pattern, params, expected}` -> 409 `stale_preview` if the target moved since preview; otherwise writes and returns the commit sha.
+
+cache-bump scoping (K86 dry-run fact): the repo holds ~57 src HTML files and a sweep
+must fetch every candidate to know where `?v=` lives — beyond the Workers free-plan
+50-subrequest budget. Scope the bump with `paths` (comma-separated in the form) for
+the high-frequency small case; full site-wide sweeps refuse on free plan (413) — run
+those via `tools/wuld-gui` locally, or set var `SITE_SWEEP_MAX` on a paid plan.
+
+Failure modes (site-edit):
+
+| symptom | meaning | fix |
+|---|---|---|
+| 422 `op_refused` | find/anchor absent, ambiguous (>1), bad field, bad path | adjust input — ops.py refusal discipline, ported |
+| 409 `stale_preview` | file sha or head moved since preview | re-preview, re-confirm |
+| 422 `tag_delta_blocked` | text-swap changes tag balance | if intended, tick allow-tag-delta and re-preview |
+| 413 `sweep_too_large` | cache-bump candidate set exceeds the subrequest budget | scope with paths, or wuld-gui locally |
+| 502 `github_*` | PAT expired (rotation due Sep 04 2026) or API outage | re-run `npx wrangler secret put GITHUB_PAT` |
+
+Smoke after deploy: hard-refresh admin.wuld.ink -> sections 4–7 render -> text-swap
+preview on any trivial unique string -> confirm the BEFORE/AFTER panel renders ->
+discard (zero commits). The write path is proven the first time a real edit commits.
