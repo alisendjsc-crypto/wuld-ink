@@ -1,4 +1,5 @@
 # wuld.ink gallery admin CMS — operator runbook (K85)
+> **K87:** manifest schema v2 (categories / media / caption_tier; Worker pinned to 2) + mp4 uploads. Operator handout: `docs/admin-wuld-ink-operator-guide.md`.
 
 Access-gated Worker at **admin.wuld.ink**. Two capabilities, gallery vertical only:
 

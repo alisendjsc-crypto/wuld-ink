@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-06-gallery-v2-rooms",
+    "date": "2026-06-06",
+    "summary": "Gallery v2: category rooms (eight sub-pages under /gallery/), video plates (click-to-play mp4), caption tiers (full / title / none with a category cascade), manifest schema v2 with the admin Worker pinned to it; the consent gate is now media-agnostic. Operator guide for admin.wuld.ink lands in docs/.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-06-library-v3-9-12",
     "date": "2026-06-06",
     "summary": "Argument Library v3.9.12 — MechanismWeb resync: the React artifact's v3.7-frozen mechanism graph (34 mechanisms / 78 objections / 133 connections) re-synced to the canonical 35 / 81 / 140, and its masthead counts now render from the data itself instead of hard-coded numbers. The library page's served bytes are unchanged; this is a data-artifact and provenance move.",

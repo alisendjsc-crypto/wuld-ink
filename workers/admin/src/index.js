@@ -5,10 +5,17 @@
  * worker's wuld.ink/api/* + wuld.ink/admin* routes).
  *
  * WRITE CONTRACT = src/gallery/index.html head-comment schema:
- *   { schema_version: 1, media_base, updated: "YYYY-MM-DD",
+ *   { schema_version: 2, media_base, updated: "YYYY-MM-DD",
+ *     categories: [ { slug, name, caption_tier: "full"|"title"|"none" } ],
  *     plates: [ { id, r2key, num, title, technique, body, epitaph,
  *                 series, order, tier: "standard"|"sealed",
- *                 content_flags: ["nsfw", ...], added: "YYYY-MM-DD" } ] }
+ *                 content_flags: ["nsfw", ...], added: "YYYY-MM-DD",
+ *                 category: "<slug>" (default "editorial"),
+ *                 media: { kind: "image"|"video", poster?: "<r2key>" },
+ *                 caption_tier: ""|"full"|"title"|"none", cascade
+ *                 plate -> category -> "full" } ] }
+ *   - K87 (gallery v2): Worker PINNED to schema_version 2; category /
+ *     media / caption_tier editable; mp4 joins the upload allowlist.
  *   - tier "sealed" is RESERVED: the CMS may set the field; it never renders
  *     logic for it. In-room gating runs on content_flags — flagging an entry
  *     ["nsfw"] arms the dormant consent gate automatically (K83).
@@ -43,10 +50,13 @@ const ALLOWED_TYPES = {
   "image/webp": "webp",
   "image/png": "png",
   "image/jpeg": "jpg",
+  "video/mp4": "mp4",
 };
 const RATE_MAX_WRITES = 30;       // per window, per isolate (best-effort belt)
 const RATE_WINDOW_MS = 60_000;
 const VALID_TIERS = ["standard", "sealed"];
+const VALID_KINDS = ["image", "video"];
+const VALID_CAPTION_TIERS = ["full", "title", "none"];
 const KNOWN_FLAGS = ["nsfw"];     // advisory; unknown flags pass with a warning
 
 export default {
@@ -135,7 +145,7 @@ async function apiUpload(request, env) {
 
   // Magic-byte sniff — don't trust the declared type alone.
   const buf = await file.arrayBuffer();
-  const sniffed = sniffImageType(new Uint8Array(buf));
+  const sniffed = sniffMediaType(new Uint8Array(buf));
   if (sniffed !== declaredType) {
     return json({ error: "content_mismatch", declared: declaredType, sniffed: sniffed || "unknown" }, 415);
   }
@@ -160,7 +170,9 @@ async function apiUpload(request, env) {
   });
 }
 
-function sniffImageType(b) {
+function sniffMediaType(b) {
+  // mp4: "ftyp" box at offset 4 (any major brand)
+  if (b.length > 11 && b[4] === 0x66 && b[5] === 0x74 && b[6] === 0x79 && b[7] === 0x70) return "video/mp4";
   if (b.length > 12 && b[0] === 0x52 && b[1] === 0x49 && b[2] === 0x46 && b[3] === 0x46 &&
       b[8] === 0x57 && b[9] === 0x45 && b[10] === 0x42 && b[11] === 0x50) return "image/webp";
   if (b.length > 8 && b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4e && b[3] === 0x47) return "image/png";
@@ -200,6 +212,12 @@ async function apiPlateAdd(request, env) {
     const tier = p.tier ? String(p.tier) : "standard";
     if (!VALID_TIERS.includes(tier)) errs.push("tier: standard|sealed");
     const flags = normFlags(p.content_flags);
+    const cat = String(p.category || "editorial").trim();
+    const knownCats = (manifest.categories || []).map((c) => c.slug);
+    if (!knownCats.includes(cat)) errs.push("category: unknown slug (known: " + knownCats.join("|") + ")");
+    const media = normMedia(p.media, errs, prefix);
+    const capTier = String(p.caption_tier || "").trim();
+    if (capTier && !VALID_CAPTION_TIERS.includes(capTier)) errs.push("caption_tier: ''|full|title|none");
     if (errs.length) return { fail: json({ error: "validation", errors: errs }, 422) };
 
     // The entry must point at real bytes — block when the R2 object is
@@ -221,6 +239,9 @@ async function apiPlateAdd(request, env) {
       tier,
       content_flags: flags,
       added: today(),
+      category: cat,
+      media: media,
+      caption_tier: capTier,
     };
     manifest.plates.push(plate);
     manifest.plates.sort((a, b) => a.order - b.order);
@@ -239,7 +260,7 @@ async function apiPlateUpdate(request, env) {
     if (!plate) return { fail: json({ error: "not_found", id }, 404) };
 
     const errs = [];
-    const editable = ["r2key", "num", "title", "technique", "body", "epitaph", "series", "order", "tier", "content_flags"];
+    const editable = ["r2key", "num", "title", "technique", "body", "epitaph", "series", "order", "tier", "content_flags", "category", "media", "caption_tier"];
     for (const k of Object.keys(patch)) {
       if (!editable.includes(k)) errs.push(k + ": not editable (id/added are fixed; delete+add to rekey)");
     }
@@ -250,11 +271,18 @@ async function apiPlateUpdate(request, env) {
     if ("order" in patch && (!Number.isInteger(patch.order) || patch.order < 1)) errs.push("order: positive integer");
     if ("tier" in patch && !VALID_TIERS.includes(String(patch.tier))) errs.push("tier: standard|sealed");
     if ("title" in patch && !String(patch.title).trim()) errs.push("title: required");
+    if ("category" in patch) {
+      const knownCats = (manifest.categories || []).map((c) => c.slug);
+      if (!knownCats.includes(String(patch.category))) errs.push("category: unknown slug (known: " + knownCats.join("|") + ")");
+    }
+    if ("media" in patch) patch.media = normMedia(patch.media, errs, env.R2_PREFIX || "gallery/");
+    if ("caption_tier" in patch && patch.caption_tier !== "" && !VALID_CAPTION_TIERS.includes(String(patch.caption_tier))) errs.push("caption_tier: ''|full|title|none");
     if (errs.length) return { fail: json({ error: "validation", errors: errs }, 422) };
 
     for (const k of Object.keys(patch)) {
       plate[k] = k === "content_flags" ? normFlags(patch[k])
         : k === "order" ? patch[k]
+        : k === "media" ? patch[k]
         : String(patch[k]).trim();
     }
     manifest.plates.sort((a, b) => a.order - b.order);
@@ -303,6 +331,20 @@ async function apiPlateDelete(request, env) {
 function maxOrder(manifest) {
   return manifest.plates.reduce((m, p) => Math.max(m, Number(p.order) || 0), 0);
 }
+function normMedia(v, errs, prefix) {
+  if (v == null) return { kind: "image" };
+  if (typeof v !== "object" || Array.isArray(v)) { errs.push("media: object { kind, poster? }"); return { kind: "image" }; }
+  const kind = String(v.kind || "image");
+  if (!VALID_KINDS.includes(kind)) errs.push("media.kind: image|video");
+  const out = { kind };
+  if (v.poster) {
+    const poster = String(v.poster);
+    if (!poster.startsWith(prefix) || /\.\.|\/\//.test(poster)) errs.push("media.poster: must start '" + prefix + "', no traversal");
+    out.poster = poster;
+  }
+  return out;
+}
+
 function normFlags(v) {
   if (!Array.isArray(v)) return [];
   return [...new Set(v.map((s) => String(s).trim().toLowerCase()).filter(Boolean))];
@@ -327,8 +369,8 @@ async function withManifest(env, mutate) {
     if (!got.ok) return json({ error: got.error, detail: got.detail }, got.status || 502);
 
     const manifest = got.manifest;
-    if (manifest.schema_version !== 1 || !Array.isArray(manifest.plates)) {
-      return json({ error: "schema_unexpected", detail: "manifest schema_version!==1 — refusing to write" }, 409);
+    if (manifest.schema_version !== 2 || !Array.isArray(manifest.plates)) {
+      return json({ error: "schema_unexpected", detail: "manifest schema_version!==2 — refusing to write (K87 pin)" }, 409);
     }
 
     const out = await mutate(manifest);
@@ -1088,10 +1130,10 @@ function adminHtml(env, adminEmail) {
 <h2>Status</h2>
 <div class="status" id="status">loading manifest&hellip;</div>
 
-<h2>1 &middot; Upload image &rarr; R2 (${escHtml(prefix)})</h2>
+<h2>1 &middot; Upload media &rarr; R2 (${escHtml(prefix)})</h2>
 <fieldset>
-  <label>file (webp / png / jpeg, &le; 25 MiB)</label>
-  <input type="file" id="up-file" accept="image/webp,image/png,image/jpeg">
+  <label>file (webp / png / jpeg / mp4, &le; 25 MiB)</label>
+  <input type="file" id="up-file" accept="image/webp,image/png,image/jpeg,video/mp4">
   <label>key stem (optional; defaults from filename; extension derives from verified type)</label>
   <input type="text" id="up-key" placeholder="plate-28-some-title">
   <label><input type="checkbox" id="up-overwrite"> overwrite if key exists</label>
@@ -1120,6 +1162,14 @@ function adminHtml(env, adminEmail) {
   <div class="row2">
     <div><label>tier</label><select id="pf-tier"><option>standard</option><option>sealed</option></select></div>
     <div><label>flags</label><label style="text-transform:none"><input type="checkbox" id="pf-nsfw"> nsfw (arms the consent gate)</label></div>
+  </div>
+  <div class="row2">
+    <div><label>category (slug; must exist in manifest)</label><input type="text" id="pf-category" placeholder="editorial"></div>
+    <div><label>caption tier (blank = inherit category)</label><select id="pf-captier"><option value=""></option><option>full</option><option>title</option><option>none</option></select></div>
+  </div>
+  <div class="row2">
+    <div><label>media kind</label><select id="pf-kind"><option>image</option><option>video</option></select></div>
+    <div><label>poster r2key (video; optional)</label><input type="text" id="pf-poster"></div>
   </div>
   <button id="pf-go">add plate (1 commit)</button>
   <button id="pf-cancel" style="display:none">cancel edit</button>
@@ -1273,6 +1323,10 @@ function adminHtml(env, adminEmail) {
       $("pf-num").value = plate.num;
       $("pf-tier").value = plate.tier;
       $("pf-nsfw").checked = plate.content_flags.indexOf("nsfw") >= 0;
+      $("pf-category").value = plate.category || "editorial";
+      $("pf-captier").value = plate.caption_tier || "";
+      $("pf-kind").value = (plate.media && plate.media.kind) || "image";
+      $("pf-poster").value = (plate.media && plate.media.poster) || "";
       $("pf-go").textContent = "commit update";
       $("pf-cancel").style.display = "";
       window.scrollTo(0, $("plate-form").offsetTop - 60);
@@ -1300,9 +1354,11 @@ function adminHtml(env, adminEmail) {
   function resetForm() {
     $("pf-mode").value = "add";
     $("pf-id").disabled = false;
-    ["pf-id","pf-r2key","pf-title","pf-series","pf-technique","pf-body","pf-epitaph","pf-order","pf-num"].forEach(function (i) { $(i).value = ""; });
+    ["pf-id","pf-r2key","pf-title","pf-series","pf-technique","pf-body","pf-epitaph","pf-order","pf-num","pf-category","pf-poster"].forEach(function (i) { $(i).value = ""; });
     $("pf-tier").value = "standard";
     $("pf-nsfw").checked = false;
+    $("pf-captier").value = "";
+    $("pf-kind").value = "image";
     $("pf-go").textContent = "add plate (1 commit)";
     $("pf-cancel").style.display = "none";
   }
@@ -1320,6 +1376,9 @@ function adminHtml(env, adminEmail) {
       num: $("pf-num").value.trim(),
       tier: $("pf-tier").value,
       content_flags: flags,
+      category: $("pf-category").value.trim() || "editorial",
+      caption_tier: $("pf-captier").value,
+      media: (function () { var m = { kind: $("pf-kind").value }; var po = $("pf-poster").value.trim(); if (po) m.poster = po; return m; })(),
     };
     if ($("pf-order").value) common.order = parseInt($("pf-order").value, 10);
 

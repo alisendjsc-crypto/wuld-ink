@@ -6,29 +6,29 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
   <link rel="license" href="/LICENSE">
-  <title>Gallery &mdash; wuld.ink</title>
-  <meta name="description" content="The Void Engine gallery. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation.">
+  <title>The Tall One &mdash; Gallery &mdash; wuld.ink</title>
+  <meta name="description" content="Void Engine gallery — The Tall One room. AI-generated imagery in the analog-decay register; flagged plates gate through a consent interstitial.">
 
-  <link rel="canonical" href="https://wuld.ink/gallery/">
-  <meta property="og:title" content="Gallery &mdash; wuld.ink">
-  <meta property="og:description" content="The Void Engine gallery. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation.">
+  <link rel="canonical" href="https://wuld.ink/gallery/the-tall-one/">
+  <meta property="og:title" content="The Tall One &mdash; Gallery &mdash; wuld.ink">
+  <meta property="og:description" content="Void Engine gallery — The Tall One room. AI-generated imagery in the analog-decay register; flagged plates gate through a consent interstitial.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wuld.ink/gallery/">
+  <meta property="og:url" content="https://wuld.ink/gallery/the-tall-one/">
   <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="wuld.ink">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Gallery &mdash; wuld.ink">
-  <meta name="twitter:description" content="The Void Engine gallery. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation.">
+  <meta name="twitter:title" content="The Tall One &mdash; Gallery &mdash; wuld.ink">
+  <meta name="twitter:description" content="Void Engine gallery — The Tall One room. AI-generated imagery in the analog-decay register; flagged plates gate through a consent interstitial.">
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Gallery",
-    "description": "The Void Engine gallery. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation.",
-    "url": "https://wuld.ink/gallery/",
+    "name": "The Tall One — Gallery",
+    "description": "Void Engine gallery — The Tall One room. AI-generated imagery in the analog-decay register; flagged plates gate through a consent interstitial.",
+    "url": "https://wuld.ink/gallery/the-tall-one/",
     "image": "https://wuld.ink/assets/og-default.png",
     "inLanguage": "en",
     "isPartOf": { "@id": "https://wuld.ink/#website" }
@@ -41,52 +41,15 @@
   <link rel="stylesheet" href="/components/footer.css?v=K43">
   <link rel="stylesheet" href="/components/gallery.css?v=K30">
   <link rel="stylesheet" href="/components/gallery-room.css?v=K87">
-  <!-- ============================================================
-       K83/K87 - manifest-driven gallery (vessel for the admin-CMS
-       arc; K87 = schema v2: categories + media kinds + caption tiers)
-
-       SOURCE OF TRUTH: /gallery/manifest.json
-         { schema_version: 2,
-           media_base: "https://audio.wuld.ink",  (R2 bucket wuld-audio, prefix gallery/)
-           updated: "YYYY-MM-DD",
-           categories: [ { slug, name, caption_tier: "full"|"title"|"none" } ],
-           plates: [ { id, r2key, num, title, technique, body, epitaph,
-                       series, order, tier: "standard"|"sealed",
-                       content_flags: ["nsfw", ...], added: "YYYY-MM-DD",
-                       category: "<slug>" (default "editorial"),
-                       media: { kind: "image"|"video", poster?: "<r2key>" },
-                       caption_tier: ""|"full"|"title"|"none" } ] }
-       - caption_tier cascade: plate -> category -> "full".
-       - Rooms: this page renders category "editorial" plus the
-         category index block; /gallery/<slug>/ sub-pages render one
-         category each through the SAME renderer
-         (components/gallery-room.js; the page declares its room via
-         body[data-gallery-category]).
-       - The admin Worker PUTs media to R2 and commits manifest
-         entries via the GitHub Contents API; this page changes only
-         when its code changes.
-       - "note" from the original schema sketch maps to "technique";
-         body/epitaph carry the per-plate editorial register.
-       - tier "sealed" is RESERVED (never rendered here) for a
-         possible future split room; in-room gating runs on
-         content_flags.
-
-       CONSENT DISCIPLINE (not security; media-agnostic):
-       - Plates flagged "nsfw" render as withheld cards; no img, no
-         video, no poster enters the DOM until the visitor passes the
-         consent interstitial (18+ / AI-generated / no real persons).
-       - Consent persists in localStorage "wuld:gallery-consent"; the
-         reveal state itself resets per visit by design.
-       - Decline closes the dialog and leaves plates withheld; the
-         standard tier of the room stays public and indexed.
-
-       RENDER NOTES: dark-only surface (an image grid is not a heavy-
-       read container; reader/HC stay scoped to prose pages). Videos:
-       click-to-play, preload="none", native controls. Local preview
-       needs an http server - manifest fetch fails on file://.
-       ============================================================ -->
+  <!-- K87 category sub-room. One category of /gallery/manifest.json
+       (schema v2), rendered by the SHARED components/gallery-room.js;
+       this shell only declares its room via body[data-gallery-category].
+       Schema doc + consent discipline: see the /gallery/ page head
+       comment. No plate URLs ship in this static HTML; flagged plates
+       enter the DOM only after the consent interstitial. Indexed by
+       design: the gate is consent, not secrecy (K83 posture). -->
 </head>
-<body data-mode="dark" data-gallery-category="editorial">
+<body data-mode="dark" data-gallery-category="the-tall-one">
 
   <header class="site-header">
     <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink"><img src="/assets/site-banner-1920.webp" srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w" sizes="100vw" width="1920" height="443" alt="W.U.L.D.: Incorporated" decoding="async" loading="eager"></a>
@@ -113,28 +76,14 @@
 
   <main id="main" class="gallery-page">
 
+    <p class="gallery-room-back"><a href="/gallery/">&larr; Gallery &mdash; all rooms</a></p>
+
     <header class="page-hero">
       <p class="page-hero-eyebrow">12 &middot; Gallery</p>
-      <h1 class="page-hero-title">The Void Engine &mdash; Gallery</h1>
-      <p class="page-intro">Exhibition handout in the form of a wall. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation. The images were not made to be understood. They were made to be looked at until looking becomes uncomfortable, and then a little longer. <span id="gallery-current">Currently: plates I&ndash;XXVII, batches 01&ndash;02.</span></p>
+      <h1 class="page-hero-title">The Tall One</h1>
+      <p class="page-intro">A room of the Void Engine gallery. The corpus arrives in batches; flagged plates pass through the consent gate below before anything renders. <span id="gallery-current">Currently: 0 plates.</span></p>
     </header>
 
-    <!-- K87 category index: rooms light up when the manifest holds
-         >=1 plate in that category (dormant until the K88 ingest). -->
-    <section class="gallery-category-index" id="gallery-category-index" aria-label="Gallery rooms" hidden>
-      <h2 class="gallery-category-index-heading">Rooms</h2>
-      <p class="gallery-category-index-aside">Flagged rooms gate through the same consent interstitial.</p>
-      <div class="gallery-cat-grid" id="gallery-cat-grid"></div>
-    </section>
-
-    <!-- K83 consent gate: reveal of [data-nsfw] plates now runs through a
-         consent interstitial (18+ / AI-generated / no real persons). Until
-         consent, flagged plates render as withheld cards with no image
-         element in the DOM (consent-discipline, not security). localStorage
-         "wuld:gallery-consent" persists consent; reveal resets per visit.
-         CSS contract unchanged: body[data-nsfw-revealed] + per-card rule
-         in gallery.css. Currently 0 plates flagged; the gate is dormant
-         until an NSFW batch lands via the admin tool. -->
     <div class="gallery-nsfw-bar" role="region" aria-label="Sensitive content gate">
       <button class="gallery-nsfw-toggle" id="gallery-nsfw-toggle" type="button" aria-pressed="false">
         [ NSFW &mdash; hidden ]
@@ -143,16 +92,11 @@
     </div>
 
     <section class="gallery-grid" id="gallery-grid" aria-label="Plates">
-      <noscript><p class="gallery-empty">This gallery renders from /gallery/manifest.json and needs JavaScript. The plates exist; the script is the curator.</p></noscript>
+      <noscript><p class="gallery-empty">This room renders from /gallery/manifest.json and needs JavaScript. The plates exist; the script is the curator.</p></noscript>
     </section>
 
-    <p class="essay-end-marker"><a href="/">&larr; wuld.ink</a></p>
+    <p class="essay-end-marker"><a href="/gallery/">&larr; all rooms</a></p>
 
-    <!-- ============================================================
-         Lightbox overlay (K27) - populated on click by gallery JS.
-         Lives at end of <main> so it stacks above plate content via
-         z-index. Hidden by default; toggled via [data-open] attr.
-         ============================================================ -->
     <div class="gallery-lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Plate enlarged view" data-open="false">
       <div class="gallery-lightbox-stage">
         <button class="gallery-lightbox-close" id="gallery-lightbox-close" type="button" aria-label="Close enlarged view">[ close ]</button>
@@ -166,8 +110,6 @@
       </div>
     </div>
 
-    <!-- K83 consent interstitial: opens when a visitor first asks to
-         reveal flagged plates; nothing image-like precedes consent. -->
     <div class="gallery-consent" id="gallery-consent" role="dialog" aria-modal="true" aria-labelledby="gallery-consent-label" data-open="false">
       <div class="gallery-consent-box">
         <p class="gallery-consent-label" id="gallery-consent-label">Consent gate</p>
@@ -183,9 +125,6 @@
 
   </main>
 
-  <!-- ============================================================
-       Footer
-       ============================================================ -->
   <footer class="page-footer">
     <div class="page-footer-inner">
       <span class="copyright">
@@ -200,12 +139,8 @@
   </footer>
 
   <script src="/components/nav.js?v=K43"></script>
-
   <script src="/components/gallery-room.js?v=K87" defer></script>
 
-  <!-- ============================================================
-       Ambient background player
-       ============================================================ -->
   <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
     <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
     <div class="ambient-bar">

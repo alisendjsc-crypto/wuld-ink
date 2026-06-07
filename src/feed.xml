@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 07 Jun 2026 04:19:49 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2026 06:58:15 +0000</lastBuildDate>
+    <item>
+      <title>Gallery v2: category rooms (eight sub-pages under /gallery/), video plates (click-to-play mp4), caption tiers (full / title / none with a category cascade), manifest schema v2 with the admin Worker pinned to it; the consent gate is now media-agnostic. Operator guide for admin.wuld.ink lands in docs/.</title>
+      <link>https://wuld.ink/changelog/#2026-06-06-gallery-v2-rooms</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-06-gallery-v2-rooms</guid>
+      <pubDate>Sat, 06 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery v2: category rooms (eight sub-pages under /gallery/), video plates (click-to-play mp4), caption tiers (full / title / none with a category cascade), manifest schema v2 with the admin Worker pinned to it; the consent gate is now media-agnostic. Operator guide for admin.wuld.ink lands in docs/. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Argument Library v3.9.12 — MechanismWeb resync: the React artifact's v3.7-frozen mechanism graph (34 mechanisms / 78 objections / 133 connections) re-synced to the canonical 35 / 81 / 140, and its masthead counts now render from the data itself instead of hard-coded numbers. The library page's served bytes are unchanged; this is a data-artifact and provenance move.</title>
       <link>https://wuld.ink/changelog/#2026-06-06-library-v3-9-12</link>

@@ -1,7 +1,54 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "media_base": "https://audio.wuld.ink",
   "updated": "2026-06-07",
+  "categories": [
+    {
+      "slug": "editorial",
+      "name": "Void Engine — Editorial",
+      "caption_tier": "full"
+    },
+    {
+      "slug": "gap-dweller",
+      "name": "Gap Dweller",
+      "caption_tier": "title"
+    },
+    {
+      "slug": "gore",
+      "name": "Gore",
+      "caption_tier": "title"
+    },
+    {
+      "slug": "main-character",
+      "name": "Main Character",
+      "caption_tier": "none"
+    },
+    {
+      "slug": "mascot-yurei",
+      "name": "Mascot Yurei",
+      "caption_tier": "title"
+    },
+    {
+      "slug": "original-character",
+      "name": "Original Character",
+      "caption_tier": "title"
+    },
+    {
+      "slug": "other",
+      "name": "Other",
+      "caption_tier": "title"
+    },
+    {
+      "slug": "the-tall-one",
+      "name": "The Tall One",
+      "caption_tier": "title"
+    },
+    {
+      "slug": "the-wrong-thing",
+      "name": "The Wrong Thing",
+      "caption_tier": "title"
+    }
+  ],
   "plates": [
     {
       "id": "plate-01-subject-reduced-to-screen",
@@ -15,7 +62,12 @@
       "order": 1,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-02-one-saline-datum",
@@ -29,7 +81,12 @@
       "order": 2,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-03-the-embrace-does-not-hold",
@@ -43,7 +100,12 @@
       "order": 3,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-04-turned-mid-erasure",
@@ -57,7 +119,12 @@
       "order": 4,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-05-audience-of-one-shadow",
@@ -71,7 +138,12 @@
       "order": 5,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-06-quiet-catastrophe-of-erasure",
@@ -85,7 +157,12 @@
       "order": 6,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-07-ophelia-without-the-river",
@@ -99,7 +176,12 @@
       "order": 7,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-08-the-same-field-later",
@@ -113,7 +195,12 @@
       "order": 8,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-09-archival-no-caption-survives",
@@ -127,7 +214,12 @@
       "order": 9,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-10-hands-against-the-developer",
@@ -141,7 +233,12 @@
       "order": 10,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-11-bleed-through-diptych",
@@ -155,7 +252,12 @@
       "order": 11,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-12-pre-lacero-rupture-iv",
@@ -169,7 +271,12 @@
       "order": 12,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-13-the-ward-in-five-frames",
@@ -183,7 +290,12 @@
       "order": 13,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-14-intake-triptych",
@@ -197,7 +309,12 @@
       "order": 14,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-15-unspoken-deposits",
@@ -211,7 +328,12 @@
       "order": 15,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-16-pushed-2-stops-past-the-subject",
@@ -225,7 +347,12 @@
       "order": 16,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-17-subject-itemized",
@@ -239,7 +366,12 @@
       "order": 17,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-18-four-exposures-no-agreement",
@@ -253,7 +385,12 @@
       "order": 18,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-19-second-face-arrives-late",
@@ -267,7 +404,12 @@
       "order": 19,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-20-sharp-only-where-she-wont-look",
@@ -281,7 +423,12 @@
       "order": 20,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-21-standing-next-to-the-evidence-of-herself",
@@ -295,7 +442,12 @@
       "order": 21,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-22-face-runs-before-it-sets",
@@ -309,7 +461,12 @@
       "order": 22,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-23-specimen-sheet-features-unassembled",
@@ -323,7 +480,12 @@
       "order": 23,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-24-strips-two-faces-survive-the-grime",
@@ -337,7 +499,12 @@
       "order": 24,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-25-the-same-strips-burned-to-white",
@@ -351,7 +518,12 @@
       "order": 25,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-26-center-holds-edges-do-not",
@@ -365,7 +537,12 @@
       "order": 26,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "plate-27-one-eye-kept-the-rest-given-to-dust",
@@ -379,7 +556,12 @@
       "order": 27,
       "tier": "standard",
       "content_flags": [],
-      "added": "2026-06-06"
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     }
   ]
 }
