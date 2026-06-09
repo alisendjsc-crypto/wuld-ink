@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 02:43:15 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 05:04:32 +0000</lastBuildDate>
+    <item>
+      <title>Argument Library v3.9.13 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.</title>
+      <link>https://wuld.ink/changelog/#2026-06-08-library-v3-9-13</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-08-library-v3-9-13</guid>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Argument Library v3.9.13 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>Gallery: the Main Character room lands — 436 plates (248 images, 188 short videos), taking the gallery from 66 to 502 and making it the site's largest room by far. Twenty-one standouts carry editorial captions; the rest render image-only by design, the way a high-iteration room is meant to read. Every plate is flagged 18+ / AI-generated / no real persons, so the consent interstitial fronts the room before anything loads.</title>
       <link>https://wuld.ink/changelog/#2026-06-08-gallery-main-character-ingest</link>

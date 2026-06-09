@@ -1,0 +1,55 @@
+{
+  "release": "v3.9.13",
+  "canon": {
+    "version": "37.38",
+    "bump": "MINOR (v37.37->v37.38)",
+    "invariant_block_changed": false,
+    "note": "Dep-graph render-from-data fix (K91 diagnosis; Exchange-40 ruling: render-from-data APPROVED, validator MANDATORY). Maintenance class \u2014 254 reaffirmed, not revised; no invariant changed. 5-path minor bump mirrors K84 (canon_version/marker/last_updated_by_session/thesis-clause/session_log append); round-trip serializer proven byte-identical on v37_37 first."
+  },
+  "git": {
+    "baseline": "operator-side commit atop 8252cf6 (K84a efilist ship; K91 left efilist untouched)",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K92 dep-graph render-from-data: top-level DEP_DERIVED groups links by source.id once after the literal loads; depCount(node) drives all 7 stale-field reads (premMaxCount L11238, width/x L11240/42, sublabel L11256, header L11320, premise sorts L11075/76 \u2014 the last 2 beyond the seat's enumerated 5, operator-ratified for layout coherence). In-page validator asserts exhaustive partition (sum==len(links)==254). Stored strongCount/weakCount/totalCount left inert in DEP_GRAPH_DATA (strip on next literal touch); 52,081-char literal held byte-identical. combined c436e720->8e0d823f/2,946,927 (+1,437); index 36b11ffe->a1e67ee5/2,388,799 (+1,437)."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "8e0d823f975665fc2b3f948793893d02",
+      "size_bytes": 2946927,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "029a91d85a3671c0c3ccbff831912002",
+      "size_bytes": 1265927,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "a1e67ee5da8dc81859ae00db25d8a0e0",
+      "size_bytes": 2388799,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_38.json": {
+      "md5": "192ee6b3cf05d8842550a085dd4d6b0a",
+      "size_bytes": 246095,
+      "status": "PROVEN"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "size_bytes": 44900,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "c436e7208ced7bce015e6143d5195037",
+    "new": "8e0d823f975665fc2b3f948793893d02",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K92: v3.9.13 pin move (c436e720->8e0d823f; dep-graph render-from-data; canon v37.38)"
+}

@@ -1,21 +1,35 @@
 [
   {
+    "id": "2026-06-08-library-v3-9-13",
+    "date": "2026-06-08",
+    "summary": "Argument Library v3.9.13 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-08-gallery-main-character-ingest",
     "date": "2026-06-08",
     "summary": "Gallery: the Main Character room lands — 436 plates (248 images, 188 short videos), taking the gallery from 66 to 502 and making it the site's largest room by far. Twenty-one standouts carry editorial captions; the rest render image-only by design, the way a high-iteration room is meant to read. Every plate is flagged 18+ / AI-generated / no real persons, so the consent interstitial fronts the room before anything loads.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-08-gallery-small-room-ingest",
     "date": "2026-06-08",
     "summary": "Gallery: 39 plates ingested across seven rooms (Gap Dweller, Gore, Mascot Yurei, Original Character, Other, The Tall One, The Wrong Thing), taking the gallery from 27 to 66. The dormant consent gate now arms for these rooms (18+, AI-generated, no real persons). Main Character lands in a later pass.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-06-gallery-v2-rooms",
     "date": "2026-06-06",
     "summary": "Gallery v2: category rooms (eight sub-pages under /gallery/), video plates (click-to-play mp4), caption tiers (full / title / none with a category cascade), manifest schema v2 with the admin Worker pinned to it; the consent gate is now media-agnostic. Operator guide for admin.wuld.ink lands in docs/.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-06-library-v3-9-12",
@@ -34,19 +48,21 @@
     ]
   },
   {
- "id": "2026-06-05-library-v3-9-11",
- "date": "2026-06-05",
- "summary": "Library v3.9.11 — legible-mode review-note legibility (maintenance). The dependency graph's per-premise review notes were pinned at 10px and sat outside the legible set, so switching to legible re-fonted them to serif while keeping the 10px box — they read smaller than standard. Legible and legible+high-contrast now render the notes at 12.5px with relaxed leading on both the combined and index surfaces; standard and high-contrast are unchanged, and the note badges keep their small label size by design. Render-only CSS; canon held at v37.36 per the Exchange-38 ruling.",
- "sections": ["/argument-library/"]
- },
-{
- "id": "2026-06-05-library-v3-9-10",
- "date": "2026-06-05",
- "summary": "Library v3.9.10 — dependency-panel review-note riders (maintenance). The dependency graph's per-premise review notes — short audit annotations shown when a premise node is clicked — still quoted connection totals from the v3.5 audit, when the graph was smaller. Five premise notes read as if those counts were current: Consent Impossibility (62 total connections), Suffering as Deterrence (13), Contextus Claudit (8), Alogical Isness (8), Convergent Architecture (13). Each figure now carries a small inline rider giving the live count beside the audit figure — current: 67 (42 strong / 25 weak), 19, 9, 11, and 17 respectively. The v3.5 audit text itself is unchanged: the old figures stay as clearly dated history rather than being rewritten, the same convention v3.9.9 applied to the graph's explanatory note. The fourteen objection-level notes needed nothing — their counts still match the live graph. No rebuttal, score, edge, or graph data changed; the dependency graph still holds its locked 254 edges.",
- "sections": [
-  "/argument-library/"
- ]
-},
+    "id": "2026-06-05-library-v3-9-11",
+    "date": "2026-06-05",
+    "summary": "Library v3.9.11 — legible-mode review-note legibility (maintenance). The dependency graph's per-premise review notes were pinned at 10px and sat outside the legible set, so switching to legible re-fonted them to serif while keeping the 10px box — they read smaller than standard. Legible and legible+high-contrast now render the notes at 12.5px with relaxed leading on both the combined and index surfaces; standard and high-contrast are unchanged, and the note badges keep their small label size by design. Render-only CSS; canon held at v37.36 per the Exchange-38 ruling.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-05-library-v3-9-10",
+    "date": "2026-06-05",
+    "summary": "Library v3.9.10 — dependency-panel review-note riders (maintenance). The dependency graph's per-premise review notes — short audit annotations shown when a premise node is clicked — still quoted connection totals from the v3.5 audit, when the graph was smaller. Five premise notes read as if those counts were current: Consent Impossibility (62 total connections), Suffering as Deterrence (13), Contextus Claudit (8), Alogical Isness (8), Convergent Architecture (13). Each figure now carries a small inline rider giving the live count beside the audit figure — current: 67 (42 strong / 25 weak), 19, 9, 11, and 17 respectively. The v3.5 audit text itself is unchanged: the old figures stay as clearly dated history rather than being rewritten, the same convention v3.9.9 applied to the graph's explanatory note. The fourteen objection-level notes needed nothing — their counts still match the live graph. No rebuttal, score, edge, or graph data changed; the dependency graph still holds its locked 254 edges.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
   {
     "id": "2026-06-05-library-v3-9-9",
     "date": "2026-06-05",
