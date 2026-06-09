@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 01:56:02 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 02:43:15 +0000</lastBuildDate>
+    <item>
+      <title>Gallery: the Main Character room lands — 436 plates (248 images, 188 short videos), taking the gallery from 66 to 502 and making it the site's largest room by far. Twenty-one standouts carry editorial captions; the rest render image-only by design, the way a high-iteration room is meant to read. Every plate is flagged 18+ / AI-generated / no real persons, so the consent interstitial fronts the room before anything loads.</title>
+      <link>https://wuld.ink/changelog/#2026-06-08-gallery-main-character-ingest</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-08-gallery-main-character-ingest</guid>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery: the Main Character room lands — 436 plates (248 images, 188 short videos), taking the gallery from 66 to 502 and making it the site's largest room by far. Twenty-one standouts carry editorial captions; the rest render image-only by design, the way a high-iteration room is meant to read. Every plate is flagged 18+ / AI-generated / no real persons, so the consent interstitial fronts the room before anything loads. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Gallery: 39 plates ingested across seven rooms (Gap Dweller, Gore, Mascot Yurei, Original Character, Other, The Tall One, The Wrong Thing), taking the gallery from 27 to 66. The dormant consent gate now arms for these rooms (18+, AI-generated, no real persons). Main Character lands in a later pass.</title>
       <link>https://wuld.ink/changelog/#2026-06-08-gallery-small-room-ingest</link>

@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-08-gallery-main-character-ingest",
+    "date": "2026-06-08",
+    "summary": "Gallery: the Main Character room lands — 436 plates (248 images, 188 short videos), taking the gallery from 66 to 502 and making it the site's largest room by far. Twenty-one standouts carry editorial captions; the rest render image-only by design, the way a high-iteration room is meant to read. Every plate is flagged 18+ / AI-generated / no real persons, so the consent interstitial fronts the room before anything loads.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-08-gallery-small-room-ingest",
     "date": "2026-06-08",
     "summary": "Gallery: 39 plates ingested across seven rooms (Gap Dweller, Gore, Mascot Yurei, Original Character, Other, The Tall One, The Wrong Thing), taking the gallery from 27 to 66. The dormant consent gate now arms for these rooms (18+, AI-generated, no real persons). Main Character lands in a later pass.",
