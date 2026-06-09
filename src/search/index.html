@@ -6,29 +6,29 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
   <link rel="license" href="/LICENSE">
-  <title>Essays — wuld.ink</title>
-  <meta name="description" content="Long-form philosophical essays by WULD.">
+  <title>Search &mdash; wuld.ink</title>
+  <meta name="description" content="Search every surface of wuld.ink &mdash; pages, glossary terms, Void Engine categories, gallery plates. Client-side; queries never leave your browser.">
 
-  <link rel="canonical" href="https://wuld.ink/essays/">
-  <meta property="og:title" content="Essays — wuld.ink">
-  <meta property="og:description" content="Long-form philosophical essays by WULD.">
+  <link rel="canonical" href="https://wuld.ink/search/">
+  <meta property="og:title" content="Search &mdash; wuld.ink">
+  <meta property="og:description" content="Search every surface of wuld.ink &mdash; pages, glossary terms, Void Engine categories, gallery plates. Client-side; queries never leave your browser.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wuld.ink/essays/">
+  <meta property="og:url" content="https://wuld.ink/search/">
   <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="wuld.ink">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Essays — wuld.ink">
-  <meta name="twitter:description" content="Long-form philosophical essays by WULD.">
+  <meta name="twitter:title" content="Search &mdash; wuld.ink">
+  <meta name="twitter:description" content="Search every surface of wuld.ink. Client-side; queries never leave your browser.">
   <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Essays",
-    "description": "Long-form philosophical essays by WULD.",
-    "url": "https://wuld.ink/essays/",
+    "@type": "SearchResultsPage",
+    "name": "Search",
+    "description": "Search every surface of wuld.ink. Client-side; queries never leave your browser.",
+    "url": "https://wuld.ink/search/",
     "image": "https://wuld.ink/assets/og-default.png",
     "inLanguage": "en",
     "isPartOf": {
@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/components/nav.css?v=K43">
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
+  <link rel="stylesheet" href="/components/site-search.css?v=K98">
 
   <style>
     .page {
@@ -54,60 +55,13 @@
       padding-block-end: var(--s-6);
       margin-block-end: var(--s-7);
     }
-    .essay-list {
-      list-style: none;
-      padding: 0;
-      max-width: var(--w-wide);
-      margin: 0;
-    }
-    .essay-list li {
-      border-bottom: var(--bw-thin) solid var(--c-border);
-      padding-block: var(--s-5);
-      margin: 0;
-    }
-    .essay-list li:last-child { border-bottom: none; }
-    .essay-list a {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-    .essay-list a:hover .essay-list-title { color: var(--c-accent); }
-    .essay-list-eyebrow {
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
-      color: var(--c-fg-muted);
-      margin-block-end: var(--s-2);
-    }
-    .essay-list-title {
-      font-family: var(--font-headline);
-      font-size: var(--t-h2);
-      line-height: var(--lh-tight);
-      color: var(--c-fg);
-      transition: color var(--t-fast) var(--ease);
-      margin-block-end: var(--s-2);
-    }
-    .essay-list-tag {
-      font-family: var(--font-mono);
-      font-size: var(--t-xs);
+    .search-lede {
+      font-family: var(--font-body);
       color: var(--c-fg-dim);
-      text-transform: uppercase;
-      letter-spacing: var(--ls-wide);
+      max-width: var(--w-prose);
+      margin: var(--s-4) 0 0 0;
     }
-    .essay-list-item[data-status="forthcoming"] .essay-list-title {
-      color: var(--c-fg-muted);
-    }
-    .essay-list-item[data-status="forthcoming"] a {
-      pointer-events: none;
-      cursor: default;
-    }
-    .essay-list-item[data-status="forthcoming"] .essay-list-tag::before {
-      content: "Forthcoming · ";
-      color: var(--c-accent);
-    }
-    /* Footer rules promoted to /components/footer.css?v=K30 (session J);
-       inline duplicates removed (session K). */
+    .search-noscript { font-family: var(--font-body); color: var(--c-fg-dim); }
   </style>
 </head>
 
@@ -141,40 +95,21 @@
   <main id="main">
     <article class="page">
       <header class="page-hero">
-        <p class="eyebrow">01 · Long-form</p>
-        <h1>Essays</h1>
+        <p class="eyebrow">Site search</p>
+        <h1>Search</h1>
+        <p class="search-lede">Every surface of this site, one query away &mdash; pages, glossary terms, Void Engine transmission categories, gallery plates by number or series. The index is a static file; queries never leave your browser. Nothing here is logged, counted, or sent anywhere.</p>
       </header>
 
-      <ul class="essay-list">
-        <li class="essay-list-item">
-          <a href="/essays/sanguinolentum-vestigium/">
-            <p class="essay-list-eyebrow">Pessimism manifesto</p>
-            <h2 class="essay-list-title">Sanguinolentum Vestigium</h2>
-            <p class="essay-list-tag">2026 · Long-form</p>
-          </a>
-        </li>
-        <li class="essay-list-item">
-          <a href="/essays/alogically-is/">
-            <p class="essay-list-eyebrow">Nihilism treatise</p>
-            <h2 class="essay-list-title">Alogically Is</h2>
-            <p class="essay-list-tag">2026 &middot; Long-form &middot; 35:54 audio</p>
-          </a>
-        </li>
-        <li class="essay-list-item">
-          <a href="/essays/architecture-of-moral-disaster/">
-            <p class="essay-list-eyebrow">Moral structure</p>
-            <h2 class="essay-list-title">The Architecture of Moral Disaster</h2>
-            <p class="essay-list-tag">2026 &middot; Long-form &middot; 23:11 audio</p>
-          </a>
-        </li>
-        <li class="essay-list-item">
-          <a href="/essays/a-life-inside/">
-            <p class="essay-list-eyebrow">Personal mementos</p>
-            <h2 class="essay-list-title">A Life Inside</h2>
-            <p class="essay-list-tag">2026 &middot; Long-form</p>
-          </a>
-        </li>
-      </ul>
+      <form id="site-search-form" class="ss-controls" role="search" aria-label="Site search">
+        <label class="ss-label" for="site-search-input">Query</label>
+        <input class="ss-input" id="site-search-input" type="search" name="q" placeholder="a word &middot; a glossary term &middot; plate 041" autocomplete="off" spellcheck="false" autocapitalize="off">
+        <p class="ss-status" id="site-search-status" role="status" aria-live="polite">loading the index&hellip;</p>
+      </form>
+
+      <ol class="ss-sections" id="site-search-results"></ol>
+      <noscript>
+        <p class="search-noscript">Search needs JavaScript. Every section is still reachable from the navigation above &mdash; Essays, Library, Glossary, Void, Gallery, Watch, Music, Book, Blog, Recommendations, Archive, About, Support, Contact, Chat &mdash; and the <a href="/changelog/">changelog</a> records what changed where.</p>
+      </noscript>
     </article>
   </main>
 
@@ -191,6 +126,7 @@
     </div>
   </footer>
 
+  <script src="/components/site-search.js?v=K98" defer></script>
   <script src="/components/nav.js?v=K43"></script>
   <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
     <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>

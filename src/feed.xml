@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 22:51:27 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 23:22:44 +0000</lastBuildDate>
+    <item>
+      <title>Site-wide search at /search/ — every page, glossary term, Void Engine category, and gallery plate (by number, series, or word) from one query. Client-side over a static index: nothing typed here is logged, counted, or sent anywhere.</title>
+      <link>https://wuld.ink/changelog/#2026-06-09-site-search</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-09-site-search</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Site-wide search at /search/ — every page, glossary term, Void Engine category, and gallery plate (by number, series, or word) from one query. Client-side over a static index: nothing typed here is logged, counted, or sent anywhere. (Sections: /search/)</description>
+    </item>
     <item>
       <title>Gallery: 12 plates curated as the first featured set (manifest flag; print pipeline staged behind it). Admin CMS gains per-plate print-link + featured editing.</title>
       <link>https://wuld.ink/changelog/#2026-06-09-gallery-featured-and-print-pipeline</link>

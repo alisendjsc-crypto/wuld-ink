@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-09-site-search",
+    "date": "2026-06-09",
+    "summary": "Site-wide search at /search/ — every page, glossary term, Void Engine category, and gallery plate (by number, series, or word) from one query. Client-side over a static index: nothing typed here is logged, counted, or sent anywhere.",
+    "sections": ["/search/"]
+  },
+  {
     "id": "2026-06-09-gallery-featured-and-print-pipeline",
     "date": "2026-06-09",
     "summary": "Gallery: 12 plates curated as the first featured set (manifest flag; print pipeline staged behind it). Admin CMS gains per-plate print-link + featured editing.",
