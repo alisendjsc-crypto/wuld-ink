@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 06:28:17 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 07:09:31 +0000</lastBuildDate>
+    <item>
+      <title>You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those — on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer — a [ random ] button beside the arrows, or press r — to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything.</title>
+      <link>https://wuld.ink/changelog/#2026-06-09-gallery-favorites-and-plate-search</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-09-gallery-favorites-and-plate-search</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <description>You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those — on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer — a [ random ] button beside the arrows, or press r — to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>The gallery becomes browsable. A search box on the lobby reaches across all 502 plates in every room; rooms with more than a dozen plates get their own search; and the 436-plate Main Character room gains filter chips for its 18 series, so you can pull up one thread at a time instead of scrolling the whole wall. Flagged matches stay withheld behind the consent gate, exactly as they do in-room, and each plate's reference id now shows in the lightbox.</title>
       <link>https://wuld.ink/changelog/#2026-06-08-gallery-search-and-subcategories</link>

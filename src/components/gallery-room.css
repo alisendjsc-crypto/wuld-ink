@@ -1,5 +1,6 @@
 /* ============================================================
-   gallery-room.css — K87. Shared room chrome for /gallery/ and
+   gallery-room.css — K87 (+K95 favorites: star + Saved toggle).
+   Shared room chrome for /gallery/ and
    the category sub-rooms. gallery.css?v=K30 stays byte-held;
    everything K83 carried page-local moves here, plus the
    category index block and video cards. No animation anywhere
@@ -61,3 +62,25 @@
 .gallery-chip.is-active { border-color: var(--c-accent); color: var(--c-accent); }
 .gallery-chip-count { opacity: 0.6; }
 .gallery-plate-room { display: inline-block; margin-top: var(--s-2); font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--c-accent); }
+
+/* ---------- K95 favorites: per-plate star + Saved toggle ---------- */
+.gallery-plate { position: relative; }
+.gallery-star { position: absolute; top: var(--s-2); left: var(--s-2); z-index: 3; width: 1.9rem; height: 1.9rem; display: inline-flex; align-items: center; justify-content: center; padding: 0; font-family: var(--font-mono); font-size: var(--t-base); line-height: 1; background: rgba(10, 10, 10, 0.72); color: var(--c-fg-dim); border: var(--bw-thin) solid var(--c-border); cursor: pointer; }
+.gallery-star:hover { color: var(--c-fg); border-color: var(--c-accent); }
+.gallery-star:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.gallery-star.is-saved { color: var(--c-accent); border-color: var(--c-accent); }
+.gallery-saved-toggle { display: inline-flex; align-items: baseline; gap: var(--s-2); font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); text-transform: uppercase; background: none; color: var(--c-fg-dim); border: var(--bw-thin) solid var(--c-border); padding: var(--s-2) var(--s-3); cursor: pointer; white-space: nowrap; }
+.gallery-saved-toggle:hover { border-color: var(--c-accent); color: var(--c-fg); }
+.gallery-saved-toggle:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.gallery-saved-toggle.is-active { border-color: var(--c-accent); color: var(--c-accent); }
+.gallery-saved-star { font-size: var(--t-sm); }
+.gallery-saved-label { letter-spacing: var(--ls-wide); }
+.gallery-saved-count { opacity: 0.6; }
+
+/* ---------- K95 lightbox randomizer (injected button) ---------- */
+.gallery-lightbox-random { position: absolute; right: calc(-1 * var(--s-6)); top: calc(50% + 3.25rem); transform: translateY(-50%); z-index: 2; background: var(--c-bg); color: var(--c-fg); border: var(--bw-base) solid var(--c-border-strong); font-family: var(--font-mono); font-size: var(--t-base); padding: var(--s-2) var(--s-4); cursor: pointer; }
+.gallery-lightbox-random:hover { color: var(--c-bg); background: var(--c-accent); border-color: var(--c-accent); }
+.gallery-lightbox-random:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+@media (max-width: 760px) {
+  .gallery-lightbox-random { top: calc(-1 * var(--s-5)); left: 0; right: auto; bottom: auto; transform: none; }
+}

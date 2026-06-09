@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-09-gallery-favorites-and-plate-search",
+    "date": "2026-06-09",
+    "summary": "You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those \u2014 on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer \u2014 a [ random ] button beside the arrows, or press r \u2014 to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything.",
+    "sections": [
+      "/gallery/"
+    ]
+  },
+  {
     "id": "2026-06-08-gallery-search-and-subcategories",
     "date": "2026-06-08",
     "summary": "The gallery becomes browsable. A search box on the lobby reaches across all 502 plates in every room; rooms with more than a dozen plates get their own search; and the 436-plate Main Character room gains filter chips for its 18 series, so you can pull up one thread at a time instead of scrolling the whole wall. Flagged matches stay withheld behind the consent gate, exactly as they do in-room, and each plate's reference id now shows in the lightbox.",
