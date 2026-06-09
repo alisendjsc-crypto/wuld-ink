@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 21:25:36 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 22:51:27 +0000</lastBuildDate>
+    <item>
+      <title>Gallery: 12 plates curated as the first featured set (manifest flag; print pipeline staged behind it). Admin CMS gains per-plate print-link + featured editing.</title>
+      <link>https://wuld.ink/changelog/#2026-06-09-gallery-featured-and-print-pipeline</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-09-gallery-featured-and-print-pipeline</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery: 12 plates curated as the first featured set (manifest flag; print pipeline staged behind it). Admin CMS gains per-plate print-link + featured editing. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Gallery: dormant per-plate print buy-link scaffold (optional manifest print_url, link-out only, never on withheld cards) riding the print-storefront vendor research (docs/print-storefront-research.md). Links render once product URLs land in the manifest.</title>
       <link>https://wuld.ink/changelog/#2026-06-09-gallery-print-link-scaffold</link>

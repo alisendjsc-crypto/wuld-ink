@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "media_base": "https://audio.wuld.ink",
-  "updated": "2026-06-08",
+  "updated": "2026-06-09",
   "categories": [
     {
       "slug": "editorial",
@@ -181,7 +181,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "plate-08-the-same-field-later",
@@ -257,7 +258,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "plate-12-pre-lacero-rupture-iv",
@@ -314,7 +316,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "plate-15-unspoken-deposits",
@@ -466,7 +469,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "plate-23-specimen-sheet-features-unassembled",
@@ -561,7 +565,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "gap-dweller-5e943be2b605",
@@ -582,7 +587,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "gap-dweller-69c7a173353b",
@@ -687,7 +693,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "mascot-yurei-a6a0afb865a4",
@@ -1233,7 +1240,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "the-wrong-thing-1e057a96122b",
@@ -9738,7 +9746,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "featured": true
     },
     {
       "id": "main-character-2471aeac091f",
@@ -10452,7 +10461,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "main-character-e7f548c1fd9a",
@@ -10473,7 +10483,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "main-character-fbad0e481c3a",
@@ -10536,7 +10547,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "featured": true
     }
   ]
 }

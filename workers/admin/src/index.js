@@ -218,6 +218,9 @@ async function apiPlateAdd(request, env) {
     const media = normMedia(p.media, errs, prefix);
     const capTier = String(p.caption_tier || "").trim();
     if (capTier && !VALID_CAPTION_TIERS.includes(capTier)) errs.push("caption_tier: ''|full|title|none");
+    const printUrl = String(p.print_url || "").trim();
+    if (printUrl && !/^https:\/\//.test(printUrl)) errs.push("print_url: must be https:// (or empty)");
+    if ("featured" in p && typeof p.featured !== "boolean") errs.push("featured: boolean");
     if (errs.length) return { fail: json({ error: "validation", errors: errs }, 422) };
 
     // The entry must point at real bytes — block when the R2 object is
@@ -243,6 +246,8 @@ async function apiPlateAdd(request, env) {
       media: media,
       caption_tier: capTier,
     };
+    if (printUrl) plate.print_url = printUrl;
+    if (p.featured === true) plate.featured = true;
     manifest.plates.push(plate);
     manifest.plates.sort((a, b) => a.order - b.order);
     return { message: "gallery-admin: add " + id, result: { ok: true, plate } };
@@ -260,7 +265,7 @@ async function apiPlateUpdate(request, env) {
     if (!plate) return { fail: json({ error: "not_found", id }, 404) };
 
     const errs = [];
-    const editable = ["r2key", "num", "title", "technique", "body", "epitaph", "series", "order", "tier", "content_flags", "category", "media", "caption_tier"];
+    const editable = ["r2key", "num", "title", "technique", "body", "epitaph", "series", "order", "tier", "content_flags", "category", "media", "caption_tier", "print_url", "featured"];
     for (const k of Object.keys(patch)) {
       if (!editable.includes(k)) errs.push(k + ": not editable (id/added are fixed; delete+add to rekey)");
     }
@@ -277,9 +282,20 @@ async function apiPlateUpdate(request, env) {
     }
     if ("media" in patch) patch.media = normMedia(patch.media, errs, env.R2_PREFIX || "gallery/");
     if ("caption_tier" in patch && patch.caption_tier !== "" && !VALID_CAPTION_TIERS.includes(String(patch.caption_tier))) errs.push("caption_tier: ''|full|title|none");
+    if ("print_url" in patch && String(patch.print_url).trim() && !/^https:\/\//.test(String(patch.print_url).trim())) errs.push("print_url: must be https:// (or empty to clear)");
+    if ("featured" in patch && typeof patch.featured !== "boolean") errs.push("featured: boolean");
     if (errs.length) return { fail: json({ error: "validation", errors: errs }, 422) };
 
     for (const k of Object.keys(patch)) {
+      if (k === "print_url") {
+        const v = String(patch[k] || "").trim();
+        if (v) plate.print_url = v; else delete plate.print_url;
+        continue;
+      }
+      if (k === "featured") {
+        if (patch[k] === true) plate.featured = true; else delete plate.featured;
+        continue;
+      }
       plate[k] = k === "content_flags" ? normFlags(patch[k])
         : k === "order" ? patch[k]
         : k === "media" ? patch[k]
@@ -1171,6 +1187,10 @@ function adminHtml(env, adminEmail) {
     <div><label>media kind</label><select id="pf-kind"><option>image</option><option>video</option></select></div>
     <div><label>poster r2key (video; optional)</label><input type="text" id="pf-poster"></div>
   </div>
+  <div class="row2">
+    <div><label>print url (https://&hellip;; blank = no buy link)</label><input type="text" id="pf-printurl" placeholder="https://wuld-ink.printful.me/..."></div>
+    <div><label>featured</label><label style="text-transform:none"><input type="checkbox" id="pf-featured"> featured (curated front-of-house pick)</label></div>
+  </div>
   <button id="pf-go">add plate (1 commit)</button>
   <button id="pf-cancel" style="display:none">cancel edit</button>
 </fieldset>
@@ -1327,6 +1347,8 @@ function adminHtml(env, adminEmail) {
       $("pf-captier").value = plate.caption_tier || "";
       $("pf-kind").value = (plate.media && plate.media.kind) || "image";
       $("pf-poster").value = (plate.media && plate.media.poster) || "";
+      $("pf-printurl").value = plate.print_url || "";
+      $("pf-featured").checked = plate.featured === true;
       $("pf-go").textContent = "commit update";
       $("pf-cancel").style.display = "";
       window.scrollTo(0, $("plate-form").offsetTop - 60);
@@ -1354,9 +1376,10 @@ function adminHtml(env, adminEmail) {
   function resetForm() {
     $("pf-mode").value = "add";
     $("pf-id").disabled = false;
-    ["pf-id","pf-r2key","pf-title","pf-series","pf-technique","pf-body","pf-epitaph","pf-order","pf-num","pf-category","pf-poster"].forEach(function (i) { $(i).value = ""; });
+    ["pf-id","pf-r2key","pf-title","pf-series","pf-technique","pf-body","pf-epitaph","pf-order","pf-num","pf-category","pf-poster","pf-printurl"].forEach(function (i) { $(i).value = ""; });
     $("pf-tier").value = "standard";
     $("pf-nsfw").checked = false;
+    $("pf-featured").checked = false;
     $("pf-captier").value = "";
     $("pf-kind").value = "image";
     $("pf-go").textContent = "add plate (1 commit)";
@@ -1379,6 +1402,8 @@ function adminHtml(env, adminEmail) {
       category: $("pf-category").value.trim() || "editorial",
       caption_tier: $("pf-captier").value,
       media: (function () { var m = { kind: $("pf-kind").value }; var po = $("pf-poster").value.trim(); if (po) m.poster = po; return m; })(),
+      print_url: $("pf-printurl").value.trim(),
+      featured: $("pf-featured").checked,
     };
     if ($("pf-order").value) common.order = parseInt($("pf-order").value, 10);
 

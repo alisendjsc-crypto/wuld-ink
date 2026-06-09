@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-09-gallery-featured-and-print-pipeline",
+    "date": "2026-06-09",
+    "summary": "Gallery: 12 plates curated as the first featured set (manifest flag; print pipeline staged behind it). Admin CMS gains per-plate print-link + featured editing.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-09-gallery-print-link-scaffold",
     "date": "2026-06-09",
     "summary": "Gallery: dormant per-plate print buy-link scaffold (optional manifest print_url, link-out only, never on withheld cards) riding the print-storefront vendor research (docs/print-storefront-research.md). Links render once product URLs land in the manifest.",

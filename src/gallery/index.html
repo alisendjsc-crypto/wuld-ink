@@ -59,7 +59,9 @@
        - caption_tier cascade: plate -> category -> "full".
        - print_url (K96, optional, additive): absolute https URL; when present the
          renderer appends an [ acquire print ] link-out under the plate card (never
-         on withheld cards). Worker CMS allowlist for the field = admin arc 4.
+         on withheld cards). Worker CMS allowlist for the field = shipped K97.
+       - featured (K97, optional, boolean): curated front-of-house pick; additive
+         like print_url; absent unless true. CMS-editable since K97.
        - Rooms: this page renders category "editorial" plus the
          category index block; /gallery/<slug>/ sub-pages render one
          category each through the SAME renderer
