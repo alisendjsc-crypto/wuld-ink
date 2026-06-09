@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 07 Jun 2026 06:58:15 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 01:56:02 +0000</lastBuildDate>
+    <item>
+      <title>Gallery: 39 plates ingested across seven rooms (Gap Dweller, Gore, Mascot Yurei, Original Character, Other, The Tall One, The Wrong Thing), taking the gallery from 27 to 66. The dormant consent gate now arms for these rooms (18+, AI-generated, no real persons). Main Character lands in a later pass.</title>
+      <link>https://wuld.ink/changelog/#2026-06-08-gallery-small-room-ingest</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-08-gallery-small-room-ingest</guid>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery: 39 plates ingested across seven rooms (Gap Dweller, Gore, Mascot Yurei, Original Character, Other, The Tall One, The Wrong Thing), taking the gallery from 27 to 66. The dormant consent gate now arms for these rooms (18+, AI-generated, no real persons). Main Character lands in a later pass. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Gallery v2: category rooms (eight sub-pages under /gallery/), video plates (click-to-play mp4), caption tiers (full / title / none with a category cascade), manifest schema v2 with the admin Worker pinned to it; the consent gate is now media-agnostic. Operator guide for admin.wuld.ink lands in docs/.</title>
       <link>https://wuld.ink/changelog/#2026-06-06-gallery-v2-rooms</link>

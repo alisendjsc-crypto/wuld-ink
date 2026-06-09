@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-08-gallery-small-room-ingest",
+    "date": "2026-06-08",
+    "summary": "Gallery: 39 plates ingested across seven rooms (Gap Dweller, Gore, Mascot Yurei, Original Character, Other, The Tall One, The Wrong Thing), taking the gallery from 27 to 66. The dormant consent gate now arms for these rooms (18+, AI-generated, no real persons). Main Character lands in a later pass.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-06-gallery-v2-rooms",
     "date": "2026-06-06",
     "summary": "Gallery v2: category rooms (eight sub-pages under /gallery/), video plates (click-to-play mp4), caption tiers (full / title / none with a category cascade), manifest schema v2 with the admin Worker pinned to it; the consent gate is now media-agnostic. Operator guide for admin.wuld.ink lands in docs/.",
