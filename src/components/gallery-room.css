@@ -84,3 +84,20 @@
 @media (max-width: 760px) {
   .gallery-lightbox-random { top: calc(-1 * var(--s-5)); left: 0; right: auto; bottom: auto; transform: none; }
 }
+
+/* --- K96: per-plate print buy-link (renders only when manifest plate.print_url
+   is present; link-out only) --- */
+.gallery-print-link {
+  display: inline-block;
+  margin: 0.3rem 0.75rem 0.65rem;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--c-accent, #c41e3a);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.gallery-print-link:hover,
+.gallery-print-link:focus-visible {
+  color: var(--c-fg, #f0ebe5);
+}

@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-09-gallery-print-link-scaffold",
+    "date": "2026-06-09",
+    "summary": "Gallery: dormant per-plate print buy-link scaffold (optional manifest print_url, link-out only, never on withheld cards) riding the print-storefront vendor research (docs/print-storefront-research.md). Links render once product URLs land in the manifest.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-09-gallery-favorites-and-plate-search",
     "date": "2026-06-09",
     "summary": "You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those \u2014 on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer \u2014 a [ random ] button beside the arrows, or press r \u2014 to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything.",

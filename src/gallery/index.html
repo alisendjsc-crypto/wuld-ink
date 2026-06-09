@@ -40,7 +40,7 @@
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
   <link rel="stylesheet" href="/components/gallery.css?v=K30">
-  <link rel="stylesheet" href="/components/gallery-room.css?v=K95">
+  <link rel="stylesheet" href="/components/gallery-room.css?v=K96">
   <!-- ============================================================
        K83/K87 - manifest-driven gallery (vessel for the admin-CMS
        arc; K87 = schema v2: categories + media kinds + caption tiers)
@@ -57,6 +57,9 @@
                        media: { kind: "image"|"video", poster?: "<r2key>" },
                        caption_tier: ""|"full"|"title"|"none" } ] }
        - caption_tier cascade: plate -> category -> "full".
+       - print_url (K96, optional, additive): absolute https URL; when present the
+         renderer appends an [ acquire print ] link-out under the plate card (never
+         on withheld cards). Worker CMS allowlist for the field = admin arc 4.
        - Rooms: this page renders category "editorial" plus the
          category index block; /gallery/<slug>/ sub-pages render one
          category each through the SAME renderer
@@ -201,7 +204,7 @@
 
   <script src="/components/nav.js?v=K43"></script>
 
-  <script src="/components/gallery-room.js?v=K95" defer></script>
+  <script src="/components/gallery-room.js?v=K96" defer></script>
 
   <!-- ============================================================
        Ambient background player

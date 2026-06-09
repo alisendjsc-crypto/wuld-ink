@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 07:09:31 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 21:25:36 +0000</lastBuildDate>
+    <item>
+      <title>Gallery: dormant per-plate print buy-link scaffold (optional manifest print_url, link-out only, never on withheld cards) riding the print-storefront vendor research (docs/print-storefront-research.md). Links render once product URLs land in the manifest.</title>
+      <link>https://wuld.ink/changelog/#2026-06-09-gallery-print-link-scaffold</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-09-gallery-print-link-scaffold</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery: dormant per-plate print buy-link scaffold (optional manifest print_url, link-out only, never on withheld cards) riding the print-storefront vendor research (docs/print-storefront-research.md). Links render once product URLs land in the manifest. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those — on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer — a [ random ] button beside the arrows, or press r — to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything.</title>
       <link>https://wuld.ink/changelog/#2026-06-09-gallery-favorites-and-plate-search</link>

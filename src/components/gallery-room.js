@@ -287,8 +287,23 @@
       fig.appendChild(cap);
     }
     art.appendChild(fig);
+    var pl = printLink(p);
+    if (pl) art.appendChild(pl);
     art.appendChild(starBtn(p));
     return art;
+  }
+
+  /* --- K96: optional per-plate print buy-link (manifest plate.print_url; link-out
+     only; never rendered on withheld cards -- consent discipline) --- */
+  function printLink(p) {
+    if (!p || typeof p.print_url !== 'string' || p.print_url.indexOf('https://') !== 0) return null;
+    var a = document.createElement('a');
+    a.className = 'gallery-print-link';
+    a.href = p.print_url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer nofollow';
+    a.textContent = '[ acquire print ]';
+    return a;
   }
 
   function withheldCard(p, withRoom) {
