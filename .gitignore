@@ -62,3 +62,6 @@ images/
 # Python bytecache (tools/, etc.)
 __pycache__/
 *.pyc
+
+# Wrangler CLI cache (created by `wrangler r2 object put` / dev at repo root)
+.wrangler/
