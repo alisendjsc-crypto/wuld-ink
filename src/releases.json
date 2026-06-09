@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-08-gallery-search-and-subcategories",
+    "date": "2026-06-08",
+    "summary": "The gallery becomes browsable. A search box on the lobby reaches across all 502 plates in every room; rooms with more than a dozen plates get their own search; and the 436-plate Main Character room gains filter chips for its 18 series, so you can pull up one thread at a time instead of scrolling the whole wall. Flagged matches stay withheld behind the consent gate, exactly as they do in-room, and each plate's reference id now shows in the lightbox.",
+    "sections": [
+      "/gallery/"
+    ]
+  },
+  {
     "id": "2026-06-08-void-engine-397",
     "date": "2026-06-08",
     "summary": "The Void Engine grows from 334 to 397 entries, and from 19 to 25 categories. Six new registers join the lexicon: Cyborg / Synthetic, Monster / Creature, Under-Skin / Black-Void, Hell / Infernal, Succubus / Domestic-Infernal, and a Celestial / Deep-Field room that sets the figure against a literal starfield \u2014 cosmos as indifference, distinct from the metaphysical voids. Shipped as one wholesale rebuild of the instrument.",

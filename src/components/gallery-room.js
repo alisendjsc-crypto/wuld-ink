@@ -1,5 +1,5 @@
 /* ============================================================
-   gallery-room.js — K87. Shared renderer for /gallery/ and the
+   gallery-room.js — K94. Shared renderer for /gallery/ and the
    category sub-rooms. The page declares its room via
    <body data-gallery-category="<slug>">; everything else comes
    from /gallery/manifest.json (schema_version 2).
@@ -17,6 +17,24 @@
    Lightbox (K27, delegation) covers images; videos use native
    controls with preload="none" (click-to-play, zero network cost
    before interaction).
+
+   K94 NAVIGABILITY: a controls bar (search + series chips) is
+   injected above the grid where it earns its place. Filtering
+   re-renders the grid (the K27 lightbox click delegation lives on
+   the grid, so it survives the rebuild; visiblePlates() recomputes).
+   - Search: shown on the LOBBY (the page carrying
+     #gallery-category-index — scope = ALL non-sealed plates, every
+     room) and on any room with >12 plates (scope = that room).
+     Consent-safe: flagged matches render as withheld result cards
+     pre-consent, identical to in-room. Matches over
+     id+title+technique+body+series+category.
+   - Series chips: shown on any non-lobby room with >=2 non-empty
+     series (today: main-character, 18 series / 436 plates).
+     Single-select + "All"; each chip carries its count.
+   Plate id is surfaced in the lightbox caption for reference; the
+   lightbox reads metadata off the card, so caption-less ("none"
+   tier) plates still carry num/title/id there. No new pages, no
+   manifest schema change.
    ============================================================ */
 (function() {
   'use strict';
@@ -32,12 +50,18 @@
   var consentNo = document.getElementById('gallery-consent-decline');
   var catIndex = document.getElementById('gallery-category-index');
   var catGrid = document.getElementById('gallery-cat-grid');
+  var isLobby = !!catIndex;
 
   var MEDIA_BASE = 'https://audio.wuld.ink';
   var PLATES = [];
   var CATS = {};
   var CAT_ORDER = [];
   var revealed = false;
+  var FILTER = { q: '', series: '' };
+  var searchInput = null;
+  var chipsWrap = null;
+  var countEl = null;
+  var searchTimer = null;
 
   function hasConsent() {
     try { return !!localStorage.getItem(CONSENT_KEY); } catch (e) { return false; }
@@ -58,12 +82,60 @@
   function plateAlt(p) {
     return 'Plate ' + p.num + (p.title ? ' — ' + p.title : '');
   }
+  function roomName(slug) { return (CATS[slug] && CATS[slug].name) || slug; }
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
     if (text) n.textContent = text;
     return n;
+  }
+
+  /* ---- K94 filter helpers (pure over plate objects) ---- */
+  function searchBlob(p) {
+    return [p.id, p.title, p.technique, p.body, p.series, plateRoom(p)]
+      .join(' ').toLowerCase();
+  }
+  function scopePlates() {
+    /* lobby: every non-sealed plate (all rooms). room: this room only. */
+    return PLATES.filter(function(p) {
+      if (isSealed(p)) return false;
+      return isLobby ? true : plateRoom(p) === ROOM;
+    });
+  }
+  function defaultPlates() {
+    /* lobby default view (no filter) = editorial only; room default = whole room. */
+    if (isLobby) {
+      return PLATES.filter(function(p) { return !isSealed(p) && plateRoom(p) === 'editorial'; });
+    }
+    return scopePlates();
+  }
+  function hasFilter() { return !!(FILTER.q || FILTER.series); }
+  function matchedPlates() {
+    var q = FILTER.q, s = FILTER.series;
+    return scopePlates().filter(function(p) {
+      if (s && p.series !== s) return false;
+      if (q && searchBlob(p).indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+  function roomSeries() {
+    /* distinct non-empty series within scope, with counts, count desc then name. */
+    var counts = {};
+    scopePlates().forEach(function(p) {
+      if (!p.series) return;
+      counts[p.series] = (counts[p.series] || 0) + 1;
+    });
+    return Object.keys(counts).map(function(s) {
+      return { series: s, count: counts[s] };
+    }).sort(function(a, b) {
+      return b.count - a.count || (a.series < b.series ? -1 : 1);
+    });
+  }
+  function chipLabel(series) {
+    var s = series;
+    if (s.indexOf(ROOM + '-') === 0) s = s.slice(ROOM.length + 1);
+    return s.replace(/-/g, ' ');
   }
 
   function mediaEl(p) {
@@ -86,36 +158,50 @@
     return img;
   }
 
-  function plateCard(p) {
-    var art = el('article', 'gallery-plate');
+  function tagCard(art, p) {
     art.setAttribute('data-plate', (p.order < 10 ? '0' : '') + p.order);
+    art.setAttribute('data-plate-id', p.id || '');
+    art.setAttribute('data-num', p.num || '');
+    art.setAttribute('data-title', p.title || '');
+  }
+  function roomBadge(p) {
+    return el('span', 'gallery-plate-room', roomName(plateRoom(p)));
+  }
+
+  function plateCard(p, withRoom) {
+    var art = el('article', 'gallery-plate');
+    tagCard(art, p);
     if (isGated(p)) art.setAttribute('data-nsfw', 'true');
     var fig = el('figure', 'gallery-plate-figure');
     fig.appendChild(mediaEl(p));
     var tier = tierOf(p);
-    if (tier !== 'none') {
+    if (tier !== 'none' || withRoom) {
       var cap = el('figcaption', 'gallery-plate-caption');
       cap.appendChild(el('span', 'gallery-plate-num', 'Plate ' + p.num));
-      cap.appendChild(el('h2', 'gallery-plate-title', p.title || ('Plate ' + p.num)));
-      if (tier === 'full') {
-        if (p.technique) cap.appendChild(el('p', 'gallery-plate-technique', p.technique));
-        if (p.body) cap.appendChild(el('p', 'gallery-plate-body', p.body));
-        if (p.epitaph) cap.appendChild(el('p', 'gallery-plate-epitaph', p.epitaph));
+      if (tier !== 'none') {
+        cap.appendChild(el('h2', 'gallery-plate-title', p.title || ('Plate ' + p.num)));
+        if (tier === 'full') {
+          if (p.technique) cap.appendChild(el('p', 'gallery-plate-technique', p.technique));
+          if (p.body) cap.appendChild(el('p', 'gallery-plate-body', p.body));
+          if (p.epitaph) cap.appendChild(el('p', 'gallery-plate-epitaph', p.epitaph));
+        }
       }
+      if (withRoom) cap.appendChild(roomBadge(p));
       fig.appendChild(cap);
     }
     art.appendChild(fig);
     return art;
   }
 
-  function withheldCard(p) {
+  function withheldCard(p, withRoom) {
     var art = el('article', 'gallery-plate gallery-plate-withheld');
-    art.setAttribute('data-plate', (p.order < 10 ? '0' : '') + p.order);
+    tagCard(art, p);
     var inner = el('div', 'gallery-withheld-inner');
     inner.appendChild(el('span', 'gallery-plate-num', 'Plate ' + p.num));
     inner.appendChild(el('p', 'gallery-withheld-note',
       'Withheld. Flagged: ' + (p.content_flags || []).join(', ') +
       '. Reveal runs through the consent gate above.'));
+    if (withRoom) inner.appendChild(roomBadge(p));
     art.appendChild(inner);
     return art;
   }
@@ -145,33 +231,145 @@
     else { catIndex.setAttribute('hidden', ''); }
   }
 
+  function updateStatus() {
+    if (!statusEl) return;
+    /* flagged count is the room's own (stable; does not chase the active filter). */
+    var base = isLobby
+      ? PLATES.filter(function(p) { return !isSealed(p) && plateRoom(p) === ROOM; })
+      : scopePlates();
+    var g = base.filter(isGated).length;
+    statusEl.textContent = g + (g === 1 ? ' plate' : ' plates') + ' currently flagged in this room.';
+  }
+  function updateHero() {
+    if (!heroCurrent) return;
+    if (catIndex) {
+      var totP = PLATES.filter(function(p) { return !isSealed(p); }).length;
+      var rmP = CAT_ORDER.filter(function(s) {
+        return PLATES.some(function(p) { return !isSealed(p) && plateRoom(p) === s; });
+      }).length;
+      heroCurrent.textContent = 'Currently: ' + totP + ' plates across ' + rmP + ' rooms.';
+    } else {
+      heroCurrent.textContent = 'Currently: ' + scopePlates().length + ' plates.';
+    }
+  }
+  function updateCount(n) {
+    if (!countEl) return;
+    if (hasFilter()) {
+      countEl.textContent = n + (n === 1 ? ' result' : ' results');
+    } else if (isLobby) {
+      countEl.textContent = 'search all ' + scopePlates().length + ' plates';
+    } else {
+      countEl.textContent = n + (n === 1 ? ' plate' : ' plates');
+    }
+  }
+
   function render() {
     grid.textContent = '';
-    var visible = PLATES.filter(function(p) { return !isSealed(p) && plateRoom(p) === ROOM; });
-    if (!visible.length) {
-      grid.appendChild(el('p', 'gallery-empty', 'This room is empty. The vessel precedes the cargo.'));
-      if (statusEl) statusEl.textContent = '0 plates currently flagged in this room.';
-      if (heroCurrent) heroCurrent.textContent = 'Currently: 0 plates.';
-      return;
+    var withRoom = isLobby && hasFilter();
+    var setTo = hasFilter() ? matchedPlates() : defaultPlates();
+
+    if (!setTo.length) {
+      grid.appendChild(el('p', 'gallery-empty', hasFilter()
+        ? 'No plates match that filter.'
+        : 'This room is empty. The vessel precedes the cargo.'));
+    } else {
+      setTo.forEach(function(p) {
+        if (isGated(p) && !revealed) {
+          grid.appendChild(withheldCard(p, withRoom));
+        } else {
+          grid.appendChild(plateCard(p, withRoom));
+        }
+      });
     }
-    var gated = 0;
-    visible.forEach(function(p) {
-      if (isGated(p)) {
-        gated++;
-        grid.appendChild(revealed ? plateCard(p) : withheldCard(p));
-      } else {
-        grid.appendChild(plateCard(p));
-      }
+
+    /* the category index is routing chrome — hide it while the lobby shows results. */
+    if (catIndex) {
+      if (withRoom) catIndex.setAttribute('hidden', '');
+      else catIndex.removeAttribute('hidden');
+    }
+
+    updateStatus();
+    updateHero();
+    updateCount(setTo.length);
+  }
+
+  /* ---- K94 controls bar ---- */
+  function makeChip(series, label, count) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'gallery-chip';
+    b.setAttribute('data-series', series);
+    b.setAttribute('aria-pressed', series === FILTER.series ? 'true' : 'false');
+    if (series === FILTER.series) b.classList.add('is-active');
+    b.appendChild(el('span', 'gallery-chip-label', label));
+    b.appendChild(el('span', 'gallery-chip-count', String(count)));
+    return b;
+  }
+  function syncChips() {
+    if (!chipsWrap) return;
+    Array.prototype.forEach.call(chipsWrap.querySelectorAll('.gallery-chip'), function(b) {
+      var on = b.getAttribute('data-series') === FILTER.series;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (on) b.classList.add('is-active'); else b.classList.remove('is-active');
     });
-    if (statusEl) statusEl.textContent = gated + (gated === 1 ? ' plate' : ' plates') + ' currently flagged in this room.';
-    if (heroCurrent) {
-      if (catIndex) {
-        var totP = PLATES.filter(function(p) { return !isSealed(p); }).length;
-        var rmP = CAT_ORDER.filter(function(s) { return PLATES.some(function(p) { return !isSealed(p) && plateRoom(p) === s; }); }).length;
-        heroCurrent.textContent = 'Currently: ' + totP + ' plates across ' + rmP + ' rooms.';
-      } else {
-        heroCurrent.textContent = 'Currently: ' + visible.length + ' plates.';
-      }
+  }
+  function buildControls() {
+    if (document.getElementById('gallery-controls')) return;
+    var seriesList = roomSeries();
+    var showChips = !isLobby && seriesList.length >= 2;
+    var showSearch = isLobby || scopePlates().length > 12;
+    if (!showSearch && !showChips) return;
+
+    var bar = el('div', 'gallery-controls');
+    bar.id = 'gallery-controls';
+
+    if (showSearch) {
+      var lab = el('label', 'gallery-search-label');
+      lab.setAttribute('for', 'gallery-search');
+      lab.appendChild(el('span', 'gallery-search-tag', 'Search'));
+      var inp = document.createElement('input');
+      inp.type = 'search';
+      inp.id = 'gallery-search';
+      inp.className = 'gallery-search';
+      inp.setAttribute('autocomplete', 'off');
+      inp.setAttribute('placeholder', isLobby ? 'search all rooms…' : 'search this room…');
+      lab.appendChild(inp);
+      bar.appendChild(lab);
+      searchInput = inp;
+    }
+
+    countEl = el('span', 'gallery-result-count');
+    countEl.id = 'gallery-result-count';
+    bar.appendChild(countEl);
+
+    if (showChips) {
+      chipsWrap = el('div', 'gallery-chips');
+      chipsWrap.id = 'gallery-chips';
+      chipsWrap.appendChild(makeChip('', 'all', scopePlates().length));
+      seriesList.forEach(function(row) {
+        chipsWrap.appendChild(makeChip(row.series, chipLabel(row.series), row.count));
+      });
+      bar.appendChild(chipsWrap);
+    }
+
+    grid.parentNode.insertBefore(bar, grid);
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        var v = searchInput.value.trim().toLowerCase();
+        if (searchTimer) clearTimeout(searchTimer);
+        searchTimer = setTimeout(function() { FILTER.q = v; render(); }, 120);
+      });
+    }
+    if (chipsWrap) {
+      chipsWrap.addEventListener('click', function(e) {
+        var b = e.target && e.target.closest ? e.target.closest('.gallery-chip') : null;
+        if (!b) return;
+        var s = b.getAttribute('data-series') || '';
+        FILTER.series = (FILTER.series === s) ? '' : s;
+        syncChips();
+        render();
+      });
     }
   }
 
@@ -239,12 +437,13 @@
     currentIdx = ((idx % vis.length) + vis.length) % vis.length;
     var plate = vis[currentIdx];
     var src = plate.querySelector('.gallery-plate-img').getAttribute('src');
-    var num = plate.querySelector('.gallery-plate-num');
-    var title = plate.querySelector('.gallery-plate-title');
+    var num = plate.getAttribute('data-num');
+    var title = plate.getAttribute('data-title');
+    var pid = plate.getAttribute('data-plate-id');
     lbImg.setAttribute('src', src);
-    lbImg.setAttribute('alt', title ? title.textContent : '');
-    capNum.textContent = num ? num.textContent : '';
-    capTitle.textContent = title ? title.textContent : '';
+    lbImg.setAttribute('alt', title || (num ? 'Plate ' + num : ''));
+    capNum.textContent = (num ? 'Plate ' + num : '') + (pid ? '  ·  ' + pid : '');
+    capTitle.textContent = title || '';
     overlay.setAttribute('data-open', 'true');
     document.body.classList.add('gallery-lightbox-open');
   }
@@ -308,6 +507,7 @@
         CAT_ORDER.push(c.slug);
       });
       PLATES = (m.plates || []).slice().sort(function(a, b) { return (a.order || 0) - (b.order || 0); });
+      buildControls();
       setToggleUI();
       render();
       renderCatIndex();

@@ -45,3 +45,19 @@
 .gallery-room-back { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); margin: 0 0 var(--s-5) 0; }
 .gallery-room-back a { color: var(--c-fg-dim); text-decoration: none; border-bottom: var(--bw-thin) solid var(--c-border); }
 .gallery-room-back a:hover { color: var(--c-accent); border-color: var(--c-accent); }
+
+/* ---------- K94 navigability: controls bar (search + series chips) ---------- */
+.gallery-controls { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--s-3) var(--s-4); margin: 0 0 var(--s-5) 0; padding: 0 0 var(--s-4) 0; border-bottom: var(--bw-thin) solid var(--c-border); }
+.gallery-search-label { display: flex; flex-direction: column; gap: var(--s-2); flex: 1 1 18rem; }
+.gallery-search-tag { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-mega); text-transform: uppercase; color: var(--c-fg-dim); }
+.gallery-search { font-family: var(--font-mono); font-size: var(--t-sm); background: var(--c-bg); color: var(--c-fg); border: var(--bw-thin) solid var(--c-border); padding: var(--s-3) var(--s-4); width: 100%; }
+.gallery-search::placeholder { color: var(--c-fg-dim); }
+.gallery-search:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; border-color: var(--c-accent); }
+.gallery-result-count { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); color: var(--c-fg-dim); white-space: nowrap; padding-top: var(--s-2); }
+.gallery-chips { display: flex; flex-wrap: wrap; gap: var(--s-2); flex: 1 1 100%; }
+.gallery-chip { display: inline-flex; align-items: baseline; gap: var(--s-2); font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); background: none; color: var(--c-fg-dim); border: var(--bw-thin) solid var(--c-border); padding: var(--s-2) var(--s-3); cursor: pointer; }
+.gallery-chip:hover { border-color: var(--c-accent); color: var(--c-fg); }
+.gallery-chip:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.gallery-chip.is-active { border-color: var(--c-accent); color: var(--c-accent); }
+.gallery-chip-count { opacity: 0.6; }
+.gallery-plate-room { display: inline-block; margin-top: var(--s-2); font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--c-accent); }

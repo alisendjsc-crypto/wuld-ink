@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 05:43:57 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 06:28:17 +0000</lastBuildDate>
+    <item>
+      <title>The gallery becomes browsable. A search box on the lobby reaches across all 502 plates in every room; rooms with more than a dozen plates get their own search; and the 436-plate Main Character room gains filter chips for its 18 series, so you can pull up one thread at a time instead of scrolling the whole wall. Flagged matches stay withheld behind the consent gate, exactly as they do in-room, and each plate's reference id now shows in the lightbox.</title>
+      <link>https://wuld.ink/changelog/#2026-06-08-gallery-search-and-subcategories</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-08-gallery-search-and-subcategories</guid>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <description>The gallery becomes browsable. A search box on the lobby reaches across all 502 plates in every room; rooms with more than a dozen plates get their own search; and the 436-plate Main Character room gains filter chips for its 18 series, so you can pull up one thread at a time instead of scrolling the whole wall. Flagged matches stay withheld behind the consent gate, exactly as they do in-room, and each plate's reference id now shows in the lightbox. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>The Void Engine grows from 334 to 397 entries, and from 19 to 25 categories. Six new registers join the lexicon: Cyborg / Synthetic, Monster / Creature, Under-Skin / Black-Void, Hell / Infernal, Succubus / Domestic-Infernal, and a Celestial / Deep-Field room that sets the figure against a literal starfield — cosmos as indifference, distinct from the metaphysical voids. Shipped as one wholesale rebuild of the instrument.</title>
       <link>https://wuld.ink/changelog/#2026-06-08-void-engine-397</link>
