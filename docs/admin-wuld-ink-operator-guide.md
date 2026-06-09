@@ -19,6 +19,8 @@ Every action lands as **one git commit** (`gallery-admin: <op> <id>` or
 FAIL-CLOSED: missing Access config or missing PAT → 503, never a weak fallback. Cloudflare
 Pages auto-deploys every commit (~30 s).
 
+**Not CMS surfaces:** the Void Engine (`/void-engine/`) ships via Cowork wholesale substitution, and the `/argument-library/` pin moves via `tools/library-pin.py` (Cowork-exclusive). Neither is editable here.
+
 ## 2 · Login + status line
 
 Open `https://admin.wuld.ink` → Access sends an OTP → UI. The status line
@@ -80,10 +82,10 @@ the 12 pin-touched HTML files). Pin moves are Cowork-exclusive via `tools/librar
 
 ## 5 · Bulk ingest (K88 lane — not through this tool)
 
-Per-plate CMS adds = one commit each. Fine for singles; **wrong for a 367-file corpus**
-(367 commits + 367 Pages builds). Bulk = sandbox pipeline: re-encode → R2 bulk upload →
+Per-plate CMS adds = one commit each. Fine for singles; **wrong for a large corpus**
+(N commits + N Pages builds). Bulk = sandbox pipeline: re-encode → R2 bulk upload →
 manifest entries written in-repo as ONE commit. That is a Cowork session (K88), not a CMS
-session. After the bulk commit, this tool is the right instrument for corrections.
+session. **Landed so far:** the small-room batch (39 plates) and the Main Character batch (436) shipped this way — the gallery now holds **502 plates across 9 rooms**. After a bulk commit, this tool is the right instrument for corrections.
 
 ## 6 · Failure table
 

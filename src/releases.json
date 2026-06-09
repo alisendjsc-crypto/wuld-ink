@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-08-void-engine-397",
+    "date": "2026-06-08",
+    "summary": "The Void Engine grows from 334 to 397 entries, and from 19 to 25 categories. Six new registers join the lexicon: Cyborg / Synthetic, Monster / Creature, Under-Skin / Black-Void, Hell / Infernal, Succubus / Domestic-Infernal, and a Celestial / Deep-Field room that sets the figure against a literal starfield \u2014 cosmos as indifference, distinct from the metaphysical voids. Shipped as one wholesale rebuild of the instrument.",
+    "sections": [
+      "/void-engine/"
+    ]
+  },
+  {
     "id": "2026-06-08-library-v3-9-13",
     "date": "2026-06-08",
     "summary": "Argument Library v3.9.13 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.",

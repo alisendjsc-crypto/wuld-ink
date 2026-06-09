@@ -164,7 +164,15 @@
       }
     });
     if (statusEl) statusEl.textContent = gated + (gated === 1 ? ' plate' : ' plates') + ' currently flagged in this room.';
-    if (heroCurrent) heroCurrent.textContent = 'Currently: ' + visible.length + ' plates.';
+    if (heroCurrent) {
+      if (catIndex) {
+        var totP = PLATES.filter(function(p) { return !isSealed(p); }).length;
+        var rmP = CAT_ORDER.filter(function(s) { return PLATES.some(function(p) { return !isSealed(p) && plateRoom(p) === s; }); }).length;
+        heroCurrent.textContent = 'Currently: ' + totP + ' plates across ' + rmP + ' rooms.';
+      } else {
+        heroCurrent.textContent = 'Currently: ' + visible.length + ' plates.';
+      }
+    }
   }
 
   function setToggleUI() {

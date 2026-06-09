@@ -64,6 +64,12 @@ claude.ai. Implementation (HTML, CSS, JS, file shape) belongs in Cowork.
 This handout sits in the middle: judgment-heavy implementation that doesn't
 need Cowork's tool stack.
 
+**Current site state (snapshot 2026-06-08; numbers move — trust the live site over this line):**
+- Nav surfaces: home, /essays/, /argument-library/ (pinned mirror of library.wuld.ink, **v3.9.13**), /glossary/, **/void-engine/** (triptych instrument, **397 entries / 25 categories**, Cowork wholesale ship), /watch/, /music/, /book/, /blog/, /recommendations/, /archive/, /frame/, /donations/, /contact/, /chat/ (comment board live). Plus /changelog/ + /feed.xml (RSS).
+- **/gallery/** — 502 plates across 9 rooms (editorial + 8 consent-gated sub-rooms). Renders from `src/gallery/manifest.json` (schema v2); the main page shows the editorial room + a directory to the others.
+- **admin.wuld.ink** — Cloudflare-Access CMS for gallery (upload + manifest) and the 4 site-edit patterns. **For any gallery or CMS op, load `docs/admin-wuld-ink-operator-guide.md` instead of this file.**
+- **Not handout-editable:** the Void Engine body (`/void-engine/` — Cowork wholesale substitution only) and the `/argument-library/` pin loci (`tools/library-pin.py`, Cowork-exclusive).
+
 ---
 
 ## Path selector — which tool for which task
@@ -76,6 +82,7 @@ need Cowork's tool stack.
 | Add an essay-list-item to /essays/ index (card only) | GUI |
 | Cache-bump after touching `src/components/*` | GUI |
 | Generic find/replace on any src/ file | GUI |
+| **Gallery upload / manifest edit, or any of the 4 site-edit patterns** | **CMS — admin.wuld.ink (see operator guide)** |
 | **Author the body of a new essay** | **Handout** |
 | **Author a new glossary entry** | **Handout** |
 | **Write a new blog post body** | **Handout** |
