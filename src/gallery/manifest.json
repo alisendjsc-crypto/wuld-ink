@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "media_base": "https://audio.wuld.ink",
-  "updated": "2026-06-10",
+  "updated": "2026-06-09",
   "categories": [
     {
       "slug": "editorial",
@@ -226,7 +226,7 @@
       "body": "",
       "epitaph": "",
       "series": "bound-chair",
-      "order": 1,
+      "order": 187,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -415,7 +415,7 @@
       "body": "",
       "epitaph": "",
       "series": "cyborg-shell",
-      "order": 2,
+      "order": 234,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -562,7 +562,7 @@
       "body": "",
       "epitaph": "",
       "series": "cyborg-shell",
-      "order": 3,
+      "order": 235,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -686,7 +686,7 @@
       "body": "",
       "epitaph": "",
       "series": "cyborg-shell",
-      "order": 4,
+      "order": 159,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -810,7 +810,7 @@
       "body": "",
       "epitaph": "",
       "series": "cyborg-shell",
-      "order": 5,
+      "order": 136,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -892,7 +892,7 @@
       "body": "",
       "epitaph": "",
       "series": "horned-variant",
-      "order": 6,
+      "order": 182,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -955,7 +955,7 @@
       "body": "",
       "epitaph": "",
       "series": "horned-variant",
-      "order": 7,
+      "order": 220,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1016,7 +1016,7 @@
       "body": "",
       "epitaph": "",
       "series": "horned-variant",
-      "order": 8,
+      "order": 199,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1077,7 +1077,7 @@
       "body": "",
       "epitaph": "",
       "series": "horned-variant",
-      "order": 9,
+      "order": 150,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1138,7 +1138,7 @@
       "body": "",
       "epitaph": "",
       "series": "horned-variant",
-      "order": 10,
+      "order": 165,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1200,7 +1200,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 11,
+      "order": 42,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1261,7 +1261,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 12,
+      "order": 247,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1322,7 +1322,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 13,
+      "order": 111,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1384,7 +1384,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 14,
+      "order": 180,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1445,7 +1445,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 15,
+      "order": 179,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1506,7 +1506,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 16,
+      "order": 32,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1546,7 +1546,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 17,
+      "order": 205,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1586,7 +1586,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 18,
+      "order": 13,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1626,7 +1626,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 19,
+      "order": 178,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1666,7 +1666,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 20,
+      "order": 12,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1706,7 +1706,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 21,
+      "order": 30,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1748,7 +1748,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 22,
+      "order": 148,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1788,7 +1788,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 23,
+      "order": 48,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1828,7 +1828,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 24,
+      "order": 188,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1868,7 +1868,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 25,
+      "order": 49,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1908,7 +1908,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 26,
+      "order": 44,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1950,7 +1950,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 27,
+      "order": 225,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1971,7 +1971,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 28,
+      "order": 195,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1992,7 +1992,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 29,
+      "order": 184,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2013,7 +2013,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 30,
+      "order": 126,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2034,7 +2034,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 31,
+      "order": 122,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2055,7 +2055,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 32,
+      "order": 25,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2076,7 +2076,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 33,
+      "order": 38,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2097,7 +2097,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 34,
+      "order": 147,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2118,7 +2118,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 35,
+      "order": 39,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2139,7 +2139,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 36,
+      "order": 46,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2160,7 +2160,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 37,
+      "order": 52,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2181,7 +2181,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 38,
+      "order": 221,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2202,7 +2202,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 39,
+      "order": 3,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2223,7 +2223,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 40,
+      "order": 132,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2244,7 +2244,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 41,
+      "order": 45,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2265,7 +2265,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 42,
+      "order": 167,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2286,7 +2286,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 43,
+      "order": 138,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2307,7 +2307,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 44,
+      "order": 248,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2328,7 +2328,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 45,
+      "order": 125,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2349,7 +2349,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 46,
+      "order": 47,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2370,7 +2370,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 47,
+      "order": 181,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2391,7 +2391,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 48,
+      "order": 142,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2412,7 +2412,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 49,
+      "order": 206,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2433,7 +2433,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 50,
+      "order": 233,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2454,7 +2454,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 51,
+      "order": 172,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2475,7 +2475,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 52,
+      "order": 238,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2496,7 +2496,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 53,
+      "order": 173,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2517,7 +2517,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 54,
+      "order": 171,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2538,7 +2538,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 55,
+      "order": 191,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2559,7 +2559,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 56,
+      "order": 246,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2580,7 +2580,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 57,
+      "order": 90,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2601,7 +2601,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 58,
+      "order": 128,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2622,7 +2622,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 59,
+      "order": 177,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2643,7 +2643,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 60,
+      "order": 127,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2664,7 +2664,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 61,
+      "order": 116,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2685,7 +2685,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 62,
+      "order": 119,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2706,7 +2706,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 63,
+      "order": 230,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2727,7 +2727,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 64,
+      "order": 219,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2748,7 +2748,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 65,
+      "order": 133,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2769,7 +2769,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 66,
+      "order": 134,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2790,7 +2790,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 67,
+      "order": 135,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2811,7 +2811,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 68,
+      "order": 170,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2832,7 +2832,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 69,
+      "order": 117,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2853,7 +2853,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 70,
+      "order": 176,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2874,7 +2874,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 71,
+      "order": 237,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2895,7 +2895,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 72,
+      "order": 124,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2916,7 +2916,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 73,
+      "order": 34,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2937,7 +2937,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 74,
+      "order": 43,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2958,7 +2958,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 75,
+      "order": 161,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -2979,7 +2979,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 76,
+      "order": 174,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3000,7 +3000,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 77,
+      "order": 51,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3021,7 +3021,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 78,
+      "order": 190,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3042,7 +3042,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 79,
+      "order": 137,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3063,7 +3063,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 80,
+      "order": 1,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3084,7 +3084,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 81,
+      "order": 152,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3105,7 +3105,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 82,
+      "order": 37,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3126,7 +3126,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 83,
+      "order": 10,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3147,7 +3147,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 84,
+      "order": 16,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3168,7 +3168,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 85,
+      "order": 145,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3189,7 +3189,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 86,
+      "order": 186,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3210,7 +3210,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 87,
+      "order": 123,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3231,7 +3231,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 88,
+      "order": 202,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3252,7 +3252,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 89,
+      "order": 14,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3273,7 +3273,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 90,
+      "order": 139,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3294,7 +3294,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 91,
+      "order": 169,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3315,7 +3315,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 92,
+      "order": 31,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3336,7 +3336,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 93,
+      "order": 36,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3357,7 +3357,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 94,
+      "order": 131,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3378,7 +3378,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 95,
+      "order": 168,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3399,7 +3399,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 96,
+      "order": 40,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3420,7 +3420,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 97,
+      "order": 121,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3441,7 +3441,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 98,
+      "order": 239,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3462,7 +3462,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 99,
+      "order": 236,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3483,7 +3483,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 100,
+      "order": 204,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3504,7 +3504,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 101,
+      "order": 213,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3525,7 +3525,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 102,
+      "order": 163,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3546,7 +3546,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 103,
+      "order": 120,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3567,7 +3567,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 104,
+      "order": 183,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3588,7 +3588,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 105,
+      "order": 160,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3609,7 +3609,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 106,
+      "order": 151,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3630,7 +3630,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 107,
+      "order": 35,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3651,7 +3651,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 108,
+      "order": 41,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3672,7 +3672,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 109,
+      "order": 223,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3693,7 +3693,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 110,
+      "order": 130,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3714,7 +3714,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 111,
+      "order": 185,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3735,7 +3735,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 112,
+      "order": 118,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3756,7 +3756,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 113,
+      "order": 2,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3777,7 +3777,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 114,
+      "order": 203,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3798,7 +3798,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 115,
+      "order": 6,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3819,7 +3819,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 116,
+      "order": 129,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3840,7 +3840,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 117,
+      "order": 208,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3861,7 +3861,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 118,
+      "order": 15,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3882,7 +3882,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 119,
+      "order": 249,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3903,7 +3903,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 120,
+      "order": 250,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3924,7 +3924,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 121,
+      "order": 251,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3945,7 +3945,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 122,
+      "order": 252,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3966,7 +3966,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 123,
+      "order": 253,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -3987,7 +3987,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 124,
+      "order": 254,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4008,7 +4008,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 125,
+      "order": 255,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4029,7 +4029,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 126,
+      "order": 256,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4050,7 +4050,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 127,
+      "order": 257,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4071,7 +4071,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 128,
+      "order": 258,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4092,7 +4092,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 129,
+      "order": 259,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4113,7 +4113,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 130,
+      "order": 260,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4134,7 +4134,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 131,
+      "order": 261,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4155,7 +4155,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 132,
+      "order": 262,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4176,7 +4176,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 133,
+      "order": 263,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4197,7 +4197,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 134,
+      "order": 264,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4218,7 +4218,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 135,
+      "order": 265,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4239,7 +4239,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 136,
+      "order": 266,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4260,7 +4260,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 137,
+      "order": 267,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4281,7 +4281,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 138,
+      "order": 268,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4302,7 +4302,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 139,
+      "order": 269,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4323,7 +4323,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 140,
+      "order": 270,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4344,7 +4344,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 141,
+      "order": 271,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4365,7 +4365,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 142,
+      "order": 272,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4386,7 +4386,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 143,
+      "order": 273,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4407,7 +4407,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 144,
+      "order": 274,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4428,7 +4428,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 145,
+      "order": 275,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4449,7 +4449,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 146,
+      "order": 276,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4470,7 +4470,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 147,
+      "order": 277,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4491,7 +4491,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 148,
+      "order": 278,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4512,7 +4512,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 149,
+      "order": 279,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4533,7 +4533,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 150,
+      "order": 280,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4554,7 +4554,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 151,
+      "order": 281,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4575,7 +4575,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 152,
+      "order": 282,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4596,7 +4596,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 153,
+      "order": 283,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4617,7 +4617,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 154,
+      "order": 284,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4638,7 +4638,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 155,
+      "order": 285,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4659,7 +4659,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 156,
+      "order": 286,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4680,7 +4680,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 157,
+      "order": 287,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4701,7 +4701,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 158,
+      "order": 288,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4722,7 +4722,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 159,
+      "order": 289,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4743,7 +4743,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 160,
+      "order": 290,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4764,7 +4764,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 161,
+      "order": 291,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4785,7 +4785,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 162,
+      "order": 292,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4806,7 +4806,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 163,
+      "order": 293,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4827,7 +4827,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 164,
+      "order": 294,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4848,7 +4848,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 165,
+      "order": 295,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4869,7 +4869,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 166,
+      "order": 296,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4890,7 +4890,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 167,
+      "order": 297,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4911,7 +4911,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 168,
+      "order": 298,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4932,7 +4932,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 169,
+      "order": 299,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4953,7 +4953,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 170,
+      "order": 300,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4974,7 +4974,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 171,
+      "order": 301,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -4995,7 +4995,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 172,
+      "order": 302,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5016,7 +5016,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 173,
+      "order": 303,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5037,7 +5037,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 174,
+      "order": 304,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5058,7 +5058,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 175,
+      "order": 305,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5079,7 +5079,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 176,
+      "order": 306,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5100,7 +5100,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 177,
+      "order": 307,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5121,7 +5121,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 178,
+      "order": 308,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5142,7 +5142,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 179,
+      "order": 309,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5163,7 +5163,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 180,
+      "order": 310,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5184,7 +5184,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 181,
+      "order": 311,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5205,7 +5205,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 182,
+      "order": 312,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5226,7 +5226,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 183,
+      "order": 313,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5247,7 +5247,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 184,
+      "order": 314,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5268,7 +5268,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 185,
+      "order": 315,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5289,7 +5289,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 186,
+      "order": 316,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5310,7 +5310,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 187,
+      "order": 317,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5331,7 +5331,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 188,
+      "order": 318,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5352,7 +5352,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 189,
+      "order": 319,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5373,7 +5373,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 190,
+      "order": 320,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5394,7 +5394,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 191,
+      "order": 321,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5415,7 +5415,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 192,
+      "order": 322,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5436,7 +5436,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 193,
+      "order": 323,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5457,7 +5457,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 194,
+      "order": 324,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5478,7 +5478,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 195,
+      "order": 325,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5499,7 +5499,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 196,
+      "order": 326,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5520,7 +5520,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 197,
+      "order": 327,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5541,7 +5541,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 198,
+      "order": 328,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5562,7 +5562,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 199,
+      "order": 329,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5583,7 +5583,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 200,
+      "order": 330,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5604,7 +5604,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 201,
+      "order": 331,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5625,7 +5625,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 202,
+      "order": 332,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5646,7 +5646,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 203,
+      "order": 333,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5667,7 +5667,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 204,
+      "order": 334,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5688,7 +5688,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 205,
+      "order": 335,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5709,7 +5709,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 206,
+      "order": 336,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5730,7 +5730,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 207,
+      "order": 337,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5751,7 +5751,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 208,
+      "order": 338,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5772,7 +5772,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 209,
+      "order": 339,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5793,7 +5793,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 210,
+      "order": 340,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5814,7 +5814,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 211,
+      "order": 341,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5835,7 +5835,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character",
-      "order": 212,
+      "order": 342,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5856,7 +5856,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 213,
+      "order": 78,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5877,7 +5877,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 214,
+      "order": 83,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5898,7 +5898,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 215,
+      "order": 77,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5919,7 +5919,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 216,
+      "order": 61,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5940,7 +5940,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 217,
+      "order": 86,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5961,7 +5961,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 218,
+      "order": 79,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -5982,7 +5982,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 219,
+      "order": 115,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6003,7 +6003,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 220,
+      "order": 67,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6024,7 +6024,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 221,
+      "order": 66,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6045,7 +6045,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 222,
+      "order": 98,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6066,7 +6066,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 223,
+      "order": 91,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6087,7 +6087,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 224,
+      "order": 59,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6108,7 +6108,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 225,
+      "order": 89,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6129,7 +6129,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 226,
+      "order": 155,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6150,7 +6150,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 227,
+      "order": 27,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6171,7 +6171,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 228,
+      "order": 211,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6192,7 +6192,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 229,
+      "order": 157,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6213,7 +6213,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 230,
+      "order": 100,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6234,7 +6234,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 231,
+      "order": 106,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6255,7 +6255,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 232,
+      "order": 193,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6276,7 +6276,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 233,
+      "order": 70,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6297,7 +6297,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 234,
+      "order": 68,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6318,7 +6318,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-sexual",
-      "order": 235,
+      "order": 343,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6339,7 +6339,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 236,
+      "order": 153,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6360,7 +6360,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 237,
+      "order": 242,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6381,7 +6381,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 238,
+      "order": 143,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6402,7 +6402,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 239,
+      "order": 207,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6423,7 +6423,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 240,
+      "order": 29,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6444,7 +6444,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 241,
+      "order": 76,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6465,7 +6465,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 242,
+      "order": 216,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6486,7 +6486,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 243,
+      "order": 224,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6507,7 +6507,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 244,
+      "order": 17,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6528,7 +6528,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 245,
+      "order": 214,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6549,7 +6549,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 246,
+      "order": 53,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6570,7 +6570,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 247,
+      "order": 81,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6591,7 +6591,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 248,
+      "order": 69,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6612,7 +6612,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 249,
+      "order": 60,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6633,7 +6633,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 250,
+      "order": 103,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6654,7 +6654,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 251,
+      "order": 210,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6675,7 +6675,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 252,
+      "order": 228,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6696,7 +6696,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 253,
+      "order": 65,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6717,7 +6717,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 254,
+      "order": 113,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6738,7 +6738,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 255,
+      "order": 93,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6759,7 +6759,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 256,
+      "order": 201,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6780,7 +6780,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 257,
+      "order": 63,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6801,7 +6801,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 258,
+      "order": 9,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6822,7 +6822,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 259,
+      "order": 241,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6843,7 +6843,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 260,
+      "order": 96,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6864,7 +6864,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 261,
+      "order": 196,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6885,7 +6885,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 262,
+      "order": 240,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6906,7 +6906,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 263,
+      "order": 229,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6927,7 +6927,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 264,
+      "order": 146,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6948,7 +6948,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 265,
+      "order": 222,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6969,7 +6969,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 266,
+      "order": 209,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -6990,7 +6990,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 267,
+      "order": 156,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7011,7 +7011,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 268,
+      "order": 75,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7032,7 +7032,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 269,
+      "order": 94,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7053,7 +7053,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 270,
+      "order": 105,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7074,7 +7074,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 271,
+      "order": 197,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7095,7 +7095,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 272,
+      "order": 54,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7116,7 +7116,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 273,
+      "order": 110,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7137,7 +7137,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 274,
+      "order": 85,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7158,7 +7158,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 275,
+      "order": 18,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7179,7 +7179,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 276,
+      "order": 158,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7200,7 +7200,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 277,
+      "order": 192,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7221,7 +7221,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 278,
+      "order": 194,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7242,7 +7242,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 279,
+      "order": 5,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7263,7 +7263,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 280,
+      "order": 99,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7284,7 +7284,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 281,
+      "order": 104,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7305,7 +7305,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 282,
+      "order": 20,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7326,7 +7326,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 283,
+      "order": 88,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7347,7 +7347,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 284,
+      "order": 198,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7368,7 +7368,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 285,
+      "order": 82,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7389,7 +7389,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 286,
+      "order": 101,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7410,7 +7410,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 287,
+      "order": 4,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7431,7 +7431,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 288,
+      "order": 217,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7452,7 +7452,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 289,
+      "order": 200,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7473,7 +7473,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 290,
+      "order": 102,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7494,7 +7494,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 291,
+      "order": 154,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7515,7 +7515,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 292,
+      "order": 57,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7536,7 +7536,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 293,
+      "order": 114,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7557,7 +7557,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 294,
+      "order": 28,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7578,7 +7578,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 295,
+      "order": 108,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7599,7 +7599,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 296,
+      "order": 144,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7620,7 +7620,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 297,
+      "order": 71,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7641,7 +7641,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 298,
+      "order": 80,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7662,7 +7662,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 299,
+      "order": 73,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7683,7 +7683,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 300,
+      "order": 21,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7704,7 +7704,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 301,
+      "order": 189,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7725,7 +7725,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 302,
+      "order": 62,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7746,7 +7746,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 303,
+      "order": 92,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7767,7 +7767,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 304,
+      "order": 56,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7788,7 +7788,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 305,
+      "order": 112,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7809,7 +7809,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 306,
+      "order": 50,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7830,7 +7830,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 307,
+      "order": 55,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7851,7 +7851,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 308,
+      "order": 97,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7872,7 +7872,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 309,
+      "order": 72,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7893,7 +7893,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 310,
+      "order": 107,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7914,7 +7914,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 311,
+      "order": 19,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7935,7 +7935,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 312,
+      "order": 64,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7956,7 +7956,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 313,
+      "order": 344,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7977,7 +7977,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 314,
+      "order": 345,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -7998,7 +7998,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 315,
+      "order": 346,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8019,7 +8019,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 316,
+      "order": 347,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8040,7 +8040,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 317,
+      "order": 348,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8061,7 +8061,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 318,
+      "order": 349,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8082,7 +8082,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 319,
+      "order": 350,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8103,7 +8103,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 320,
+      "order": 351,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8124,7 +8124,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 321,
+      "order": 352,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8145,7 +8145,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 322,
+      "order": 353,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8166,7 +8166,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 323,
+      "order": 354,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8187,7 +8187,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 324,
+      "order": 355,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8208,7 +8208,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 325,
+      "order": 356,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8229,7 +8229,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 326,
+      "order": 357,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8250,7 +8250,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 327,
+      "order": 358,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8271,7 +8271,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 328,
+      "order": 359,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8292,7 +8292,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 329,
+      "order": 360,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8313,7 +8313,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 330,
+      "order": 361,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8334,7 +8334,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 331,
+      "order": 362,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8355,7 +8355,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 332,
+      "order": 363,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8376,7 +8376,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 333,
+      "order": 364,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8397,7 +8397,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 334,
+      "order": 365,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8418,7 +8418,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 335,
+      "order": 366,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8439,7 +8439,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 336,
+      "order": 367,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8460,7 +8460,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 337,
+      "order": 368,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8481,7 +8481,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 338,
+      "order": 369,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8502,7 +8502,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 339,
+      "order": 370,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8523,7 +8523,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 340,
+      "order": 371,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8544,7 +8544,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 341,
+      "order": 372,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8565,7 +8565,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 342,
+      "order": 373,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8586,7 +8586,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 343,
+      "order": 374,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8607,7 +8607,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 344,
+      "order": 375,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8628,7 +8628,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 345,
+      "order": 376,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8649,7 +8649,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 346,
+      "order": 377,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8670,7 +8670,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 347,
+      "order": 378,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8691,7 +8691,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 348,
+      "order": 379,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8712,7 +8712,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 349,
+      "order": 380,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8733,7 +8733,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 350,
+      "order": 381,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8754,7 +8754,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 351,
+      "order": 382,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8775,7 +8775,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 352,
+      "order": 383,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8796,7 +8796,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 353,
+      "order": 384,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8817,7 +8817,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 354,
+      "order": 385,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8838,7 +8838,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 355,
+      "order": 386,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8859,7 +8859,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 356,
+      "order": 387,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8880,7 +8880,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 357,
+      "order": 388,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8901,7 +8901,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 358,
+      "order": 389,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8922,7 +8922,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 359,
+      "order": 390,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8943,7 +8943,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 360,
+      "order": 391,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8964,7 +8964,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 361,
+      "order": 392,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -8985,7 +8985,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 362,
+      "order": 393,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9006,7 +9006,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 363,
+      "order": 394,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9027,7 +9027,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 364,
+      "order": 395,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9048,7 +9048,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 365,
+      "order": 396,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9069,7 +9069,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 366,
+      "order": 397,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9090,7 +9090,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 367,
+      "order": 398,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9111,7 +9111,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 368,
+      "order": 399,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9132,7 +9132,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 369,
+      "order": 400,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9153,7 +9153,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 370,
+      "order": 401,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9174,7 +9174,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 371,
+      "order": 402,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9195,7 +9195,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 372,
+      "order": 403,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9216,7 +9216,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 373,
+      "order": 404,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9237,7 +9237,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 374,
+      "order": 405,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9258,7 +9258,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 375,
+      "order": 406,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9279,7 +9279,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 376,
+      "order": 407,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9300,7 +9300,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 377,
+      "order": 408,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9321,7 +9321,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 378,
+      "order": 409,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9342,7 +9342,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 379,
+      "order": 410,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9363,7 +9363,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 380,
+      "order": 411,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9384,7 +9384,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 381,
+      "order": 412,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9405,7 +9405,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 382,
+      "order": 413,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9426,7 +9426,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 383,
+      "order": 414,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9447,7 +9447,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 384,
+      "order": 415,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9468,7 +9468,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 385,
+      "order": 416,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9489,7 +9489,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 386,
+      "order": 417,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9510,7 +9510,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 387,
+      "order": 418,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9531,7 +9531,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 388,
+      "order": 419,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9552,7 +9552,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 389,
+      "order": 420,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9573,7 +9573,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 390,
+      "order": 421,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9594,7 +9594,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 391,
+      "order": 422,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9615,7 +9615,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 392,
+      "order": 423,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9636,7 +9636,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 393,
+      "order": 424,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9657,7 +9657,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 394,
+      "order": 425,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9678,7 +9678,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 395,
+      "order": 426,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9699,7 +9699,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 396,
+      "order": 427,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9720,7 +9720,7 @@
       "body": "",
       "epitaph": "",
       "series": "main-character-vile",
-      "order": 397,
+      "order": 428,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9741,7 +9741,7 @@
       "body": "",
       "epitaph": "",
       "series": "mirror-double",
-      "order": 398,
+      "order": 162,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9764,7 +9764,7 @@
       "body": "",
       "epitaph": "",
       "series": "mirror-double",
-      "order": 399,
+      "order": 166,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9785,7 +9785,7 @@
       "body": "",
       "epitaph": "",
       "series": "mirror-double",
-      "order": 400,
+      "order": 141,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9806,7 +9806,7 @@
       "body": "",
       "epitaph": "",
       "series": "mirror-double",
-      "order": 401,
+      "order": 8,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9827,7 +9827,7 @@
       "body": "",
       "epitaph": "",
       "series": "mirror-double",
-      "order": 402,
+      "order": 175,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9848,7 +9848,7 @@
       "body": "",
       "epitaph": "",
       "series": "paired-figure",
-      "order": 403,
+      "order": 87,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9869,7 +9869,7 @@
       "body": "",
       "epitaph": "",
       "series": "paired-figure",
-      "order": 404,
+      "order": 74,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9890,7 +9890,7 @@
       "body": "",
       "epitaph": "",
       "series": "paired-figure",
-      "order": 405,
+      "order": 58,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9911,7 +9911,7 @@
       "body": "",
       "epitaph": "",
       "series": "paired-figure",
-      "order": 406,
+      "order": 429,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9932,7 +9932,7 @@
       "body": "",
       "epitaph": "",
       "series": "paired-figure",
-      "order": 407,
+      "order": 430,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9953,7 +9953,7 @@
       "body": "",
       "epitaph": "",
       "series": "paired-figure",
-      "order": 408,
+      "order": 431,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9974,7 +9974,7 @@
       "body": "",
       "epitaph": "",
       "series": "paired-figure",
-      "order": 409,
+      "order": 432,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -9995,7 +9995,7 @@
       "body": "",
       "epitaph": "",
       "series": "red-candle-field",
-      "order": 410,
+      "order": 22,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10016,7 +10016,7 @@
       "body": "",
       "epitaph": "",
       "series": "red-candle-field",
-      "order": 411,
+      "order": 23,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10037,7 +10037,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-beach",
-      "order": 412,
+      "order": 164,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10058,7 +10058,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-restraint",
-      "order": 413,
+      "order": 227,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10079,7 +10079,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-restraint",
-      "order": 414,
+      "order": 218,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10100,7 +10100,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-restraint",
-      "order": 415,
+      "order": 212,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10121,7 +10121,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-restraint",
-      "order": 416,
+      "order": 215,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10142,7 +10142,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-restraint",
-      "order": 417,
+      "order": 226,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10163,7 +10163,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-rose",
-      "order": 418,
+      "order": 140,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10184,7 +10184,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-rose",
-      "order": 419,
+      "order": 243,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10205,7 +10205,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-rose",
-      "order": 420,
+      "order": 231,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10226,7 +10226,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-rose",
-      "order": 421,
+      "order": 232,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10247,7 +10247,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-suspension",
-      "order": 422,
+      "order": 433,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10268,7 +10268,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-suspension",
-      "order": 423,
+      "order": 434,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10289,7 +10289,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-weapon",
-      "order": 424,
+      "order": 109,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10310,7 +10310,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-weapon",
-      "order": 425,
+      "order": 26,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10331,7 +10331,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-weapon",
-      "order": 426,
+      "order": 95,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10352,7 +10352,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-weapon",
-      "order": 427,
+      "order": 24,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10373,7 +10373,7 @@
       "body": "",
       "epitaph": "",
       "series": "vile-weapon",
-      "order": 428,
+      "order": 84,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10394,7 +10394,7 @@
       "body": "",
       "epitaph": "",
       "series": "void-walk",
-      "order": 429,
+      "order": 435,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10415,7 +10415,7 @@
       "body": "",
       "epitaph": "",
       "series": "volcanic-beach",
-      "order": 430,
+      "order": 245,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10436,7 +10436,7 @@
       "body": "",
       "epitaph": "",
       "series": "volcanic-beach",
-      "order": 431,
+      "order": 149,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10457,7 +10457,7 @@
       "body": "Put a body on a coast this old and the coast does not adjust. The stacks have been refusing the water longer than there have been eyes to watch them, and the figure standing among them is offered no relation except scale - small, pale, briefly here, on sand that is black because it was once fire. There is no shelter in the frame and none implied. What is withheld is comfort: the picture will not make her the thing the landscape is about, because the landscape is about nothing, which is the bleakest thing it can be. She stands in it anyway, unhurried, the one warm-blooded fact on a shore that has never once been warm.",
       "epitaph": "The coast kept not noticing.",
       "series": "volcanic-beach",
-      "order": 432,
+      "order": 244,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10480,7 +10480,7 @@
       "body": "The waterline does the editing. Above it she surfaces, lit and specific; below it the same face is returned colder, and you cannot quite decide which one the picture is of. The reflection is too exact to be only a reflection - it keeps its own attention and does not break when she moves. What is withheld is the depth she came from, the body the black water keeps below the chest, so the image is all threshold: arrival and its echo, with the arriving itself left underwater where you are not invited. You are looking at a meeting, not a portrait. She came up to be doubled, and the water agreed.",
       "epitaph": "She surfaced; something surfaced with her.",
       "series": "water-double",
-      "order": 433,
+      "order": 7,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10503,7 +10503,7 @@
       "body": "",
       "epitaph": "",
       "series": "water-double",
-      "order": 434,
+      "order": 11,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10524,7 +10524,7 @@
       "body": "",
       "epitaph": "",
       "series": "water-double",
-      "order": 435,
+      "order": 436,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -10545,7 +10545,7 @@
       "body": "",
       "epitaph": "",
       "series": "water-immersion",
-      "order": 436,
+      "order": 33,
       "tier": "standard",
       "content_flags": [
         "nsfw"
