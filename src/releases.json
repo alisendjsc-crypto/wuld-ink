@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-09-gallery-share-and-sticky-reveal",
+    "date": "2026-06-09",
+    "summary": "Per-plate share links: [ share ] in the lightbox and the video theater copies a /gallery/<room>/#plate-<id> deep link that reopens the plate on load (consent-gated plates stay withheld — a link is not a bypass). The NSFW reveal now persists until purposefully hidden. Lobby: the consent gate sits above the Prints section and its status line counts flagged plates across all rooms.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-09-gallery-video-theater",
     "date": "2026-06-09",
     "summary": "Gallery: video theater — clicking a video now opens it center-stage, dims the room, and loops; back / forward / random / close controls and the plate id ride the frame, matching the photo lightbox.",

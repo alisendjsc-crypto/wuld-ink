@@ -40,7 +40,7 @@
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
   <link rel="stylesheet" href="/components/gallery.css?v=K30">
-  <link rel="stylesheet" href="/components/gallery-room.css?v=K104">
+  <link rel="stylesheet" href="/components/gallery-room.css?v=K105">
   <!-- ============================================================
        K83/K87 - manifest-driven gallery (vessel for the admin-CMS
        arc; K87 = schema v2: categories + media kinds + caption tiers)
@@ -139,13 +139,13 @@
          element in the DOM (consent-discipline, not security). localStorage
          "wuld:gallery-consent" persists consent; reveal resets per visit.
          CSS contract unchanged: body[data-nsfw-revealed] + per-card rule
-         in gallery.css. Currently 0 plates flagged; the gate is dormant
-         until an NSFW batch lands via the admin tool. -->
+         in gallery.css. Armed since K89 — flagged plates ship in the manifest;
+         the status line counts them across all rooms (K105). -->
     <div class="gallery-nsfw-bar" role="region" aria-label="Sensitive content gate">
       <button class="gallery-nsfw-toggle" id="gallery-nsfw-toggle" type="button" aria-pressed="false">
         [ NSFW &mdash; hidden ]
       </button>
-      <span class="gallery-nsfw-status" id="gallery-nsfw-status">0 plates currently flagged in this room.</span>
+      <span class="gallery-nsfw-status" id="gallery-nsfw-status">Flagged plates are withheld until revealed.</span>
     </div>
 
     <section class="gallery-grid" id="gallery-grid" aria-label="Plates">
@@ -207,7 +207,7 @@
 
   <script src="/components/nav.js?v=K43"></script>
 
-  <script src="/components/gallery-room.js?v=K104" defer></script>
+  <script src="/components/gallery-room.js?v=K105" defer></script>
 
   <!-- ============================================================
        Ambient background player

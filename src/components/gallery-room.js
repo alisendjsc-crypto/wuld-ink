@@ -95,11 +95,40 @@
      withheld cards carry no .gallery-plate-video, so they cannot
      open the theater and never enter its scope. The images lightbox
      is untouched.
+   K105 STICKY REVEAL + SHARE / DEEP LINKS + LOBBY GATE PLACEMENT:
+   - The NSFW toggle persists in localStorage "wuld:gallery-reveal".
+     Boot composes revealed = hasConsent() && storedReveal() —
+     consent PRIMACY: the stored bit alone never reveals; first-ever
+     reveal still gates 18+; pre-consent withheld cards stay
+     media-free (K87). Toggle-off persists off; toggle-on and
+     consent-confirm persist on. Persistence kills the re-click,
+     never the gate.
+   - [ share ] rides the theater AND lightbox chrome (injected, no
+     shell edit; .gallery-lightbox-random base class + own offsets —
+     the base is absolutely positioned). Copies location.origin +
+     the plate's CANONICAL room URL (/gallery/<room>/#plate-<id>;
+     editorial -> /gallery/#plate-<id>) via navigator.clipboard with
+     an execCommand fallback; the button text flips [ copied ]
+     briefly (textContent swap, no animation). The address-bar hash
+     tracks open/prev/next/random via history.replaceState (share
+     always copies the CURRENT plate) and clears on close.
+   - #plate-<id> routes post-render: video -> theater, image ->
+     lightbox (a plate rendered twice prefers its main-grid card);
+     flagged + !revealed -> scrollIntoView the withheld card ONLY —
+     a deep link is NOT a consent bypass (K87). hashchange re-routes
+     (replaceState never fires it).
+   - LOBBY: the Prints section now inserts BELOW the NSFW bar —
+     rooms index -> gate -> Prints -> editorial grid (K99's catIndex
+     anchor had stranded the toggle under the Prints grid) — and the
+     status line counts flagged across ALL rooms (the lobby surfaces
+     every room via search + Prints; editorial-only "0 in this
+     room" misled beside withheld Prints cards).
    ============================================================ */
 (function() {
   'use strict';
   var CONSENT_KEY = 'wuld:gallery-consent';
   var SAVED_KEY = 'wuld:gallery-saved';
+  var REVEAL_KEY = 'wuld:gallery-reveal';
   var ROOM = (document.body.getAttribute('data-gallery-category') || 'editorial');
   var grid = document.getElementById('gallery-grid');
   if (!grid) return;
@@ -133,6 +162,14 @@
   }
   function storeConsent() {
     try { localStorage.setItem(CONSENT_KEY, new Date().toISOString()); } catch (e) {}
+  }
+  /* K105 sticky reveal: the stored bit NEVER reveals on its own —
+     boot composes hasConsent() && storedReveal() (consent primacy). */
+  function storedReveal() {
+    try { return localStorage.getItem(REVEAL_KEY) === 'on'; } catch (e) { return false; }
+  }
+  function persistReveal(on) {
+    try { localStorage.setItem(REVEAL_KEY, on ? 'on' : 'off'); } catch (e) {}
   }
   function isGated(p) { return (p.content_flags || []).indexOf('nsfw') !== -1; }
   function isSealed(p) { return p.tier === 'sealed'; }
@@ -237,6 +274,18 @@
     });
   }
   /* K99-PURE-END */
+
+  /* K105-PURE-START */
+  function plateUrl(p) {
+    var room = (p && p.category) || 'editorial';
+    var path = room === 'editorial' ? '/gallery/' : '/gallery/' + room + '/';
+    return path + '#plate-' + ((p && p.id) || '');
+  }
+  function parsePlateHash(hash) {
+    var m = /^#plate-([A-Za-z0-9_-]+)$/.exec(hash || '');
+    return m ? m[1] : null;
+  }
+  /* K105-PURE-END */
 
   /* ---- K94 filter helpers (pure over plate objects) ---- */
   function searchBlob(p) {
@@ -450,7 +499,12 @@
     printsGrid = el('div', 'gallery-grid gallery-prints-grid');
     printsGrid.id = 'gallery-prints-grid';
     printsSection.appendChild(printsGrid);
-    catIndex.parentNode.insertBefore(printsSection, catIndex.nextSibling);
+    /* K105: Prints lands BELOW the NSFW bar — K99's catIndex anchor had
+       stranded the gate toggle under the Prints grid (operator note).
+       Order: rooms index -> gate -> Prints -> editorial grid. */
+    var nsfwBar = toggleBtn ? toggleBtn.closest('.gallery-nsfw-bar') : null;
+    var pAnchor = (nsfwBar && nsfwBar.parentNode === catIndex.parentNode) ? nsfwBar : catIndex;
+    pAnchor.parentNode.insertBefore(printsSection, pAnchor.nextSibling);
     printsGrid.addEventListener('click', starClick);
     printsGrid.addEventListener('click', capToggleClick);
     printsGrid.addEventListener('click', thCardClick);
@@ -543,12 +597,15 @@
 
   function updateStatus() {
     if (!statusEl) return;
-    /* flagged count is the room's own (stable; does not chase the active filter). */
-    var base = isLobby
-      ? PLATES.filter(function(p) { return !isSealed(p) && plateRoom(p) === ROOM; })
-      : scopePlates();
-    var g = base.filter(isGated).length;
-    statusEl.textContent = g + (g === 1 ? ' plate' : ' plates') + ' currently flagged in this room.';
+    /* room pages: the room's own flagged count (stable; does not chase
+       the active filter). K105 lobby: count flagged across ALL rooms —
+       the lobby surfaces every room via search + Prints, so the old
+       editorial-only "0 ... in this room" misled the moment withheld
+       Prints cards rendered beside it. */
+    var g = scopePlates().filter(isGated).length;
+    statusEl.textContent = isLobby
+      ? g + (g === 1 ? ' plate' : ' plates') + ' flagged across the rooms — withheld until revealed.'
+      : g + (g === 1 ? ' plate' : ' plates') + ' currently flagged in this room.';
   }
   function updateHero() {
     if (!heroCurrent) return;
@@ -765,14 +822,15 @@
 
   if (toggleBtn) {
     toggleBtn.addEventListener('click', function() {
-      if (revealed) { revealed = false; setToggleUI(); render(); return; }
-      if (hasConsent()) { revealed = true; setToggleUI(); render(); return; }
+      if (revealed) { revealed = false; persistReveal(false); setToggleUI(); render(); return; }
+      if (hasConsent()) { revealed = true; persistReveal(true); setToggleUI(); render(); return; }
       openConsent();
     });
   }
   if (consentYes) {
     consentYes.addEventListener('click', function() {
       storeConsent();
+      persistReveal(true);
       closeConsent();
       revealed = true;
       setToggleUI();
@@ -781,6 +839,59 @@
   }
   if (consentNo) {
     consentNo.addEventListener('click', function() { closeConsent(); });
+  }
+
+  /* ---- K105 share / deep links: canonical room URL per plate;
+         clipboard with execCommand fallback; the address-bar hash
+         tracks the open plate via replaceState (never pushState —
+         no history spam; replaceState also never fires hashchange,
+         so routeHash re-runs only on real external hash edits). ---- */
+  function plateById(id) {
+    if (!id) return null;
+    for (var i = 0; i < PLATES.length; i++) {
+      if (PLATES[i].id === id) return PLATES[i];
+    }
+    return null;
+  }
+  var shareTimer = null;
+  function fallbackCopy(text, done) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    } catch (e) {}
+  }
+  function copyShare(btn, pid) {
+    var p = plateById(pid);
+    if (!p || !btn) return;
+    var url = location.origin + plateUrl(p);
+    var done = function() {
+      btn.textContent = '[ copied ]';
+      if (shareTimer) clearTimeout(shareTimer);
+      shareTimer = setTimeout(function() { btn.textContent = '[ share ]'; }, 1400);
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function() { fallbackCopy(url, done); });
+        return;
+      }
+    } catch (e) {}
+    fallbackCopy(url, done);
+  }
+  function setPlateHash(pid) {
+    if (!pid) return;
+    try { history.replaceState(null, '', location.pathname + location.search + '#plate-' + pid); } catch (e) {}
+  }
+  function clearPlateHash() {
+    if (!parsePlateHash(location.hash)) return;
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
 
   /* ---- lightbox (K27 logic, delegation-adapted; images only —
@@ -794,6 +905,7 @@
   var btnNext = document.getElementById('gallery-lightbox-next');
   var currentIdx = -1;
   var lbScope = grid;
+  var lbPid = '';
 
   function visiblePlates() {
     return Array.prototype.slice.call(lbScope.querySelectorAll('.gallery-plate')).filter(function(p) {
@@ -814,11 +926,14 @@
     lbImg.setAttribute('alt', title || (num ? 'Plate ' + num : ''));
     capNum.textContent = (num ? 'Plate ' + num : '') + (pid ? '  ·  ' + pid : '');
     capTitle.textContent = title || '';
+    lbPid = pid || '';
+    setPlateHash(lbPid);
     overlay.setAttribute('data-open', 'true');
     document.body.classList.add('gallery-lightbox-open');
   }
 
   function lbClose() {
+    clearPlateHash();
     overlay.setAttribute('data-open', 'false');
     document.body.classList.remove('gallery-lightbox-open');
     setTimeout(function() {
@@ -875,6 +990,21 @@
       btnNext.parentNode.insertBefore(btnRand, btnNext.nextSibling);
     }
     if (btnRand) btnRand.addEventListener('click', lbRandom);
+    /* K105 [ share ] — injected like the randomizer; rides the
+       .gallery-lightbox-random base class with own offsets (the base
+       is absolutely positioned — two same-class buttons would overlap). */
+    var btnShare = document.getElementById('gallery-lightbox-share');
+    if (!btnShare && btnRand && btnRand.parentNode) {
+      btnShare = document.createElement('button');
+      btnShare.type = 'button';
+      btnShare.id = 'gallery-lightbox-share';
+      btnShare.className = 'gallery-lightbox-random gallery-lightbox-share';
+      btnShare.setAttribute('aria-label', 'Copy a link to this plate');
+      btnShare.setAttribute('title', 'Copy a link to this plate');
+      btnShare.textContent = '[ share ]';
+      btnRand.parentNode.insertBefore(btnShare, btnRand.nextSibling);
+    }
+    if (btnShare) btnShare.addEventListener('click', function() { copyShare(btnShare, lbPid); });
     overlay.addEventListener('click', function(e) {
       if (e.target === overlay) lbClose();
     });
@@ -954,6 +1084,7 @@
   var thVideo = null;
   var thIdx = -1;
   var thScope = null;
+  var thPid = '';
 
   function buildTheaterShell() {
     if (thOverlay) return;
@@ -978,10 +1109,13 @@
     var bNext = mkBtn('gallery-lightbox-next', 'gallery-theater-next', 'Next video', '[ \u2192 ]');
     var bRand = mkBtn('gallery-lightbox-random', 'gallery-theater-random', 'Random video', '[ random ]');
     bRand.setAttribute('title', 'Jump to a random video (press r)');
+    var bShare = mkBtn('gallery-lightbox-random gallery-lightbox-share', 'gallery-theater-share', 'Copy a link to this plate', '[ share ]');
+    bShare.setAttribute('title', 'Copy a link to this plate');
     thStage.appendChild(bClose);
     thStage.appendChild(bPrev);
     thStage.appendChild(bNext);
     thStage.appendChild(bRand);
+    thStage.appendChild(bShare);
     thCapWrap = el('div', 'gallery-lightbox-caption');
     thCapNum = el('span', 'gallery-lightbox-caption-num');
     thCapNum.id = 'gallery-theater-caption-num';
@@ -996,6 +1130,7 @@
     bPrev.addEventListener('click', function() { thStep(-1); });
     bNext.addEventListener('click', function() { thStep(1); });
     bRand.addEventListener('click', thRandom);
+    bShare.addEventListener('click', function() { copyShare(bShare, thPid); });
     thOverlay.addEventListener('click', function(e) {
       if (e.target === thOverlay) thClose();
     });
@@ -1040,6 +1175,8 @@
     thVideo = v;
     thCapNum.textContent = (num ? 'Plate ' + num : '') + (pid ? '  ·  ' + pid : '');
     thCapTitle.textContent = title || '';
+    thPid = pid || '';
+    setPlateHash(thPid);
     thOverlay.setAttribute('data-open', 'true');
     document.body.classList.add('gallery-lightbox-open');
     var pr = v.play();
@@ -1049,6 +1186,7 @@
   function thClose() {
     if (!thOverlay) return;
     thTeardown();
+    clearPlateHash();
     thOverlay.setAttribute('data-open', 'false');
     document.body.classList.remove('gallery-lightbox-open');
   }
@@ -1090,6 +1228,43 @@
     else if (e.key === 'r' || e.key === 'R') { thRandom(); }
   });
 
+  /* ---- K105 deep-link router: #plate-<id> opens post-render.
+         CONSENT LEG (K87): flagged + !revealed scrolls to the
+         withheld card and opens NOTHING — a deep link is not a
+         consent bypass. A plate rendered twice (lobby: Prints +
+         editorial grid) prefers its main-grid card. ---- */
+  function routeHash() {
+    var pid = parsePlateHash(location.hash);
+    if (!pid) return;
+    var p = plateById(pid);
+    if (!p || isSealed(p)) return;
+    var cards = document.querySelectorAll('.gallery-plate[data-plate-id="' + pid + '"]');
+    if (!cards.length) return;
+    var card = cards[0];
+    for (var j = 0; j < cards.length; j++) {
+      if (cards[j].parentNode === grid) { card = cards[j]; break; }
+    }
+    if (isGated(p) && !revealed) {
+      card.scrollIntoView({ block: 'center' });
+      return;
+    }
+    if (mediaKind(p) === 'video') {
+      if (!card.querySelector('.gallery-plate-video') || !card.parentNode) return;
+      thScope = card.parentNode;
+      var vis = thVisible();
+      var idx = vis.indexOf(card);
+      if (idx !== -1) thOpen(idx);
+    } else {
+      if (!(overlay && lbImg) || !card.querySelector('.gallery-plate-img')) return;
+      lbScope = (card.parentNode && card.parentNode.classList &&
+        card.parentNode.classList.contains('gallery-prints-grid')) ? card.parentNode : grid;
+      var vis2 = visiblePlates();
+      var idx2 = vis2.indexOf(card);
+      if (idx2 !== -1) lbOpen(idx2);
+    }
+  }
+  window.addEventListener('hashchange', routeHash);
+
   /* ---- boot ---- */
   fetch('/gallery/manifest.json', { cache: 'no-cache' })
     .then(function(r) {
@@ -1105,12 +1280,16 @@
       });
       PLATES = (m.plates || []).slice().sort(function(a, b) { return (a.order || 0) - (b.order || 0); });
       loadSaved();
+      /* K105 sticky reveal — consent PRIMACY: the stored bit alone
+         never reveals. */
+      revealed = hasConsent() && storedReveal();
       buildControls();
       buildPrintsShell();
       buildVideosShell();
       setToggleUI();
       render();
       renderCatIndex();
+      routeHash();
     })
     .catch(function() {
       grid.textContent = '';

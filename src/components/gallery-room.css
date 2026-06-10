@@ -85,6 +85,15 @@
   .gallery-lightbox-random { top: calc(-1 * var(--s-5)); left: 0; right: auto; bottom: auto; transform: none; }
 }
 
+/* ---------- K105 lightbox/theater [ share ] (injected button; rides the
+   .gallery-lightbox-random base class above with OWN offsets — the base is
+   absolutely positioned, two same-class buttons would overlap; same
+   specificity, later in the cascade wins) ---------- */
+.gallery-lightbox-share { top: calc(50% + 6.5rem); }
+@media (max-width: 760px) {
+  .gallery-lightbox-share { top: calc(-1 * var(--s-5)); left: 50%; right: auto; bottom: auto; transform: translateX(-50%); }
+}
+
 /* --- K96: per-plate print buy-link (renders only when manifest plate.print_url
    is present; link-out only) --- */
 .gallery-print-link {
