@@ -554,7 +554,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "full"
+      "caption_tier": "full",
+      "video": "gore-df568fb5cdf3"
     },
     {
       "id": "main-character-54fe622e0f9e",
@@ -575,7 +576,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-629bdc6cb708"
     },
     {
       "id": "plate-04-turned-mid-erasure",
@@ -700,7 +702,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-58c9a44ba510"
     },
     {
       "id": "plate-05-audience-of-one-shadow",
@@ -1157,7 +1160,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-5d6ff52b9227"
     },
     {
       "id": "plate-11-bleed-through-diptych",
@@ -2233,7 +2237,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-3e29f3162488"
     },
     {
       "id": "main-character-c258a685cfca",
@@ -2464,7 +2469,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-161ed63f5472"
     },
     {
       "id": "main-character-a0f2412df6a7",
@@ -2737,7 +2743,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-8335486648c5"
     },
     {
       "id": "main-character-fb59203c6f81",
@@ -2758,7 +2765,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-c4ae2c6a3b5e"
     },
     {
       "id": "main-character-21a3c46c74f8",
@@ -2842,7 +2850,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-190a4ed120f2"
     },
     {
       "id": "main-character-1497bc1fe5a1",
@@ -2863,7 +2872,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-2d2625486b5f"
     },
     {
       "id": "main-character-ef0c0dead71e",
@@ -3220,7 +3230,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-e1cf97bf489e"
     },
     {
       "id": "main-character-0ba5ce90817c",
@@ -3367,7 +3378,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-9a880a44dcaf"
     },
     {
       "id": "main-character-5a4c54c49b0b",
@@ -3388,7 +3400,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-cc6873e538e5"
     },
     {
       "id": "main-character-4c37f75cdca5",
@@ -3409,7 +3422,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-4d4925950895"
     },
     {
       "id": "main-character-40d0d071dc72",
@@ -3535,7 +3549,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-ebf1d42e3ddb"
     },
     {
       "id": "main-character-9dea3f357b92",
@@ -3913,7 +3928,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-a35b29b3dd40"
     },
     {
       "id": "main-character-dacc9ede324c",
@@ -3934,7 +3950,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-8bb9a6405149"
     },
     {
       "id": "main-character-c936987f9e00",
@@ -3955,7 +3972,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-a910fc24deab"
     },
     {
       "id": "main-character-479fc7e04733",
@@ -4207,7 +4225,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-f0c0b459c663"
     },
     {
       "id": "main-character-90a997219d6d",
@@ -4501,7 +4520,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-1b49e920aea6"
     },
     {
       "id": "main-character-27ce3f9bdcee",
@@ -4627,7 +4647,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-a7060cc66ad4"
     },
     {
       "id": "main-character-9e58677dae42",
@@ -4669,7 +4690,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-8dd5bc1615fd"
     },
     {
       "id": "main-character-5251bbe766bd",
@@ -4732,7 +4754,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-94a54dcfbb08"
     },
     {
       "id": "main-character-ed9f743ce319",
@@ -5070,7 +5093,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-b362e2fe1f46"
     },
     {
       "id": "main-character-f67a117f4d1f",
@@ -5196,7 +5220,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-a6076fdb7c58"
     },
     {
       "id": "main-character-6c681ab9ff90",
@@ -5448,7 +5473,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-75d590994f04"
     },
     {
       "id": "main-character-ed21b5d74119",
@@ -5490,7 +5516,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-65c82eee495e"
     },
     {
       "id": "main-character-3a2f75405bf5",
@@ -5532,7 +5559,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-f534d92ff92d"
     },
     {
       "id": "main-character-5f1292d77ce3",
@@ -5637,7 +5665,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-755e61ffa0ba"
     },
     {
       "id": "main-character-b30198bfc0fa",
@@ -5721,7 +5750,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-d1c92d1c1868"
     },
     {
       "id": "main-character-6d4b0d941220",
@@ -5868,7 +5898,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-8c7894ec33b8"
     },
     {
       "id": "main-character-d753769714d1",
@@ -5931,7 +5962,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-8186f9d83d70"
     },
     {
       "id": "main-character-0c2f59913c03",
@@ -5973,7 +6005,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-7d16376b638d"
     },
     {
       "id": "main-character-41fd977fc2f5",
@@ -5994,7 +6027,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "video": "main-character-e7725725ade2"
     },
     {
       "id": "main-character-8b8d5c6a5d4a",
@@ -6078,7 +6112,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-2028a933c5fd"
     },
     {
       "id": "main-character-e61072ba461e",
@@ -6099,7 +6134,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-4ef847f05f18"
     },
     {
       "id": "main-character-0cbdf3d9ffc9",
@@ -6183,7 +6219,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-082ec354be3f"
     },
     {
       "id": "main-character-20a1ae56a4d3",
@@ -6246,7 +6283,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-ea578f912d43"
     },
     {
       "id": "main-character-8ef622d01bc3",
@@ -6456,7 +6494,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-367e0fc73072"
     },
     {
       "id": "main-character-3e0fa60f8465",
@@ -6477,7 +6516,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-6ddbaaa9267f"
     },
     {
       "id": "main-character-0922e21ff8a6",
@@ -6498,7 +6538,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-b054c2b5b7ee"
     },
     {
       "id": "main-character-700902081f35",
@@ -6626,7 +6667,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "video": "main-character-a3aa60a80d05"
     },
     {
       "id": "main-character-629bdc6cb708",

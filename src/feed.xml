@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 21:41:20 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 22:24:35 +0000</lastBuildDate>
+    <item>
+      <title>Gallery: 42 operator-confirmed photo-video pairs land as additive manifest video: fields; paired image cards gain a [ mp4 ] affordance (star-adjacent) opening the video theater on the partner plate, consent-held; both gallery assets bumped to ?v=K109 across the 9 rooms.</title>
+      <link>https://wuld.ink/changelog/#2026-06-10-gallery-photo-video-pairing</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-10-gallery-photo-video-pairing</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery: 42 operator-confirmed photo-video pairs land as additive manifest video: fields; paired image cards gain a [ mp4 ] affordance (star-adjacent) opening the video theater on the partner plate, consent-held; both gallery assets bumped to ?v=K109 across the 9 rooms. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Argument Library v3.9.14 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.</title>
       <link>https://wuld.ink/changelog/#2026-06-10-library-v3-9-14</link>

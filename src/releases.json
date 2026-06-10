@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-10-gallery-photo-video-pairing",
+    "date": "2026-06-10",
+    "summary": "Gallery: 42 operator-confirmed photo-video pairs land as additive manifest video: fields; paired image cards gain a [ mp4 ] affordance (star-adjacent) opening the video theater on the partner plate, consent-held; both gallery assets bumped to ?v=K109 across the 9 rooms.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-10-library-v3-9-14",
     "date": "2026-06-10",
     "summary": "Argument Library v3.9.14 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.",

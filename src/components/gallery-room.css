@@ -69,6 +69,13 @@
 .gallery-star:hover { color: var(--c-fg); border-color: var(--c-accent); }
 .gallery-star:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
 .gallery-star.is-saved { color: var(--c-accent); border-color: var(--c-accent); }
+
+/* ---------- K109 paired-video affordance ([ mp4 ], star-adjacent figure
+   corner; renders only on revealed image cards whose plate carries a
+   confirmed manifest video: partner — never on withheld cards) ---------- */
+.gallery-mp4 { position: absolute; top: var(--s-2); left: calc(var(--s-2) + 2.2rem); z-index: 3; height: 1.9rem; display: inline-flex; align-items: center; justify-content: center; padding: 0 var(--s-2); font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); line-height: 1; background: rgba(10, 10, 10, 0.72); color: var(--c-fg-dim); border: var(--bw-thin) solid var(--c-border); cursor: pointer; }
+.gallery-mp4:hover { color: var(--c-fg); border-color: var(--c-accent); }
+.gallery-mp4:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
 .gallery-saved-toggle { display: inline-flex; align-items: baseline; gap: var(--s-2); font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); text-transform: uppercase; background: none; color: var(--c-fg-dim); border: var(--bw-thin) solid var(--c-border); padding: var(--s-2) var(--s-3); cursor: pointer; white-space: nowrap; }
 .gallery-saved-toggle:hover { border-color: var(--c-accent); color: var(--c-fg); }
 .gallery-saved-toggle:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }

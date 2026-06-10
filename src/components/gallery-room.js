@@ -32,6 +32,12 @@
      series (today: main-character, 18 series / 436 plates).
      Single-select + "All"; each chip carries its count.
    K95 FAVORITES + PLATE-# SEARCH:
+   - K109: paired-video affordance — an image plate carrying a manifest
+     video: field renders a [ mp4 ] button (star-adjacent, figure corner)
+     when its partner is renderable (consent-held: never pre-consent while
+     the partner is flagged, never on withheld cards); click opens the
+     K104 theater on the partner — live-card scope where rendered, else
+     a detached inert offscreen holder (singleton scope).
    - A per-plate star (.gallery-star, figure corner) toggles the
      plate id in localStorage "wuld:gallery-saved". Id-based, so it
      works on withheld cards pre-consent (no media enters the DOM);
@@ -477,6 +483,24 @@
     return b;
   }
 
+  /* ---- K109: paired-video affordance (manifest plate.video ->
+         partner video plate; consent discipline: the button exists only
+         when the partner itself would be renderable) ---- */
+  function mp4Btn(p) {
+    if (mediaKind(p) === 'video' || !p.video) return null;
+    var pa = plateById(p.video);
+    if (!pa || mediaKind(pa) !== 'video') return null;
+    if (isGated(pa) && !revealed) return null;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'gallery-mp4';
+    b.setAttribute('data-mp4-vid', pa.id || '');
+    b.setAttribute('aria-label', 'Open the paired video in the theater');
+    b.setAttribute('title', 'Paired video — open in theater');
+    b.textContent = '[ mp4 ]';
+    return b;
+  }
+
   function plateCard(p, withRoom) {
     var art = el('article', 'gallery-plate');
     tagCard(art, p);
@@ -515,6 +539,8 @@
     var pl = printLink(p);
     if (pl) art.appendChild(pl);
     art.appendChild(starBtn(p));
+    var mb = mp4Btn(p);
+    if (mb) art.appendChild(mb);
     return art;
   }
 
@@ -1231,6 +1257,53 @@
     if (FILTER.saved) render();
   }
   grid.addEventListener('click', starClick);
+
+
+  /* ---- K109: [ mp4 ] delegation (star pattern: a <button>, so the
+         lightbox handler never sees it; stopPropagation keeps the card
+         path closed). Opens the theater on the partner plate — live
+         card where one is rendered and visible, else a singleton scope
+         via a detached inert holder (offsetParent stays non-null:
+         absolutely positioned offscreen, never display:none). ---- */
+  var mp4Holder = null;
+  function ensureMp4Holder() {
+    if (mp4Holder) return mp4Holder;
+    mp4Holder = document.createElement('div');
+    mp4Holder.id = 'gallery-mp4-holder';
+    mp4Holder.setAttribute('aria-hidden', 'true');
+    mp4Holder.inert = true;
+    mp4Holder.style.position = 'absolute';
+    mp4Holder.style.left = '-9999px';
+    mp4Holder.style.top = '0';
+    document.body.appendChild(mp4Holder);
+    return mp4Holder;
+  }
+  function mp4Click(e) {
+    var btn = e.target && e.target.closest ? e.target.closest('.gallery-mp4') : null;
+    if (!btn) return;
+    e.stopPropagation();
+    var pa = plateById(btn.getAttribute('data-mp4-vid'));
+    if (!pa || mediaKind(pa) !== 'video') return;
+    if (isGated(pa) && !revealed) return;
+    var live = null;
+    var hits = document.querySelectorAll('.gallery-plate[data-plate-id="' + pa.id + '"] .gallery-plate-video');
+    for (var i = 0; i < hits.length; i++) {
+      var pl = hits[i].closest('.gallery-plate');
+      if (pl && pl.offsetParent !== null && !(mp4Holder && mp4Holder.contains(pl))) { live = pl; break; }
+    }
+    if (live && live.parentNode) {
+      thScope = live.parentNode;
+      var vis = thVisible();
+      var idx = vis.indexOf(live);
+      if (idx !== -1) { thOpen(idx); return; }
+    }
+    var hold = ensureMp4Holder();
+    hold.innerHTML = '';
+    hold.appendChild(plateCard(pa, false));
+    thScope = hold;
+    thOpen(0);
+  }
+  document.addEventListener('click', mp4Click);
 
   /* ---- K99 caption-disclosure delegation (a <button>, never
          .gallery-plate-img, so the lightbox handler ignores it) ---- */
