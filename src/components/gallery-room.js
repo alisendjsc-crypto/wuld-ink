@@ -123,7 +123,18 @@
      status line counts flagged across ALL rooms (the lobby surfaces
      every room via search + Prints; editorial-only "0 in this
      room" misled beside withheld Prints cards).
-   ============================================================ */
+   ============================================================   - K106: pagination + browse-all. Any rendered set past 60 plates
+    slices into pages -- mono [ prev ] page N / M [ next ] chrome
+    above and below the grid; the page resets on every filter change
+    and deep links page-locate before opening. Lobby-only
+    [ browse all N ] toggle walks the whole corpus paginated (counts
+    as a filter: routing chrome hides). The lobby Prints strip now
+    excludes editorial plates (their grid cards carry the links).
+    Flagged deep links surface the 18+ interstitial for
+    never-consented visitors; a purposeful hide stays scroll-only.
+    [ top ] floats in after ~1.5 viewports. K87 consent contract
+    held throughout.
+*/
 (function() {
   'use strict';
   var CONSENT_KEY = 'wuld:gallery-consent';
@@ -147,7 +158,8 @@
   var CATS = {};
   var CAT_ORDER = [];
   var revealed = false;
-  var FILTER = { q: '', series: '', saved: false, media: '' };
+  var browseBtn = null;
+  var FILTER = { q: '', series: '', saved: false, media: '', page: 1, browse: false };
   var SAVED = {};
   var searchInput = null;
   var chipsWrap = null;
@@ -287,6 +299,37 @@
   }
   /* K105-PURE-END */
 
+  /* K106-PURE-START (pagination math + lobby prints filter; pure) */
+  var PAGE_SIZE = 60;
+  function pageCount(total, size) {
+    var sz = size || PAGE_SIZE;
+    return total > 0 ? Math.ceil(total / sz) : 1;
+  }
+  function clampPage(page, total, size) {
+    var max = pageCount(total, size);
+    var p = page > 0 ? Math.floor(page) : 1;
+    return p > max ? max : p;
+  }
+  function pageSlice(list, page, size) {
+    var sz = size || PAGE_SIZE;
+    var p = clampPage(page, (list || []).length, sz);
+    return (list || []).slice((p - 1) * sz, p * sz);
+  }
+  function pageOfIndex(idx, size) {
+    var sz = size || PAGE_SIZE;
+    return idx >= 0 ? Math.floor(idx / sz) + 1 : 1;
+  }
+  function lobbyPrintsFilter(set) {
+    /* K106 Track C: the lobby Prints strip excludes editorial plates --
+       they are native to the lobby grid (which carries their
+       [ acquire print ] links); the strip surfaces the OTHER rooms'
+       purchasables. */
+    return (set || []).filter(function(p) {
+      return ((p && p.category) || 'editorial') !== 'editorial';
+    });
+  }
+  /* K106-PURE-END */
+
   /* ---- K94 filter helpers (pure over plate objects) ---- */
   function searchBlob(p) {
     return [p.id, p.title, p.technique, p.body, p.series, plateRoom(p)]
@@ -306,7 +349,7 @@
     }
     return scopePlates();
   }
-  function hasFilter() { return !!(FILTER.q || FILTER.series || FILTER.saved || FILTER.media); }
+  function hasFilter() { return !!(FILTER.q || FILTER.series || FILTER.saved || FILTER.media || FILTER.browse); }
   function matchedPlates() {
     var q = FILTER.q, s = FILTER.series;
     var pnum = q ? plateQueryNum(q) : null;
@@ -484,7 +527,9 @@
 
   /* ---- K99 Prints section (lobby only; membership = print_url
          presence -- see printsSet; consent contract identical to
-         the rooms) ---- */
+         the rooms; K106: the lobby strip excludes editorial plates --
+         their lobby grid cards already carry the link, see
+         lobbyPrintsFilter) ---- */
   var printsSection = null;
   var printsGrid = null;
   function buildPrintsShell() {
@@ -495,7 +540,7 @@
     printsSection.setAttribute('hidden', '');
     printsSection.appendChild(el('h2', 'gallery-prints-heading', 'Prints'));
     printsSection.appendChild(el('p', 'gallery-prints-aside',
-      'Plates available as physical prints. [ acquire print ] routes to the shop; flagged plates still gate through consent.'));
+      'Prints from the other rooms -- editorial prints carry [ acquire print ] on their own grid cards below. The shop link routes out; flagged plates still gate through consent.'));
     printsGrid = el('div', 'gallery-grid gallery-prints-grid');
     printsGrid.id = 'gallery-prints-grid';
     printsSection.appendChild(printsGrid);
@@ -512,7 +557,7 @@
   }
   function renderPrints() {
     if (!printsSection || !printsGrid) return;
-    var set = printsSet(PLATES, CAT_ORDER);
+    var set = lobbyPrintsFilter(printsSet(PLATES, CAT_ORDER));
     printsGrid.textContent = '';
     if (!set.length || hasFilter()) {
       printsSection.setAttribute('hidden', '');
@@ -632,14 +677,96 @@
     }
   }
 
+  /* ---- K106 Track D: pagination + lobby browse-all ----
+         Generic client-side pagination: any rendered set past
+         PAGE_SIZE slices into pages; mono pager chrome above and
+         below the grid; FILTER.page resets on every filter change
+         and clamps on shrink. The browse flag (lobby only) swaps
+         the default editorial view for the whole corpus -- it counts
+         as a filter (hasFilter), so routing chrome (rooms index,
+         Prints) hides while browsing, exactly as for search. ---- */
+  function displayList() {
+    /* the full pre-pagination set in display order -- images first,
+       videos trail (the K101 partition). render() slices THIS list;
+       routeHash page-locates against it. */
+    var base = hasFilter() ? matchedPlates() : defaultPlates();
+    var imgs = [], vids = [];
+    base.forEach(function(p) {
+      if (mediaKind(p) === 'video') vids.push(p); else imgs.push(p);
+    });
+    return imgs.concat(vids);
+  }
+  var pagerTop = null;
+  var pagerBottom = null;
+  function buildPagerShell() {
+    if (pagerTop || !grid || !grid.parentNode) return;
+    pagerTop = el('div', 'gallery-pager');
+    pagerTop.id = 'gallery-pager-top';
+    pagerTop.setAttribute('hidden', '');
+    pagerBottom = el('div', 'gallery-pager');
+    pagerBottom.id = 'gallery-pager-bottom';
+    pagerBottom.setAttribute('hidden', '');
+    grid.parentNode.insertBefore(pagerTop, grid);
+    if (videosSection && videosSection.parentNode) {
+      videosSection.parentNode.insertBefore(pagerBottom, videosSection.nextSibling);
+    } else {
+      grid.parentNode.insertBefore(pagerBottom, grid.nextSibling);
+    }
+    pagerTop.addEventListener('click', pagerClick);
+    pagerBottom.addEventListener('click', pagerClick);
+  }
+  function pagerClick(e) {
+    var b = e.target && e.target.closest ? e.target.closest('.gallery-pager-btn') : null;
+    if (!b || b.disabled) return;
+    var delta = b.getAttribute('data-page-delta') === 'next' ? 1 : -1;
+    var total = displayList().length;
+    var next = clampPage(FILTER.page + delta, total, PAGE_SIZE);
+    if (next === FILTER.page) return;
+    FILTER.page = next;
+    render();
+    /* land at the top of the new page -- instant, zero animation. */
+    (pagerTop || grid).scrollIntoView({ block: 'start' });
+  }
+  function renderPagers(total) {
+    if (!pagerTop || !pagerBottom) return;
+    var max = pageCount(total, PAGE_SIZE);
+    [pagerTop, pagerBottom].forEach(function(pg) {
+      pg.textContent = '';
+      if (max <= 1) { pg.setAttribute('hidden', ''); return; }
+      var prev = document.createElement('button');
+      prev.type = 'button';
+      prev.className = 'gallery-pager-btn';
+      prev.setAttribute('data-page-delta', 'prev');
+      prev.textContent = '[ prev ]';
+      prev.disabled = FILTER.page <= 1;
+      pg.appendChild(prev);
+      pg.appendChild(el('span', 'gallery-pager-state',
+        'page ' + FILTER.page + ' / ' + max + ' · ' + total + ' plates'));
+      var nx = document.createElement('button');
+      nx.type = 'button';
+      nx.className = 'gallery-pager-btn';
+      nx.setAttribute('data-page-delta', 'next');
+      nx.textContent = '[ next ]';
+      nx.disabled = FILTER.page >= max;
+      pg.appendChild(nx);
+      pg.removeAttribute('hidden');
+    });
+  }
+
   function render() {
     grid.textContent = '';
     var withRoom = isLobby && hasFilter();
-    var setTo = hasFilter() ? matchedPlates() : defaultPlates();
+    /* K106 Track D: paginate past PAGE_SIZE -- the slice keeps display
+       order (images first, videos trail), so mixed pages partition
+       cleanly below. */
+    var full = displayList();
+    var total = full.length;
+    FILTER.page = clampPage(FILTER.page, total, PAGE_SIZE);
+    var setTo = total > PAGE_SIZE ? pageSlice(full, FILTER.page, PAGE_SIZE) : full;
     var imgSet = setTo.filter(function(p) { return mediaKind(p) !== 'video'; });
     var vidSet = setTo.filter(function(p) { return mediaKind(p) === 'video'; });
 
-    if (!setTo.length) {
+    if (!total) {
       grid.appendChild(el('p', 'gallery-empty', hasFilter()
         ? 'No plates match that filter.'
         : 'This room is empty. The vessel precedes the cargo.'));
@@ -654,6 +781,7 @@
     }
 
     renderVideos(vidSet, withRoom);
+    renderPagers(total);
 
     /* the category index is routing chrome — hide it while the lobby shows results. */
     if (catIndex) {
@@ -663,7 +791,7 @@
 
     updateStatus();
     updateHero();
-    updateCount(setTo.length);
+    updateCount(total);
     renderPrints();
   }
 
@@ -761,17 +889,31 @@
       bar.appendChild(chipsWrap);
     }
 
+    if (isLobby) {
+      /* K106 Track D: explicit browse-everything affordance -- the
+         default lobby view (editorial + rooms index + Prints) holds;
+         the toggle swaps in the whole corpus, paginated. */
+      browseBtn = document.createElement('button');
+      browseBtn.type = 'button';
+      browseBtn.className = 'gallery-chip gallery-browse-toggle';
+      browseBtn.id = 'gallery-browse-toggle';
+      browseBtn.setAttribute('aria-pressed', 'false');
+      browseBtn.textContent = 'browse all ' + scopePlates().length;
+      bar.appendChild(browseBtn);
+    }
+
     grid.parentNode.insertBefore(bar, grid);
 
     if (searchInput) {
       searchInput.addEventListener('input', function() {
         var v = searchInput.value.trim().toLowerCase();
         if (searchTimer) clearTimeout(searchTimer);
-        searchTimer = setTimeout(function() { FILTER.q = v; render(); }, 120);
+        searchTimer = setTimeout(function() { FILTER.q = v; FILTER.page = 1; render(); }, 120);
       });
     }
     savedBtn.addEventListener('click', function() {
       FILTER.saved = !FILTER.saved;
+      FILTER.page = 1;
       if (FILTER.saved) { FILTER.series = ''; syncChips(); }
       updateSavedToggle();
       render();
@@ -782,6 +924,7 @@
         if (!b) return;
         var s = b.getAttribute('data-series') || '';
         FILTER.series = (FILTER.series === s) ? '' : s;
+        FILTER.page = 1;
         if (FILTER.series && FILTER.saved) { FILTER.saved = false; updateSavedToggle(); }
         syncChips();
         render();
@@ -793,7 +936,19 @@
         if (!b) return;
         var k = b.getAttribute('data-media') || '';
         FILTER.media = (FILTER.media === k) ? '' : k;
+        FILTER.page = 1;
         syncMediaChips();
+        render();
+      });
+    }
+
+    if (browseBtn) {
+      browseBtn.addEventListener('click', function() {
+        FILTER.browse = !FILTER.browse;
+        FILTER.page = 1;
+        browseBtn.setAttribute('aria-pressed', FILTER.browse ? 'true' : 'false');
+        if (FILTER.browse) browseBtn.classList.add('is-active');
+        else browseBtn.classList.remove('is-active');
         render();
       });
     }
@@ -835,6 +990,10 @@
       revealed = true;
       setToggleUI();
       render();
+      /* K106 Track A: a flagged deep link may have surfaced this dialog --
+         with consent + reveal now on, re-route opens the linked plate
+         (theater or lightbox); no-ops when no plate hash rides. */
+      routeHash();
     });
   }
   if (consentNo) {
@@ -1238,6 +1397,23 @@
     if (!pid) return;
     var p = plateById(pid);
     if (!p || isSealed(p)) return;
+    /* K106 Track D: the target may live on a later page -- locate it in
+       the active display list and turn the page BEFORE the card lookup
+       (canonical room URLs enter unfiltered, so the page is always
+       computable; a pid outside the current set falls through to the
+       cards guard below unchanged). */
+    var full = displayList();
+    var fi = -1;
+    for (var k0 = 0; k0 < full.length; k0++) {
+      if (full[k0].id === pid) { fi = k0; break; }
+    }
+    if (fi !== -1 && full.length > PAGE_SIZE) {
+      var want = pageOfIndex(fi, PAGE_SIZE);
+      if (want !== FILTER.page) {
+        FILTER.page = want;
+        render();
+      }
+    }
     var cards = document.querySelectorAll('.gallery-plate[data-plate-id="' + pid + '"]');
     if (!cards.length) return;
     var card = cards[0];
@@ -1246,6 +1422,12 @@
     }
     if (isGated(p) && !revealed) {
       card.scrollIntoView({ block: 'center' });
+      /* K106 Track A: surface the 18+ interstitial for a never-consented
+         visitor -- the link recipient gets the choice (AQ-ratified);
+         opening the dialog puts NO media in the DOM (K87 held). A
+         consented visitor whose reveal is OFF made that choice --
+         purposeful hide respected, scroll-only. */
+      if (!hasConsent()) openConsent();
       return;
     }
     if (mediaKind(p) === 'video') {
@@ -1264,6 +1446,30 @@
     }
   }
   window.addEventListener('hashchange', routeHash);
+
+  /* ---- K106 Track B: back-to-top (gallery surfaces only -- injected
+         here so all 9 pages inherit; hidden until ~1.5 viewports of
+         scroll; instant jump, zero animation -- site discipline; sits
+         above the ambient bar, below the lightbox/theater overlays) ---- */
+  var topBtn = null;
+  function buildTopBtn() {
+    if (topBtn || !document.body) return;
+    topBtn = document.createElement('button');
+    topBtn.type = 'button';
+    topBtn.id = 'gallery-top-btn';
+    topBtn.className = 'gallery-top-btn';
+    topBtn.textContent = '[ top ]';
+    topBtn.setAttribute('aria-label', 'Back to top');
+    topBtn.setAttribute('hidden', '');
+    topBtn.addEventListener('click', function() { window.scrollTo(0, 0); });
+    document.body.appendChild(topBtn);
+    window.addEventListener('scroll', function() {
+      if (!topBtn) return;
+      if (window.scrollY > window.innerHeight * 1.5) topBtn.removeAttribute('hidden');
+      else topBtn.setAttribute('hidden', '');
+    }, { passive: true });
+  }
+  buildTopBtn();
 
   /* ---- boot ---- */
   fetch('/gallery/manifest.json', { cache: 'no-cache' })
@@ -1286,6 +1492,7 @@
       buildControls();
       buildPrintsShell();
       buildVideosShell();
+      buildPagerShell();
       setToggleUI();
       render();
       renderCatIndex();

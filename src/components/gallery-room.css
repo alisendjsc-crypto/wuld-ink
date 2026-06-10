@@ -133,3 +133,19 @@
 @media (max-width: 760px) {
   .gallery-theater-video { min-width: 0; max-width: calc(100vw - 2rem); }
 }
+
+/* ---------- K106 pagination + browse-all (mono pager; static chrome;
+   the browse toggle reuses .gallery-chip -- .gallery-browse-toggle is an
+   unstyled hook, K103 precedent) ---------- */
+.gallery-pager { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-3); font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); color: var(--c-fg-dim); margin: var(--s-4) 0; }
+.gallery-pager-btn { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); background: none; border: var(--bw-thin) solid var(--c-border); color: var(--c-fg-dim); padding: var(--s-2) var(--s-3); cursor: pointer; }
+.gallery-pager-btn:hover:not(:disabled) { color: var(--c-accent); border-color: var(--c-accent); }
+.gallery-pager-btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.gallery-pager-btn:disabled { opacity: 0.4; cursor: default; }
+.gallery-pager-state { color: var(--c-fg-dim); }
+
+/* ---------- K106 back-to-top (fixed above the ambient bar; under the overlays) ---------- */
+.gallery-top-btn { position: fixed; right: var(--s-4); bottom: 3.5rem; z-index: 30; font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); background: var(--c-bg); border: var(--bw-thin) solid var(--c-border-strong); color: var(--c-fg-dim); padding: var(--s-2) var(--s-3); cursor: pointer; }
+.gallery-top-btn:hover { color: var(--c-accent); border-color: var(--c-accent); }
+.gallery-top-btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.gallery-top-btn[hidden] { display: none; }

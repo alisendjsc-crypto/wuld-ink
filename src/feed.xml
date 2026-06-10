@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 06:40:34 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 07:26:12 +0000</lastBuildDate>
+    <item>
+      <title>Gallery UX pass 2: sets past 60 plates paginate behind a mono pager, the lobby gains a [ browse all ] toggle across every room, a [ top ] button rides long scrolls, flagged share links surface the 18+ gate for first-time visitors, and the lobby Prints strip keeps only cross-room prints.</title>
+      <link>https://wuld.ink/changelog/#2026-06-10-gallery-browse-pagination</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-10-gallery-browse-pagination</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery UX pass 2: sets past 60 plates paginate behind a mono pager, the lobby gains a [ browse all ] toggle across every room, a [ top ] button rides long scrolls, flagged share links surface the 18+ gate for first-time visitors, and the lobby Prints strip keeps only cross-room prints. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Per-plate share links: [ share ] in the lightbox and the video theater copies a /gallery/&lt;room&gt;/#plate-&lt;id&gt; deep link that reopens the plate on load (consent-gated plates stay withheld — a link is not a bypass). The NSFW reveal now persists until purposefully hidden. Lobby: the consent gate sits above the Prints section and its status line counts flagged plates across all rooms.</title>
       <link>https://wuld.ink/changelog/#2026-06-09-gallery-share-and-sticky-reveal</link>
