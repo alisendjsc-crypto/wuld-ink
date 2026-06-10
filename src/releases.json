@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-09-gallery-video-section",
+    "date": "2026-06-09",
+    "summary": "Gallery: videos now render in their own section below the image grid -- a mono divider carries the count (Videos -- 188 in the Main Character room; generic wherever media kinds mix), search, chips and Saved filter both sections, and the consent gate holds unchanged. Poster thumbnails are staged to follow.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-09-gallery-visual-flow",
     "date": "2026-06-09",
     "summary": "Gallery: the Main Character room re-sequenced for visual flow -- 248 images palette-chained from the darkest plate so similar color and vibe sit together; 188 videos trail as an annex. Plate numbers unchanged.",

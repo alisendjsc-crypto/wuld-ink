@@ -1,5 +1,5 @@
 /* ============================================================
-   gallery-room.js — K99. Shared renderer for /gallery/ and the
+   gallery-room.js — K99 (+K101 video section). Shared renderer for /gallery/ and the
    category sub-rooms. The page declares its room via
    <body data-gallery-category="<slug>">; everything else comes
    from /gallery/manifest.json (schema_version 2).
@@ -67,6 +67,19 @@
      bypass). Hidden while search/saved results show (routing chrome,
      same rule as the category index). Lightbox nav from a Prints
      card stays within the Prints set (lbScope).
+   K101 VIDEO SECTION:
+   - Videos render in their OWN sub-grid below the image grid in any
+     room where media kinds mix (MC today: 248 images / 188 videos;
+     gore + the-wrong-thing carry videos too — generic by
+     construction). A mono divider heading carries the matched count
+     ("Videos — N"); the section hides at 0. Chips, search and Saved
+     filter BOTH sections. Flagged video plates render withheld in
+     the section pre-consent — no video element, no poster in the
+     DOM (the K87 media-agnostic contract; today all 191 videos are
+     flagged). Stars + caption disclosure are delegated on the
+     sub-grid; the lightbox stays images-only (visiblePlates filters
+     on .gallery-plate-img, and video cards live outside the main
+     grid besides).
    ============================================================ */
 (function() {
   'use strict';
@@ -416,6 +429,47 @@
     printsSection.removeAttribute('hidden');
   }
 
+  /* ---- K101 video section (videos get their own sub-grid below
+         the image grid wherever media kinds mix; the divider carries
+         the matched count and hides at 0; consent contract identical
+         to the rooms — flagged video plates render withheld here, no
+         video element, no poster in the DOM pre-consent) ---- */
+  var videosSection = null;
+  var videosGrid = null;
+  var videosHeading = null;
+  function buildVideosShell() {
+    if (videosSection) return;
+    videosSection = el('section', 'gallery-videos');
+    videosSection.id = 'gallery-videos';
+    videosSection.setAttribute('aria-label', 'Videos');
+    videosSection.setAttribute('hidden', '');
+    videosHeading = el('h2', 'gallery-videos-heading', 'Videos');
+    videosSection.appendChild(videosHeading);
+    videosGrid = el('div', 'gallery-grid gallery-videos-grid');
+    videosGrid.id = 'gallery-videos-grid';
+    videosSection.appendChild(videosGrid);
+    grid.parentNode.insertBefore(videosSection, grid.nextSibling);
+    videosGrid.addEventListener('click', starClick);
+    videosGrid.addEventListener('click', capToggleClick);
+  }
+  function renderVideos(set, withRoom) {
+    if (!videosSection || !videosGrid) return;
+    videosGrid.textContent = '';
+    if (!set.length) {
+      videosSection.setAttribute('hidden', '');
+      return;
+    }
+    videosHeading.textContent = 'Videos — ' + set.length;
+    set.forEach(function(p) {
+      if (isGated(p) && !revealed) {
+        videosGrid.appendChild(withheldCard(p, withRoom));
+      } else {
+        videosGrid.appendChild(plateCard(p, withRoom));
+      }
+    });
+    videosSection.removeAttribute('hidden');
+  }
+
   function renderCatIndex() {
     if (!catIndex || !catGrid) return;
     catGrid.textContent = '';
@@ -479,13 +533,15 @@
     grid.textContent = '';
     var withRoom = isLobby && hasFilter();
     var setTo = hasFilter() ? matchedPlates() : defaultPlates();
+    var imgSet = setTo.filter(function(p) { return mediaKind(p) !== 'video'; });
+    var vidSet = setTo.filter(function(p) { return mediaKind(p) === 'video'; });
 
     if (!setTo.length) {
       grid.appendChild(el('p', 'gallery-empty', hasFilter()
         ? 'No plates match that filter.'
         : 'This room is empty. The vessel precedes the cargo.'));
     } else {
-      setTo.forEach(function(p) {
+      imgSet.forEach(function(p) {
         if (isGated(p) && !revealed) {
           grid.appendChild(withheldCard(p, withRoom));
         } else {
@@ -493,6 +549,8 @@
         }
       });
     }
+
+    renderVideos(vidSet, withRoom);
 
     /* the category index is routing chrome — hide it while the lobby shows results. */
     if (catIndex) {
@@ -823,6 +881,7 @@
       loadSaved();
       buildControls();
       buildPrintsShell();
+      buildVideosShell();
       setToggleUI();
       render();
       renderCatIndex();

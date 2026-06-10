@@ -1,5 +1,5 @@
 /* ============================================================
-   gallery-room.css — K87 (+K95 favorites, +K99 caption disclosure + Prints section).
+   gallery-room.css — K87 (+K95 favorites, +K99 caption disclosure + Prints section, +K101 video section).
    Shared room chrome for /gallery/ and
    the category sub-rooms. gallery.css?v=K30 stays byte-held;
    everything K83 carried page-local moves here, plus the
@@ -112,3 +112,7 @@
 .gallery-prints { margin: var(--s-7) 0; padding-top: var(--s-5); border-top: var(--bw-thin) solid var(--c-border); }
 .gallery-prints-heading { font-family: var(--font-mono); font-size: var(--t-sm); letter-spacing: var(--ls-mega); text-transform: uppercase; color: var(--c-fg); margin: 0 0 var(--s-3) 0; }
 .gallery-prints-aside { font-family: var(--font-mono); font-size: var(--t-xs); line-height: var(--lh-default); color: var(--c-fg-dim); margin: 0 0 var(--s-4) 0; }
+
+/* ---------- K101 video section (own sub-grid below the image grid in mixed-kind rooms) ---------- */
+.gallery-videos { margin: var(--s-7) 0 0 0; padding-top: var(--s-5); border-top: var(--bw-thin) solid var(--c-border); }
+.gallery-videos-heading { font-family: var(--font-mono); font-size: var(--t-sm); letter-spacing: var(--ls-mega); text-transform: uppercase; color: var(--c-fg); margin: 0 0 var(--s-4) 0; }
