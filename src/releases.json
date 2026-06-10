@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-09-gallery-media-chips",
+    "date": "2026-06-09",
+    "summary": "Gallery: images/videos access chips in the controls bar (all rooms with mixed media + the lobby) — jump straight to the video annex without the scroll; composes with search, series chips and Saved.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-09-gallery-video-posters",
     "date": "2026-06-09",
     "summary": "Every video plate in the gallery now carries a poster thumbnail - the video sections preview a still frame instead of a grey tile. Click still plays; nothing preloads.",

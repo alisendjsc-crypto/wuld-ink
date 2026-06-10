@@ -103,13 +103,14 @@
   var CATS = {};
   var CAT_ORDER = [];
   var revealed = false;
-  var FILTER = { q: '', series: '', saved: false };
+  var FILTER = { q: '', series: '', saved: false, media: '' };
   var SAVED = {};
   var searchInput = null;
   var chipsWrap = null;
   var countEl = null;
   var savedBtn = null;
   var savedCountEl = null;
+  var mediaWrap = null;
   var searchTimer = null;
 
   function hasConsent() {
@@ -241,12 +242,13 @@
     }
     return scopePlates();
   }
-  function hasFilter() { return !!(FILTER.q || FILTER.series || FILTER.saved); }
+  function hasFilter() { return !!(FILTER.q || FILTER.series || FILTER.saved || FILTER.media); }
   function matchedPlates() {
     var q = FILTER.q, s = FILTER.series;
     var pnum = q ? plateQueryNum(q) : null;
     return scopePlates().filter(function(p) {
       if (FILTER.saved && !isSaved(p.id)) return false;
+      if (FILTER.media && mediaKind(p) !== FILTER.media) return false;
       if (s && p.series !== s) return false;
       if (q) {
         if (pnum !== null) {
@@ -275,6 +277,34 @@
     var s = series;
     if (s.indexOf(ROOM + '-') === 0) s = s.slice(ROOM.length + 1);
     return s.replace(/-/g, ' ');
+  }
+
+  /* ---- K103: media-kind access chips (all / images / videos) ---- */
+  function scopeKindCounts() {
+    var img = 0, vid = 0;
+    scopePlates().forEach(function(p) {
+      if (mediaKind(p) === 'video') vid++; else img++;
+    });
+    return { img: img, vid: vid };
+  }
+  function makeMediaChip(kind, label, count) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'gallery-chip';
+    b.setAttribute('data-media', kind);
+    b.setAttribute('aria-pressed', kind === FILTER.media ? 'true' : 'false');
+    if (kind === FILTER.media) b.classList.add('is-active');
+    b.appendChild(el('span', 'gallery-chip-label', label));
+    b.appendChild(el('span', 'gallery-chip-count', String(count)));
+    return b;
+  }
+  function syncMediaChips() {
+    if (!mediaWrap) return;
+    Array.prototype.forEach.call(mediaWrap.querySelectorAll('.gallery-chip'), function(b) {
+      var on = (b.getAttribute('data-media') || '') === FILTER.media;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (on) b.classList.add('is-active'); else b.classList.remove('is-active');
+    });
   }
 
   function mediaEl(p) {
@@ -638,6 +668,16 @@
     countEl.id = 'gallery-result-count';
     bar.appendChild(countEl);
 
+    var kinds = scopeKindCounts();
+    if (kinds.img > 0 && kinds.vid > 0) {
+      mediaWrap = el('div', 'gallery-chips gallery-mediachips');
+      mediaWrap.id = 'gallery-mediachips';
+      mediaWrap.appendChild(makeMediaChip('', 'all', kinds.img + kinds.vid));
+      mediaWrap.appendChild(makeMediaChip('image', 'images', kinds.img));
+      mediaWrap.appendChild(makeMediaChip('video', 'videos', kinds.vid));
+      bar.appendChild(mediaWrap);
+    }
+
     if (showChips) {
       chipsWrap = el('div', 'gallery-chips');
       chipsWrap.id = 'gallery-chips';
@@ -671,6 +711,16 @@
         FILTER.series = (FILTER.series === s) ? '' : s;
         if (FILTER.series && FILTER.saved) { FILTER.saved = false; updateSavedToggle(); }
         syncChips();
+        render();
+      });
+    }
+    if (mediaWrap) {
+      mediaWrap.addEventListener('click', function(e) {
+        var b = e.target && e.target.closest ? e.target.closest('.gallery-chip') : null;
+        if (!b) return;
+        var k = b.getAttribute('data-media') || '';
+        FILTER.media = (FILTER.media === k) ? '' : k;
+        syncMediaChips();
         render();
       });
     }

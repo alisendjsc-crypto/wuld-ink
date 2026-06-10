@@ -136,3 +136,31 @@ Reference: `docs/print-storefront-research.md` (verdict table + vendor screens).
   --quality 95` for hard upload caps like the Chrome lane's 10 MB). Recursive,
   idempotent (HAVE-skip), originals untouched; `print-ready-*` is never
   re-scanned by verify or downscale.
+
+
+## Kit emitter -- emit_kit.py (K103)
+
+Post-RED surviving automation (K102 lane verdict: NO Quick Store product-creation API, v1 or v2;
+unattended publish rejected). The emitter automates sitting PREP, never the publish. Deterministic,
+idempotent, zero-network.
+
+Loop (operator, per evening sitting):
+
+    python tools\print-pipeline\emit_kit.py            # emits D:\sitting-kits\sitting-NN.md + .tsv
+    # run the sitting from the kit (supervised Chrome); URLs into the outcomes file AS CREATED
+    python tools\print-pipeline\emit_kit.py            # outcomes growth IS the cursor -> next kit
+
+- Input: D:\print-ladder\publish-input.json (THE worksheet; schema in the module docstring).
+  Selection = ELIGIBLE only -> minus ladder-ledger non-OK -> minus shipped -> worksheet order -> first N (default 10, --n).
+- Shipped contract: a plate counts as shipped iff its FULL id appears in a D:\k10*-outcomes.md
+  line that also carries "http" or "commit". Planning prose never matches (proven on the real
+  k102 lane doc: the plate-14 Paths mention does not exclude it).
+- Idempotence: same inputs -> same kit, nothing rewritten (operator edits to a live kit survive);
+  changed inputs -> sitting-(NN+1). No state file.
+- Kits are disposable snapshots; the outcomes files + worksheet are the records.
+- Worksheet provenance: K103 starter = the 10-plate round-3 editorial remainder (descriptions
+  extracted from the product-copy docs; donors/size-lines cross-checked vs the lane dims).
+  The batch-02 ladder output merges/replaces publish-input.json whenever it lands -- flipping
+  REVIEW rows to ELIGIBLE there is the whole review pass ("the JSON is the worksheet").
+- Kit hard-rules header = the round-2 traps verbatim (+ rule 9: FIT placements default to a
+  WHITE background band -- round-2 XI precedent).
