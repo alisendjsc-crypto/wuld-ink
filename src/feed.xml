@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 08:34:19 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 21:41:20 +0000</lastBuildDate>
+    <item>
+      <title>Argument Library v3.9.14 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.</title>
+      <link>https://wuld.ink/changelog/#2026-06-10-library-v3-9-14</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-10-library-v3-9-14</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Argument Library v3.9.14 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>Main Character videos now flow by palette (poster-derived chain order); the lobby [ browse all ] walks room by room instead of interleaving; site-search plate results deep-link to the plate itself — the link opens the lightbox or the video theater directly.</title>
       <link>https://wuld.ink/changelog/#2026-06-10-gallery-video-flow-and-search-deep-links</link>

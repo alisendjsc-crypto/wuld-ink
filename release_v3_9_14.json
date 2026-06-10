@@ -1,0 +1,54 @@
+{
+  "release": "v3.9.14",
+  "canon": {
+    "version": "37.39",
+    "bump": "MINOR",
+    "invariant_block_changed": true,
+    "note": "additive anchor_stability_covenant invariant (Exchange 43 ruling); zero pre-existing invariants revised; keyset_delta_ledger.v37_39_delta logs it"
+  },
+  "git": {
+    "baseline": "817f368",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "K108 per-card shareable links (Exchange 42 proposal -> Exchange 43 CONFIRM x3); committed straight to main; v3.8.x stays at its terminal-stable tip by design"
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "6cd546bf18994c9bad9e43ae4ee4f071",
+      "size_bytes": 2951793,
+      "status": "PROVEN"
+    },
+    "index_v3_8_0.html": {
+      "md5": "c1652a90b439710436053125a2eac6bb",
+      "size_bytes": 2392658,
+      "status": "PROVEN"
+    },
+    "project_canon_v37_39.json": {
+      "md5": "86108e9eda681a58e3ece86e78e0166c",
+      "size_bytes": 252133,
+      "status": "PROVEN"
+    },
+    "efilist_argument_library_v3_8_0.json": {
+      "md5": "9af9dd5c24d7801e9f58ddc36353e9e7",
+      "size_bytes": 1326017,
+      "status": "BYTE-HELD"
+    },
+    "efilist_argument_library_v3_8_0.jsx": {
+      "md5": "029a91d85a3671c0c3ccbff831912002",
+      "size_bytes": 1265927,
+      "status": "BYTE-HELD"
+    },
+    "rebuttal_grading_ledger.json": {
+      "md5": "204fcdbed188291181a376076f19dc36",
+      "status": "BYTE-HELD"
+    }
+  },
+  "pin": {
+    "old": "8e0d823f975665fc2b3f948793893d02",
+    "new": "6cd546bf18994c9bad9e43ae4ee4f071",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K108: per-card shareable links - obj-/rwe- anchors + COPY LINK + hash-routing (Exchange 43 CONFIRM x3); anchor-stability covenant -> canon invariant (v37.39); index objection-side parity"
+}

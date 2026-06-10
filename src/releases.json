@@ -1,33 +1,52 @@
 [
   {
+    "id": "2026-06-10-library-v3-9-14",
+    "date": "2026-06-10",
+    "summary": "Argument Library v3.9.14 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-10-gallery-video-flow-and-search-deep-links",
     "date": "2026-06-10",
-    "summary": "Main Character videos now flow by palette (poster-derived chain order); the lobby [ browse all ] walks room by room instead of interleaving; site-search plate results deep-link to the plate itself \u2014 the link opens the lightbox or the video theater directly.",
-    "sections": ["/gallery/", "/search/"]
+    "summary": "Main Character videos now flow by palette (poster-derived chain order); the lobby [ browse all ] walks room by room instead of interleaving; site-search plate results deep-link to the plate itself — the link opens the lightbox or the video theater directly.",
+    "sections": [
+      "/gallery/",
+      "/search/"
+    ]
   },
   {
     "id": "2026-06-10-gallery-browse-pagination",
     "date": "2026-06-10",
     "summary": "Gallery UX pass 2: sets past 60 plates paginate behind a mono pager, the lobby gains a [ browse all ] toggle across every room, a [ top ] button rides long scrolls, flagged share links surface the 18+ gate for first-time visitors, and the lobby Prints strip keeps only cross-room prints.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-share-and-sticky-reveal",
     "date": "2026-06-09",
     "summary": "Per-plate share links: [ share ] in the lightbox and the video theater copies a /gallery/<room>/#plate-<id> deep link that reopens the plate on load (consent-gated plates stay withheld — a link is not a bypass). The NSFW reveal now persists until purposefully hidden. Lobby: the consent gate sits above the Prints section and its status line counts flagged plates across all rooms.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-video-theater",
     "date": "2026-06-09",
     "summary": "Gallery: video theater — clicking a video now opens it center-stage, dims the room, and loops; back / forward / random / close controls and the plate id ride the frame, matching the photo lightbox.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-media-chips",
     "date": "2026-06-09",
     "summary": "Gallery: images/videos access chips in the controls bar (all rooms with mixed media + the lobby) — jump straight to the video annex without the scroll; composes with search, series chips and Saved.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-video-posters",
@@ -41,42 +60,54 @@
     "id": "2026-06-09-gallery-video-section",
     "date": "2026-06-09",
     "summary": "Gallery: videos now render in their own section below the image grid -- a mono divider carries the count (Videos -- 188 in the Main Character room; generic wherever media kinds mix), search, chips and Saved filter both sections, and the consent gate holds unchanged. Poster thumbnails are staged to follow.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-visual-flow",
     "date": "2026-06-09",
     "summary": "Gallery: the Main Character room re-sequenced for visual flow -- 248 images palette-chained from the darkest plate so similar color and vibe sit together; 188 videos trail as an annex. Plate numbers unchanged.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-prints-and-captions",
     "date": "2026-06-09",
     "summary": "Gallery: the lobby gains a Prints section -- plates with purchasable print editions, rendered live from the manifest, consent discipline held -- and long full-tier captions now fold behind a mono [ more ] toggle.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-site-search",
     "date": "2026-06-09",
     "summary": "Site-wide search at /search/ — every page, glossary term, Void Engine category, and gallery plate (by number, series, or word) from one query. Client-side over a static index: nothing typed here is logged, counted, or sent anywhere.",
-    "sections": ["/search/"]
+    "sections": [
+      "/search/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-featured-and-print-pipeline",
     "date": "2026-06-09",
     "summary": "Gallery: 12 plates curated as the first featured set (manifest flag; print pipeline staged behind it). Admin CMS gains per-plate print-link + featured editing.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-print-link-scaffold",
     "date": "2026-06-09",
     "summary": "Gallery: dormant per-plate print buy-link scaffold (optional manifest print_url, link-out only, never on withheld cards) riding the print-storefront vendor research (docs/print-storefront-research.md). Links render once product URLs land in the manifest.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-09-gallery-favorites-and-plate-search",
     "date": "2026-06-09",
-    "summary": "You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those \u2014 on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer \u2014 a [ random ] button beside the arrows, or press r \u2014 to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything.",
+    "summary": "You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those — on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer — a [ random ] button beside the arrows, or press r — to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything.",
     "sections": [
       "/gallery/"
     ]
@@ -92,7 +123,7 @@
   {
     "id": "2026-06-08-void-engine-397",
     "date": "2026-06-08",
-    "summary": "The Void Engine grows from 334 to 397 entries, and from 19 to 25 categories. Six new registers join the lexicon: Cyborg / Synthetic, Monster / Creature, Under-Skin / Black-Void, Hell / Infernal, Succubus / Domestic-Infernal, and a Celestial / Deep-Field room that sets the figure against a literal starfield \u2014 cosmos as indifference, distinct from the metaphysical voids. Shipped as one wholesale rebuild of the instrument.",
+    "summary": "The Void Engine grows from 334 to 397 entries, and from 19 to 25 categories. Six new registers join the lexicon: Cyborg / Synthetic, Monster / Creature, Under-Skin / Black-Void, Hell / Infernal, Succubus / Domestic-Infernal, and a Celestial / Deep-Field room that sets the figure against a literal starfield — cosmos as indifference, distinct from the metaphysical voids. Shipped as one wholesale rebuild of the instrument.",
     "sections": [
       "/void-engine/"
     ]
