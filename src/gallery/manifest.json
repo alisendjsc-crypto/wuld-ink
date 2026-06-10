@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "media_base": "https://audio.wuld.ink",
-  "updated": "2026-06-10",
+  "updated": "2026-06-09",
   "categories": [
     {
       "slug": "editorial",
@@ -382,7 +382,8 @@
       "added": "2026-06-08",
       "category": "the-wrong-thing",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/the-wrong-thing/posters/the-wrong-thing-42b38dac9ce3.webp"
       },
       "caption_tier": "title"
     },
@@ -403,7 +404,8 @@
       "added": "2026-06-08",
       "category": "gore",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/gore/posters/gore-e0f909e72952.webp"
       },
       "caption_tier": "title"
     },
@@ -674,7 +676,8 @@
       "added": "2026-06-08",
       "category": "gore",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/gore/posters/gore-df568fb5cdf3.webp"
       },
       "caption_tier": "title"
     },
@@ -6632,7 +6635,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-047fe68357f0.webp"
       },
       "caption_tier": "none"
     },
@@ -6653,7 +6657,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-06a44837ac95.webp"
       },
       "caption_tier": "none"
     },
@@ -6674,7 +6679,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1128a6fc345b.webp"
       },
       "caption_tier": "none"
     },
@@ -6695,7 +6701,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-16b3b848b969.webp"
       },
       "caption_tier": "none"
     },
@@ -6716,7 +6723,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1778b20d4b6b.webp"
       },
       "caption_tier": "none"
     },
@@ -6737,7 +6745,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-18ac97ddb64c.webp"
       },
       "caption_tier": "none"
     },
@@ -6758,7 +6767,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1a892f2a8431.webp"
       },
       "caption_tier": "none"
     },
@@ -6779,7 +6789,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1a93ca12e2f8.webp"
       },
       "caption_tier": "none"
     },
@@ -6800,7 +6811,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1b49e920aea6.webp"
       },
       "caption_tier": "none"
     },
@@ -6821,7 +6833,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1d3c944fe077.webp"
       },
       "caption_tier": "none"
     },
@@ -6842,7 +6855,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1e2e39710479.webp"
       },
       "caption_tier": "none"
     },
@@ -6863,7 +6877,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-222e844cc3bd.webp"
       },
       "caption_tier": "none"
     },
@@ -6884,7 +6899,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2710e4be4b2b.webp"
       },
       "caption_tier": "none"
     },
@@ -6905,7 +6921,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2ba8457364e5.webp"
       },
       "caption_tier": "none"
     },
@@ -6926,7 +6943,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2cf656232267.webp"
       },
       "caption_tier": "none"
     },
@@ -6947,7 +6965,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2ea988e2f60a.webp"
       },
       "caption_tier": "none"
     },
@@ -6968,7 +6987,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-37feff01369e.webp"
       },
       "caption_tier": "none"
     },
@@ -6989,7 +7009,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-3e29f3162488.webp"
       },
       "caption_tier": "none"
     },
@@ -7010,7 +7031,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-434c57ec82fa.webp"
       },
       "caption_tier": "none"
     },
@@ -7031,7 +7053,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-4996ecdfb3ea.webp"
       },
       "caption_tier": "none"
     },
@@ -7052,7 +7075,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-4ce9f8658d97.webp"
       },
       "caption_tier": "none"
     },
@@ -7073,7 +7097,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-4ef847f05f18.webp"
       },
       "caption_tier": "none"
     },
@@ -7094,7 +7119,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-504f5e34c31e.webp"
       },
       "caption_tier": "none"
     },
@@ -7115,7 +7141,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-508f70d45c14.webp"
       },
       "caption_tier": "none"
     },
@@ -7136,7 +7163,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-51cb30a26739.webp"
       },
       "caption_tier": "none"
     },
@@ -7157,7 +7185,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-5c013acbf87c.webp"
       },
       "caption_tier": "none"
     },
@@ -7178,7 +7207,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-5ca14ad88cc7.webp"
       },
       "caption_tier": "none"
     },
@@ -7199,7 +7229,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-5d6ff52b9227.webp"
       },
       "caption_tier": "none"
     },
@@ -7220,7 +7251,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6047193d4be1.webp"
       },
       "caption_tier": "none"
     },
@@ -7241,7 +7273,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-625abaabdf15.webp"
       },
       "caption_tier": "none"
     },
@@ -7262,7 +7295,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-629bdc6cb708.webp"
       },
       "caption_tier": "none"
     },
@@ -7283,7 +7317,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6425e3162149.webp"
       },
       "caption_tier": "none"
     },
@@ -7304,7 +7339,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6a28944c2c1b.webp"
       },
       "caption_tier": "none"
     },
@@ -7325,7 +7361,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6a7241c34e83.webp"
       },
       "caption_tier": "none"
     },
@@ -7346,7 +7383,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6da2b7b0b137.webp"
       },
       "caption_tier": "none"
     },
@@ -7367,7 +7405,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-760656f7f2b7.webp"
       },
       "caption_tier": "none"
     },
@@ -7388,7 +7427,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-76ddf77168dc.webp"
       },
       "caption_tier": "none"
     },
@@ -7409,7 +7449,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-7a2611fb5159.webp"
       },
       "caption_tier": "none"
     },
@@ -7430,7 +7471,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-7ae4bc5db485.webp"
       },
       "caption_tier": "none"
     },
@@ -7451,7 +7493,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-80a368c10cec.webp"
       },
       "caption_tier": "none"
     },
@@ -7472,7 +7515,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8230d06ee1e5.webp"
       },
       "caption_tier": "none"
     },
@@ -7493,7 +7537,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8478d85e4952.webp"
       },
       "caption_tier": "none"
     },
@@ -7514,7 +7559,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8a532b1c72ed.webp"
       },
       "caption_tier": "none"
     },
@@ -7535,7 +7581,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8a8db3727597.webp"
       },
       "caption_tier": "none"
     },
@@ -7556,7 +7603,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8bb9a6405149.webp"
       },
       "caption_tier": "none"
     },
@@ -7577,7 +7625,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8ca31699f716.webp"
       },
       "caption_tier": "none"
     },
@@ -7598,7 +7647,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8dd5bc1615fd.webp"
       },
       "caption_tier": "none"
     },
@@ -7619,7 +7669,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-901d94e08ebc.webp"
       },
       "caption_tier": "none"
     },
@@ -7640,7 +7691,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-96f6be113680.webp"
       },
       "caption_tier": "none"
     },
@@ -7661,7 +7713,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-97e4df61840b.webp"
       },
       "caption_tier": "none"
     },
@@ -7682,7 +7735,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-9c0b9f7d5be7.webp"
       },
       "caption_tier": "none"
     },
@@ -7703,7 +7757,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-9e3199711109.webp"
       },
       "caption_tier": "none"
     },
@@ -7724,7 +7779,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-9feca70c1b27.webp"
       },
       "caption_tier": "none"
     },
@@ -7745,7 +7801,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a0a72f1a44b5.webp"
       },
       "caption_tier": "none"
     },
@@ -7766,7 +7823,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a2b4742263bd.webp"
       },
       "caption_tier": "none"
     },
@@ -7787,7 +7845,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a35b29b3dd40.webp"
       },
       "caption_tier": "none"
     },
@@ -7808,7 +7867,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a3aa60a80d05.webp"
       },
       "caption_tier": "none"
     },
@@ -7829,7 +7889,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a50428f31f0a.webp"
       },
       "caption_tier": "none"
     },
@@ -7850,7 +7911,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a6076fdb7c58.webp"
       },
       "caption_tier": "none"
     },
@@ -7871,7 +7933,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a7059a02ba27.webp"
       },
       "caption_tier": "none"
     },
@@ -7892,7 +7955,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a910fc24deab.webp"
       },
       "caption_tier": "none"
     },
@@ -7913,7 +7977,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a9407c05e006.webp"
       },
       "caption_tier": "none"
     },
@@ -7934,7 +7999,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-ad01723add54.webp"
       },
       "caption_tier": "none"
     },
@@ -7955,7 +8021,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b150a38e0510.webp"
       },
       "caption_tier": "none"
     },
@@ -7976,7 +8043,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b362e2fe1f46.webp"
       },
       "caption_tier": "none"
     },
@@ -7997,7 +8065,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b402dbfffe81.webp"
       },
       "caption_tier": "none"
     },
@@ -8018,7 +8087,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b4273f91cb79.webp"
       },
       "caption_tier": "none"
     },
@@ -8039,7 +8109,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b6811e9d7043.webp"
       },
       "caption_tier": "none"
     },
@@ -8060,7 +8131,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b6c4ba1fe51f.webp"
       },
       "caption_tier": "none"
     },
@@ -8081,7 +8153,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-ba942cf2aa7c.webp"
       },
       "caption_tier": "none"
     },
@@ -8102,7 +8175,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-bfff931a75b8.webp"
       },
       "caption_tier": "none"
     },
@@ -8123,7 +8197,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-c24475710ba2.webp"
       },
       "caption_tier": "none"
     },
@@ -8144,7 +8219,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-c818763f20e0.webp"
       },
       "caption_tier": "none"
     },
@@ -8165,7 +8241,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-d1c92d1c1868.webp"
       },
       "caption_tier": "none"
     },
@@ -8186,7 +8263,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-d2608fd31511.webp"
       },
       "caption_tier": "none"
     },
@@ -8207,7 +8285,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-d4347d48210b.webp"
       },
       "caption_tier": "none"
     },
@@ -8228,7 +8307,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-d4f9a4262ce2.webp"
       },
       "caption_tier": "none"
     },
@@ -8249,7 +8329,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-d8295acd70b8.webp"
       },
       "caption_tier": "none"
     },
@@ -8270,7 +8351,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-db96eafa482a.webp"
       },
       "caption_tier": "none"
     },
@@ -8291,7 +8373,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-dcab5dff2886.webp"
       },
       "caption_tier": "none"
     },
@@ -8312,7 +8395,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e07f4c86bbd9.webp"
       },
       "caption_tier": "none"
     },
@@ -8333,7 +8417,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e1cf97bf489e.webp"
       },
       "caption_tier": "none"
     },
@@ -8354,7 +8439,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e5a02be96646.webp"
       },
       "caption_tier": "none"
     },
@@ -8375,7 +8461,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e7d7822d081a.webp"
       },
       "caption_tier": "none"
     },
@@ -8396,7 +8483,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e7e24d0ae809.webp"
       },
       "caption_tier": "none"
     },
@@ -8417,7 +8505,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-ea578f912d43.webp"
       },
       "caption_tier": "none"
     },
@@ -8438,7 +8527,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-eb9d0f10590a.webp"
       },
       "caption_tier": "none"
     },
@@ -8459,7 +8549,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-ef1b50ec999d.webp"
       },
       "caption_tier": "none"
     },
@@ -8480,7 +8571,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f0c0b459c663.webp"
       },
       "caption_tier": "none"
     },
@@ -8501,7 +8593,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f88e4fe53480.webp"
       },
       "caption_tier": "none"
     },
@@ -8522,7 +8615,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-fa29ef60a802.webp"
       },
       "caption_tier": "none"
     },
@@ -8543,7 +8637,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-fb6c9945374f.webp"
       },
       "caption_tier": "none"
     },
@@ -8564,7 +8659,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-fde3b539715f.webp"
       },
       "caption_tier": "none"
     },
@@ -8585,7 +8681,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-ff9ac92dd26d.webp"
       },
       "caption_tier": "none"
     },
@@ -8606,7 +8703,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f6c529362f5f.webp"
       },
       "caption_tier": "none"
     },
@@ -8627,7 +8725,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-01e36b054a70.webp"
       },
       "caption_tier": "none"
     },
@@ -8648,7 +8747,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-03635b7c9169.webp"
       },
       "caption_tier": "none"
     },
@@ -8669,7 +8769,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-082ec354be3f.webp"
       },
       "caption_tier": "none"
     },
@@ -8690,7 +8791,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-09a22f107df1.webp"
       },
       "caption_tier": "none"
     },
@@ -8711,7 +8813,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-0b3a82ea9c41.webp"
       },
       "caption_tier": "none"
     },
@@ -8732,7 +8835,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-0d434bdbcf69.webp"
       },
       "caption_tier": "none"
     },
@@ -8753,7 +8857,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-0dcb6647fdec.webp"
       },
       "caption_tier": "none"
     },
@@ -8774,7 +8879,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-0f93c703a989.webp"
       },
       "caption_tier": "none"
     },
@@ -8795,7 +8901,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-14f8513c3ace.webp"
       },
       "caption_tier": "none"
     },
@@ -8816,7 +8923,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-161ed63f5472.webp"
       },
       "caption_tier": "none"
     },
@@ -8837,7 +8945,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1a8dc943d98e.webp"
       },
       "caption_tier": "none"
     },
@@ -8858,7 +8967,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1eae3472bbf0.webp"
       },
       "caption_tier": "none"
     },
@@ -8879,7 +8989,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2028a933c5fd.webp"
       },
       "caption_tier": "none"
     },
@@ -8900,7 +9011,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2308b3d40b33.webp"
       },
       "caption_tier": "none"
     },
@@ -8921,7 +9033,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-263213baefee.webp"
       },
       "caption_tier": "none"
     },
@@ -8942,7 +9055,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-26c8e26c6a9f.webp"
       },
       "caption_tier": "none"
     },
@@ -8963,7 +9077,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2d2625486b5f.webp"
       },
       "caption_tier": "none"
     },
@@ -8984,7 +9099,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2e325704e3a3.webp"
       },
       "caption_tier": "none"
     },
@@ -9005,7 +9121,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-2f27d49bdd32.webp"
       },
       "caption_tier": "none"
     },
@@ -9026,7 +9143,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-3411e233f0f0.webp"
       },
       "caption_tier": "none"
     },
@@ -9047,7 +9165,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-367e0fc73072.webp"
       },
       "caption_tier": "none"
     },
@@ -9068,7 +9187,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-384f954e2720.webp"
       },
       "caption_tier": "none"
     },
@@ -9089,7 +9209,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-39e0e340711b.webp"
       },
       "caption_tier": "none"
     },
@@ -9110,7 +9231,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-3a98023a13a0.webp"
       },
       "caption_tier": "none"
     },
@@ -9131,7 +9253,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-3cac22e3b05a.webp"
       },
       "caption_tier": "none"
     },
@@ -9152,7 +9275,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-469c49fcf48a.webp"
       },
       "caption_tier": "none"
     },
@@ -9173,7 +9297,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-49495ba0f1d0.webp"
       },
       "caption_tier": "none"
     },
@@ -9194,7 +9319,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-4c40e53355ef.webp"
       },
       "caption_tier": "none"
     },
@@ -9215,7 +9341,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-4d4925950895.webp"
       },
       "caption_tier": "none"
     },
@@ -9236,7 +9363,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-4e9648cb57ee.webp"
       },
       "caption_tier": "none"
     },
@@ -9257,7 +9385,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-5201593f5e32.webp"
       },
       "caption_tier": "none"
     },
@@ -9278,7 +9407,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-523dc5052eeb.webp"
       },
       "caption_tier": "none"
     },
@@ -9299,7 +9429,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-53961e75ec1b.webp"
       },
       "caption_tier": "none"
     },
@@ -9320,7 +9451,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-58c9a44ba510.webp"
       },
       "caption_tier": "none"
     },
@@ -9341,7 +9473,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-5e896f428fd1.webp"
       },
       "caption_tier": "none"
     },
@@ -9362,7 +9495,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6514fd76d99a.webp"
       },
       "caption_tier": "none"
     },
@@ -9383,7 +9517,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-65c82eee495e.webp"
       },
       "caption_tier": "none"
     },
@@ -9404,7 +9539,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6767da244f69.webp"
       },
       "caption_tier": "none"
     },
@@ -9425,7 +9561,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6c353e301e50.webp"
       },
       "caption_tier": "none"
     },
@@ -9446,7 +9583,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6ddbaaa9267f.webp"
       },
       "caption_tier": "none"
     },
@@ -9467,7 +9605,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6e16a5ecd46f.webp"
       },
       "caption_tier": "none"
     },
@@ -9488,7 +9627,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6f099222402a.webp"
       },
       "caption_tier": "none"
     },
@@ -9509,7 +9649,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6fdfb8fd3d1a.webp"
       },
       "caption_tier": "none"
     },
@@ -9530,7 +9671,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-755e61ffa0ba.webp"
       },
       "caption_tier": "none"
     },
@@ -9551,7 +9693,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-75d590994f04.webp"
       },
       "caption_tier": "none"
     },
@@ -9572,7 +9715,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-79eb2b517012.webp"
       },
       "caption_tier": "none"
     },
@@ -9593,7 +9737,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-7bb5e335ec0a.webp"
       },
       "caption_tier": "none"
     },
@@ -9614,7 +9759,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-7d16376b638d.webp"
       },
       "caption_tier": "none"
     },
@@ -9635,7 +9781,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8186f9d83d70.webp"
       },
       "caption_tier": "none"
     },
@@ -9656,7 +9803,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-82edc8779d89.webp"
       },
       "caption_tier": "none"
     },
@@ -9677,7 +9825,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8335486648c5.webp"
       },
       "caption_tier": "none"
     },
@@ -9698,7 +9847,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-8c7894ec33b8.webp"
       },
       "caption_tier": "none"
     },
@@ -9719,7 +9869,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-93bbeef98dec.webp"
       },
       "caption_tier": "none"
     },
@@ -9740,7 +9891,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-94a54dcfbb08.webp"
       },
       "caption_tier": "none"
     },
@@ -9761,7 +9913,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-9509b862279b.webp"
       },
       "caption_tier": "none"
     },
@@ -9782,7 +9935,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-97ebd4d34115.webp"
       },
       "caption_tier": "none"
     },
@@ -9803,7 +9957,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-9a880a44dcaf.webp"
       },
       "caption_tier": "none"
     },
@@ -9824,7 +9979,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-9b3f3dece70b.webp"
       },
       "caption_tier": "none"
     },
@@ -9845,7 +10001,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-9f8ad9df5169.webp"
       },
       "caption_tier": "none"
     },
@@ -9866,7 +10023,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-a7060cc66ad4.webp"
       },
       "caption_tier": "none"
     },
@@ -9887,7 +10045,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-aac4db3f4691.webp"
       },
       "caption_tier": "none"
     },
@@ -9908,7 +10067,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-aad2a78ab965.webp"
       },
       "caption_tier": "none"
     },
@@ -9929,7 +10089,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b054c2b5b7ee.webp"
       },
       "caption_tier": "none"
     },
@@ -9950,7 +10111,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b22297eafbea.webp"
       },
       "caption_tier": "none"
     },
@@ -9971,7 +10133,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-b8bae3d6588c.webp"
       },
       "caption_tier": "none"
     },
@@ -9992,7 +10155,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-bb1963e57480.webp"
       },
       "caption_tier": "none"
     },
@@ -10013,7 +10177,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-c3f3b45077cc.webp"
       },
       "caption_tier": "none"
     },
@@ -10034,7 +10199,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-c4ae2c6a3b5e.webp"
       },
       "caption_tier": "none"
     },
@@ -10055,7 +10221,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-c8663f8a61e7.webp"
       },
       "caption_tier": "none"
     },
@@ -10076,7 +10243,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-cc6873e538e5.webp"
       },
       "caption_tier": "none"
     },
@@ -10097,7 +10265,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-cfeda0877adf.webp"
       },
       "caption_tier": "none"
     },
@@ -10118,7 +10287,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-d4e4393c97ef.webp"
       },
       "caption_tier": "none"
     },
@@ -10139,7 +10309,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-dbd06a16f7d0.webp"
       },
       "caption_tier": "none"
     },
@@ -10160,7 +10331,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e47e6b2aeada.webp"
       },
       "caption_tier": "none"
     },
@@ -10181,7 +10353,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e7725725ade2.webp"
       },
       "caption_tier": "none"
     },
@@ -10202,7 +10375,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e779fba6fa78.webp"
       },
       "caption_tier": "none"
     },
@@ -10223,7 +10397,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e84490517312.webp"
       },
       "caption_tier": "none"
     },
@@ -10244,7 +10419,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-e8ca2c654e07.webp"
       },
       "caption_tier": "none"
     },
@@ -10265,7 +10441,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-ea27f9de6f68.webp"
       },
       "caption_tier": "none"
     },
@@ -10286,7 +10463,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f0157b1952a3.webp"
       },
       "caption_tier": "none"
     },
@@ -10307,7 +10485,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f124b9245b05.webp"
       },
       "caption_tier": "none"
     },
@@ -10328,7 +10507,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f1ad825d4010.webp"
       },
       "caption_tier": "none"
     },
@@ -10349,7 +10529,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f534d92ff92d.webp"
       },
       "caption_tier": "none"
     },
@@ -10370,7 +10551,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f8f1ba5dae0d.webp"
       },
       "caption_tier": "none"
     },
@@ -10391,7 +10573,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-fa536363456f.webp"
       },
       "caption_tier": "none"
     },
@@ -10412,7 +10595,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-176d8c8c01d4.webp"
       },
       "caption_tier": "none"
     },
@@ -10433,7 +10617,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-1801e02b26c6.webp"
       },
       "caption_tier": "none"
     },
@@ -10454,7 +10639,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-190a4ed120f2.webp"
       },
       "caption_tier": "none"
     },
@@ -10475,7 +10661,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-6556bb7a4e6a.webp"
       },
       "caption_tier": "none"
     },
@@ -10496,7 +10683,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-73cce63c2011.webp"
       },
       "caption_tier": "title"
     },
@@ -10517,7 +10705,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-ebf1d42e3ddb.webp"
       },
       "caption_tier": "title"
     },
@@ -10538,7 +10727,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-f37153bb464f.webp"
       },
       "caption_tier": "title"
     },
@@ -10559,7 +10749,8 @@
       "added": "2026-06-08",
       "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "video",
+        "poster": "gallery/main-character/posters/main-character-7af12bd96d6c.webp"
       },
       "caption_tier": "title"
     }

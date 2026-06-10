@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 03:25:48 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 04:40:04 +0000</lastBuildDate>
+    <item>
+      <title>Every video plate in the gallery now carries a poster thumbnail - the video sections preview a still frame instead of a grey tile. Click still plays; nothing preloads.</title>
+      <link>https://wuld.ink/changelog/#2026-06-09-gallery-video-posters</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-09-gallery-video-posters</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Every video plate in the gallery now carries a poster thumbnail - the video sections preview a still frame instead of a grey tile. Click still plays; nothing preloads. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Gallery: videos now render in their own section below the image grid -- a mono divider carries the count (Videos -- 188 in the Main Character room; generic wherever media kinds mix), search, chips and Saved filter both sections, and the consent gate holds unchanged. Poster thumbnails are staged to follow.</title>
       <link>https://wuld.ink/changelog/#2026-06-09-gallery-video-section</link>
