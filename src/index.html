@@ -320,6 +320,67 @@
        no pulse animation. Single-line mono affordance for cold readers
        who want voice-first entry rather than destination-grid browsing. */
 
+    /* ---------- Cover→Index seam: search band (K98b) ----------
+       Operator-placed: fills the gap between Preface → and the Index
+       grid. Plain GET form to /search/?q= — ZERO homepage JS; the
+       search component still loads only on /search/ (K98 D1 holds).
+       Mono chrome register, hairline border, no animation. */
+    .cover-search-band {
+      max-width: var(--w-max);
+      margin-inline: auto;
+      width: 100%;
+      padding-inline: var(--s-5);
+      padding-block: var(--s-7) 0;
+      text-align: center;
+    }
+
+    .cover-search {
+      display: inline-flex;
+      align-items: stretch;
+      width: min(100%, 28rem);
+      border: var(--bw-base) solid var(--c-border);
+    }
+
+    .cover-search-input {
+      flex: 1;
+      min-width: 0;
+      background: transparent;
+      border: 0;
+      color: var(--c-fg);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      letter-spacing: var(--ls-wide);
+      padding: var(--s-2) var(--s-3);
+    }
+
+    .cover-search-input::placeholder {
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+    }
+
+    .cover-search-input:focus-visible {
+      outline: var(--bw-base) solid var(--c-focus-ring);
+      outline-offset: 2px;
+    }
+
+    .cover-search-go {
+      background: transparent;
+      border: 0;
+      border-inline-start: var(--bw-base) solid var(--c-border);
+      color: var(--c-fg-dim);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      padding: var(--s-2) var(--s-3);
+      cursor: pointer;
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .cover-search-go:hover {
+      color: var(--c-accent);
+    }
+
     /* ---------- Index section ---------- */
     .index {
       padding-block: var(--s-9);
@@ -515,6 +576,18 @@
         <a href="/preface/">Preface &rarr;</a>
       </span>
     </p>
+  </section>
+
+  <!-- ============================================================
+       Cover→Index seam — site search affordance (K98b).
+       Operator-placed: fills the gap between Preface → and the Index
+       grid. Plain GET form; /search/ is URL-driven (?q=). ZERO JS on
+       the homepage — the search component loads only on /search/. -->
+  <section class="cover-search-band" aria-label="Site search">
+    <form class="cover-search" action="/search/" method="get" role="search">
+      <input class="cover-search-input" type="search" name="q" placeholder="Search the site" aria-label="Search query" autocomplete="off">
+      <button class="cover-search-go" type="submit">Search</button>
+    </form>
   </section>
 
   <!-- ============================================================
