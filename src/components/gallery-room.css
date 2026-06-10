@@ -1,5 +1,5 @@
 /* ============================================================
-   gallery-room.css — K87 (+K95 favorites: star + Saved toggle).
+   gallery-room.css — K87 (+K95 favorites, +K99 caption disclosure + Prints section).
    Shared room chrome for /gallery/ and
    the category sub-rooms. gallery.css?v=K30 stays byte-held;
    everything K83 carried page-local moves here, plus the
@@ -101,3 +101,14 @@
 .gallery-print-link:focus-visible {
   color: var(--c-fg, #f0ebe5);
 }
+
+/* ---------- K99 caption disclosure ([ more ]/[ less ] toggle) ---------- */
+.gallery-plate-caption.is-collapsed .gallery-cap-extra { display: none; }
+.gallery-cap-toggle { display: inline-block; font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); background: none; border: 0; border-bottom: var(--bw-thin) solid var(--c-border); color: var(--c-fg-dim); padding: 0 0 1px 0; margin: var(--s-2) 0 0 0; cursor: pointer; }
+.gallery-cap-toggle:hover { color: var(--c-accent); border-color: var(--c-accent); }
+.gallery-cap-toggle:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+
+/* ---------- K99 Prints section (lobby; membership = plate.print_url presence) ---------- */
+.gallery-prints { margin: var(--s-7) 0; padding-top: var(--s-5); border-top: var(--bw-thin) solid var(--c-border); }
+.gallery-prints-heading { font-family: var(--font-mono); font-size: var(--t-sm); letter-spacing: var(--ls-mega); text-transform: uppercase; color: var(--c-fg); margin: 0 0 var(--s-3) 0; }
+.gallery-prints-aside { font-family: var(--font-mono); font-size: var(--t-xs); line-height: var(--lh-default); color: var(--c-fg-dim); margin: 0 0 var(--s-4) 0; }

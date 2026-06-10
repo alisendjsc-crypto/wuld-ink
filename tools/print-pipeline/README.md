@@ -44,6 +44,9 @@ Reference: `docs/print-storefront-research.md` (verdict table + vendor screens).
 4. **Verify** — `python tools\print-pipeline\stage_batch.py verify D:\print-batch-01.json`
    → count / naming / dimensions / scale per plate + max print size at
    300/200/150 DPI. Fix anything flagged before product creation.
+   K99: verify scans `out\` **recursively** (Upscayl batch mode nests
+   outputs in `out\upscayl_png_<model>\` — do not move them);
+   `print-ready-*` subfolders are excluded from matching.
 5. **Products** (Quick Store runway below). 6. **URLs back to Cowork.**
 
 ## Batch JSON schema
@@ -68,9 +71,13 @@ Reference: `docs/print-storefront-research.md` (verdict table + vendor screens).
 - **Enhanced Matte Paper Poster** (id 1): 33 sizes; squares to 28×28,
   rectangles to 30×40; slightly cheaper base.
 - **Square plates** (MC + small rooms): square sizes exist natively →
-  NO padding/crop. **Editorial plates are portrait 1792×2400 ≈ 3:4** →
-  map to the 12×16 / 18×24 / 24×32 line (aspect slip ~0.4%, inside
-  bleed tolerance).
+  NO padding/crop. **Editorial is NOT uniform (K98c census — one sample
+  is not a class):** VII 1792×2400 (3:4 → 12×16 / 18×24 / 24×32, slip
+  ~0.4%) · XI/XIV 2400×1339 (~1.8:1 → 16×24 + 24×36 LANDSCAPE with
+  Design-Lab FIT — fill-crop loses ~16% width, diptych seam risk:
+  operator eye only) · XXII/XXVII 1536×640 (2.4:1 → 10×24 EXACT
+  zero-crop + 8×20 ≈4% trim; their verify WARNs are expected — nothing
+  larger exists at that ratio).
 - Resolution (sources vary 2048²–4096²; editorial 1792×2400): Upscayl ×4
   universally — 2048² → 8192² (**341 DPI at 24×24**); 1792×2400 → 7168×9600
   (**300 DPI at 24×32**); 4096² → 16384² (overkill but harmless — if a PNG
@@ -98,6 +105,12 @@ Reference: `docs/print-storefront-research.md` (verdict table + vendor screens).
 4. Copy each product URL → paste in Cowork chat → `print_url` manifest pass
    (atomic, validated; the K96 renderer does the rest on deploy).
 5. Tier reminder per upload: T1/T2 only. When in doubt, hold the plate.
+6. **GPSR/EU stance (K98c, posture of record):** the GPSR section stays
+   deliberately UNCHECKED — it demands an EU-based responsible person (a US
+   address there = false compliance) AND renders the postal address on the
+   public storefront (privacy lock). US-first sales; no EU compliance papering
+   now; future elective = authorized-rep service + virtual mailing address.
+   Standing privacy rule: pause on ANY Printful field that displays publicly.
 
 ## Failure notes
 
@@ -116,5 +129,10 @@ Reference: `docs/print-storefront-research.md` (verdict table + vendor screens).
   batch run). After an aborted run, a "file or directory" path error clears via
   Settings -> RESET UPSCAYL + relaunch.
 - Oversize outputs: a 4096px source at 4x = 16384px PNG (hundreds of MB). If a
-  vendor upload rejects on file size, downscale to 8192 long edge (still 341 DPI
-  at 24 in; verify still PASSes) -- downscale helper queued K99.
+  vendor upload rejects on file size, cap to 8192 long edge (still 341 DPI at
+  24 in): `python tools\print-pipeline\stage_batch.py downscale
+  D:\print-staging\batch-01\out --max-edge 8192` -> copies land in
+  `out\print-ready-8192\` (the K98c convention; PNG default, `--format jpg
+  --quality 95` for hard upload caps like the Chrome lane's 10 MB). Recursive,
+  idempotent (HAVE-skip), originals untouched; `print-ready-*` is never
+  re-scanned by verify or downscale.

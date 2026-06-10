@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jun 2026 23:22:44 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 01:31:06 +0000</lastBuildDate>
+    <item>
+      <title>Gallery: the lobby gains a Prints section -- plates with purchasable print editions, rendered live from the manifest, consent discipline held -- and long full-tier captions now fold behind a mono [ more ] toggle.</title>
+      <link>https://wuld.ink/changelog/#2026-06-09-gallery-prints-and-captions</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-09-gallery-prints-and-captions</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery: the lobby gains a Prints section -- plates with purchasable print editions, rendered live from the manifest, consent discipline held -- and long full-tier captions now fold behind a mono [ more ] toggle. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Site-wide search at /search/ — every page, glossary term, Void Engine category, and gallery plate (by number, series, or word) from one query. Client-side over a static index: nothing typed here is logged, counted, or sent anywhere.</title>
       <link>https://wuld.ink/changelog/#2026-06-09-site-search</link>

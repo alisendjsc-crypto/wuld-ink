@@ -1,5 +1,5 @@
 /* ============================================================
-   gallery-room.js — K95. Shared renderer for /gallery/ and the
+   gallery-room.js — K99. Shared renderer for /gallery/ and the
    category sub-rooms. The page declares its room via
    <body data-gallery-category="<slug>">; everything else comes
    from /gallery/manifest.json (schema_version 2).
@@ -51,6 +51,22 @@
    lightbox reads metadata off the card, so caption-less ("none"
    tier) plates still carry num/title/id there. No new pages, no
    manifest schema change.
+   K99 CAPTION DISCLOSURE + PRINTS SECTION:
+   - Full-tier captions whose body runs past CAP_COLLAPSE_LIMIT (200)
+     render collapsed behind a mono [ more ]/[ less ] <button>
+     (title/num stay visible; technique/body/epitaph ride the
+     collapse; the lightbox is unaffected). Delegated handler, so it
+     survives grid re-renders; the toggle is never .gallery-plate-img,
+     so the lightbox handler ignores it.
+   - The LOBBY gains a "Prints" section directly below the category
+     index. Membership = plate.print_url PRESENCE (purchasable-only;
+     "featured" is an ordering signal among them, never the key).
+     Cards reuse plateCard/withheldCard verbatim -- CONSENT
+     DISCIPLINE HELD: flagged plates render withheld pre-consent, no
+     media in the DOM (K87 contract; a Prints row is not a consent
+     bypass). Hidden while search/saved results show (routing chrome,
+     same rule as the category index). Lightbox nav from a Prints
+     card stays within the Prints set (lbScope).
    ============================================================ */
 (function() {
   'use strict';
@@ -166,6 +182,33 @@
     return m ? parseInt(m[1], 10) : null;
   }
 
+  /* ---- K99 pure helpers (kept self-contained + dependency-free:
+         the unit test extracts this region verbatim) ---- */
+  /* K99-PURE-START */
+  var CAP_COLLAPSE_LIMIT = 200;
+  function capCollapse(body) {
+    return !!(body && String(body).length > CAP_COLLAPSE_LIMIT);
+  }
+  function printsSet(plates, catOrder) {
+    var idx = {};
+    (catOrder || []).forEach(function(s, i) { idx[s] = i; });
+    return (plates || []).filter(function(p) {
+      return !!(p && p.tier !== 'sealed' &&
+        typeof p.print_url === 'string' &&
+        p.print_url.indexOf('https://') === 0);
+    }).sort(function(a, b) {
+      var fa = a.featured ? 0 : 1, fb = b.featured ? 0 : 1;
+      if (fa !== fb) return fa - fb;
+      var ca = idx[a.category || 'editorial'];
+      var cb = idx[b.category || 'editorial'];
+      if (ca === undefined) ca = 99;
+      if (cb === undefined) cb = 99;
+      if (ca !== cb) return ca - cb;
+      return (a.order || 0) - (b.order || 0);
+    });
+  }
+  /* K99-PURE-END */
+
   /* ---- K94 filter helpers (pure over plate objects) ---- */
   function searchBlob(p) {
     return [p.id, p.title, p.technique, p.body, p.series, plateRoom(p)]
@@ -278,9 +321,22 @@
       if (tier !== 'none') {
         cap.appendChild(el('h2', 'gallery-plate-title', p.title || ('Plate ' + p.num)));
         if (tier === 'full') {
-          if (p.technique) cap.appendChild(el('p', 'gallery-plate-technique', p.technique));
-          if (p.body) cap.appendChild(el('p', 'gallery-plate-body', p.body));
-          if (p.epitaph) cap.appendChild(el('p', 'gallery-plate-epitaph', p.epitaph));
+          var extra = el('div', 'gallery-cap-extra');
+          if (p.technique) extra.appendChild(el('p', 'gallery-plate-technique', p.technique));
+          if (p.body) extra.appendChild(el('p', 'gallery-plate-body', p.body));
+          if (p.epitaph) extra.appendChild(el('p', 'gallery-plate-epitaph', p.epitaph));
+          if (extra.childNodes.length) {
+            cap.appendChild(extra);
+            if (capCollapse(p.body)) {
+              cap.classList.add('is-collapsed');
+              var tog = document.createElement('button');
+              tog.type = 'button';
+              tog.className = 'gallery-cap-toggle';
+              tog.setAttribute('aria-expanded', 'false');
+              tog.textContent = '[ more ]';
+              cap.appendChild(tog);
+            }
+          }
         }
       }
       if (withRoom) cap.appendChild(roomBadge(p));
@@ -318,6 +374,46 @@
     art.appendChild(inner);
     art.appendChild(starBtn(p));
     return art;
+  }
+
+  /* ---- K99 Prints section (lobby only; membership = print_url
+         presence -- see printsSet; consent contract identical to
+         the rooms) ---- */
+  var printsSection = null;
+  var printsGrid = null;
+  function buildPrintsShell() {
+    if (!isLobby || printsSection) return;
+    printsSection = el('section', 'gallery-prints');
+    printsSection.id = 'gallery-prints';
+    printsSection.setAttribute('aria-label', 'Prints');
+    printsSection.setAttribute('hidden', '');
+    printsSection.appendChild(el('h2', 'gallery-prints-heading', 'Prints'));
+    printsSection.appendChild(el('p', 'gallery-prints-aside',
+      'Plates available as physical prints. [ acquire print ] routes to the shop; flagged plates still gate through consent.'));
+    printsGrid = el('div', 'gallery-grid gallery-prints-grid');
+    printsGrid.id = 'gallery-prints-grid';
+    printsSection.appendChild(printsGrid);
+    catIndex.parentNode.insertBefore(printsSection, catIndex.nextSibling);
+    printsGrid.addEventListener('click', starClick);
+    printsGrid.addEventListener('click', capToggleClick);
+    if (overlay && lbImg) printsGrid.addEventListener('click', lbCardClick);
+  }
+  function renderPrints() {
+    if (!printsSection || !printsGrid) return;
+    var set = printsSet(PLATES, CAT_ORDER);
+    printsGrid.textContent = '';
+    if (!set.length || hasFilter()) {
+      printsSection.setAttribute('hidden', '');
+      return;
+    }
+    set.forEach(function(p) {
+      if (isGated(p) && !revealed) {
+        printsGrid.appendChild(withheldCard(p, true));
+      } else {
+        printsGrid.appendChild(plateCard(p, true));
+      }
+    });
+    printsSection.removeAttribute('hidden');
   }
 
   function renderCatIndex() {
@@ -407,6 +503,7 @@
     updateStatus();
     updateHero();
     updateCount(setTo.length);
+    renderPrints();
   }
 
   /* ---- K94 controls bar ---- */
@@ -572,9 +669,10 @@
   var btnPrev = document.getElementById('gallery-lightbox-prev');
   var btnNext = document.getElementById('gallery-lightbox-next');
   var currentIdx = -1;
+  var lbScope = grid;
 
   function visiblePlates() {
-    return Array.prototype.slice.call(grid.querySelectorAll('.gallery-plate')).filter(function(p) {
+    return Array.prototype.slice.call(lbScope.querySelectorAll('.gallery-plate')).filter(function(p) {
       return p.offsetParent !== null && p.querySelector('.gallery-plate-img');
     });
   }
@@ -620,16 +718,22 @@
     lbOpen(idx);
   }
 
+  /* K99: shared card->lightbox delegated handler; lbScope tracks the
+     grid the open came from (main grid or the Prints grid), so prev/
+     next, random and keyboard nav stay within that set. */
+  function lbCardClick(e) {
+    var t = e.target;
+    if (!t || !t.classList || !t.classList.contains('gallery-plate-img')) return;
+    var plate = t.closest('.gallery-plate');
+    if (!plate) return;
+    lbScope = (plate.parentNode && plate.parentNode.classList &&
+      plate.parentNode.classList.contains('gallery-prints-grid')) ? plate.parentNode : grid;
+    var vis = visiblePlates();
+    var idx = vis.indexOf(plate);
+    if (idx !== -1) lbOpen(idx);
+  }
   if (overlay && lbImg) {
-    grid.addEventListener('click', function(e) {
-      var t = e.target;
-      if (!t || !t.classList || !t.classList.contains('gallery-plate-img')) return;
-      var plate = t.closest('.gallery-plate');
-      if (!plate) return;
-      var vis = visiblePlates();
-      var idx = vis.indexOf(plate);
-      if (idx !== -1) lbOpen(idx);
-    });
+    grid.addEventListener('click', lbCardClick);
     btnClose.addEventListener('click', lbClose);
     btnPrev.addEventListener('click', function() { lbStep(-1); });
     btnNext.addEventListener('click', function() { lbStep(1); });
@@ -667,20 +771,40 @@
   /* ---- saved-star delegation (K95; the star is a <button>, never
          .gallery-plate-img, so the lightbox handler ignores it; this
          survives grid re-renders, same as the lightbox delegation) ---- */
-  grid.addEventListener('click', function(e) {
+  function starClick(e) {
     var star = e.target && e.target.closest ? e.target.closest('.gallery-star') : null;
     if (!star) return;
     e.stopPropagation();
     var id = star.getAttribute('data-star-id');
     if (!id) return;
     var on = toggleSaved(id);
-    if (on) star.classList.add('is-saved'); else star.classList.remove('is-saved');
-    star.setAttribute('aria-pressed', on ? 'true' : 'false');
-    star.setAttribute('aria-label', on ? 'Saved — remove from your list' : 'Save to your list');
-    star.setAttribute('title', on ? 'Saved — click to remove' : 'Save to your list');
+    /* K99: a plate can render twice (main grid + Prints) -- sync every
+       star carrying this id, not just the clicked one. */
+    var sel = '.gallery-star[data-star-id="' + id + '"]';
+    Array.prototype.forEach.call(document.querySelectorAll(sel), function(s) {
+      if (on) s.classList.add('is-saved'); else s.classList.remove('is-saved');
+      s.setAttribute('aria-pressed', on ? 'true' : 'false');
+      s.setAttribute('aria-label', on ? 'Saved — remove from your list' : 'Save to your list');
+      s.setAttribute('title', on ? 'Saved — click to remove' : 'Save to your list');
+    });
     updateSavedToggle();
     if (FILTER.saved) render();
-  });
+  }
+  grid.addEventListener('click', starClick);
+
+  /* ---- K99 caption-disclosure delegation (a <button>, never
+         .gallery-plate-img, so the lightbox handler ignores it) ---- */
+  function capToggleClick(e) {
+    var btn = e.target && e.target.closest ? e.target.closest('.gallery-cap-toggle') : null;
+    if (!btn) return;
+    e.stopPropagation();
+    var cap = btn.closest('.gallery-plate-caption');
+    if (!cap) return;
+    var collapsed = cap.classList.toggle('is-collapsed');
+    btn.textContent = collapsed ? '[ more ]' : '[ less ]';
+    btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  }
+  grid.addEventListener('click', capToggleClick);
 
   /* ---- boot ---- */
   fetch('/gallery/manifest.json', { cache: 'no-cache' })
@@ -698,6 +822,7 @@
       PLATES = (m.plates || []).slice().sort(function(a, b) { return (a.order || 0) - (b.order || 0); });
       loadSaved();
       buildControls();
+      buildPrintsShell();
       setToggleUI();
       render();
       renderCatIndex();

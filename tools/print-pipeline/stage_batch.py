@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""stage_batch.py -- wuld.ink print-pipeline batch stager (K97).
+r"""stage_batch.py -- wuld.ink print-pipeline batch stager (K97; K99 helpers).
 
-Two subcommands:
+NOTE: this docstring is RAW (r) -- it carries Windows paths; \u and \b
+sequences would otherwise be escape-parsed (SyntaxError / silent backspace).
+
+Three subcommands:
 
   pull    Resolve each plate's BEST source into <dest>/<batch>/in/ with
           deterministic names <id>.<ext>:
@@ -19,7 +22,15 @@ Two subcommands:
           suffix like _upscayl_4x_<model> -- do not rename outputs).
           Gates on ABSOLUTE output size: long edge >= --min-edge px
           (default 8000 -- i.e. ~341 DPI at 24x24 in). Scale factor is
-          reported informationally.
+          reported informationally. K99: out/ is scanned RECURSIVELY
+          (Upscayl batch mode nests outputs in out\upscayl_png_<model>\);
+          print-ready-* subfolders are excluded from matching.
+
+  downscale  Cap the long edge of oversized outputs (default 8192 px
+          -- still 341 DPI at 24 in) into <dir>/print-ready-<edge>/
+          copies for upload-hostile vendors. PNG default; --format jpg
+          --quality 95 when a hard upload cap bites (e.g. 10 MB).
+          Recursive, idempotent (HAVE-skip); originals untouched.
 
 Stdlib-only. Pillow is OPTIONAL (pip install pillow) -- without it,
 dimension checks are skipped and verify degrades to count+naming.
@@ -27,6 +38,7 @@ dimension checks are skipped and verify degrades to count+naming.
 Usage (Windows operator side):
   python stage_batch.py pull   D:\print-batch-01.json
   python stage_batch.py verify D:\print-batch-01.json
+  python stage_batch.py downscale D:\print-staging\batch-01\out --max-edge 8192
 
 Default dest = <folder of the batch JSON>\print-staging
 (i.e. D:\print-batch-01.json -> D:\print-staging\batch-01\{in,out}).
@@ -43,6 +55,9 @@ from pathlib import Path
 try:
     from PIL import Image
     HAVE_PIL = True
+    # K99: 4096-px sources upscale to 16384-px masters (~270 MP) -- over
+    # Pillow's DecompressionBomb default; without this, dims read "?".
+    Image.MAX_IMAGE_PIXELS = None
 except ImportError:
     HAVE_PIL = False
 
@@ -161,7 +176,11 @@ def cmd_verify(args):
     if not out_dir.is_dir():
         print("out/ missing: %s -- run Upscayl with this as the output folder." % out_dir)
         return 1
-    out_files = [f for f in out_dir.iterdir() if f.is_file()]
+    # K99: Upscayl batch mode nests outputs (out\upscayl_png_<model>\) --
+    # scan recursively; print-ready-* derivative folders are excluded.
+    out_files = [f for f in out_dir.rglob("*") if f.is_file()
+                 and not any(part.lower().startswith("print-ready")
+                             for part in f.relative_to(out_dir).parts[:-1])]
     missing, warns, rows = [], [], []
     for p in images:
         stem = p["id"]
@@ -204,6 +223,46 @@ def cmd_verify(args):
     return 0
 
 
+def cmd_downscale(args):
+    """K99: cap long edge into print-ready copies (originals untouched)."""
+    if not HAVE_PIL:
+        print("downscale needs Pillow: python -m pip install pillow"); return 1
+    src_dir = Path(args.dir)
+    if not src_dir.is_dir():
+        print("not a directory: %s" % src_dir); return 1
+    out_dir = Path(args.out) if args.out else src_dir / ("print-ready-%d" % args.max_edge)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    files = sorted(f for f in src_dir.rglob("*") if f.is_file()
+                   and f.suffix.lower() in IMG_EXTS
+                   and out_dir not in f.parents
+                   and not any(part.lower().startswith("print-ready")
+                               for part in f.relative_to(src_dir).parts[:-1]))
+    done, skipped, fails = 0, 0, []
+    for f in files:
+        target = out_dir / (f.stem + (".jpg" if args.format == "jpg" else ".png"))
+        if target.exists() and target.stat().st_size > 0:
+            print("  HAVE  %s" % target.name); skipped += 1; continue
+        try:
+            with Image.open(f) as im:
+                w, h = im.size
+                if max(w, h) <= args.max_edge:
+                    print("  SKIP  %-46s %dx%d <= %d" % (f.name, w, h, args.max_edge)); skipped += 1; continue
+                sc = args.max_edge / float(max(w, h))
+                nw, nh = max(1, int(round(w * sc))), max(1, int(round(h * sc)))
+                im2 = im.resize((nw, nh), Image.LANCZOS)
+                if args.format == "jpg":
+                    im2.convert("RGB").save(str(target), "JPEG", quality=args.quality)
+                else:
+                    im2.save(str(target), "PNG")
+            print("  DOWN  %-46s %dx%d -> %dx%d  %9d B"
+                  % (target.name, w, h, nw, nh, target.stat().st_size)); done += 1
+        except Exception as e:
+            fails.append(f.name); print("  FAIL  %-46s %s" % (f.name, e))
+    print("-" * 76)
+    print("downscaled %d, skipped %d, failed %d -> %s" % (done, skipped, len(fails), out_dir))
+    return 1 if fails else 0
+
+
 def main():
     ap = argparse.ArgumentParser(description="wuld.ink print-pipeline batch stager")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -219,6 +278,14 @@ def main():
         else:
             s.add_argument("--min-edge", type=int, default=8000,
                            help="min output long edge in px (default 8000 ~ 341dpi at 24in)")
+    d = sub.add_parser("downscale")
+    d.add_argument("dir", help="Upscayl output folder (scanned recursively; print-ready-* skipped)")
+    d.add_argument("--max-edge", type=int, default=8192,
+                   help="long-edge cap in px (default 8192 -- 341dpi at 24in)")
+    d.add_argument("--out", default=None, help="output folder (default: <dir>/print-ready-<max-edge>)")
+    d.add_argument("--format", choices=["png", "jpg"], default="png")
+    d.add_argument("--quality", type=int, default=95, help="JPEG quality for --format jpg (default 95)")
+    d.set_defaults(fn=cmd_downscale)
     args = ap.parse_args()
     sys.exit(args.fn(args))
 

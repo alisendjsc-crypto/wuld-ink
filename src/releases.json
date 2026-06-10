@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-09-gallery-prints-and-captions",
+    "date": "2026-06-09",
+    "summary": "Gallery: the lobby gains a Prints section -- plates with purchasable print editions, rendered live from the manifest, consent discipline held -- and long full-tier captions now fold behind a mono [ more ] toggle.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-09-site-search",
     "date": "2026-06-09",
     "summary": "Site-wide search at /search/ — every page, glossary term, Void Engine category, and gallery plate (by number, series, or word) from one query. Client-side over a static index: nothing typed here is logged, counted, or sent anywhere.",
