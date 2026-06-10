@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "media_base": "https://audio.wuld.ink",
-  "updated": "2026-06-09",
+  "updated": "2026-06-10",
   "categories": [
     {
       "slug": "editorial",
@@ -1360,7 +1360,8 @@
         "kind": "image"
       },
       "caption_tier": "full",
-      "featured": true
+      "featured": true,
+      "print_url": "https://wuld.printful.me/product/photo-paper-poster-6a28f47874770"
     },
     {
       "id": "original-character-f28c7d032b1f",
