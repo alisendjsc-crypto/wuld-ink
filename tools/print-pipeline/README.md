@@ -152,9 +152,14 @@ Loop (operator, per evening sitting):
 
 - Input: D:\print-ladder\publish-input.json (THE worksheet; schema in the module docstring).
   Selection = ELIGIBLE only -> minus ladder-ledger non-OK -> minus shipped -> worksheet order -> first N (default 10, --n).
-- Shipped contract: a plate counts as shipped iff its FULL id appears in a D:\k10*-outcomes.md
-  line that also carries "http" or "commit". Planning prose never matches (proven on the real
-  k102 lane doc: the plate-14 Paths mention does not exclude it).
+- Shipped contract: (1) LINE rule -- the FULL id on a D:\k10*-outcomes.md line that also
+  carries "http" or "commit"; (2) BLOCK rule (K104) -- a "PRODUCT N/ <token>" block carrying
+  http/commit excludes the plate its HEADER names (Roman -> plate-NN- prefix; other tokens
+  substring-match ids; full ids inside the block also count; blocks end at the next header,
+  "## ", or any non-indented line). Header-only: in-block prose ("matches live XI") never
+  excludes. Planning prose (Paths/tranche lines) never matches (proven on the real k102 lane
+  doc: the plate-14 Paths mention does not exclude it, while XIV + XXIV DO exclude via their
+  PRODUCT blocks).
 - Idempotence: same inputs -> same kit, nothing rewritten (operator edits to a live kit survive);
   changed inputs -> sitting-(NN+1). No state file.
 - Kits are disposable snapshots; the outcomes files + worksheet are the records.

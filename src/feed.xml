@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 05:27:07 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 06:02:57 +0000</lastBuildDate>
+    <item>
+      <title>Gallery: video theater — clicking a video now opens it center-stage, dims the room, and loops; back / forward / random / close controls and the plate id ride the frame, matching the photo lightbox.</title>
+      <link>https://wuld.ink/changelog/#2026-06-09-gallery-video-theater</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-09-gallery-video-theater</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery: video theater — clicking a video now opens it center-stage, dims the room, and loops; back / forward / random / close controls and the plate id ride the frame, matching the photo lightbox. (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Gallery: images/videos access chips in the controls bar (all rooms with mixed media + the lobby) — jump straight to the video annex without the scroll; composes with search, series chips and Saved.</title>
       <link>https://wuld.ink/changelog/#2026-06-09-gallery-media-chips</link>

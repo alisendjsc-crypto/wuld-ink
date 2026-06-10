@@ -1,5 +1,5 @@
 /* ============================================================
-   gallery-room.js — K99 (+K101 video section). Shared renderer for /gallery/ and the
+   gallery-room.js — K99 (+K101 video section, +K104 video theater). Shared renderer for /gallery/ and the
    category sub-rooms. The page declares its room via
    <body data-gallery-category="<slug>">; everything else comes
    from /gallery/manifest.json (schema_version 2).
@@ -14,9 +14,9 @@
    as withheld cards — no img, no video, no poster in the DOM —
    until the consent interstitial passes. localStorage
    "wuld:gallery-consent" persists consent; reveal resets per visit.
-   Lightbox (K27, delegation) covers images; videos use native
-   controls with preload="none" (click-to-play, zero network cost
-   before interaction).
+   Lightbox (K27, delegation) covers images; video cards render
+   poster-only (preload="none", no inline controls) and open the
+   K104 theater on click.
 
    K94 NAVIGABILITY: a controls bar (search + series chips) is
    injected above the grid where it earns its place. Filtering
@@ -80,6 +80,21 @@
      sub-grid; the lightbox stays images-only (visiblePlates filters
      on .gallery-plate-img, and video cards live outside the main
      grid besides).
+   K104 VIDEO THEATER:
+   - Card videos lose inline controls: clicking a video card opens a
+     JS-injected theater overlay (no 9-shell markup edit) that reuses
+     the images-lightbox chrome classes under theater-own ids —
+     backdrop dim + [ close ] / [ <- ] / [ -> ] / [ random ] + the
+     Plate num · id caption. The stage <video> is created ON OPEN
+     (src assigned then; loop=true — auto-loop lives on the theater
+     element; ALL playback lives in the theater) and torn down on
+     close and on every prev/next/random: one playing video at a
+     time by construction. Scope = the sub-grid the open came from
+     (videos sub-grid / Prints grid) so nav walks the current
+     filtered set; Esc / arrows / r keyboard parity. Consent held:
+     withheld cards carry no .gallery-plate-video, so they cannot
+     open the theater and never enter its scope. The images lightbox
+     is untouched.
    ============================================================ */
 (function() {
   'use strict';
@@ -311,7 +326,6 @@
     if (mediaKind(p) === 'video') {
       var v = document.createElement('video');
       v.className = 'gallery-plate-video';
-      v.controls = true;
       v.preload = 'none';
       v.src = MEDIA_BASE + '/' + p.r2key;
       if (p.media && p.media.poster) v.poster = MEDIA_BASE + '/' + p.media.poster;
@@ -439,6 +453,7 @@
     catIndex.parentNode.insertBefore(printsSection, catIndex.nextSibling);
     printsGrid.addEventListener('click', starClick);
     printsGrid.addEventListener('click', capToggleClick);
+    printsGrid.addEventListener('click', thCardClick);
     if (overlay && lbImg) printsGrid.addEventListener('click', lbCardClick);
   }
   function renderPrints() {
@@ -481,6 +496,7 @@
     grid.parentNode.insertBefore(videosSection, grid.nextSibling);
     videosGrid.addEventListener('click', starClick);
     videosGrid.addEventListener('click', capToggleClick);
+    videosGrid.addEventListener('click', thCardClick);
   }
   function renderVideos(set, withRoom) {
     if (!videosSection || !videosGrid) return;
@@ -768,7 +784,7 @@
   }
 
   /* ---- lightbox (K27 logic, delegation-adapted; images only —
-         videos carry native controls) ---- */
+         video cards open the K104 theater) ---- */
   var overlay = document.getElementById('gallery-lightbox');
   var lbImg = document.getElementById('gallery-lightbox-img');
   var capNum = document.getElementById('gallery-lightbox-caption-num');
@@ -913,6 +929,166 @@
     btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
   }
   grid.addEventListener('click', capToggleClick);
+
+  /* ---- K104 video theater: loop + dim-focus + lightbox-parity
+         chrome. Shell is JS-INJECTED on first open (the K95 random-
+         button precedent — no 9-shell markup edit) and reuses the
+         .gallery-lightbox chrome classes (backdrop dim, stage,
+         buttons, caption, body scroll lock) under theater-own ids;
+         the images lightbox is untouched. The stage <video> is
+         created ON OPEN (src assigned then; loop=true — the auto-
+         loop ask lives on the theater element; ALL playback lives
+         here, card videos carry no controls) and torn down on close
+         AND on every prev/next/random — one playing video at a time
+         by construction. Scope = the sub-grid the open came from
+         (videos sub-grid or the Prints grid), so nav walks the
+         current filtered video set (lbScope parity); keyboard
+         Esc / arrows / r match the lightbox. CONSENT HELD: withheld
+         cards carry no .gallery-plate-video, so they cannot open the
+         theater and never enter its scope (K87 contract). ---- */
+  var thOverlay = null;
+  var thStage = null;
+  var thCapWrap = null;
+  var thCapNum = null;
+  var thCapTitle = null;
+  var thVideo = null;
+  var thIdx = -1;
+  var thScope = null;
+
+  function buildTheaterShell() {
+    if (thOverlay) return;
+    function mkBtn(cls, id, label, txt) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = cls;
+      b.id = id;
+      b.setAttribute('aria-label', label);
+      b.textContent = txt;
+      return b;
+    }
+    thOverlay = el('div', 'gallery-lightbox gallery-theater');
+    thOverlay.id = 'gallery-theater';
+    thOverlay.setAttribute('role', 'dialog');
+    thOverlay.setAttribute('aria-modal', 'true');
+    thOverlay.setAttribute('aria-label', 'Video theater');
+    thOverlay.setAttribute('data-open', 'false');
+    thStage = el('div', 'gallery-lightbox-stage gallery-theater-stage');
+    var bClose = mkBtn('gallery-lightbox-close', 'gallery-theater-close', 'Close theater', '[ close ]');
+    var bPrev = mkBtn('gallery-lightbox-prev', 'gallery-theater-prev', 'Previous video', '[ \u2190 ]');
+    var bNext = mkBtn('gallery-lightbox-next', 'gallery-theater-next', 'Next video', '[ \u2192 ]');
+    var bRand = mkBtn('gallery-lightbox-random', 'gallery-theater-random', 'Random video', '[ random ]');
+    bRand.setAttribute('title', 'Jump to a random video (press r)');
+    thStage.appendChild(bClose);
+    thStage.appendChild(bPrev);
+    thStage.appendChild(bNext);
+    thStage.appendChild(bRand);
+    thCapWrap = el('div', 'gallery-lightbox-caption');
+    thCapNum = el('span', 'gallery-lightbox-caption-num');
+    thCapNum.id = 'gallery-theater-caption-num';
+    thCapTitle = el('span', 'gallery-lightbox-caption-title');
+    thCapTitle.id = 'gallery-theater-caption-title';
+    thCapWrap.appendChild(thCapNum);
+    thCapWrap.appendChild(thCapTitle);
+    thStage.appendChild(thCapWrap);
+    thOverlay.appendChild(thStage);
+    document.body.appendChild(thOverlay);
+    bClose.addEventListener('click', thClose);
+    bPrev.addEventListener('click', function() { thStep(-1); });
+    bNext.addEventListener('click', function() { thStep(1); });
+    bRand.addEventListener('click', thRandom);
+    thOverlay.addEventListener('click', function(e) {
+      if (e.target === thOverlay) thClose();
+    });
+  }
+
+  function thVisible() {
+    if (!thScope) return [];
+    return Array.prototype.slice.call(thScope.querySelectorAll('.gallery-plate')).filter(function(p) {
+      return p.offsetParent !== null && p.querySelector('.gallery-plate-video');
+    });
+  }
+
+  function thTeardown() {
+    if (!thVideo) return;
+    try { thVideo.pause(); } catch (e) {}
+    thVideo.removeAttribute('src');
+    try { thVideo.load(); } catch (e) {}
+    if (thVideo.parentNode) thVideo.parentNode.removeChild(thVideo);
+    thVideo = null;
+  }
+
+  function thOpen(idx) {
+    buildTheaterShell();
+    var vis = thVisible();
+    if (!vis.length) return;
+    thTeardown();
+    thIdx = ((idx % vis.length) + vis.length) % vis.length;
+    var plate = vis[thIdx];
+    var card = plate.querySelector('.gallery-plate-video');
+    var num = plate.getAttribute('data-num');
+    var title = plate.getAttribute('data-title');
+    var pid = plate.getAttribute('data-plate-id');
+    var v = document.createElement('video');
+    v.className = 'gallery-theater-video';
+    v.controls = true;
+    v.loop = true;
+    v.preload = 'auto';
+    v.src = card.getAttribute('src') || '';
+    if (card.getAttribute('poster')) v.poster = card.getAttribute('poster');
+    v.setAttribute('aria-label', title || (num ? 'Plate ' + num : ''));
+    thStage.insertBefore(v, thCapWrap);
+    thVideo = v;
+    thCapNum.textContent = (num ? 'Plate ' + num : '') + (pid ? '  ·  ' + pid : '');
+    thCapTitle.textContent = title || '';
+    thOverlay.setAttribute('data-open', 'true');
+    document.body.classList.add('gallery-lightbox-open');
+    var pr = v.play();
+    if (pr && pr.catch) pr.catch(function() {});
+  }
+
+  function thClose() {
+    if (!thOverlay) return;
+    thTeardown();
+    thOverlay.setAttribute('data-open', 'false');
+    document.body.classList.remove('gallery-lightbox-open');
+  }
+
+  function thStep(delta) {
+    if (!thVisible().length || thIdx < 0) return;
+    thOpen(thIdx + delta);
+  }
+
+  function thRandom() {
+    var vis = thVisible();
+    if (!vis.length) return;
+    var idx = Math.floor(Math.random() * vis.length);
+    if (vis.length > 1 && idx === thIdx) idx = (idx + 1) % vis.length;
+    thOpen(idx);
+  }
+
+  /* card -> theater delegated handler (lbCardClick pattern; targets
+     .gallery-plate-video ONLY, so images, stars, caption toggles and
+     the print link never reach it; bound on the videos sub-grid and
+     the Prints grid in their shell builders) */
+  function thCardClick(e) {
+    var t = e.target;
+    if (!t || !t.classList || !t.classList.contains('gallery-plate-video')) return;
+    var plate = t.closest('.gallery-plate');
+    if (!plate || !plate.parentNode) return;
+    thScope = plate.parentNode;
+    var vis = thVisible();
+    var idx = vis.indexOf(plate);
+    if (idx !== -1) thOpen(idx);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (consentEl && consentEl.getAttribute('data-open') === 'true') return;
+    if (!thOverlay || thOverlay.getAttribute('data-open') !== 'true') return;
+    if (e.key === 'Escape') { thClose(); }
+    else if (e.key === 'ArrowLeft') { thStep(-1); }
+    else if (e.key === 'ArrowRight') { thStep(1); }
+    else if (e.key === 'r' || e.key === 'R') { thRandom(); }
+  });
 
   /* ---- boot ---- */
   fetch('/gallery/manifest.json', { cache: 'no-cache' })

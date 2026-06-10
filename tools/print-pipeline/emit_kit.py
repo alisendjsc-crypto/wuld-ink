@@ -25,8 +25,18 @@ Selection contract: status==ELIGIBLE only (REVIEW waits for the operator to flip
 worksheet; holds never; LIVE_PENDING_VERIFY excluded) -> minus ledger non-OK ids ->
 minus shipped ids -> stable worksheet order -> first N (default 10).
 
-Shipped contract: a plate counts as shipped iff its FULL id appears in any outcomes
-file ON A LINE that also carries "http" or "commit" (product-URL / admin-drop lines).
+Shipped contract (two rules, either excludes):
+(1) LINE rule -- the plate's FULL id appears in any outcomes file ON A LINE that
+    also carries "http" or "commit" (product-URL / admin-drop lines).
+(2) BLOCK rule (K104; the round-3 doc shape defeated the line rule -- URLs sit on
+    their own lines under "PRODUCT N/ <token>" headers): a PRODUCT block carrying
+    "http" or "commit" anywhere excludes the plate named by its HEADER token --
+    Roman numerals map to the plate-NN- id prefix (editorial); any other token
+    substring-matches worksheet ids; a FULL id anywhere inside the block also
+    excludes. Blocks end at the next PRODUCT header, a "## " heading, or any
+    non-indented line (lane docs indent all block content). HEADER-ONLY
+    extraction: prose mentions inside a block ("matches live XI", "the
+    plate-22 class") never exclude.
 Planning prose (tranche lists, Paths lines) carries neither token and never matches.
 Outcomes growth IS the cursor: no state file; re-run after a sitting -> next kit.
 
@@ -102,6 +112,64 @@ def load_ledger(path):
     return bad, True
 
 
+ROMAN_RE = re.compile(r"^[IVXLCDM]+$")
+PRODUCT_HDR = re.compile(r"^PRODUCT\s+\d+\s*/\s*(\S+)")
+
+
+def roman_to_int(s):
+    vals = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    total, prev = 0, 0
+    for ch in reversed(s):
+        v = vals.get(ch)
+        if v is None:
+            return None
+        if v < prev:
+            total -= v
+        else:
+            total += v
+            prev = v
+    return total
+
+
+def block_shipped(text, ids):
+    """K104 BLOCK rule (shipped contract rule 2). A PRODUCT block that carries
+    http/commit anywhere excludes the plate named by its HEADER token only
+    (Roman -> plate-NN- prefix; other tokens substring-match worksheet ids;
+    full ids inside the block also count). Blocks end at the next PRODUCT
+    header, a "## " heading, or any non-indented line (lane docs indent all
+    block content). Header-only extraction: in-block prose ("matches live
+    XI", "the plate-22 class") never excludes."""
+    out = {}
+    lines = text.splitlines()
+    starts = [i for i, ln in enumerate(lines) if PRODUCT_HDR.match(ln)]
+    for start in starts:
+        end = len(lines)
+        for j in range(start + 1, len(lines)):
+            lj = lines[j]
+            if (PRODUCT_HDR.match(lj) or lj.startswith("## ") or
+                    (lj.strip() and not lj.startswith(" ") and not lj.startswith("\t"))):
+                end = j
+                break
+        blob = "\n".join(lines[start:end])
+        low = blob.lower()
+        if "http" not in low and "commit" not in low:
+            continue
+        token = PRODUCT_HDR.match(lines[start]).group(1)
+        n = roman_to_int(token) if ROMAN_RE.match(token) else None
+        for pid in ids:
+            if pid in out:
+                continue
+            if n is not None:
+                if pid.startswith("plate-%02d-" % n):
+                    out[pid] = True
+            elif token.lower() in pid.lower():
+                out[pid] = True
+        for pid in ids:
+            if pid not in out and pid in blob:
+                out[pid] = True
+    return out
+
+
 def shipped_ids(glob_pat, ids):
     hits = {}
     files = sorted(globmod.glob(glob_pat))
@@ -116,6 +184,9 @@ def shipped_ids(glob_pat, ids):
                 for pid in ids:
                     if pid in ln and pid not in hits:
                         hits[pid] = os.path.basename(fp)
+        for pid in block_shipped(text, ids):
+            if pid not in hits:
+                hits[pid] = os.path.basename(fp)
     return hits, [os.path.basename(f) for f in files]
 
 

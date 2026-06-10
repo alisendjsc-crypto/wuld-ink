@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-09-gallery-video-theater",
+    "date": "2026-06-09",
+    "summary": "Gallery: video theater — clicking a video now opens it center-stage, dims the room, and loops; back / forward / random / close controls and the plate id ride the frame, matching the photo lightbox.",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-09-gallery-media-chips",
     "date": "2026-06-09",
     "summary": "Gallery: images/videos access chips in the controls bar (all rooms with mixed media + the lobby) — jump straight to the video annex without the scroll; composes with search, series chips and Saved.",

@@ -1,5 +1,5 @@
 /* ============================================================
-   gallery-room.css — K87 (+K95 favorites, +K99 caption disclosure + Prints section, +K101 video section).
+   gallery-room.css — K87 (+K95 favorites, +K99 caption disclosure + Prints section, +K101 video section, +K104 video theater).
    Shared room chrome for /gallery/ and
    the category sub-rooms. gallery.css?v=K30 stays byte-held;
    everything K83 carried page-local moves here, plus the
@@ -39,7 +39,7 @@
 .gallery-cat-meta { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); color: var(--c-fg-dim); }
 
 /* ---------- Video cards ---------- */
-.gallery-plate-video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #000; border: 0; }
+.gallery-plate-video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #000; border: 0; cursor: pointer; }
 .gallery-plate-video[poster] { aspect-ratio: auto; }
 
 /* ---------- Sub-room back link ---------- */
@@ -116,3 +116,11 @@
 /* ---------- K101 video section (own sub-grid below the image grid in mixed-kind rooms) ---------- */
 .gallery-videos { margin: var(--s-7) 0 0 0; padding-top: var(--s-5); border-top: var(--bw-thin) solid var(--c-border); }
 .gallery-videos-heading { font-family: var(--font-mono); font-size: var(--t-sm); letter-spacing: var(--ls-mega); text-transform: uppercase; color: var(--c-fg); margin: 0 0 var(--s-4) 0; }
+
+/* ---------- K104 video theater (stage video; chrome classes are the images-
+   lightbox ones from gallery.css?v=K30, byte-held; the dim is the static
+   lightbox backdrop — zero animation added here) ---------- */
+.gallery-theater-video { display: block; max-width: min(100vw - 4rem, 1100px); max-height: calc(100vh - 10rem); min-width: min(60vw, 36rem); height: auto; background: #000; border: var(--bw-thin) solid var(--c-border-strong); }
+@media (max-width: 760px) {
+  .gallery-theater-video { min-width: 0; max-width: calc(100vw - 2rem); }
+}
