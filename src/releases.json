@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-10-gallery-video-flow-and-search-deep-links",
+    "date": "2026-06-10",
+    "summary": "Main Character videos now flow by palette (poster-derived chain order); the lobby [ browse all ] walks room by room instead of interleaving; site-search plate results deep-link to the plate itself \u2014 the link opens the lightbox or the video theater directly.",
+    "sections": ["/gallery/", "/search/"]
+  },
+  {
     "id": "2026-06-10-gallery-browse-pagination",
     "date": "2026-06-10",
     "summary": "Gallery UX pass 2: sets past 60 plates paginate behind a mono pager, the lobby gains a [ browse all ] toggle across every room, a [ top ] button rides long scrolls, flagged share links surface the 18+ gate for first-time visitors, and the lobby Prints strip keeps only cross-room prints.",

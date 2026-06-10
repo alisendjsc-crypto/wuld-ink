@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 07:26:12 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 08:34:19 +0000</lastBuildDate>
+    <item>
+      <title>Main Character videos now flow by palette (poster-derived chain order); the lobby [ browse all ] walks room by room instead of interleaving; site-search plate results deep-link to the plate itself — the link opens the lightbox or the video theater directly.</title>
+      <link>https://wuld.ink/changelog/#2026-06-10-gallery-video-flow-and-search-deep-links</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-10-gallery-video-flow-and-search-deep-links</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Main Character videos now flow by palette (poster-derived chain order); the lobby [ browse all ] walks room by room instead of interleaving; site-search plate results deep-link to the plate itself — the link opens the lightbox or the video theater directly. (Sections: /gallery/, /search/)</description>
+    </item>
     <item>
       <title>Gallery UX pass 2: sets past 60 plates paginate behind a mono pager, the lobby gains a [ browse all ] toggle across every room, a [ top ] button rides long scrolls, flagged share links surface the 18+ gate for first-time visitors, and the lobby Prints strip keeps only cross-room prints.</title>
       <link>https://wuld.ink/changelog/#2026-06-10-gallery-browse-pagination</link>

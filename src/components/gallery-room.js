@@ -330,6 +330,26 @@
   }
   /* K106-PURE-END */
 
+  /* K107-PURE-START (browse room-block comparator; pure) */
+  function roomBlockCmp(catOrder) {
+    /* K107 Track B: browse-all room-blocked flow. Two-key comparator:
+       CAT_ORDER block rank first (editorial leads, rooms follow the
+       manifest category order; unknown rooms trail), manifest order
+       within the block. Applied per kind segment in displayList() --
+       the images-first / videos-trail partition stays structural. */
+    var rank = {};
+    (catOrder || []).forEach(function(s, i) { rank[s] = i; });
+    return function(a, b) {
+      var ra = rank[(a && a.category) || 'editorial'];
+      var rb = rank[(b && b.category) || 'editorial'];
+      if (ra === undefined) ra = 1e9;
+      if (rb === undefined) rb = 1e9;
+      if (ra !== rb) return ra - rb;
+      return ((a && a.order) || 0) - ((b && b.order) || 0);
+    };
+  }
+  /* K107-PURE-END */
+
   /* ---- K94 filter helpers (pure over plate objects) ---- */
   function searchBlob(p) {
     return [p.id, p.title, p.technique, p.body, p.series, plateRoom(p)]
@@ -694,6 +714,13 @@
     base.forEach(function(p) {
       if (mediaKind(p) === 'video') vids.push(p); else imgs.push(p);
     });
+    if (FILTER.browse) {
+      /* K107 Track B: room-blocked browse -- group by room within each
+         kind segment; kills the equal-order interleave at corpus scale. */
+      var cmp = roomBlockCmp(CAT_ORDER);
+      imgs.sort(cmp);
+      vids.sort(cmp);
+    }
     return imgs.concat(vids);
   }
   var pagerTop = null;

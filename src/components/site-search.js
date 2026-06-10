@@ -115,7 +115,10 @@
   function rowFor(e) {
     var li = el("li", "ss-row");
     var a = el("a", "ss-title");
-    a.href = e.route;
+    /* K107: plate results deep-link to the plate itself -- the K105
+       /gallery/<room>/#plate-<id> primitive (lightbox / theater /
+       consent surfacing all handled gallery-side). */
+    a.href = e.type === "plate" ? e.route + "#plate-" + e.id : e.route;
     if (e.type === "plate") {
       a.textContent = "Plate " + e.num + (e.title ? " — " + e.title : "");
       var meta = el("p", "ss-meta", e.room + (e.series ? " · " + e.series : "") + " · " + e.id);
