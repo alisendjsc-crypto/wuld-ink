@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "media_base": "https://audio.wuld.ink",
-  "updated": "2026-06-09",
+  "updated": "2026-06-10",
   "categories": [
     {
       "slug": "editorial",
-      "name": "Void Engine \u2014 Editorial",
+      "name": "Void Engine — Editorial",
       "caption_tier": "full"
     },
     {
@@ -56,7 +56,7 @@
       "num": "I",
       "title": "Subject, Reduced to Screen",
       "technique": "Halftone separation; torn dot-screen; the face survives only as the place the dots refuse to land.",
-      "body": "A head in profile, rendered entirely in print decay. There is no skin here \u2014 only the absence the screen leaves where a skin would be. The pattern doesn't describe the face; it withholds in the shape of one. You are not looking at a person. You are looking at the resolution at which a person stops.",
+      "body": "A head in profile, rendered entirely in print decay. There is no skin here — only the absence the screen leaves where a skin would be. The pattern doesn't describe the face; it withholds in the shape of one. You are not looking at a person. You are looking at the resolution at which a person stops.",
       "epitaph": "Resolved at the point where I disappear.",
       "series": "batch-01",
       "order": 1,
@@ -68,505 +68,6 @@
         "kind": "image"
       },
       "caption_tier": "full"
-    },
-    {
-      "id": "plate-02-one-saline-datum",
-      "r2key": "gallery/plate-02-one-saline-datum.webp",
-      "num": "II",
-      "title": "One Saline Datum",
-      "technique": "Soft-focus monochrome; available light; a single tracked tear, recorded without comment.",
-      "body": "The temptation is to call this grief and move on, satisfied. The work declines that. It does not present sorrow; it presents one drop of fluid catching what light there was, on a face that has stopped performing for the lens. The eyes are not asking you for anything. That is the part that holds you.",
-      "epitaph": "Do not mistake the measurement for the feeling.",
-      "series": "",
-      "order": 2,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-03-the-embrace-does-not-hold",
-      "r2key": "gallery/plate-03-the-embrace-does-not-hold.webp",
-      "num": "III",
-      "title": "The Embrace Does Not Hold",
-      "technique": "Single long exposure; arterial red; two bodies recorded across the duration it takes one of them to leave.",
-      "body": "Two figures, close enough to be one. The red is not warmth \u2014 it is the color a darkroom uses so the image can exist without being seen. One face is turning out of the frame, already partly motion, already partly gone. The holding is real. The keeping is not.",
-      "epitaph": "I was here for the length of the exposure.",
-      "series": "",
-      "order": 3,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-04-turned-mid-erasure",
-      "r2key": "gallery/plate-04-turned-mid-erasure.webp",
-      "num": "IV",
-      "title": "Turned, Mid-Erasure",
-      "technique": "Red-state long exposure; the subject caught at the instant of looking back, smeared by the looking.",
-      "body": "She has turned toward something behind her, and the turn cost her the edges of her own face. The dark does most of the picture's work; she occupies only the small region the dark has not yet claimed. This is not a portrait of a woman. It is a portrait of the moment a woman becomes difficult to keep.",
-      "epitaph": "Look away and I finish leaving.",
-      "series": "",
-      "order": 4,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-05-audience-of-one-shadow",
-      "r2key": "gallery/plate-05-audience-of-one-shadow.webp",
-      "num": "V",
-      "title": "Audience of One Shadow",
-      "technique": "Coarse magenta halftone on textured stock; a seated figure and the silhouette that watches it.",
-      "body": "A body folded down to its smallest possible footprint \u2014 knees up, arms closed around the knees \u2014 and beside it, in hard black, the profile of a head that is only outline. The seated figure has detail and is vulnerable. The watching figure has no detail and is not. The image lets you decide which one is you.",
-      "epitaph": "Someone is always the dark half of the picture.",
-      "series": "",
-      "order": 5,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-06-quiet-catastrophe-of-erasure",
-      "r2key": "gallery/plate-06-quiet-catastrophe-of-erasure.webp",
-      "num": "VI",
-      "title": "The Quiet Catastrophe of Erasure",
-      "technique": "Pale halftone landscape; a standing figure in a flat field, dispersing upward into the dot-screen at the head.",
-      "body": "The figure stands where a figure would stand. From the shoulders up it is becoming weather \u2014 the print pattern opening, the head scattering into the sky as though resolution were something a body could run out of. Nothing dramatic happens. That is the catastrophe. It is quiet because erasure usually is.",
-      "epitaph": "No event. Only the slow subtraction.",
-      "series": "",
-      "order": 6,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-07-ophelia-without-the-river",
-      "r2key": "gallery/plate-07-ophelia-without-the-river.webp",
-      "num": "VII",
-      "title": "Ophelia, Without the River",
-      "technique": "Double-exposed monochrome film; recumbent figure among spent flowers and turned earth; vertical bleed.",
-      "body": "The pose quotes a painting you already know \u2014 the floating woman, the flowers, the surrender. The work takes the river away and leaves her in dirt. No water to make it beautiful, no current to make it a story. Just a body laid in a field with cut flowers going over, and a second exposure ghosting through her like a thought she didn't finish.",
-      "epitaph": "Take away the water and it is only the ground.",
-      "series": "",
-      "order": 7,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full",
-      "featured": true
-    },
-    {
-      "id": "plate-08-the-same-field-later",
-      "r2key": "gallery/plate-08-the-same-field-later.webp",
-      "num": "VIII",
-      "title": "The Same Field, Later",
-      "technique": "Aged contact print; emulsion damage and fold-wear at the borders; the recumbent figure again, horizontal, further gone.",
-      "body": "A companion to the plate before it, but the print has aged inside the image \u2014 the paper torn, foxed, fold-creased, as though the photograph were recovered rather than made. She is still among the flowers. The difference is only time, and time has been applied to the document, not to her. The flowers are sharper than the face now. They lasted better.",
-      "epitaph": "The paper remembers worse than the field does.",
-      "series": "",
-      "order": 8,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-09-archival-no-caption-survives",
-      "r2key": "gallery/plate-09-archival-no-caption-survives.webp",
-      "num": "IX",
-      "title": "Archival: No Caption Survives",
-      "technique": "Lith print on rag; ferric bloom and frost-fern decay invading from every edge; vertical.",
-      "body": "A standing figure, mostly consumed. The chemistry that should have fixed the image instead ate it \u2014 black frost creeping in from the margins, the body grainy to the point of refusal. Whatever was written under this picture is gone with everything else. The work keeps the figure only to demonstrate that keeping failed.",
-      "epitaph": "Whatever this was, it was not labeled in time.",
-      "series": "",
-      "order": 9,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-10-hands-against-the-developer",
-      "r2key": "gallery/plate-10-hands-against-the-developer.webp",
-      "num": "X",
-      "title": "Hands Against the Developer",
-      "technique": "Lith print; double-exposed head; ink-splatter and water-staining across the lower field; vertical.",
-      "body": "A doubled face, the two heads not quite agreeing on where the face is. Below, arms crossed up over the chest in the oldest defensive posture there is. The damage runs in diagonals over the body like something was thrown at the print after it dried. The gesture is protective. It did not protect the image.",
-      "epitaph": "I covered myself and the picture still got out.",
-      "series": "",
-      "order": 10,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-11-bleed-through-diptych",
-      "r2key": "gallery/plate-11-bleed-through-diptych.webp",
-      "num": "XI",
-      "title": "Bleed-Through (Diptych)",
-      "technique": "Saturated red wash over cracked emulsion; two faces, one nearly negative, sharing a single ruined surface.",
-      "body": "Two faces in the same blood-light, one resolving toward white, one collapsing toward black, both fractured by the same cracks running through the material they're printed on. It reads as a diptych that was never two panels \u2014 one image that split under pressure. You are not meant to tell them apart. You are meant to notice you tried.",
-      "epitaph": "Two of us, one wound in the paper.",
-      "series": "",
-      "order": 11,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full",
-      "featured": true
-    },
-    {
-      "id": "plate-12-pre-lacero-rupture-iv",
-      "r2key": "gallery/plate-12-pre-lacero-rupture-iv.webp",
-      "num": "XII",
-      "title": "Pre-Lacero: Rupture IV",
-      "technique": "Monochrome portrait viewed through stacked, creased acetate frames; the face doubled by its own framing.",
-      "body": "A face seen through layer on layer of crumpled transparent material, each layer a frame that fails to contain it. The doubling isn't an effect laid over the face \u2014 it's the face refusing to stay inside the rectangles drawn around it. Fourth in a sequence that names what it is before it happens. This is the state before the tear.",
-      "epitaph": "Frame me again. I will still be in two places.",
-      "series": "",
-      "order": 12,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-13-the-ward-in-five-frames",
-      "r2key": "gallery/plate-13-the-ward-in-five-frames.webp",
-      "num": "XIII",
-      "title": "The Ward, in Five Frames",
-      "technique": "Cyanotype strip; five-panel sequence; institutional interiors and a face with the features sanded off.",
-      "body": "A horizontal strip in process-blue, brushed at the edges where the chemistry ran out: a lit television no one watches, a figure standing in a doorway full of light, a portrait whose face has been worn smooth to nothing. It does not narrate. It sequences \u2014 the way a building sequences you, room to room, until the last frame is just your face with the identifying parts removed.",
-      "epitaph": "Down the hall, through the door, and then no face.",
-      "series": "",
-      "order": 13,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-14-intake-triptych",
-      "r2key": "gallery/plate-14-intake-triptych.webp",
-      "num": "XIV",
-      "title": "Intake (Triptych)",
-      "technique": "Blue-toned triptych; stairwell, waiting room, portrait; the figure doubled at the moment of arrival.",
-      "body": "Three panels. A figure descending a stairwell, doubled by the descent. A single person seated in a grid of empty institutional chairs, small in the middle of a room built for a crowd. A face in close, grain-heavy, looking at nothing in particular and meaning it. Together they describe a procedure no one names while it is being done to them.",
-      "epitaph": "I came in. The room was already this empty.",
-      "series": "",
-      "order": 14,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full",
-      "featured": true
-    },
-    {
-      "id": "plate-15-unspoken-deposits",
-      "r2key": "gallery/plate-15-unspoken-deposits.webp",
-      "num": "XV",
-      "title": "Unspoken Deposits",
-      "technique": "Crumpled, photocopied poster stock; a figure doubled across the fold; titled in the print itself.",
-      "body": "The image carries its own title, set small and low in the toner like a caption that gave up being explanatory. A figure repeated across the crease of cheap paper, degraded by the copy of a copy. What was deposited, and by whom, and into what, the work does not say. The deposits are unspoken. That is the entire holding.",
-      "epitaph": "Something was left here. No one will say what.",
-      "series": "",
-      "order": 15,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-16-pushed-2-stops-past-the-subject",
-      "r2key": "gallery/plate-16-pushed-2-stops-past-the-subject.webp",
-      "num": "XVI",
-      "title": "Pushed +2 Stops Past the Subject",
-      "technique": "Contact-sheet wall grid; mixed frames and halftone tiles; the artist's process note left in the image, handwritten.",
-      "body": "A wall of frames pinned edge to edge \u2014 a face recurring through them, blurred at the mouth in one, screened to dots in another, a silhouette at a bright window in a third. A handwritten note has been left in the grid stating the film and that it was pushed two stops. The note is the only certain thing in the picture. Everything it was supposed to describe has moved.",
-      "epitaph": "Overexposed on purpose. The person still didn\u2019t hold.",
-      "series": "",
-      "order": 16,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-17-subject-itemized",
-      "r2key": "gallery/plate-17-subject-itemized.webp",
-      "num": "XVII",
-      "title": "Subject, Itemized",
-      "technique": "Monochrome interior with a standing blurred figure, beside a pasted grid of isolated eyes, mouths, a hand.",
-      "body": "On the left, a person standing in a bare room, out of focus, refusing to resolve. On the right, the same person taken apart and pinned up in pieces \u2014 an eye, an eye, a mouth, a mouth, an open hand \u2014 each fragment sharper than the whole ever was. The work makes the method visible: to see the subject clearly you had to stop letting it be one.",
-      "epitaph": "Clear, now that I am in pieces.",
-      "series": "",
-      "order": 17,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-18-four-exposures-no-agreement",
-      "r2key": "gallery/plate-18-four-exposures-no-agreement.webp",
-      "num": "XVIII",
-      "title": "Four Exposures, No Agreement",
-      "technique": "Aged contact frame; four motion double-exposures of one head; a rule-of-thirds grid scored over the whole; emulsion rot at the border.",
-      "body": "Four times the same face, and four times it has moved before the shutter finished with it. The grid laid over the plate is the apparatus insisting on an order the subject will not supply. You can line the panels up; they will not agree on where the face was.",
-      "epitaph": "Count me again. I keep coming out different.",
-      "series": "",
-      "order": 18,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-19-second-face-arrives-late",
-      "r2key": "gallery/plate-19-second-face-arrives-late.webp",
-      "num": "XIX",
-      "title": "The Second Face Arrives Late",
-      "technique": "Single long exposure, doubled; the duplicate dragged leftward into hair-streak; tile-grid emulsion damage; aged stock.",
-      "body": "The head is tilted down and tired, and a second version of it is still catching up from the left, smeared across the time the exposure took. It is not two people. It is one person photographed for slightly too long, so the leaving got into the picture with the staying.",
-      "epitaph": "Half of me hadn\u2019t finished turning.",
-      "series": "",
-      "order": 19,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-20-sharp-only-where-she-wont-look",
-      "r2key": "gallery/plate-20-sharp-only-where-she-wont-look.webp",
-      "num": "XX",
-      "title": "Sharp Only Where She Won\u2019t Look",
-      "technique": "Mixed register; blurred multi-pass sequence at left with halftone block insets; one sharp frame at right; abraded border.",
-      "body": "On the left the face is dragged through several of itself and broken into screened blocks \u2014 an eye, a forearm \u2014 none of it resolving. On the right is the only frame in focus, and in it she has pressed both fists into her eyes. The picture is clear exactly where the subject has stopped looking back.",
-      "epitaph": "I see best the part of me that quit watching.",
-      "series": "",
-      "order": 20,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-21-standing-next-to-the-evidence-of-herself",
-      "r2key": "gallery/plate-21-standing-next-to-the-evidence-of-herself.webp",
-      "num": "XXI",
-      "title": "Standing Next to the Evidence of Herself",
-      "technique": "Long exposure with lateral motion ghosting; halftone fragment grid composited at left; soiled slip; cracked print border.",
-      "body": "She stands in a dirtied slip while motion-blurred copies sweep past her, and beside her, in hard screened tiles, are her own eyes and hand pinned up out of context. The standing figure is the subject; the grid is the file the subject has been entered into. The work shows both at once so you cannot pretend the second is the same as the first.",
-      "epitaph": "They kept the pieces. They did not keep me.",
-      "series": "",
-      "order": 21,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-22-face-runs-before-it-sets",
-      "r2key": "gallery/plate-22-face-runs-before-it-sets.webp",
-      "num": "XXII",
-      "title": "The Face Runs Before It Sets",
-      "technique": "Aerosol-and-carbon decay over a downturned face; vertical run-off at the left margin; sepia-grey cast.",
-      "body": "A face made mostly of soot, looking down and away, the chemistry running off the bottom-left edge before it could fix. The eyes hold a little light; everything around them is being lost at the speed of a drip. It is not a portrait of a person so much as a record of how fast one stops being legible.",
-      "epitaph": "Photograph me faster than I leave.",
-      "series": "",
-      "order": 22,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full",
-      "featured": true
-    },
-    {
-      "id": "plate-23-specimen-sheet-features-unassembled",
-      "r2key": "gallery/plate-23-specimen-sheet-features-unassembled.webp",
-      "num": "XXIII",
-      "title": "Specimen Sheet: Features, Unassembled",
-      "technique": "Soft-focus monochrome tiled into a fragment grid; partial eyes, noses, mouths; fine even grain.",
-      "body": "The face has been cut into a sheet of soft tiles \u2014 an eye here, a mouth two tiles down \u2014 and no arrangement of them rebuilds a head. The softness is clinical, not tender; this is how a thing looks when it has been catalogued rather than seen. The sheet is complete. The person is not on it.",
-      "epitaph": "All of me is here and none of me is.",
-      "series": "",
-      "order": 23,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-24-strips-two-faces-survive-the-grime",
-      "r2key": "gallery/plate-24-strips-two-faces-survive-the-grime.webp",
-      "num": "XXIV",
-      "title": "Strips, Two Faces Survive the Grime",
-      "technique": "Vertical torn-strip composite; heavy carbon grime; two faces partially resolved among ruined columns.",
-      "body": "The image is shredded into upright columns, most of them given over to dirt, and two faces have come partway through the damage to look out. They are not rescued \u2014 they are simply the parts the grime has not reached yet. The composition does not ask which face is whose; it only shows the ruin is not finished.",
-      "epitaph": "The dark stopped here for now.",
-      "series": "",
-      "order": 24,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-25-the-same-strips-burned-to-white",
-      "r2key": "gallery/plate-25-the-same-strips-burned-to-white.webp",
-      "num": "XXV",
-      "title": "The Same Strips, Burned to White",
-      "technique": "Vertical-strip composite, overexposed past the subject; emulsion bleached to light; faces dissolving upward into white.",
-      "body": "The same column structure as the plate before, but the loss has reversed direction \u2014 the faces are not sinking into black, they are being burned out by white. Erasure does not require darkness; light, given enough of it, removes a face just as completely. Nothing here was added. Something was over-given until it was gone.",
-      "epitaph": "They left the lamp on me until I wasn\u2019t there.",
-      "series": "",
-      "order": 25,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-26-center-holds-edges-do-not",
-      "r2key": "gallery/plate-26-center-holds-edges-do-not.webp",
-      "num": "XXVI",
-      "title": "Center Holds, Edges Do Not",
-      "technique": "Horizontal row of strip-faces; central face most resolved; flanking faces decaying into particulate toward both margins.",
-      "body": "A line of faces runs across the frame, and only the one in the middle has been allowed to stay frontal and intact. To either side the same face thins into dust the further it gets from center, as if attention had a radius and this is where it ran out. The middle is not safe. It is only last.",
-      "epitaph": "I am the part you haven\u2019t lost yet.",
-      "series": "",
-      "order": 26,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "plate-27-one-eye-kept-the-rest-given-to-dust",
-      "r2key": "gallery/plate-27-one-eye-kept-the-rest-given-to-dust.webp",
-      "num": "XXVII",
-      "title": "One Eye Kept, the Rest Given to Dust",
-      "technique": "Single face emerging from carbon dispersion; one eye holding a hard highlight; hair turning particulate; low key.",
-      "body": "A face surfaces out of a cloud of its own grain, and one eye has caught a single hard light while the rest is being handed back to the dust. The look is not pleading. It is the flat attention of something that has already done its accounting and found the number low.",
-      "epitaph": "Keep the eye. I don\u2019t need the rest.",
-      "series": "",
-      "order": 27,
-      "tier": "standard",
-      "content_flags": [],
-      "added": "2026-06-06",
-      "category": "editorial",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full",
-      "featured": true
     },
     {
       "id": "gap-dweller-5e943be2b605",
@@ -591,48 +92,6 @@
       "featured": true
     },
     {
-      "id": "gap-dweller-69c7a173353b",
-      "r2key": "gallery/gap-dweller/69c7a173353ba7df392ebcb67c9dd093.webp",
-      "num": "002",
-      "title": "The Width of a Door",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "the-gap",
-      "order": 2,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "gap-dweller",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "gore-e0d2a67528c5",
-      "r2key": "gallery/gore/e0d2a67528c5285401eefb9167475512.webp",
-      "num": "005",
-      "title": "Said Harder",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "rose-thorn",
-      "order": 5,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "gore",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
       "id": "mascot-yurei-18b85471f778",
       "r2key": "gallery/mascot-yurei/18b85471f778d11c8e5622d6657e7b0e.webp",
       "num": "001",
@@ -642,91 +101,6 @@
       "epitaph": "",
       "series": "mascot",
       "order": 1,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "mascot-yurei",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "mascot-yurei-5f5b01469411",
-      "r2key": "gallery/mascot-yurei/5f5b01469411366491ee39af015af8ce.webp",
-      "num": "002",
-      "title": "Twice-Exposed, Holding",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "mascot",
-      "order": 2,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "mascot-yurei",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "mascot-yurei-77c8053bbf48",
-      "r2key": "gallery/mascot-yurei/77c8053bbf481a7a07f3030837e511dc.webp",
-      "num": "003",
-      "title": "The Pool She Came With",
-      "technique": "Derelict interior, single warm lamp; long black hair, a dark stain spreading at the feet; the throat marked, the head let back.",
-      "body": "This is the figure the site keeps returning to - the one in the wet room with her face given up to the ceiling. She is not collapsed and not posed; she occupies the middle distance the way a stain does, having arrived from somewhere and stopped. The lamp insists on a warmth the scene will not accept. You look for the wound that made the pool and find the throat already marked, and then you understand the pool is not from a wound. It is what she brought with her.",
-      "epitaph": "She did not bleed into the room. She arrived as the room's condition.",
-      "series": "mascot",
-      "order": 3,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "mascot-yurei",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full",
-      "featured": true
-    },
-    {
-      "id": "mascot-yurei-a6a0afb865a4",
-      "r2key": "gallery/mascot-yurei/a6a0afb865a4f9b6312a4ab2ffbdb0be.webp",
-      "num": "004",
-      "title": "Folded Small",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "mascot",
-      "order": 4,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "mascot-yurei",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "mascot-yurei-e7b88cb120af",
-      "r2key": "gallery/mascot-yurei/e7b88cb120afa705b44984cbc12bc8d5.webp",
-      "num": "005",
-      "title": "In the Doorway",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "mascot",
-      "order": 5,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -760,321 +134,6 @@
       "caption_tier": "title"
     },
     {
-      "id": "original-character-2e10612c1c0d",
-      "r2key": "gallery/original-character/2e10612c1c0dcae0e6303a0fc19466a6.webp",
-      "num": "002",
-      "title": "Soft Enough to Doubt",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 2,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-63cb131c5f14",
-      "r2key": "gallery/original-character/63cb131c5f14bfddee36b1a765eea14d.webp",
-      "num": "010",
-      "title": "The One Still Looking Back",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 10,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-65e0ab71e00b",
-      "r2key": "gallery/original-character/65e0ab71e00b944400651643b65164ad.webp",
-      "num": "003",
-      "title": "Moved While the Shutter Was Open",
-      "technique": "Long exposure, available light; the figure smeared into her own motion, edges abandoned.",
-      "body": "She would not hold still, or the camera would not let her. Either way the picture keeps the refusal: a nude rendered as the blur between two positions, present everywhere along the arc and locatable at no point on it. The other studies in this set hold; this one admits that holding was always the fiction. You are looking at the duration, not the body.",
-      "epitaph": "A likeness of how long it took.",
-      "series": "original-character",
-      "order": 3,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "original-character-66fc96174535",
-      "r2key": "gallery/original-character/66fc961745359153483d3090820a6875.webp",
-      "num": "011",
-      "title": "After the Water",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 11,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-6874b95d907c",
-      "r2key": "gallery/original-character/6874b95d907ce2526d5610a681585ea4.webp",
-      "num": "004",
-      "title": "Unfinished on Purpose",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 4,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-7924d4462705",
-      "r2key": "gallery/original-character/7924d44627051c5ae315db8d1f701b39.webp",
-      "num": "005",
-      "title": "Closed Against the Cold",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 5,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-942714c8237a",
-      "r2key": "gallery/original-character/942714c8237a1d4eb4eddf87eac50dd7.webp",
-      "num": "012",
-      "title": "Turned a Quarter Away",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 12,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-a0cc092bb9a7",
-      "r2key": "gallery/original-character/a0cc092bb9a742f52a5171401edd5c7e.webp",
-      "num": "006",
-      "title": "Behind Her Own Hair",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 6,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-aa1d503937e1",
-      "r2key": "gallery/original-character/aa1d503937e19290f775bc5fc0062b99.webp",
-      "num": "007",
-      "title": "The Body as Terrain",
-      "technique": "Raking side-light across the torso; high grain; the frame cropped past the personal, to skin alone.",
-      "body": "Light comes in low and turns the abdomen into landscape - a ridge of sternum, the long plain below it, the navel's small shadow read like a feature on a map. There is no face to organise the picture around, which is the point: cropped this close, the body stops being a person and becomes a place the light is describing. The study is not interested in who she is. It is interested in what the grain and the angle can make of a surface that happens to be alive.",
-      "epitaph": "Surveyed, not seen.",
-      "series": "original-character",
-      "order": 7,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "original-character-b1ecf0e8fec7",
-      "r2key": "gallery/original-character/b1ecf0e8fec7de68322cb8062f87e2df.webp",
-      "num": "008",
-      "title": "Kneeling Into the Seam of Light",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 8,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-b23b7bdee538",
-      "r2key": "gallery/original-character/b23b7bdee538056c839db54630248d65.webp",
-      "num": "013",
-      "title": "Held Inside a Border",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 13,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-f28c7d032b1f",
-      "r2key": "gallery/original-character/f28c7d032b1f46e13695a196df014862.webp",
-      "num": "014",
-      "title": "Plainly, in Colour",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 14,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-f682a1502e6b",
-      "r2key": "gallery/original-character/f682a1502e6b56313c1563ab8fd01bf9.webp",
-      "num": "015",
-      "title": "A Hand Where the Heart Is Said to Be",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 15,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-f75245a21b94",
-      "r2key": "gallery/original-character/f75245a21b9404f4e7d908790bb178ff.webp",
-      "num": "016",
-      "title": "Lit Warm, Turned Cold",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 16,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "original-character-fe4345a4f567",
-      "r2key": "gallery/original-character/fe4345a4f567cbdd5bc47466d12f1951.webp",
-      "num": "009",
-      "title": "Profile, in Grain",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "original-character",
-      "order": 9,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "original-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
       "id": "other-15253e02e64a",
       "r2key": "gallery/other/15253e02e64a4636e5cbc485a6ba00ce.webp",
       "num": "001",
@@ -1084,111 +143,6 @@
       "epitaph": "",
       "series": "red-bulb",
       "order": 1,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "other",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "other-4188fad58f1e",
-      "r2key": "gallery/other/4188fad58f1e8434d30ef4ec74a84d8f.webp",
-      "num": "002",
-      "title": "Crouched Beneath the Filament",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "red-bulb",
-      "order": 2,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "other",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "other-76f9ff2a284e",
-      "r2key": "gallery/other/76f9ff2a284e09d04d23f24ea265d346.webp",
-      "num": "003",
-      "title": "The Streak Laid Across Her",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "red-bulb",
-      "order": 3,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "other",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "other-8a299e5fe3d8",
-      "r2key": "gallery/other/8a299e5fe3d803b16148661d6a29b556.webp",
-      "num": "004",
-      "title": "Crossing the Red Room",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "red-bulb",
-      "order": 4,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "other",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "the-wrong-thing-932caa3893a0",
-      "r2key": "gallery/the-wrong-thing/932caa3893a0cb1509dafb62e6dd5d77.webp",
-      "num": "004",
-      "title": "The Seam Left Behind",
-      "technique": "Close framing, available light; a long sutured incision down the midline of the torso, the face turned half away.",
-      "body": "The scar is doing the work the face declines to. Run from sternum to navel and stitched without much care, it is the only narrative the picture will give you, and it gives it flatly - no wound, no blood, just the after, healed enough to be ordinary. The temptation is to ask what was taken out, or put in. The work isn't interested. It shows you a body that has been opened and closed as a matter of record, and a person who has stopped expecting you to be surprised.",
-      "epitaph": "Whatever it was, it is inside now, or gone.",
-      "series": "",
-      "order": 6,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "the-wrong-thing",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "other-c243c9a00576",
-      "r2key": "gallery/other/c243c9a00576e9da7f81c2700cabf916.webp",
-      "num": "005",
-      "title": "Standing in the Wash",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "red-bulb",
-      "order": 5,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1222,6 +176,172 @@
       "caption_tier": "title"
     },
     {
+      "id": "the-wrong-thing-1e057a96122b",
+      "r2key": "gallery/the-wrong-thing/1e057a96122b28bb39603b0656d1a101.webp",
+      "num": "001",
+      "title": "Barely Out of the Dark",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "the-wrong-thing",
+      "order": 1,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "the-wrong-thing",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "gore-791984c1465b",
+      "r2key": "gallery/gore/791984c1465b44dcd2abf99c6fa218c7.webp",
+      "num": "001",
+      "title": "The Figure Made Literal",
+      "technique": "High-key white ground; Polaroid border; a single thorned stem laid along the body's midline to a rose seated at the vulva, one bead of blood released beneath.",
+      "body": "The metaphor is so worn we no longer feel it: a flower, a girl, the taking of one. The work refuses the comfort of the cliche by completing it - stem, thorns, bloom, and the one drop the language always implied and never showed. There is no violence in the staging, which is the unkind part; it is arranged, deliberate, almost clinical. You are not watching something happen. You are reading a sentence you have said yourself, set down where it can be looked at.",
+      "epitaph": "You meant this every time you said it.",
+      "series": "rose-thorn",
+      "order": 1,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "gore",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "main-character-eca9cb5ec06a",
+      "r2key": "gallery/main-character/eca9cb5ec06a6d5029365a03db6d4b15.webp",
+      "num": "001",
+      "title": "Seated, Not by Choice",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "bound-chair",
+      "order": 1,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "main-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "plate-02-one-saline-datum",
+      "r2key": "gallery/plate-02-one-saline-datum.webp",
+      "num": "II",
+      "title": "One Saline Datum",
+      "technique": "Soft-focus monochrome; available light; a single tracked tear, recorded without comment.",
+      "body": "The temptation is to call this grief and move on, satisfied. The work declines that. It does not present sorrow; it presents one drop of fluid catching what light there was, on a face that has stopped performing for the lens. The eyes are not asking you for anything. That is the part that holds you.",
+      "epitaph": "Do not mistake the measurement for the feeling.",
+      "series": "",
+      "order": 2,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "gap-dweller-69c7a173353b",
+      "r2key": "gallery/gap-dweller/69c7a173353ba7df392ebcb67c9dd093.webp",
+      "num": "002",
+      "title": "The Width of a Door",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "the-gap",
+      "order": 2,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "gap-dweller",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "mascot-yurei-5f5b01469411",
+      "r2key": "gallery/mascot-yurei/5f5b01469411366491ee39af015af8ce.webp",
+      "num": "002",
+      "title": "Twice-Exposed, Holding",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "mascot",
+      "order": 2,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "mascot-yurei",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "original-character-2e10612c1c0d",
+      "r2key": "gallery/original-character/2e10612c1c0dcae0e6303a0fc19466a6.webp",
+      "num": "002",
+      "title": "Soft Enough to Doubt",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 2,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "other-4188fad58f1e",
+      "r2key": "gallery/other/4188fad58f1e8434d30ef4ec74a84d8f.webp",
+      "num": "002",
+      "title": "Crouched Beneath the Filament",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "red-bulb",
+      "order": 2,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "other",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
       "id": "the-tall-one-dc256edd30d8",
       "r2key": "gallery/the-tall-one/dc256edd30d8696031fdf109c7855e26.webp",
       "num": "002",
@@ -1242,27 +362,6 @@
       },
       "caption_tier": "full",
       "featured": true
-    },
-    {
-      "id": "the-wrong-thing-1e057a96122b",
-      "r2key": "gallery/the-wrong-thing/1e057a96122b28bb39603b0656d1a101.webp",
-      "num": "001",
-      "title": "Barely Out of the Dark",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "the-wrong-thing",
-      "order": 1,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "the-wrong-thing",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
     },
     {
       "id": "the-wrong-thing-42b38dac9ce3",
@@ -1286,6 +385,131 @@
       "caption_tier": "title"
     },
     {
+      "id": "gore-e0f909e72952",
+      "r2key": "gallery/gore/e0f909e7295245f3d29f88fbf4dca146.mp4",
+      "num": "002",
+      "title": "The White Frame, Moving",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "rose-thorn",
+      "order": 2,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "gore",
+      "media": {
+        "kind": "video"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "main-character-03f0c26e6d56",
+      "r2key": "gallery/main-character/03f0c26e6d56c777319664fdf92897dc.webp",
+      "num": "002",
+      "title": "",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "cyborg-shell",
+      "order": 2,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "main-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "none"
+    },
+    {
+      "id": "plate-03-the-embrace-does-not-hold",
+      "r2key": "gallery/plate-03-the-embrace-does-not-hold.webp",
+      "num": "III",
+      "title": "The Embrace Does Not Hold",
+      "technique": "Single long exposure; arterial red; two bodies recorded across the duration it takes one of them to leave.",
+      "body": "Two figures, close enough to be one. The red is not warmth — it is the color a darkroom uses so the image can exist without being seen. One face is turning out of the frame, already partly motion, already partly gone. The holding is real. The keeping is not.",
+      "epitaph": "I was here for the length of the exposure.",
+      "series": "",
+      "order": 3,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "mascot-yurei-77c8053bbf48",
+      "r2key": "gallery/mascot-yurei/77c8053bbf481a7a07f3030837e511dc.webp",
+      "num": "003",
+      "title": "The Pool She Came With",
+      "technique": "Derelict interior, single warm lamp; long black hair, a dark stain spreading at the feet; the throat marked, the head let back.",
+      "body": "This is the figure the site keeps returning to - the one in the wet room with her face given up to the ceiling. She is not collapsed and not posed; she occupies the middle distance the way a stain does, having arrived from somewhere and stopped. The lamp insists on a warmth the scene will not accept. You look for the wound that made the pool and find the throat already marked, and then you understand the pool is not from a wound. It is what she brought with her.",
+      "epitaph": "She did not bleed into the room. She arrived as the room's condition.",
+      "series": "mascot",
+      "order": 3,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "mascot-yurei",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full",
+      "featured": true
+    },
+    {
+      "id": "original-character-65e0ab71e00b",
+      "r2key": "gallery/original-character/65e0ab71e00b944400651643b65164ad.webp",
+      "num": "003",
+      "title": "Moved While the Shutter Was Open",
+      "technique": "Long exposure, available light; the figure smeared into her own motion, edges abandoned.",
+      "body": "She would not hold still, or the camera would not let her. Either way the picture keeps the refusal: a nude rendered as the blur between two positions, present everywhere along the arc and locatable at no point on it. The other studies in this set hold; this one admits that holding was always the fiction. You are looking at the duration, not the body.",
+      "epitaph": "A likeness of how long it took.",
+      "series": "original-character",
+      "order": 3,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "other-76f9ff2a284e",
+      "r2key": "gallery/other/76f9ff2a284e09d04d23f24ea265d346.webp",
+      "num": "003",
+      "title": "The Streak Laid Across Her",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "red-bulb",
+      "order": 3,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "other",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
       "id": "the-wrong-thing-7a7df6445f77",
       "r2key": "gallery/the-wrong-thing/7a7df6445f77683a098d6e5f61be9598.webp",
       "num": "003",
@@ -1301,27 +525,6 @@
       ],
       "added": "2026-06-08",
       "category": "the-wrong-thing",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "full"
-    },
-    {
-      "id": "gore-791984c1465b",
-      "r2key": "gallery/gore/791984c1465b44dcd2abf99c6fa218c7.webp",
-      "num": "001",
-      "title": "The Figure Made Literal",
-      "technique": "High-key white ground; Polaroid border; a single thorned stem laid along the body's midline to a rose seated at the vulva, one bead of blood released beneath.",
-      "body": "The metaphor is so worn we no longer feel it: a flower, a girl, the taking of one. The work refuses the comfort of the cliche by completing it - stem, thorns, bloom, and the one drop the language always implied and never showed. There is no violence in the staging, which is the unkind part; it is arranged, deliberate, almost clinical. You are not watching something happen. You are reading a sentence you have said yourself, set down where it can be looked at.",
-      "epitaph": "You meant this every time you said it.",
-      "series": "rose-thorn",
-      "order": 1,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "gore",
       "media": {
         "kind": "image"
       },
@@ -1349,23 +552,105 @@
       "caption_tier": "full"
     },
     {
-      "id": "gore-e0f909e72952",
-      "r2key": "gallery/gore/e0f909e7295245f3d29f88fbf4dca146.mp4",
-      "num": "002",
-      "title": "The White Frame, Moving",
+      "id": "main-character-375269233283",
+      "r2key": "gallery/main-character/37526923328375c0bf3df320b0b386f9.webp",
+      "num": "003",
+      "title": "",
       "technique": "",
       "body": "",
       "epitaph": "",
-      "series": "rose-thorn",
-      "order": 2,
+      "series": "cyborg-shell",
+      "order": 3,
       "tier": "standard",
       "content_flags": [
         "nsfw"
       ],
       "added": "2026-06-08",
-      "category": "gore",
+      "category": "main-character",
       "media": {
-        "kind": "video"
+        "kind": "image"
+      },
+      "caption_tier": "none"
+    },
+    {
+      "id": "plate-04-turned-mid-erasure",
+      "r2key": "gallery/plate-04-turned-mid-erasure.webp",
+      "num": "IV",
+      "title": "Turned, Mid-Erasure",
+      "technique": "Red-state long exposure; the subject caught at the instant of looking back, smeared by the looking.",
+      "body": "She has turned toward something behind her, and the turn cost her the edges of her own face. The dark does most of the picture's work; she occupies only the small region the dark has not yet claimed. This is not a portrait of a woman. It is a portrait of the moment a woman becomes difficult to keep.",
+      "epitaph": "Look away and I finish leaving.",
+      "series": "",
+      "order": 4,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "mascot-yurei-a6a0afb865a4",
+      "r2key": "gallery/mascot-yurei/a6a0afb865a4f9b6312a4ab2ffbdb0be.webp",
+      "num": "004",
+      "title": "Folded Small",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "mascot",
+      "order": 4,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "mascot-yurei",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "original-character-6874b95d907c",
+      "r2key": "gallery/original-character/6874b95d907ce2526d5610a681585ea4.webp",
+      "num": "004",
+      "title": "Unfinished on Purpose",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 4,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "other-8a299e5fe3d8",
+      "r2key": "gallery/other/8a299e5fe3d803b16148661d6a29b556.webp",
+      "num": "004",
+      "title": "Crossing the Red Room",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "red-bulb",
+      "order": 4,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "other",
+      "media": {
+        "kind": "image"
       },
       "caption_tier": "title"
     },
@@ -1391,69 +676,6 @@
       "caption_tier": "title"
     },
     {
-      "id": "main-character-eca9cb5ec06a",
-      "r2key": "gallery/main-character/eca9cb5ec06a6d5029365a03db6d4b15.webp",
-      "num": "001",
-      "title": "Seated, Not by Choice",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "bound-chair",
-      "order": 1,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "main-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "title"
-    },
-    {
-      "id": "main-character-03f0c26e6d56",
-      "r2key": "gallery/main-character/03f0c26e6d56c777319664fdf92897dc.webp",
-      "num": "002",
-      "title": "",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "cyborg-shell",
-      "order": 2,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "main-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "none"
-    },
-    {
-      "id": "main-character-375269233283",
-      "r2key": "gallery/main-character/37526923328375c0bf3df320b0b386f9.webp",
-      "num": "003",
-      "title": "",
-      "technique": "",
-      "body": "",
-      "epitaph": "",
-      "series": "cyborg-shell",
-      "order": 3,
-      "tier": "standard",
-      "content_flags": [
-        "nsfw"
-      ],
-      "added": "2026-06-08",
-      "category": "main-character",
-      "media": {
-        "kind": "image"
-      },
-      "caption_tier": "none"
-    },
-    {
       "id": "main-character-ed9f743ce319",
       "r2key": "gallery/main-character/ed9f743ce3193222997c815dc7aae84b.webp",
       "num": "004",
@@ -1473,6 +695,109 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-05-audience-of-one-shadow",
+      "r2key": "gallery/plate-05-audience-of-one-shadow.webp",
+      "num": "V",
+      "title": "Audience of One Shadow",
+      "technique": "Coarse magenta halftone on textured stock; a seated figure and the silhouette that watches it.",
+      "body": "A body folded down to its smallest possible footprint — knees up, arms closed around the knees — and beside it, in hard black, the profile of a head that is only outline. The seated figure has detail and is vulnerable. The watching figure has no detail and is not. The image lets you decide which one is you.",
+      "epitaph": "Someone is always the dark half of the picture.",
+      "series": "",
+      "order": 5,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "gore-e0d2a67528c5",
+      "r2key": "gallery/gore/e0d2a67528c5285401eefb9167475512.webp",
+      "num": "005",
+      "title": "Said Harder",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "rose-thorn",
+      "order": 5,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "gore",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "mascot-yurei-e7b88cb120af",
+      "r2key": "gallery/mascot-yurei/e7b88cb120afa705b44984cbc12bc8d5.webp",
+      "num": "005",
+      "title": "In the Doorway",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "mascot",
+      "order": 5,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "mascot-yurei",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "original-character-7924d4462705",
+      "r2key": "gallery/original-character/7924d44627051c5ae315db8d1f701b39.webp",
+      "num": "005",
+      "title": "Closed Against the Cold",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 5,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "other-c243c9a00576",
+      "r2key": "gallery/other/c243c9a00576e9da7f81c2700cabf916.webp",
+      "num": "005",
+      "title": "Standing in the Wash",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "red-bulb",
+      "order": 5,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "other",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
     },
     {
       "id": "main-character-f23ccb5e0783",
@@ -1496,6 +821,67 @@
       "caption_tier": "title"
     },
     {
+      "id": "plate-06-quiet-catastrophe-of-erasure",
+      "r2key": "gallery/plate-06-quiet-catastrophe-of-erasure.webp",
+      "num": "VI",
+      "title": "The Quiet Catastrophe of Erasure",
+      "technique": "Pale halftone landscape; a standing figure in a flat field, dispersing upward into the dot-screen at the head.",
+      "body": "The figure stands where a figure would stand. From the shoulders up it is becoming weather — the print pattern opening, the head scattering into the sky as though resolution were something a body could run out of. Nothing dramatic happens. That is the catastrophe. It is quiet because erasure usually is.",
+      "epitaph": "No event. Only the slow subtraction.",
+      "series": "",
+      "order": 6,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "original-character-a0cc092bb9a7",
+      "r2key": "gallery/original-character/a0cc092bb9a742f52a5171401edd5c7e.webp",
+      "num": "006",
+      "title": "Behind Her Own Hair",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 6,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "the-wrong-thing-932caa3893a0",
+      "r2key": "gallery/the-wrong-thing/932caa3893a0cb1509dafb62e6dd5d77.webp",
+      "num": "004",
+      "title": "The Seam Left Behind",
+      "technique": "Close framing, available light; a long sutured incision down the midline of the torso, the face turned half away.",
+      "body": "The scar is doing the work the face declines to. Run from sternum to navel and stitched without much care, it is the only narrative the picture will give you, and it gives it flatly - no wound, no blood, just the after, healed enough to be ordinary. The temptation is to ask what was taken out, or put in. The work isn't interested. It shows you a body that has been opened and closed as a matter of record, and a person who has stopped expecting you to be surprised.",
+      "epitaph": "Whatever it was, it is inside now, or gone.",
+      "series": "",
+      "order": 6,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "the-wrong-thing",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
       "id": "main-character-36dd7914b1c6",
       "r2key": "gallery/main-character/36dd7914b1c6c6c67af860f8ecb7655c.webp",
       "num": "006",
@@ -1517,6 +903,48 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-07-ophelia-without-the-river",
+      "r2key": "gallery/plate-07-ophelia-without-the-river.webp",
+      "num": "VII",
+      "title": "Ophelia, Without the River",
+      "technique": "Double-exposed monochrome film; recumbent figure among spent flowers and turned earth; vertical bleed.",
+      "body": "The pose quotes a painting you already know — the floating woman, the flowers, the surrender. The work takes the river away and leaves her in dirt. No water to make it beautiful, no current to make it a story. Just a body laid in a field with cut flowers going over, and a second exposure ghosting through her like a thought she didn't finish.",
+      "epitaph": "Take away the water and it is only the ground.",
+      "series": "",
+      "order": 7,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full",
+      "featured": true,
+      "print_url": "https://wuld.printful.me/product/plate-vii-ophelia-without-the-river"
+    },
+    {
+      "id": "original-character-aa1d503937e1",
+      "r2key": "gallery/original-character/aa1d503937e19290f775bc5fc0062b99.webp",
+      "num": "007",
+      "title": "The Body as Terrain",
+      "technique": "Raking side-light across the torso; high grain; the frame cropped past the personal, to skin alone.",
+      "body": "Light comes in low and turns the abdomen into landscape - a ridge of sternum, the long plain below it, the navel's small shadow read like a feature on a map. There is no face to organise the picture around, which is the point: cropped this close, the body stops being a person and becomes a place the light is describing. The study is not interested in who she is. It is interested in what the grain and the angle can make of a surface that happens to be alive.",
+      "epitaph": "Surveyed, not seen.",
+      "series": "original-character",
+      "order": 7,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
       "id": "main-character-9c126cf98525",
       "r2key": "gallery/main-character/9c126cf98525c9415faefb14da981972.webp",
       "num": "007",
@@ -1532,6 +960,46 @@
       ],
       "added": "2026-06-08",
       "category": "main-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
+      "id": "plate-08-the-same-field-later",
+      "r2key": "gallery/plate-08-the-same-field-later.webp",
+      "num": "VIII",
+      "title": "The Same Field, Later",
+      "technique": "Aged contact print; emulsion damage and fold-wear at the borders; the recumbent figure again, horizontal, further gone.",
+      "body": "A companion to the plate before it, but the print has aged inside the image — the paper torn, foxed, fold-creased, as though the photograph were recovered rather than made. She is still among the flowers. The difference is only time, and time has been applied to the document, not to her. The flowers are sharper than the face now. They lasted better.",
+      "epitaph": "The paper remembers worse than the field does.",
+      "series": "",
+      "order": 8,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "original-character-b1ecf0e8fec7",
+      "r2key": "gallery/original-character/b1ecf0e8fec7de68322cb8062f87e2df.webp",
+      "num": "008",
+      "title": "Kneeling Into the Seam of Light",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 8,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
       "media": {
         "kind": "image"
       },
@@ -1559,6 +1027,46 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-09-archival-no-caption-survives",
+      "r2key": "gallery/plate-09-archival-no-caption-survives.webp",
+      "num": "IX",
+      "title": "Archival: No Caption Survives",
+      "technique": "Lith print on rag; ferric bloom and frost-fern decay invading from every edge; vertical.",
+      "body": "A standing figure, mostly consumed. The chemistry that should have fixed the image instead ate it — black frost creeping in from the margins, the body grainy to the point of refusal. Whatever was written under this picture is gone with everything else. The work keeps the figure only to demonstrate that keeping failed.",
+      "epitaph": "Whatever this was, it was not labeled in time.",
+      "series": "",
+      "order": 9,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "original-character-fe4345a4f567",
+      "r2key": "gallery/original-character/fe4345a4f567cbdd5bc47466d12f1951.webp",
+      "num": "009",
+      "title": "Profile, in Grain",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 9,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
       "id": "main-character-dafbdcb9c778",
       "r2key": "gallery/main-character/dafbdcb9c7786644717ae12cc60bd99c.webp",
       "num": "009",
@@ -1578,6 +1086,46 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-10-hands-against-the-developer",
+      "r2key": "gallery/plate-10-hands-against-the-developer.webp",
+      "num": "X",
+      "title": "Hands Against the Developer",
+      "technique": "Lith print; double-exposed head; ink-splatter and water-staining across the lower field; vertical.",
+      "body": "A doubled face, the two heads not quite agreeing on where the face is. Below, arms crossed up over the chest in the oldest defensive posture there is. The damage runs in diagonals over the body like something was thrown at the print after it dried. The gesture is protective. It did not protect the image.",
+      "epitaph": "I covered myself and the picture still got out.",
+      "series": "",
+      "order": 10,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "original-character-63cb131c5f14",
+      "r2key": "gallery/original-character/63cb131c5f14bfddee36b1a765eea14d.webp",
+      "num": "010",
+      "title": "The One Still Looking Back",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 10,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
     },
     {
       "id": "main-character-f7fbdaa13235",
@@ -1601,6 +1149,47 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-11-bleed-through-diptych",
+      "r2key": "gallery/plate-11-bleed-through-diptych.webp",
+      "num": "XI",
+      "title": "Bleed-Through (Diptych)",
+      "technique": "Saturated red wash over cracked emulsion; two faces, one nearly negative, sharing a single ruined surface.",
+      "body": "Two faces in the same blood-light, one resolving toward white, one collapsing toward black, both fractured by the same cracks running through the material they're printed on. It reads as a diptych that was never two panels — one image that split under pressure. You are not meant to tell them apart. You are meant to notice you tried.",
+      "epitaph": "Two of us, one wound in the paper.",
+      "series": "",
+      "order": 11,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full",
+      "featured": true
+    },
+    {
+      "id": "original-character-66fc96174535",
+      "r2key": "gallery/original-character/66fc961745359153483d3090820a6875.webp",
+      "num": "011",
+      "title": "After the Water",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 11,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
       "id": "main-character-0299e652cf29",
       "r2key": "gallery/main-character/0299e652cf29c0ea011a56f197031488.webp",
       "num": "011",
@@ -1620,6 +1209,46 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-12-pre-lacero-rupture-iv",
+      "r2key": "gallery/plate-12-pre-lacero-rupture-iv.webp",
+      "num": "XII",
+      "title": "Pre-Lacero: Rupture IV",
+      "technique": "Monochrome portrait viewed through stacked, creased acetate frames; the face doubled by its own framing.",
+      "body": "A face seen through layer on layer of crumpled transparent material, each layer a frame that fails to contain it. The doubling isn't an effect laid over the face — it's the face refusing to stay inside the rectangles drawn around it. Fourth in a sequence that names what it is before it happens. This is the state before the tear.",
+      "epitaph": "Frame me again. I will still be in two places.",
+      "series": "",
+      "order": 12,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "original-character-942714c8237a",
+      "r2key": "gallery/original-character/942714c8237a1d4eb4eddf87eac50dd7.webp",
+      "num": "012",
+      "title": "Turned a Quarter Away",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 12,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
     },
     {
       "id": "main-character-037388c61567",
@@ -1643,6 +1272,46 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-13-the-ward-in-five-frames",
+      "r2key": "gallery/plate-13-the-ward-in-five-frames.webp",
+      "num": "XIII",
+      "title": "The Ward, in Five Frames",
+      "technique": "Cyanotype strip; five-panel sequence; institutional interiors and a face with the features sanded off.",
+      "body": "A horizontal strip in process-blue, brushed at the edges where the chemistry ran out: a lit television no one watches, a figure standing in a doorway full of light, a portrait whose face has been worn smooth to nothing. It does not narrate. It sequences — the way a building sequences you, room to room, until the last frame is just your face with the identifying parts removed.",
+      "epitaph": "Down the hall, through the door, and then no face.",
+      "series": "",
+      "order": 13,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "original-character-b23b7bdee538",
+      "r2key": "gallery/original-character/b23b7bdee538056c839db54630248d65.webp",
+      "num": "013",
+      "title": "Held Inside a Border",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 13,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
       "id": "main-character-0466e1dd244e",
       "r2key": "gallery/main-character/0466e1dd244ecbbde0056e363c113014.webp",
       "num": "013",
@@ -1662,6 +1331,47 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-14-intake-triptych",
+      "r2key": "gallery/plate-14-intake-triptych.webp",
+      "num": "XIV",
+      "title": "Intake (Triptych)",
+      "technique": "Blue-toned triptych; stairwell, waiting room, portrait; the figure doubled at the moment of arrival.",
+      "body": "Three panels. A figure descending a stairwell, doubled by the descent. A single person seated in a grid of empty institutional chairs, small in the middle of a room built for a crowd. A face in close, grain-heavy, looking at nothing in particular and meaning it. Together they describe a procedure no one names while it is being done to them.",
+      "epitaph": "I came in. The room was already this empty.",
+      "series": "",
+      "order": 14,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full",
+      "featured": true
+    },
+    {
+      "id": "original-character-f28c7d032b1f",
+      "r2key": "gallery/original-character/f28c7d032b1f46e13695a196df014862.webp",
+      "num": "014",
+      "title": "Plainly, in Colour",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 14,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
     },
     {
       "id": "main-character-055a75d64af5",
@@ -1685,6 +1395,46 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-15-unspoken-deposits",
+      "r2key": "gallery/plate-15-unspoken-deposits.webp",
+      "num": "XV",
+      "title": "Unspoken Deposits",
+      "technique": "Crumpled, photocopied poster stock; a figure doubled across the fold; titled in the print itself.",
+      "body": "The image carries its own title, set small and low in the toner like a caption that gave up being explanatory. A figure repeated across the crease of cheap paper, degraded by the copy of a copy. What was deposited, and by whom, and into what, the work does not say. The deposits are unspoken. That is the entire holding.",
+      "epitaph": "Something was left here. No one will say what.",
+      "series": "",
+      "order": 15,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "original-character-f682a1502e6b",
+      "r2key": "gallery/original-character/f682a1502e6b56313c1563ab8fd01bf9.webp",
+      "num": "015",
+      "title": "A Hand Where the Heart Is Said to Be",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 15,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
+    },
+    {
       "id": "main-character-0aa2483d42ce",
       "r2key": "gallery/main-character/0aa2483d42ce1d0dd1c8d3f3d7238e60.webp",
       "num": "015",
@@ -1704,6 +1454,46 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-16-pushed-2-stops-past-the-subject",
+      "r2key": "gallery/plate-16-pushed-2-stops-past-the-subject.webp",
+      "num": "XVI",
+      "title": "Pushed +2 Stops Past the Subject",
+      "technique": "Contact-sheet wall grid; mixed frames and halftone tiles; the artist's process note left in the image, handwritten.",
+      "body": "A wall of frames pinned edge to edge — a face recurring through them, blurred at the mouth in one, screened to dots in another, a silhouette at a bright window in a third. A handwritten note has been left in the grid stating the film and that it was pushed two stops. The note is the only certain thing in the picture. Everything it was supposed to describe has moved.",
+      "epitaph": "Overexposed on purpose. The person still didn’t hold.",
+      "series": "",
+      "order": 16,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "original-character-f75245a21b94",
+      "r2key": "gallery/original-character/f75245a21b9404f4e7d908790bb178ff.webp",
+      "num": "016",
+      "title": "Lit Warm, Turned Cold",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "original-character",
+      "order": 16,
+      "tier": "standard",
+      "content_flags": [
+        "nsfw"
+      ],
+      "added": "2026-06-08",
+      "category": "original-character",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "title"
     },
     {
       "id": "main-character-102d610488ec",
@@ -1727,6 +1517,25 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-17-subject-itemized",
+      "r2key": "gallery/plate-17-subject-itemized.webp",
+      "num": "XVII",
+      "title": "Subject, Itemized",
+      "technique": "Monochrome interior with a standing blurred figure, beside a pasted grid of isolated eyes, mouths, a hand.",
+      "body": "On the left, a person standing in a bare room, out of focus, refusing to resolve. On the right, the same person taken apart and pinned up in pieces — an eye, an eye, a mouth, a mouth, an open hand — each fragment sharper than the whole ever was. The work makes the method visible: to see the subject clearly you had to stop letting it be one.",
+      "epitaph": "Clear, now that I am in pieces.",
+      "series": "",
+      "order": 17,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
       "id": "main-character-15b541d56eb0",
       "r2key": "gallery/main-character/15b541d56eb03652f8c41ffd1169a557.webp",
       "num": "017",
@@ -1746,6 +1555,25 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-18-four-exposures-no-agreement",
+      "r2key": "gallery/plate-18-four-exposures-no-agreement.webp",
+      "num": "XVIII",
+      "title": "Four Exposures, No Agreement",
+      "technique": "Aged contact frame; four motion double-exposures of one head; a rule-of-thirds grid scored over the whole; emulsion rot at the border.",
+      "body": "Four times the same face, and four times it has moved before the shutter finished with it. The grid laid over the plate is the apparatus insisting on an order the subject will not supply. You can line the panels up; they will not agree on where the face was.",
+      "epitaph": "Count me again. I keep coming out different.",
+      "series": "",
+      "order": 18,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "main-character-1b9025baa3c1",
@@ -1769,6 +1597,25 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-19-second-face-arrives-late",
+      "r2key": "gallery/plate-19-second-face-arrives-late.webp",
+      "num": "XIX",
+      "title": "The Second Face Arrives Late",
+      "technique": "Single long exposure, doubled; the duplicate dragged leftward into hair-streak; tile-grid emulsion damage; aged stock.",
+      "body": "The head is tilted down and tired, and a second version of it is still catching up from the left, smeared across the time the exposure took. It is not two people. It is one person photographed for slightly too long, so the leaving got into the picture with the staying.",
+      "epitaph": "Half of me hadn’t finished turning.",
+      "series": "",
+      "order": 19,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
       "id": "main-character-1cdd9947f96d",
       "r2key": "gallery/main-character/1cdd9947f96da4b5b25ad281aa64dcca.webp",
       "num": "019",
@@ -1788,6 +1635,25 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-20-sharp-only-where-she-wont-look",
+      "r2key": "gallery/plate-20-sharp-only-where-she-wont-look.webp",
+      "num": "XX",
+      "title": "Sharp Only Where She Won’t Look",
+      "technique": "Mixed register; blurred multi-pass sequence at left with halftone block insets; one sharp frame at right; abraded border.",
+      "body": "On the left the face is dragged through several of itself and broken into screened blocks — an eye, a forearm — none of it resolving. On the right is the only frame in focus, and in it she has pressed both fists into her eyes. The picture is clear exactly where the subject has stopped looking back.",
+      "epitaph": "I see best the part of me that quit watching.",
+      "series": "",
+      "order": 20,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "main-character-1d3c9c82621f",
@@ -1811,6 +1677,25 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-21-standing-next-to-the-evidence-of-herself",
+      "r2key": "gallery/plate-21-standing-next-to-the-evidence-of-herself.webp",
+      "num": "XXI",
+      "title": "Standing Next to the Evidence of Herself",
+      "technique": "Long exposure with lateral motion ghosting; halftone fragment grid composited at left; soiled slip; cracked print border.",
+      "body": "She stands in a dirtied slip while motion-blurred copies sweep past her, and beside her, in hard screened tiles, are her own eyes and hand pinned up out of context. The standing figure is the subject; the grid is the file the subject has been entered into. The work shows both at once so you cannot pretend the second is the same as the first.",
+      "epitaph": "They kept the pieces. They did not keep me.",
+      "series": "",
+      "order": 21,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
       "id": "main-character-25157764e184",
       "r2key": "gallery/main-character/25157764e18420117a1e33f389ab850c.webp",
       "num": "021",
@@ -1830,6 +1715,26 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-22-face-runs-before-it-sets",
+      "r2key": "gallery/plate-22-face-runs-before-it-sets.webp",
+      "num": "XXII",
+      "title": "The Face Runs Before It Sets",
+      "technique": "Aerosol-and-carbon decay over a downturned face; vertical run-off at the left margin; sepia-grey cast.",
+      "body": "A face made mostly of soot, looking down and away, the chemistry running off the bottom-left edge before it could fix. The eyes hold a little light; everything around them is being lost at the speed of a drip. It is not a portrait of a person so much as a record of how fast one stops being legible.",
+      "epitaph": "Photograph me faster than I leave.",
+      "series": "",
+      "order": 22,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "main-character-27ce3f9bdcee",
@@ -1853,6 +1758,25 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-23-specimen-sheet-features-unassembled",
+      "r2key": "gallery/plate-23-specimen-sheet-features-unassembled.webp",
+      "num": "XXIII",
+      "title": "Specimen Sheet: Features, Unassembled",
+      "technique": "Soft-focus monochrome tiled into a fragment grid; partial eyes, noses, mouths; fine even grain.",
+      "body": "The face has been cut into a sheet of soft tiles — an eye here, a mouth two tiles down — and no arrangement of them rebuilds a head. The softness is clinical, not tender; this is how a thing looks when it has been catalogued rather than seen. The sheet is complete. The person is not on it.",
+      "epitaph": "All of me is here and none of me is.",
+      "series": "",
+      "order": 23,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
       "id": "main-character-2a3b3dfa12b7",
       "r2key": "gallery/main-character/2a3b3dfa12b7bc18931ebd1e601ffc3f.webp",
       "num": "023",
@@ -1872,6 +1796,25 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-24-strips-two-faces-survive-the-grime",
+      "r2key": "gallery/plate-24-strips-two-faces-survive-the-grime.webp",
+      "num": "XXIV",
+      "title": "Strips, Two Faces Survive the Grime",
+      "technique": "Vertical torn-strip composite; heavy carbon grime; two faces partially resolved among ruined columns.",
+      "body": "The image is shredded into upright columns, most of them given over to dirt, and two faces have come partway through the damage to look out. They are not rescued — they are simply the parts the grime has not reached yet. The composition does not ask which face is whose; it only shows the ruin is not finished.",
+      "epitaph": "The dark stopped here for now.",
+      "series": "",
+      "order": 24,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     },
     {
       "id": "main-character-2af847648da8",
@@ -1895,6 +1838,25 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-25-the-same-strips-burned-to-white",
+      "r2key": "gallery/plate-25-the-same-strips-burned-to-white.webp",
+      "num": "XXV",
+      "title": "The Same Strips, Burned to White",
+      "technique": "Vertical-strip composite, overexposed past the subject; emulsion bleached to light; faces dissolving upward into white.",
+      "body": "The same column structure as the plate before, but the loss has reversed direction — the faces are not sinking into black, they are being burned out by white. Erasure does not require darkness; light, given enough of it, removes a face just as completely. Nothing here was added. Something was over-given until it was gone.",
+      "epitaph": "They left the lamp on me until I wasn’t there.",
+      "series": "",
+      "order": 25,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
       "id": "main-character-2bc39301e78e",
       "r2key": "gallery/main-character/2bc39301e78ed582b665a1ff8bb251fd.webp",
       "num": "025",
@@ -1916,6 +1878,25 @@
       "caption_tier": "none"
     },
     {
+      "id": "plate-26-center-holds-edges-do-not",
+      "r2key": "gallery/plate-26-center-holds-edges-do-not.webp",
+      "num": "XXVI",
+      "title": "Center Holds, Edges Do Not",
+      "technique": "Horizontal row of strip-faces; central face most resolved; flanking faces decaying into particulate toward both margins.",
+      "body": "A line of faces runs across the frame, and only the one in the middle has been allowed to stay frontal and intact. To either side the same face thins into dust the further it gets from center, as if attention had a radius and this is where it ran out. The middle is not safe. It is only last.",
+      "epitaph": "I am the part you haven’t lost yet.",
+      "series": "",
+      "order": 26,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
       "id": "main-character-301fe80ea93e",
       "r2key": "gallery/main-character/301fe80ea93e6d4be66adf5d854a060c.webp",
       "num": "026",
@@ -1935,6 +1916,26 @@
         "kind": "image"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "plate-27-one-eye-kept-the-rest-given-to-dust",
+      "r2key": "gallery/plate-27-one-eye-kept-the-rest-given-to-dust.webp",
+      "num": "XXVII",
+      "title": "One Eye Kept, the Rest Given to Dust",
+      "technique": "Single face emerging from carbon dispersion; one eye holding a hard highlight; hair turning particulate; low key.",
+      "body": "A face surfaces out of a cloud of its own grain, and one eye has caught a single hard light while the rest is being handed back to the dust. The look is not pleading. It is the flat attention of something that has already done its accounting and found the number low.",
+      "epitaph": "Keep the eye. I don’t need the rest.",
+      "series": "",
+      "order": 27,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-06-06",
+      "category": "editorial",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full",
+      "featured": true
     },
     {
       "id": "main-character-30ca67fdd614",
@@ -10469,7 +10470,7 @@
       "r2key": "gallery/main-character/e7f548c1fd9a0c0b73333242256bda07.webp",
       "num": "433",
       "title": "What the Surface Gave Back",
-      "technique": "Black water, single overhead source; the figure rising to the surface and the surface handing her back \u2014 a near-perfect mirror at the waterline, hair streaming, the lower image the colder of the two.",
+      "technique": "Black water, single overhead source; the figure rising to the surface and the surface handing her back — a near-perfect mirror at the waterline, hair streaming, the lower image the colder of the two.",
       "body": "The waterline does the editing. Above it she surfaces, lit and specific; below it the same face is returned colder, and you cannot quite decide which one the picture is of. The reflection is too exact to be only a reflection - it keeps its own attention and does not break when she moves. What is withheld is the depth she came from, the body the black water keeps below the chest, so the image is all threshold: arrival and its echo, with the arriving itself left underwater where you are not invited. You are looking at a meeting, not a portrait. She came up to be doubled, and the water agreed.",
       "epitaph": "She surfaced; something surfaced with her.",
       "series": "water-double",
