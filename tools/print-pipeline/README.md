@@ -105,3 +105,16 @@ Reference: `docs/print-storefront-research.md` (verdict table + vendor screens).
 - `verify` "no out file" → Upscayl skipped/errored that image: re-run it
   for the singleton, same output folder.
 - Pillow absent → dims unchecked (count+naming only); install when convenient.
+- Upscayl (2.15.x) notes: the Settings "System Info" panel shows the Electron UI
+  renderer -- on this box it reads SwiftShader regardless; IGNORE it. Ground truth
+  is the LOGS panel device list at job start ("[1 NVIDIA GeForce RTX 3070 Ti...]"
+  = device in use; the GPU ID setting selects that index). Settings of record:
+  Batch ON, Double Upscayl OFF (a 4096px source at Double-4x targets 65536px --
+  gigapixel crawl), scale 4x, PNG, Custom Tile Size 0 (auto), GPU ID 1.
+  Single-image mode writes output INTO the source folder -- never test
+  single-image against a batch in\ folder (the stray gets re-upscaled by the next
+  batch run). After an aborted run, a "file or directory" path error clears via
+  Settings -> RESET UPSCAYL + relaunch.
+- Oversize outputs: a 4096px source at 4x = 16384px PNG (hundreds of MB). If a
+  vendor upload rejects on file size, downscale to 8192 long edge (still 341 DPI
+  at 24 in; verify still PASSes) -- downscale helper queued K99.
