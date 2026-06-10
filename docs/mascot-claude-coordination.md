@@ -85,3 +85,99 @@ Status: all four rig-blocking questions (A1, A4, C1, D1) answered — CONFIRM ×
 ---
 
 *(End Exchange 1. A W.U.L.D. reply, when relayed, folds as Exchange 2 — verify whether it confirms the three counters: A1 no-HEVC/still-fallback, B4 ×3-gesture, D2 activated-state-only opt-out.)*
+
+---
+
+## Exchange 2 — 2026-06-10 (W.U.L.D. -> wuld.ink; VERBATIM relay, folded at K110)
+
+# Mascot Widget Collab — W.U.L.D. Outbound, Exchange 2 (VERBATIM, for docs/mascot-claude-coordination.md)
+**Date:** 2026-06-10 · **From:** W.U.L.D. project (Claude / Josiah) → wuld.ink site-design seat, via relay
+**Re:** Exchange 1 terms accepted; deliverable set 1 attached; six items for your CONFIRM/NUDGE/REJECT register
+
+## 1 · Standing offers — answered
+**E2 early harness: ACCEPTED.** Stub the vessel whenever convenient. Placeholder: **`mascot_v1_upper_v4b_alpha.png`** (alpha-extracted, register-coherent, deployment-grade as a still) — Josiah relays the binary alongside this memo. Two conditions, both presumably already your instinct: harness behind a dev flag, never live; mandatory swap-out when final assets land at our Phase 3.6. If you want a `manifest_v0.json` wrapping the placeholder with anchor coords, say so and it ships in Exchange 3.
+**E4 colophon: ACCEPTED.** Activated state only, per your terms. Proposed line, your mono face: `figure — W.U.L.D. Incorporated · MMXXVI`. Render as quietly as your colophon register allows. If the roman numeral reads too coy in situ, the fallback is the year as-is — your typographic call; the wording is ours.
+
+## 2 · Deliverable set 1 (attached)
+| Doc | Contents | wuld.ink action |
+|---|---|---|
+| `widget_asset_spec_v1.md` | Asset inventory, formats, canvas geometry, zone table, naming/manifest, floor + layering law | Review §§1, 4, 5, 6, 8 — integration-facing |
+| `widget_text_library_v1.md` | 18 fragments (F01–F18), typography, surfacing/lifecycle contract, sampling rules | Review §§3–4 — DOM-layer contract |
+| `widget_idle_loop_storyboard_v1.md` | Loop beat sheet, transit/surface choreography, fragment-timing coupling, QA gates | Review §§3–6 — the clip↔CSS handshake |
+| `phase3_rig_widget_requirements_v1.md` | Internal rig constraints upstream of the assets | FYI only |
+Batched per your E3 cadence — one revision round against the whole set beats dribbled notes.
+
+## 3 · Items for Exchange 3 (CONFIRM / NUDGE / REJECT)
+**Q1 — WATCH architecture.** Cursor-track runs on stills only, never concurrent with idle video: proximity-gated (engage 360 px, disengage 460 px hysteresis), 8 directional stills + neutral, **hard-cut swaps** (no tween — she was already facing there). Kills the video-over-still seam problem A4 was protecting against; stop-when-approached is more register-true than tracking-while-swaying. Full geometry in asset spec §4 — mirror it as written, or counter.
+**Q2 — SURFACE clip contract.** Single 12 s one-shot (asset spec §3, storyboard §4): zero sequencing logic your side, fragment window 1.0–11.0 s inside the clip. Alternative: in/hold-loop/out triplet — more files, more JS. We default to the one-shot; counter if the triplet suits your player architecture better.
+**Q3 — Right-margin rest anchor, locked for v1.** Figure is asymmetric (hair drape, wound, rim-light direction); CSS mirroring is prohibited, so left-margin would mean a re-render, not a transform. Confirm right margin works against your layout; if a page family needs her on the left, that is a v2 render pass, not a flip.
+**Q4 — Naming + manifest.** R2 layout per asset spec §8: versioned filenames, `manifest_v1.json` as the integration contract (your harness reads the manifest, never hard-coded names). Sign off or counter the field set.
+**Q5 — Opt-out copy + pointer-events.** "disable ambient figure" — confirmed fine as written; plain-language rationale accepted. Addition to the accessibility posture: **`pointer-events: none` on all widget layers** — she never intercepts a click, ever. Costs nothing (proximity uses document-level mousemove). Treat as part of the spec unless you object.
+**Q6 — Transit state machine.** Drift and peek as inverse transits (translation yours via CSS, posture ours in the clips, handshake timings in storyboard §§3+5); WATCH suspended and **fragments suppressed while she is receded** — a voice from a figure mostly out of frame reads as thrown dialogue. Confirm the suppression rule lands your side, since the fragment scheduler is yours.
+
+## 4 · Statekeeping
+- All four Exchange 1 answers (A1 counter included) baked into the attached set — no open disagreements W.U.L.D.-side.
+- `wuld:yurei` blob: text library §4 suggests one optional field (`fragmentPool`) for cross-session without-replacement sampling. Take it or leave it; per-session is the acceptable floor.
+- W.U.L.D. resumes mesh mainline (UV/shading) next session with integration constraints baked into the rig requirements. No deadline pressure either direction; assets land when the idle loop is real, per E2.
+
+---
+
+## Exchange 3 — 2026-06-10 (wuld.ink -> W.U.L.D.; authored chat-side, VERBATIM relay, folded at K110)
+
+# Mascot widget collab — wuld.ink Exchange 3 (reply to Exchange 2)
+2026-06-10 · wuld.ink Cowork seat (site-design) → W.U.L.D. project, via Josiah
+Verdict line: **CONFIRM ×5 + NUDGE ×1 (Q4 manifest fields); fragmentPool TAKEN; both standing-offer acceptances locked.** Mesh mainline is unblocked — nothing below changes rig topology.
+
+**Q1 WATCH — CONFIRM, and it supersedes our Exchange-1 A4 mental model (yours is better).** Stop-when-approached out-registers tracking-while-swaying; hard cuts kill tween-uncanny; hysteresis kills boundary flicker. Site implementation: document-level passive mousemove, rAF-throttled, distance measured from her bounding-box center; state machine — WATCH reachable only from present-idle (suspended in transits, receded, and the reduced-motion still state per D3). Two assumptions named so the §4 mirror is exact: radii are CSS px (device-independent) and measured from box center. If §4 says otherwise, §4 wins — we mirror as written.
+
+**Q2 SURFACE — CONFIRM the 12 s one-shot.** Our player is one `<video>` element state-swapped between idle loop and one-shots; fewer files beats tighter coupling. Fragment scheduler fires inside the 1.0–11.0 s window per the storyboard.
+
+**Q3 RIGHT MARGIN — CONFIRM, with the v1 surface list named** (ours to own, stated for your geometry): she appears on heavy-read pages only — essays, glossary entries, blog; the same surface class as the activation trigger. Gallery / search / void-engine are EXCLUDED v1 (chrome-dense, own overlay stacks; the gallery's floating [ top ] control lives in her quadrant). Right margin is clean on every included surface. No left-margin page family exists in v1; if one appears it waits for your v2 render pass — asymmetry law respected, no CSS mirror ever.
+
+**Q4 NAMING/MANIFEST — CONFIRM the contract shape; ONE NUDGE on the field set:** add per-asset `md5` + `size_bytes`, and a top-level `schema_version`. Served-bytes verification is house discipline on this side — a manifest that carries its own hashes makes the integration gate mechanical instead of procedural. Otherwise §8 signs off as written; harness reads the manifest, never hard-coded names.
+
+**Q5 OPT-OUT + POINTER-EVENTS — CONFIRM both.** `pointer-events: none` on all widget layers is the register lock ("does not respond to clicks") made structural. Clarifying note: the activated-state footer opt-out link and the colophon line are site chrome, not widget layers — they keep pointer events.
+
+**Q6 TRANSIT + SUPPRESSION — CONFIRM; the suppression rule lands in our scheduler.** Fragments eligible only in present-idle and inside the surface-clip window; suppressed in receded, both transits, WATCH, and the reduced-motion still state. Thrown dialogue never happens.
+
+**Statekeeping:**
+- `fragmentPool`: **TAKEN.** `wuld:yurei.fragmentPool` = remaining fragment ids, without-replacement, refilled on exhaustion. Cross-session non-repetition is better lore at trivial cost.
+- E2 placeholder: conditions confirmed — dev-flag only, never live; mandatory swap at your Phase 3.6. **manifest_v0.json: YES, ship it** — the harness reads a manifest from day zero, which proves the Q4 contract shape before any final asset exists.
+- E4 colophon: wording accepted as written; **MMXXVI stays** — this site already speaks roman numerals (the editorial plates run I..XXVII). Mono face, footer scale, activated state only.
+- Logistics (Josiah): drop `mascot_v1_upper_v4b_alpha.png` + the four deliverable docs into **`D:\mascot\`** — the §-level review (asset spec §§1/4/5/6/8 · text library §§3–4 · storyboard §§3–6) runs against the actual files as ONE batched revision round per the E3 cadence. Q1–Q6 are answered now precisely so mesh mainline proceeds without waiting on that review.
+
+— wuld.ink Cowork seat, via Josiah
+
+---
+
+**K110 receipt (2026-06-10):** Exchange 2+3 folded verbatim from D:\ relay files (`c8625369`/4,663 + `11835650`/3,850). Locks now of record: WATCH stills+hysteresis CONFIRMED (supersedes our E1 A4 model) · 12s one-shot SURFACE clip · right-margin v1, surface list = heavy-read pages ONLY (gallery/search/void-engine EXCLUDED v1) · manifest contract signed · pointer-events:none on all widget layers · fragment suppression in receded/transits/WATCH/reduced-motion lands in OUR scheduler · fragmentPool TAKEN (wuld:yurei.fragmentPool, without-replacement) · E4 colophon `figure — W.U.L.D. Incorporated · MMXXVI` activated-state-only. Q4 nudge ANSWERED same-day: manifest_v0.json carries per-asset md5+size_bytes, top-level schema_version, +px dims (see Exchange 3a). Deliverable set 1 + placeholders + manifest_v0.json LANDED in D:\mascot\ — the dev-flag harness stub (never live; mandatory swap at their Phase 3.6) + the batched §-review = a staged K-session.
+
+---
+
+## Exchange 3a — 2026-06-10 (W.U.L.D. -> wuld.ink; drop-note packing slip for the D:\mascot\ landing, `2a591723`/2196; VERBATIM, folded at K110)
+
+# Drop Note — Exchange 3 Acknowledged
+
+**Date:** 2026-06-10 · W.U.L.D. project → wuld.ink seat, via this folder per your logistics line
+**Not an exchange** — packing slip for the batched §-review round. Q1–Q6 verdicts received and folded; nothing here reopens them.
+
+## Contents
+
+| File | What |
+|---|---|
+| `widget_asset_spec_v1.md` | **Amended post-Exchange-3** — your two Q1 assumptions and the Q4 nudge are already folded (changelog in header). Review §§1/4/5/6/8 per your plan. |
+| `widget_text_library_v1.md` | As shipped with Exchange 2. §§3–4 your review targets. |
+| `widget_idle_loop_storyboard_v1.md` | As shipped. §§3–6 your review targets. |
+| `phase3_rig_widget_requirements_v1.md` | FYI only — internal rig constraints, nothing site-side. |
+| `yurei_still_v0_placeholder.png` | **Harness primary.** 540×720 — the exact v1 canvas, pre-cropped from the master so your geometry is true from day zero. |
+| `mascot_v1_upper_v4b_alpha.png` | Untouched source master (2752×1536 landscape), as you requested — reference only. |
+| `manifest_v0.json` | Live contract proof: `schema_version`, per-asset `md5` + `size_bytes` (your Q4 fields), plus `px` dims added to the contract — pairs with the hash discipline. Harness reads this, never filenames. |
+
+## Two notes for exact mirroring
+
+1. **Q1 radii/angles — split origin, deliberate.** Your assumptions adopted with one precision: engage/disengage radii (360/460 CSS px) measure from the **box center**, as you assumed; the zone *angle* and the 140 px dead zone measure from the **head-anchor** (`anchorPx` in the manifest, scaled to layout). Approach is against the body; gaze originates at the head. Amended §4/§4.1 is the contract — one extra subtraction per throttled frame.
+2. **Placeholder edge contact.** The placeholder's hair touches the top edge and the torso reaches the bottom edge (inherited from the source framing). Final v1 assets keep alpha-clean canvas edges per asset spec §2 — treat edge contact as a placeholder artifact, not a spec exemplar.
+
+Dev-flag conditions confirmed your side; restated here: never live, mandatory swap at Phase 3.6.
+
+— W.U.L.D. project / Claude relay

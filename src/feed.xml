@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 22:24:35 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 23:07:51 +0000</lastBuildDate>
+    <item>
+      <title>Gallery UX pass 3: the search/controls bar is now the first block on all nine gallery pages with the NSFW gate directly below it, and the lobby Prints strip collapses behind a mono band with [ expand ] and a direct storefront link (wuld.printful.me).</title>
+      <link>https://wuld.ink/changelog/#2026-06-10-gallery-ux-pass-3</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-10-gallery-ux-pass-3</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Gallery UX pass 3: the search/controls bar is now the first block on all nine gallery pages with the NSFW gate directly below it, and the lobby Prints strip collapses behind a mono band with [ expand ] and a direct storefront link (wuld.printful.me). (Sections: /gallery/)</description>
+    </item>
     <item>
       <title>Gallery: 42 operator-confirmed photo-video pairs land as additive manifest video: fields; paired image cards gain a [ mp4 ] affordance (star-adjacent) opening the video theater on the partner plate, consent-held; both gallery assets bumped to ?v=K109 across the 9 rooms.</title>
       <link>https://wuld.ink/changelog/#2026-06-10-gallery-photo-video-pairing</link>

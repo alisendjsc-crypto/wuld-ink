@@ -40,7 +40,7 @@
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
   <link rel="stylesheet" href="/components/gallery.css?v=K30">
-  <link rel="stylesheet" href="/components/gallery-room.css?v=K109">
+  <link rel="stylesheet" href="/components/gallery-room.css?v=K110">
   <!-- ============================================================
        K83/K87 - manifest-driven gallery (vessel for the admin-CMS
        arc; K87 = schema v2: categories + media kinds + caption tiers)
@@ -125,14 +125,6 @@
       <p class="page-intro">Exhibition handout in the form of a wall. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation. The images were not made to be understood. They were made to be looked at until looking becomes uncomfortable, and then a little longer. <span id="gallery-current">Currently: every plate, across every room.</span></p>
     </header>
 
-    <!-- K87 category index: rooms light up when the manifest holds
-         >=1 plate in that category (dormant until the K88 ingest). -->
-    <section class="gallery-category-index" id="gallery-category-index" aria-label="Gallery rooms" hidden>
-      <h2 class="gallery-category-index-heading">Rooms</h2>
-      <p class="gallery-category-index-aside">Flagged rooms gate through the same consent interstitial.</p>
-      <div class="gallery-cat-grid" id="gallery-cat-grid"></div>
-    </section>
-
     <!-- K83 consent gate: reveal of [data-nsfw] plates now runs through a
          consent interstitial (18+ / AI-generated / no real persons). Until
          consent, flagged plates render as withheld cards with no image
@@ -147,6 +139,14 @@
       </button>
       <span class="gallery-nsfw-status" id="gallery-nsfw-status">Flagged plates are withheld until revealed.</span>
     </div>
+
+    <!-- K87 category index: rooms light up when the manifest holds
+         >=1 plate in that category (dormant until the K88 ingest). -->
+    <section class="gallery-category-index" id="gallery-category-index" aria-label="Gallery rooms" hidden>
+      <h2 class="gallery-category-index-heading">Rooms</h2>
+      <p class="gallery-category-index-aside">Flagged rooms gate through the same consent interstitial.</p>
+      <div class="gallery-cat-grid" id="gallery-cat-grid"></div>
+    </section>
 
     <section class="gallery-grid" id="gallery-grid" aria-label="Plates">
       <noscript><p class="gallery-empty">This gallery renders from /gallery/manifest.json and needs JavaScript. The plates exist; the script is the curator.</p></noscript>
@@ -207,7 +207,7 @@
 
   <script src="/components/nav.js?v=K43"></script>
 
-  <script src="/components/gallery-room.js?v=K109" defer></script>
+  <script src="/components/gallery-room.js?v=K110" defer></script>
 
   <!-- ============================================================
        Ambient background player

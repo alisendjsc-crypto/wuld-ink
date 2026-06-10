@@ -123,12 +123,12 @@
      flagged + !revealed -> scrollIntoView the withheld card ONLY —
      a deep link is NOT a consent bypass (K87). hashchange re-routes
      (replaceState never fires it).
-   - LOBBY: the Prints section now inserts BELOW the NSFW bar —
-     rooms index -> gate -> Prints -> editorial grid (K99's catIndex
-     anchor had stranded the toggle under the Prints grid) — and the
-     status line counts flagged across ALL rooms (the lobby surfaces
-     every room via search + Prints; editorial-only "0 in this
-     room" misled beside withheld Prints cards).
+   - K110 LOBBY order: controls -> gate -> rooms index -> Prints
+     band -> pager -> grid. Prints is collapsed-by-default behind a
+     mono band (count + [ expand ] + [ storefront ] -> wuld.printful.me);
+     strip cards render only while expanded (no hidden-img fetches);
+     the status line still counts flagged across ALL rooms (K105) and
+     the controls bar is the first interactive block on every page.
    ============================================================   - K106: pagination + browse-all. Any rendered set past 60 plates
     slices into pages -- mono [ prev ] page N / M [ next ] chrome
     above and below the grid; the page resets on every filter change
@@ -578,24 +578,63 @@
          lobbyPrintsFilter) ---- */
   var printsSection = null;
   var printsGrid = null;
+  var printsBody = null;
+  var printsBandLabel = null;
+  var printsExpandBtn = null;
+  var printsOpen = false; /* K110: collapsed every load — no persistence (AQ) */
+  function syncPrintsBody() {
+    if (!printsBody || !printsExpandBtn) return;
+    if (printsOpen) { printsBody.removeAttribute('hidden'); }
+    else { printsBody.setAttribute('hidden', ''); }
+    printsExpandBtn.setAttribute('aria-expanded', printsOpen ? 'true' : 'false');
+    printsExpandBtn.textContent = printsOpen ? '[ collapse ]' : '[ expand ]';
+  }
   function buildPrintsShell() {
     if (!isLobby || printsSection) return;
     printsSection = el('section', 'gallery-prints');
     printsSection.id = 'gallery-prints';
     printsSection.setAttribute('aria-label', 'Prints');
     printsSection.setAttribute('hidden', '');
-    printsSection.appendChild(el('h2', 'gallery-prints-heading', 'Prints'));
-    printsSection.appendChild(el('p', 'gallery-prints-aside',
+    /* K110: collapsed-by-default band — label + [ expand ] + [ storefront ]
+       (store of record wuld.printful.me; K96 link-out recipe). The K99
+       strip lives inside #gallery-prints-body and renders only while
+       expanded; collapsed on every load (no persistence, AQ-ratified). */
+    var band = el('div', 'gallery-prints-band');
+    printsBandLabel = el('span', 'gallery-prints-band-label', 'Prints');
+    band.appendChild(printsBandLabel);
+    printsExpandBtn = el('button', 'gallery-prints-band-btn');
+    printsExpandBtn.type = 'button';
+    printsExpandBtn.id = 'gallery-prints-expand';
+    printsExpandBtn.setAttribute('aria-expanded', 'false');
+    printsExpandBtn.setAttribute('aria-controls', 'gallery-prints-body');
+    printsExpandBtn.textContent = '[ expand ]';
+    band.appendChild(printsExpandBtn);
+    var storeLink = el('a', 'gallery-prints-band-btn');
+    storeLink.id = 'gallery-prints-store';
+    storeLink.href = 'https://wuld.printful.me';
+    storeLink.target = '_blank';
+    storeLink.rel = 'noopener noreferrer nofollow';
+    storeLink.textContent = '[ storefront ]';
+    band.appendChild(storeLink);
+    printsSection.appendChild(band);
+    printsBody = el('div', 'gallery-prints-body');
+    printsBody.id = 'gallery-prints-body';
+    printsBody.setAttribute('hidden', '');
+    printsBody.appendChild(el('p', 'gallery-prints-aside',
       'Prints from the other rooms -- editorial prints carry [ acquire print ] on their own grid cards below. The shop link routes out; flagged plates still gate through consent.'));
     printsGrid = el('div', 'gallery-grid gallery-prints-grid');
     printsGrid.id = 'gallery-prints-grid';
-    printsSection.appendChild(printsGrid);
-    /* K105: Prints lands BELOW the NSFW bar — K99's catIndex anchor had
-       stranded the gate toggle under the Prints grid (operator note).
-       Order: rooms index -> gate -> Prints -> editorial grid. */
-    var nsfwBar = toggleBtn ? toggleBtn.closest('.gallery-nsfw-bar') : null;
-    var pAnchor = (nsfwBar && nsfwBar.parentNode === catIndex.parentNode) ? nsfwBar : catIndex;
-    pAnchor.parentNode.insertBefore(printsSection, pAnchor.nextSibling);
+    printsBody.appendChild(printsGrid);
+    printsSection.appendChild(printsBody);
+    /* K110: anchored on the GRID — the K105 nsfwBar anchor died when
+       the gate moved up to sit below the controls bar; pagerTop boots
+       later and inserts closer to the grid, so the lobby lands as
+       rooms index -> Prints band -> pager -> grid. */
+    grid.parentNode.insertBefore(printsSection, grid);
+    printsExpandBtn.addEventListener('click', function() {
+      printsOpen = !printsOpen;
+      renderPrints();
+    });
     printsGrid.addEventListener('click', starClick);
     printsGrid.addEventListener('click', capToggleClick);
     printsGrid.addEventListener('click', thCardClick);
@@ -609,13 +648,19 @@
       printsSection.setAttribute('hidden', '');
       return;
     }
-    set.forEach(function(p) {
-      if (isGated(p) && !revealed) {
-        printsGrid.appendChild(withheldCard(p, true));
-      } else {
-        printsGrid.appendChild(plateCard(p, true));
-      }
-    });
+    if (printsBandLabel) {
+      printsBandLabel.textContent = 'Prints — ' + set.length + ' available';
+    }
+    if (printsOpen) {
+      set.forEach(function(p) {
+        if (isGated(p) && !revealed) {
+          printsGrid.appendChild(withheldCard(p, true));
+        } else {
+          printsGrid.appendChild(plateCard(p, true));
+        }
+      });
+    }
+    syncPrintsBody();
     printsSection.removeAttribute('hidden');
   }
 
@@ -955,7 +1000,12 @@
       bar.appendChild(browseBtn);
     }
 
-    grid.parentNode.insertBefore(bar, grid);
+    /* K110: controls-first — the bar is the FIRST interactive block
+       after the hero/lede on every page; the static NSFW gate sits
+       directly below it (lobby gate moved above the rooms index). */
+    var cBar = toggleBtn ? toggleBtn.closest('.gallery-nsfw-bar') : null;
+    var cAnchor = (cBar && cBar.parentNode === grid.parentNode) ? cBar : grid;
+    cAnchor.parentNode.insertBefore(bar, cAnchor);
 
     if (searchInput) {
       searchInput.addEventListener('input', function() {

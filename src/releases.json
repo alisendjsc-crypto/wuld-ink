@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-10-gallery-ux-pass-3",
+    "date": "2026-06-10",
+    "summary": "Gallery UX pass 3: the search/controls bar is now the first block on all nine gallery pages with the NSFW gate directly below it, and the lobby Prints strip collapses behind a mono band with [ expand ] and a direct storefront link (wuld.printful.me).",
+    "sections": ["/gallery/"]
+  },
+  {
     "id": "2026-06-10-gallery-photo-video-pairing",
     "date": "2026-06-10",
     "summary": "Gallery: 42 operator-confirmed photo-video pairs land as additive manifest video: fields; paired image cards gain a [ mp4 ] affordance (star-adjacent) opening the video theater on the partner plate, consent-held; both gallery assets bumped to ?v=K109 across the 9 rooms.",

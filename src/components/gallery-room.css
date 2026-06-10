@@ -128,6 +128,14 @@
 .gallery-prints { margin: var(--s-7) 0; padding-top: var(--s-5); border-top: var(--bw-thin) solid var(--c-border); }
 .gallery-prints-heading { font-family: var(--font-mono); font-size: var(--t-sm); letter-spacing: var(--ls-mega); text-transform: uppercase; color: var(--c-fg); margin: 0 0 var(--s-3) 0; }
 .gallery-prints-aside { font-family: var(--font-mono); font-size: var(--t-xs); line-height: var(--lh-default); color: var(--c-fg-dim); margin: 0 0 var(--s-4) 0; }
+/* K110: collapsed Prints band */
+.gallery-prints-band { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-3); }
+.gallery-prints-band-label { font-family: var(--font-mono); font-size: var(--t-sm); letter-spacing: var(--ls-mega); text-transform: uppercase; color: var(--c-fg); }
+.gallery-prints-band-btn { display: inline-block; font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--ls-wide); color: var(--c-fg-dim); background: none; border: var(--bw-thin) solid var(--c-border); padding: var(--s-2) var(--s-3); cursor: pointer; text-decoration: none; }
+.gallery-prints-band-btn:hover { border-color: var(--c-accent); color: var(--c-fg); }
+.gallery-prints-band-btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.gallery-prints-body { margin-top: var(--s-4); }
+
 
 /* ---------- K101 video section (own sub-grid below the image grid in mixed-kind rooms) ---------- */
 .gallery-videos { margin: var(--s-7) 0 0 0; padding-top: var(--s-5); border-top: var(--bw-thin) solid var(--c-border); }
