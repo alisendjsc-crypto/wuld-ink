@@ -63,8 +63,8 @@
   var FRAG_EVERY_MIN = 240000, FRAG_EVERY_MAX = 540000, FRAG_FIRE_PROB = 0.4; // K116a: 4-9 min active dwell + 40% fire (rarer/random per operator)
   var FRAG_SESSION_CAP = 3;                          // sec4: N=3 per session
   var FRAG_AFTER_SURFACE_MS = 1000;                  // sec4 coupling: fade-in 1.0s after surface starts
-  var FRAG_FADEIN_MS = 1500, FRAG_FADEOUT_MS = 2500; // sec4 lifecycle
-  var FRAG_HOLD_BASE_MS = 5000, FRAG_HOLD_PER_CHAR_MS = 40, FRAG_HOLD_CHAR_FLOOR = 40; // sec4 hold = 5s + 40ms/char past 40
+  var FRAG_FADEIN_MS = 1800, FRAG_FADEOUT_MS = 3000; // sec4 lifecycle (K116b: gentler fades)
+  var FRAG_HOLD_BASE_MS = 9000, FRAG_HOLD_PER_CHAR_MS = 40, FRAG_HOLD_CHAR_FLOOR = 40; // K116b hold = 9s + 40ms/char past 40 (was 5s; operator: too brief)
   var FRAG_OPACITY = 0.57;                           // sec3 channel lock
   var FRAG_OFFSET_FACTOR = 0.6;                      // sec4: 0.6 x figure-width toward viewport centre
   var FRAG_Y_MIN = 40, FRAG_Y_MAX = 90;             // sec4: head-anchor y + 40-90px
