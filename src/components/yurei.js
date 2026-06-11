@@ -98,6 +98,7 @@
   var MANIFEST_URL = BASE + "manifest_v2.json";
   var KEY = "wuld:yurei";        // RESERVED localStorage (cross-session)
   var SKEY = "wuld:yurei.s";     // session-scoped sibling (sessionStorage)
+  var MOUNT_PROB = 0.2;          // K117b: per-visitor election — ~1 in 5 first-time browsers get her (sticky); summon() overrides
 
   /* ---- localStorage blob (RESERVED key; cross-session) ---- */
   function readBlob() { try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { return {}; } }
@@ -115,7 +116,13 @@
     on: function () { var b = readBlob(); b.off = false; writeBlob(b); var s = readSess(); s.exorcised = false; writeSess(s); return "yurei: on (reload to summon)"; },
     surface: function () { return forceSurface(); },  // K116a: manual surfacing for the initiated
     scale: function (v) { if (typeof v === "number" && v > 0 && v <= 1) { FILL_VH = v; if (fig) layout(); return "yurei: scale " + v; } return "yurei: scale=" + FILL_VH + " (pass 0-1)"; },  // K117 live dial (non-persistent)
-    fade: function (v) { if (typeof v === "number" && v >= 0 && v <= 1) { if (fig) fig.style.opacity = String(v); return "yurei: fade " + v; } return "yurei: fade (pass 0-1)"; }  // K117 live dial (inline opacity override)
+    fade: function (v) { if (typeof v === "number" && v >= 0 && v <= 1) { if (fig) fig.style.opacity = String(v); return "yurei: fade " + v; } return "yurei: fade (pass 0-1)"; },  // K117 live dial (inline opacity override)
+    summon: function () {                             // K117b: secret manual activation — sticky election override (mostly for the operator)
+      var b = readBlob(); b.summoned = true; b.elected = true; b.off = false; writeBlob(b); blob = b;
+      var s = readSess(); s.exorcised = false; writeSess(s);
+      if (!mounted) boot();
+      return "yurei: summoned (sticky for this browser; reload if she does not appear)";
+    }
   };
 
   if (blob.off === true) return; // opted out — never mounts
@@ -463,9 +470,20 @@
     });
   }
 
+  /* ---- per-visitor election (K117b): mounts for ~MOUNT_PROB of first-time browsers, sticky; summon() overrides ---- */
+  function elected() {
+    var b = readBlob();
+    if (b.summoned === true) return true;                    // manual override (operator)
+    if (typeof b.elected === "boolean") return b.elected;    // sticky prior verdict
+    b.elected = Math.random() < MOUNT_PROB;                  // first visit — roll once, persist
+    writeBlob(b); blob = b;
+    return b.elected;
+  }
+
   /* ---- boot: manifest-first ---- */
   function boot() {
     if (readSess().exorcised) return;                        // respect a prior-page exorcism this session
+    if (!elected()) return;                                  // K117b: not elected on this browser — hidden unless summoned
     fetch(MANIFEST_URL, { cache: "no-store" })
       .then(function (r) { return r.json(); })
       .then(function (m) {
