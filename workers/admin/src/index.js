@@ -85,7 +85,7 @@ export default {
       }
       if (request.method === "POST") {
         // CSRF + rate belt on every mutation.
-        if (!sameOrigin(request)) return json({ error: "csrf_origin_mismatch" }, 403);
+        if (!gate.service && !sameOrigin(request)) return json({ error: "csrf_origin_mismatch" }, 403);
         const rl = rateCheck(gate.email);
         if (!rl.ok) return json({ error: "rate_capped", retry_in_s: rl.retryS }, 429);
 
@@ -644,6 +644,110 @@ function siteRecCard(content, params) {
   };
 }
 
+/* ops.py pattern 1: add video card to /archive/ Videos (video or playlist). */
+function siteVideoArchive(content, params) {
+  siteRequire(params, ["youtube_id", "title", "eyebrow"]);
+  const yid = String(params.youtube_id).trim();
+  if (!/^[A-Za-z0-9_-]{5,40}$/.test(yid)) {
+    throw new SiteOpError("youtube_id: expected a bare video or playlist id, charset [A-Za-z0-9_-]");
+  }
+  const isPlaylist = params.id_type === "playlist" || yid.indexOf("PL") === 0;
+  const thumbId = (String(params.thumb_video_id == null ? "" : params.thumb_video_id).trim()) || (isPlaylist ? "" : yid);
+  if (isPlaylist && !thumbId) {
+    throw new SiteOpError("Playlist requires a thumbnail video ID (a representative video from the playlist).");
+  }
+  if (thumbId && !/^[A-Za-z0-9_-]{5,40}$/.test(thumbId)) {
+    throw new SiteOpError("thumb_video_id: charset [A-Za-z0-9_-]");
+  }
+  const titleE = siteEsc(params.title);
+  const eyebrowE = siteEsc(params.eyebrow);
+  const sub = String(params.sub == null ? "" : params.sub).trim();
+  const subHtml = sub ? '\n            <p class="archive-video-sub">' + siteEsc(sub) + "</p>" : "";
+  const dataAttr = isPlaylist ? 'data-theater-playlist-id="' + yid + '"' : 'data-theater-video-id="' + yid + '"';
+  const linkUrl = isPlaylist ? "https://www.youtube.com/playlist?list=" + yid : "https://www.youtube.com/watch?v=" + yid;
+
+  const block =
+    '        <article class="archive-video-card">\n' +
+    '          <button class="archive-video-thumb-wrap" type="button" ' + dataAttr + ' data-theater-title="' + titleE + '" aria-label="Play ' + titleE + ' in theater mode">\n' +
+    '            <img class="archive-video-thumb" src="https://i.ytimg.com/vi/' + thumbId + '/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">\n' +
+    '            <span class="archive-video-play" aria-hidden="true">&#9658;</span>\n' +
+    "          </button>\n" +
+    '          <div class="archive-video-meta">\n' +
+    '            <p class="archive-video-eyebrow">' + eyebrowE + "</p>\n" +
+    '            <h3 class="archive-video-title">' + titleE + "</h3>" + subHtml + "\n" +
+    '            <a class="archive-video-link" href="' + linkUrl + '" target="_blank" rel="noopener noreferrer">Open on YouTube &rarr;</a>\n' +
+    "          </div>\n" +
+    "        </article>\n";
+
+  const next = siteInsertAtPosition(content, block, '<article class="archive-video-card">', params.position);
+  return {
+    content: next,
+    summary: "Add video card to /archive/ Videos: " + JSON.stringify(String(params.title)) + " (" + yid + ")",
+    message: "site-admin: archive-video add — " + String(params.title),
+  };
+}
+
+/* ops.py pattern 3: add image card to /archive/ Images. */
+function siteImageArchive(content, params) {
+  siteRequire(params, ["slug", "alt", "kind", "title", "note"]);
+  const slug = String(params.slug).trim();
+  if (!/^[A-Za-z0-9._-]+$/.test(slug)) {
+    throw new SiteOpError("slug: charset [A-Za-z0-9._-] (filename stem, no slashes)");
+  }
+  const altE = siteEsc(params.alt);
+  const kindE = siteEsc(params.kind);
+  const titleE = siteEsc(params.title);
+  const noteE = siteEsc(params.note);
+  const url = "https://audio.wuld.ink/archive/images/" + slug + ".webp";
+
+  const block =
+    '        <figure class="archive-image-card">\n' +
+    '          <a class="archive-image-link" href="' + url + '" target="_blank" rel="noopener noreferrer">\n' +
+    '            <img class="archive-image-img" src="' + url + '" alt="' + altE + '" loading="lazy" decoding="async">\n' +
+    "          </a>\n" +
+    '          <figcaption class="archive-image-cap">\n' +
+    '            <p class="archive-image-kind">' + kindE + "</p>\n" +
+    '            <h3 class="archive-image-title">' + titleE + "</h3>\n" +
+    '            <p class="archive-image-note">' + noteE + "</p>\n" +
+    "          </figcaption>\n" +
+    "        </figure>\n";
+
+  const next = siteInsertAtPosition(content, block, '<figure class="archive-image-card">', params.position);
+  return {
+    content: next,
+    summary: "Add image card to /archive/ Images: " + JSON.stringify(String(params.title)) + " (" + slug + ")",
+    message: "site-admin: archive-image add — " + String(params.title),
+  };
+}
+
+/* ops.py pattern 5: add essay-list-item to /essays/ index. */
+function siteEssayCard(content, params) {
+  siteRequire(params, ["slug", "eyebrow", "title", "tag"]);
+  let slug = String(params.slug).trim().replace(/^\/+/, "").replace(/\/+$/, "");
+  if (!/^[A-Za-z0-9-]+$/.test(slug)) {
+    throw new SiteOpError("slug: charset [A-Za-z0-9-] (essay directory stem)");
+  }
+  const eyebrowE = siteEsc(params.eyebrow);
+  const titleE = siteEsc(params.title);
+  const tagE = siteEsc(params.tag);
+
+  const block =
+    '        <li class="essay-list-item">\n' +
+    '          <a href="/essays/' + slug + '/">\n' +
+    '            <p class="essay-list-eyebrow">' + eyebrowE + "</p>\n" +
+    '            <h2 class="essay-list-title">' + titleE + "</h2>\n" +
+    '            <p class="essay-list-tag">' + tagE + "</p>\n" +
+    "          </a>\n" +
+    "        </li>\n";
+
+  const next = siteInsertAtPosition(content, block, '<li class="essay-list-item">', params.position);
+  return {
+    content: next,
+    summary: "Add essay card to /essays/: " + JSON.stringify(String(params.title)),
+    message: "site-admin: essay-card — " + String(params.title),
+  };
+}
+
 /* ops.py pattern 6: generic text-swap. count==1 unless replace_all. */
 function siteTextSwap(content, params, relPath) {
   siteRequire(params, ["find_text"]);
@@ -738,12 +842,15 @@ async function siteRun(env, pattern, params) {
   let rel, applyFn;
   if (pattern === "video-watch") { rel = "src/watch/index.html"; applyFn = siteVideoWatch; }
   else if (pattern === "rec-card") { rel = "src/recommendations/index.html"; applyFn = siteRecCard; }
+  else if (pattern === "archive-video") { rel = "src/archive/index.html"; applyFn = siteVideoArchive; }
+  else if (pattern === "archive-image") { rel = "src/archive/index.html"; applyFn = siteImageArchive; }
+  else if (pattern === "essay-card") { rel = "src/essays/index.html"; applyFn = siteEssayCard; }
   else if (pattern === "text-swap") {
     try { siteRequire(params, ["file_path"]); rel = siteCleanRel(params.file_path); }
     catch (e) { if (e instanceof SiteOpError) return { fail: json({ error: "op_refused", detail: e.message }, 422) }; throw e; }
     applyFn = siteTextSwap;
   }
-  else return { fail: json({ error: "unknown_pattern", known: ["video-watch", "rec-card", "text-swap", "cache-bump"] }, 400) };
+  else return { fail: json({ error: "unknown_pattern", known: ["video-watch", "rec-card", "archive-video", "archive-image", "essay-card", "text-swap", "cache-bump"] }, 400) };
 
   const got = await ghGetFile(env, rel);
   if (!got.ok) return { fail: json({ error: got.error, detail: got.detail, path: rel }, got.status || 502) };
@@ -998,6 +1105,18 @@ async function verifyAccess(request, env) {
 
   const payload = await verifyAccessJwt(token, env);
   if (!payload) return { ok: false, reason: "jwt_invalid" };
+  // Service-token (non-interactive) path — OPT-IN via ACCESS_SERVICE_TOKEN_CN.
+  // Cloudflare Access mints a JWT carrying `common_name` (the token Client ID)
+  // and no `email` when a request authenticates with a service token allowed by
+  // the Access app policy. Absent the env var this branch never fires, so the
+  // default behaviour (interactive admin only) is byte-for-byte unchanged.
+  if (!payload.email && payload.common_name && env.ACCESS_SERVICE_TOKEN_CN) {
+    const allow = String(env.ACCESS_SERVICE_TOKEN_CN).split(",").map(function (s) { return s.trim(); }).filter(Boolean);
+    if (allow.indexOf(payload.common_name) >= 0) {
+      return { ok: true, email: "service:" + payload.common_name, service: true };
+    }
+    return { ok: false, reason: "service_token_not_allowed" };
+  }
   if (!env.ADMIN_EMAIL || !payload.email || payload.email.toLowerCase() !== env.ADMIN_EMAIL.toLowerCase()) {
     return { ok: false, reason: "not_admin" };
   }
@@ -1261,6 +1380,53 @@ function adminHtml(env, adminEmail) {
   <p class="hint">sweeps src HTML via the repo tree; K26 xcvii discipline &mdash; bump when a versioned component changes.</p>
 </fieldset>
 
+<h2>8 &middot; Site &mdash; add /archive/ video card</h2>
+<fieldset>
+  <div class="row2">
+    <div><label>youtube / playlist id</label><input type="text" id="av-id" placeholder="GSDN0vu18Fo or PL…"></div>
+    <div><label>id type</label><select id="av-idtype"><option value="video">video</option><option value="playlist">playlist</option></select></div>
+  </div>
+  <div class="row2">
+    <div><label>title</label><input type="text" id="av-title"></div>
+    <div><label>eyebrow</label><input type="text" id="av-eyebrow" placeholder="VIDEO &middot; Apr 2026"></div>
+  </div>
+  <div class="row2">
+    <div><label>thumb video id (required for playlist)</label><input type="text" id="av-thumb" placeholder="GSDN0vu18Fo"></div>
+    <div><label>sub (optional)</label><input type="text" id="av-sub"></div>
+  </div>
+  <label>position (blank = append; 1 = first)</label><input type="text" id="av-pos">
+  <button class="site-prev" data-pattern="archive-video">preview</button>
+</fieldset>
+
+<h2>9 &middot; Site &mdash; add /archive/ image card</h2>
+<fieldset>
+  <div class="row2">
+    <div><label>slug (filename stem; url = audio.wuld.ink/archive/images/&lt;slug&gt;.webp)</label><input type="text" id="ai-slug" placeholder="some-plate"></div>
+    <div><label>kind (eyebrow)</label><input type="text" id="ai-kind" placeholder="DRAWING &middot; 2026"></div>
+  </div>
+  <div class="row2">
+    <div><label>title</label><input type="text" id="ai-title"></div>
+    <div><label>alt text</label><input type="text" id="ai-alt"></div>
+  </div>
+  <label>note</label><textarea id="ai-note"></textarea>
+  <label>position (blank = append; 1 = first)</label><input type="text" id="ai-pos">
+  <button class="site-prev" data-pattern="archive-image">preview</button>
+</fieldset>
+
+<h2>10 &middot; Site &mdash; add /essays/ index card</h2>
+<fieldset>
+  <div class="row2">
+    <div><label>slug (essay dir stem; href = /essays/&lt;slug&gt;/)</label><input type="text" id="ec-slug" placeholder="a-new-essay"></div>
+    <div><label>eyebrow</label><input type="text" id="ec-eyebrow" placeholder="ESSAY &middot; forthcoming"></div>
+  </div>
+  <div class="row2">
+    <div><label>title</label><input type="text" id="ec-title"></div>
+    <div><label>tag</label><input type="text" id="ec-tag" placeholder="anti-natalism"></div>
+  </div>
+  <label>position (blank = append; 1 = first)</label><input type="text" id="ec-pos">
+  <button class="site-prev" data-pattern="essay-card">preview</button>
+</fieldset>
+
 <div id="site-preview">
   <div class="diffmeta" id="sp-meta"></div>
   <div id="sp-body"></div>
@@ -1462,6 +1628,22 @@ function adminHtml(env, adminEmail) {
       return { section: $("rc-section").value, kind: $("rc-kind").value.trim(),
                title: $("rc-title").value.trim(), url: $("rc-url").value.trim(),
                note: $("rc-note").value, position: $("rc-pos").value.trim() };
+    }
+    if (pattern === "archive-video") {
+      return { youtube_id: $("av-id").value.trim(), title: $("av-title").value.trim(),
+               eyebrow: $("av-eyebrow").value.trim(), id_type: $("av-idtype").value,
+               thumb_video_id: $("av-thumb").value.trim(), sub: $("av-sub").value.trim(),
+               position: $("av-pos").value.trim() };
+    }
+    if (pattern === "archive-image") {
+      return { slug: $("ai-slug").value.trim(), alt: $("ai-alt").value.trim(),
+               kind: $("ai-kind").value.trim(), title: $("ai-title").value.trim(),
+               note: $("ai-note").value, position: $("ai-pos").value.trim() };
+    }
+    if (pattern === "essay-card") {
+      return { slug: $("ec-slug").value.trim(), eyebrow: $("ec-eyebrow").value.trim(),
+               title: $("ec-title").value.trim(), tag: $("ec-tag").value.trim(),
+               position: $("ec-pos").value.trim() };
     }
     if (pattern === "text-swap") {
       return { file_path: $("ts-path").value.trim(), find_text: $("ts-find").value,
