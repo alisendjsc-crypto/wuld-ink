@@ -111,7 +111,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "print_url": "https://wuld.printful.me/product/plate-001-face-withheld"
     },
     {
       "id": "original-character-193e61a4d3f1",
@@ -298,7 +299,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "print_url": "https://wuld.printful.me/product/plate-002-twice-exposed-holding"
     },
     {
       "id": "original-character-2e10612c1c0d",
@@ -1225,7 +1227,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/water-double-plate-434"
     },
     {
       "id": "plate-12-pre-lacero-rupture-iv",
@@ -2091,7 +2094,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/main-character-plate-016"
     },
     {
       "id": "main-character-b7ee16a82b8d",
@@ -2304,7 +2308,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/main-character-plate-011"
     },
     {
       "id": "main-character-9b04e33f796a",
@@ -4568,7 +4573,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/pool-of-broken-mirrors-plate-431"
     },
     {
       "id": "main-character-dafbdcb9c778",
@@ -5207,7 +5213,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/main-character-plate-015"
     },
     {
       "id": "main-character-055a75d64af5",
@@ -5229,7 +5236,8 @@
         "kind": "image"
       },
       "caption_tier": "none",
-      "video": "main-character-a6076fdb7c58"
+      "video": "main-character-a6076fdb7c58",
+      "print_url": "https://wuld.printful.me/product/main-character-plate-014"
     },
     {
       "id": "main-character-6c681ab9ff90",
@@ -5376,7 +5384,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "print_url": "https://wuld.printful.me/product/plate-001-seated-not-by-choice"
     },
     {
       "id": "main-character-2af847648da8",
@@ -6656,7 +6665,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/milk-bath-plate-012"
     },
     {
       "id": "main-character-60bcf79c6415",
