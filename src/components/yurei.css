@@ -1,20 +1,21 @@
-/* yurei.css — yurei mascot easter-egg widget (K115)
+/* yurei.css — yurei mascot easter-egg widget (K115 core + K116 choreography)
    Site-side DOM layer. Loaded ONLY by heavy-read pages.
-   Pointer-events:none on every layer — she is present, never interactive (asset spec §5).
+   Pointer-events:none on every layer — she is present, never interactive (asset spec sec5).
    Floor: container bottom >= 2.5rem + 8px above viewport bottom (ambient-bar band inviolate).
-   Z-band: above content, below gallery lightbox/theater. No motion CSS beyond the entrance fade. */
+   Z-band: above content, below gallery lightbox/theater.
+   Motion: entrance fade (CSS) + transit translateX / exorcism fade (transition set inline by yurei.js). */
 
 #yurei {
   position: fixed;
   z-index: var(--yurei-z, 50);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 1.8s ease;      /* §5 simple-fade entrance (PEEK transit = K116) */
-  will-change: opacity;
-  /* left / top / width / height set inline by yurei.js layout() */
+  transition: opacity 1.8s ease;      /* sec5 simple-fade entrance; transit/exorcism transitions set inline by JS */
+  will-change: opacity, transform;
+  /* left / top / width / height / transform set inline by yurei.js */
 }
 
-#yurei.yurei-in { opacity: 0.92; }     /* figure opacity matches the harness exemplar */
+#yurei.yurei-in { opacity: 0.80; }     /* figure opacity matches the harness exemplar */
 
 #yurei video,
 #yurei img {
@@ -37,3 +38,27 @@
 /* still-only mode (reduced-motion opt-out, or sha256 gate fallback): canonical still, no video. */
 #yurei[data-still="1"] video { display: none; }
 #yurei[data-still="1"] img { opacity: 1; }
+
+/* K116 — text-surfacing fragment layer (text library sec3 typography lock).
+   EB Garamond by inheritance, roman, site body colour at 0.57 (the opacity IS the lock),
+   no chrome of any kind. opacity + transform driven by JS transitions. */
+.yurei-fragment {
+  position: fixed;
+  z-index: var(--yurei-z, 50);
+  pointer-events: none;
+  margin: 0;
+  max-width: 22rem;
+  font-family: var(--font-body, Georgia, "Times New Roman", serif);
+  font-style: normal;                 /* roman — italics read as whisper-voiceover (sec3) */
+  font-size: 0.95em;
+  line-height: 1.35;
+  color: var(--c-fg);                 /* site body white; 0.57 carried by element opacity */
+  opacity: 0;                         /* JS fades 0 -> 0.57 */
+  background: none;
+  border: 0;
+  box-shadow: none;
+  text-shadow: none;
+  will-change: opacity, transform;
+  -webkit-user-select: none;
+  user-select: none;
+}
