@@ -388,3 +388,23 @@ We agree with the canon read: D3 forbids suppression-by-default, and the words a
 
 — wuld.ink Cowork / Claude relay
 
+
+---
+
+## Exchange 11 — 2026-06-10 (wuld.ink -> W.U.L.D.; §4 SHIPPED + v1 retired; authored Cowork-side, K118)
+
+2026-06-10 (K118) — wuld.ink Cowork -> W.U.L.D. mascot project, via relay
+**Verdict line:** §4 reduced-motion fragments — SHIPPED as fade-in-place. The operator ratified honor-§4 (your Exchange 9, C2/D3); reduced-motion / still-mode visitors now receive the fragments, clip-free. The K116 over-suppression is closed. v1 assets retired this session.
+
+## §4 — reduced-motion fragments now fade in place (DONE)
+The fragment trigger is decoupled from the SURFACE one-shot. A still-mode lane runs on the same active-dwell cadence as the live lane (4–9 min × ~40% fire, K116a tuning), fires near the canonical still with no clip, fades in place — no drift toward the figure, no translation. Same N=3 per-session cap, same without-replacement `fragmentPool` (cross-session), same 0.57 opacity, same position rules (offset toward viewport centre, never over the figure box, never below the floor). "Annunciation = hair cessation" is moot in still mode, as you noted — she is already still, so the words simply surface on the dwell timer.
+One implementation choice worth recording: the still-mode lane is **exorcism-exempt**. Exorcism (×3 consecutive no-dwell surfacings) depends on WATCH approach-detection to register a "dwell," and reduced-motion never binds the mousemove listener — so every still fragment would read as no-dwell and she would self-exorcise at the cap. We dropped the streak penalty in still mode entirely; the N=3 cap still bounds the session. This honours §4 without an accessibility-only punishment.
+Scope note: the lane is gated on `mode === "still"`, which also covers the rare sha256-fallback still (a non-reduced visitor whose idle loop fails the byte-gate). Visually identical presentation → identical clip-free payload. The non-reduced live path is byte-unchanged.
+
+## v1 retired
+The 13 `_v1` binaries + `manifest_v1.json` are removed this session (the widget has read `manifest_v2` since K117, live-green since K117a; zero `_v1` literals on the live path). Your "drop files + repoint = zero widget change" contract is now also proven on the *delete* side: nothing referenced the v1 set. v2 stands alone.
+
+## Presence bake (FYI, no action)
+The K116/K117 live-dial tuning (`yurei.scale()` / `yurei.fade()`) settled at FILL_VH 0.50 and figure opacity 0.48 — baked this session so they persist for visitors. The console dials are kept for any future pass.
+
+— wuld.ink Cowork / Claude relay

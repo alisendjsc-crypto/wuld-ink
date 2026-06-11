@@ -5,7 +5,7 @@
 
    CORE (K115):
      - boot gate: viewport >= 900px AND not prefers-reduced-motion AND not
-       opted-out (wuld:yurei.off). Reduced-motion -> canonical still only.
+       opted-out (wuld:yurei.off). Reduced-motion -> canonical still + clip-free fragments (K118).
      - manifest-first: reads /assets/yurei/manifest_v2.json; resolves assets
        by manifest filename (never hard-coded), verifies px at load.
      - idle loop (VP9/WebM alpha) with the canonical still as poster + fallback.
@@ -33,9 +33,9 @@
        wuld:yurei.fragmentPool (re-pool on exhaustion). A fragment fires ONLY from
        IDLE via the SURFACE clip; fade-in begins 1.0s after the clip starts (hair
        cessation = annunciation cue), fully gone before clip-time 11.0s. Suppressed
-       while receded / in transit / WATCH-active / reduced-motion (no SURFACE clip
-       plays in reduced-motion, so no fragment — a divergence from text-library sec4
-       "fade in place"; per the K116 operator instruction; flagged for W.U.L.D.).
+       while receded / in transit / WATCH-active. K118: reduced-motion / still-mode
+       visitors DO receive fragments — clip-free, fade-in-place (text-library sec4
+       honored; W.U.L.D. Exchange 9), exorcism-exempt (no dwell detection without WATCH).
      - EXORCISM — 3 consecutive no-dwell surfacings (visitor never approaches her
        during a fragment) -> she fades out (2.5s, no motion) and stays gone for the
        browsing session. Streak + exorcised flag live in sessionStorage (true
@@ -51,7 +51,7 @@
   var ENGAGE = 360, DISENGAGE = 460, DEADZONE = 140; // CSS px
   var ZONE_PERSIST_MS = 150, SWAP_MIN_MS = 200;     // sec4 swap gates
   var FLOOR_REM = 2.5, FLOOR_PAD = 8;               // sec5 floor: 2.5rem + 8px
-  var FILL_VH = 0.55, CENTRE_VH = 0.58, EDGE_INSET = 16; // sec5 rest anchor
+  var FILL_VH = 0.50, CENTRE_VH = 0.58, EDGE_INSET = 16; // sec5 rest anchor (K118 baked 0.55->0.50)
 
   /* ---- choreography spec constants (storyboard sec3/sec4/sec5, asset spec sec6, text lib sec4) ---- */
   var RECEDE_VISIBLE = 0.38;                         // sec6: fraction of width left visible while receded
@@ -293,6 +293,9 @@
     return mode === "live" && !reduced() && !transit && !receded && !fragLive && !surfaceActive && !watchActive &&
       !sess.exorcised && (sess.fragCount || 0) < FRAG_SESSION_CAP && !!surfaceAsset;
   }
+  function canStillFragment() {                 // K118: reduced-motion / still-mode lane — clip-free, fade in place
+    return mode === "still" && !fragLive && !sess.exorcised && (sess.fragCount || 0) < FRAG_SESSION_CAP;
+  }
   function drawFragment() {                      // without-replacement; persist remaining pool cross-session
     var b = readBlob();
     var pool = Array.isArray(b.fragmentPool) ? b.fragmentPool.slice() : null;
@@ -308,6 +311,13 @@
     if (!canFragment()) return;
     sess.fragCount = (sess.fragCount || 0) + 1; writeSess(sess);
     beginSurface(false);
+  }
+  function doStillSurface() {                     // K118 still-mode (reduced-motion / sha256-fallback): counts toward N=3, NO clip, exorcism-exempt
+    if (!canStillFragment()) return;
+    sess.fragCount = (sess.fragCount || 0) + 1; writeSess(sess);
+    surfaceManual = true;                         // no WATCH/approach in still mode -> no dwell signal -> exempt from the exorcism streak
+    var idx = drawFragment();
+    spawnFragment(FRAGMENTS[idx]);                // fade in place immediately; the 'hair cessation' annunciation cue is moot in still mode
   }
   function forceSurface() {                       // K116a manual trigger — ignores cadence + cap, skips exorcism streak
     if (mode !== "live") return "yurei: not live (reduced-motion / not mounted / gone)";
@@ -326,7 +336,7 @@
   }
 
   function spawnFragment(text) {
-    if (mode !== "live" || !fig) { surfaceActive = false; return; }
+    if ((mode !== "live" && mode !== "still") || !fig) { surfaceActive = false; return; }
     fragLive = true;
     var el = document.createElement("div");
     el.className = "yurei-fragment";
@@ -398,13 +408,16 @@
     nextDriftAt = rnd(DRIFT_EVERY_MIN, DRIFT_EVERY_MAX);
     nextFragAt = rnd(FRAG_EVERY_MIN, FRAG_EVERY_MAX);
     var iv = window.setInterval(function () {
-      if (mode !== "live") { window.clearInterval(iv); return; }
+      if (mode !== "live" && mode !== "still") { window.clearInterval(iv); return; }
       if (document.visibilityState === "hidden") return;   // "active dwell" — clock pauses when backgrounded
       activeMs += 1000;
       if (activeMs >= nextFragAt) {                         // fragment cadence (rare + probabilistic, K116a)
         if ((sess.fragCount || 0) >= FRAG_SESSION_CAP) { nextFragAt = Number.MAX_VALUE; }      // capped -> stop polling, free the drift lane
-        else if (canFragment() && Math.random() < FRAG_FIRE_PROB) { doSurface(); nextFragAt = activeMs + rnd(FRAG_EVERY_MIN, FRAG_EVERY_MAX); }
-        else { nextFragAt = activeMs + rnd(FRAG_EVERY_MIN, FRAG_EVERY_MAX); }                   // prob miss / transient block -> reschedule (keeps it rare)
+        else {
+          var fragOk = (mode === "live") ? canFragment() : canStillFragment();  // K118: live = clip-coupled; still = clip-free fade-in-place
+          if (fragOk && Math.random() < FRAG_FIRE_PROB) { (mode === "live" ? doSurface : doStillSurface)(); nextFragAt = activeMs + rnd(FRAG_EVERY_MIN, FRAG_EVERY_MAX); }
+          else { nextFragAt = activeMs + rnd(FRAG_EVERY_MIN, FRAG_EVERY_MAX); }                 // prob miss / transient block -> reschedule (keeps it rare)
+        }
       }
       if (activeMs >= nextDriftAt) {                         // drift lane independent of the fragment cap
         if (canMotion()) { doDrift(); nextDriftAt = activeMs + rnd(DRIFT_EVERY_MIN, DRIFT_EVERY_MAX); }
@@ -439,9 +452,10 @@
     requestAnimationFrame(function () { fig.classList.add("yurei-in"); });
   }
 
-  function goStill() {            // reduced-motion opt-out, or sha256 fallback — no choreography
+  function goStill() {            // reduced-motion opt-out, or sha256 fallback — still figure + clip-free fragments (K118)
     mode = "still";
     fig.setAttribute("data-still", "1");
+    startChoreo();               // K118: still-mode fragment lane (drift + live-fragment branches self-gate to mode==="live")
   }
 
   function goLive() {
@@ -511,7 +525,10 @@
   window.addEventListener("resize", function () { if (fig) layout(); });
   if (mqReduce && mqReduce.addEventListener) {
     mqReduce.addEventListener("change", function () {        // honor a live reduced-motion flip
-      if (mode === "live" && reduced()) { goStill(); if (video) { try { video.pause(); } catch (e) {} } clearTimers(); }
+      if (mode === "live" && reduced()) {
+        goStill(); if (video) { try { video.pause(); } catch (e) {} }
+        clearTimers(); choreoStarted = false; startChoreo();  // K118: re-arm as the still-mode (clip-free) fragment lane
+      }
     });
   }
 
