@@ -123,7 +123,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 1,
+      "order": 7,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -144,7 +144,7 @@
       "body": "",
       "epitaph": "",
       "series": "red-bulb",
-      "order": 1,
+      "order": 2,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -207,7 +207,7 @@
       "body": "The metaphor is so worn we no longer feel it: a flower, a girl, the taking of one. The work refuses the comfort of the cliche by completing it - stem, thorns, bloom, and the one drop the language always implied and never showed. There is no violence in the staging, which is the unkind part; it is arranged, deliberate, almost clinical. You are not watching something happen. You are reading a sentence you have said yourself, set down where it can be looked at.",
       "epitaph": "You meant this every time you said it.",
       "series": "rose-thorn",
-      "order": 1,
+      "order": 2,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -290,7 +290,7 @@
       "body": "",
       "epitaph": "",
       "series": "mascot",
-      "order": 2,
+      "order": 4,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -312,7 +312,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 2,
+      "order": 1,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -333,7 +333,7 @@
       "body": "",
       "epitaph": "",
       "series": "red-bulb",
-      "order": 2,
+      "order": 5,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -377,7 +377,7 @@
       "body": "",
       "epitaph": "",
       "series": "the-wrong-thing",
-      "order": 2,
+      "order": 4,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -399,7 +399,7 @@
       "body": "",
       "epitaph": "",
       "series": "rose-thorn",
-      "order": 2,
+      "order": 5,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -461,7 +461,7 @@
       "body": "This is the figure the site keeps returning to - the one in the wet room with her face given up to the ceiling. She is not collapsed and not posed; she occupies the middle distance the way a stain does, having arrived from somewhere and stopped. The lamp insists on a warmth the scene will not accept. You look for the wound that made the pool and find the throat already marked, and then you understand the pool is not from a wound. It is what she brought with her.",
       "epitaph": "She did not bleed into the room. She arrived as the room's condition.",
       "series": "mascot",
-      "order": 3,
+      "order": 2,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -484,7 +484,7 @@
       "body": "She would not hold still, or the camera would not let her. Either way the picture keeps the refusal: a nude rendered as the blur between two positions, present everywhere along the arc and locatable at no point on it. The other studies in this set hold; this one admits that holding was always the fiction. You are looking at the duration, not the body.",
       "epitaph": "A likeness of how long it took.",
       "series": "original-character",
-      "order": 3,
+      "order": 9,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -526,7 +526,7 @@
       "body": "It is built to be not-quite-seen. The hair is not covering a face so much as standing in for one, and the single break in it - a wet gleam that might be an eye - is enough to make you supply the rest. That supplying is the trap. The image gives you almost nothing and lets your own pattern-finding furnish the dread. There is no reveal coming. The wrong thing about it is that it is already complete.",
       "epitaph": "You finished it yourself.",
       "series": "the-wrong-thing",
-      "order": 3,
+      "order": 2,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -547,7 +547,7 @@
       "body": "It is the same staged sentence as its white twin, moved outdoors to the largest room there is. The cosmos does nothing - that is its whole contribution. The stars do not witness, do not soften, do not scale the wound up into meaning; they only continue behind it, and the small red fact at the bottom of the frame is left to mean whatever it can against a background that will outlast it by every order of magnitude. The white version made the gesture clinical. This one makes it negligible.",
       "epitaph": "The sky was never going to look down.",
       "series": "rose-thorn",
-      "order": 3,
+      "order": 1,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -611,7 +611,7 @@
       "body": "",
       "epitaph": "",
       "series": "mascot",
-      "order": 4,
+      "order": 5,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -632,7 +632,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 4,
+      "order": 2,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -738,7 +738,7 @@
       "body": "",
       "epitaph": "",
       "series": "rose-thorn",
-      "order": 5,
+      "order": 3,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -759,7 +759,7 @@
       "body": "",
       "epitaph": "",
       "series": "mascot",
-      "order": 5,
+      "order": 3,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -780,7 +780,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 5,
+      "order": 3,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -801,7 +801,7 @@
       "body": "",
       "epitaph": "",
       "series": "red-bulb",
-      "order": 5,
+      "order": 1,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -884,7 +884,7 @@
       "body": "The scar is doing the work the face declines to. Run from sternum to navel and stitched without much care, it is the only narrative the picture will give you, and it gives it flatly - no wound, no blood, just the after, healed enough to be ordinary. The temptation is to ask what was taken out, or put in. The work isn't interested. It shows you a body that has been opened and closed as a matter of record, and a person who has stopped expecting you to be surprised.",
       "epitaph": "Whatever it was, it is inside now, or gone.",
       "series": "",
-      "order": 6,
+      "order": 3,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -947,7 +947,7 @@
       "body": "Light comes in low and turns the abdomen into landscape - a ridge of sternum, the long plain below it, the navel's small shadow read like a feature on a map. There is no face to organise the picture around, which is the point: cropped this close, the body stops being a person and becomes a place the light is describing. The study is not interested in who she is. It is interested in what the grain and the angle can make of a surface that happens to be alive.",
       "epitaph": "Surveyed, not seen.",
       "series": "original-character",
-      "order": 7,
+      "order": 10,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1010,7 +1010,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 8,
+      "order": 13,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1072,7 +1072,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 9,
+      "order": 14,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1135,7 +1135,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 10,
+      "order": 8,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1200,7 +1200,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 11,
+      "order": 4,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1263,7 +1263,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 12,
+      "order": 16,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1325,7 +1325,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 13,
+      "order": 12,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1389,7 +1389,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 14,
+      "order": 11,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1450,7 +1450,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 15,
+      "order": 5,
       "tier": "standard",
       "content_flags": [
         "nsfw"
@@ -1512,7 +1512,7 @@
       "body": "",
       "epitaph": "",
       "series": "original-character",
-      "order": 16,
+      "order": 15,
       "tier": "standard",
       "content_flags": [
         "nsfw"
