@@ -8,7 +8,7 @@ sorted entries, compact separators, ASCII-escaped, trailing newline, NO
 timestamps). Safe to md5-gate at wire time.
 
 Sources:
-  pages     every src/**/index.html (h1/title + lede + h2 headings),
+  pages     every src/**/index.html (h1/title + lede + h2/h3 headings),
             EXCLUDING routes under /_/ (sealed), /search/ (self),
             src/templates/, glossary/_template.html
   glossary  glossary/<slug>/index.html typed 'glossary' (term entries)
@@ -26,6 +26,7 @@ SKIP_ROUTE_PREFIXES = ("/_/",)
 SKIP_ROUTES = ("/search/",)
 SKIP_RELPATHS = ("templates/essay.html", "glossary/_template.html")
 NO_HEADING_HARVEST = ("/void-engine/",)  # engine body h2s are instrument chrome, not content
+HEADING_SKIP_CLASSES = ("destination-title",)  # homepage nav cards duplicate page entries
 
 TAG_RE = re.compile(r"<[^>]+>")
 
@@ -34,8 +35,11 @@ def clean(s):
     return " ".join(html.unescape(TAG_RE.sub(" ", s)).split())
 
 def strip_blocks(t):
-    t = re.sub(r"<script\b.*?</script>", " ", t, flags=re.S | re.I)
+    # style BEFORE script: a <style> CSS comment may mention the literal
+    # "<script>" (watch head note); stripping scripts first would pair that
+    # fake open with a real </script> and swallow the body in between.
     t = re.sub(r"<style\b.*?</style>", " ", t, flags=re.S | re.I)
+    t = re.sub(r"<script\b.*?</script>", " ", t, flags=re.S | re.I)
     t = re.sub(r"<!--.*?-->", " ", t, flags=re.S)
     return t
 
@@ -70,14 +74,27 @@ def page_lede(t):
     return pick[:197] + "…" if len(pick) > 200 else pick
 
 def headings(t, route):
+    """h2 + h3 section headings within <main>. h3 widens coverage to work
+    titles / sub-sections (archive books, essay sections, recommendations,
+    watch). Chrome filtered: placeholder cards stripped; HEADING_SKIP_CLASSES
+    (homepage destination cards) skipped. Deep-links when the heading carries
+    an id, else page-level."""
     out = []
     main = re.search(r"<main\b.*?</main>", t, re.S | re.I)
     scope = main.group(0) if main else t
-    for m in re.finditer(r"<h2([^>]*)>(.*?)</h2>", scope, re.S):
-        txt = clean(m.group(2))
+    # drop placeholder cards (e.g. recommendations "pending" entries) - chrome
+    scope = re.sub(r'<article[^>]*\bdata-status="placeholder"[^>]*>.*?</article>',
+                   " ", scope, flags=re.S | re.I)
+    for m in re.finditer(r"<(h[23])([^>]*)>(.*?)</\1>", scope, re.S):
+        attrs, inner = m.group(2), m.group(3)
+        txt = clean(inner)
         if not txt:
             continue
-        idm = re.search(r'\bid="([^"]+)"', m.group(1))
+        clsm = re.search(r'\bclass="([^"]*)"', attrs)
+        cls = clsm.group(1) if clsm else ""
+        if any(sk in cls for sk in HEADING_SKIP_CLASSES):
+            continue
+        idm = re.search(r'\bid="([^"]+)"', attrs)
         out.append((txt, route + ("#" + idm.group(1) if idm else "")))
     return out
 

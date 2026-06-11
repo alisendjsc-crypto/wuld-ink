@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jun 2026 23:07:51 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 00:39:00 +0000</lastBuildDate>
+    <item>
+      <title>Site search now indexes h3 headings: archive book titles (Hatred, The Point), essay sub-sections, recommendations, and Watch video titles that the index previously skipped. Archive titles and essay sections deep-link to the exact entry; a strip-blocks fix also restored the Watch page, which had been wholly absent from search.</title>
+      <link>https://wuld.ink/changelog/#2026-06-10-search-index-h3-coverage</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-10-search-index-h3-coverage</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Site search now indexes h3 headings: archive book titles (Hatred, The Point), essay sub-sections, recommendations, and Watch video titles that the index previously skipped. Archive titles and essay sections deep-link to the exact entry; a strip-blocks fix also restored the Watch page, which had been wholly absent from search. (Sections: /search/)</description>
+    </item>
     <item>
       <title>Gallery UX pass 3: the search/controls bar is now the first block on all nine gallery pages with the NSFW gate directly below it, and the lobby Prints strip collapses behind a mono band with [ expand ] and a direct storefront link (wuld.printful.me).</title>
       <link>https://wuld.ink/changelog/#2026-06-10-gallery-ux-pass-3</link>

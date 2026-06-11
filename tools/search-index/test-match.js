@@ -81,5 +81,16 @@ t("section order stable", JSON.stringify(order) === JSON.stringify(want));
 var rw = api.runQuery(E, "watch");
 var firstWatch = rw.results[0];
 t("title-rank first for watch", (firstWatch.title || "").toLowerCase().indexOf("watch") !== -1);
+// K112: h3 harvest coverage + deep-links + chrome exclusion
+var rHat = api.runQuery(E, "hatred");
+t("K112 archive 'Hatred' deep-links", rHat.results.some(function (x) { return x.type === "heading" && x.title === "Hatred" && x.route === "/archive/#work-hatred"; }));
+var rPoint = api.runQuery(E, "the point");
+t("K112 archive 'The Point' deep-links", rPoint.results.some(function (x) { return x.type === "heading" && x.title === "The Point" && x.route === "/archive/#work-the-point"; }));
+var rTae = api.runQuery(E, "taedium vitae");
+t("K112 watch video heading present", rTae.results.some(function (x) { return x.type === "heading" && x.route.indexOf("/watch/") === 0; }));
+var rLogic = api.runQuery(E, "logic and its limits");
+t("K112 essay subsection deep-links", rLogic.results.some(function (x) { return x.type === "heading" && x.route === "/essays/alogically-is/#on-logic-and-its-limits"; }));
+t("K112 homepage destination card excluded", !E.some(function (x) { return x.type === "heading" && x.route === "/"; }));
+t("K112 placeholder card excluded", !E.some(function (x) { return x.title === "Second entry"; }));
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);
