@@ -45,6 +45,7 @@
     { key: "glossary", label: "Glossary terms" },
     { key: "page", label: "Pages" },
     { key: "heading", label: "Page sections" },
+    { key: "library-objection", label: "Library" },
     { key: "void", label: "Void Engine categories" },
     { key: "plate", label: "Gallery plates" }
   ];
@@ -119,6 +120,7 @@
        /gallery/<room>/#plate-<id> primitive (lightbox / theater /
        consent surfacing all handled gallery-side). */
     a.href = e.type === "plate" ? e.route + "#plate-" + e.id : e.route;
+    if (e.type === "library-objection") { a.target = "_blank"; a.rel = "noopener noreferrer"; }
     if (e.type === "plate") {
       a.textContent = "Plate " + e.num + (e.title ? " — " + e.title : "");
       var meta = el("p", "ss-meta", e.room + (e.series ? " · " + e.series : "") + " · " + e.id);

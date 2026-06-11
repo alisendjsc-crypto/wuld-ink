@@ -18,6 +18,10 @@ Sources:
             (consent discipline: no body/technique/epitaph, no media keys;
             results link to the ROOM page where the consent gate applies)
 
+library   src/library-objections.json - vendored {id,title,gloss} projection
+            of the efilist corpus OBJECTIONS (K113); cross-domain results
+            deep-link library.wuld.ink/combined#obj-<id> (open in a new tab).
+
 Unknown manifest fields (featured, print_url, ...) are ignored by design.
 """
 import argparse, collections, html, json, os, re, sys
@@ -159,6 +163,27 @@ def build(src):
             })
             counts["plate"] += 1
             counts["plate:" + room] += 1
+    # ---- library objections (vendored projection of the efilist corpus;
+    # generated-only, never hand-edited; see src/library-objections.json).
+    # Cross-domain results deep-link the K108 obj-<id> anchor on combined.html.
+    # Missing/malformed vendor file -> skip gracefully (never hard-fail). ----
+    lib_path = os.path.join(src, "library-objections.json")
+    if os.path.exists(lib_path):
+        try:
+            lib = json.load(open(lib_path, encoding="utf-8"))
+            for o in lib.get("objections", []):
+                oid = str(o.get("id", "")).strip()
+                if not oid:
+                    continue
+                entries.append({
+                    "type": "library-objection",
+                    "route": "https://library.wuld.ink/combined#obj-" + oid,
+                    "title": (o.get("title") or "").strip(),
+                    "text": (o.get("gloss") or "").strip() or "Argument Library objection",
+                })
+                counts["library-objection"] += 1
+        except (ValueError, OSError):
+            pass
     entries.sort(key=lambda e: (e["type"], e["route"], e.get("id", ""), e["title"]))
     return {"schema": 1, "counts": dict(sorted(counts.items())), "entries": entries}
 

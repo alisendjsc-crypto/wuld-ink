@@ -92,5 +92,15 @@ var rLogic = api.runQuery(E, "logic and its limits");
 t("K112 essay subsection deep-links", rLogic.results.some(function (x) { return x.type === "heading" && x.route === "/essays/alogically-is/#on-logic-and-its-limits"; }));
 t("K112 homepage destination card excluded", !E.some(function (x) { return x.type === "heading" && x.route === "/"; }));
 t("K112 placeholder card excluded", !E.some(function (x) { return x.title === "Second entry"; }));
+// K113: library-objection coverage (vendored efilist OBJECTIONS projection)
+var rCon = api.runQuery(E, "consent");
+t("K113 library consent-incoherent present", rCon.results.some(function (x) { return x.type === "library-objection" && x.route === "https://library.wuld.ink/combined#obj-consent-incoherent"; }));
+t("K113 library routes are combined obj anchors", rCon.results.filter(function (x) { return x.type === "library-objection"; }).length > 0 && rCon.results.filter(function (x) { return x.type === "library-objection"; }).every(function (x) { return x.route.indexOf("https://library.wuld.ink/combined#obj-") === 0; }));
+var keysL = api.SECTIONS.map(function (s) { return s.key; });
+t("K113 SECTIONS Library after Page sections", keysL.indexOf("library-objection") > keysL.indexOf("heading"));
+t("K113 SECTIONS Library before Plates", keysL.indexOf("library-objection") < keysL.indexOf("plate"));
+t("K113 Library label", (api.SECTIONS.filter(function (s) { return s.key === "library-objection"; })[0] || {}).label === "Library");
+var secsL = api.sectionize(rCon.results);
+t("K113 Library section renders", secsL.some(function (s) { return s.key === "library-objection"; }));
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);

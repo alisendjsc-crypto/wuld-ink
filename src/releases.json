@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-10-search-library-objections",
+    "date": "2026-06-10",
+    "summary": "Site search now indexes the Argument Library's 81 objections: a new Library results section links each match to its objection on library.wuld.ink, opening in a new tab. Titles and one-line glosses are generated from the library corpus, never hand-authored.",
+    "sections": ["/search/"]
+  },
+  {
     "id": "2026-06-10-search-index-h3-coverage",
     "date": "2026-06-10",
     "summary": "Site search now indexes h3 headings: archive book titles (Hatred, The Point), essay sub-sections, recommendations, and Watch video titles that the index previously skipped. Archive titles and essay sections deep-link to the exact entry; a strip-blocks fix also restored the Watch page, which had been wholly absent from search.",
