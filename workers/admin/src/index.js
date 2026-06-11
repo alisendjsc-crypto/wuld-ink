@@ -265,7 +265,7 @@ async function apiPlateUpdate(request, env) {
     if (!plate) return { fail: json({ error: "not_found", id }, 404) };
 
     const errs = [];
-    const editable = ["r2key", "num", "title", "technique", "body", "epitaph", "series", "order", "tier", "content_flags", "category", "media", "caption_tier", "print_url", "featured"];
+    const editable = ["r2key", "num", "title", "technique", "body", "epitaph", "series", "order", "tier", "content_flags", "category", "media", "caption_tier", "print_url", "featured", "video"];
     for (const k of Object.keys(patch)) {
       if (!editable.includes(k)) errs.push(k + ": not editable (id/added are fixed; delete+add to rekey)");
     }
@@ -275,7 +275,10 @@ async function apiPlateUpdate(request, env) {
     }
     if ("order" in patch && (!Number.isInteger(patch.order) || patch.order < 1)) errs.push("order: positive integer");
     if ("tier" in patch && !VALID_TIERS.includes(String(patch.tier))) errs.push("tier: standard|sealed");
-    if ("title" in patch && !String(patch.title).trim()) errs.push("title: required");
+    // K114: title is NOT required on partial update. Empty title is a legal
+    // manifest state (415 caption-tier-none plates) and title is a freely
+    // clearable field like body/epitaph. Requiring it here 422'd every
+    // print_url-only drop on an untitled plate (round-6/7 manual fallbacks).
     if ("category" in patch) {
       const knownCats = (manifest.categories || []).map((c) => c.slug);
       if (!knownCats.includes(String(patch.category))) errs.push("category: unknown slug (known: " + knownCats.join("|") + ")");
@@ -284,6 +287,7 @@ async function apiPlateUpdate(request, env) {
     if ("caption_tier" in patch && patch.caption_tier !== "" && !VALID_CAPTION_TIERS.includes(String(patch.caption_tier))) errs.push("caption_tier: ''|full|title|none");
     if ("print_url" in patch && String(patch.print_url).trim() && !/^https:\/\//.test(String(patch.print_url).trim())) errs.push("print_url: must be https:// (or empty to clear)");
     if ("featured" in patch && typeof patch.featured !== "boolean") errs.push("featured: boolean");
+    if ("video" in patch && String(patch.video).trim() && !manifest.plates.some((x) => x.id === String(patch.video).trim())) errs.push("video: must be a known plate id (or empty to clear)");
     if (errs.length) return { fail: json({ error: "validation", errors: errs }, 422) };
 
     for (const k of Object.keys(patch)) {
@@ -294,6 +298,11 @@ async function apiPlateUpdate(request, env) {
       }
       if (k === "featured") {
         if (patch[k] === true) plate.featured = true; else delete plate.featured;
+        continue;
+      }
+      if (k === "video") {
+        const v = String(patch[k] || "").trim();
+        if (v) plate.video = v; else delete plate.video;
         continue;
       }
       plate[k] = k === "content_flags" ? normFlags(patch[k])
@@ -1191,6 +1200,9 @@ function adminHtml(env, adminEmail) {
     <div><label>print url (https://&hellip;; blank = no buy link)</label><input type="text" id="pf-printurl" placeholder="https://wuld-ink.printful.me/..."></div>
     <div><label>featured</label><label style="text-transform:none"><input type="checkbox" id="pf-featured"> featured (curated front-of-house pick)</label></div>
   </div>
+  <div class="row2">
+    <div><label>paired video plate id (image plate; blank = unpaired)</label><input type="text" id="pf-video" placeholder="main-character-&hellip;"></div>
+  </div>
   <button id="pf-go">add plate (1 commit)</button>
   <button id="pf-cancel" style="display:none">cancel edit</button>
 </fieldset>
@@ -1349,6 +1361,7 @@ function adminHtml(env, adminEmail) {
       $("pf-poster").value = (plate.media && plate.media.poster) || "";
       $("pf-printurl").value = plate.print_url || "";
       $("pf-featured").checked = plate.featured === true;
+      $("pf-video").value = plate.video || "";
       $("pf-go").textContent = "commit update";
       $("pf-cancel").style.display = "";
       window.scrollTo(0, $("plate-form").offsetTop - 60);
@@ -1376,7 +1389,7 @@ function adminHtml(env, adminEmail) {
   function resetForm() {
     $("pf-mode").value = "add";
     $("pf-id").disabled = false;
-    ["pf-id","pf-r2key","pf-title","pf-series","pf-technique","pf-body","pf-epitaph","pf-order","pf-num","pf-category","pf-poster","pf-printurl"].forEach(function (i) { $(i).value = ""; });
+    ["pf-id","pf-r2key","pf-title","pf-series","pf-technique","pf-body","pf-epitaph","pf-order","pf-num","pf-category","pf-poster","pf-printurl","pf-video"].forEach(function (i) { $(i).value = ""; });
     $("pf-tier").value = "standard";
     $("pf-nsfw").checked = false;
     $("pf-featured").checked = false;
@@ -1404,6 +1417,7 @@ function adminHtml(env, adminEmail) {
       media: (function () { var m = { kind: $("pf-kind").value }; var po = $("pf-poster").value.trim(); if (po) m.poster = po; return m; })(),
       print_url: $("pf-printurl").value.trim(),
       featured: $("pf-featured").checked,
+      video: $("pf-video").value.trim(),
     };
     if ($("pf-order").value) common.order = parseInt($("pf-order").value, 10);
 
