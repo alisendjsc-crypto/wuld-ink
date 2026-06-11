@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "set": "wuld-yurei-widget",
+  "manifest_version": "v1",
+  "generated": "2026-06-10",
+  "status": "complete",
+  "notes": "Phase 3.6b full asset handoff — idle/drift/peek/surface VP9 (yuva420p, -auto-alt-ref 0) + canonical P0 still + 8 directional WATCH stills. Real assets supersede v0 placeholder/source-reference; dev-flag harness swaps manifest_v0 -> manifest_v1 here. Served manifest carries web-shipped assets only (no source-reference) per Exchange 4 N2. anchorPx computed via TorsoCam projection of the head bone (Exchange 4 N5 single-source). md5 = build-time gate; sha256 = runtime browser gate (SubtleCrypto).",
+  "assets": [
+    {
+      "file": "yurei_idle_v1.webm", "role": "idle", "kind": "loop",
+      "frames": 288, "fps": 24, "durationMs": 12000, "loop": true,
+      "px": { "w": 540, "h": 720 }, "anchorPx": { "x": 270, "y": 169 }, "anchor_confidence": "computed",
+      "md5": "e3375ccf7425068cd792819a4ad33e9a",
+      "sha256": "dd74f07bf73c8edc8562e3c60cd28fe2d3403b230b8f8c3394426a5fc08fff3a",
+      "size_bytes": 356209, "version": "v1"
+    },
+    {
+      "file": "yurei_drift_v1.webm", "role": "drift", "kind": "oneshot",
+      "frames": 96, "fps": 24, "durationMs": 4000, "loop": false,
+      "px": { "w": 540, "h": 720 }, "anchorPx": { "x": 270, "y": 169 }, "anchor_confidence": "computed",
+      "md5": "7bd4e3015ca92446f2bbad9b7ba27954",
+      "sha256": "d712a788797b0db27c0725df53ae45031c6b3ad2daf910d57e447d5ba1f6034c",
+      "size_bytes": 211971, "version": "v1"
+    },
+    {
+      "file": "yurei_peek_v1.webm", "role": "peek", "kind": "oneshot",
+      "frames": 72, "fps": 24, "du

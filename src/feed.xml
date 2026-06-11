@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jun 2026 01:52:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 02:47:47 +0000</lastBuildDate>
+    <item>
+      <title>The night shift accepts no deliveries. Something keeps the hour on the longer pages now. Present on the wider screens. Noticed, not announced. No further comment from the interior.</title>
+      <link>https://wuld.ink/changelog/#2026-06-10-night-shift</link>
+      <guid isPermaLink="false">wuld.ink:2026-06-10-night-shift</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <description>The night shift accepts no deliveries. Something keeps the hour on the longer pages now. Present on the wider screens. Noticed, not announced. No further comment from the interior.</description>
+    </item>
     <item>
       <title>Site search now indexes the Argument Library's 81 objections: a new Library results section links each match to its objection on library.wuld.ink, opening in a new tab. Titles and one-line glosses are generated from the library corpus, never hand-authored.</title>
       <link>https://wuld.ink/changelog/#2026-06-10-search-library-objections</link>

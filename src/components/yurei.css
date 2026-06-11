@@ -1,0 +1,39 @@
+/* yurei.css — yurei mascot easter-egg widget (K115)
+   Site-side DOM layer. Loaded ONLY by heavy-read pages.
+   Pointer-events:none on every layer — she is present, never interactive (asset spec §5).
+   Floor: container bottom >= 2.5rem + 8px above viewport bottom (ambient-bar band inviolate).
+   Z-band: above content, below gallery lightbox/theater. No motion CSS beyond the entrance fade. */
+
+#yurei {
+  position: fixed;
+  z-index: var(--yurei-z, 50);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.8s ease;      /* §5 simple-fade entrance (PEEK transit = K116) */
+  will-change: opacity;
+  /* left / top / width / height set inline by yurei.js layout() */
+}
+
+#yurei.yurei-in { opacity: 0.92; }     /* figure opacity matches the harness exemplar */
+
+#yurei video,
+#yurei img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* idle = video visible, still hidden. WATCH/still = still visible, video suppressed. */
+#yurei img { opacity: 0; }
+#yurei[data-watch="1"] video { visibility: hidden; }
+#yurei[data-watch="1"] img { opacity: 1; }
+
+/* still-only mode (reduced-motion opt-out, or sha256 gate fallback): canonical still, no video. */
+#yurei[data-still="1"] video { display: none; }
+#yurei[data-still="1"] img { opacity: 1; }

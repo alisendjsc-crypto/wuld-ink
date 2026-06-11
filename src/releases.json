@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-06-10-night-shift",
+    "date": "2026-06-10",
+    "summary": "The night shift accepts no deliveries. Something keeps the hour on the longer pages now. Present on the wider screens. Noticed, not announced. No further comment from the interior.",
+    "sections": []
+  },
+  {
     "id": "2026-06-10-search-library-objections",
     "date": "2026-06-10",
     "summary": "Site search now indexes the Argument Library's 81 objections: a new Library results section links each match to its objection on library.wuld.ink, opening in a new tab. Titles and one-line glosses are generated from the library corpus, never hand-authored.",
