@@ -15,7 +15,7 @@
   /* left / top / width / height / transform set inline by yurei.js */
 }
 
-#yurei.yurei-in { opacity: 0.80; }     /* figure opacity matches the harness exemplar */
+#yurei.yurei-in { opacity: 0.65; }     /* K116a: ~15% more transparent (was 0.80) */
 
 #yurei video,
 #yurei img {

@@ -27,7 +27,8 @@
        idle loop continues, WATCH suspends. Horizontal-only -> floor binds the
        rest anchor (already clamped in layout()).
      - FRAGMENT scheduler — the EB-Garamond DOM text layer (text library F01-F18).
-       Uniform-random 3-7 min ACTIVE-dwell cadence; N=3 per session hard cap; ONE
+       Rare/probabilistic ACTIVE-dwell cadence (4-9 min x 40% fire, K116a) + a manual
+       window.yurei.surface() trigger; N=3 per session hard cap; ONE
        fragment on screen ever; without-replacement pool persisted cross-session in
        wuld:yurei.fragmentPool (re-pool on exhaustion). A fragment fires ONLY from
        IDLE via the SURFACE clip; fade-in begins 1.0s after the clip starts (hair
@@ -50,7 +51,7 @@
   var ENGAGE = 360, DISENGAGE = 460, DEADZONE = 140; // CSS px
   var ZONE_PERSIST_MS = 150, SWAP_MIN_MS = 200;     // sec4 swap gates
   var FLOOR_REM = 2.5, FLOOR_PAD = 8;               // sec5 floor: 2.5rem + 8px
-  var FILL_VH = 0.64, CENTRE_VH = 0.58, EDGE_INSET = 16; // sec5 rest anchor
+  var FILL_VH = 0.59, CENTRE_VH = 0.58, EDGE_INSET = 16; // sec5 rest anchor
 
   /* ---- choreography spec constants (storyboard sec3/sec4/sec5, asset spec sec6, text lib sec4) ---- */
   var RECEDE_VISIBLE = 0.38;                         // sec6: fraction of width left visible while receded
@@ -59,7 +60,7 @@
   var SURFACE_CLIP_MS = 12000;                       // sec4: 288f surface clip
   var RECEDE_DWELL_MIN = 9000, RECEDE_DWELL_MAX = 16000;   // receded idle dwell before peek-back
   var DRIFT_EVERY_MIN = 300000, DRIFT_EVERY_MAX = 540000;  // 5-9 min active-dwell between drift breaks
-  var FRAG_EVERY_MIN = 180000, FRAG_EVERY_MAX = 420000;    // text lib sec4: 3-7 min active dwell
+  var FRAG_EVERY_MIN = 240000, FRAG_EVERY_MAX = 540000, FRAG_FIRE_PROB = 0.4; // K116a: 4-9 min active dwell + 40% fire (rarer/random per operator)
   var FRAG_SESSION_CAP = 3;                          // sec4: N=3 per session
   var FRAG_AFTER_SURFACE_MS = 1000;                  // sec4 coupling: fade-in 1.0s after surface starts
   var FRAG_FADEIN_MS = 1500, FRAG_FADEOUT_MS = 2500; // sec4 lifecycle
@@ -111,7 +112,8 @@
   /* ---- discreet console kill-switch (present regardless of mount) ---- */
   window.yurei = {
     off: function () { var b = readBlob(); b.off = true; writeBlob(b); teardown(); var f = document.getElementById("yurei"); if (f) f.parentNode.removeChild(f); return "yurei: off"; },
-    on: function () { var b = readBlob(); b.off = false; writeBlob(b); var s = readSess(); s.exorcised = false; writeSess(s); return "yurei: on (reload to summon)"; }
+    on: function () { var b = readBlob(); b.off = false; writeBlob(b); var s = readSess(); s.exorcised = false; writeSess(s); return "yurei: on (reload to summon)"; },
+    surface: function () { return forceSurface(); }   // K116a: manual surfacing for the initiated
   };
 
   if (blob.off === true) return; // opted out — never mounts
@@ -147,7 +149,7 @@
 
   /* choreography state */
   var receded = false, transit = false, fragLive = false, surfaceActive = false, dwellThisSurface = false;
-  var activeMs = 0, nextDriftAt = 0, nextFragAt = 0;
+  var activeMs = 0, nextDriftAt = 0, nextFragAt = 0, surfaceManual = false;
   var fragEl = null, choreoStarted = false;
   var timers = [];
   function T(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
@@ -290,9 +292,20 @@
   }
   function holdMs(text) { return FRAG_HOLD_BASE_MS + Math.max(0, text.length - FRAG_HOLD_CHAR_FLOOR) * FRAG_HOLD_PER_CHAR_MS; }
 
-  function doSurface() {
+  function doSurface() {                          // organic: counts toward the N=3 session cap
     if (!canFragment()) return;
     sess.fragCount = (sess.fragCount || 0) + 1; writeSess(sess);
+    beginSurface(false);
+  }
+  function forceSurface() {                       // K116a manual trigger — ignores cadence + cap, skips exorcism streak
+    if (mode !== "live") return "yurei: not live (reduced-motion / not mounted / gone)";
+    if (!surfaceAsset) return "yurei: no surface asset";
+    if (fragLive || surfaceActive || transit || receded) return "yurei: busy, try again in a moment";
+    beginSurface(true);
+    return "yurei: surfacing";
+  }
+  function beginSurface(manual) {
+    surfaceManual = !!manual;
     dwellThisSurface = false; surfaceActive = true;
     var idx = drawFragment();
     var text = FRAGMENTS[idx];
@@ -347,6 +360,7 @@
 
   function endSurfacing() {
     surfaceActive = false;
+    if (surfaceManual) { surfaceManual = false; return; }   // manual surfacings are exempt from the exorcism streak
     if (dwellThisSurface) { sess.noDwellStreak = 0; }
     else { sess.noDwellStreak = (sess.noDwellStreak || 0) + 1; }
     writeSess(sess);
@@ -375,9 +389,10 @@
       if (mode !== "live") { window.clearInterval(iv); return; }
       if (document.visibilityState === "hidden") return;   // "active dwell" — clock pauses when backgrounded
       activeMs += 1000;
-      if (activeMs >= nextFragAt) {                         // fragment cadence
-        if (canFragment()) { doSurface(); nextFragAt = activeMs + rnd(FRAG_EVERY_MIN, FRAG_EVERY_MAX); }
-        else if ((sess.fragCount || 0) >= FRAG_SESSION_CAP) { nextFragAt = Number.MAX_VALUE; } // capped -> stop polling, free the drift lane
+      if (activeMs >= nextFragAt) {                         // fragment cadence (rare + probabilistic, K116a)
+        if ((sess.fragCount || 0) >= FRAG_SESSION_CAP) { nextFragAt = Number.MAX_VALUE; }      // capped -> stop polling, free the drift lane
+        else if (canFragment() && Math.random() < FRAG_FIRE_PROB) { doSurface(); nextFragAt = activeMs + rnd(FRAG_EVERY_MIN, FRAG_EVERY_MAX); }
+        else { nextFragAt = activeMs + rnd(FRAG_EVERY_MIN, FRAG_EVERY_MAX); }                   // prob miss / transient block -> reschedule (keeps it rare)
       }
       if (activeMs >= nextDriftAt) {                         // drift lane independent of the fragment cap
         if (canMotion()) { doDrift(); nextDriftAt = activeMs + rnd(DRIFT_EVERY_MIN, DRIFT_EVERY_MAX); }
