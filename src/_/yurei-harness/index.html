@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>yurei harness — sealed dev surface</title>
+<!--
+  YUREI WIDGET — DEV-FLAG HARNESS (SEALED SURFACE)  ·  K111 / 2026-06-10
+  =====================================================================
+  E2-SANCTIONED DEV VESSEL. NEVER LIVE. Mandatory swap-out at W.U.L.D. Phase 3.6.
+
+  - Sealed `/_/` surface (successor-protocol convention): noindex,nofollow; NO
+    nav/header/footer; linked from NOWHERE; excluded from build_index by the `/_/`
+    prefix construction. Not indexed, not in nav, not in /search/, not in releases.
+  - PLACEHOLDER ASSETS ONLY: manifest_v0.json (status placeholder-harness), one
+    540x720 still standing in for ALL states. Final v1 (VP9/WebM alpha idle/drift/
+    peek/surface + 9 watch stills) replaces this at Phase 3.6 via manifest_v1.json.
+  - Touches ZERO site-wide JS/CSS. Reads — NEVER writes — `wuld:yurei` (that key is
+    RESERVED for the live widget; shown read-only below if present).
+  - Purpose: (1) prove the manifest-first integration contract (Exchange 3 Q4 fields:
+    schema_version + per-asset md5/size_bytes/px/anchorPx) by fetching the still BY
+    MANIFEST FILENAME and verifying px + size_bytes in-browser; (2) make the
+    split-origin WATCH geometry (asset spec §4/§4.1) VISIBLE before Exchange 4 signs
+    it — engage/disengage radii from the BOX CENTER, zone angle + 140px dead zone from
+    the HEAD-ANCHOR (scaled anchorPx).
+
+  Dev-flag = the sealed URL itself. Do not link, do not surface, do not ship live.
+-->
+<style>
+  :root{
+    --bg:#0a0a0a; --fg:#f0ebe5; --accent:#c41e3a;
+    --dim:#8a8378; --line:#2a2724; --ok:#4caf6a; --bad:#e0533a;
+    --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);
+    font-family:var(--mono);font-size:13px;line-height:1.5;overflow:hidden}
+  /* widget layers — pointer-events:none so the WHOLE viewport is a geometry test surface */
+  #figure-layer,#overlay{position:fixed;inset:0;pointer-events:none;z-index:5}
+  #figure{position:fixed;pointer-events:none;z-index:6}
+  #figure img{display:block;width:100%;height:100%;object-fit:contain;
+    image-rendering:auto;opacity:.92}
+  #overlay{z-index:7}
+  /* debug chrome — also pointer-events:none; the readout never blocks the cursor field */
+  .panel{position:fixed;pointer-events:none;z-index:20;background:rgba(10,10,10,.86);
+    border:1px solid var(--line);padding:10px 12px;max-width:46ch;
+    font-size:12px;backdrop-filter:blur(2px)}
+  #contract{top:12px;left:12px}
+  #readout{top:12px;right:12px;min-width:30ch}
+  .panel h2{margin:0 0 6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);font-weight:600}
+  .panel .sub{color:var(--dim);font-size:10.5px;letter-spacing:.06em;
+    text-transform:uppercase;margin:8px 0 3px}
+  table{border-collapse:collapse;width:100%;font-size:11px}
+  td{padding:1px 6px 1px 0;vertical-align:top;white-space:nowrap}
+  td.k{color:var(--dim)}
+  .hl{color:var(--accent)}
+  .ok{color:var(--ok)} .bad{color:var(--bad)}
+  .mono-num{font-variant-numeric:tabular-nums}
+  .note{color:var(--dim);font-size:10.5px;margin-top:8px;white-space:normal;max-width:44ch}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:2px;
+    padding:0 5px;margin-right:4px;color:var(--dim)}
+  .pill.on{color:var(--accent);border-color:var(--accent)}
+  #seal{position:fixed;bottom:8px;left:12px;z-index:20;pointer-events:none;
+    color:var(--dim);font-size:10px;letter-spacing:.08em}
+</style>
+</head>
+<body>
+
+<div id="figure-layer" aria-hidden="true">
+  <div id="figure"><img id="fig-img" alt=""></div>
+</div>
+
+<svg id="overlay" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+
+<section class="panel" id="contract" aria-hidden="true">
+  <h2>manifest contract</h2>
+  <div id="manifest-meta">loading manifest_v0.json…</div>
+  <div class="sub">selected asset · role placeholder-all-states</div>
+  <table id="asset-tbl"></table>
+  <div class="sub">in-browser verify</div>
+  <table id="verify-tbl"></table>
+  <div class="note" id="hash-note"></div>
+  <div class="sub">wuld:yurei (reserved — read-only)</div>
+  <div id="blob-state" class="note"></div>
+</section>
+
+<section class="panel" id="readout" aria-hidden="true">
+  <h2>watch geometry</h2>
+  <table id="geo-tbl"></table>
+  <div class="note" id="geo-legend"></div>
+</section>
+
+<div id="seal">SEALED DEV SURFACE · never live · swap at W.U.L.D. Phase 3.6</div>
+
+<script>
+(function(){
+  "use strict";
+  // ---- spec constants (asset spec §4 / §4.1) ----
+  var ENGAGE = 360, DISENGAGE = 460, DEADZONE = 140;   // CSS px
+  var FLOOR_REM = 2.5, FLOOR_PAD = 8;                   // §5 floor: 2.5rem + 8px
+  var ZONE_PERSIST_MS = 150, SWAP_MIN_MS = 200;         // §4 swap gates
+  // zone boundaries: angle θ = atan2(-vy, vx), 0°=east, CCW+, 45° sectors offset ±22.5
+  var ZONES = [
+    {name:"E",  c:0},   {name:"NE", c:45},  {name:"N",  c:90},  {name:"NW", c:135},
+    {name:"W",  c:180},  {name:"SW", c:-135}, {name:"S",  c:-90}, {name:"SE", c:-45}
+  ];
+  function zoneFor(theta, r){
+    if(r < DEADZONE) return {name:"P0", still:"yurei_still_v1.png"};
+    // normalize to nearest 45° sector centred on cardinal/intercardinal
+    var best=null, bd=999;
+    for(var i=0;i<ZONES.length;i++){
+      var d=Math.abs(((theta-ZONES[i].c+540)%360)-180); // angular distance
+      if(d<bd){bd=d;best=ZONES[i];}
+    }
+    return {name:best.name, still:"yurei_head_"+best.name.toLowerCase()+"_v1.png"};
+  }
+
+  var manifest=null, asset=null, layoutScale=1, anchorPx={x:0,y:0}, px={w:540,h:720};
+  var watchActive=false, curZone="—", zoneSince=0, lastSwap=0, committedZone="P0";
+  var fig=document.getElementById("figure"),
+      figImg=document.getElementById("fig-img"),
+      svg=document.getElementById("overlay");
+  var mouse={x:-1,y:-1,seen:false};
+  var SVGNS="http://www.w3.org/2000/svg";
+
+  function remPx(){ return parseFloat(getComputedStyle(document.documentElement).fontSize)||18; }
+  function floorY(){ return window.innerHeight - (FLOOR_REM*remPx() + FLOOR_PAD); }
+
+  function el(t,a){var e=document.createElementNS(SVGNS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]);});}
+
+  // ---- layout: derive display size + box geometry from manifest px ----
+  function layout(){
+    if(!asset) return;
+    var vh=window.innerHeight, vw=window.innerWidth;
+    // figure fills up to 70vh; keep 3:4 from manifest px; never exceed native
+    var dispH=Math.min(px.h, vh*0.70);
+    var dispW=dispH*(px.w/px.h);
+    layoutScale=dispH/px.h;
+    fig.style.width=dispW+"px"; fig.style.height=dispH+"px";
+    // §5 rest anchor: right edge inset 16px; vertical centre at 58vh — clamped to floor law
+    var right=16;
+    var left=vw - dispW - right;
+    var centreY=vh*0.58;
+    var top=centreY - dispH/2;
+    var maxTop=floorY()-dispH;          // anchor_bottom ≤ floor (storyboard §3 floor law)
+    if(top>maxTop) top=maxTop;
+    if(top<0) top=0;
+    fig.style.left=left+"px"; fig.style.top=top+"px";
+  }
+
+  function boxCentre(){ var r=fig.getBoundingClientRect(); return {x:r.left+r.width/2, y:r.top+r.height/2}; }
+  function headAnchor(){ var r=fig.getBoundingClientRect(); return {x:r.left+anchorPx.x*layoutScale, y:r.top+anchorPx.y*layoutScale}; }
+
+  // ---- overlay render (the split-origin geometry made visible) ----
+  function drawOverlay(){
+    if(!asset) return;
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.setAttribute("viewBox","0 0 "+window.innerWidth+" "+window.innerHeight);
+    svg.setAttribute("width",window.innerWidth); svg.setAttribute("height",window.innerHeight);
+    var bc=boxCentre(), ha=headAnchor();
+    // box-center radii (engage / disengage) — approach is against the BODY
+    svg.appendChild(el("circle",{cx:bc.x,cy:bc.y,r:DISENGAGE,fill:"none",stroke:"#3a3530","stroke-width":1,"stroke-dasharray":"2 5"}));
+    svg.appendChild(el("circle",{cx:bc.x,cy:bc.y,r:ENGAGE,fill:"none",stroke:"#c41e3a","stroke-width":1.2,"stroke-opacity":.65}));
+    // head-anchor dead zone — gaze originates at the HEAD
+    svg.appendChild(el("circle",{cx:ha.x,cy:ha.y,r:DEADZONE,fill:"none",stroke:"#7a9bd0","stroke-width":1,"stroke-dasharray":"1 4"}));
+    // 8 zone boundary rays from head-anchor at ±22.5,67.5,112.5,157.5
+    [22.5,67.5,112.5,157.5,-22.5,-67.5,-112.5,-157.5].forEach(function(deg){
+      var rad=deg*Math.PI/180, R=DISENGAGE+60;
+      svg.appendChild(el("line",{x1:ha.x,y1:ha.y,x2:ha.x+Math.cos(rad)*R,y2:ha.y-Math.sin(rad)*R,stroke:"#2f3a4a","stroke-width":1}));
+    });
+    // floor line (storyboard §3 / asset spec §5)
+    var fy=floorY();
+    svg.appendChild(el("line",{x1:0,y1:fy,x2:window.innerWidth,y2:fy,stroke:"#6a5a20","stroke-width":1,"stroke-dasharray":"4 6"}));
+    // markers
+    svg.appendChild(el("circle",{cx:bc.x,cy:bc.y,r:3,fill:"#c41e3a"}));        // box centre
+    svg.appendChild(el("circle",{cx:ha.x,cy:ha.y,r:3,fill:"#7a9bd0"}));        // head anchor
+    // cursor → head-anchor vector
+    if(mouse.seen){
+      svg.appendChild(el("line",{x1:ha.x,y1:ha.y,x2:mouse.x,y2:mouse.y,stroke:watchActive?"#4caf6a":"#5a544c","stroke-width":1}));
+      svg.appendChild(el("circle",{cx:mouse.x,cy:mouse.y,r:3,fill:watchActive?"#4caf6a":"#8a8378"}));
+    }
+  }
+
+  // ---- per-frame state (rAF throttled, §4 A4) ----
+  var pending=false;
+  function onMove(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.seen=true;
+    if(!pending){ pending=true; requestAnimationFrame(tick); } }
+  function tick(){
+    pending=false;
+    if(!asset){ return; }
+    var bc=boxCentre(), ha=headAnchor();
+    var rBox=Math.hypot(mouse.x-bc.x, mouse.y-bc.y);
+    var vx=mouse.x-ha.x, vy=mouse.y-ha.y;
+    var rHead=Math.hypot(vx,vy);
+    var theta=Math.atan2(-vy,vx)*180/Math.PI;
+    // hysteresis: engage at ≤360 (from box centre), disengage at >460
+    var prev=watchActive;
+    if(!watchActive && rBox<=ENGAGE) watchActive=true;
+    else if(watchActive && rBox>DISENGAGE) watchActive=false;
+    var band = (rBox>ENGAGE && rBox<=DISENGAGE);
+    var state = watchActive ? (band?"active · hysteresis-hold":"active") : (rBox<=ENGAGE?"engage-eligible":(band?"idle · hysteresis-hold":"idle"));
+    // zone + swap gating (§4: persist ≥150ms, ≥200ms between swaps)
+    var z = watchActive ? zoneFor(theta,rHead) : {name:"—",still:"yurei_idle_v1.webm (idle plays)"};
+    var now=performance.now();
+    if(z.name!==curZone){ curZone=z.name; zoneSince=now; }
+    if(watchActive && z.name!==committedZone && (now-zoneSince)>=ZONE_PERSIST_MS && (now-lastSwap)>=SWAP_MIN_MS){
+      committedZone=z.name; lastSwap=now;
+    }
+    if(!watchActive) committedZone="(idle)";
+    renderGeo({rBox:rBox,rHead:rHead,theta:theta,state:state,zone:z,committed:committedZone,band:band});
+    drawOverlay();
+  }
+
+  function row(k,v,cls){ return "<tr><td class='k'>"+esc(k)+"</td><td class='"+(cls||"mono-num")+"'>"+v+"</td></tr>"; }
+  function renderGeo(s){
+    var n=function(x){return (Math.round(x*10)/10).toFixed(1);};
+    document.getElementById("geo-tbl").innerHTML=
+      row("cursor", mouse.seen?(Math.round(mouse.x)+", "+Math.round(mouse.y)):"—") +
+      row("r · box-centre", n(s.rBox)+" px  (engage ≤360)", s.rBox<=ENGAGE?"ok":"mono-num") +
+      row("r · head-anchor", n(s.rHead)+" px  (dead ≤140)") +
+      row("θ", n(s.theta)+"°") +
+      row("watch", "<span class='"+(s.state.indexOf('active')===0?'hl':'')+"'>"+esc(s.state)+"</span>","") +
+      row("zone (live)", "<span class='hl'>"+esc(s.zone.name)+"</span>","") +
+      row("committed", esc(s.committed)) +
+      row("would load", "<span style='white-space:normal'>"+esc(s.zone.still)+"</span>","");
+    document.getElementById("geo-legend").innerHTML=
+      "<span class='pill "+(s.rBox<=ENGAGE?'on':'')+"'>engage 360</span>"+
+      "<span class='pill'>disengage 460 (box-centre)</span>"+
+      "<span class='pill'>dead 140 (head-anchor)</span><br>"+
+      "Two origins are deliberate: radii from the box centre (approach against the body), "+
+      "angle + dead zone from the head-anchor (gaze from the head). Swap commits after "+
+      "≥150ms zone-persist + ≥200ms between swaps. prefers-reduced-motion: n/a for a still.";
+  }
+
+  // ---- manifest-first boot (proves the Q4 contract) ----
+  function renderContract(){
+    var m=manifest;
+    document.getElementById("manifest-meta").innerHTML=
+      "<table>"+row("schema_version",esc(m.schema_version),"hl")+
+      row("set",esc(m.set))+row("manifest_version",esc(m.manifest_version))+
+      row("generated",esc(m.generated))+row("status",esc(m.status))+
+      row("assets",m.assets.length+" (roles: "+m.assets.map(function(a){return a.role;}).join(", ")+")")+"</table>";
+    var a=asset;
+    document.getElementById("asset-tbl").innerHTML=
+      row("file","<span class='hl'>"+esc(a.file)+"</span>","")+
+      row("role",esc(a.role))+row("kind",esc(a.kind))+
+      row("px",a.px.w+" × "+a.px.h)+
+      row("anchorPx",a.anchorPx.x+", "+a.anchorPx.y+" ("+esc(a.anchor_confidence||"?")+")")+
+      row("size_bytes",a.size_bytes.toLocaleString())+
+      row("version",esc(a.version))+
+      row("md5","<span style='white-space:normal'>"+esc(a.md5)+"</span>","");
+    document.getElementById("hash-note").textContent=
+      "md5 is gated at the session build (committed PNG md5 == manifest md5 == D:\\ source). "+
+      "In-browser equality needs a vendored md5 lib; sha256 verifies natively via SubtleCrypto "+
+      "— flagged as the Exchange-4 manifest nudge.";
+  }
+
+  function verifyAsset(){
+    var a=asset, base="";  // fetch BY MANIFEST FILENAME, never hard-coded
+    figImg.alt="yurei placeholder (dev harness)";
+    figImg.onload=function(){
+      var okPx = (figImg.naturalWidth===a.px.w && figImg.naturalHeight===a.px.h);
+      var vt=document.getElementById("verify-tbl");
+      vt.innerHTML=
+        row("fetched", esc(a.file)) +
+        row("natural px", figImg.naturalWidth+" × "+figImg.naturalHeight+"  "+
+            (okPx?"<span class='ok'>= manifest ✓</span>":"<span class='bad'>≠ manifest ✗</span>"),"");
+      layout(); drawOverlay();
+    };
+    figImg.onerror=function(){
+      document.getElementById("verify-tbl").innerHTML=row("fetch","<span class='bad'>image load FAILED</span>","");
+    };
+    figImg.src=base+a.file;
+    // size_bytes check via fetch (same-origin; harness is repo-served)
+    fetch(a.file,{cache:"no-store"}).then(function(r){return r.blob();}).then(function(b){
+      var okSz=(b.size===a.size_bytes);
+      var vt=document.getElementById("verify-tbl");
+      vt.innerHTML+=row("blob size", b.size.toLocaleString()+" B  "+
+        (okSz?"<span class='ok'>= size_bytes ✓</span>":"<span class='bad'>≠ size_bytes ✗</span>"),"");
+    }).catch(function(){
+      document.getElementById("verify-tbl").innerHTML+=row("blob size","<span class='bad'>fetch failed</span>","");
+    });
+  }
+
+  function showReservedKey(){
+    var raw=null;
+    try{ raw=localStorage.getItem("wuld:yurei"); }catch(e){ raw="(localStorage blocked)"; }
+    document.getElementById("blob-state").textContent =
+      raw==null ? "absent — harness never writes this key (RESERVED for the live widget)."
+                : "present (read-only): "+raw;
+  }
+
+  fetch("manifest_v0.json",{cache:"no-store"}).then(function(r){return r.json();}).then(function(m){
+    manifest=m;
+    var sel=m.assets.filter(function(a){return a.role==="placeholder-all-states";});
+    if(!sel.length){ document.getElementById("manifest-meta").innerHTML="<span class='bad'>no placeholder-all-states asset</span>"; return; }
+    asset=sel[0]; px={w:asset.px.w,h:asset.px.h}; anchorPx={x:asset.anchorPx.x,y:asset.anchorPx.y};
+    renderContract(); verifyAsset(); showReservedKey(); layout(); drawOverlay();
+  }).catch(function(){
+    document.getElementById("manifest-meta").innerHTML="<span class='bad'>manifest_v0.json fetch failed</span>";
+  });
+
+  window.addEventListener("mousemove",onMove,{passive:true});
+  window.addEventListener("resize",function(){ layout(); drawOverlay(); });
+})();
+</script>
+</body>
+</html>

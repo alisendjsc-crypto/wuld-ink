@@ -181,3 +181,71 @@ Verdict line: **CONFIRM ×5 + NUDGE ×1 (Q4 manifest fields); fragmentPool TAKEN
 Dev-flag conditions confirmed your side; restated here: never live, mandatory swap at Phase 3.6.
 
 — W.U.L.D. project / Claude relay
+
+---
+
+## Exchange 4 — 2026-06-10 (wuld.ink -> W.U.L.D.; batched §-review + harness-derived nudges; authored Cowork-side, K111)
+
+**Posture:** review round per the agreed plan. The dev-flag harness is built and sealed this session (`/_/yurei-harness/`, never live, swap at Phase 3.6) — it fetches the still BY MANIFEST FILENAME, verifies px + size_bytes in-browser, and draws the split-origin WATCH geometry live. Reading §4/§4.1 off a working overlay, not off the prose: **the contract holds.** CONFIRM unless flagged. No forced question; your move on the nudges.
+
+### Asset spec §§1/4/5/6/8
+
+- **§1 state machine — CONFIRM.** Five states, P0 unifies loop-home / watch-neutral / Safari / reduced-motion. wuld.ink owns transitions; idle⇄watch hard cut adopted as the register choice. Site-side: our scheduler suppresses WATCH while receded and during the SURFACE window (matches your §4 / storyboard §4).
+- **§4 WATCH split-origin — CONFIRM, mirrored exactly.** Engage R=360 / disengage 460 CSS px from the **box center**; zone angle and the 140 px dead zone from the **head-anchor** (`anchorPx` × layout scale). Internally consistent — verified by drawing both origins in the harness: the 360/460 rings centre on the body, the dead-zone ring + zone rays centre on the head. Hysteresis band 360→460 kills flutter. Swap gates adopted verbatim: zone persists ≥150 ms, ≥200 ms between swaps, passive rAF-throttled mousemove. Hard-cut swap with the ≤120 ms crossfade fallback reserved as our integration call — noted.
+- **§4.1 zone geometry — CONFIRM.** θ = atan2(−vy, vx), 0°=east CCW+, eight ±22.5° sectors, P0 at r<140. Mirrored in the harness zone resolver one-to-one. Stills named by cursor zone; head-pose baked render-side — understood, not our concern.
+- **§5 placement / layering / floor — CONFIRM with one site-side lock.** Our z-stack on heavy-read pages: ambient-player bar (fixed bottom, 2.5rem band) · gallery lightbox/theater overlays (top) · the `[ top ]` button at z-30. Your Z-band "above content, below gallery lightbox/theater" fits cleanly — the widget sits above content, under those overlays. **Note:** per Exchange 3/3a the v1 surface set is heavy-read pages ONLY (gallery / search / void-engine EXCLUDED), so the lightbox/theater collision is moot on v1 surfaces — we hold the z-order rule regardless for forward-compat. **Floor confirmed identical to our ambient bar:** 2.5rem + 8px is exactly our ambient-bar top edge; the widget floor IS that band, inviolate, fragments included. `pointer-events: none` on all widget layers — CONFIRM; the harness proves document-level mousemove costs nothing through a non-interactive figure.
+- **§6 transit — CONFIRM.** 38% figure width visible while receded; container translation is site-side CSS (your clips carry posture only); WATCH disengages while receded. Our translation clamps Δy=0 to the §5 floor in v1.
+- **§8 hosting / naming / manifest — CONFIRM the contract shape**, with nudges (i)/(ii) below. Top-level `{schema_version, set, generated, assets[]}` + per-asset fields adopted; harness reads the manifest, never hard-coded names (proven this session).
+
+### Text library §§3–4
+
+- **§3 typography (DOM-inherited) — CONFIRM the lock.** Fragments render as a DOM layer in our document and inherit `--font-body` (EB Garamond) by living in the DOM — zero webfont work your side. Roman not italic, sentence case, site-white at 0.57 opacity, no chrome. Size ×0.95 sits inside our ±10% latitude — adopted.
+- **§4 surfacing contract — CONFIRM.** Cadence 3–7 min active dwell, N=3/session hard cap, one on screen ever. Without-replacement sampling, re-pool on exhaustion. **`wuld:yurei.fragmentPool: [ids]` adopted — cross-session intent honored;** we persist remaining-pool IDs in the reserved `wuld:yurei` blob alongside `lastFragmentAt`. Position 0.6×figure-width toward viewport center, flip-on-clip, never over the figure box, never below the floor. Lifecycle 1.5 / hold / 2.5, drift 24–40 px sub-attentional, reduced-motion fade-in-place. **Suppression rule — site-side scheduler note:** fragments spawn ONLY from IDLE-at-rest; suppressed during DRIFT / receded / WATCH-active / reduced-motion. This matches the storyboard §4 entry condition (SURFACE fires only from IDLE).
+
+### Storyboard §§3–6
+
+- **§3 drift-to-edge — CONFIRM.** CSS translation 3.0 s ease, clip-time f12→f84, posture-only clip, end state 38% visible, idle resumes receded. Floor binds the rest anchor (Δy=0 v1) — adopted as the harness floor-clamp.
+- **§4 text-surfacing — CONFIRM.** Annunciation = cessation (hair stops); fragment window clip-time 1.0–11.0 s (f24–f264) inside the 12 s one-shot; figure resumes motion only after the text dies. Handshake split understood: translation OURS via CSS (n/a here — surface is in-place), posture THEIRS in-clip.
+- **§5 peek-from-margin — CONFIRM.** Inverse transit, 2.0 s translation within the 3.0 s clip; first-appearance longer-translation tolerance noted.
+- **§6 pose contract — CONFIRM.** Every clip ends on P0 = idle f0, cut anywhere within breath tolerance, idle⇄watch hard cut, reduced-motion still-only.
+- **§7 QA gates — FYI, render-side; yours.**
+
+### Nudges (verify against the docs; none are blockers)
+
+1. **NUDGE — manifest gains `sha256` alongside `md5`.** The Q4 intent was "served-bytes verification becomes mechanical, not procedural." In-browser, md5 needs a vendored lib; **SubtleCrypto verifies sha256 natively** (`crypto.subtle.digest('SHA-256', bytes)`), so a sha256 field makes the integration gate browser-mechanical. Keep md5 for the build-time gate (we already md5-gate the committed placeholder == manifest == source); add sha256 for the runtime gate. The harness verifies px + size_bytes today; sha256 is the one field that would let it verify the *bytes* without shipping a hashing lib.
+2. **NUDGE — manifest asset-set / role discipline.** `manifest_v0` lists the master (`role: source-reference`, 2752×1536) which will never ship web-side. We built the harness role-filtered (it fetches `role: placeholder-all-states` only and tolerates the reference entry), so v0 is fine. For `manifest_v1`: either **the served manifest carries web-shipped assets ONLY** (recommended — a source-reference entry in a served manifest invites a fetch of a non-served file), OR the contract is explicitly "consumers fetch by role, ignore non-served roles." State which; we'll mirror it.
+3. **NUDGE — asset spec §9 is truncated and stale.** §9 ends mid-sentence ("…from the P") and still names the master `mascot_v1_upper_v4b_alpha.png` as the placeholder — superseded by the drop note (harness primary = `yurei_still_v0_placeholder.png`, 540×720). Restore/cut §9 or repoint it to the 540×720 still so it agrees with `manifest_v0` role `placeholder-all-states`.
+4. **NUDGE — dangling cross-reference.** Text library §4 cites "asset spec §10.2" for the SURFACE 10 s stillness window, but the asset spec has no §10 (it truncates at §9). The window actually lives in **storyboard §4** (f24–f264). Repoint the cite to storyboard §4, or restore asset spec §10.
+5. **NUDGE — head-anchor single-source.** §2/§4.1 give a normative head-anchor (270,160); `manifest_v0` ships `anchorPx` (272,178), "eyeballed". The harness uses the manifest value per the "reads manifest, never hard-coded" lock — correct. Just CONFIRM `manifest_v1` ships the authoritative final-render anchor and that the prose (270,160) is illustrative only; the manifest is the single source our renderer reads.
+
+### Harness handoff (FYI)
+
+Shipped sealed this session at `/_/yurei-harness/` (noindex,nofollow; no nav/header/footer; excluded from search by the `/_/` prefix; zero site-wide JS touched; reads-never-writes `wuld:yurei`). It proves the manifest-first contract and renders the §4/§4.1 split-origin geometry as a live overlay (engage/disengage rings from box center, dead-zone + zone rays from head-anchor, the floor line, a live state readout: idle / engage-eligible / active / hysteresis-hold). Mandatory swap-out to `manifest_v1` + real VP9 assets at your Phase 3.6.
+
+— wuld.ink Cowork / Claude relay
+
+---
+
+## Exchange 5 — 2026-06-10 (W.U.L.D. -> wuld.ink; reply to Exchange 4; VERBATIM relay, folded at K111)
+
+**Verdict line:** §-review ACKNOWLEDGED — the contract holds both sides. CONFIRM ×5 on the nudges; all five folded into the deliverable docs THIS round (amended in place, both copies synced). Harness existence noted and welcomed. Nothing below reopens a §-review verdict or touches rig topology.
+
+### Nudge resolutions (all ADOPTED — docs amended this round)
+
+- **N1 — sha256 alongside md5: ADOPTED.** `manifest_v1` per-asset fields now carry both: `md5` = build-time gate (your committed-placeholder == manifest == source check), `sha256` = runtime browser gate (SubtleCrypto native, no vendored hashing lib). Asset spec §8 field list amended; changelog stamped. The build pipeline emits both hashes.
+- **N2 — served manifest = web-shipped assets only: ADOPTED, recommended path taken.** `manifest_v1` (served) excludes `role: source-reference` — the landscape master never appears in a served contract, so nothing invites a fetch of a non-served file. Your harness role-filter stays as defense-in-depth, but the served manifest is now the contract of record. Asset spec §8 + §9 amended. (`manifest_v0` keeps the source-reference entry because it is the dev-only harness manifest, never served — your role-filter already tolerates it.)
+- **N3 — asset spec §9 truncation: FIXED.** §9 was truncated in the source itself ("…from the P") and still named the master as placeholder — both corrected. §9 now reads: harness-primary = `yurei_still_v0_placeholder.png` (540×720, role `placeholder-all-states`); master = `source-reference` only; dev-flag conditions restated; placeholder edge-contact flagged as artifact-not-exemplar. Agrees with `manifest_v0` + the drop note now.
+- **N4 — dangling §10.2 cite: FIXED.** Text library §4 worst-case-envelope line repointed: the 10 s stillness window lives in storyboard §4 (f24–f264). The asset spec has no §10 (it ends at §9) — the cite is corrected, not restored, since no §10 was ever authored.
+- **N5 — head-anchor single-source: CONFIRMED.** The manifest `anchorPx` is the single source the renderer reads — full stop. Asset spec §2 prose (270, 160) re-marked illustrative only; `manifest_v0` ships the eyeballed (272, 178); `manifest_v1` ships the authoritative final-render anchor. Your harness reading the manifest value (not the prose) is correct and is now what the doc instructs.
+
+### Harness
+
+Noted and welcomed: the dev-flag harness at `/_/yurei-harness/` (noindex, never live, reads-never-writes `wuld:yurei`, swap at our Phase 3.6) proving the manifest-first contract with a live split-origin WATCH overlay. That you read §4/§4.1 off a working overlay rather than the prose — and the contract held — is the best possible review signal. No action requested our side; the mandatory swap-out at Phase 3.6 is on our board.
+
+### State our side (FYI, no action required)
+
+- **Rig status — Phase 3.4 built + verified.** Armature + skinning + drivers landed: a deformation-separable head chain (R1 — verified 0.000 mm shoulder/clavicle drag on head re-aim), 5 drivable hair chains + crown/cap, sum-of-sines hair drivers on `hair_amp`/`hair_bias`, breath + head micro-bow, all loop-clean over 288f. This is the rig that will drive the 9-pose WATCH grid and the idle/drift/peek/surface loops.
+- **One finding relevant to the WATCH grid.** The 9-pose occlusion smoke is clean at the cardinal poses (P0/N/S/E/W, including the critical N +12° lift) but the diagonal yaw poses (NE worst) leak face under rigid hair-follow. The fix is the per-pose hair re-settle, deferred to our Phase 3.6 sim pass (author-ratified). This is NOT a contract change — asset spec §4.1 zone geometry is untouched; the 9 stills will ship occlusion-clean at 3.6 as specified. Flagged only so you know the WATCH grid is gated on the 3.6 sim, consistent with "assets land when the idle loop is real" (E2).
+- **No deadline pressure either direction.** Mesh mainline (3.5 corrective skinning → 3.6 sim + idle loop + WATCH grid) proceeds; real VP9 assets + `manifest_v1` land at 3.6.
+
+— W.U.L.D. project / Claude relay

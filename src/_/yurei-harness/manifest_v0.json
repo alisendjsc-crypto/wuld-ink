@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1",
+  "set": "wuld-yurei-widget",
+  "manifest_version": "v0",
+  "generated": "2026-06-10",
+  "status": "placeholder-harness",
+  "notes": "Dev-flag only — never live. Mandatory swap-out at W.U.L.D. Phase 3.6. Field set proves the manifest_v1 contract shape per Exchange 3 Q4 (md5, size_bytes, schema_version) plus px dims.",
+  "assets": [
+    {
+      "file": "yurei_still_v0_placeholder.png",
+      "kind": "still",
+      "role": "placeholder-all-states",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": { "w": 540, "h": 720 },
+      "anchorPx": { "x": 272, "y": 178 },
+      "anchor_confidence": "eyeballed",
+      "md5": "92e64e24d21b7f5f4cb77b37f681f8b9",
+      "size_bytes": 409341,
+      "version": "v0"
+    },
+    {
+      "file": "mascot_v1_upper_v4b_alpha.png",
+      "kind": "still",
+      "role": "source-reference",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": { "w": 2752, "h": 1536 },
+      "anchorPx": { "x": 1380, "y": 380 },
+      "anchor_confidence": "eyeballed",
+      "md5": "83790dfcbf18e880521cf7c003795aa8",
+      "size_bytes": 1667667,
+      "version": "v0"
+    }
+  ]
+}
