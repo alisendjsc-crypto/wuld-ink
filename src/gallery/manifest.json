@@ -1082,7 +1082,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "print_url": "https://wuld.printful.me/product/plate-009-profile-in-grain"
     },
     {
       "id": "main-character-39b85ab23b29",
@@ -1272,7 +1273,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "print_url": "https://wuld.printful.me/product/plate-012-turned-a-quarter-away"
     },
     {
       "id": "main-character-1d3c9c82621f",
@@ -1333,7 +1335,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "print_url": "https://wuld.printful.me/product/plate-013-held-inside-a-border"
     },
     {
       "id": "main-character-1b9025baa3c1",
@@ -1478,7 +1481,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/main-character-plate-118"
     },
     {
       "id": "plate-16-pushed-2-stops-past-the-subject",
@@ -1518,7 +1522,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "title"
+      "caption_tier": "title",
+      "print_url": "https://wuld.printful.me/product/plate-016-lit-warm-turned-cold"
     },
     {
       "id": "main-character-aeb28ff570c5",
@@ -4133,7 +4138,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/main-character-plate-060-6a2a440c183f1"
     },
     {
       "id": "main-character-7d6014e2d1a3",
@@ -4154,7 +4160,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/main-character-plate-058-6a2a43ed88baf"
     },
     {
       "id": "main-character-f92e49e4bf50",
@@ -4842,7 +4849,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/main-character-plate-105"
     },
     {
       "id": "main-character-9f2e1a69f5f0",
@@ -6541,7 +6549,8 @@
       "media": {
         "kind": "image"
       },
-      "caption_tier": "none"
+      "caption_tier": "none",
+      "print_url": "https://wuld.printful.me/product/milk-bath-3-plate-098-6a2a446520dc1"
     },
     {
       "id": "main-character-48acb14d2e1c",
@@ -6738,7 +6747,8 @@
         "kind": "image"
       },
       "caption_tier": "none",
-      "video": "main-character-a3aa60a80d05"
+      "video": "main-character-a3aa60a80d05",
+      "print_url": "https://wuld.printful.me/product/milk-bath-2-plate-098"
     },
     {
       "id": "main-character-629bdc6cb708",
