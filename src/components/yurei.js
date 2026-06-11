@@ -51,7 +51,7 @@
   var ENGAGE = 360, DISENGAGE = 460, DEADZONE = 140; // CSS px
   var ZONE_PERSIST_MS = 150, SWAP_MIN_MS = 200;     // sec4 swap gates
   var FLOOR_REM = 2.5, FLOOR_PAD = 8;               // sec5 floor: 2.5rem + 8px
-  var FILL_VH = 0.59, CENTRE_VH = 0.58, EDGE_INSET = 16; // sec5 rest anchor
+  var FILL_VH = 0.55, CENTRE_VH = 0.58, EDGE_INSET = 16; // sec5 rest anchor
 
   /* ---- choreography spec constants (storyboard sec3/sec4/sec5, asset spec sec6, text lib sec4) ---- */
   var RECEDE_VISIBLE = 0.38;                         // sec6: fraction of width left visible while receded
