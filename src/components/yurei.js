@@ -98,7 +98,7 @@
   var MANIFEST_URL = BASE + "manifest_v2.json";
   var KEY = "wuld:yurei";        // RESERVED localStorage (cross-session)
   var SKEY = "wuld:yurei.s";     // session-scoped sibling (sessionStorage)
-  var MOUNT_PROB = 0.2;          // K117b: per-visitor election — ~1 in 5 first-time browsers get her (sticky); summon() overrides
+  var MOUNT_PROB = 0.01;         // K117c: per-visitor election — ~1 in 100 first-time browsers get her (sticky); summon() + archive-bottom override
 
   /* ---- localStorage blob (RESERVED key; cross-session) ---- */
   function readBlob() { try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { return {}; } }

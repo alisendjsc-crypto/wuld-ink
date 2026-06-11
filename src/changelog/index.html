@@ -242,6 +242,7 @@
         var sum = document.createElement("p");
         sum.className = "changelog-summary";
         sum.textContent = e.summary || "";
+        if (e.id === "2026-06-10-night-shift") { sum.title = "She keeps the night shift alone. To be followed, reach the end of the archive."; sum.style.cursor = "help"; }
         li.appendChild(sum);
         if (e.sections && e.sections.length) {
           var chips = document.createElement("p");
