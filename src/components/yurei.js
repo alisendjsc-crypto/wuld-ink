@@ -6,7 +6,7 @@
    CORE (K115):
      - boot gate: viewport >= 900px AND not prefers-reduced-motion AND not
        opted-out (wuld:yurei.off). Reduced-motion -> canonical still only.
-     - manifest-first: reads /assets/yurei/manifest_v1.json; resolves assets
+     - manifest-first: reads /assets/yurei/manifest_v2.json; resolves assets
        by manifest filename (never hard-coded), verifies px at load.
      - idle loop (VP9/WebM alpha) with the canonical still as poster + fallback.
      - WATCH: split-origin cursor geometry (asset spec sec4/sec4.1) — engage/disengage
@@ -95,7 +95,7 @@
   ];
 
   var BASE = "/assets/yurei/";
-  var MANIFEST_URL = BASE + "manifest_v1.json";
+  var MANIFEST_URL = BASE + "manifest_v2.json";
   var KEY = "wuld:yurei";        // RESERVED localStorage (cross-session)
   var SKEY = "wuld:yurei.s";     // session-scoped sibling (sessionStorage)
 
@@ -113,7 +113,9 @@
   window.yurei = {
     off: function () { var b = readBlob(); b.off = true; writeBlob(b); teardown(); var f = document.getElementById("yurei"); if (f) f.parentNode.removeChild(f); return "yurei: off"; },
     on: function () { var b = readBlob(); b.off = false; writeBlob(b); var s = readSess(); s.exorcised = false; writeSess(s); return "yurei: on (reload to summon)"; },
-    surface: function () { return forceSurface(); }   // K116a: manual surfacing for the initiated
+    surface: function () { return forceSurface(); },  // K116a: manual surfacing for the initiated
+    scale: function (v) { if (typeof v === "number" && v > 0 && v <= 1) { FILL_VH = v; if (fig) layout(); return "yurei: scale " + v; } return "yurei: scale=" + FILL_VH + " (pass 0-1)"; },  // K117 live dial (non-persistent)
+    fade: function (v) { if (typeof v === "number" && v >= 0 && v <= 1) { if (fig) fig.style.opacity = String(v); return "yurei: fade " + v; } return "yurei: fade (pass 0-1)"; }  // K117 live dial (inline opacity override)
   };
 
   if (blob.off === true) return; // opted out — never mounts
@@ -128,19 +130,22 @@
     { name: "W", c: 180 }, { name: "SW", c: -135 }, { name: "S", c: -90 }, { name: "SE", c: -45 }
   ];
   function zoneFor(theta, r) {
-    if (r < DEADZONE) return { name: "P0", still: "yurei_still_v1.png" };
+    if (r < DEADZONE) return "P0";
     var best = null, bd = 999;
     for (var i = 0; i < ZONES.length; i++) {
       var d = Math.abs(((theta - ZONES[i].c + 540) % 360) - 180); // angular distance
       if (d < bd) { bd = d; best = ZONES[i]; }
     }
-    return { name: best.name, still: "yurei_head_" + best.name.toLowerCase() + "_v1.png" };
+    return best.name;                                  // zone NAME only — still resolved via stillFor() (manifest)
   }
+  /* zone -> still filename, resolved from the manifest byRole map (no hard-coded version) */
+  function stillFor(name) { return (name === "P0") ? p0Still : (stillByZone[name] || p0Still); }
 
   /* ---- module state ---- */
   var manifest = null, byRole = {}, idleAsset = null, stillAsset = null;
   var driftAsset = null, peekAsset = null, surfaceAsset = null;
   var px = { w: 540, h: 720 }, anchorPx = { x: 270, y: 169 }, scale = 1;
+  var stillByZone = {}, p0Still = "";              // K117: zone->still filenames, built from manifest byRole at boot
   var fig = null, video = null, img = null;
   var mode = "boot";            // boot | live | still | gone
   var mounted = false, idleVerified = false;
@@ -201,7 +206,7 @@
   function engage() {
     watchActive = true; fig.setAttribute("data-watch", "1");
     if (video) { try { video.pause(); } catch (e) {} }
-    committedZone = "P0"; curZone = "P0"; setStill("yurei_still_v1.png");
+    committedZone = "P0"; curZone = "P0"; setStill(stillFor("P0"));
     if (surfaceActive) dwellThisSurface = true;       // approach during a surfacing = dwell (exorcism reset)
   }
   function disengage() {
@@ -222,11 +227,11 @@
     var vx = mouse.x - hax, vy = mouse.y - hay;
     var rHead = Math.hypot(vx, vy);
     var theta = Math.atan2(-vy, vx) * 180 / Math.PI;
-    var z = zoneFor(theta, rHead);
+    var zname = zoneFor(theta, rHead);
     var now = performance.now();
-    if (z.name !== curZone) { curZone = z.name; zoneSince = now; }
-    if (z.name !== committedZone && (now - zoneSince) >= ZONE_PERSIST_MS && (now - lastSwap) >= SWAP_MIN_MS) {
-      committedZone = z.name; lastSwap = now; setStill(z.still);  // hard cut — sec4
+    if (zname !== curZone) { curZone = zname; zoneSince = now; }
+    if (zname !== committedZone && (now - zoneSince) >= ZONE_PERSIST_MS && (now - lastSwap) >= SWAP_MIN_MS) {
+      committedZone = zname; lastSwap = now; setStill(stillFor(zname));  // hard cut — sec4 (manifest-resolved)
     }
   }
 
@@ -402,9 +407,10 @@
   }
 
   /* ---- mount ---- */
-  function preloadStills() {
-    var names = ["yurei_still_v1.png", "yurei_head_n_v1.png", "yurei_head_ne_v1.png", "yurei_head_e_v1.png",
-      "yurei_head_se_v1.png", "yurei_head_s_v1.png", "yurei_head_sw_v1.png", "yurei_head_w_v1.png", "yurei_head_nw_v1.png"];
+  function preloadStills() {                           // K117: preload the manifest-resolved stills (no hard-coded names)
+    var names = [];
+    if (p0Still) names.push(p0Still);
+    for (var z in stillByZone) { if (stillByZone.hasOwnProperty(z)) names.push(stillByZone[z]); }
     for (var i = 0; i < names.length; i++) { var im = new Image(); im.src = BASE + names[i]; }
   }
 
@@ -418,8 +424,8 @@
     video.setAttribute("aria-hidden", "true"); video.preload = "none";
     img = document.createElement("img");
     img.alt = ""; img.setAttribute("aria-hidden", "true"); img.decoding = "async";
-    img.src = BASE + (stillAsset ? stillAsset.file : "yurei_still_v1.png"); // canonical still = poster + fallback
-    curStill = stillAsset ? stillAsset.file : "yurei_still_v1.png";
+    img.src = BASE + p0Still;                          // canonical still (manifest-resolved) = poster + fallback
+    curStill = p0Still;
     fig.appendChild(video); fig.appendChild(img);
     document.body.appendChild(fig);
     layout();
@@ -433,7 +439,7 @@
 
   function goLive() {
     mode = "live";
-    video.poster = BASE + (stillAsset ? stillAsset.file : "yurei_still_v1.png");
+    video.poster = BASE + p0Still;
     video.preload = "auto";
     video.src = BASE + idleAsset.file;
     var p = video.play(); if (p && p.catch) p.catch(function () {});
@@ -469,6 +475,10 @@
         stillAsset = byRole["canonical-p0"];
         driftAsset = byRole["drift"]; peekAsset = byRole["peek"]; surfaceAsset = byRole["surface"];
         if (!idleAsset || !stillAsset) return;              // contract broken — render nothing
+        p0Still = stillAsset.file;                          // K117: build zone->still map from manifest roles
+        stillByZone = {};
+        var ZN = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+        for (var zj = 0; zj < ZN.length; zj++) { var ra = byRole["watch-" + ZN[zj].toLowerCase()]; if (ra) stillByZone[ZN[zj]] = ra.file; }
         px = { w: idleAsset.px.w, h: idleAsset.px.h };
         anchorPx = { x: idleAsset.anchorPx.x, y: idleAsset.anchorPx.y };
         if (wide()) activate();

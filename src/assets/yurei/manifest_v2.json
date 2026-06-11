@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.1",
+  "set": "wuld-yurei-widget",
+  "manifest_version": "v2",
+  "generated": "2026-06-10",
+  "status": "complete",
+  "notes": "Phase 3.8b COMPLETE. All 13 widget assets at v2, Set C ~444-strand density (3.7c mesh, Blender-native Eevee, no AI-pass; idle = procedural-driver loop + clavicle micro-shoulder, P0 = idle frame 1). drift/peek/surface RECONSTRUCTED from documented 3.6a/3.6b recipes (drift: 96f +3deg local-Z lean, hair_bias 0->1, hair_amp->1.6; peek: 72f counter-lean -2deg, hair_bias->-1; surface: 288f hair_amp 1->0->1 cessation, breath x0.6, head-bow ease-out/in gated). 8 directional WATCH stills bone-driven (no cloth rig in 3.7c branch); front-occlusion raycast PASSED: +yaw/cardinal clean (0 leaks), -yaw W/NW/SW leaks confined to lower-jaw shadow band, visually confirmed absorbed (3.6a shadow-hidden precedent, resolution-a accept; no cloth rebuild). Density heterogeneity RESOLVED (all v2). has_source_ref=false; served web assets only. anchorPx unchanged (270,169) via TorsoCam head-bone projection. md5 = build-time gate; sha256 = runtime browser gate (SubtleCrypto).",
+  "assets": [
+    {
+      "file": "yurei_idle_v2.webm",
+      "role": "idle",
+      "kind": "loop",
+      "frames": 288,
+      "fps": 24,
+      "durationMs": 12000,
+      "loop": true,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "f56b84ede9abafc54f8393bffe749c80",
+      "sha256": "a99113d410d54e524417ae8f6a62f28f37925b3dd0ff80d4944289d7c446a32f",
+      "size_bytes": 1672420,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_drift_v2.webm",
+      "role": "drift",
+      "kind": "oneshot",
+      "frames": 96,
+      "fps": 24,
+      "durationMs": 4000,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "cd5e516bffc5f24d70befb37c8556790",
+      "sha256": "264fa5cf8db8cc5a63d69c1d958aa31522418c6b9174a30809e12f2c4b75c2c0",
+      "size_bytes": 912887,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_peek_v2.webm",
+      "role": "peek",
+      "kind": "oneshot",
+      "frames": 72,
+      "fps": 24,
+      "durationMs": 3000,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "8db30f355f3573af1d06a062e95b82ad",
+      "sha256": "892cc07477fc82b94ccbc1f91afa4652a6784765670eb6a8dd75a689004fdad7",
+      "size_bytes": 690793,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_surface_v2.webm",
+      "role": "surface",
+      "kind": "oneshot",
+      "frames": 288,
+      "fps": 24,
+      "durationMs": 12000,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "fd8b3c5510a78298003fddb39a787f98",
+      "sha256": "5a10ab4f4469b91743020035fa62af7de6d4cc9516f0f266a38d1a700fc102d1",
+      "size_bytes": 1139379,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_still_v2.png",
+      "role": "canonical-p0",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "343d055c12e29c270bf4d1ce2ee39da2",
+      "sha256": "5212c98afef4549ed7123554b639a35d24167f711feaba934fdb99da84dee630",
+      "size_bytes": 350976,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_head_n_v2.png",
+      "role": "watch-n",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "0a30b88cfd3a6bff872a6888aa156a3b",
+      "sha256": "472cbaa8e332dbdc31cc0d6eca442ed05f0779cbaba97166d77dbce38741924b",
+      "size_bytes": 345719,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_head_ne_v2.png",
+      "role": "watch-ne",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "cc4c9de5ea507d1061f9c5871e5957bd",
+      "sha256": "1c230ff255637e0bcdb8b84bacc46ac5ba20ea2ec93c827f957a27a6f6d50728",
+      "size_bytes": 346300,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_head_e_v2.png",
+      "role": "watch-e",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "589a20cd13e5c02df2a39ca9fb9584eb",
+      "sha256": "9ab320f4f3d0c722e47b0c229bbc2ff4588b5f5036c91f09a43f03970e4beba9",
+      "size_bytes": 335095,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_head_se_v2.png",
+      "role": "watch-se",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "1a0fea186e261e7738afacdf6f018f50",
+      "sha256": "ea2798249cf788000c347ef960b0e3f636fc2300ab44a4ecb26f478cd4794aec",
+      "size_bytes": 335606,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_head_s_v2.png",
+      "role": "watch-s",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "3cd564b922efc3f9480c92ba3e331171",
+      "sha256": "0b75c90fc03f5d9bf6c06f59f53f12e56ce195aabafedc71d22c307b788f76b7",
+      "size_bytes": 349777,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_head_sw_v2.png",
+      "role": "watch-sw",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "a0894261dd9c1964d6ccb396c2ea688c",
+      "sha256": "9f87b6eb832688543c4e4e8abfcb80fc4986ad43edc4cb70330775417d20ece4",
+      "size_bytes": 340616,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_head_w_v2.png",
+      "role": "watch-w",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "18e9c1cd2bac91ad3fdfc1f6600d179e",
+      "sha256": "cd403eccc749cab73899d87d345aea7fa1901a9571a67395d325b41f6a46d16b",
+      "size_bytes": 337646,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    },
+    {
+      "file": "yurei_head_nw_v2.png",
+      "role": "watch-nw",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "01a3b75704b00dd0653e6836b802627e",
+      "sha256": "e3edb094c59936124b73ecac7d3c083df8ecdc01456bdaf15ab63eb1652c1d56",
+      "size_bytes": 352918,
+      "version": "v2",
+      "render": "3.7c-444strand"
+    }
+  ],
+  "has_source_ref": false,
+  "upgraded_roles": [
+    "idle",
+    "drift",
+    "peek",
+    "surface",
+    "canonical-p0",
+    "watch-n",
+    "watch-ne",
+    "watch-e",
+    "watch-se",
+    "watch-s",
+    "watch-sw",
+    "watch-w",
+    "watch-nw"
+  ],
+  "deferred_roles": []
+}
