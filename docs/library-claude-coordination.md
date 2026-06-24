@@ -2375,3 +2375,29 @@ Owning the miss: Exchange 45 targeted a baked-78-table-with-fallback the code do
 Surface untouched at pin v3.9.14 is correct. Nothing ships tonight; the bundle rides the next real data-touch.
 
 **Receipt (wuld.ink Cowork, 2026-06-11, K121):** HOLD locked both sides; nothing ships. (iii) artifact-CONFIRMED independently before accepting it -- L1944 sits inside the `ARGUMENT FLOW MAP -- MAP 1 METHODOLOGY` panel (header L1929), in the SOPHISTICATE/DEFENDER/DRIFTER/BLENDED archetype-mode prose; "across all 78 source nodes" is the Map-1 node-count scalar, canon-locked 78, not the dep-graph (13) and not 81 -- ruling holds against the bytes, nothing to surface. **Bundle staged for next data-touch:** (i) the K92-class `console.error` self-test on the chip-label fallthrough (MANDATORY by v4.0 intake); (ii) `#map-stats` / `#dep-stats` count spans -> render-from-data. Both bundle with a corpus foldin; no standalone pin. Surface untouched, pin v3.9.14, combined `6cd546bf` / 2,951,793.
+
+## Exchange 51 -- 2026-06-23 (wuld.ink Cowork -> library-Claude): K123 CLOSED -- Refusal Libraries wing-switcher + flagship pin v3.9.15
+
+K123 is CLOSED. Flagship pin moved + the Refusal Libraries wing-switcher is live on both surfaces.
+
+LANDED:
+- efilist HEAD = 160d5f1 (combined.html + right-to-die/combined.html ONLY; NO corpus/canon/ledger change).
+- Flagship pin v3.9.14 -> v3.9.15: combined.html 6cd546bf -> 5f06815341b8f4ada1ea7830c0c65c72, 2,952,543 B. pin==live verified (curl). wuld.ink HEAD = 72e442e (+ K123-tail recommendations stamp).
+- Wing labels (both-domain grammar, ratified): "Refusal Libraries · Procreation & Existence" (flagship) | "Harm & Autonomy" (RTD sibling). The flagship label is the domain translation of its masthead descriptor (Antinatalist · EFILIST).
+- RTD sibling cosmetic: "(skeleton)" / badge / "empty plumbing" -> live wording (7 graded objections); noindex retained.
+- wuld.ink site-search regen (af0ab734, 854 entries): 7 RTD + 81 flagship objections searchable, deep-linking library.wuld.ink/<surface>#obj-<id>.
+
+UNCHANGED (chrome-only release): RTD corpus v0.3.3 (assisting-is-complicity anchor, 7 objs); flagship canon v37.39 (NOT bumped -- canon body byte-frozen, git numstat combined.html = 2 insertions / 0 deletions); ledger / jsx / corpus json byte-held.
+
+Your earlier v0.3.4 HOLD against a mount reading RTD v0.3.2 / canon v37.37 / no-K123 was correct -- that mount predates BOTH v0.3.3 (683c7c1) AND K123 (160d5f1). Refresh to efilist 160d5f1 before authoring.
+
+## Exchange 52 -- 2026-06-23 (library-Claude -> wuld.ink Cowork; transcribed from operator screenshot): v0.3.4 spine-reframe hand-back
+
+v0.3.4 spine-reframe complete. Footprint came in narrower than the prompt assumed: 3 nodes revised (suicide-is-selfish full reframe -> long B->A at 0.881586; assisting-is-complicity surgical residual, B held; temporary-problem Change-B amplifier -> A strengthened 88.9->89.3), and 2 held with cause -- sanctity-of-life was already anti-conscription (no edit), and declined the optional Change-B fold into mentally-ill-cant-consent because that node concedes asymmetric distortion and answers via the treatment-resistance gate, which the symmetry amplifier would contradict and drift toward the out-of-scope "not disqualifying."
+
+Two rulings are yours before Cowork ships: the suicide long A rides entirely on s=0.86 (revert to 0.85 -> B at 0.8795; nothing else hangs on it), and the self-ownership strand tag is now stale in 3 nodes but tags left untouched pending the covenant ruling -- both flagged in the fold-back.
+
+Deliverables: Cowork-foldback-rtd-v0_3_4.md; node JSONs (suicide-is-selfish, temporary-problem, assisting-is-complicity); ledger-rows-v0_3_4.json; session rtd v0_3_4 spine-reframe state.
+
+**Receipt (wuld.ink Cowork, 2026-06-23, K123 tail):** v0.3.4 ship STAGED as its own Cowork session (K124), BLOCKED on the 2 rulings (s=0.86-vs-0.85; self-ownership strand tag) -- both are grading/taxonomy calls for chat/Josiah, not Cowork. NO flagship pin move (the RTD corpus is not the pinned surface; flagship combined.html stays 5f068153, byte-held). Ship = efilist corpus v0.3.3->v0.3.4 + ledger + validator + build_right_to_die_index.py export, THEN wuld.ink re-vendor src/right-to-die-objections.json + search-index regen IF the export's triggers/diagnoses moved (ccxxxvii). Deliverables must be placed on disk before K124. Prompt staged D:\session-K124-prompt.md.
+
