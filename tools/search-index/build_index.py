@@ -22,6 +22,10 @@ library   src/library-objections.json - vendored {id,title,gloss} projection
             of the efilist corpus OBJECTIONS (K113); cross-domain results
             deep-link library.wuld.ink/combined#obj-<id> (open in a new tab).
 
+  right-to-die  src/right-to-die-objections.json - same {id,title,gloss} shape
+            (Refusal Suite pilot, K122); cross-domain results deep-link
+            library.wuld.ink/<surface_route>#obj-<id> (new tab).
+
 Unknown manifest fields (featured, print_url, ...) are ignored by design.
 """
 import argparse, collections, html, json, os, re, sys
@@ -182,6 +186,29 @@ def build(src):
                     "text": (o.get("gloss") or "").strip() or "Argument Library objection",
                 })
                 counts["library-objection"] += 1
+        except (ValueError, OSError):
+            pass
+    # ---- right-to-die objections (vendored projection of the Refusal Suite
+    # pilot corpus; generated-only; see src/right-to-die-objections.json).
+    # surface_route is READ from the export (not hard-coded); cross-domain
+    # results deep-link library.wuld.ink/<surface_route>#obj-<id> (new tab).
+    # Missing/malformed vendor file -> skip gracefully (never hard-fail). ----
+    rtd_path = os.path.join(src, "right-to-die-objections.json")
+    if os.path.exists(rtd_path):
+        try:
+            rtd = json.load(open(rtd_path, encoding="utf-8"))
+            sroute = str(rtd.get("surface_route", "")).strip().strip("/")
+            for o in rtd.get("objections", []):
+                oid = str(o.get("id", "")).strip()
+                if not oid or not sroute:
+                    continue
+                entries.append({
+                    "type": "right-to-die-objection",
+                    "route": "https://library.wuld.ink/" + sroute + "#obj-" + oid,
+                    "title": (o.get("title") or "").strip(),
+                    "text": (o.get("gloss") or "").strip() or "Right to Die objection",
+                })
+                counts["right-to-die-objection"] += 1
         except (ValueError, OSError):
             pass
     entries.sort(key=lambda e: (e["type"], e["route"], e.get("id", ""), e["title"]))

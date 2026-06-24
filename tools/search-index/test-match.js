@@ -102,5 +102,15 @@ t("K113 SECTIONS Library before Plates", keysL.indexOf("library-objection") < ke
 t("K113 Library label", (api.SECTIONS.filter(function (s) { return s.key === "library-objection"; })[0] || {}).label === "Library");
 var secsL = api.sectionize(rCon.results);
 t("K113 Library section renders", secsL.some(function (s) { return s.key === "library-objection"; }));
+// K122: right-to-die-objection coverage (Refusal Suite pilot, vendored projection)
+var rPal = api.runQuery(E, "palliative");
+t("K122 RTD palliative present", rPal.results.some(function (x) { return x.type === "right-to-die-objection" && x.route === "https://library.wuld.ink/right-to-die/combined#obj-palliative-care-sufficiency"; }));
+t("K122 RTD routes are right-to-die combined anchors", rPal.results.filter(function (x) { return x.type === "right-to-die-objection"; }).length > 0 && rPal.results.filter(function (x) { return x.type === "right-to-die-objection"; }).every(function (x) { return x.route.indexOf("https://library.wuld.ink/right-to-die/combined#obj-") === 0; }));
+var keysR = api.SECTIONS.map(function (s) { return s.key; });
+t("K122 SECTIONS Right to Die after Library", keysR.indexOf("right-to-die-objection") > keysR.indexOf("library-objection"));
+t("K122 SECTIONS Right to Die before Void", keysR.indexOf("right-to-die-objection") < keysR.indexOf("void"));
+t("K122 Right to Die label", (api.SECTIONS.filter(function (s) { return s.key === "right-to-die-objection"; })[0] || {}).label === "Right to Die");
+var secsR = api.sectionize(rPal.results);
+t("K122 Right to Die section renders", secsR.some(function (s) { return s.key === "right-to-die-objection"; }));
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);
