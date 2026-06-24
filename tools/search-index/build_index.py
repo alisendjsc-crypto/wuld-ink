@@ -106,6 +106,23 @@ def headings(t, route):
         out.append((txt, route + ("#" + idm.group(1) if idm else "")))
     return out
 
+def obj_text(o, fallback):
+    """gloss + folded keyword-recall text for objection search entries (K129).
+    Vendored corpus keywords are appended to the visible gloss with ' · ' so
+    site-search.js -- which matches over [title|text|route] and is HELD -- finds
+    them. Backward-compatible: absent keywords -> gloss (or fallback), the
+    pre-K129 behavior, so the index is byte-invariant on a keyword-less vendor."""
+    gloss = (o.get("gloss") or "").strip()
+    parts = [gloss] if gloss else []
+    kws = o.get("keywords")
+    if isinstance(kws, list):
+        kw = [" ".join(str(k).split()) for k in kws]
+        kw = [k for k in kw if k]
+        if kw:
+            parts.append(" · ".join(kw))
+    return " · ".join(parts) if parts else fallback
+
+
 def build(src):
     entries = []
     counts = collections.Counter()
@@ -183,7 +200,7 @@ def build(src):
                     "type": "library-objection",
                     "route": "https://library.wuld.ink/combined#obj-" + oid,
                     "title": (o.get("title") or "").strip(),
-                    "text": (o.get("gloss") or "").strip() or "Argument Library objection",
+                    "text": obj_text(o, "Argument Library objection"),
                 })
                 counts["library-objection"] += 1
         except (ValueError, OSError):
@@ -206,7 +223,7 @@ def build(src):
                     "type": "right-to-die-objection",
                     "route": "https://library.wuld.ink/" + sroute + "#obj-" + oid,
                     "title": (o.get("title") or "").strip(),
-                    "text": (o.get("gloss") or "").strip() or "Right to Die objection",
+                    "text": obj_text(o, "Right to Die objection"),
                 })
                 counts["right-to-die-objection"] += 1
         except (ValueError, OSError):

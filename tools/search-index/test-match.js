@@ -112,5 +112,26 @@ t("K122 SECTIONS Right to Die before Void", keysR.indexOf("right-to-die-objectio
 t("K122 Right to Die label", (api.SECTIONS.filter(function (s) { return s.key === "right-to-die-objection"; })[0] || {}).label === "Right to Die");
 var secsR = api.sectionize(rPal.results);
 t("K122 Right to Die section renders", secsR.some(function (s) { return s.key === "right-to-die-objection"; }));
+// K129: keyword-projection search-recall. Corpus keywords[] folded into the
+// vendored objection entries' searchable text; site-search.js (HELD) matches
+// over [title|text|route]. The keyword-only legs FAIL on a pre-K129 index
+// (text was gloss-only) -> non-tautological. RTD:
+var kHip = api.runQuery(E, "hippocratic oath");
+t("K129 RTD 'hippocratic oath' -> medical-integrity", kHip.results.some(function (x) { return x.type === "right-to-die-objection" && x.route === "https://library.wuld.ink/right-to-die/combined#obj-medical-integrity"; }));
+var kPrim = api.runQuery(E, "primum non nocere");
+t("K129 RTD 'primum non nocere' -> medical-integrity", kPrim.results.some(function (x) { return x.type === "right-to-die-objection" && x.route.indexOf("#obj-medical-integrity") !== -1; }));
+var kCat = api.runQuery(E, "category creep");
+t("K129 RTD 'category creep' -> slippery-slope-headline", kCat.results.some(function (x) { return x.type === "right-to-die-objection" && x.route.indexOf("#obj-slippery-slope-headline") !== -1; }));
+var kProc = api.runQuery(E, "procreator liability");
+t("K129 RTD 'procreator liability' -> compensational-bridge-fork2b", kProc.results.some(function (x) { return x.type === "right-to-die-objection" && x.route.indexOf("#obj-compensational-bridge-fork2b") !== -1; }));
+var kTake = api.runQuery(E, "take it up with your parents");
+t("K129 RTD named-phrase 'take it up with your parents' resolves", kTake.results.some(function (x) { return x.type === "right-to-die-objection" && x.route.indexOf("#obj-compensational-bridge-fork2b") !== -1; }));
+// flagship library-objection keyword recall (keyword-only -> non-tautological):
+var kQol = api.runQuery(E, "quality of life");
+t("K129 lib 'quality of life' -> ableist-objection", kQol.results.some(function (x) { return x.type === "library-objection" && x.route === "https://library.wuld.ink/combined#obj-ableist-objection"; }));
+var kFos = api.runQuery(E, "foster");
+t("K129 lib 'foster' -> adoption-instead", kFos.results.some(function (x) { return x.type === "library-objection" && x.route.indexOf("#obj-adoption-instead") !== -1; }));
+var kAi = api.runQuery(E, "AI dangerous");
+t("K129 lib 'AI dangerous' -> ai-fear", kAi.results.some(function (x) { return x.type === "library-objection" && x.route.indexOf("#obj-ai-fear") !== -1; }));
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);
