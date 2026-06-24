@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-23-library-v3-9-15",
+    "date": "2026-06-23",
+    "summary": "Refusal Libraries wing-switcher: the Argument Library and the new Right to Die wing now cross-link at the top of each page (library.wuld.ink). Library pinned at v3.9.15.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-10-night-shift",
     "date": "2026-06-10",
     "summary": "The night shift accepts no deliveries. Something keeps the hour on the longer pages now. Present on the wider screens. Noticed, not announced. No further comment from the interior.",
@@ -9,25 +17,33 @@
     "id": "2026-06-10-search-library-objections",
     "date": "2026-06-10",
     "summary": "Site search now indexes the Argument Library's 81 objections: a new Library results section links each match to its objection on library.wuld.ink, opening in a new tab. Titles and one-line glosses are generated from the library corpus, never hand-authored.",
-    "sections": ["/search/"]
+    "sections": [
+      "/search/"
+    ]
   },
   {
     "id": "2026-06-10-search-index-h3-coverage",
     "date": "2026-06-10",
     "summary": "Site search now indexes h3 headings: archive book titles (Hatred, The Point), essay sub-sections, recommendations, and Watch video titles that the index previously skipped. Archive titles and essay sections deep-link to the exact entry; a strip-blocks fix also restored the Watch page, which had been wholly absent from search.",
-    "sections": ["/search/"]
+    "sections": [
+      "/search/"
+    ]
   },
   {
     "id": "2026-06-10-gallery-ux-pass-3",
     "date": "2026-06-10",
     "summary": "Gallery UX pass 3: the search/controls bar is now the first block on all nine gallery pages with the NSFW gate directly below it, and the lobby Prints strip collapses behind a mono band with [ expand ] and a direct storefront link (wuld.printful.me).",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-10-gallery-photo-video-pairing",
     "date": "2026-06-10",
     "summary": "Gallery: 42 operator-confirmed photo-video pairs land as additive manifest video: fields; paired image cards gain a [ mp4 ] affordance (star-adjacent) opening the video theater on the partner plate, consent-held; both gallery assets bumped to ?v=K109 across the 9 rooms.",
-    "sections": ["/gallery/"]
+    "sections": [
+      "/gallery/"
+    ]
   },
   {
     "id": "2026-06-10-library-v3-9-14",

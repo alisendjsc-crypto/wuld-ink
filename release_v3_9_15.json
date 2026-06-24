@@ -1,0 +1,35 @@
+{
+  "release": "v3.9.15",
+  "canon": {
+    "version": "37.39",
+    "bump": "NONE (chrome-only; canon body byte-frozen)",
+    "invariant_block_changed": false,
+    "note": "K123 Refusal Libraries wing-switcher. Navigation chrome above the top row of flagship combined.html (+ RTD sibling). Antinatalism canon body byte-frozen: git numstat combined.html = 2 insertions / 0 deletions (single additive hunk). No corpus/canon/jsx/ledger change."
+  },
+  "git": {
+    "baseline": "operator-side commit atop 683c7c1 (v0.3.3 RTD pilot)",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "combined.html 6cd546bf->5f068153 (+750 B inline wing-switcher, matches top-nav palette); right-to-die/combined.html 7c08e373->b4c06e4b (sibling switcher + skeleton->live cosmetic). index_v3_8_0.html/canon/json/jsx/ledger BYTE-HELD."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "5f06815341b8f4ada1ea7830c0c65c72",
+      "size_bytes": 2952543,
+      "status": "PROVEN"
+    },
+    "right-to-die/combined.html": {
+      "md5": "b4c06e4b56861b6bc655db68730448ed",
+      "size_bytes": 14476,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "6cd546bf18994c9bad9e43ae4ee4f071",
+    "new": "5f06815341b8f4ada1ea7830c0c65c72",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K123: v3.9.15 pin move (6cd546bf->5f068153; Refusal Libraries wing-switcher on flagship; canon body byte-frozen, +750 B chrome)"
+}
