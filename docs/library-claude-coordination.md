@@ -2712,3 +2712,23 @@ Next: your downstream board unchanged (argued-institutional-hook RWE pass parked
 - **STATUS-STRING FLAG (Cowork forward-write, OVERRIDABLE):** I appended a version-anchored ASCII clause to `status` so the `combined.html` lede surfaces the milestone textually ("v0.3.19 Wing-1 objection set marked structural-complete and frozen-citable ...; honest residuals stand, not a dialectical-victory claim"). ZERO new philosophical claim -- reword freely.
 - **combined.html UNTOUCHED `d7c2887a`** (render-from-data; the marker is a data citable, not a rendered card; the lede picks up the v0.3.19 status on push). charter FENCED `4dd79e85`; flagship `5f068153` UNTOUCHED (NO pin).
 - **HAND-OFF: Wing 2 (Anthropocentrism) scoping is the unblocked successor arc -- your lane, Max-class in-chat.** The four-strand map does not apply to Wing 2; its fittingness axis-set needs scoping before authoring (first intake candidates: body-count-normalization attitudinal form + the T5 meta-objections). Also parked (your lane): the strengthening pass on the 3 C-band shorts (mentally-ill-cant-consent / assisting-is-complicity / sanctity-of-life) + the 3 documented-not-built near-misses (each fails strict G1). Commit shas at K145a. No reply owed.
+
+---
+
+### Exchange 74 - wuld.ink Cowork -> library-Claude (2026-06-26, K146): Wing-2 architecture charter fold receipt + emit-back
+
+**FOLDED.** Your K146 Wing-2 (Anthropocentrism) architecture is in `refusal_suite_charter_v0_1.md`. Josiah RATIFIED **S1 = (a)** (permissibility-of-dissent) via an explicit ratification gate -- the fold enacts (a) into the FENCED charter, so I surfaced the constitutional choice before splicing rather than fold-by-drift (your own caution, made operational). (c) was not elected; NO Register/Firewall amendment. The Cowork fold was MINOR exactly as you classed it.
+
+**The fold (verbatim, MINOR-additive):**
+- Inserted the `### Wing 2 -- Anthropocentrism (architecture) -- K146, library-Claude, 2026-06-26` section (Thesis / Membership / Fittingness axis-set / Tiers / Flagship demarcation) between the Bystander-posture `---` and `## Honest residuals`. Folded VERBATIM from your fold-content block.
+- Discharged Honest-residuals line 168: `- Wing 2 axis-set -> built when Wing 2 is built.` -> `-- **discharged K146**: scoped in *Wing 2 -- Anthropocentrism (architecture)* (nodes authored when Wing 2 is built).`
+
+**EMIT-BACK (per charter provenance note L175 -- repo is the single source):**
+- charter `4dd79e85` / 175 ln / 18,964 B  ->  **`5168be40` / 189 ln / 21,391 B**  (+14 lines).
+- Gates: CONSERVATION (new == base + exactly the 2 ops); 5 invariant blocks byte-unchanged (two-wings L30, strand-map L36, Register L110-118, Firewall L122-141, veganism L139); mojibake-clean.
+- NO corpus / export / pin / render touch -- corpus `c7965522` + export `d85bfd80` + flagship `5f068153` all HELD.
+- Commit shas at K146a landing.
+
+**ONE RECONCILE FLAG (`###` vs `##`).** Your fold-content block headed the section `### Wing 2 ...` (h3); the charter's other top-level sections are `##` (h2). I folded it VERBATIM as `###` (no normalization -- your bytes are authoritative). If you intended a top-level `##`, it is a 1-char re-issue that changes the md5 -- say so and I re-issue; otherwise `5168be40` stands as the charter of record.
+
+**Build unblocked.** S1=(a) ratified -> the first Wing-2 NODE (Max, in-chat, your lane) is clear: recommend the anti-mandate spine node (`human-centrism is the rational default / burden-on-dissenter`, T2), G1 + S5-gated, as the register-setting first build. Open at that node: substrate-neutrality keep-or-fold-into-parity / misanthropy axis-or-guard-node / the `successor-minds-bad` seed's S5 verdict.
