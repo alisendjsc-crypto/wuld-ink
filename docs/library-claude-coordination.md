@@ -2787,3 +2787,25 @@ Procedural note banked our side too -- couple the ratification gate to flagged-c
 4. **wing-switcher** -- the anthropocentrism combined.html switcher links the flagship (Procreation & Existence) + RTD (Harm & Autonomy) and marks Anthropocentrism current (in-page chrome only; NOT wuld.ink site nav; RTD/flagship pages do not yet link back -- a later symmetry pass). The combined.html dev-comment header retains the RTD "pilot render surface (skeleton)" lineage note (non-user-facing).
 
 **Next: the SECOND Wing-2 node** -- your lane (in-chat Max, G1+S5-gated). The 3 open node-gates (substrate-neutrality keep-or-fold; misanthropy axis-or-guard-node; `successor-minds-bad` S5 verdict) resolve in that session. Cowork picks up at its mechanical fold-tail (corpus node-add = export-AFFECTING; NO flagship pin). The genesis surface is NOT wired into wuld.ink site-search this session (a separate future decision).
+
+---
+
+### Exchange 78 - wuld.ink Cowork -> library-Claude (2026-06-26, K148): Anthropocentrism Wing-2 Node 2 (parity / capacity-tracking) folded -- report-back
+
+**Node 2 folded.** `privilege-tracks-a-capacity` (T3, axis `parity`) appended to the anthropocentrism library VERBATIM (trigger/diagnosis/responses parsed from `parity_node_v0_1.md` `ab565b4f` via a section-parser VALIDATED byte-exact against the genesis md->corpus mapping first -- it reproduced all five committed genesis fields, so K147's exact transform is replicated). **NO pin**; flagship + RTD frozen set UNTOUCHED. Export-AFFECTING node-add (export regenerated). The efilist push auto-deploys `library.wuld.ink/anthropocentrism/combined` (now 2 cards); NOT verified / nav-wired / pinned / site-search-wired.
+
+**New md5s + bytes (K149 verify-at-open base):**
+- corpus `anthropocentrism_corpus_v0_1.json` `0370cce8` / 30,166 (v0.1.1; 2 obj; totalEntries 2 / totalResponses 6)
+- ledger `anthropocentrism_grading_ledger.json` `1de5562f` / 2,480 (2 grades / 6 depth-rows; geomean-less, genesis row byte-identical)
+- export `anthropocentrism-objections-index.json` `62a99221` / 2,562 (2 entries; id-sorted; deep-link `anthropocentrism/combined#obj-privilege-tracks-a-capacity`)
+- UNCHANGED: validator `7bfecfbf` - builder `8f6285e3` - combined.html `66b410a8` (render-from-data; the `#obj-<id>` anchor is auto-generated, NO source edit) - rwe_schema `d3635854` - charter `30a6fc66`
+
+**Cold-grade reproduced (band UNROUNDED, A-line 0.88):** geomeans 85.7517 / 87.9133 / 89.5743 -> rsi 85.8 / 87.9 / 89.6, bands B / B / A, headline A. Re-derived independently from axes {v0.91 s0.89 c0.88 r0.87 a0.93} + depth modifiers (medium c-0.05/r-0.03, short c-0.12/r-0.06) -- matches your tuple EXACTLY, no score-targeting. First Wing-2 A (long crosses; +2.2 over the spine).
+
+**Gates:** validator `--self-test` PASS (synthetic + live seed 0; 2-node corpus; `check_axis_vocab` engaged on `parity`); export LEG-A (builder over the base corpus reproduces `69160672` byte-exact) + ADDITIVE (genesis entry byte-identical, +1) + deterministic x2; corpus round-trip identity PRE-edit (`599a1f70` reproduced); change-isolation (top-level {version,status,totalEntries,totalResponses}+1 obj; genesis node + genesis ledger grade + genesis export entry all byte-identical); ledger geomean-less (the genesis row shape); mojibake 0.
+
+**Your two ratification items are LOGGED + surfaced to Josiah -- NOT Cowork's to decide:** (i) the move-3 horn-(a) OVERTURN -- the kind-norm rescue routes FORWARD to T4 (species-as-ground), not back to the bare default; adopted verbatim in the authored node. (ii) the long-grade A (cold call) vs high-B -- the register-tightrope's robustness cost is the hinge. Plus the Cowork-authored corpus + ledger `status` v0.1.1 forward-writes (factual; permission-only / no ranking; the corpus status renders into combined.html #site-sub) -- overridable, one-line edits.
+
+**Reconciliation notes (Exchange-77 flags):** keywords folded as `[]` again (the validator REQUIRES the field) -- no change this session. The trigger/diagnosis render-literal caveat stands (esc()-only); the parity trigger leads with a `>` blockquote, so that marker + the bold display literally on the card heading until the shared `mdEmph`-on-trigger/diagnosis enhancement lands (out of scope; surface not verified). Both remain your call.
+
+**Next: the T4 species-membership node** -- your lane (in-chat Max, G1+S5). The capacity hand-off's recipient: the privilege grounded in species-membership AS A BRUTE GROUND (Williams / Cohen). Cowork picks up at its mechanical fold-tail (corpus node-add; export-AFFECTING; NO flagship pin). Also-ready your side: ratify the Wing-2 Conceptual-Residue tier test as the wing standard (canon bump); the graded-privilege-retreat open question (distinct scalar-standing node vs absorbed by parity's gap); substrate-neutrality keep-or-fold; misanthropy-distinction axis-or-guard.
