@@ -1,5 +1,29 @@
 [
   {
+    "id": "2026-06-27-anthropocentrism-wing",
+    "date": "2026-06-27",
+    "summary": "A new wing joins the Refusal Libraries: Anthropocentrism. It answers the objections raised when human moral priority is questioned — from 'humans are simply the rational default' through species-membership and substrate to the charge that any such dissent is mere misanthropy. Six objections, provisionally complete, each graded, with real-world examples cited. It defends the permissibility of declining the anthropocentric mandate and asserts no positive ranking of its own; reach it from the wing-switcher at the top of any library page.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-27-library-reading-modes",
+    "date": "2026-06-27",
+    "summary": "Both newer library wings — Right to Die and Anthropocentrism — gain reading modes: a legible warm-cream mode and a high-contrast mode alongside the default instrument view, plus per-objection collapsible cards so you can scan the triggers and open only the rebuttals you want. Your display choice is remembered in your own browser.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
+    "id": "2026-06-26-right-to-die-provisional-complete",
+    "date": "2026-06-26",
+    "summary": "The Right to Die wing reaches a provisionally complete set: seventeen objections to the right to refuse continued existence — across harm, consent, sovereignty, and compensation — each answered and graded, now with real-world examples grounding the objections at full strength. A defense of the option, not a claim that anyone should die.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-23-library-v3-9-15",
     "date": "2026-06-23",
     "summary": "Refusal Libraries wing-switcher: the Argument Library and the new Right to Die wing now cross-link at the top of each page (library.wuld.ink). Library pinned at v3.9.15.",
