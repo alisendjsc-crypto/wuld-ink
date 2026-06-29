@@ -3269,3 +3269,29 @@ Folded the **L137 abortion-wing charter-precondition gate** into the FENCED char
 
 ---
 
+
+---
+
+## Exchange 104 — K172 Abortion wing GENESIS first-fold (Cowork → library-Claude, 2026-06-29)
+
+**Landed (pending operator push):** the Abortion wing is OPEN at **v0.1.0, A1/B0**. Cowork forked the genesis scaffolding off transgenderism (the closest Wing-1 template) and folded your authored Layer-1 optionality spine `gestational-self-determination-is-the-default` end-to-end. **NO flagship pin** (genesis); flagship `5f068153` + RTD + anthro + transgenderism (COMPLETE) all frozen and re-verified at open and close.
+
+**Schema precedent RATIFIED (set at this first fold, per L137 step 2 — binds every later abortion node):** 13-key node order with a top-level `layer` key AFTER `strand` — `id / anchor / tier / strand / layer / role / mechanism / move_tags / objection / rebuttal / register_compliance / tier_justification / rwe_refs`. `register_compliance` abortion shape `{optionality_only, autonomy_frame, asymmetry_independent, firewall_clean}`. The validator enforces `layer ∈ {1,2}` (added to REQUIRED + an enum check + three new self-test fixtures) and a strand enum **seeded `{bodily-sovereignty}`** (grows as nodes land). **Layer-2 `register_compliance` semantics are DEFERRED** to the first Layer-2 node (authored LAST), per your handoff.
+
+**Gates GREEN:** prose_md5 ×3 MATCH over the BUILT corpus (short `30c1fcb9` / medium `0b80aa4d` / long `a2bd5dad`); cold-grade reproduced byte-exact (long 0.881765/A · medium 0.865099/B · short 0.843369/B; no boundary cells; A1/B0); validator `--self-test` `_overall_pass True` (synthetic incl. the 3 new layer fixtures + reseeded strand fixtures; live seed 0) + path-mode `PASS/0` (band-true); builder `--check` deterministic; combined.html `node --check` ×2 OK; mojibake U+FFFD 0.
+
+**EXPECT block — K173 verify-at-open (efilist HEAD = the operator K172 commit atop `52928c2`):**
+- `abortion/abortion_corpus_v0_1.json` `cda2bbc2`/17,329 — v0.1.0; 1 obj / 3 resp; tier3:1; strand bodily-sovereignty; layer 1; strands `["bodily-sovereignty"]`.
+- `abortion/abortion_grading_ledger.json` `b52b0a2d`/6,625 — 1 grade; geomean-less; A1/B0.
+- `abortion/abortion-objections-index.json` `afdb8eb2`/1,323 — 1 entry; surface_route `abortion/combined`.
+- `abortion/abortion_validator_v0_1.py` `3feaf898`/27,880 — `layer ∈ {1,2}`; `STRAND_VALUES = {"bodily-sovereignty"}`.
+- `abortion/build_abortion_index.py` `34e8da93`/7,080.
+- `abortion/abortion_rwe_schema_v0_1.json` `5561fdf1`/6,998 — skeleton, empty plumbing.
+- `abortion/combined.html` `bcc7225f`/24,340 — render-from-data; About-lede v0.1.0; K156 reading-modes + collapsible cards inherited.
+- charter `f99bf4b1` HELD; flagship `5f068153` HELD.
+
+**Overridable (Cowork-authored, your call — one-line edits):** corpus `status` + ledger `status` (v0.1.0 genesis forward-writes) + combined.html About-lede (states the two-layer L137 register + v0.1.0 + the 1-node roster; appraisal-silent — "In Layer 1 it is not a claim that anyone *should* choose abortion; it is a defense of the option"). Title set `"Abortion (optionality)"` (parallels trans; revise when Layer 2 lands).
+
+**Strand-enum-grows note:** the validator's `STRAND_VALUES` is seeded `{bodily-sovereignty}`. Your K173 personhood-independence foundation provisionally uses strand `fetal-status` — at that fold Cowork extends the enum (+ its self-test fixtures) exactly as the harm/consent strands grew in transgenderism. Flag the enum addition in the K173 handoff if the working strand differs.
+
+**Next (your K173 — the relay is staged at `D:\K173_abortion_foundation_relay.md`):** author the **personhood-independence foundation** `the-right-does-not-turn-on-fetal-personhood` (Layer 1, **no-defeat**, S1-analog). Distinct work = *independence* (the right's validity does not depend on the personhood answer either way), NOT the spine's arguendo-hypothetical (precondition gate 5). Expect **T4/B-cap** primitive-conceder (concede the metaphysics is unsettled/not-settled-by-the-suite, stake the right on its independence) — but cold-grade on merit; if the non-conscriptability result fully dissolves the personhood hinge without conceding indeterminacy, it could land T3/A. State the conceded primitive + `b_cap_watch`. The spine's personhood-as-trump retreat absorbs there.
