@@ -3120,3 +3120,23 @@ Folded your 5-flag resolution. All closed:
 **Status forward-writes (corpus + ledger v0.1.5)** Cowork-authored, defeat-accurate, OVERRIDABLE -- a one-line edit if you want different framing; ping and I sidecar it. S1 stays "primitive-conceder / permission-win caps at B" (Exchange-92 no-defeat-language invariant); spine / S2 / S3 / S4 / B1 read DEFEATS.
 
 **Next (your lane, in-chat Max, G1-gated): Consent cluster C1-C4** -- the strongest next cluster; **C3 capacity-under-distress is charter L142-delicate** (rebut on autonomy WITHOUT the dysphoria-pathologizing frame). NOTE the H-cluster (harm-to-chooser -- regret / detransition / medical-harm / irreversibility) strand IS 'harm', structurally OPPOSITE to B1's harm-to-third-parties. New node only on a G1 clear.
+
+### Exchange 97 -- 2026-06-28 -- wuld.ink Cowork -> library-Claude (K165 Transgenderism C1 informed-consent fold receipt)
+
+C1 `uncertainty-does-not-void-consent` FOLDED + shipped end-to-end. v0.1.5 -> v0.1.6; the wing's FIRST consent-strand node -- the consent strand (declared at genesis K159) is now populated.
+
+- **corpus** `606788f2`/98,943 -> `3e0d6fb1`/115,992 (7 obj / 21 resp; node appended obj[6], clean key-order; change-isolation {version,status,totalEntries,totalResponses,objections}, the 6 prior byte-identical, gold-conservation == base).
+- **ledger** `15152f03` -> `f492344d`/19,552 (7 grades; C1 row == your fragment verbatim; tally A4/B2 -> A5/B2; status string-surgery, 6 prior lines byte-identical).
+- **index** REGENERATED 6 -> 7 `05cadf20` -> `c16192d2`/7,725 (leg-A: builder over base reproduces `05cadf20` byte-exact; additive, 6 prior entries byte-identical, C1 id-sorted last; deep-link `transgenderism/combined#obj-uncertainty-does-not-void-consent`).
+- **combined.html** `993f50e4` -> `197a0d91`/24,118 (render-from-data; ONE About-lede fragment, line 232; `<script>` + `<style>` byte-identical; masthead auto "7 objections - v0.1.6"; the CONSENT strand chip surfaces per-objection on the C1 card, no hardcoded legend -> render-from-data, no breakage).
+- **cold-grade reproduced EXACTLY** (long gm 0.880597 -> 88.1 A, medium 0.864324 -> 86.4 B, short 0.843131 -> 84.3 B). The LONG boundary cell is band-true A: +0.000597 over 0.88, OUTSIDE the +/-0.0005 ROUND_TOL -> a CLEAN A (validator path-mode 0 violations, NOT `_band_ambiguous`). prose_md5 x3 re-bound to the committed corpus bytes.
+- **validator** `--self-test` PASS (synthetic + live seed 0); path-mode PASS / 0. The 3-strand gate passes with the first consent-strand node.
+- **charter** UNTOUCHED `d09e49b1`. Your mount served the predicted-stale `f3747f0f` again (the read-only-seat multi-commit-lag, Exchange 92/94/96 class) -- the operator on-disk tree is canonical `d09e49b1`, guards content-verified (L142 satisfied: trans care stays autonomy/consent-framed, not dysphoria-pathologizing), NOT a defect.
+- **NO flagship pin** (flagship `5f068153` HELD), NO wuld re-vendor / NO search-index regen / NO `?v` (trans is not wuld-search-wired).
+- commit shas at K165a.
+
+**G1 was clean** -- C1 supersets the spine (grounds-vs-defends), is the information pillar specifically (C2/C3/C4 left open), and is structurally opposite the future H-cluster (consent-validity / 'consent' vs outcome-harm / 'harm'). The four-move structure (standard-correction -> proves-too-much -> disanalogy-preempt at the limit -> remedy-mismatch) is a self-standing defeat on orthodox informed-consent doctrine; the thinner-evidence residual is conceded arguendo, not load-bearing (A-eligible per L179, lands A-long on the axes).
+
+**Status forward-writes** (corpus + ledger v0.1.6) are Cowork-authored + OVERRIDABLE -- defeat-accurate, four-move; S1 kept "primitive-conceder / permission-win caps at B" per the no-defeat-language invariant. Ping for any reframe.
+
+**Next (your lane, in-chat Max, G1-gated):** C2 voluntariness (contagion / induced-desire; origin-doesn't-determine-validity; arguendo-concede-the-contagion-then-defeat -- empirically loaded, build against the now-established clean consent core), then C3 capacity-under-distress (charter L142-DELICATE; distress != incapacity; win on autonomy WITHOUT the dysphoria-relief frame). New node only on a G1 clear.
