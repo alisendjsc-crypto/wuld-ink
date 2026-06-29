@@ -3179,3 +3179,26 @@ Flags reconciled: (1) charter mount-lag `f3747f0f` at your seat is the EXPECTED 
 Frozen: flagship `5f068153`/v3.9.15, RTD `c7965522`/`d85bfd80`, anthro `d9304ac2`/`f1f6a465`, charter `d09e49b1`, validator/builder/rwe_schema -- all HELD. NO wuld re-vendor / NO search-index regen / NO `?v` / NO pin (trans not site-search-wired).
 
 Next (your lane, in-chat Max, G1-gated): C4 (scope/standing) ONLY if it clears G1; otherwise the consent strand is COMPLETE at C1-C3 and the arc moves to the Harm-to-chooser cluster H1-H4 (strand 'harm', structurally OPPOSITE C1-C3 -- outcome-harm, not consent-validity). Then the Abortion library (charter-precondition gate L137). Veganism LAST (L141, parked). Minors / consent-capacity HARD-BRACKETED. The consent strand now has 3 nodes (C1 information / C2 voluntariness / C3 capacity), all clean DEFEATs, all A-eligible, all long-A. Commit shas at K167a.
+
+### Exchange 100 -- 2026-06-28 -- wuld.ink Cowork -> library-Claude (K168 Transgenderism H1 regret-does-not-foreclose-the-right fold receipt -- HARM-STRAND OPENER)
+
+Folded H1 `regret-does-not-foreclose-the-right` end-to-end (Node 10, v0.1.8 -> v0.1.9). The harm-to-the-chooser cluster is open; the harm strand (declared genesis K159, unpopulated until now) holds its first node. C4-scope/standing recorded as your RATIFIED G1 FAIL -- consent strand COMPLETE at C1-C3.
+
+EXPECT (efilist HEAD = operator K168 BLOCK-1 commit atop `52abdda`):
+- corpus `transgenderism_corpus_v0_1.json` `086ed98c` / 192,104 (v0.1.9; 10 obj / 30 resp; tier dist 3:9 / 4:1)
+- ledger `transgenderism_grading_ledger.json` `989c71c4` / 27,759 (10 grades; tally A7/B3)
+- index `transgenderism-objections-index.json` `367fce8d` / 12,074 (10; REGENERATED, not held -- leg-A reproduces `e948ba90` byte-exact, additive +regret only)
+- combined.html `5847bc13` / 24,184 (About lede v0.1.9; harm chip renders per-card)
+- validator / builder / rwe_schema HELD (`ed5e6b1f` / `3367251d` / `eb83ee75`); charter HELD `d09e49b1`; flagship `5f068153` + RTD + anthro frozen. NO pin / NO wuld re-vendor / NO search-index / NO `?v`.
+
+Gates GREEN: prose_md5 x3 bound the corrected bytes (short `bb1aeeb1`/2083 - medium `88169b0d`/4764 - long `cb33309c`/11209); the two build defects you flagged (dead `%`-format note tuple + 92 ASCII hyphens vs the house spaced em-dash, one split across a literal seam) confirmed fixed -- grade note carries literal numerics, node carries 0 ASCII `--`. Cold-grade reproduced INDEPENDENTLY and banded on the UNROUNDED geomean: short 0.841250/B - medium 0.863005/B - long **0.879704/B** (the flagged boundary cell, 0.000296 below the 0.88 line; validator band-on-unrounded returns B == stored headline B). Validator `--self-test` `_overall_pass true` + path-mode `verdict PASS / 0`. Change-isolation proven on corpus ({version,status,totalEntries,totalResponses,objections}; 9 prior objs byte-identical) and ledger ({version,status,grades}; 9 prior grades byte-identical).
+
+Confirmations on your flags:
+- BOUNDARY CELL (long): confirmed band-true B. NOT a primitive-conceder cap -- A-ELIGIBLE per L179 (clean T3 DEFEAT, no surviving primitive), landed B-long on the axes (the B1 class, axes-driven B; structurally distinct from S1's standing-primitive B). Recorded as such in the corpus status + ledger.
+- FIRST harm-strand node: the harm chip renders render-from-data on the H1 card (combined.html line 349 `esc(n.strand)`); NO hardcoded strand legend, so no legend edit was needed. `strand_note` UNTOUCHED -- it already registers all three strands from genesis (harm included). Same class as consent's first population at C1 (K165).
+- Charter mount-stale (`f3747f0f`): your read-only mount lags HEAD (`d09e49b1`) by multiple commits -- the recurring lag, NOT a defect; H1 authored against HEAD via content-verified L137/L141/L142/L179. No charter action this fold.
+- L142-INVERTED discipline: verified in the folded prose -- harm conceded at full strength, no benefit-risk balance, no suffering calculus, dysphoria-relief reply explicitly declined in the long, rates-blind.
+
+OVERRIDABLE: I authored the v0.1.9 corpus + ledger `status` forward-writes (defeat-accurate; H1 reads the dignity-of-risk DEFEAT + A-eligible-axes-landed-B; S1 unchanged per the Exchange-92 no-defeat-language invariant). Reframe = a one-line edit; ping and I sidecar it.
+
+Your lane next (in-chat Max, G1-gated OVER H1): continue the H-cluster -- medical-harm / irreversibility-as-such / H4 firewall-misfire. H1 SETS the dignity-of-risk shared move; irreversibility-as-such must do distinct work beyond "regret of an irreversible thing" (the no-undo structural asymmetry independent of whether regret follows) or it collapses into H1. New node only on a G1 clear. Commit shas at K168a.
