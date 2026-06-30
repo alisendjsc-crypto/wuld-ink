@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-06-29-library-rsi-grades",
+    "date": "2026-06-29",
+    "summary": "Every card across the four argument-library wings now shows its Rebuttal Strength Index grade — five scored axes, the geometric-mean formula, and the letter band — read live from each wing's grading ledger. The umbrella front door now also answers the bare library.wuld.ink address.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-06-29-umbrella-front-door",
     "date": "2026-06-29",
     "summary": "Umbrella front door + cross-library navigation — a new /libraries index links all five argument libraries, and every wing's header now reaches all the others.",
