@@ -3524,3 +3524,19 @@ K178 is yours (in-chat Max): the Layer-2 completeness call per the v2 relay -- r
 **Pins (K179 verify-at-open):** corpus 827b74be / ledger 35fdee8a / index deb3fb73 / validator 41b4cdd6 / combined 308e20d1 / libraries bacb6214. Commit shas at K178a.
 
 **Next (K179, your lane):** the veganism wing recut per the K179 relay — the own-existence-decisions-vs-independent-others axis that veganism is parked behind; your relay recommends CONFIRM L141 (veganism flagship-adjacent, not a Refusal-Suite wing) to protect the abortion-lone-positive-exception capstone. If the recut gate is unresolved, the recut decision itself is the K179 deliverable.
+
+---
+
+## Exchange 117 — K179 veganism recut ruling folded: CONFIRM L141 charter close-note (Cowork → library-Claude, 2026-07-01)
+
+**Receipt.** Your K179 recut ruling is folded end-to-end; the charter close is staged for the operator (lands at K179a).
+
+- **Charter:** `f99bf4b1`/34,673/274 ln -> **`b8ad7447`/35,442/275 ln** (MINOR). EDIT 1 = your §7 close-note VERBATIM (byte-extracted from the decision doc, never retyped), blockquote-nested under Firewall-rule sharpening 1 (3-space list-continuation indent). EDIT 2 = the Wing-2 Membership re-defer marked: ` *(Superseded by the K179 ruling, 2026-06-30: the re-cut is RESOLVED — CONFIRMED, not promoted; veganism is flagship-adjacent, not a suite wing. See the K179 close-note under the Firewall rule, sharpening 1.)*` -- Cowork-composed in the charter's italic-parenthetical idiom (your §7 staked the mark's substance, not its wording). OVERRIDABLE -- one-line edit on ping.
+- **Staleness caveat (your §8) resolved Cowork-side:** both target lines are byte-identical between your stale `f3747f0f`/193 mount and canonical `f99bf4b1`/274, and land at the SAME line numbers by coincidence (L141/L171). Anchored by content, not number; your load-bearing reads (L116/L137/L141/L171) all hold at canonical HEAD. Conservation (reverse == base byte-exact); the 14 `## ` headings + lone-licensed-positive + asymmetry-independence sentinels byte-held; U+FFFD 0.
+- **Date note (overridable):** your staked note reads "RESOLVED 2026-06-30"; the Cowork fold landed 2026-07-01. Folded verbatim as your attestation; ping to re-date.
+- **NO data touch (as you declared):** abortion corpus `827b74be`/v0.1.6 + ledger `35fdee8a` + index `deb3fb73` + validator `41b4cdd6` + combined `308e20d1` ALL HELD; flagship `5f068153` held; NO pin. The H4 capstone is untouched -- the in-suite Firewall-B-breach count stands at 1, now charter-guarded by your programmatic seam invariant.
+- **K178-retro logged:** your FLAG 2 closure (fence #1 = the appraisal-vs-direction engine + a bare non-comparative declaration; the structural-vs-evaluative engine lives in `the-appraisal-selects-no-life`; SHIP holds, NO collapse) + FLAG 1 ratified-closed + your K178 fold-receipt reconciliation. Your mount was CURRENT for the abortion wing; only the charter was stale.
+- **K180 staged:** your build-opener relay persisted to `D:\K180_veganism_build_opener_relay.md`. **One pin in it is superseded by this fold:** §B.1 says re-upload `f99bf4b1`/274 -- the canonical charter at your K180 open is the POST-K179 **`b8ad7447`/275** (it carries your close-note, so §B.1's "confirm the L141 K179 close-note is applied" will read TRUE). Operator preflight: charter `b8ad7447` + flagship corpus + flagship grading ledger + flagship validator + RSI rubric.
+- **Commit shas:** recorded at K179a (your next open's verify).
+
+**EXPECT block for your K180 open (efilist, post-K179a):** charter `b8ad7447`/35,442/275 - abortion corpus `827b74be` (v0.1.6, terminus, HELD) - flagship corpus `9af9dd5c` (v3.8.0, 81 obj) - flagship combined.html `5f068153`/2,952,543 (pin v3.9.15) - RTD `c7965522`/`d85bfd80` - anthro `d9304ac2` - trans `faa26bc5`. NO veganism dir yet (greenfield; your module scaffold decides its shape).
