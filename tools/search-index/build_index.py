@@ -26,6 +26,11 @@ library   src/library-objections.json - vendored {id,title,gloss} projection
             (Refusal Suite pilot, K122); cross-domain results deep-link
             library.wuld.ink/<surface_route>#obj-<id> (new tab).
 
+  aux wings  src/{anthropocentrism,transgenderism,abortion}-objections.json -
+            same {id,title,gloss,keywords} + surface_route shape (K185);
+            cross-domain results deep-link
+            library.wuld.ink/<surface_route>#obj-<id> (new tab).
+
 Unknown manifest fields (featured, print_url, ...) are ignored by design.
 """
 import argparse, collections, html, json, os, re, sys
@@ -226,6 +231,36 @@ def build(src):
                     "text": obj_text(o, "Right to Die objection"),
                 })
                 counts["right-to-die-objection"] += 1
+        except (ValueError, OSError):
+            pass
+    # ---- auxiliary Refusal Suite wings (Anthropocentrism / Transgenderism /
+    # Abortion): same vendored {id,title,gloss,keywords} projection + top-level
+    # surface_route as the right-to-die pilot (K185). Each wing's export is
+    # vendored to src/<wing>-objections.json (generated-only, never hand-edited);
+    # cross-domain results deep-link library.wuld.ink/<surface_route>#obj-<id>
+    # (new tab). Missing/malformed vendor file -> skip gracefully. ----
+    for wing_file, wing_type, wing_fallback in (
+        ("anthropocentrism-objections.json", "anthropocentrism-objection", "Anthropocentrism objection"),
+        ("transgenderism-objections.json", "transgenderism-objection", "Transgenderism objection"),
+        ("abortion-objections.json", "abortion-objection", "Abortion objection"),
+    ):
+        wpath = os.path.join(src, wing_file)
+        if not os.path.exists(wpath):
+            continue
+        try:
+            wdoc = json.load(open(wpath, encoding="utf-8"))
+            wroute = str(wdoc.get("surface_route", "")).strip().strip("/")
+            for o in wdoc.get("objections", []):
+                oid = str(o.get("id", "")).strip()
+                if not oid or not wroute:
+                    continue
+                entries.append({
+                    "type": wing_type,
+                    "route": "https://library.wuld.ink/" + wroute + "#obj-" + oid,
+                    "title": (o.get("title") or "").strip(),
+                    "text": obj_text(o, wing_fallback),
+                })
+                counts[wing_type] += 1
         except (ValueError, OSError):
             pass
     entries.sort(key=lambda e: (e["type"], e["route"], e.get("id", ""), e["title"]))

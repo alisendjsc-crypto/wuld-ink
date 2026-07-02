@@ -47,6 +47,9 @@
     { key: "heading", label: "Page sections" },
     { key: "library-objection", label: "Library" },
     { key: "right-to-die-objection", label: "Right to Die" },
+    { key: "abortion-objection", label: "Abortion" },
+    { key: "transgenderism-objection", label: "Transgenderism" },
+    { key: "anthropocentrism-objection", label: "Anthropocentrism" },
     { key: "void", label: "Void Engine categories" },
     { key: "plate", label: "Gallery plates" }
   ];
@@ -121,7 +124,7 @@
        /gallery/<room>/#plate-<id> primitive (lightbox / theater /
        consent surfacing all handled gallery-side). */
     a.href = e.type === "plate" ? e.route + "#plate-" + e.id : e.route;
-    if (e.type === "library-objection" || e.type === "right-to-die-objection") { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    if (/-objection$/.test(e.type)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
     if (e.type === "plate") {
       a.textContent = "Plate " + e.num + (e.title ? " — " + e.title : "");
       var meta = el("p", "ss-meta", e.room + (e.series ? " · " + e.series : "") + " · " + e.id);

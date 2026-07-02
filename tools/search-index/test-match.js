@@ -133,5 +133,44 @@ var kFos = api.runQuery(E, "foster");
 t("K129 lib 'foster' -> adoption-instead", kFos.results.some(function (x) { return x.type === "library-objection" && x.route.indexOf("#obj-adoption-instead") !== -1; }));
 var kAi = api.runQuery(E, "AI dangerous");
 t("K129 lib 'AI dangerous' -> ai-fear", kAi.results.some(function (x) { return x.type === "library-objection" && x.route.indexOf("#obj-ai-fear") !== -1; }));
+// K185: aux-wing objection coverage (Anthropocentrism / Transgenderism /
+// Abortion) - vendored <wing>-objections.json projections wired into search,
+// mirroring the K113 Library + K122 Right-to-Die pattern. Cross-domain results
+// deep-link library.wuld.ink/<wing>/combined#obj-<id> (new tab). The content
+// legs FAIL on the pre-wiring index (zero wing entries) -> non-tautological.
+var keysW = api.SECTIONS.map(function (s) { return s.key; });
+// -- Anthropocentrism --
+var wA = api.runQuery(E, "misanthropy");
+t("K185 anthro 'misanthropy' present", wA.results.some(function (x) { return x.type === "anthropocentrism-objection" && x.route === "https://library.wuld.ink/anthropocentrism/combined#obj-dissent-is-misanthropy"; }));
+t("K185 anthro routes are anthropocentrism combined anchors", wA.results.filter(function (x) { return x.type === "anthropocentrism-objection"; }).length > 0 && wA.results.filter(function (x) { return x.type === "anthropocentrism-objection"; }).every(function (x) { return x.route.indexOf("https://library.wuld.ink/anthropocentrism/combined#obj-") === 0; }));
+t("K185 anthro after Right to Die", keysW.indexOf("anthropocentrism-objection") > keysW.indexOf("right-to-die-objection"));
+t("K185 anthro before Void", keysW.indexOf("anthropocentrism-objection") < keysW.indexOf("void"));
+t("K185 anthro label", (api.SECTIONS.filter(function (s) { return s.key === "anthropocentrism-objection"; })[0] || {}).label === "Anthropocentrism");
+t("K185 anthro section renders", api.sectionize(wA.results).some(function (s) { return s.key === "anthropocentrism-objection"; }));
+var wAk = api.runQuery(E, "hatred of humanity");
+t("K185 anthro keyword-only 'hatred of humanity' -> dissent-is-misanthropy", wAk.results.some(function (x) { return x.type === "anthropocentrism-objection" && x.route.indexOf("#obj-dissent-is-misanthropy") !== -1; }));
+// -- Transgenderism --
+var wT = api.runQuery(E, "informed consent");
+t("K185 trans 'informed consent' present", wT.results.some(function (x) { return x.type === "transgenderism-objection" && x.route === "https://library.wuld.ink/transgenderism/combined#obj-uncertainty-does-not-void-consent"; }));
+t("K185 trans routes are transgenderism combined anchors", wT.results.filter(function (x) { return x.type === "transgenderism-objection"; }).length > 0 && wT.results.filter(function (x) { return x.type === "transgenderism-objection"; }).every(function (x) { return x.route.indexOf("https://library.wuld.ink/transgenderism/combined#obj-") === 0; }));
+t("K185 trans after Right to Die", keysW.indexOf("transgenderism-objection") > keysW.indexOf("right-to-die-objection"));
+t("K185 trans before Void", keysW.indexOf("transgenderism-objection") < keysW.indexOf("void"));
+t("K185 trans label", (api.SECTIONS.filter(function (s) { return s.key === "transgenderism-objection"; })[0] || {}).label === "Transgenderism");
+t("K185 trans section renders", api.sectionize(wT.results).some(function (s) { return s.key === "transgenderism-objection"; }));
+var wTk = api.runQuery(E, "self-regarding");
+t("K185 trans 'self-regarding' -> the-limiting-principle", wTk.results.some(function (x) { return x.type === "transgenderism-objection" && x.route.indexOf("#obj-the-limiting-principle-is-the-self-regarding-line") !== -1; }));
+// -- Abortion --
+var wB = api.runQuery(E, "marquis");
+t("K185 abortion 'marquis' present", wB.results.some(function (x) { return x.type === "abortion-objection" && x.route === "https://library.wuld.ink/abortion/combined#obj-a-valuable-future-grounds-no-claim-on-the-body"; }));
+t("K185 abortion routes are abortion combined anchors", wB.results.filter(function (x) { return x.type === "abortion-objection"; }).length > 0 && wB.results.filter(function (x) { return x.type === "abortion-objection"; }).every(function (x) { return x.route.indexOf("https://library.wuld.ink/abortion/combined#obj-") === 0; }));
+t("K185 abortion after Right to Die", keysW.indexOf("abortion-objection") > keysW.indexOf("right-to-die-objection"));
+t("K185 abortion before Void", keysW.indexOf("abortion-objection") < keysW.indexOf("void"));
+t("K185 abortion label", (api.SECTIONS.filter(function (s) { return s.key === "abortion-objection"; })[0] || {}).label === "Abortion");
+t("K185 abortion section renders", api.sectionize(wB.results).some(function (s) { return s.key === "abortion-objection"; }));
+var wBk = api.runQuery(E, "eugenic");
+t("K185 abortion keyword-only 'eugenic' -> the-appraisal-selects-no-life", wBk.results.some(function (x) { return x.type === "abortion-objection" && x.route.indexOf("#obj-the-appraisal-selects-no-life") !== -1; }));
+// umbrella section order: Abortion < Transgenderism < Anthropocentrism (matches /libraries)
+t("K185 umbrella order abortion<transgenderism<anthropocentrism", keysW.indexOf("abortion-objection") < keysW.indexOf("transgenderism-objection") && keysW.indexOf("transgenderism-objection") < keysW.indexOf("anthropocentrism-objection"));
+t("K185 plates still last in SECTIONS", api.SECTIONS[api.SECTIONS.length - 1].key === "plate");
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);
