@@ -187,5 +187,18 @@ var wVk = api.runQuery(E, "speciesism");
 t("K186c veg keyword-only 'speciesism' -> no-one-to-wrong", wVk.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-no-one-to-wrong") !== -1; }));
 var wVk2 = api.runQuery(E, "crop deaths");
 t("K186c veg keyword-only 'crop deaths' -> hands-arent-clean", wVk2.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-hands-arent-clean") !== -1; }));
+// K186d: matcher recall pass - tokenize (AND-of-tokens; whole-phrase still ranks
+// first) + fuzzy fallback (edit-distance <=1, tokens >=4, fires only on empty
+// strict). The recall legs FAIL on the pre-K186d whole-phrase matcher -> non-tautological.
+var kdReord = api.runQuery(E, "farming humane");
+t("K186d token-reorder 'farming humane' -> humane-farming veg node", kdReord.results.some(function (x) { return x.type === "veganism-objection" && (x.route.indexOf("#obj-better-off-existing") !== -1 || x.route.indexOf("#obj-no-suffering-no-wrong") !== -1); }));
+var kdTrunc = api.runQuery(E, "human farming");
+t("K186d token-substring 'human farming' -> humane-farming veg node", kdTrunc.results.some(function (x) { return x.type === "veganism-objection" && (x.route.indexOf("#obj-better-off-existing") !== -1 || x.route.indexOf("#obj-no-suffering-no-wrong") !== -1); }));
+var kdFuzz = api.runQuery(E, "speciecism");
+t("K186d fuzzy 'speciecism' -> no-one-to-wrong", kdFuzz.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-no-one-to-wrong") !== -1; }));
+var kdCross = api.runQuery(E, "trans informed consent");
+t("K186d cross-word 'trans informed consent' -> uncertainty-does-not-void-consent", kdCross.results.some(function (x) { return x.type === "transgenderism-objection" && x.route.indexOf("#obj-uncertainty-does-not-void-consent") !== -1; }));
+var kdPrec = api.runQuery(E, "predation");
+t("K186d precision 'predation' veg count == 1 (no fuzzy over-fire)", kdPrec.results.filter(function (x) { return x.type === "veganism-objection"; }).length === 1);
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);

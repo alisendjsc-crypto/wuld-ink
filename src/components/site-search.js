@@ -34,11 +34,50 @@
       ? [e.id, e.num, e.series, e.room, e.title].join("|").toLowerCase()
       : [e.title, e.text, e.route].join("|").toLowerCase();
   }
-  function scoreEntry(e, ql) {
+  var STOP = { the:1, a:1, an:1, of:1, to:1, in:1, on:1, is:1, and:1, or:1, for:1, with:1, at:1, by:1, as:1, be:1, it:1 };
+  function tokenize(s) {
+    var raw = s.toLowerCase().split(/[^a-z0-9]+/), out = [];
+    for (var i = 0; i < raw.length; i++) { var w = raw[i]; if (w && w.length >= 2 && !STOP[w]) out.push(w); }
+    return out;
+  }
+  function within1(a, b) {
+    if (a === b) return true;
+    var la = a.length, lb = b.length;
+    if (Math.abs(la - lb) > 1) return false;
+    if (la === lb) { var d = 0, i; for (i = 0; i < la; i++) { if (a.charAt(i) !== b.charAt(i) && ++d > 1) return false; } return true; }
+    var sa = la < lb ? a : b, sb = la < lb ? b : a, i2 = 0, j2 = 0, skips = 0;
+    while (i2 < sa.length && j2 < sb.length) { if (sa.charAt(i2) === sb.charAt(j2)) { i2++; j2++; } else { if (++skips > 1) return false; j2++; } }
+    return true;
+  }
+  function fuzzyHit(words, tok) {
+    for (var m = 0; m < words.length; m++) { if (words[m].length >= 3 && within1(tok, words[m])) return true; }
+    return false;
+  }
+  // K186d: whole-phrase substring ranks first (0-2); AND-of-tokens is the recall
+  // tier (3 title / 4 blob). A token counts as a substring of the field, or (fuzzy
+  // pass only, tokens >= 4 chars) within edit-distance 1 of a field word.
+  function scoreEntry(e, ql, toks, fuzzy) {
     var t = (e.title || "").toLowerCase();
     if (t === ql) return 0;
     if (t.indexOf(ql) !== -1) return 1;
-    if (blobOf(e).indexOf(ql) !== -1) return 2;
+    var b = blobOf(e);
+    if (b.indexOf(ql) !== -1) return 2;
+    if (!toks || !toks.length) return -1;
+    var tw = null, bw = null, k, tk, allT = true, allB = true;
+    for (k = 0; k < toks.length; k++) {
+      tk = toks[k];
+      if (allT && t.indexOf(tk) === -1) {
+        if (fuzzy && tk.length >= 4) { if (tw === null) tw = t.split(/[^a-z0-9]+/); if (!fuzzyHit(tw, tk)) allT = false; }
+        else allT = false;
+      }
+      if (allB && b.indexOf(tk) === -1) {
+        if (fuzzy && tk.length >= 4) { if (bw === null) bw = b.split(/[^a-z0-9]+/); if (!fuzzyHit(bw, tk)) allB = false; }
+        else allB = false;
+      }
+      if (!allT && !allB) break;
+    }
+    if (allT) return 3;
+    if (allB) return 4;
     return -1;
   }
   var SECTIONS = [
@@ -70,10 +109,16 @@
       return { mode: "plate", n: n, results: hits };
     }
     if (q.length < 2) return { mode: "hint" };
-    var ql = q.toLowerCase(), scored = [];
+    var ql = q.toLowerCase(), toks = tokenize(q), scored = [];
     for (var j = 0; j < entries.length; j++) {
-      var s = scoreEntry(entries[j], ql);
+      var s = scoreEntry(entries[j], ql, toks, false);
       if (s >= 0) scored.push({ e: entries[j], s: s, i: j });
+    }
+    if (!scored.length && toks.length) {
+      for (var jf = 0; jf < entries.length; jf++) {
+        var sf = scoreEntry(entries[jf], ql, toks, true);
+        if (sf >= 0) scored.push({ e: entries[jf], s: sf, i: jf });
+      }
     }
     scored.sort(function (a, b) { return a.s - b.s || a.i - b.i; });
     var out = [];

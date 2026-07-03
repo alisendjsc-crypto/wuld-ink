@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-07-02-search-typo-tolerance",
+    "date": "2026-07-02",
+    "summary": "Site search is more forgiving — it now matches your words in any order and shrugs off small typos and misspellings (a query like “farming humane”, or a mistyped “speciecism”, still finds the right rebuttal), across every library and section. Exact phrases still rank first.",
+    "sections": [
+      "/search/"
+    ]
+  },
+  {
     "id": "2026-07-02-veganism-searchable",
     "date": "2026-07-02",
     "summary": "The veganism argument library is now live and searchable — a reader surface at library.wuld.ink/veganism/combined lays out six rebuttals to the case for eating animals, each with its Rebuttal Strength Index grade, and wuld.ink search now surfaces them: a query like “humane farming”, “predation”, or “speciesism” returns the matching rebuttal.",

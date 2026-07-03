@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Jul 2026 01:37:34 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 02:15:43 +0000</lastBuildDate>
+    <item>
+      <title>Site search is more forgiving — it now matches your words in any order and shrugs off small typos and misspellings (a query like “farming humane”, or a mistyped “speciecism”, still finds the right rebuttal), across every library and section. Exact phrases still rank first.</title>
+      <link>https://wuld.ink/changelog/#2026-07-02-search-typo-tolerance</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-02-search-typo-tolerance</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Site search is more forgiving — it now matches your words in any order and shrugs off small typos and misspellings (a query like “farming humane”, or a mistyped “speciecism”, still finds the right rebuttal), across every library and section. Exact phrases still rank first. (Sections: /search/)</description>
+    </item>
     <item>
       <title>The veganism argument library is now live and searchable — a reader surface at library.wuld.ink/veganism/combined lays out six rebuttals to the case for eating animals, each with its Rebuttal Strength Index grade, and wuld.ink search now surfaces them: a query like “humane farming”, “predation”, or “speciesism” returns the matching rebuttal.</title>
       <link>https://wuld.ink/changelog/#2026-07-02-veganism-searchable</link>
