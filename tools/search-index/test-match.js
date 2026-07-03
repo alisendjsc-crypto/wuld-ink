@@ -210,5 +210,14 @@ var wAlias1 = api.runQuery(E, "plant based");
 t("K187 free-ride 'plant based' -> no-one-to-wrong", wAlias1.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-no-one-to-wrong") !== -1; }));
 var wAlias2 = api.runQuery(E, "animal rights");
 t("K187 free-ride 'animal rights' -> no-one-to-wrong", wAlias2.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-no-one-to-wrong") !== -1; }));
+// K188: node 8 plants-feel-pain (sentience-parity). The node legs FAIL on the
+// pre-K188 index (896 entries, no plants-feel-pain) -> non-tautological.
+var wPfp = api.runQuery(E, "plants feel pain");
+t("K188 veg 'plants feel pain' present", wPfp.results.some(function (x) { return x.type === "veganism-objection" && x.route === "https://library.wuld.ink/veganism/combined#obj-plants-feel-pain"; }));
+t("K188 veg plants-feel-pain route shape", wPfp.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-plants-feel-pain") !== -1; }) && wPfp.results.filter(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-plants-feel-pain") !== -1; }).every(function (x) { return x.route === "https://library.wuld.ink/veganism/combined#obj-plants-feel-pain"; }));
+var wPfp2 = api.runQuery(E, "plant sentience");
+t("K188 veg keyword 'plant sentience' -> plants-feel-pain", wPfp2.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-plants-feel-pain") !== -1; }));
+var wPfp3 = api.runQuery(E, "what about plants");
+t("K188 veg 'what about plants' -> plants-feel-pain", wPfp3.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-plants-feel-pain") !== -1; }));
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);
