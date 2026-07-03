@@ -200,5 +200,15 @@ var kdCross = api.runQuery(E, "trans informed consent");
 t("K186d cross-word 'trans informed consent' -> uncertainty-does-not-void-consent", kdCross.results.some(function (x) { return x.type === "transgenderism-objection" && x.route.indexOf("#obj-uncertainty-does-not-void-consent") !== -1; }));
 var kdPrec = api.runQuery(E, "predation");
 t("K186d precision 'predation' veg count == 1 (no fuzzy over-fire)", kdPrec.results.filter(function (x) { return x.type === "veganism-objection"; }).length === 1);
+// K187: node 7 makes-no-difference (causal-inefficacy) + the free-ride aliases
+// (plant based / animal rights -> no-one-to-wrong). The node leg + the alias
+// legs FAIL on the pre-K187 vendor (fa6e578d, 6 entries, no aliases) -> non-tautological.
+var wMnd = api.runQuery(E, "makes no difference");
+t("K187 veg 'makes no difference' present", wMnd.results.some(function (x) { return x.type === "veganism-objection" && x.route === "https://library.wuld.ink/veganism/combined#obj-makes-no-difference"; }));
+t("K187 veg makes-no-difference route shape", wMnd.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-makes-no-difference") !== -1; }) && wMnd.results.filter(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-makes-no-difference") !== -1; }).every(function (x) { return x.route === "https://library.wuld.ink/veganism/combined#obj-makes-no-difference"; }));
+var wAlias1 = api.runQuery(E, "plant based");
+t("K187 free-ride 'plant based' -> no-one-to-wrong", wAlias1.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-no-one-to-wrong") !== -1; }));
+var wAlias2 = api.runQuery(E, "animal rights");
+t("K187 free-ride 'animal rights' -> no-one-to-wrong", wAlias2.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-no-one-to-wrong") !== -1; }));
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);
