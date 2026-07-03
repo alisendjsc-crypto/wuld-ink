@@ -50,6 +50,7 @@
     { key: "abortion-objection", label: "Abortion" },
     { key: "transgenderism-objection", label: "Transgenderism" },
     { key: "anthropocentrism-objection", label: "Anthropocentrism" },
+    { key: "veganism-objection", label: "Veganism" },
     { key: "void", label: "Void Engine categories" },
     { key: "plate", label: "Gallery plates" }
   ];

@@ -243,6 +243,7 @@ def build(src):
         ("anthropocentrism-objections.json", "anthropocentrism-objection", "Anthropocentrism objection"),
         ("transgenderism-objections.json", "transgenderism-objection", "Transgenderism objection"),
         ("abortion-objections.json", "abortion-objection", "Abortion objection"),
+        ("veganism-objections.json", "veganism-objection", "Veganism objection"),
     ):
         wpath = os.path.join(src, wing_file)
         if not os.path.exists(wpath):

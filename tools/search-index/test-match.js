@@ -172,5 +172,20 @@ t("K185 abortion keyword-only 'eugenic' -> the-appraisal-selects-no-life", wBk.r
 // umbrella section order: Abortion < Transgenderism < Anthropocentrism (matches /libraries)
 t("K185 umbrella order abortion<transgenderism<anthropocentrism", keysW.indexOf("abortion-objection") < keysW.indexOf("transgenderism-objection") && keysW.indexOf("transgenderism-objection") < keysW.indexOf("anthropocentrism-objection"));
 t("K185 plates still last in SECTIONS", api.SECTIONS[api.SECTIONS.length - 1].key === "plate");
+// K186c: Veganism module-objection coverage - vendored veganism-objections.json
+// projection wired into search, mirroring K185. Cross-domain results deep-link
+// library.wuld.ink/veganism/combined#obj-<id> (new tab). The content legs FAIL
+// on the pre-wiring index (zero veganism entries) -> non-tautological.
+var wV = api.runQuery(E, "predation");
+t("K186c veg 'predation' present", wV.results.some(function (x) { return x.type === "veganism-objection" && x.route === "https://library.wuld.ink/veganism/combined#obj-nature-needs-no-defense"; }));
+t("K186c veg routes are veganism combined anchors", wV.results.filter(function (x) { return x.type === "veganism-objection"; }).length > 0 && wV.results.filter(function (x) { return x.type === "veganism-objection"; }).every(function (x) { return x.route.indexOf("https://library.wuld.ink/veganism/combined#obj-") === 0; }));
+t("K186c veg after Anthropocentrism", keysW.indexOf("veganism-objection") > keysW.indexOf("anthropocentrism-objection"));
+t("K186c veg before Void", keysW.indexOf("veganism-objection") < keysW.indexOf("void"));
+t("K186c veg label", (api.SECTIONS.filter(function (s) { return s.key === "veganism-objection"; })[0] || {}).label === "Veganism");
+t("K186c veg section renders", api.sectionize(wV.results).some(function (s) { return s.key === "veganism-objection"; }));
+var wVk = api.runQuery(E, "speciesism");
+t("K186c veg keyword-only 'speciesism' -> no-one-to-wrong", wVk.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-no-one-to-wrong") !== -1; }));
+var wVk2 = api.runQuery(E, "crop deaths");
+t("K186c veg keyword-only 'crop deaths' -> hands-arent-clean", wVk2.results.some(function (x) { return x.type === "veganism-objection" && x.route.indexOf("#obj-hands-arent-clean") !== -1; }));
 console.log("PASS " + pass + " / " + (pass + fail));
 process.exit(fail ? 1 : 0);

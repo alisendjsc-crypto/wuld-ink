@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 30 Jun 2026 05:02:57 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 01:37:34 +0000</lastBuildDate>
+    <item>
+      <title>The veganism argument library is now live and searchable — a reader surface at library.wuld.ink/veganism/combined lays out six rebuttals to the case for eating animals, each with its Rebuttal Strength Index grade, and wuld.ink search now surfaces them: a query like “humane farming”, “predation”, or “speciesism” returns the matching rebuttal.</title>
+      <link>https://wuld.ink/changelog/#2026-07-02-veganism-searchable</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-02-veganism-searchable</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The veganism argument library is now live and searchable — a reader surface at library.wuld.ink/veganism/combined lays out six rebuttals to the case for eating animals, each with its Rebuttal Strength Index grade, and wuld.ink search now surfaces them: a query like “humane farming”, “predation”, or “speciesism” returns the matching rebuttal. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>Every card across the four argument-library wings now shows its Rebuttal Strength Index grade — five scored axes, the geometric-mean formula, and the letter band — read live from each wing's grading ledger. The umbrella front door now also answers the bare library.wuld.ink address.</title>
       <link>https://wuld.ink/changelog/#2026-06-29-library-rsi-grades</link>
