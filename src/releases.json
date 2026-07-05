@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-07-04-library-plain-scholar-toggle",
+    "date": "2026-07-04",
+    "summary": "Every argument-library wing now has a plain / scholar toggle — flip a wing into plain language and each rebuttal collapses to three beats: the objection in plain terms, the answer, and a one-line close (the depth controls and grading panel step aside). Scholar view is unchanged and remains the default. Live on Right to Die, Abortion, Transgenderism, Anthropocentrism, and Veganism.",
+    "sections": [
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-07-02-search-typo-tolerance",
     "date": "2026-07-02",
     "summary": "Site search is more forgiving — it now matches your words in any order and shrugs off small typos and misspellings (a query like “farming humane”, or a mistyped “speciecism”, still finds the right rebuttal), across every library and section. Exact phrases still rank first.",
