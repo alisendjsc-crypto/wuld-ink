@@ -1,0 +1,28 @@
+{
+  "release": "v3.9.16",
+  "canon": {
+    "version": "37.40",
+    "bump": "NONE (render-only vessel change; canon untouched)",
+    "invariant_block_changed": false,
+    "note": "K202: per-card plain-language reveal on the flagship /combined library view. Additive, reversible render-side splice (CSS block + a helper <script> + ONE guarded edit to render()'s detail-panel template). Reads /flagship-layman-index.json (K201, live) lazily on first [ plain ] click; scholar path byte-identical (conservation reverse==base). No corpus / objection-index / canon change -> forced search-index regen + objection re-vendor are proven no-ops."
+  },
+  "git": {
+    "baseline": "efilist K202 commit atop 73e00ab (K201 flagship-layman-index landing)",
+    "branches": ["main"],
+    "parity_required": false,
+    "note": "combined.html 5f068153->6dfeb5d4/2,955,840 (+3,297). Inserts: (1) CSS before </style>; (2) helper <script> before the OBJECTIONS data script (window.__plain / ensureLayman / togglePlain / __plainAffordance / __laymanBodyHTML, lazy fetch of /flagship-layman-index.json); (3) ONE anchored render() edit -- the detail-panel opening string gains a guarded show-plain class-toggle + ${__plainAffordance(obj.id)}. Reverse-splice==base byte-exact; render-sim 81/81 (3 beats, id-resolved, 0 miss); node --check clean; mojibake 0. index_v3_8_0.html archived at K162 -- untouched."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "6dfeb5d4bb625fbb061b1cf0432f48ca",
+      "size_bytes": 2955840,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "5f06815341b8f4ada1ea7830c0c65c72",
+    "new": "6dfeb5d4bb625fbb061b1cf0432f48ca",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K202: v3.9.16 pin move (5f068153->6dfeb5d4; flagship per-card plain-language reveal; render-only, canon v37.40 held)"
+}

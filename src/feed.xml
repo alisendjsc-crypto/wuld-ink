@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Jul 2026 04:33:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 08:30:45 +0000</lastBuildDate>
+    <item>
+      <title>Every argument-library wing now has a plain / scholar toggle — flip a wing into plain language and each rebuttal collapses to three beats: the objection in plain terms, the answer, and a one-line close (the depth controls and grading panel step aside). Scholar view is unchanged and remains the default. Live on Right to Die, Abortion, Transgenderism, Anthropocentrism, and Veganism.</title>
+      <link>https://wuld.ink/changelog/#2026-07-05-library-v3-9-16</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-05-library-v3-9-16</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Every argument-library wing now has a plain / scholar toggle — flip a wing into plain language and each rebuttal collapses to three beats: the objection in plain terms, the answer, and a one-line close (the depth controls and grading panel step aside). Scholar view is unchanged and remains the default. Live on Right to Die, Abortion, Transgenderism, Anthropocentrism, and Veganism. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>Every argument-library wing now has a plain / scholar toggle — flip a wing into plain language and each rebuttal collapses to three beats: the objection in plain terms, the answer, and a one-line close (the depth controls and grading panel step aside). Scholar view is unchanged and remains the default. Live on Right to Die, Abortion, Transgenderism, Anthropocentrism, and Veganism.</title>
       <link>https://wuld.ink/changelog/#2026-07-04-library-plain-scholar-toggle</link>
