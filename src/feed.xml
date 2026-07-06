@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 06 Jul 2026 00:25:28 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jul 2026 23:32:01 +0000</lastBuildDate>
+    <item>
+      <title>New help page for a connection error some visitors hit — an intermittent ERR_SSL_PROTOCOL_ERROR or “invalid response” warning that comes and goes. It’s a network-side Encrypted ClientHello (ECH) conflict, not the site: /troubleshooting/ has the roughly 30-second fix, by browser, with a mirror on library.wuld.ink for when the main domain won’t load. Linked from the footer and the contact page.</title>
+      <link>https://wuld.ink/changelog/#2026-07-06-connection-help-page</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-06-connection-help-page</guid>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 +0000</pubDate>
+      <description>New help page for a connection error some visitors hit — an intermittent ERR_SSL_PROTOCOL_ERROR or “invalid response” warning that comes and goes. It’s a network-side Encrypted ClientHello (ECH) conflict, not the site: /troubleshooting/ has the roughly 30-second fix, by browser, with a mirror on library.wuld.ink for when the main domain won’t load. Linked from the footer and the contact page. (Sections: /contact/)</description>
+    </item>
     <item>
       <title>The flagship library now has plain language too. Open any of its 81 objections and tap `plain` for a three-beat version — the objection in plain terms, the answer, and a one-line close; scholar view is unchanged and stays the default. That completes the rollout: every library surface — the flagship and all five wings — now offers a plain-language reading.</title>
       <link>https://wuld.ink/changelog/#2026-07-05-library-v3-9-16</link>

@@ -340,6 +340,12 @@
       </div>
     </section>
 
+    <section class="contact-section">
+      <p class="contact-section-eyebrow">03 &middot; Trouble loading</p>
+      <h2 class="contact-section-heading">Site won&rsquo;t load?</h2>
+      <p class="contact-section-lede">If wuld.ink throws an intermittent <code>ERR_SSL_PROTOCOL_ERROR</code> or a &ldquo;connection is not secure&rdquo; / &ldquo;invalid response&rdquo; warning &mdash; especially on and off, on pages that loaded a moment ago &mdash; it is almost always a network-side Encrypted ClientHello (ECH) conflict, not the site. The <a href="/troubleshooting/">troubleshooting page</a> has the roughly 30-second fix, by browser.</p>
+    </section>
+
     <!-- K27 disclaimer aside — surface-specific scope; full legal at /disclaimers/ -->
     <aside class="tab-disclaimer">
       <p class="tab-disclaimer-eyebrow">Disclaimer</p>
@@ -357,6 +363,7 @@
       <span class="footer-pending">
         <a class="library-link" href="https://library.wuld.ink/">library.wuld.ink</a> &mdash; v3.9.16 stable
         <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+        <a class="disclaimer-link" href="/troubleshooting/">Site won&rsquo;t load?</a>
       </span>
     </div>
     <div class="page-footer-inner footer-meta">
@@ -375,14 +382,4 @@
       <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
       <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
       <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
-      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
-      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
-      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
-      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
-    </div>
-    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
-  </div>
-
-  <script src="/components/ambient-player.js?v=K30"></script>
-</body>
-</html>
+      <input class="ambient-volume" id="ambient-volume" type="

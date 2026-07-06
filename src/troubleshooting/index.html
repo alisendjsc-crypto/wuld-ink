@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
+  <link rel="license" href="/LICENSE">
+  <title>If the site won&rsquo;t load &mdash; connection help &middot; wuld.ink</title>
+  <meta name="description" content="Fixing ERR_SSL_PROTOCOL_ERROR or 'invalid response' errors that appear intermittently on wuld.ink — an Encrypted ClientHello (ECH) network conflict, and the roughly 30-second fix, by browser.">
+
+  <link rel="canonical" href="https://wuld.ink/troubleshooting/">
+  <meta property="og:title" content="If the site won&rsquo;t load &mdash; connection help &middot; wuld.ink">
+  <meta property="og:description" content="Fixing intermittent ERR_SSL_PROTOCOL_ERROR / 'invalid response' errors — an Encrypted ClientHello (ECH) network conflict, and how to resolve it in about 30 seconds.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/troubleshooting/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="If the site won&rsquo;t load &mdash; connection help">
+  <meta name="twitter:description" content="Fixing intermittent SSL / connection errors — an Encrypted ClientHello (ECH) network conflict.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K43">
+  <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
+  <link rel="stylesheet" href="/components/footer.css?v=K43">
+
+  <style>
+    .ts-page {
+      max-width: var(--w-text);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+
+    .ts-section {
+      margin-block: var(--s-8);
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+    }
+
+    .ts-section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+
+    .ts-section-heading {
+      font-family: var(--font-headline);
+      font-size: var(--t-h2);
+      margin-block-end: var(--s-4);
+      color: var(--c-fg);
+    }
+
+    .ts-page p {
+      font-family: var(--font-body);
+      font-size: var(--t-base);
+      color: var(--c-fg-muted);
+      max-width: 44rem;
+      margin-block: var(--s-3);
+      line-height: 1.6;
+    }
+
+    .ts-page p strong { color: var(--c-fg); }
+
+    .ts-subhead {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg);
+      margin-block: var(--s-6) var(--s-2);
+    }
+
+    .ts-note {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      letter-spacing: var(--ls-wide);
+      margin-block: var(--s-4) var(--s-1);
+    }
+
+    .ts-page code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      background: var(--c-bg-soft, #141414);
+      padding: 0.08em 0.34em;
+      color: var(--c-fg);
+    }
+
+    .ts-lede code { color: var(--c-accent); }
+
+    .ts-pre {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      line-height: 1.55;
+      background: var(--c-bg-soft, #141414);
+      border-left: var(--bw-thick) solid var(--c-accent);
+      padding: var(--s-4);
+      overflow-x: auto;
+      margin-block: var(--s-2) var(--s-4);
+      color: var(--c-fg);
+      max-width: 44rem;
+    }
+
+    .ts-pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+
+    .ts-card {
+      padding: var(--s-5);
+      border: var(--bw-base) solid var(--c-border);
+      border-left: var(--bw-thick) solid var(--c-accent);
+      background: var(--c-bg);
+      margin-block: var(--s-5);
+      max-width: 44rem;
+    }
+
+    .ts-card-kicker {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block-end: var(--s-2);
+    }
+
+    .ts-page a { color: var(--c-accent); }
+
+    .ts-close {
+      margin-block: var(--s-8) 0;
+      padding-block-start: var(--s-6);
+      border-top: var(--bw-base) solid var(--c-border);
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      color: var(--c-fg-dim);
+      letter-spacing: var(--ls-wide);
+      line-height: 1.8;
+      max-width: 44rem;
+    }
+    .ts-close .accent { color: var(--c-accent); }
+  </style>
+</head>
+<body data-mode="dark">
+
+  <header class="site-header">
+    <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink"><img src="/assets/site-banner-1920.webp" srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w" sizes="100vw" width="1920" height="443" alt="W.U.L.D.: Incorporated" decoding="async" loading="eager"></a>
+    <div class="site-header-inner">
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+        <a href="/recommendations/">Recommendations</a>
+        <a href="/archive/">Archive</a>
+        <a href="/preface/">About</a>
+        <a href="/donations/">Support</a>
+        <a href="/contact/">Contact</a>
+        <a href="/chat/">Chat</a>
+        <a href="/search/">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="ts-page">
+
+    <header class="page-hero">
+      <p class="page-hero-eyebrow">Troubleshooting &middot; Connection error</p>
+      <h1 class="page-hero-title">If the site won&rsquo;t load</h1>
+      <p class="page-intro ts-lede">Seeing <em>&ldquo;this connection is not secure,&rdquo;</em> <em>&ldquo;&hellip;sent an invalid response,&rdquo;</em> or <code>ERR_SSL_PROTOCOL_ERROR</code> &mdash; especially on and off, at random, on a page that loaded fine a minute ago? It is almost certainly <strong>not this site.</strong> It is a modern privacy feature in your browser (<strong>Encrypted ClientHello</strong>) colliding with something on your network. Here is the roughly 30-second fix.</p>
+    </header>
+
+    <section class="ts-section">
+      <div class="ts-card">
+        <p class="ts-card-kicker">First &mdash; prove it&rsquo;s local</p>
+        <p>Open the site on your <strong>phone&rsquo;s mobile data</strong> (Wi-Fi off) or a different network. If it loads there but not on your usual Wi-Fi, the culprit is on <em>that</em> network &mdash; a security suite, VPN, or router &mdash; not the site. That confirms the fixes below will help.</p>
+      </div>
+    </section>
+
+    <section class="ts-section">
+      <p class="ts-section-eyebrow">01 &middot; The fix</p>
+      <h2 class="ts-section-heading">The fix, by browser</h2>
+
+      <p class="ts-subhead">Chrome &middot; Edge &middot; Brave &mdash; quick, no admin</p>
+      <p>Open your browser settings, search <strong>&ldquo;secure DNS,&rdquo;</strong> turn <strong>&ldquo;Use secure DNS&rdquo; off</strong>, then restart the browser. (Address bar: <code>chrome://settings/security</code> or <code>edge://settings/privacy</code>.) This stops the browser from attempting the encrypted handshake that&rsquo;s failing. Worth trying first because it needs no admin rights.</p>
+
+      <p class="ts-subhead">Chrome &middot; Edge &mdash; permanent, needs admin</p>
+      <p>The reliable fix disables just the fragile feature and keeps your DNS private. Run one block in an <strong>Administrator</strong> PowerShell, then fully restart the browser.</p>
+      <p class="ts-note">Microsoft Edge:</p>
+      <pre class="ts-pre"><code>New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Edge" -Force | Out-Null
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Edge" -Name "EncryptedClientHelloEnabled" -PropertyType DWord -Value 0 -Force | Out-Null</code></pre>
+      <p class="ts-note">Google Chrome &mdash; same, under the Chrome path:</p>
+      <pre class="ts-pre"><code>New-Item -Path "HKLM:\SOFTWARE\Policies\Google\Chrome" -Force | Out-Null
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Google\Chrome" -Name "EncryptedClientHelloEnabled" -PropertyType DWord -Value 0 -Force | Out-Null</code></pre>
+      <p>Reversible anytime: set the value to <code>1</code> or delete the key. Confirm it took at <code>edge://policy</code> or <code>chrome://policy</code>.</p>
+
+      <p class="ts-subhead">Firefox &mdash; no admin</p>
+      <p>Type <code>about:config</code> in the address bar, accept the warning, then set both of these to <strong>false</strong>:</p>
+      <pre class="ts-pre"><code>network.dns.echconfig.enabled        &rarr;  false
+network.dns.http3_echconfig.enabled  &rarr;  false</code></pre>
+    </section>
+
+    <section class="ts-section">
+      <p class="ts-section-eyebrow">02 &middot; Background</p>
+      <h2 class="ts-section-heading">Why this happens</h2>
+      <p>Encrypted ClientHello (ECH) encrypts the name of the site you&rsquo;re visiting so your network can&rsquo;t see it &mdash; a genuine privacy win. But some networks can&rsquo;t cope with it: an aggressive antivirus, a VPN, a corporate or school firewall, or certain routers will mangle the encrypted handshake, and the connection fails. It&rsquo;s <strong>intermittent</strong> because your browser only attempts ECH on some connections, not every one.</p>
+      <p>The tell: if the error hits you on <strong>many different sites</strong> (not just this one), the cause is squarely that piece of software or hardware on your side. Turning it off &mdash; or applying one of the fixes above &mdash; resolves it. The site itself is served over standard, valid HTTPS and is reachable from any clean network.</p>
+    </section>
+
+    <div class="ts-close">
+      <span class="accent">W.U.L.D.</span> &middot; Nothing on your side is broken permanently &mdash; this is a setting, not damage.<br>
+      Still stuck after all of the above? Reach the <a href="/contact/">contact page</a> from any device that <em>can</em> load the site. A mirror of this page also lives at <a href="https://library.wuld.ink/troubleshooting/">library.wuld.ink/troubleshooting/</a>, on a separate host &mdash; reachable when the main domain isn&rsquo;t.
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <span class="footer-pending">
+        <a class="library-link" href="https://library.wuld.ink/">library.wuld.ink</a> &mdash; v3.9.16 stable
+        <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+        <a class="disclaimer-link" href="/troubleshooting/">Site won&rsquo;t load?</a>
+      </span>
+    </div>
+    <div class="page-footer-inner footer-meta">
+      <a class="changelog-link" href="/changelog/">Changelog</a>
+      <a class="changelog-link" href="/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js?v=K43"></script>
+  <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
+    <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
+    <div class="ambient-bar">
+      <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
+      <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
+      <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
+      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
+    </div>
+    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
+  </div>
+
+  <script src="/components/ambient-player.js?v=K30"></script>
+</body>
+</html>

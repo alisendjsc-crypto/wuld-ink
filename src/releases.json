@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-07-06-connection-help-page",
+    "date": "2026-07-06",
+    "summary": "New help page for a connection error some visitors hit — an intermittent ERR_SSL_PROTOCOL_ERROR or “invalid response” warning that comes and goes. It’s a network-side Encrypted ClientHello (ECH) conflict, not the site: /troubleshooting/ has the roughly 30-second fix, by browser, with a mirror on library.wuld.ink for when the main domain won’t load. Linked from the footer and the contact page.",
+    "sections": [
+      "/contact/"
+    ]
+  },
+  {
     "id": "2026-07-05-library-v3-9-16",
     "date": "2026-07-05",
     "summary": "The flagship library now has plain language too. Open any of its 81 objections and tap `plain` for a three-beat version — the objection in plain terms, the answer, and a one-line close; scholar view is unchanged and stays the default. That completes the rollout: every library surface — the flagship and all five wings — now offers a plain-language reading.",
