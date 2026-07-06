@@ -20,8 +20,9 @@ Live at [`wuld.ink`](https://wuld.ink) — single auto-deployed Cloudflare Pages
 | About the Library | `/library-about/` | Live — integrity-pinned to the current `library.wuld.ink` release |
 | Long-form library extracts | `/coda/`, `/violence-as-reductio/`, `/why-not-suicide/` | Scaffold — editorial extraction pending |
 | Blog | `/blog/` | Live — The Easiest Case + Load-Bearing |
-| Void Engine instrument | `/void-engine/` | Live — 334-prompt generative lexicon (19 categories) + Signal / Transmission triptych |
+| Void Engine instrument | `/void-engine/` | Live — 397-prompt generative lexicon (25 categories) + Signal / Transmission triptych |
 | Frame (cold-reader entry) | `/frame/` | Live (K3) |
+| Preface | `/preface/` | Live — anchor / entry page |
 | Ne Hoc Fiat (project page) | `/ne-hoc-fiat/` | Live (K10) |
 | Gallery | `/gallery/` | Live — plate index |
 | Archive | `/archive/` | Live — videos + images + self-frame |
@@ -29,6 +30,7 @@ Live at [`wuld.ink`](https://wuld.ink) — single auto-deployed Cloudflare Pages
 | Music | `/music/` | Live — selected listening (YouTube link-out) |
 | Watch (video link-out) | `/watch/` | Live — selected uploads grid |
 | Changelog + RSS | `/changelog/` (+ `/feed.xml`) | Live — public release timeline + nav-glow indicator |
+| Site search | `/search/` | Live — client-side over `/search-index.json`; spans pages, glossary, Void Engine, gallery plates, and every argument-library surface |
 | Comment board / Chat | `/chat/` | Live — public comment board (Workers + D1, moderated) + IRC fallback |
 | Support | `/donations/` | Live — PayPal / Cash App / Venmo cadences |
 | Contact | `/contact/` | Live — Formspree form + email alias |
@@ -37,14 +39,15 @@ Live at [`wuld.ink`](https://wuld.ink) — single auto-deployed Cloudflare Pages
 
 ## Argument library
 
-The systematic objection corpus lives in a separate repository (`alisendjsc-crypto/efilist-argument-library`) and is served from `library.wuld.ink` as a single-file Cloudflare Pages deploy.
+The systematic objection corpus lives in a separate repository (`alisendjsc-crypto/efilist-argument-library`) and is served from `library.wuld.ink`.
 
-- **Substrate:** `combined.html` — the current release's version, md5, and byte count are pinned live on [`/library-about/`](https://wuld.ink/library-about/) (this README deliberately carries no version literals). Three surfaces behind an outer hash router (`#/library` / `#/rwe` / `#/coda`).
-- **Corpus:** 81 objections / 5 tiers / 35 mechanisms / 136 attested real-world deployments / 4-archetype interlocutor model.
+- **Flagship:** `combined.html` — 81 objections / 5 tiers / 35 mechanisms / 4-archetype interlocutor model, behind a top-nav (library / examples / coda). The live release's version, md5, and byte count are pinned on [`/library-about/`](https://wuld.ink/library-about/) (this README deliberately carries no version literals).
+- **Refusal Suite:** four auto-deploying sibling wings — Right to Die, Abortion, Transgenderism, Anthropocentrism — plus a flagship-adjacent Veganism module, each served at `library.wuld.ink/<wing>/combined`. A `/libraries/` umbrella front door indexes them; objection cards carry per-card RSI grades and a plain / scholar reading toggle.
+- **Discovery:** every argument-library surface is searchable from wuld.ink's `/search/`; `/library-about/` stays integrity-pinned to the deployed flagship md5.
 - **License:** CC-BY-4.0 (content) + MIT (code).
-- **Status:** actively maintained (not archived); served live at `library.wuld.ink`, with wuld.ink's `/library-about` integrity-pinned to the deployed md5. Cross-link grammar: `library.wuld.ink/#/rwe/<objection-id>` (RWE surface; per-objection deep-link); `library.wuld.ink/#/library` (surface-level).
+- **Cross-link grammar:** `library.wuld.ink/combined#obj-<id>` (flagship) · `library.wuld.ink/<wing>/combined#obj-<id>` (wing) · `library.wuld.ink/libraries/` (umbrella).
 
-See `docs/library-claude-coordination.md` for the full coordination relay with library-Claude.
+See `docs/library-claude-coordination.md` for the append-only coordination relay with library-Claude.
 
 ## Screenshots
 
@@ -81,7 +84,7 @@ Currently live: Sanguinolentum Vestigium (3 sections). Staged: Architecture of M
 | `tools/` | Build + maintenance tooling (changelog feed generator, library pin-mover, wuld-gui editor) |
 | `workers/comments/` | Comment board backend (Cloudflare Worker + D1) |
 | `docs/` | Coordination docs, brief, library substrate reference copies |
-| `docs/library-claude-coordination.md` | Full cross-Claude coordination relay (Exchanges 1–13) |
+| `docs/library-claude-coordination.md` | Full cross-Claude coordination relay (append-only) |
 | `docs/book-claude-coordination.md` | Book-project Claude coordination |
 | `docs/successor-claude-coordination.md` | Successor Protocol coordination |
 | `docs/wuld-ink-cowork-brief.md` | Full implementation brief |
