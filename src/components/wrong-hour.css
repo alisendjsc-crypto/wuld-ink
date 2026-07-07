@@ -1,13 +1,14 @@
-/* wrong-hour.css — synthesized SFX/VFX ("the wrong hour"), K206
+/* wrong-hour.css — synthesized SFX/VFX ("the wrong hour"), K207
    NO-PIN auto-deploying component. Progressive: JS off -> no effects, page
    identical (homepage D1 zero-JS invariant holds — nothing here is required).
 
    ONE DIAL: --wh-rot (0..1) = time-of-day bleed x user VFX intensity, set by JS.
    Color-only degradation — the ambient tint uses mix-blend-mode:color, so
    LIGHTNESS is held: contrast and legibility never drop (trap #20 ported).
-   K206 adds interaction one-shots (.wh-fx stage + .wh-glitch heading kick),
-   their peaks scaled by --wh-fxi / --wh-gl (the same 3am swell) — legibility-safe,
-   brief, and fully off under prefers-reduced-motion. Uses site design tokens. */
+   Interaction one-shots (.wh-fx stage + .wh-glitch heading kick) scale by
+   --wh-fxi / --wh-gl (the same 3am swell) — legibility-safe, brief, off under
+   prefers-reduced-motion. K207: the [fx] + [synth bed] chips stay clickable even
+   when the playlist is switched off. Uses site design tokens. */
 
 :root{ --wh-rot: 0; --wh-abr: 0px; }
 
@@ -49,10 +50,10 @@ h1, h2{
   text-shadow:
     calc(var(--wh-abr) * -1) 0 rgba(255,42,60, calc(var(--wh-rot) * .5)),
     var(--wh-abr) 0 rgba(48,120,255, calc(var(--wh-rot) * .42));
-  transition: text-shadow 140ms ease-out;   /* K206 · lets the glitch kick ease off */
+  transition: text-shadow 140ms ease-out;   /* lets the glitch kick ease off */
 }
 
-/* ---- K206 · VFX one-shot stage — interaction effects, one at a time ---- */
+/* ---- VFX one-shot stage — interaction effects, one at a time ---- */
 /* z 92: above the ambient layers (90), below the ambient bar (100) + boot (300).
    opacity 0 at rest; a modifier class runs a brief keyframe then JS removes it. */
 .wh-fx{ position: fixed; inset: 0; pointer-events: none; z-index: 92; opacity: 0; }
@@ -116,7 +117,7 @@ html.wh-glitch h1, html.wh-glitch h2{
   100%{ opacity: 0; transform: scaleY(1); }      /* open */
 }
 
-/* FX popover — the [fx] + [bed] chips live in the ambient bar (reuse .ambient-btn) */
+/* FX popover — the [synth bed] + [fx] chips live in the ambient bar (reuse .ambient-btn) */
 .wh-panel{
   position: fixed; right: var(--s-3, .75rem); bottom: 3rem; z-index: 101;
   width: min(19rem, 92vw);
@@ -143,6 +144,15 @@ html.wh-glitch h1, html.wh-glitch h2{
 
 /* ambience source toggle — accent when the generated bed is live */
 .wh-bedchip[aria-pressed="true"], .wh-amb[aria-pressed="true"]{ color: var(--c-accent, #c41e3a); }
+
+/* K207 · keep the [fx] + [synth bed] chips live even when the playlist is off
+   (the ambient player sets pointer-events:none on its controls at data-state="off";
+   ours are effect controls, not playlist controls). */
+.ambient-player[data-state="off"] .wh-chip,
+.ambient-player[data-state="off"] .wh-bedchip{
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
 
 /* a11y — motion off; static tint/vignette stay, audio unaffected */
 @media (prefers-reduced-motion: reduce){

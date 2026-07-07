@@ -28,6 +28,9 @@
        loopGuardUntil timestamp prevents double-fire within
        the same near-end window.
 
+   K207: DEFAULT_STATE shuffle off + loop-one on -> a fresh visitor opens on
+   playlist track 1, looped (the paired opening track for the wrong-hour synth bed).
+
    Public surface: window.WuldAmbient
    ============================================================ */
 
@@ -44,8 +47,8 @@
     volume: 40,           // 0..100
     currentVideoId: null, // resume target on next page
     lastPositionSec: 0,   // resume offset
-    shuffleOn: true,
-    loopOne: false,       // K24k: repeat current video on end
+    shuffleOn: false,     // K207: no-shuffle default -> opens on playlist track 1 (the wrong-hour synth-bed pairing)
+    loopOne: true,        // K207 (was false): loop the paired opening track by default
     dismissed: false,     // K24k: bar collapsed to sliver
     userPaused: false     // K25: user-initiated pause; resume cues but doesn't play
   };

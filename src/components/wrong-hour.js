@@ -1,53 +1,44 @@
 /*
-  wrong-hour.js — synthesized SFX + VFX ("the wrong hour"), K206
+  wrong-hour.js — synthesized SFX + VFX ("the wrong hour"), K207
   ---------------------------------------------------------------------------
   NO-PIN auto-deploying component. Progressive enhancement: with JS off there
   are zero effects and the page is byte-identical (homepage D1 invariant holds).
 
   ONE DIAL — the bleed. rot() (0..1) = user VFX intensity swelled by the clock:
-  rot = vfx x (0.4 + 0.6 * bleedNow()). The slider always bites (day or night);
-  the wrong hour pushes it toward its ceiling. It drives colour / grain /
-  aberration / vignette every tick, the interaction VFX one-shots, and (opt-in)
-  the audio. Colour-only tint via mix-blend-mode:color holds LIGHTNESS, so
-  contrast/legibility never drop. Grain is real canvas film-noise.
+  rot = vfx x (0.4 + 0.6 * bleedNow()). Drives colour / grain / aberration /
+  vignette every tick, the interaction VFX one-shots, and (opt-in) the audio.
+  Colour-only tint (mix-blend:color) holds LIGHTNESS. Grain is real canvas noise.
+  Two laws (from Sfx.gd): synthesize never sample; the bleed never darkens to black.
 
-  Two laws (from the game / Sfx.gd): synthesize never sample; the bleed is one
-  0..1 lerp that never darkens to black (trap #20).
+  SFX = a synth CUE LIBRARY (default 0.35, gated behind the first gesture, muted at 0):
+    boot / key / soft / click / bell / purr. K207: soft (nav) is a warm resonant
+    pluck that walks a minor-pentatonic scale — consecutive nav clicks make a little
+    melody. The synced-smart boot power-on (K206) is unchanged.
 
-  SFX = a synth CUE LIBRARY tuned toward smooth, warm, ASMR-grade analog texture.
-  Consent: default 0.35 (a soft floor), gated behind the first gesture (browser
-  autoplay), muted at the slider's 0. Interaction cues are the everyday layer:
-    - boot : a computer waking, smooth — warm sub-whoomp + slow mains-hum swell +
-             soft air + a breathing CRT shimmer. Once/session; K206 fires it
-             SYNCED with the boot flash on the first gesture (or flash-now if muted).
-    - key/soft/click : per-keystroke thock / nav felt-tap / button tick.
-    - bell : inharmonic chime, bitcrushes as it rots — RARE: auto at ~3am, or placed.
-    - purr : 55 Hz sub-bass (headphone/felt only) — RARE: wired to the mascot.
+  AMBIANCE ENGINE (K207) — a generative synth BED that now LAYERS with the playlist
+  instead of replacing it: an evolving mechanical whir/hum drone + sparse analog-piano
+  motifs + faint breath. It is an INDEPENDENT layer — the toggle never pauses YouTube
+  (K206 paused it, which flipped the bar to its disabled 'off' state; decoupled here).
+  Bed is ON by default (prefs.bedOn). It rides the ambient volume knob and persists
+  across navigation. If the YT track CHANGES (a skip), the bed auto-disables until the
+  listener re-enables it — the opening track is paired; other tracks may clash. (Pair
+  it by making that song playlist-track-1 + ambient-player's loop-one default.)
 
-  AMBIANCE ENGINE (K206) — a generative synth BED that retires the YouTube
-  playlist on demand: an evolving mechanical whir/hum drone + sparse haunting
-  analog-piano motifs + occasional faint breath. Toggle 'youtube <-> generated'
-  on the ambient bar; picking 'generated' pauses the playlist (via WuldAmbient)
-  and rides the ambient volume knob. Persists across navigation.
+  VFX REGISTRY (K206) — interaction one-shots routed by type (nav->pulse, buttons->flick,
+  typing->glitch + data-wh-vfx / data-wh-vfx-scene), peaks swelled by the same bleed,
+  legibility-safe, off under prefers-reduced-motion.
 
-  VFX REGISTRY (K206) — interaction one-shots routed by type, parallel to the
-  sound router: nav->pulse, buttons->flick, typing->glitch (heading shiver),
-  per-element <a data-wh-vfx="burst">, per-page <body data-wh-vfx-scene>. Each
-  one-shot's peak is swelled by the same 3am bleed; legibility-safe; motion off
-  under prefers-reduced-motion.
-
-  Audio COEXISTS with the ambient-player: lazy AudioContext resumed on the first
-  gesture via our OWN passive listener — never touches the YouTube unlock.
-  Controls dock into the ambient bar ([fx] chip -> popover), persisted to
-  localStorage 'wuld:wrongHour'. prefers-reduced-motion -> motion off.
+  Controls dock into the ambient bar ([synth bed] + [fx] chips -> popover), persisted to
+  localStorage 'wuld:wrongHour'. Audio coexists with the ambient-player (own first-gesture
+  listener; never touches the YouTube unlock). prefers-reduced-motion -> motion off.
 */
 (function () {
   "use strict";
 
   var STORAGE  = "wuld:wrongHour";
   var BOOT_KEY = "wuld:wrongHour.booted";
-  var VERSION  = "K206";
-  var DEFAULTS = { sfx: 0.35, vfx: 0.35, amb: "yt", ambPausedYt: false };
+  var VERSION  = "K207";
+  var DEFAULTS = { sfx: 0.35, vfx: 0.35, bedOn: true };
   var SCENES   = { frame: "bell", threshold: "bell", glossary: "bell", summon: "purr", power: "boot" };
 
   var reduce = false;
@@ -61,11 +52,10 @@
       var r = JSON.parse(localStorage.getItem(STORAGE));
       if (r && typeof r === "object") return {
         sfx: clamp01(r.sfx), vfx: clamp01(r.vfx),
-        amb: (r.amb === "gen" ? "gen" : "yt"),
-        ambPausedYt: !!r.ambPausedYt
+        bedOn: (typeof r.bedOn === "boolean" ? r.bedOn : DEFAULTS.bedOn)
       };
     } catch (e) {}
-    return { sfx: DEFAULTS.sfx, vfx: DEFAULTS.vfx, amb: DEFAULTS.amb, ambPausedYt: DEFAULTS.ambPausedYt };
+    return { sfx: DEFAULTS.sfx, vfx: DEFAULTS.vfx, bedOn: DEFAULTS.bedOn };
   }
   var prefs = load();
   function save() { try { localStorage.setItem(STORAGE, JSON.stringify(prefs)); } catch (e) {} }
@@ -116,7 +106,7 @@
   function buildVFX() {
     layers.tint = mk("wh-tint"); layers.grain = mk("wh-grain");
     layers.scan = mk("wh-scan"); layers.vignette = mk("wh-vignette");
-    fxEl = mk("wh-fx");                                     // K206 · one-shot stage
+    fxEl = mk("wh-fx");                                     // one-shot stage
     var f = document.createDocumentFragment();
     f.appendChild(layers.tint); f.appendChild(layers.grain);
     f.appendChild(layers.scan); f.appendChild(layers.vignette); f.appendChild(fxEl);
@@ -165,6 +155,7 @@
     return c;
   }
   function gate() { return prefs.sfx; }  // 0..1 SFX master; explicit amp overrides it
+  var NAV_HZ = [220, 262, 294, 330, 392], navIdx = 0;   // A minor pentatonic (A C D E G) — nav pluck walk
 
   // ---- cues (synth-only). amp: undefined -> master gate; number -> forced ----
   function thunk(amp) {   // A3 · degauss whoomp (placeable)
@@ -206,7 +197,7 @@
     var ng = actx.createGain();
     ng.gain.setValueAtTime(0.0001, t); ng.gain.linearRampToValueAtTime(0.08 * amp, t + 1.0); ng.gain.linearRampToValueAtTime(0.0001, t + 2.25);
     ns.connect(nlp); nlp.connect(ng); ng.connect(room); ns.start(t); ns.stop(t + 2.3);
-    var sh = actx.createOscillator(); sh.type = "sine"; sh.frequency.value = 1560;    // breathing CRT shimmer (replaces the beep)
+    var sh = actx.createOscillator(); sh.type = "sine"; sh.frequency.value = 1560;    // breathing CRT shimmer
     var shg = actx.createGain();
     shg.gain.setValueAtTime(0.0001, t + 0.6); shg.gain.linearRampToValueAtTime(0.06 * amp, t + 1.3); shg.gain.exponentialRampToValueAtTime(0.0001, t + 2.1);
     sh.connect(shg); shg.connect(room); sh.start(t + 0.6); sh.stop(t + 2.15);
@@ -231,19 +222,27 @@
       p.connect(pg); pg.connect(room); p.start(t + 0.004); p.stop(t + 0.06);
     }
   }
-  function soft(amp) {   // navigation — a soft, dark felt-tap: muffled tap + low wooden body
+  function soft(amp) {   // navigation (K207) — a warm resonant pluck, pentatonic, a little wistful
     if (!ensureAudio() || actx.state !== "running") return;
     amp = (amp == null ? gate() : amp); if (amp <= 0) return;
     var t = actx.currentTime;
-    var ns = actx.createBufferSource(); ns.buffer = noiseBuf(0.09);
-    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 480; lp.Q.value = 0.6;
-    var ng = actx.createGain();
-    ng.gain.setValueAtTime(0.0001, t); ng.gain.linearRampToValueAtTime(0.22 * amp, t + 0.008); ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
-    ns.connect(lp); lp.connect(ng); ng.connect(room); ns.start(t); ns.stop(t + 0.13);
-    var o = actx.createOscillator(); o.type = "sine"; o.frequency.value = 176;
-    var og = actx.createGain();
-    og.gain.setValueAtTime(0.0001, t); og.gain.linearRampToValueAtTime(0.14 * amp, t + 0.01); og.gain.exponentialRampToValueAtTime(0.0001, t + 0.17);
-    o.connect(og); og.connect(room); o.start(t); o.stop(t + 0.19);
+    var hz = NAV_HZ[navIdx % NAV_HZ.length];
+    navIdx = (navIdx + 1 + (Math.random() < 0.4 ? 1 : 0)) % NAV_HZ.length;   // walk up the scale, occasional skip
+    var o = actx.createOscillator(); o.type = "triangle";                    // pluck body
+    o.frequency.setValueAtTime(hz * 1.006, t); o.frequency.exponentialRampToValueAtTime(hz, t + 0.06);
+    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.Q.value = 6;  // resonant filter snaps closed
+    lp.frequency.setValueAtTime(hz * 6, t); lp.frequency.exponentialRampToValueAtTime(hz * 1.5, t + 0.28);
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.26 * amp, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+    o.connect(lp); lp.connect(g); g.connect(room); o.start(t); o.stop(t + 0.55);
+    var sub = actx.createOscillator(); sub.type = "sine"; sub.frequency.value = hz / 2;   // sub-octave warmth
+    var sg = actx.createGain();
+    sg.gain.setValueAtTime(0.0001, t); sg.gain.exponentialRampToValueAtTime(0.12 * amp, t + 0.01); sg.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+    sub.connect(sg); sg.connect(room); sub.start(t); sub.stop(t + 0.34);
+    var sh = actx.createOscillator(); sh.type = "sine"; sh.frequency.value = hz * 2;       // faint octave-up shimmer
+    var shg = actx.createGain();
+    shg.gain.setValueAtTime(0.0001, t + 0.005); shg.gain.exponentialRampToValueAtTime(0.05 * amp, t + 0.02); shg.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+    sh.connect(shg); shg.connect(room); sh.start(t + 0.005); sh.stop(t + 0.26);
   }
   function bell(amp) {    // A6 · inharmonic chime — bitcrushes as the room rots (A7)
     if (!ensureAudio() || actx.state !== "running") return;
@@ -290,8 +289,9 @@
 
   var CUES = { boot: bootSeq, thunk: thunk, key: key, soft: soft, bell: bell, click: click, purr: purr };
 
-  // ---------------- ambiance engine (K206): generative bed, playlist alternative ----------------
+  // ---------------- ambiance engine (K207): generative bed, an INDEPENDENT layer ----------------
   var ambNodes = null, ambNoise = null, ambPianoTimer = null, ambBreathTimer = null, ambBtns = [];
+  var ambWatchTimer = null, ambBaseVid = null;
   var PIANO_HZ = [131, 147, 156, 175, 196, 208, 233, 262];   // C minor-ish set, C3..C4
 
   function ambNoiseLoop() { if (!ambNoise) ambNoise = noiseBuf(2.4); return ambNoise; }
@@ -394,42 +394,43 @@
       try { nodes.ns.stop(); } catch (e) {}
     }, 1400);
   }
-  function ambPauseYt() {
-    try {
-      if (window.WuldAmbient && window.WuldAmbient.getState && window.WuldAmbient.toggle) {
-        var s = window.WuldAmbient.getState();
-        if (s && s.on) { window.WuldAmbient.toggle(); prefs.ambPausedYt = true; save(); }
-      }
-    } catch (e) {}
+
+  // ---- YT track-change watch: a skip off the paired opening track auto-disables the bed ----
+  function ambCurrentVid() {
+    try { if (window.WuldAmbient && window.WuldAmbient.getState) { var s = window.WuldAmbient.getState(); return s ? s.currentVideoId : null; } } catch (e) {}
+    return null;
   }
-  function ambResumeYt() {
-    try {
-      if (prefs.ambPausedYt && window.WuldAmbient && window.WuldAmbient.toggle) {
-        var s = window.WuldAmbient.getState ? window.WuldAmbient.getState() : null;
-        if (!s || !s.on) window.WuldAmbient.toggle();
-      }
-    } catch (e) {}
-    prefs.ambPausedYt = false; save();
+  function ambStopWatch() { if (ambWatchTimer) { clearInterval(ambWatchTimer); ambWatchTimer = null; } }
+  function ambStartWatch() {
+    ambStopWatch(); ambBaseVid = null;
+    ambWatchTimer = setInterval(function () {
+      if (!prefs.bedOn) { ambStopWatch(); return; }
+      var vid = ambCurrentVid();
+      if (!vid) return;
+      if (ambBaseVid == null) { ambBaseVid = vid; return; }   // baseline the opening track
+      if (vid !== ambBaseVid) { ambSetBed(false); }           // skipped away -> auto-disable
+    }, 2000);
   }
-  function ambSetSource(src) {                               // "yt" | "gen"
-    src = (src === "gen") ? "gen" : "yt";
-    if (prefs.amb === src && (src === "yt") === !ambNodes) { ambSyncBtn(); return; }
-    prefs.amb = src; save(); ambSyncBtn();
-    if (src === "gen") { ambPauseYt(); whenReady(function () { ambStart(); }); }
-    else { ambStop(); ambResumeYt(); }
+
+  // ---- bed on/off (independent — NEVER pauses YouTube) ----
+  function ambSetBed(on) {
+    on = !!on;
+    prefs.bedOn = on; save(); ambSyncBtn();
+    if (on) { whenReady(function () { ambStart(); }); ambStartWatch(); }
+    else { ambStop(); ambStopWatch(); }
   }
-  function ambToggleSource() { ambSetSource(prefs.amb === "gen" ? "yt" : "gen"); }
+  function ambToggleBed() { ambSetBed(!prefs.bedOn); }
   function ambSyncBtn() {
-    var gen = prefs.amb === "gen", i, b;
+    var on = prefs.bedOn, i, b;
     for (i = 0; i < ambBtns.length; i++) {
       b = ambBtns[i];
-      b.textContent = gen ? "[synth bed]" : "[playlist]";
-      b.setAttribute("aria-pressed", gen ? "true" : "false");
-      b.setAttribute("aria-label", gen ? "Ambience: generated synth bed (tap for playlist)" : "Ambience: YouTube playlist (tap for synth bed)");
+      b.textContent = "[synth bed]";
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.setAttribute("aria-label", on ? "Synth bed on (tap to turn off)" : "Synth bed off (tap to turn on)");
     }
   }
   function ambInit() {
-    if (prefs.amb === "gen") whenReady(function () { ambPauseYt(); ambStart(); });
+    if (prefs.bedOn) { whenReady(function () { ambStart(); }); ambStartWatch(); }
   }
 
   // ---------------- VFX registry (K206): interaction one-shots, swelled by the bleed ----------------
@@ -491,7 +492,7 @@
 
   // ---------------- boot cue + the 3am threshold bell (each once/session) ----------------
   var bootDone = false, bellDone = false;
-  function boot() {                                           // K206 · synced-smart power-on
+  function boot() {                                           // synced-smart power-on (K206)
     if (bootDone) return; bootDone = true;
     try { if (sessionStorage.getItem(BOOT_KEY)) return; } catch (e) {}
     var mark  = function () { try { sessionStorage.setItem(BOOT_KEY, "1"); } catch (e) {} };
@@ -502,8 +503,7 @@
       mark(); flash();
     }
   }
-  // the wrong hour announces itself: one chime the first time the CLOCK (not the VFX
-  // slider) crosses into deep night — bleedNow() >= 0.85 is roughly 1:40am..4:20am.
+  // one chime the first time the CLOCK crosses into deep night — bleedNow() >= 0.85 ~ 1:40am..4:20am.
   function maybeBell() {
     if (bellDone || prefs.sfx <= 0) return;
     if (bleedNow() >= 0.85) { bellDone = true; whenReady(function () { bell(); }); }
@@ -557,7 +557,7 @@
     if (vscene && prefs.vfx > 0 && !reduce) whFx(vscene);
   }
 
-  // ---------------- controls: [fx] chip + [bed] toggle in the ambient bar + popover ----------------
+  // ---------------- controls: [synth bed] + [fx] chips in the ambient bar + popover ----------------
   function pct(x) { return Math.round(x * 100); }
   function barBtn(cls, txt, aria) {
     var b = document.createElement("button");
@@ -579,10 +579,10 @@
         '<input class="wh-range" id="wh-sfx" type="range" min="0" max="100" step="5" aria-label="Sound intensity">' +
         '<span class="wh-val" id="wh-sfx-val">off</span></div>' +
       '<div class="wh-row"><label>bed</label>' +
-        '<button class="ambient-btn wh-amb" id="wh-amb" type="button" data-wh="none" aria-pressed="false">[playlist]</button>' +
+        '<button class="ambient-btn wh-amb" id="wh-amb" type="button" data-wh="none" aria-pressed="false">[synth bed]</button>' +
         '<span class="wh-val"></span></div>' +
       '<div class="wh-row"><button class="ambient-btn wh-test" id="wh-test" type="button" data-wh="none">[ hear it ]</button></div>' +
-      '<p class="wh-note">Synthesized, never sampled — sound needs one click to wake, then rides at your level. Effects answer clicks + typing and deepen toward 3am. <b>bed</b> swaps the playlist for a generative synth room. Reduced-motion holds visuals steady.</p>';
+      '<p class="wh-note">Synthesized, never sampled — sound needs one click to wake, then rides at your level. Effects answer clicks + typing and deepen toward 3am. <b>bed</b> layers a generative synth room over the playlist; a skip turns it off. Reduced-motion holds visuals steady.</p>';
     document.body.appendChild(panel);
     hourOut = panel.querySelector("#wh-hour");
 
@@ -607,14 +607,14 @@
     });
     var ambPop = panel.querySelector("#wh-amb");
     ambBtns.push(ambPop);
-    ambPop.addEventListener("click", ambToggleSource);
+    ambPop.addEventListener("click", ambToggleBed);
 
     var bar = document.querySelector(".ambient-bar");
     if (bar) {
       var dismiss = bar.querySelector("#ambient-dismiss");
-      var bedChip = barBtn("wh-bedchip", "[playlist]", "Ambience source");   // youtube <-> generated
+      var bedChip = barBtn("wh-bedchip", "[synth bed]", "Synth bed");
       ambBtns.push(bedChip);
-      bedChip.addEventListener("click", ambToggleSource);
+      bedChip.addEventListener("click", ambToggleBed);
       var chip = barBtn("wh-chip", "[fx]", "Effects");
       chip.setAttribute("aria-pressed", "false"); chip.setAttribute("aria-expanded", "false");
       if (dismiss) { bar.insertBefore(bedChip, dismiss); bar.insertBefore(chip, dismiss); }
@@ -641,8 +641,8 @@
     vfx: Object.keys(VFX),
     play: play,
     fx: whFx,
-    ambience: ambSetSource,
-    get: function () { return { sfx: prefs.sfx, vfx: prefs.vfx, amb: prefs.amb, rot: rot(), bleed: bleedNow() }; },
+    bed: ambSetBed,
+    get: function () { return { sfx: prefs.sfx, vfx: prefs.vfx, bedOn: prefs.bedOn, rot: rot(), bleed: bleedNow() }; },
     set: function (o) { if (o && typeof o === "object") { if ("sfx" in o) prefs.sfx = clamp01(o.sfx); if ("vfx" in o) prefs.vfx = clamp01(o.vfx); save(); paint(); } },
     boot: bootSeq, thunk: thunk, key: key, soft: soft, bell: bell, click: click, purr: purr, paint: paint
   };
