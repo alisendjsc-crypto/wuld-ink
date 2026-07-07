@@ -195,7 +195,7 @@
     return c;
   }
   function gate() { return prefs.sfx; }  // 0..1 SFX master; explicit amp overrides it
-  var NAV_HZ = [220, 262, 294, 330, 392], navIdx = 0;   // A minor pentatonic (A C D E G) — nav pluck walk
+  var NAV_HZ = [131, 147, 165, 196, 220], navIdx = 0;   // K211: A-minor-pentatonic, an octave lower (C3 D3 E3 G3 A3) - warm nav register
 
   // ---- cues (synth-only). amp: undefined -> master gate; number -> forced ----
   function thunk(amp) {   // A3 · degauss whoomp (placeable)
@@ -262,40 +262,46 @@
       p.connect(pg); pg.connect(room); p.start(t + 0.004); p.stop(t + 0.06);
     }
   }
-  function soft(amp) {   // navigation (K207) — a warm resonant pluck, pentatonic, a little wistful
+  function soft(amp) {   // navigation (K211) - a warm, muted analog pluck; low + rounded, distinct from the word chime + the key click
     if (!ensureAudio() || actx.state !== "running") return;
     amp = (amp == null ? gate() : amp); if (amp <= 0) return;
     var t = actx.currentTime;
     var hz = NAV_HZ[navIdx % NAV_HZ.length];
-    navIdx = (navIdx + 1 + (Math.random() < 0.4 ? 1 : 0)) % NAV_HZ.length;   // walk up the scale, occasional skip
-    var o = actx.createOscillator(); o.type = "triangle";                    // pluck body
-    o.frequency.setValueAtTime(hz * 1.006, t); o.frequency.exponentialRampToValueAtTime(hz, t + 0.06);
-    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.Q.value = 6;  // resonant filter snaps closed
-    lp.frequency.setValueAtTime(hz * 6, t); lp.frequency.exponentialRampToValueAtTime(hz * 1.5, t + 0.28);
+    navIdx = (navIdx + 1 + (Math.random() < 0.4 ? 1 : 0)) % NAV_HZ.length;   // walk the scale, occasional skip
+    var o = actx.createOscillator(); o.type = "sawtooth";                    // analog pluck body (harmonics for the filter to shape)
+    o.frequency.setValueAtTime(hz * 1.004, t); o.frequency.exponentialRampToValueAtTime(hz, t + 0.05);
+    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.Q.value = 6;  // resonant filter snaps closed = warm pluck
+    lp.frequency.setValueAtTime(hz * 3.4, t); lp.frequency.exponentialRampToValueAtTime(hz * 1.05, t + 0.24);   // modest opening -> closes near the fundamental (never bright)
     var g = actx.createGain();
-    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.26 * amp, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
-    o.connect(lp); lp.connect(g); g.connect(room); o.start(t); o.stop(t + 0.55);
-    var sub = actx.createOscillator(); sub.type = "sine"; sub.frequency.value = hz / 2;   // sub-octave warmth
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.28 * amp, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.44);
+    o.connect(lp); lp.connect(g); g.connect(room); o.start(t); o.stop(t + 0.48);
+    var sub = actx.createOscillator(); sub.type = "sine"; sub.frequency.value = hz / 2;   // sub-octave body / warmth
     var sg = actx.createGain();
-    sg.gain.setValueAtTime(0.0001, t); sg.gain.exponentialRampToValueAtTime(0.12 * amp, t + 0.01); sg.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
-    sub.connect(sg); sg.connect(room); sub.start(t); sub.stop(t + 0.34);
-    var sh = actx.createOscillator(); sh.type = "sine"; sh.frequency.value = hz * 2;       // faint octave-up shimmer
-    var shg = actx.createGain();
-    shg.gain.setValueAtTime(0.0001, t + 0.005); shg.gain.exponentialRampToValueAtTime(0.05 * amp, t + 0.02); shg.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
-    sh.connect(shg); shg.connect(room); sh.start(t + 0.005); sh.stop(t + 0.26);
+    sg.gain.setValueAtTime(0.0001, t); sg.gain.exponentialRampToValueAtTime(0.14 * amp, t + 0.012); sg.gain.exponentialRampToValueAtTime(0.0001, t + 0.34);
+    sub.connect(sg); sg.connect(room); sub.start(t); sub.stop(t + 0.38);
   }
-  function bell(amp) {    // A6 · inharmonic chime — bitcrushes as the room rots (A7)
+  function bell(amp) {    // A6 - inharmonic chime, heavier + long reverb + echo (K211); bitcrushes as the room rots (A7)
     if (!ensureAudio() || actx.state !== "running") return;
     amp = (amp == null ? gate() : amp); if (amp <= 0) return;
-    var t = actx.currentTime, base = 124, ratios = [1, 2.76, 5.40, 8.93], decays = [3.4, 2.7, 2.0, 1.4], i, r = rot(), dest = room;
+    var t = actx.currentTime, base = 110, ratios = [1, 2.76, 5.40, 8.93], decays = [4.8, 3.8, 2.8, 2.0], i, r = rot(), dest = room;
     if (r > 0.25) { var ws = actx.createWaveShaper(); ws.curve = crushCurve(Math.max(3, 8 - Math.round(r * 5))); ws.connect(room); dest = ws; }
+    var bus = actx.createGain();                                            // shared bell bus -> dry + reverb + echo
+    bus.connect(dest);
+    var bverb = actx.createConvolver(); bverb.buffer = impulse(3.4, 1.9);   // a big, heavy reverb tail (its own, longer than the room)
+    var bw = actx.createGain(); bw.gain.value = 0.55; bus.connect(bverb); bverb.connect(bw); bw.connect(room);
+    var dl = actx.createDelay(1.0); dl.delayTime.value = 0.32;              // echo
+    var fb = actx.createGain(); fb.gain.value = 0.42; dl.connect(fb); fb.connect(dl); bus.connect(dl); dl.connect(room);   // feedback echoes wash through the room
+    var sub = actx.createOscillator(); sub.type = "sine"; sub.frequency.value = base / 2;   // sub-octave weight
+    var sg = actx.createGain();
+    sg.gain.setValueAtTime(0.0001, t); sg.gain.exponentialRampToValueAtTime(0.34 * amp, t + 0.01); sg.gain.exponentialRampToValueAtTime(0.0001, t + 5.2);
+    sub.connect(sg); sg.connect(bus); sub.start(t); sub.stop(t + 5.4);
     for (i = 0; i < ratios.length; i++) {
       var o = actx.createOscillator(); o.type = "sine"; o.frequency.value = base * ratios[i];
-      var g = actx.createGain(), peak = (0.5 / (i + 1)) * amp;
+      var g = actx.createGain(), peak = (0.55 / (i + 1)) * amp;
       g.gain.setValueAtTime(0.0001, t);
       g.gain.exponentialRampToValueAtTime(peak, t + 0.006);
       g.gain.exponentialRampToValueAtTime(0.0001, t + decays[i]);
-      o.connect(g); g.connect(dest); o.start(t); o.stop(t + decays[i] + 0.1);
+      o.connect(g); g.connect(bus); o.start(t); o.stop(t + decays[i] + 0.1);
     }
   }
   function click(amp) {   // buttons — a soft tick with a small round body
@@ -327,7 +333,7 @@
     o.start(t); lfo.start(t); o.stop(t + dur); lfo.stop(t + dur);
   }
 
-  var WORD_HZ = [523.25, 587.33, 659.25, 783.99, 880.0], wordIdx = 0;   // C D E G A (C5..A5)
+  var WORD_HZ = [392.0, 440.0, 493.88, 587.33, 659.25], wordIdx = 0;   // K211: down a fourth (G4 A4 B4 D5 E5) - a fraction of an octave lower
   function wordChime(amp) {   // K208 - a soft bright "word landed" chime; walks a high pentatonic
     if (!ensureAudio() || actx.state !== "running") return;
     amp = (amp == null ? gate() : amp); if (amp <= 0) return;
