@@ -1,5 +1,5 @@
 /*
-  wrong-hour.js — synthesized SFX + VFX ("the wrong hour"), K207
+  wrong-hour.js — synthesized SFX + VFX ("the wrong hour"), K208
   ---------------------------------------------------------------------------
   NO-PIN auto-deploying component. Progressive enhancement: with JS off there
   are zero effects and the page is byte-identical (homepage D1 invariant holds).
@@ -37,9 +37,38 @@
 
   var STORAGE  = "wuld:wrongHour";
   var BOOT_KEY = "wuld:wrongHour.booted";
-  var VERSION  = "K207";
-  var DEFAULTS = { sfx: 0.35, vfx: 0.35, bedOn: true };
+  var VERSION  = "K208";
+  var DEFAULTS = { sfx: 0.35, vfx: 0.35, bedOn: true, bedMood: "room" };
   var SCENES   = { frame: "bell", threshold: "bell", glossary: "bell", summon: "purr", power: "boot" };
+  // K208 - generative bed MOODS (additive); the drone/piano/texture read the active one
+  var MOODS = {
+    room: {
+      lpFreq: 320, lpQ: 6, whirFreq: 0.13, whirDepth: 120,
+      specs: [[50, "sine", 0.5], [100, "triangle", 0.26], [100.7, "triangle", 0.2], [150.5, "sine", 0.1]],
+      airType: "bandpass", airFreq: 2200, airQ: 0.7, airGain: 0.015,
+      breathFreq: 0.06, breathDepth: 0.035,
+      piano: [131, 147, 156, 175, 196, 208, 233, 262], pianoGap: [4200, 7200], fall: 0.34,
+      tex: "breath", texGap: [16000, 26000]
+    },
+    clinical: {
+      lpFreq: 780, lpQ: 3, whirFreq: 0.05, whirDepth: 40,
+      specs: [[60, "sine", 0.22], [120, "sine", 0.34], [180, "sine", 0.12], [4200, "sine", 0.006]],
+      airType: "bandpass", airFreq: 3400, airQ: 0.9, airGain: 0.02,
+      breathFreq: 0.09, breathDepth: 0.02,
+      piano: [156, 208, 262, 311, 349], pianoGap: [9000, 12000], fall: 0.14,
+      tex: "tick", texGap: [6000, 12000]
+    },
+    oceanic: {
+      lpFreq: 180, lpQ: 5, whirFreq: 0.045, whirDepth: 90,
+      specs: [[32, "sine", 0.55], [48, "sine", 0.28], [64, "sine", 0.18], [96, "triangle", 0.08]],
+      airType: "bandpass", airFreq: 300, airQ: 0.5, airGain: 0.05,
+      breathFreq: 0.035, breathDepth: 0.05,
+      piano: [98, 110, 131, 147, 165], pianoGap: [8000, 12000], fall: 0.5,
+      tex: "tide", texGap: [20000, 30000]
+    }
+  };
+  var MOOD_ORDER = ["room", "clinical", "oceanic"];
+  function curMood() { return MOODS[prefs.bedMood] || MOODS.room; }
 
   var reduce = false;
   try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
@@ -52,10 +81,11 @@
       var r = JSON.parse(localStorage.getItem(STORAGE));
       if (r && typeof r === "object") return {
         sfx: clamp01(r.sfx), vfx: clamp01(r.vfx),
-        bedOn: (typeof r.bedOn === "boolean" ? r.bedOn : DEFAULTS.bedOn)
+        bedOn: (typeof r.bedOn === "boolean" ? r.bedOn : DEFAULTS.bedOn),
+        bedMood: (r.bedMood && MOODS[r.bedMood] ? r.bedMood : DEFAULTS.bedMood)
       };
     } catch (e) {}
-    return { sfx: DEFAULTS.sfx, vfx: DEFAULTS.vfx, bedOn: DEFAULTS.bedOn };
+    return { sfx: DEFAULTS.sfx, vfx: DEFAULTS.vfx, bedOn: DEFAULTS.bedOn, bedMood: DEFAULTS.bedMood };
   }
   var prefs = load();
   function save() { try { localStorage.setItem(STORAGE, JSON.stringify(prefs)); } catch (e) {} }
@@ -287,7 +317,24 @@
     o.start(t); lfo.start(t); o.stop(t + dur); lfo.stop(t + dur);
   }
 
-  var CUES = { boot: bootSeq, thunk: thunk, key: key, soft: soft, bell: bell, click: click, purr: purr };
+  var WORD_HZ = [523.25, 587.33, 659.25, 783.99, 880.0], wordIdx = 0;   // C D E G A (C5..A5)
+  function wordChime(amp) {   // K208 - a soft bright "word landed" chime; walks a high pentatonic
+    if (!ensureAudio() || actx.state !== "running") return;
+    amp = (amp == null ? gate() : amp); if (amp <= 0) return;
+    var t = actx.currentTime, hz = WORD_HZ[wordIdx % WORD_HZ.length];
+    wordIdx = (wordIdx + 1 + (Math.random() < 0.35 ? 1 : 0)) % WORD_HZ.length;
+    var o = actx.createOscillator(); o.type = "triangle"; o.frequency.value = hz;
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.16 * amp, t + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.34);
+    o.connect(g); g.connect(room); o.start(t); o.stop(t + 0.38);
+    var sh = actx.createOscillator(); sh.type = "sine"; sh.frequency.value = hz * 2.004;
+    var shg = actx.createGain();
+    shg.gain.setValueAtTime(0.0001, t); shg.gain.exponentialRampToValueAtTime(0.05 * amp, t + 0.006); shg.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+    sh.connect(shg); shg.connect(room); sh.start(t); sh.stop(t + 0.24);
+  }
+  var CUES = { boot: bootSeq, thunk: thunk, key: key, soft: soft, bell: bell, click: click, purr: purr, word: wordChime };
 
   // ---------------- ambiance engine (K207): generative bed, an INDEPENDENT layer ----------------
   var ambNodes = null, ambNoise = null, ambPianoTimer = null, ambBreathTimer = null, ambBtns = [];
@@ -300,27 +347,27 @@
     try { if (window.WuldAmbient && window.WuldAmbient.getState) { var s = window.WuldAmbient.getState(); if (s && typeof s.volume === "number") v = s.volume / 100; } } catch (e) {}
     return clamp01(v) * 0.5;                                  // ceiling: the bed sits under everything
   }
-  function ambBuildDrone() {
-    var t = actx.currentTime;
-    var bed = actx.createGain(); bed.gain.value = 0.0001;    // bed master (fade + slow breath)
-    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 320; lp.Q.value = 6;
-    var flfo = actx.createOscillator(); flfo.type = "sine"; flfo.frequency.value = 0.13;   // the whir
-    var flfoG = actx.createGain(); flfoG.gain.value = 120;
+  function ambBuildDrone() {                                 // K208 - mood-aware (room / clinical / oceanic)
+    var M = curMood(), t = actx.currentTime;
+    var bed = actx.createGain(); bed.gain.value = 0.0001;
+    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = M.lpFreq; lp.Q.value = M.lpQ;
+    var flfo = actx.createOscillator(); flfo.type = "sine"; flfo.frequency.value = M.whirFreq;
+    var flfoG = actx.createGain(); flfoG.gain.value = M.whirDepth;
     flfo.connect(flfoG); flfoG.connect(lp.frequency); flfo.start(t);
-    var oscs = [], specs = [[50, "sine", 0.5], [100, "triangle", 0.26], [100.7, "triangle", 0.2], [150.5, "sine", 0.1]], i;
-    for (i = 0; i < specs.length; i++) {
-      var o = actx.createOscillator(); o.type = specs[i][1]; o.frequency.value = specs[i][0];
-      var g = actx.createGain(); g.gain.value = specs[i][2];
+    var oscs = [], i;
+    for (i = 0; i < M.specs.length; i++) {
+      var o = actx.createOscillator(); o.type = M.specs[i][1]; o.frequency.value = M.specs[i][0];
+      var g = actx.createGain(); g.gain.value = M.specs[i][2];
       o.connect(g); g.connect(lp); o.start(t); oscs.push(o);
     }
-    var ns = actx.createBufferSource(); ns.buffer = ambNoiseLoop(); ns.loop = true;         // faint high air
-    var nbp = actx.createBiquadFilter(); nbp.type = "bandpass"; nbp.frequency.value = 2200; nbp.Q.value = 0.7;
-    var ng = actx.createGain(); ng.gain.value = 0.015;
+    var ns = actx.createBufferSource(); ns.buffer = ambNoiseLoop(); ns.loop = true;
+    var nbp = actx.createBiquadFilter(); nbp.type = M.airType; nbp.frequency.value = M.airFreq; nbp.Q.value = M.airQ;
+    var ng = actx.createGain(); ng.gain.value = M.airGain;
     ns.connect(nbp); nbp.connect(ng); ng.connect(lp);
     try { ns.start(t); } catch (e) {}
     lp.connect(bed);
-    var alfo = actx.createOscillator(); alfo.type = "sine"; alfo.frequency.value = 0.06;    // slow breathing
-    var alfoG = actx.createGain(); alfoG.gain.value = 0.035;
+    var alfo = actx.createOscillator(); alfo.type = "sine"; alfo.frequency.value = M.breathFreq;
+    var alfoG = actx.createGain(); alfoG.gain.value = M.breathDepth;
     alfo.connect(alfoG); alfoG.connect(bed.gain); alfo.start(t);
     bed.connect(room);
     ambNodes = { bed: bed, oscs: oscs, flfo: flfo, alfo: alfo, ns: ns };
@@ -338,18 +385,20 @@
   }
   function ambPianoNote() {
     if (!ambNodes || !actx || actx.state !== "running") return;
-    var t = actx.currentTime, a = PIANO_HZ[(Math.random() * PIANO_HZ.length) | 0];
-    ambPiano(a, t, 1);
-    if (Math.random() < 0.34) {                              // occasional soft two-note fall
-      var b = PIANO_HZ[(Math.random() * PIANO_HZ.length) | 0];
+    var M = curMood(), t = actx.currentTime, set = M.piano, a = set[(Math.random() * set.length) | 0];
+    ambPiano(a, t, writingMode ? 1.15 : 1);
+    if (Math.random() < (writingMode ? M.fall + 0.2 : M.fall)) {
+      var b = set[(Math.random() * set.length) | 0];
       ambPiano(b, t + 0.28 + Math.random() * 0.24, 0.62);
     }
   }
   function ambSchedulePiano() {
     clearTimeout(ambPianoTimer);
-    ambPianoTimer = setTimeout(function () { ambPianoNote(); ambSchedulePiano(); }, 4200 + Math.random() * 7200);
+    var g = curMood().pianoGap, wait = g[0] + Math.random() * g[1];
+    if (writingMode) wait *= 0.6;
+    ambPianoTimer = setTimeout(function () { ambPianoNote(); ambSchedulePiano(); }, wait);
   }
-  function ambBreath() {                                     // faint breath / whisper swell
+  function ambBreath() {                                     // room - faint breath / whisper swell
     if (!ambNodes || !actx || actx.state !== "running") return;
     var t = actx.currentTime;
     var ns = actx.createBufferSource(); ns.buffer = noiseBuf(2.4);
@@ -357,14 +406,45 @@
     var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 1400;
     var g = actx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(0.05, t + 0.9);           // inhale
-    g.gain.linearRampToValueAtTime(0.0001, t + 2.2);         // exhale
+    g.gain.linearRampToValueAtTime(0.05, t + 0.9);
+    g.gain.linearRampToValueAtTime(0.0001, t + 2.2);
     ns.connect(bp); bp.connect(lp); lp.connect(g); g.connect(ambNodes.bed);
     try { ns.start(t); ns.stop(t + 2.4); } catch (e) {}
   }
-  function ambScheduleBreath() {
+  function ambTick() {                                       // clinical - a faint electrical tick / relay
+    if (!ambNodes || !actx || actx.state !== "running") return;
+    var t = actx.currentTime;
+    var ns = actx.createBufferSource(); ns.buffer = noiseBuf(0.012);
+    var bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 2600 + Math.random() * 900; bp.Q.value = 1.2;
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.04, t + 0.001); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.02);
+    ns.connect(bp); bp.connect(g); g.connect(ambNodes.bed);
+    try { ns.start(t); ns.stop(t + 0.03); } catch (e) {}
+    if (Math.random() < 0.5) {
+      var o = actx.createOscillator(); o.type = "sine"; o.frequency.value = 60;
+      var og = actx.createGain(); og.gain.setValueAtTime(0.0001, t); og.gain.linearRampToValueAtTime(0.03, t + 0.02); og.gain.exponentialRampToValueAtTime(0.0001, t + 0.4);
+      o.connect(og); og.connect(ambNodes.bed); o.start(t); o.stop(t + 0.45);
+    }
+  }
+  function ambTide() {                                       // oceanic - a long low tidal swell
+    if (!ambNodes || !actx || actx.state !== "running") return;
+    var t = actx.currentTime;
+    var ns = actx.createBufferSource(); ns.buffer = noiseBuf(6.5);
+    var bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 220 + Math.random() * 140; bp.Q.value = 0.8;
+    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 500;
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(0.07, t + 2.6);
+    g.gain.linearRampToValueAtTime(0.0001, t + 6.2);
+    ns.connect(bp); bp.connect(lp); lp.connect(g); g.connect(ambNodes.bed);
+    try { ns.start(t); ns.stop(t + 6.5); } catch (e) {}
+  }
+  var AMB_TEX = { breath: ambBreath, tick: ambTick, tide: ambTide };
+  function ambTextureFire() { var fn = AMB_TEX[curMood().tex]; if (fn) fn(); }
+  function ambScheduleTexture() {
     clearTimeout(ambBreathTimer);
-    ambBreathTimer = setTimeout(function () { ambBreath(); ambScheduleBreath(); }, 16000 + Math.random() * 26000);
+    var g = curMood().texGap;
+    ambBreathTimer = setTimeout(function () { ambTextureFire(); ambScheduleTexture(); }, g[0] + Math.random() * g[1]);
   }
   function ambStart() {
     if (!ensureAudio() || actx.state !== "running") return;  // needs a gesture-resumed context
@@ -374,7 +454,7 @@
     ambNodes.bed.gain.cancelScheduledValues(t);
     ambNodes.bed.gain.setValueAtTime(0.0001, t);
     ambNodes.bed.gain.linearRampToValueAtTime(Math.max(0.0002, lvl), t + 3.5);   // slow fade-in
-    ambSchedulePiano(); ambScheduleBreath();
+    ambSchedulePiano(); ambScheduleTexture();
   }
   function ambStop() {
     clearTimeout(ambPianoTimer); ambPianoTimer = null;
@@ -433,6 +513,29 @@
     if (prefs.bedOn) { whenReady(function () { ambStart(); }); ambStartWatch(); }
   }
 
+  // ---- writing-mode + word-landed bed reaction (K208) ----
+  var writingMode = false;
+  function setWriting(on) { writingMode = !!on; }
+  function ambFlourish() {                                    // a soft bed motif on each completed word
+    if (!ambNodes || !actx || actx.state !== "running") return;
+    var M = curMood(), t = actx.currentTime, set = M.piano, hz = set[(Math.random() * set.length) | 0];
+    ambPiano(hz, t, 0.7);
+    if (Math.random() < 0.25) { var b = set[(Math.random() * set.length) | 0]; ambPiano(b, t + 0.16 + Math.random() * 0.2, 0.4); }
+  }
+  function word() {                                          // public: "word landed" reaction (sound + bed)
+    if (prefs.sfx > 0) whenReady(function () { wordChime(); });
+    if (prefs.bedOn) whenReady(function () { ambFlourish(); });
+  }
+  var moodBtns = [];
+  function ambSyncMoodBtn() { for (var i = 0; i < moodBtns.length; i++) moodBtns[i].textContent = "[bed: " + prefs.bedMood + "]"; }
+  function setMood(m) {
+    if (!MOODS[m] || m === prefs.bedMood) return;
+    prefs.bedMood = m; save();
+    if (prefs.bedOn && ambNodes) { ambStop(); whenReady(function () { ambStart(); }); }
+    ambSyncMoodBtn();
+  }
+  function cycleMood() { var i = MOOD_ORDER.indexOf(prefs.bedMood); setMood(MOOD_ORDER[(i + 1) % MOOD_ORDER.length]); }
+
   // ---------------- VFX registry (K206): interaction one-shots, swelled by the bleed ----------------
   var glTimer = null, FX_CLASSES = ["wh-fx--flick", "wh-fx--pulse", "wh-fx--burst", "wh-fx--roll", "wh-fx--bloom"];
   function fxFire(cls, ms) {
@@ -462,6 +565,108 @@
   function whFx(name) {
     if (!name || name === "none" || prefs.vfx <= 0 || reduce) return;
     var fn = VFX[name]; if (fn) fn();
+  }
+
+  // ---------------- strangeness: session-age corruption, site-wide + subtle (K208) ----------------
+  // The longer the tab stays open, the stranger the site gets. Session-scoped
+  // (sessionStorage) -> resets when the browser is closed + reopened. Everything is
+  // brief, self-reverting, legibility-safe, gated by the vfx slider + reduced-motion,
+  // and NEVER mutates the notes editor or real navigation. One shared throttle.
+  var SESS_KEY = "wuld:wrongHour.sess", VIS_KEY = "wuld:visited", RAMP_MIN = 30;
+  var INTRU = ["leave", "still here", "underneath", "no one", "it knows", "the wrong hour",
+    "hollow", "why", "again", "don't look", "empty", "under", "wrong", "who", "listen",
+    "behind you", "not yet", "come back", "almost", "nothing", "keep going", "you're still here"];
+  var PHANTOM = ["/void-engine/", "/frame/", "/coda/", "/ne-hoc-fiat/", "/gallery/the-wrong-thing/",
+    "/gallery/gap-dweller/", "/why-not-suicide/", "/violence-as-reductio/", "/glossary/", "/preface/", "/archive/"];
+  var GLYPH = "█▓▒░╳≠∅¤∆×†‡/\\";
+  var lastIntrusion = 0, glitchTimer = null, sessStart = 0;
+
+  function sessionAgeMin() {
+    if (!sessStart) {
+      try { var v = +sessionStorage.getItem(SESS_KEY); if (v > 0) sessStart = v; } catch (e) {}
+      if (!sessStart) { sessStart = Date.now(); try { sessionStorage.setItem(SESS_KEY, String(sessStart)); } catch (e) {} }
+    }
+    return (Date.now() - sessStart) / 60000;
+  }
+  function corruption() { return clamp01(sessionAgeMin() / RAMP_MIN); }
+  function strangeOK() { return prefs.vfx > 0 && !reduce; }
+  function throttled(gap) { var now = Date.now(); if (now - lastIntrusion < gap) return true; lastIntrusion = now; return false; }
+  function excluded(el) {
+    return !el || !el.closest || el.closest('[data-wh="none"], textarea, input, [contenteditable], .ambient-player, .wh-panel');
+  }
+  function rememberVisit() {
+    try {
+      var seen = JSON.parse(localStorage.getItem(VIS_KEY) || "[]"); if (!Array.isArray(seen)) seen = [];
+      var p = location.pathname; if (seen.indexOf(p) < 0) { seen.push(p); localStorage.setItem(VIS_KEY, JSON.stringify(seen.slice(-60))); }
+    } catch (e) {}
+  }
+  function unexplored() {
+    var seen = [];
+    try { seen = JSON.parse(localStorage.getItem(VIS_KEY) || "[]") || []; } catch (e) {}
+    var pool = PHANTOM.filter(function (p) { return seen.indexOf(p) < 0; });
+    if (!pool.length) pool = PHANTOM;
+    return pool[(Math.random() * pool.length) | 0];
+  }
+  function floatGhost(txt, x, y, cls, ttl) {
+    var s = document.createElement("span");
+    s.className = "wh-ghost " + (cls || "");
+    s.textContent = txt;
+    s.style.left = Math.round(x) + "px"; s.style.top = Math.round(y) + "px";
+    s.style.setProperty("--wh-gi", fxi().toFixed(3));
+    document.body.appendChild(s);
+    setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, ttl || 900);
+  }
+  function intrudeWord(e) {
+    var c = corruption();
+    if (Math.random() > c * 0.3) return;
+    if (throttled(2400)) return;
+    var el = e.target && e.target.closest ? e.target.closest("p, li, blockquote, figcaption, h1, h2, h3, h4, .page-intro, .lede") : null;
+    if (!el || excluded(el)) return;
+    var w = INTRU[(Math.random() * INTRU.length) | 0];
+    floatGhost(w, e.clientX + (Math.random() * 40 - 20), e.clientY + (Math.random() * 22 - 26), "wh-ghost--word", 820);
+  }
+  function phantomLink(e) {
+    var c = corruption(); if (c < 0.2) return;
+    if (Math.random() > c * 0.22) return;
+    if (throttled(2600)) return;
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || excluded(a)) return;
+    var r = a.getBoundingClientRect();
+    floatGhost("→ " + unexplored(), r.left + r.width * 0.5, r.top - 6, "wh-ghost--link", 900);
+  }
+  function corruptTextNode(el) {                              // brief, reversible glyph flicker on ONE text node
+    var i, tn = null;
+    for (i = 0; i < el.childNodes.length; i++) { var n = el.childNodes[i]; if (n.nodeType === 3 && n.nodeValue && n.nodeValue.replace(/\s/g, "").length > 5) { tn = n; break; } }
+    if (!tn) return;
+    var orig = tn.nodeValue, arr = orig.split(""), c = corruption();
+    var hits = 1 + (Math.random() * (1 + c * 3) | 0), done = 0, guard = 0;
+    while (done < hits && guard < 40) {
+      guard++;
+      var k = (Math.random() * arr.length) | 0;
+      if (/\S/.test(arr[k])) { arr[k] = GLYPH[(Math.random() * GLYPH.length) | 0]; done++; }
+    }
+    tn.nodeValue = arr.join("");
+    setTimeout(function () { try { tn.nodeValue = orig; } catch (e) {} }, 180 + Math.random() * 320);
+  }
+  function glitchTick() {
+    var c = corruption(), base = 11000;
+    if (strangeOK() && c >= 0.16 && Math.random() < 0.7) {
+      var els = document.querySelectorAll("main p, main li, article p, .prose p, .ts-page p, main blockquote");
+      var tries = 0, el = null;
+      while (tries < 8) { el = els[(Math.random() * els.length) | 0]; if (el && !excluded(el)) break; el = null; tries++; }
+      if (el) corruptTextNode(el);
+      base = 9000 - c * 6000;
+    }
+    glitchTimer = setTimeout(glitchTick, Math.max(2600, base) + Math.random() * 3000);
+  }
+  function wireStrangeness() {
+    rememberVisit();
+    document.addEventListener("pointerover", function (e) {
+      if (!strangeOK() || corruption() < 0.14) return;
+      if (e.target && e.target.closest && e.target.closest("a[href]")) phantomLink(e);
+      else intrudeWord(e);
+    }, true);
+    glitchTimer = setTimeout(glitchTick, 12000 + Math.random() * 8000);
   }
 
   // ---------------- gesture-gated firing (coexists with ambient unlock) ----------------
@@ -581,6 +786,9 @@
       '<div class="wh-row"><label>bed</label>' +
         '<button class="ambient-btn wh-amb" id="wh-amb" type="button" data-wh="none" aria-pressed="false">[synth bed]</button>' +
         '<span class="wh-val"></span></div>' +
+      '<div class="wh-row"><label>mood</label>' +
+        '<button class="ambient-btn wh-mood" id="wh-mood" type="button" data-wh="none">[bed: room]</button>' +
+        '<span class="wh-val"></span></div>' +
       '<div class="wh-row"><button class="ambient-btn wh-test" id="wh-test" type="button" data-wh="none">[ hear it ]</button></div>' +
       '<p class="wh-note">Synthesized, never sampled — sound needs one click to wake, then rides at your level. Effects answer clicks + typing and deepen toward 3am. <b>bed</b> layers a generative synth room over the playlist; a skip turns it off. Reduced-motion holds visuals steady.</p>';
     document.body.appendChild(panel);
@@ -608,6 +816,9 @@
     var ambPop = panel.querySelector("#wh-amb");
     ambBtns.push(ambPop);
     ambPop.addEventListener("click", ambToggleBed);
+    var moodBtn = panel.querySelector("#wh-mood");
+    moodBtns.push(moodBtn); ambSyncMoodBtn();
+    moodBtn.addEventListener("click", cycleMood);
 
     var bar = document.querySelector(".ambient-bar");
     if (bar) {
@@ -630,7 +841,7 @@
   }
 
   // ---------------- init ----------------
-  function init() { buildVFX(); buildUI(); wirePlacements(); paint(); boot(); ambInit(); setInterval(paint, 60000); }
+  function init() { buildVFX(); buildUI(); wirePlacements(); wireStrangeness(); paint(); boot(); ambInit(); setInterval(paint, 60000); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 
@@ -639,10 +850,15 @@
     version: VERSION,
     cues: Object.keys(CUES),
     vfx: Object.keys(VFX),
+    moods: MOOD_ORDER.slice(),
     play: play,
     fx: whFx,
     bed: ambSetBed,
-    get: function () { return { sfx: prefs.sfx, vfx: prefs.vfx, bedOn: prefs.bedOn, rot: rot(), bleed: bleedNow() }; },
+    mood: setMood,
+    word: word,
+    writing: setWriting,
+    corr: corruption,
+    get: function () { return { sfx: prefs.sfx, vfx: prefs.vfx, bedOn: prefs.bedOn, bedMood: prefs.bedMood, rot: rot(), bleed: bleedNow(), corr: corruption() }; },
     set: function (o) { if (o && typeof o === "object") { if ("sfx" in o) prefs.sfx = clamp01(o.sfx); if ("vfx" in o) prefs.vfx = clamp01(o.vfx); save(); paint(); } },
     boot: bootSeq, thunk: thunk, key: key, soft: soft, bell: bell, click: click, purr: purr, paint: paint
   };

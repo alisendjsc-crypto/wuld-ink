@@ -1,4 +1,4 @@
-/* wrong-hour.css — synthesized SFX/VFX ("the wrong hour"), K207
+/* wrong-hour.css — synthesized SFX/VFX ("the wrong hour"), K208
    NO-PIN auto-deploying component. Progressive: JS off -> no effects, page
    identical (homepage D1 zero-JS invariant holds — nothing here is required).
 
@@ -155,8 +155,46 @@ html.wh-glitch h1, html.wh-glitch h2{
 }
 
 /* a11y — motion off; static tint/vignette stay, audio unaffected */
+/* K208 - strangeness ghosts: intrusive words + phantom link destinations.
+   Fixed, never intercept input; brief fade in/out, drift up; scaled by --wh-gi
+   (the 3am swell). JS gates on the vfx slider + !reduce; also hidden below. */
+.wh-ghost{
+  position: fixed; z-index: 95; pointer-events: none;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono, monospace);
+  font-size: var(--t-sm, .875rem);
+  white-space: nowrap; opacity: 0;
+  will-change: opacity, transform;
+}
+.wh-ghost--word{
+  color: var(--c-accent, #c41e3a);
+  font-family: var(--font-body, Georgia, serif); font-style: italic;
+  font-size: var(--t-base, 1rem);
+  text-shadow: 0 0 6px rgba(196,30,58,.4);
+  animation: wh-ghost-word 820ms ease-in-out forwards;
+}
+.wh-ghost--link{
+  color: var(--c-fg-muted, #8a847b); letter-spacing: var(--ls-wide, .06em);
+  text-shadow: 0 0 5px rgba(0,0,0,.6);
+  animation: wh-ghost-link 900ms ease-out forwards;
+}
+@keyframes wh-ghost-word{
+  0%{ opacity: 0; transform: translate(-50%, -44%); }
+  22%{ opacity: calc(var(--wh-gi,.6) * .85); }
+  60%{ opacity: calc(var(--wh-gi,.6) * .62); }
+  100%{ opacity: 0; transform: translate(-50%, -64%); }
+}
+@keyframes wh-ghost-link{
+  0%{ opacity: 0; transform: translate(-50%, -46%); }
+  30%{ opacity: calc(var(--wh-gi,.6) * .8); }
+  100%{ opacity: 0; transform: translate(-50%, -72%); }
+}
+/* mood cycle button in the [fx] popover (reuses .ambient-btn) */
+.wh-mood{ flex: 1; text-align: left; }
+
 @media (prefers-reduced-motion: reduce){
   .wh-grain{ animation: none; }
+  .wh-ghost{ display: none !important; }
   .wh-boot, .wh-boot--go{ animation: none !important; opacity: 0 !important; }
   .wh-fx{ display: none !important; }
   h1, h2{ text-shadow: none !important; transition: none !important; }

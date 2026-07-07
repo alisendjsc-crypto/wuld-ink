@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
+  <link rel="stylesheet" href="/components/wrong-hour.css?v=K208">
+  <link rel="license" href="/LICENSE">
+  <title>Notes &mdash; write your thoughts &middot; wuld.ink</title>
+  <meta name="description" content="A quiet place to write and keep your thoughts. Private by default &mdash; saved only in this browser, never sent anywhere unless you choose to.">
+
+  <link rel="canonical" href="https://wuld.ink/notes/">
+  <meta property="og:title" content="Notes &mdash; write your thoughts &middot; wuld.ink">
+  <meta property="og:description" content="A quiet place to write and keep your thoughts. Private by default &mdash; saved only in this browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/notes/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Notes &mdash; write your thoughts">
+  <meta name="twitter:description" content="A quiet, private writing surface. Saved only in your browser.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K43">
+  <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
+  <link rel="stylesheet" href="/components/footer.css?v=K43">
+
+  <style>
+    .notes-page{
+      max-width: min(74rem, 100%);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+    .notes-privacy{
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-dim);
+      text-transform: uppercase;
+      margin-block: var(--s-4) var(--s-5);
+    }
+    .notes-privacy .lock{ color: var(--c-accent); }
+
+    .notes-app{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+    @media (min-width: 760px){
+      .notes-app{ grid-template-columns: 14rem minmax(0, 1fr); }
+    }
+
+    /* side: new + list */
+    .notes-side{ display: flex; flex-direction: column; gap: var(--s-3); min-width: 0; }
+    .notes-new{
+      font-family: var(--font-mono); font-size: var(--t-sm);
+      text-align: left; padding: var(--s-3) var(--s-4);
+      background: var(--c-bg-elevated, #161616);
+      border: var(--bw-base) solid var(--c-border);
+      color: var(--c-fg); cursor: pointer;
+      letter-spacing: var(--ls-wide);
+    }
+    .notes-new:hover{ border-color: var(--c-accent); color: var(--c-accent); }
+    .note-list{ display: flex; flex-direction: column; border: var(--bw-base) solid var(--c-border); }
+    .note-item{
+      display: flex; flex-direction: column; gap: 2px;
+      text-align: left; width: 100%;
+      padding: var(--s-3) var(--s-4);
+      background: transparent; border: 0;
+      border-bottom: var(--bw-thin, 1px) solid var(--c-border);
+      cursor: pointer; color: var(--c-fg-muted);
+      font-family: var(--font-mono);
+    }
+    .note-item:last-child{ border-bottom: 0; }
+    .note-item:hover{ background: var(--c-bg-soft, #141414); color: var(--c-fg); }
+    .note-item.is-active{ border-left: var(--bw-thick) solid var(--c-accent); color: var(--c-fg); background: var(--c-bg-soft, #141414); }
+    .note-item-title{ font-size: var(--t-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .note-item-date{ font-size: 10px; color: var(--c-fg-dim); letter-spacing: var(--ls-wide); }
+
+    /* main: toolbar + editor */
+    .notes-main{ min-width: 0; display: flex; flex-direction: column; gap: var(--s-3); }
+    .notes-toolbar{ display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; }
+    .notes-btn{
+      font-family: var(--font-mono); font-size: var(--t-sm);
+      background: transparent; border: var(--bw-base) solid var(--c-border);
+      color: var(--c-fg-muted); padding: var(--s-2) var(--s-3); cursor: pointer;
+      letter-spacing: var(--ls-wide);
+    }
+    .notes-btn:hover{ border-color: var(--c-accent); color: var(--c-accent); }
+    .notes-ind{
+      font-family: var(--font-mono); font-size: var(--t-xs);
+      color: var(--c-fg-dim); letter-spacing: var(--ls-wide);
+    }
+    .notes-ind.saved{ margin-left: auto; text-align: right; }
+    .notes-ind.saved.is-dirty{ color: var(--c-fg-muted); }
+    .notes-ind.saved.is-flash{ color: var(--c-accent); }
+
+    .notes-editor-wrap{
+      position: relative;
+      border: var(--bw-base) solid var(--c-border);
+      border-left: var(--bw-thick) solid var(--c-accent);
+      background: var(--c-bg-elevated, #161616);
+      transition: box-shadow 200ms ease-out, border-color 200ms ease-out;
+    }
+    .notes-editor-wrap:focus-within{ border-color: var(--c-fg-dim); }
+    #editor{
+      display: block; width: 100%;
+      min-height: 56vh; resize: vertical;
+      background: transparent; border: 0; outline: none;
+      color: var(--c-fg);
+      font-family: var(--font-body); font-size: 1.15rem; line-height: 1.75;
+      padding: var(--s-5);
+      caret-color: var(--c-accent);
+    }
+    #editor::placeholder{ color: var(--c-fg-dim); font-style: italic; }
+
+    /* word-landed field glow */
+    .notes-editor-wrap.word-glow{ animation: notes-word 520ms ease-out; }
+    @keyframes notes-word{
+      0%{ box-shadow: 0 0 0 0 rgba(196,30,58,0); }
+      28%{ box-shadow: 0 0 22px 1px rgba(196,30,58,.22); }
+      100%{ box-shadow: 0 0 0 0 rgba(196,30,58,0); }
+    }
+    /* caret spark */
+    .notes-spark{
+      position: fixed; z-index: 94; pointer-events: none;
+      width: 6px; height: 6px; margin: -3px 0 0 -3px;
+      border-radius: 50%;
+      background: var(--c-accent, #c41e3a);
+      box-shadow: 0 0 8px 2px rgba(196,30,58,.5);
+      animation: notes-spark 560ms ease-out forwards;
+    }
+    @keyframes notes-spark{
+      0%{ opacity: .9; transform: scale(.5) translateY(0); }
+      100%{ opacity: 0; transform: scale(1.7) translateY(-14px); }
+    }
+    .notes-foot{
+      margin-block: var(--s-7) 0; padding-block-start: var(--s-5);
+      border-top: var(--bw-base) solid var(--c-border);
+      font-family: var(--font-mono); font-size: var(--t-xs);
+      color: var(--c-fg-dim); letter-spacing: var(--ls-wide); line-height: 1.8;
+      max-width: 44rem;
+    }
+    .notes-foot .accent{ color: var(--c-accent); }
+
+    @media (prefers-reduced-motion: reduce){
+      .notes-editor-wrap.word-glow{ animation: none; }
+      .notes-spark{ display: none !important; }
+    }
+  </style>
+</head>
+<body data-mode="dark">
+
+  <header class="site-header">
+    <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink"><img src="/assets/site-banner-1920.webp" srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w" sizes="100vw" width="1920" height="443" alt="W.U.L.D.: Incorporated" decoding="async" loading="eager"></a>
+    <div class="site-header-inner">
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+        <a href="/recommendations/">Recommendations</a>
+        <a href="/archive/">Archive</a>
+        <a href="/preface/">About</a>
+        <a href="/donations/">Support</a>
+        <a href="/contact/">Contact</a>
+        <a href="/chat/">Chat</a>
+        <a href="/search/">Search</a>
+        <a href="/notes/">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="notes-page">
+
+    <header class="page-hero">
+      <p class="page-hero-eyebrow">17 &middot; Notes</p>
+      <h1 class="page-hero-title">Write your thoughts</h1>
+      <p class="page-intro">A quiet place to think out loud. What you write here is saved <strong>only in this browser</strong> &mdash; it never leaves your device unless you copy or download it. Close the tab and it&rsquo;s still here when you come back.</p>
+    </header>
+
+    <p class="notes-privacy"><span class="lock">&#9679;</span> private &middot; localStorage only &middot; nothing leaves this device</p>
+
+    <div class="notes-app">
+      <aside class="notes-side" aria-label="Saved notes">
+        <button type="button" id="btn-new" class="notes-new">[ + new note ]</button>
+        <div class="note-list" id="note-list" aria-label="Notes list"></div>
+      </aside>
+
+      <section class="notes-main" aria-label="Editor">
+        <div class="notes-toolbar">
+          <button type="button" id="btn-copy" class="notes-btn">[ copy ]</button>
+          <button type="button" id="btn-download" class="notes-btn">[ download ]</button>
+          <button type="button" id="btn-del" class="notes-btn">[ delete ]</button>
+          <span class="notes-ind count" id="count-ind">0 words</span>
+          <span class="notes-ind saved" id="saved-ind">saved</span>
+        </div>
+        <div class="notes-editor-wrap" id="editor-wrap">
+          <textarea id="editor" data-wh="none" spellcheck="true" aria-label="Write your thoughts" placeholder="Start writing&hellip;"></textarea>
+        </div>
+      </section>
+    </div>
+
+    <div class="notes-foot">
+      <span class="accent">W.U.L.D.</span> &middot; This page keeps nothing of yours. Notes live in your browser&rsquo;s local storage and can be cleared by clearing site data.<br>
+      Typing has sound and light &mdash; tune or mute it in the <em>[fx]</em> panel on the ambient bar. The longer you stay, the stranger the site becomes.
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <span class="footer-pending">
+        <a class="library-link" href="https://library.wuld.ink/">library.wuld.ink</a> &mdash; v3.9.16 stable
+        <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+        <a class="disclaimer-link" href="/troubleshooting/">Site won&rsquo;t load?</a>
+      </span>
+    </div>
+    <div class="page-footer-inner footer-meta">
+      <a class="changelog-link" href="/changelog/">Changelog</a>
+      <a class="changelog-link" href="/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js?v=K43"></script>
+  <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
+    <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
+    <div class="ambient-bar">
+      <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
+      <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
+      <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
+      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
+    </div>
+    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
+  </div>
+
+  <script src="/components/ambient-player.js?v=K207"></script>
+  <script src="/components/wrong-hour.js?v=K208" defer></script>
+
+  <script>
+  (function () {
+    "use strict";
+    var KEY = "wuld:notes";
+    var reduce = false; try { reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+    var editor  = document.getElementById("editor");
+    var listEl  = document.getElementById("note-list");
+    var savedEl = document.getElementById("saved-ind");
+    var countEl = document.getElementById("count-ind");
+    var wrap    = document.getElementById("editor-wrap");
+    if (!editor) return;
+
+    var state = load();
+    var saveTimer = null, glowTimer = null, lastWord = 0;
+
+    function uid() { return "n" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+    function fresh() { var id = uid(); return { id: id, body: "", created: Date.now(), updated: Date.now() }; }
+    function load() {
+      try { var r = JSON.parse(localStorage.getItem(KEY)); if (r && r.notes && r.notes.length) return r; } catch (e) {}
+      var n = fresh(); return { v: 1, notes: [n], activeId: n.id };
+    }
+    function persist() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+    function byId(id) { for (var i = 0; i < state.notes.length; i++) if (state.notes[i].id === id) return state.notes[i]; return null; }
+    function active() { return byId(state.activeId) || state.notes[0]; }
+    function titleOf(n) { var t = (n.body || "").split("\n")[0].trim(); return t ? t.slice(0, 42) : "Untitled"; }
+    function fmt(ts) { try { return new Date(ts).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }); } catch (e) { return ""; } }
+
+    function renderList() {
+      listEl.innerHTML = "";
+      var arr = state.notes.slice().sort(function (a, b) { return b.updated - a.updated; });
+      arr.forEach(function (n) {
+        var li = document.createElement("button");
+        li.type = "button";
+        li.className = "note-item" + (n.id === state.activeId ? " is-active" : "");
+        li.setAttribute("data-id", n.id);
+        var tt = document.createElement("span"); tt.className = "note-item-title"; tt.textContent = titleOf(n);
+        var dd = document.createElement("span"); dd.className = "note-item-date"; dd.textContent = fmt(n.updated);
+        li.appendChild(tt); li.appendChild(dd);
+        li.addEventListener("click", function () { openNote(n.id); });
+        listEl.appendChild(li);
+      });
+    }
+    function openNote(id) {
+      var n = byId(id); if (!n) return;
+      state.activeId = id; editor.value = n.body; persist(); renderList(); counts(); markSaved(); editor.focus();
+    }
+    function newNote() {
+      var n = fresh(); state.notes.push(n); state.activeId = n.id;
+      editor.value = ""; persist(); renderList(); counts(); markSaved(); editor.focus();
+    }
+    function delNote() {
+      var n = active(); if (!n) return;
+      if ((n.body || "").trim() && !confirm("Delete this note? This can’t be undone.")) return;
+      state.notes = state.notes.filter(function (x) { return x.id !== n.id; });
+      if (!state.notes.length) { var f = fresh(); state.notes.push(f); state.activeId = f.id; }
+      else state.activeId = state.notes[0].id;
+      editor.value = active().body; persist(); renderList(); counts(); markSaved();
+    }
+    function counts() {
+      var v = editor.value, w = (v.trim().match(/\S+/g) || []).length;
+      countEl.textContent = w + " word" + (w === 1 ? "" : "s") + " · " + v.length + " char" + (v.length === 1 ? "" : "s");
+    }
+    function markSaved() { savedEl.textContent = "saved · " + fmt(Date.now()); savedEl.classList.remove("is-dirty", "is-flash"); }
+    function scheduleSave() {
+      savedEl.textContent = "editing…"; savedEl.classList.add("is-dirty");
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(function () {
+        var n = active(); if (n) { n.body = editor.value; n.updated = Date.now(); persist(); renderList(); }
+        markSaved();
+      }, 500);
+    }
+    function toast(msg) {
+      savedEl.textContent = msg; savedEl.classList.remove("is-dirty"); savedEl.classList.add("is-flash");
+      setTimeout(function () { savedEl.classList.remove("is-flash"); markSaved(); }, 1100);
+    }
+    function copyNote() {
+      var v = editor.value; if (!v.trim()) return;
+      function fb() { try { editor.select(); document.execCommand("copy"); toast("copied"); } catch (e) {} }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(function () { toast("copied"); }, fb);
+        else fb();
+      } catch (e) { fb(); }
+    }
+    function downloadNote() {
+      var v = editor.value; if (!v.trim()) return;
+      var name = (titleOf(active()) || "note").replace(/[^\w\- ]+/g, "").trim().slice(0, 40) || "note";
+      try {
+        var blob = new Blob([v], { type: "text/plain;charset=utf-8" });
+        var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name + ".txt";
+        document.body.appendChild(a); a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); if (a.parentNode) a.parentNode.removeChild(a); }, 120);
+        toast("downloaded");
+      } catch (e) {}
+    }
+
+    // ---- typing FX: per-word chime (via wrong-hour) + field glow + caret spark ----
+    var WORDCHAR = /[A-Za-z0-9'’]/;
+    var BOUNDARY = { " ": 1, "Enter": 1, ".": 1, ",": 1, ";": 1, ":": 1, "!": 1, "?": 1, ")": 1 };
+    function wh() { return window.WuldWrongHour || null; }
+    function wordLanded() {
+      var now = Date.now(); if (now - lastWord < 110) return; lastWord = now;
+      var W = wh(); if (W && W.word) { try { W.word(); } catch (e) {} }
+      if (reduce) return;
+      var vfx = 1; try { if (W && W.get) vfx = W.get().vfx; } catch (e) {}
+      if (vfx <= 0) return;
+      wrap.classList.remove("word-glow"); void wrap.offsetWidth; wrap.classList.add("word-glow");
+      clearTimeout(glowTimer); glowTimer = setTimeout(function () { wrap.classList.remove("word-glow"); }, 540);
+      try { spark(); } catch (e) {}
+    }
+    function caretXY() {
+      var m = document.getElementById("caret-mirror");
+      if (!m) { m = document.createElement("div"); m.id = "caret-mirror"; document.body.appendChild(m); }
+      var cs = getComputedStyle(editor);
+      var props = ["fontFamily", "fontSize", "fontWeight", "fontStyle", "lineHeight", "letterSpacing", "textTransform",
+        "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
+        "borderTopWidth", "borderRightWidth", "borderBottomWidth", "borderLeftWidth", "boxSizing", "width"];
+      for (var i = 0; i < props.length; i++) m.style[props[i]] = cs[props[i]];
+      m.style.position = "absolute"; m.style.visibility = "hidden"; m.style.whiteSpace = "pre-wrap";
+      m.style.wordWrap = "break-word"; m.style.overflow = "hidden"; m.style.left = "-9999px"; m.style.top = "0";
+      m.textContent = editor.value.slice(0, editor.selectionStart);
+      var mk = document.createElement("span"); mk.textContent = "\u200b"; m.appendChild(mk);
+      var r = editor.getBoundingClientRect();
+      var x = r.left + mk.offsetLeft - editor.scrollLeft;
+      var y = r.top + mk.offsetTop - editor.scrollTop;
+      if (!isFinite(x) || !isFinite(y)) return null;
+      return { x: x, y: y };
+    }
+    function spark() {
+      var p = caretXY(); if (!p) return;
+      if (p.y < 0 || p.y > innerHeight || p.x < 0 || p.x > innerWidth) return;
+      var s = document.createElement("span"); s.className = "notes-spark";
+      s.style.left = Math.round(p.x) + "px"; s.style.top = Math.round(p.y) + "px";
+      document.body.appendChild(s);
+      setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 580);
+    }
+
+    // ---- wire ----
+    editor.value = active().body;
+    editor.addEventListener("input", function () { scheduleSave(); counts(); });
+    editor.addEventListener("keydown", function (e) {
+      if (BOUNDARY[e.key]) {
+        var prev = editor.value.charAt(editor.selectionStart - 1);
+        if (prev && WORDCHAR.test(prev)) wordLanded();
+      }
+    });
+    editor.addEventListener("focus", function () { var W = wh(); if (W && W.writing) try { W.writing(true); } catch (e) {} });
+    editor.addEventListener("blur", function () { var W = wh(); if (W && W.writing) try { W.writing(false); } catch (e) {} });
+    document.getElementById("btn-new").addEventListener("click", newNote);
+    document.getElementById("btn-del").addEventListener("click", delNote);
+    document.getElementById("btn-copy").addEventListener("click", copyNote);
+    document.getElementById("btn-download").addEventListener("click", downloadNote);
+
+    renderList(); counts(); markSaved();
+  })();
+  </script>
+</body>
+</html>

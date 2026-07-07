@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-07-07-notes-writing-surface",
+    "date": "2026-07-07",
+    "summary": "New Notes tab — a private place to write, saved only in your browser (nothing is sent anywhere unless you copy or download it). Typing has sound and a soft glow, and each finished word lands with a chime. The ambient layer grew too: the site quietly drifts and glitches the longer you leave a tab open, and the generative synth bed gained two new moods — a colder clinical hum and a deeper oceanic drift — cycled from the [fx] panel.",
+    "sections": [
+      "/notes/"
+    ]
+  },
+  {
     "id": "2026-07-06-connection-help-page",
     "date": "2026-07-06",
     "summary": "New help page for a connection error some visitors hit — an intermittent ERR_SSL_PROTOCOL_ERROR or “invalid response” warning that comes and goes. It’s a network-side Encrypted ClientHello (ECH) conflict, not the site: /troubleshooting/ has the roughly 30-second fix, by browser, with a mirror on library.wuld.ink for when the main domain won’t load. Linked from the footer and the contact page.",
