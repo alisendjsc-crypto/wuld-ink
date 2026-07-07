@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-07-07-ambient-breeze",
+    "date": "2026-07-07",
+    "summary": "The default ambience is calmer now: the YouTube background player no longer starts on its own — turn it on from the bar if you want it — and the generative synth bed carries the room by default, opening on its clinical hum. It gained a third mood, breeze: a deep, methodic drone with an aching resonant wind that rises and aches back between movements, after the opening of Éliane Radigue's Triptych. The oceanic drift was deepened to read on smaller speakers; cycle the moods from the [fx] panel.",
+    "sections": []
+  },
+  {
     "id": "2026-07-07-notes-writing-surface",
     "date": "2026-07-07",
     "summary": "New Notes tab — a private place to write, saved only in your browser (nothing is sent anywhere unless you copy or download it). Typing has sound and a soft glow, and each finished word lands with a chime. The ambient layer grew too: the site quietly drifts and glitches the longer you leave a tab open, and the generative synth bed gained two new moods — a colder clinical hum and a deeper oceanic drift — cycled from the [fx] panel.",

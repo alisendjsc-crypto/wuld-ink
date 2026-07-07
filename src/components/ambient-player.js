@@ -30,6 +30,8 @@
 
    K207: DEFAULT_STATE shuffle off + loop-one on -> a fresh visitor opens on
    playlist track 1, looped (the paired opening track for the wrong-hour synth bed).
+   K209: on=false default -> the YouTube playlist no longer autostarts; the wrong-hour
+   synth bed (clinical) carries the default ambience. Ambient-on starts the playlist.
 
    Public surface: window.WuldAmbient
    ============================================================ */
@@ -43,7 +45,7 @@
   const STATE_SAVE_MS = 4000;  // periodic seek-position save
 
   const DEFAULT_STATE = {
-    on: true,             // user toggle (sticky across sessions)
+    on: false,            // K209: YouTube playlist OFF by default (the synth bed carries the ambience); still sticky once toggled
     volume: 40,           // 0..100
     currentVideoId: null, // resume target on next page
     lastPositionSec: 0,   // resume offset

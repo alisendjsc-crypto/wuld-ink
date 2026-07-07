@@ -38,9 +38,10 @@
   var STORAGE  = "wuld:wrongHour";
   var BOOT_KEY = "wuld:wrongHour.booted";
   var VERSION  = "K208";
-  var DEFAULTS = { sfx: 0.35, vfx: 0.35, bedOn: true, bedMood: "room" };
+  var DEFAULTS = { sfx: 0.35, vfx: 0.35, bedOn: true, bedMood: "clinical" };
   var SCENES   = { frame: "bell", threshold: "bell", glossary: "bell", summon: "purr", power: "boot" };
   // K208 - generative bed MOODS (additive); the drone/piano/texture read the active one
+  // K209 - clinical is the default; oceanic elevated for small-speaker presence; +breeze (Radigue-ish deep drone w/ a resonant "howl")
   var MOODS = {
     room: {
       lpFreq: 320, lpQ: 6, whirFreq: 0.13, whirDepth: 120,
@@ -59,15 +60,23 @@
       tex: "tick", texGap: [6000, 12000]
     },
     oceanic: {
-      lpFreq: 180, lpQ: 5, whirFreq: 0.045, whirDepth: 90,
-      specs: [[32, "sine", 0.55], [48, "sine", 0.28], [64, "sine", 0.18], [96, "triangle", 0.08]],
-      airType: "bandpass", airFreq: 300, airQ: 0.5, airGain: 0.05,
-      breathFreq: 0.035, breathDepth: 0.05,
+      lpFreq: 240, lpQ: 4, whirFreq: 0.045, whirDepth: 110,
+      specs: [[32, "sine", 0.82], [48, "sine", 0.44], [64, "sine", 0.3], [96, "triangle", 0.16], [144, "sine", 0.15]],
+      airType: "bandpass", airFreq: 360, airQ: 0.5, airGain: 0.075,
+      breathFreq: 0.035, breathDepth: 0.06,
       piano: [98, 110, 131, 147, 165], pianoGap: [8000, 12000], fall: 0.5,
       tex: "tide", texGap: [20000, 30000]
+    },
+    breeze: {
+      lpFreq: 210, lpQ: 6, whirFreq: 0.025, whirDepth: 80,
+      specs: [[36, "sine", 0.6], [36.4, "sine", 0.5], [54, "sine", 0.24], [72.3, "sine", 0.13], [108, "triangle", 0.08], [150, "sine", 0.05]],
+      airType: "bandpass", airFreq: 480, airQ: 0.8, airGain: 0.028,
+      breathFreq: 0.02, breathDepth: 0.05,
+      piano: [82, 98, 110, 123], pianoGap: [24000, 22000], fall: 0.12,
+      tex: "howl", texGap: [15000, 12000]
     }
   };
-  var MOOD_ORDER = ["room", "clinical", "oceanic"];
+  var MOOD_ORDER = ["room", "clinical", "oceanic", "breeze"];
   function curMood() { return MOODS[prefs.bedMood] || MOODS.room; }
 
   var reduce = false;
@@ -431,15 +440,41 @@
     var t = actx.currentTime;
     var ns = actx.createBufferSource(); ns.buffer = noiseBuf(6.5);
     var bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 220 + Math.random() * 140; bp.Q.value = 0.8;
-    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 500;
+    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 640;
     var g = actx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(0.07, t + 2.6);
+    g.gain.linearRampToValueAtTime(0.095, t + 2.6);
     g.gain.linearRampToValueAtTime(0.0001, t + 6.2);
     ns.connect(bp); bp.connect(lp); lp.connect(g); g.connect(ambNodes.bed);
     try { ns.start(t); ns.stop(t + 6.5); } catch (e) {}
   }
-  var AMB_TEX = { breath: ambBreath, tick: ambTick, tide: ambTide };
+  function ambHowl() {                                     // breeze - an aching resonant wind that swells and recedes between movements (Radigue-ish)
+    if (!ambNodes || !actx || actx.state !== "running") return;
+    var t = actx.currentTime, dur = 8 + Math.random() * 3;
+    var f0 = 240 + Math.random() * 120, f1 = f0 + 180 + Math.random() * 160;
+    var ns = actx.createBufferSource(); ns.buffer = noiseBuf(6.5); ns.loop = true;
+    var bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.Q.value = 5.5;
+    bp.frequency.setValueAtTime(f0, t);
+    bp.frequency.linearRampToValueAtTime(f1, t + dur * 0.55);
+    bp.frequency.linearRampToValueAtTime(f0 * 0.85, t + dur);
+    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 900;
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(0.06, t + dur * 0.45);
+    g.gain.linearRampToValueAtTime(0.0001, t + dur);
+    ns.connect(bp); bp.connect(lp); lp.connect(g); g.connect(ambNodes.bed);
+    var o = actx.createOscillator(); o.type = "sine";
+    o.frequency.setValueAtTime(f0 * 0.5, t);
+    o.frequency.linearRampToValueAtTime(f1 * 0.5, t + dur * 0.55);
+    o.frequency.linearRampToValueAtTime(f0 * 0.46, t + dur);
+    var og = actx.createGain();
+    og.gain.setValueAtTime(0.0001, t);
+    og.gain.linearRampToValueAtTime(0.03, t + dur * 0.5);
+    og.gain.linearRampToValueAtTime(0.0001, t + dur);
+    o.connect(og); og.connect(ambNodes.bed);
+    try { ns.start(t); ns.stop(t + dur + 0.1); o.start(t); o.stop(t + dur + 0.1); } catch (e) {}
+  }
+  var AMB_TEX = { breath: ambBreath, tick: ambTick, tide: ambTide, howl: ambHowl };
   function ambTextureFire() { var fn = AMB_TEX[curMood().tex]; if (fn) fn(); }
   function ambScheduleTexture() {
     clearTimeout(ambBreathTimer);
