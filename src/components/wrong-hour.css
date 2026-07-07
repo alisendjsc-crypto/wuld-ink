@@ -1,0 +1,95 @@
+/* wrong-hour.css — synthesized SFX/VFX ("the wrong hour"), K205
+   NO-PIN auto-deploying component. Progressive: JS off -> no effects, page
+   identical (homepage D1 zero-JS invariant holds — nothing here is required).
+
+   ONE DIAL: --wh-rot (0..1) = time-of-day bleed x user VFX intensity, set by JS.
+   Color-only degradation — the tint uses mix-blend-mode:color, so LIGHTNESS is
+   held: contrast and legibility never drop, the room only sours (trap #20 ported).
+   Uses site design tokens; prefers-reduced-motion kills motion, keeps static
+   tint + vignette. The CRT math mirrors the Godot desktop shell's shader. */
+
+:root{ --wh-rot: 0; --wh-abr: 0px; }
+
+/* fixed overlay stack — under the ambient bar (z 100); never intercepts input */
+.wh-layer{ position: fixed; inset: 0; pointer-events: none; z-index: 90; }
+
+/* B0 · the bleed — hue + saturation drift toward red, lightness held */
+.wh-tint{
+  background: var(--c-accent, #c41e3a);
+  mix-blend-mode: color;
+  opacity: calc(var(--wh-rot) * 0.30);
+}
+
+/* B1 · vignette — edges only, legibility-safe */
+.wh-vignette{
+  background: radial-gradient(120% 100% at 50% 42%, transparent 55%, #000 130%);
+  opacity: calc(var(--wh-rot) * 0.55);
+}
+
+/* B1 · scanlines — kept low so body text survives */
+.wh-scan{
+  background: repeating-linear-gradient(0deg,
+    rgba(0,0,0,0) 0px, rgba(0,0,0,0) 1px,
+    rgba(0,0,0,.5) 2px, rgba(0,0,0,.5) 3px);
+  mix-blend-mode: multiply;
+  opacity: calc(var(--wh-rot) * 0.16);
+}
+
+/* B3 · grain / ash — real canvas noise frames, set + cycled by JS */
+.wh-grain{
+  /* film grain — canvas noise frames set + cycled by JS (reliable, visible) */
+  background-repeat: repeat;
+  background-size: 150px 150px;
+  opacity: calc(var(--wh-rot) * 0.6);
+}
+/* (grain animation is JS-driven — canvas noise frames; see wrong-hour.js buildGrain) */
+
+/* B4-lite · chromatic aberration — headings only, off body text (legibility) */
+h1, h2{
+  text-shadow:
+    calc(var(--wh-abr) * -1) 0 rgba(255,42,60, calc(var(--wh-rot) * .5)),
+    var(--wh-abr) 0 rgba(48,120,255, calc(var(--wh-rot) * .42));
+}
+
+/* B6 · boot / degauss flash — one-shot (JS adds .wh-boot--go) */
+.wh-boot{
+  position: fixed; inset: 0; z-index: 300; pointer-events: none;
+  background: var(--c-fg, #f0ebe5); opacity: 0; transform-origin: 50% 50%;
+}
+.wh-boot--go{ animation: wh-boot 900ms ease-out forwards; }
+@keyframes wh-boot{
+  0%{ opacity: .85; transform: scaleY(1); }
+  9%{ opacity: .8; transform: scaleY(.005); }   /* collapse to a line */
+  24%{ opacity: .6; transform: scaleY(.005); }
+  100%{ opacity: 0; transform: scaleY(1); }      /* open */
+}
+
+/* FX popover — the [fx] chip lives in the ambient bar (reuses .ambient-btn) */
+.wh-panel{
+  position: fixed; right: var(--s-3, .75rem); bottom: 3rem; z-index: 101;
+  width: min(19rem, 92vw);
+  background: var(--c-bg-elevated, #161616);
+  border: var(--bw-thin, 1px) solid var(--c-border, #2a2a2a);
+  padding: var(--s-3, .75rem);
+  font-family: var(--font-mono, monospace); font-size: var(--t-xs, .75rem);
+  color: var(--c-fg-muted, #8a847b);
+  display: none;
+}
+.wh-panel[data-open="true"]{ display: block; }
+.wh-head{
+  display: flex; justify-content: space-between; margin-bottom: .5rem;
+  color: var(--c-fg, #f0ebe5); letter-spacing: var(--ls-wide, .06em);
+}
+.wh-hour{ color: var(--c-accent, #c41e3a); }
+.wh-row{ display: flex; align-items: center; gap: var(--s-2, .5rem); margin: .4rem 0; }
+.wh-row label{ min-width: 3.4rem; text-transform: uppercase; letter-spacing: var(--ls-wide, .06em); }
+.wh-range{ flex: 1; height: 1rem; accent-color: var(--c-accent, #c41e3a); }
+.wh-val{ min-width: 2.6rem; text-align: right; color: var(--c-fg-dim, #5a554f); }
+.wh-note{ margin: .6rem 0 0; color: var(--c-fg-dim, #5a554f); font-size: 11px; line-height: 1.45; }
+
+/* a11y — motion off; static tint/vignette stay, audio unaffected */
+@media (prefers-reduced-motion: reduce){
+  .wh-grain{ animation: none; }
+  .wh-boot, .wh-boot--go{ animation: none !important; opacity: 0 !important; }
+  h1, h2{ text-shadow: none !important; }
+}
