@@ -1,5 +1,5 @@
 /*
-  wrong-hour.js — synthesized SFX + VFX ("the wrong hour"), K205
+  wrong-hour.js — synthesized SFX + VFX ("the wrong hour"), K206
   ---------------------------------------------------------------------------
   NO-PIN auto-deploying component. Progressive enhancement: with JS off there
   are zero effects and the page is byte-identical (homepage D1 invariant holds).
@@ -7,41 +7,47 @@
   ONE DIAL — the bleed. rot() (0..1) = user VFX intensity swelled by the clock:
   rot = vfx x (0.4 + 0.6 * bleedNow()). The slider always bites (day or night);
   the wrong hour pushes it toward its ceiling. It drives colour / grain /
-  aberration / vignette every tick, and (opt-in) the audio. Colour-only tint via
-  mix-blend-mode:color holds LIGHTNESS, so contrast/legibility never drop.
-
-  Grain is real canvas film-noise (drawn + cycled in JS) — not a blend trick.
+  aberration / vignette every tick, the interaction VFX one-shots, and (opt-in)
+  the audio. Colour-only tint via mix-blend-mode:color holds LIGHTNESS, so
+  contrast/legibility never drop. Grain is real canvas film-noise.
 
   Two laws (from the game / Sfx.gd): synthesize never sample; the bleed is one
   0..1 lerp that never darkens to black (trap #20).
 
-  SFX = a synth CUE LIBRARY tuned toward smooth, warm, ASMR-grade analog texture,
-  consent-gated (default OFF). Interaction cues are the everyday layer; atmospheric
-  cues are rare:
+  SFX = a synth CUE LIBRARY tuned toward smooth, warm, ASMR-grade analog texture.
+  Consent: default 0.35 (a soft floor), gated behind the first gesture (browser
+  autoplay), muted at the slider's 0. Interaction cues are the everyday layer:
     - boot : a computer waking, smooth — warm sub-whoomp + slow mains-hum swell +
-             soft air + a breathing CRT shimmer. Once per session on first load.
-    - key  : mechanical thock (rounded body + soft click + per-press variation).
-             Fired on EVERY keystroke in any text field.
-    - soft : a soft round tick w/ a whisper of breath — nav links.
-    - click: a soft tick with a small round body — buttons.
+             soft air + a breathing CRT shimmer. Once/session; K206 fires it
+             SYNCED with the boot flash on the first gesture (or flash-now if muted).
+    - key/soft/click : per-keystroke thock / nav felt-tap / button tick.
     - bell : inharmonic chime, bitcrushes as it rots — RARE: auto at ~3am, or placed.
     - purr : 55 Hz sub-bass (headphone/felt only) — RARE: wired to the mascot.
-  Placement: nav->soft, buttons->click, typing->key by default; per element
-  <a data-wh="bell">; per page <body data-wh-scene="frame">; code WuldWrongHour.play().
+
+  AMBIANCE ENGINE (K206) — a generative synth BED that retires the YouTube
+  playlist on demand: an evolving mechanical whir/hum drone + sparse haunting
+  analog-piano motifs + occasional faint breath. Toggle 'youtube <-> generated'
+  on the ambient bar; picking 'generated' pauses the playlist (via WuldAmbient)
+  and rides the ambient volume knob. Persists across navigation.
+
+  VFX REGISTRY (K206) — interaction one-shots routed by type, parallel to the
+  sound router: nav->pulse, buttons->flick, typing->glitch (heading shiver),
+  per-element <a data-wh-vfx="burst">, per-page <body data-wh-vfx-scene>. Each
+  one-shot's peak is swelled by the same 3am bleed; legibility-safe; motion off
+  under prefers-reduced-motion.
 
   Audio COEXISTS with the ambient-player: lazy AudioContext resumed on the first
   gesture via our OWN passive listener — never touches the YouTube unlock.
   Controls dock into the ambient bar ([fx] chip -> popover), persisted to
   localStorage 'wuld:wrongHour'. prefers-reduced-motion -> motion off.
-  The synthesis + CRT math mirrors the Godot shell (Sfx.gd + CRT shader).
 */
 (function () {
   "use strict";
 
   var STORAGE  = "wuld:wrongHour";
   var BOOT_KEY = "wuld:wrongHour.booted";
-  var VERSION  = "K205";
-  var DEFAULTS = { sfx: 0, vfx: 0.35 };
+  var VERSION  = "K206";
+  var DEFAULTS = { sfx: 0.35, vfx: 0.35, amb: "yt", ambPausedYt: false };
   var SCENES   = { frame: "bell", threshold: "bell", glossary: "bell", summon: "purr", power: "boot" };
 
   var reduce = false;
@@ -53,9 +59,13 @@
   function load() {
     try {
       var r = JSON.parse(localStorage.getItem(STORAGE));
-      if (r && typeof r === "object") return { sfx: clamp01(r.sfx), vfx: clamp01(r.vfx) };
+      if (r && typeof r === "object") return {
+        sfx: clamp01(r.sfx), vfx: clamp01(r.vfx),
+        amb: (r.amb === "gen" ? "gen" : "yt"),
+        ambPausedYt: !!r.ambPausedYt
+      };
     } catch (e) {}
-    return { sfx: DEFAULTS.sfx, vfx: DEFAULTS.vfx };
+    return { sfx: DEFAULTS.sfx, vfx: DEFAULTS.vfx, amb: DEFAULTS.amb, ambPausedYt: DEFAULTS.ambPausedYt };
   }
   var prefs = load();
   function save() { try { localStorage.setItem(STORAGE, JSON.stringify(prefs)); } catch (e) {} }
@@ -69,10 +79,11 @@
     return clamp01(1 - dist / 9);
   }
   function rot() { return clamp01(prefs.vfx * (0.4 + 0.6 * bleedNow())); }
+  function fxi() { return 0.4 + 0.6 * bleedNow(); }   // VFX one-shot swell (time only)
   function label(r) { return r < 0.04 ? "clear" : r < 0.34 ? "dusk" : r < 0.68 ? "the wrong hour" : "3am"; }
 
   // ---------------- VFX layers ----------------
-  var layers = {}, bootEl = null, hourOut = null;
+  var layers = {}, bootEl = null, hourOut = null, fxEl = null;
   var grainFrames = [], grainIdx = 0, grainTimer = null;
 
   function makeNoise(size, density) {   // real film grain: sparse light/dark speckles on transparent
@@ -105,9 +116,10 @@
   function buildVFX() {
     layers.tint = mk("wh-tint"); layers.grain = mk("wh-grain");
     layers.scan = mk("wh-scan"); layers.vignette = mk("wh-vignette");
+    fxEl = mk("wh-fx");                                     // K206 · one-shot stage
     var f = document.createDocumentFragment();
     f.appendChild(layers.tint); f.appendChild(layers.grain);
-    f.appendChild(layers.scan); f.appendChild(layers.vignette);
+    f.appendChild(layers.scan); f.appendChild(layers.vignette); f.appendChild(fxEl);
     document.body.appendChild(f);
     buildGrain();
     bootEl = document.createElement("div"); bootEl.className = "wh-boot";
@@ -219,7 +231,7 @@
       p.connect(pg); pg.connect(room); p.start(t + 0.004); p.stop(t + 0.06);
     }
   }
-  function soft(amp) {   // navigation — a soft, dark felt-tap (variant 2): muffled tap + low wooden body
+  function soft(amp) {   // navigation — a soft, dark felt-tap: muffled tap + low wooden body
     if (!ensureAudio() || actx.state !== "running") return;
     amp = (amp == null ? gate() : amp); if (amp <= 0) return;
     var t = actx.currentTime;
@@ -278,6 +290,179 @@
 
   var CUES = { boot: bootSeq, thunk: thunk, key: key, soft: soft, bell: bell, click: click, purr: purr };
 
+  // ---------------- ambiance engine (K206): generative bed, playlist alternative ----------------
+  var ambNodes = null, ambNoise = null, ambPianoTimer = null, ambBreathTimer = null, ambBtns = [];
+  var PIANO_HZ = [131, 147, 156, 175, 196, 208, 233, 262];   // C minor-ish set, C3..C4
+
+  function ambNoiseLoop() { if (!ambNoise) ambNoise = noiseBuf(2.4); return ambNoise; }
+  function ambLevel() {
+    var v = 0.4;
+    try { if (window.WuldAmbient && window.WuldAmbient.getState) { var s = window.WuldAmbient.getState(); if (s && typeof s.volume === "number") v = s.volume / 100; } } catch (e) {}
+    return clamp01(v) * 0.5;                                  // ceiling: the bed sits under everything
+  }
+  function ambBuildDrone() {
+    var t = actx.currentTime;
+    var bed = actx.createGain(); bed.gain.value = 0.0001;    // bed master (fade + slow breath)
+    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 320; lp.Q.value = 6;
+    var flfo = actx.createOscillator(); flfo.type = "sine"; flfo.frequency.value = 0.13;   // the whir
+    var flfoG = actx.createGain(); flfoG.gain.value = 120;
+    flfo.connect(flfoG); flfoG.connect(lp.frequency); flfo.start(t);
+    var oscs = [], specs = [[50, "sine", 0.5], [100, "triangle", 0.26], [100.7, "triangle", 0.2], [150.5, "sine", 0.1]], i;
+    for (i = 0; i < specs.length; i++) {
+      var o = actx.createOscillator(); o.type = specs[i][1]; o.frequency.value = specs[i][0];
+      var g = actx.createGain(); g.gain.value = specs[i][2];
+      o.connect(g); g.connect(lp); o.start(t); oscs.push(o);
+    }
+    var ns = actx.createBufferSource(); ns.buffer = ambNoiseLoop(); ns.loop = true;         // faint high air
+    var nbp = actx.createBiquadFilter(); nbp.type = "bandpass"; nbp.frequency.value = 2200; nbp.Q.value = 0.7;
+    var ng = actx.createGain(); ng.gain.value = 0.015;
+    ns.connect(nbp); nbp.connect(ng); ng.connect(lp);
+    try { ns.start(t); } catch (e) {}
+    lp.connect(bed);
+    var alfo = actx.createOscillator(); alfo.type = "sine"; alfo.frequency.value = 0.06;    // slow breathing
+    var alfoG = actx.createGain(); alfoG.gain.value = 0.035;
+    alfo.connect(alfoG); alfoG.connect(bed.gain); alfo.start(t);
+    bed.connect(room);
+    ambNodes = { bed: bed, oscs: oscs, flfo: flfo, alfo: alfo, ns: ns };
+  }
+  function ambPiano(hz, t, amp) {                            // soft analog-piano-ish voice
+    var parts = [[1, 1.0], [2, 0.26], [3.01, 0.1]], i;
+    for (i = 0; i < parts.length; i++) {
+      var o = actx.createOscillator(); o.type = "sine"; o.frequency.value = hz * parts[i][0];
+      var g = actx.createGain(), peak = 0.12 * amp * parts[i][1];
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(peak, t + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 2.6 + Math.random() * 1.2);
+      o.connect(g); g.connect(ambNodes.bed); o.start(t); o.stop(t + 4.2);
+    }
+  }
+  function ambPianoNote() {
+    if (!ambNodes || !actx || actx.state !== "running") return;
+    var t = actx.currentTime, a = PIANO_HZ[(Math.random() * PIANO_HZ.length) | 0];
+    ambPiano(a, t, 1);
+    if (Math.random() < 0.34) {                              // occasional soft two-note fall
+      var b = PIANO_HZ[(Math.random() * PIANO_HZ.length) | 0];
+      ambPiano(b, t + 0.28 + Math.random() * 0.24, 0.62);
+    }
+  }
+  function ambSchedulePiano() {
+    clearTimeout(ambPianoTimer);
+    ambPianoTimer = setTimeout(function () { ambPianoNote(); ambSchedulePiano(); }, 4200 + Math.random() * 7200);
+  }
+  function ambBreath() {                                     // faint breath / whisper swell
+    if (!ambNodes || !actx || actx.state !== "running") return;
+    var t = actx.currentTime;
+    var ns = actx.createBufferSource(); ns.buffer = noiseBuf(2.4);
+    var bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 520 + Math.random() * 260; bp.Q.value = 3.2;
+    var lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 1400;
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(0.05, t + 0.9);           // inhale
+    g.gain.linearRampToValueAtTime(0.0001, t + 2.2);         // exhale
+    ns.connect(bp); bp.connect(lp); lp.connect(g); g.connect(ambNodes.bed);
+    try { ns.start(t); ns.stop(t + 2.4); } catch (e) {}
+  }
+  function ambScheduleBreath() {
+    clearTimeout(ambBreathTimer);
+    ambBreathTimer = setTimeout(function () { ambBreath(); ambScheduleBreath(); }, 16000 + Math.random() * 26000);
+  }
+  function ambStart() {
+    if (!ensureAudio() || actx.state !== "running") return;  // needs a gesture-resumed context
+    if (ambNodes) return;
+    ambBuildDrone();
+    var t = actx.currentTime, lvl = ambLevel();
+    ambNodes.bed.gain.cancelScheduledValues(t);
+    ambNodes.bed.gain.setValueAtTime(0.0001, t);
+    ambNodes.bed.gain.linearRampToValueAtTime(Math.max(0.0002, lvl), t + 3.5);   // slow fade-in
+    ambSchedulePiano(); ambScheduleBreath();
+  }
+  function ambStop() {
+    clearTimeout(ambPianoTimer); ambPianoTimer = null;
+    clearTimeout(ambBreathTimer); ambBreathTimer = null;
+    if (!ambNodes) return;
+    var nodes = ambNodes; ambNodes = null;
+    var t = actx ? actx.currentTime : 0;
+    try {
+      nodes.bed.gain.cancelScheduledValues(t);
+      nodes.bed.gain.setValueAtTime(nodes.bed.gain.value, t);
+      nodes.bed.gain.linearRampToValueAtTime(0.0001, t + 1.2);
+    } catch (e) {}
+    setTimeout(function () {
+      try { for (var i = 0; i < nodes.oscs.length; i++) { try { nodes.oscs[i].stop(); } catch (e) {} } } catch (e) {}
+      try { nodes.flfo.stop(); } catch (e) {}
+      try { nodes.alfo.stop(); } catch (e) {}
+      try { nodes.ns.stop(); } catch (e) {}
+    }, 1400);
+  }
+  function ambPauseYt() {
+    try {
+      if (window.WuldAmbient && window.WuldAmbient.getState && window.WuldAmbient.toggle) {
+        var s = window.WuldAmbient.getState();
+        if (s && s.on) { window.WuldAmbient.toggle(); prefs.ambPausedYt = true; save(); }
+      }
+    } catch (e) {}
+  }
+  function ambResumeYt() {
+    try {
+      if (prefs.ambPausedYt && window.WuldAmbient && window.WuldAmbient.toggle) {
+        var s = window.WuldAmbient.getState ? window.WuldAmbient.getState() : null;
+        if (!s || !s.on) window.WuldAmbient.toggle();
+      }
+    } catch (e) {}
+    prefs.ambPausedYt = false; save();
+  }
+  function ambSetSource(src) {                               // "yt" | "gen"
+    src = (src === "gen") ? "gen" : "yt";
+    if (prefs.amb === src && (src === "yt") === !ambNodes) { ambSyncBtn(); return; }
+    prefs.amb = src; save(); ambSyncBtn();
+    if (src === "gen") { ambPauseYt(); whenReady(function () { ambStart(); }); }
+    else { ambStop(); ambResumeYt(); }
+  }
+  function ambToggleSource() { ambSetSource(prefs.amb === "gen" ? "yt" : "gen"); }
+  function ambSyncBtn() {
+    var gen = prefs.amb === "gen", i, b;
+    for (i = 0; i < ambBtns.length; i++) {
+      b = ambBtns[i];
+      b.textContent = gen ? "[synth bed]" : "[playlist]";
+      b.setAttribute("aria-pressed", gen ? "true" : "false");
+      b.setAttribute("aria-label", gen ? "Ambience: generated synth bed (tap for playlist)" : "Ambience: YouTube playlist (tap for synth bed)");
+    }
+  }
+  function ambInit() {
+    if (prefs.amb === "gen") whenReady(function () { ambPauseYt(); ambStart(); });
+  }
+
+  // ---------------- VFX registry (K206): interaction one-shots, swelled by the bleed ----------------
+  var glTimer = null, FX_CLASSES = ["wh-fx--flick", "wh-fx--pulse", "wh-fx--burst", "wh-fx--roll", "wh-fx--bloom"];
+  function fxFire(cls, ms) {
+    if (!fxEl) return;
+    fxEl.style.setProperty("--wh-fxi", fxi().toFixed(3));
+    for (var i = 0; i < FX_CLASSES.length; i++) fxEl.classList.remove(FX_CLASSES[i]);  // one at a time
+    void fxEl.offsetWidth;                                    // restart
+    fxEl.classList.add(cls);
+    clearTimeout(fxEl._t);
+    fxEl._t = setTimeout(function () { fxEl.classList.remove(cls); }, ms);
+  }
+  function fxGlitch() {
+    var h = document.documentElement;
+    h.style.setProperty("--wh-gl", fxi().toFixed(3));
+    h.classList.add("wh-glitch");
+    clearTimeout(glTimer);
+    glTimer = setTimeout(function () { h.classList.remove("wh-glitch"); }, 220);
+  }
+  var VFX = {
+    flick:  function () { fxFire("wh-fx--flick", 200); },     // CRT brightness flick
+    pulse:  function () { fxFire("wh-fx--pulse", 320); },     // accent tint pulse (lightness held)
+    burst:  function () { fxFire("wh-fx--burst", 240); },     // grain / static burst
+    roll:   function () { fxFire("wh-fx--roll", 380); },      // one scanline sweep
+    bloom:  function () { fxFire("wh-fx--bloom", 460); },     // soft vignette breathe
+    glitch: fxGlitch                                          // heading chromatic shiver
+  };
+  function whFx(name) {
+    if (!name || name === "none" || prefs.vfx <= 0 || reduce) return;
+    var fn = VFX[name]; if (fn) fn();
+  }
+
   // ---------------- gesture-gated firing (coexists with ambient unlock) ----------------
   function flush() {
     if (!actx || actx.state !== "running") return;
@@ -306,11 +491,16 @@
 
   // ---------------- boot cue + the 3am threshold bell (each once/session) ----------------
   var bootDone = false, bellDone = false;
-  function boot() {
+  function boot() {                                           // K206 · synced-smart power-on
     if (bootDone) return; bootDone = true;
-    try { if (sessionStorage.getItem(BOOT_KEY)) return; sessionStorage.setItem(BOOT_KEY, "1"); } catch (e) {}
-    if (prefs.vfx > 0 && !reduce && bootEl) { void bootEl.offsetWidth; bootEl.classList.add("wh-boot--go"); }
-    if (prefs.sfx > 0) whenReady(function () { bootSeq(); });   // the machine waking
+    try { if (sessionStorage.getItem(BOOT_KEY)) return; } catch (e) {}
+    var mark  = function () { try { sessionStorage.setItem(BOOT_KEY, "1"); } catch (e) {} };
+    var flash = function () { if (prefs.vfx > 0 && !reduce && bootEl) { void bootEl.offsetWidth; bootEl.classList.add("wh-boot--go"); } };
+    if (prefs.sfx > 0 && ensureAudio()) {                     // hold the flash to land WITH the sound
+      whenReady(function () { mark(); flash(); bootSeq(); });
+    } else {                                                  // muted / no audio -> flash on open
+      mark(); flash();
+    }
   }
   // the wrong hour announces itself: one chime the first time the CLOCK (not the VFX
   // slider) crosses into deep night — bleedNow() >= 0.85 is roughly 1:40am..4:20am.
@@ -330,16 +520,30 @@
   }
   function wirePlacements() {
     document.addEventListener("pointerdown", function (e) {   // fires before navigation
-      if (prefs.sfx <= 0 || !e.target || !e.target.closest) return;
-      var d = e.target.closest("[data-wh]");
-      if (d) { play(d.getAttribute("data-wh")); return; }                // explicit ("none" = mute)
-      if (e.target.closest("nav a[href], .nav a[href], header a[href], .site-nav a[href]")) { play("soft"); return; }
-      if (e.target.closest("button")) { play("click"); return; }
+      if (!e.target || !e.target.closest) return;
+      var el = e.target;
+      var dS = el.closest("[data-wh]"), dV = el.closest("[data-wh-vfx]");
+      var muted = dS && dS.getAttribute("data-wh") === "none";
+      var nav = el.closest("nav a[href], .nav a[href], header a[href], .site-nav a[href]");
+      var btn = el.closest("button");
+      if (prefs.sfx > 0) {                                    // sound router
+        if (dS) play(dS.getAttribute("data-wh"));
+        else if (nav) play("soft");
+        else if (btn) play("click");
+      }
+      if (prefs.vfx > 0 && !reduce) {                         // VFX router (parallel)
+        if (dV) whFx(dV.getAttribute("data-wh-vfx"));
+        else if (muted) return;                              // data-wh="none" mutes both
+        else if (nav) whFx("pulse");
+        else if (btn) whFx("flick");
+      }
     }, true);
     document.addEventListener("keydown", function (e) {       // mechanical key per keystroke
-      if (prefs.sfx <= 0 || !isEditable(e.target)) return;
+      if (!isEditable(e.target)) return;
       var k = e.key;
-      if (k && (k.length === 1 || k === "Backspace" || k === "Enter" || k === "Spacebar" || k === " ")) play("key");
+      if (!(k && (k.length === 1 || k === "Backspace" || k === "Enter" || k === "Spacebar" || k === " "))) return;
+      if (prefs.sfx > 0) play("key");
+      if (prefs.vfx > 0 && !reduce) whFx("glitch");           // headings shiver while you type
     }, true);
     if (document.querySelector("[data-wh-hover]")) {
       document.addEventListener("pointerover", function (e) {
@@ -349,10 +553,18 @@
     }
     var scene = document.body.getAttribute("data-wh-scene");
     if (scene && SCENES[scene]) play(SCENES[scene]);
+    var vscene = document.body.getAttribute("data-wh-vfx-scene");
+    if (vscene && prefs.vfx > 0 && !reduce) whFx(vscene);
   }
 
-  // ---------------- controls: [fx] chip in the ambient bar + popover ----------------
+  // ---------------- controls: [fx] chip + [bed] toggle in the ambient bar + popover ----------------
   function pct(x) { return Math.round(x * 100); }
+  function barBtn(cls, txt, aria) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "ambient-btn ambient-toggle " + cls;
+    b.textContent = txt; b.setAttribute("aria-label", aria); b.setAttribute("data-wh", "none");
+    return b;
+  }
   function buildUI() {
     var panel = document.createElement("div");
     panel.className = "wh-panel";
@@ -366,8 +578,11 @@
       '<div class="wh-row"><label for="wh-sfx">sound</label>' +
         '<input class="wh-range" id="wh-sfx" type="range" min="0" max="100" step="5" aria-label="Sound intensity">' +
         '<span class="wh-val" id="wh-sfx-val">off</span></div>' +
+      '<div class="wh-row"><label>bed</label>' +
+        '<button class="ambient-btn wh-amb" id="wh-amb" type="button" data-wh="none" aria-pressed="false">[playlist]</button>' +
+        '<span class="wh-val"></span></div>' +
       '<div class="wh-row"><button class="ambient-btn wh-test" id="wh-test" type="button" data-wh="none">[ hear it ]</button></div>' +
-      '<p class="wh-note">Synthesized, never sampled. Sound needs a click first, and only rides when you raise it. Reduced-motion: visuals hold steady.</p>';
+      '<p class="wh-note">Synthesized, never sampled — sound needs one click to wake, then rides at your level. Effects answer clicks + typing and deepen toward 3am. <b>bed</b> swaps the playlist for a generative synth room. Reduced-motion holds visuals steady.</p>';
     document.body.appendChild(panel);
     hourOut = panel.querySelector("#wh-hour");
 
@@ -390,18 +605,20 @@
       whenReady(function () { setTimeout(function () { key(0.7); }, 1700); });
       whenReady(function () { setTimeout(function () { bell(0.6); }, 2050); });
     });
+    var ambPop = panel.querySelector("#wh-amb");
+    ambBtns.push(ambPop);
+    ambPop.addEventListener("click", ambToggleSource);
 
     var bar = document.querySelector(".ambient-bar");
     if (bar) {
-      var chip = document.createElement("button");
-      chip.type = "button"; chip.className = "ambient-btn ambient-toggle wh-chip";
-      chip.textContent = "[fx]";
-      chip.setAttribute("aria-pressed", "false");
-      chip.setAttribute("aria-expanded", "false");
-      chip.setAttribute("aria-label", "Effects");
-      chip.setAttribute("data-wh", "none");
       var dismiss = bar.querySelector("#ambient-dismiss");
-      if (dismiss) bar.insertBefore(chip, dismiss); else bar.appendChild(chip);
+      var bedChip = barBtn("wh-bedchip", "[playlist]", "Ambience source");   // youtube <-> generated
+      ambBtns.push(bedChip);
+      bedChip.addEventListener("click", ambToggleSource);
+      var chip = barBtn("wh-chip", "[fx]", "Effects");
+      chip.setAttribute("aria-pressed", "false"); chip.setAttribute("aria-expanded", "false");
+      if (dismiss) { bar.insertBefore(bedChip, dismiss); bar.insertBefore(chip, dismiss); }
+      else { bar.appendChild(bedChip); bar.appendChild(chip); }
       chip.addEventListener("click", function () {
         var open = panel.getAttribute("data-open") !== "true";
         panel.setAttribute("data-open", open ? "true" : "false");
@@ -409,10 +626,11 @@
         chip.setAttribute("aria-expanded", open ? "true" : "false");
       });
     }
+    ambSyncBtn();
   }
 
   // ---------------- init ----------------
-  function init() { buildVFX(); buildUI(); wirePlacements(); paint(); boot(); setInterval(paint, 60000); }
+  function init() { buildVFX(); buildUI(); wirePlacements(); paint(); boot(); ambInit(); setInterval(paint, 60000); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 
@@ -420,8 +638,11 @@
   window.WuldWrongHour = {
     version: VERSION,
     cues: Object.keys(CUES),
+    vfx: Object.keys(VFX),
     play: play,
-    get: function () { return { sfx: prefs.sfx, vfx: prefs.vfx, rot: rot(), bleed: bleedNow() }; },
+    fx: whFx,
+    ambience: ambSetSource,
+    get: function () { return { sfx: prefs.sfx, vfx: prefs.vfx, amb: prefs.amb, rot: rot(), bleed: bleedNow() }; },
     set: function (o) { if (o && typeof o === "object") { if ("sfx" in o) prefs.sfx = clamp01(o.sfx); if ("vfx" in o) prefs.vfx = clamp01(o.vfx); save(); paint(); } },
     boot: bootSeq, thunk: thunk, key: key, soft: soft, bell: bell, click: click, purr: purr, paint: paint
   };

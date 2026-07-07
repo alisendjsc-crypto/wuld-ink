@@ -1,12 +1,13 @@
-/* wrong-hour.css — synthesized SFX/VFX ("the wrong hour"), K205
+/* wrong-hour.css — synthesized SFX/VFX ("the wrong hour"), K206
    NO-PIN auto-deploying component. Progressive: JS off -> no effects, page
    identical (homepage D1 zero-JS invariant holds — nothing here is required).
 
    ONE DIAL: --wh-rot (0..1) = time-of-day bleed x user VFX intensity, set by JS.
-   Color-only degradation — the tint uses mix-blend-mode:color, so LIGHTNESS is
-   held: contrast and legibility never drop, the room only sours (trap #20 ported).
-   Uses site design tokens; prefers-reduced-motion kills motion, keeps static
-   tint + vignette. The CRT math mirrors the Godot desktop shell's shader. */
+   Color-only degradation — the ambient tint uses mix-blend-mode:color, so
+   LIGHTNESS is held: contrast and legibility never drop (trap #20 ported).
+   K206 adds interaction one-shots (.wh-fx stage + .wh-glitch heading kick),
+   their peaks scaled by --wh-fxi / --wh-gl (the same 3am swell) — legibility-safe,
+   brief, and fully off under prefers-reduced-motion. Uses site design tokens. */
 
 :root{ --wh-rot: 0; --wh-abr: 0px; }
 
@@ -37,7 +38,6 @@
 
 /* B3 · grain / ash — real canvas noise frames, set + cycled by JS */
 .wh-grain{
-  /* film grain — canvas noise frames set + cycled by JS (reliable, visible) */
   background-repeat: repeat;
   background-size: 150px 150px;
   opacity: calc(var(--wh-rot) * 0.6);
@@ -49,6 +49,58 @@ h1, h2{
   text-shadow:
     calc(var(--wh-abr) * -1) 0 rgba(255,42,60, calc(var(--wh-rot) * .5)),
     var(--wh-abr) 0 rgba(48,120,255, calc(var(--wh-rot) * .42));
+  transition: text-shadow 140ms ease-out;   /* K206 · lets the glitch kick ease off */
+}
+
+/* ---- K206 · VFX one-shot stage — interaction effects, one at a time ---- */
+/* z 92: above the ambient layers (90), below the ambient bar (100) + boot (300).
+   opacity 0 at rest; a modifier class runs a brief keyframe then JS removes it. */
+.wh-fx{ position: fixed; inset: 0; pointer-events: none; z-index: 92; opacity: 0; }
+
+/* buttons — a quick CRT brightness flick (screen blend, lightness only) */
+@keyframes wh-flick{
+  0%,100%{ opacity: 0; }
+  8%{ opacity: calc(var(--wh-fxi,.5) * .16); }
+  24%{ opacity: calc(var(--wh-fxi,.5) * .05); }
+  46%{ opacity: calc(var(--wh-fxi,.5) * .12); }
+}
+.wh-fx--flick{ background: var(--c-fg, #f0ebe5); mix-blend-mode: screen; animation: wh-flick 200ms steps(6, end); }
+
+/* nav — an accent tint pulse (mix-blend:color holds lightness, legibility-safe) */
+@keyframes wh-pulse{ 0%,100%{ opacity: 0; } 30%{ opacity: calc(var(--wh-fxi,.5) * .5); } }
+.wh-fx--pulse{ background: var(--c-accent, #c41e3a); mix-blend-mode: color; animation: wh-pulse 320ms ease-out; }
+
+/* burst — a short static / grain flash */
+@keyframes wh-burst{ 0%,100%{ opacity: 0; } 30%{ opacity: calc(var(--wh-fxi,.5) * .5); } }
+.wh-fx--burst{
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.55) 0 1px, transparent 1px 2px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+  animation: wh-burst 240ms steps(5, end);
+}
+
+/* roll — one scanline sweeping down the screen */
+@keyframes wh-roll{
+  0%{ transform: translateY(-40%); opacity: 0; }
+  14%{ opacity: calc(var(--wh-fxi,.5) * .6); }
+  100%{ transform: translateY(140%); opacity: 0; }
+}
+.wh-fx--roll{
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,.14) 46%, rgba(255,255,255,.14) 54%, transparent);
+  mix-blend-mode: screen; animation: wh-roll 380ms linear;
+}
+
+/* bloom — a soft vignette breathe */
+@keyframes wh-bloom{ 0%,100%{ opacity: 0; } 40%{ opacity: calc(var(--wh-fxi,.5) * .7); } }
+.wh-fx--bloom{ background: radial-gradient(120% 100% at 50% 45%, transparent 50%, #000 130%); animation: wh-bloom 460ms ease-out; }
+
+/* typing — the headings shiver (chromatic kick), scaled by --wh-gl, eased by the base transition */
+html.wh-glitch h1, html.wh-glitch h2{
+  text-shadow:
+    calc(var(--wh-gl,.5) * -3px) 0 rgba(255,42,60,.75),
+    calc(var(--wh-gl,.5) * 3px) 0 rgba(48,120,255,.6),
+    0 calc(var(--wh-gl,.5) * 1px) rgba(255,255,255,.05);
 }
 
 /* B6 · boot / degauss flash — one-shot (JS adds .wh-boot--go) */
@@ -64,7 +116,7 @@ h1, h2{
   100%{ opacity: 0; transform: scaleY(1); }      /* open */
 }
 
-/* FX popover — the [fx] chip lives in the ambient bar (reuses .ambient-btn) */
+/* FX popover — the [fx] + [bed] chips live in the ambient bar (reuse .ambient-btn) */
 .wh-panel{
   position: fixed; right: var(--s-3, .75rem); bottom: 3rem; z-index: 101;
   width: min(19rem, 92vw);
@@ -85,11 +137,18 @@ h1, h2{
 .wh-row label{ min-width: 3.4rem; text-transform: uppercase; letter-spacing: var(--ls-wide, .06em); }
 .wh-range{ flex: 1; height: 1rem; accent-color: var(--c-accent, #c41e3a); }
 .wh-val{ min-width: 2.6rem; text-align: right; color: var(--c-fg-dim, #5a554f); }
+.wh-amb{ flex: 1; text-align: left; }
 .wh-note{ margin: .6rem 0 0; color: var(--c-fg-dim, #5a554f); font-size: 11px; line-height: 1.45; }
+.wh-note b{ color: var(--c-fg-muted, #8a847b); font-weight: 600; }
+
+/* ambience source toggle — accent when the generated bed is live */
+.wh-bedchip[aria-pressed="true"], .wh-amb[aria-pressed="true"]{ color: var(--c-accent, #c41e3a); }
 
 /* a11y — motion off; static tint/vignette stay, audio unaffected */
 @media (prefers-reduced-motion: reduce){
   .wh-grain{ animation: none; }
   .wh-boot, .wh-boot--go{ animation: none !important; opacity: 0 !important; }
-  h1, h2{ text-shadow: none !important; }
+  .wh-fx{ display: none !important; }
+  h1, h2{ text-shadow: none !important; transition: none !important; }
+  html.wh-glitch h1, html.wh-glitch h2{ text-shadow: none !important; }
 }
