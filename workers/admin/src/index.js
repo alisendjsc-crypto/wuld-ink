@@ -43,6 +43,14 @@
  *   video-watch · rec-card · text-swap · cache-bump. Single-file ops =
  *   Contents API; cache-bump = Git Data API one-commit sweep (ref CAS).
  *   Commit grain: `site-admin: <pattern> <detail>`.
+ *
+ * K212: CONTENT verticals — blog-post + essay-page (two-file ops: a NEW
+ *   page whose chrome is GRAFTED at op time from a LIVE donor page, plus
+ *   the index card; ONE Git Data API commit, ref CAS). Donors:
+ *   /blog/the-easiest-case/ + /essays/architecture-of-moral-disaster/ —
+ *   the ?v sweeps maintain the donors, so new pages are born with current
+ *   chrome instead of forking a template the sweeps would miss. Every
+ *   donor substitution is occurrence-counted; drift fails loud at preview.
  * ========================================================================== */
 
 const MAX_UPLOAD_BYTES = 25 * 1024 * 1024; // 25 MiB cap (plates run ~0.8 MB)
@@ -748,6 +756,356 @@ function siteEssayCard(content, params) {
   };
 }
 
+
+/* --- K212: blog-post + essay-page (page + index card, ONE commit) ---------
+ * The new page's chrome (head, nav, footer, component includes, inline
+ * styles) is grafted from a LIVE donor page fetched at op time — never an
+ * embedded template that the ?v sweeps would silently miss. Substitutions
+ * are occurrence-counted against the donor; drift 422s at preview. Pure
+ * builders (donor, index, params) -> artifacts; node-testable. */
+
+const SITE_BLOG_POST = {
+  donor: "src/blog/the-easiest-case/index.html",
+  index: "src/blog/index.html",
+  slugBare: "the-easiest-case",
+  title: "The Easiest Case",
+  titleCount: 5, // <title> + og + twitter + JSON-LD headline + donor h1 (main swapped after)
+  descs: [["The biosphere is a rapist with no nervous system. A blog note by WULD on the grammar of intervention, the suffering-only-on-the-ledger argument, and why the absence of an agent makes the case easier, not harder.", 4]],
+  url: "/blog/the-easiest-case/",
+  urlCount: 4, // canonical + og:url + JSON-LD url + mainEntityOfPage
+  pub: "2026-05-15T22:45:49-07:00",
+  mod: "2026-05-16T14:09:38-07:00",
+};
+
+const SITE_ESSAY_PAGE = {
+  donor: "src/essays/architecture-of-moral-disaster/index.html",
+  index: "src/essays/index.html",
+  slugBare: "architecture-of-moral-disaster",
+  title: "The Architecture of Moral Disaster",
+  titleCount: 5,
+  descs: [
+    ["The Architecture of Moral Disaster &mdash; essay by WULD. Primate nervous system as ethical instrument, the motivated self-model, architecture before values, and the first possibility of genuine ethics. Full uncut source. 23:11 audio reading. Video adaptation at /watch/.", 3],
+    ["The Architecture of Moral Disaster — essay by WULD. Primate nervous system as ethical instrument, the motivated self-model, architecture before values, and the first possibility of genuine ethics. Full uncut source. 23:11 audio reading. Video adaptation at /watch/.", 1],
+  ],
+  url: "/essays/architecture-of-moral-disaster/",
+  urlCount: 4,
+  pub: "2026-05-13T19:32:27-07:00",
+  mod: "2026-05-16T14:09:38-07:00",
+};
+
+const SITE_MONTHS = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+
+function sitePlain(s, label, max) {
+  const v = String(s == null ? "" : s).trim();
+  if (v.length > max) throw new SiteOpError(label + ": max " + max + " chars (got " + v.length + ")");
+  if (/[<>"&\\]/.test(v)) {
+    throw new SiteOpError(label + ": plain text only — no < > \" & or backslash (the value crosses HTML and JSON-LD contexts). Em-dashes, middots, apostrophes are fine.");
+  }
+  return v;
+}
+
+function siteSlugOf(params) {
+  let slug = String(params.slug == null ? "" : params.slug).trim();
+  if (!slug) {
+    slug = String(params.title == null ? "" : params.title).toLowerCase()
+      .replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "").slice(0, 64).replace(/-+$/, "");
+  }
+  if (slug.indexOf("--") >= 0 || !/^[a-z0-9][a-z0-9-]{1,62}[a-z0-9]$/.test(slug)) {
+    throw new SiteOpError("slug: 3-64 chars of [a-z0-9-], no leading/trailing/double hyphen; got " + JSON.stringify(slug));
+  }
+  return slug;
+}
+
+function siteDateParts(s) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s == null ? "" : s).trim());
+  if (!m) throw new SiteOpError("date: YYYY-MM-DD");
+  const y = +m[1], mo = +m[2], d = +m[3];
+  if (y < 2000 || y > 2200 || mo < 1 || mo > 12 || d < 1 || d > 31) {
+    throw new SiteOpError("date: implausible YYYY-MM-DD");
+  }
+  const name = SITE_MONTHS[mo - 1];
+  return { iso: m[0], y: String(y), monthName: name, monAbbr: name.slice(0, 3), day: String(d) };
+}
+
+/* escape FIRST, then md-lite: **bold**, *italic*, [text](url). */
+function siteMdInline(escaped) {
+  return escaped
+    .replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
+}
+
+function siteParas(text, indent, sep) {
+  const parts = String(text == null ? "" : text).replace(/\r\n?/g, "\n").split(/\n{2,}/)
+    .map(function (s) { return s.trim(); }).filter(Boolean);
+  return parts.map(function (p) {
+    return indent + "<p>" + siteMdInline(siteEsc(p).replace(/\n/g, " ")) + "</p>";
+  }).join(sep);
+}
+
+function siteReplaceCount(content, find, repl, expect, label) {
+  const n = content.split(find).length - 1;
+  if (n !== expect) {
+    throw new SiteOpError(label + ": expected " + expect + " occurrence(s) in the donor, found " + n +
+      " — donor drift, or a title/summary/body that embeds the donor string. Adjust and re-preview.");
+  }
+  return content.split(find).join(repl);
+}
+
+function siteSwapMain(page, mainBlock) {
+  const OPEN = '\n  <main id="main">\n';
+  const CLOSE = '\n  </main>\n';
+  if (page.split(OPEN).length - 1 !== 1 || page.split(CLOSE).length - 1 !== 1) {
+    throw new SiteOpError("donor <main> anchors not unique — donor drift.");
+  }
+  const i = page.indexOf(OPEN);
+  const j = page.indexOf(CLOSE);
+  if (j < i) throw new SiteOpError("donor <main> anchors out of order — donor drift.");
+  return page.slice(0, i + 1) + mainBlock + page.slice(j + CLOSE.length);
+}
+
+function siteWholeBalance(s) {
+  const stripped = siteStripForCount(s);
+  const bad = {};
+  for (const t of SITE_TAGS) {
+    const d = siteCountTag(stripped, t);
+    if (d !== 0) bad[t] = d;
+  }
+  return Object.keys(bad).length ? bad : null;
+}
+
+/* grafts the donor head/chrome: descriptions FIRST (they may embed the
+ * donor title), then title, url, dates. Returns the page pre-main-swap. */
+function siteGraftHead(donor, cfg, title, summary, newUrl, isoDatetime) {
+  let page = donor;
+  for (const dv of cfg.descs) page = siteReplaceCount(page, dv[0], summary, dv[1], "donor description");
+  page = siteReplaceCount(page, cfg.title, title, cfg.titleCount, "donor title");
+  page = siteReplaceCount(page, cfg.url, newUrl, cfg.urlCount, "donor url");
+  page = siteReplaceCount(page, cfg.pub, isoDatetime, 1, "donor datePublished");
+  page = siteReplaceCount(page, cfg.mod, isoDatetime, 1, "donor dateModified");
+  return page;
+}
+
+function siteBlogMain(p) {
+  let meta =
+    '          <span><strong>Author</strong> WULD</span>\n' +
+    '          <span><strong>Date</strong> ' + p.date.monthName + ' ' + p.date.day + ', ' + p.date.y + '</span>\n';
+  if (p.source) meta += '          <span><strong>Source</strong> ' + siteEsc(p.source) + '</span>\n';
+  let fig = "";
+  if (p.figureUrl) {
+    fig =
+      '      <figure class="post-figure">\n' +
+      '        <img src="' + p.figureUrl + '" alt="' + siteEsc(p.figureAlt) + '">\n' +
+      (p.figureCap ? '        <figcaption class="post-figcaption">' + siteEsc(p.figureCap) + '</figcaption>\n' : "") +
+      '      </figure>\n\n';
+  }
+  return '  <main id="main">\n' +
+    '    <article class="post">\n\n' +
+    '      <header class="post-header">\n' +
+    '        <p class="eyebrow">Blog &middot; ' + p.date.y + '</p>\n' +
+    '        <h1>' + siteEsc(p.title) + '</h1>\n' +
+    '        <div class="post-meta">\n' +
+    meta +
+    '        </div>\n' +
+    '      </header>\n\n' +
+    fig +
+    '      <div class="post-body">\n\n' +
+    siteParas(p.bodyText, "        ", "\n\n") + '\n\n' +
+    '      </div>\n\n' +
+    '      <p class="post-back"><a href="/blog/">&larr; Blog index</a></p>\n\n' +
+    '    </article>\n' +
+    '  </main>\n';
+}
+
+function siteBlogCard(content, p) {
+  const block =
+    '        <a class="post-card" href="/blog/' + p.slug + '/">\n' +
+    '          <p class="post-card-date">' + p.date.y + ' &middot; ' + p.date.monthName + ' ' + p.date.day + '</p>\n' +
+    '          <h2 class="post-card-title">' + siteEsc(p.title) + '</h2>\n' +
+    '          <p class="post-card-excerpt">' + siteEsc(p.summary) + '</p>\n' +
+    '          <p class="post-card-meta">Read &rarr;</p>\n' +
+    '        </a>\n';
+  const pos = String(p.position == null ? "" : p.position).trim();
+  if (!pos) { // blog convention: newest first
+    const anchor = '<div class="post-list">\n\n';
+    const i = content.indexOf(anchor);
+    if (i < 0 || content.indexOf(anchor, i + 1) >= 0) {
+      throw new SiteOpError("post-list anchor not unique in /blog/ index — index drift.");
+    }
+    const at = i + anchor.length;
+    return content.slice(0, at) + block + "\n" + content.slice(at);
+  }
+  return siteInsertAtPosition(content, block, '<a class="post-card"', pos);
+}
+
+function siteBlogBuild(donor, index, params) {
+  siteRequire(params, ["title", "date", "summary", "body"]);
+  const title = sitePlain(params.title, "title", 160);
+  const summary = sitePlain(params.summary, "summary", 500);
+  const source = sitePlain(params.source, "source", 80);
+  const date = siteDateParts(params.date);
+  const slug = siteSlugOf(params);
+  if (slug.indexOf(SITE_BLOG_POST.slugBare) >= 0) {
+    throw new SiteOpError("slug embeds the donor page's slug (" + SITE_BLOG_POST.slugBare + ") — pick a different slug.");
+  }
+  const figureUrl = String(params.figure_url == null ? "" : params.figure_url).trim();
+  const figureAlt = sitePlain(params.figure_alt, "figure_alt", 300);
+  const figureCap = sitePlain(params.figure_caption, "figure_caption", 200);
+  if (figureUrl) {
+    if (!/^(\/|https:\/\/)[^\s"<>]+$/.test(figureUrl)) {
+      throw new SiteOpError("figure_url: site-relative /path or absolute https:// (no spaces/quotes)");
+    }
+    if (!figureAlt) throw new SiteOpError("figure_alt is required when figure_url is set.");
+  }
+  if (!String(params.body).trim()) throw new SiteOpError("body: empty — a blog post needs prose.");
+  if (String(params.body).length > 200000) throw new SiteOpError("body: max 200000 chars");
+  if (index.indexOf('href="/blog/' + slug + '/"') >= 0) {
+    throw new SiteOpError("a /blog/" + slug + "/ card already exists in the index.");
+  }
+  let page = siteGraftHead(donor, SITE_BLOG_POST, title, summary, "/blog/" + slug + "/", date.iso + "T09:00:00-07:00");
+  page = siteSwapMain(page, siteBlogMain({
+    title: title, date: date, source: source, bodyText: params.body,
+    figureUrl: figureUrl, figureAlt: figureAlt, figureCap: figureCap,
+  }));
+  if (page.indexOf(SITE_BLOG_POST.slugBare) >= 0) {
+    throw new SiteOpError("donor slug leaked into the new page — donor drift; update the op.");
+  }
+  const newIndex = siteBlogCard(index, { slug: slug, title: title, summary: summary, date: date, position: params.position });
+  return {
+    pagePath: "src/blog/" + slug + "/index.html", page: page, newIndex: newIndex,
+    summary: "New blog post /blog/" + slug + "/ — " + JSON.stringify(title) + " + index card (ONE commit)",
+    message: "site-admin: blog-post — " + title + " (/blog/" + slug + "/)",
+  };
+}
+
+function siteEssaySections(bodyText) {
+  const norm = String(bodyText == null ? "" : bodyText).replace(/\r\n?/g, "\n");
+  if (!norm.trim()) return null;
+  const secs = [];
+  let cur = { h: "", t: [] };
+  for (const line of norm.split("\n")) {
+    const hm = /^##\s+(.+?)\s*$/.exec(line);
+    if (hm) {
+      if (cur.h || cur.t.join("\n").trim()) secs.push(cur);
+      cur = { h: hm[1], t: [] };
+    } else {
+      cur.t.push(line);
+    }
+  }
+  if (cur.h || cur.t.join("\n").trim()) secs.push(cur);
+  return secs.length ? secs : null;
+}
+
+function siteEssayMain(p) {
+  let meta =
+    '          <span><strong>Author</strong> WULD</span>\n' +
+    '          <span><strong>Published</strong> ' + p.date.monAbbr + ' ' + p.date.y + '</span>\n';
+  if (p.reading) meta += '          <span><strong>Reading</strong> ' + siteEsc(p.reading) + '</span>\n';
+
+  let audio = "";
+  if (p.audio) {
+    audio =
+      '        <div class="audio-intro">\n' +
+      '          <p class="audio-intro-note"><strong>Audio reading</strong> &middot; full version &middot; ' + p.audio + '</p>\n' +
+      '          <div class="audio-block" data-audio-key="essays/' + p.slug + '/full.mp3">\n' +
+      '            <button class="audio-play" aria-label="Play narration"></button>\n' +
+      '            <div class="audio-progress"><div class="audio-progress-bar"></div></div>\n' +
+      '            <span class="audio-time">0:00</span>\n' +
+      '          </div>\n' +
+      '        </div>\n\n';
+  }
+
+  const secs = siteEssaySections(p.bodyText);
+  let sections;
+  if (!secs) {
+    sections =
+      '        <section class="essay-section">\n' +
+      '          <p class="essay-section-eyebrow">Section I</p>\n' +
+      '          <p><em>Body forthcoming &mdash; shell created via admin; fill sections with text-swap or chat-side authoring.</em></p>\n' +
+      '        </section>\n';
+  } else {
+    sections = secs.map(function (s, i) {
+      const head = s.h ? '          <h2>' + siteEsc(s.h) + '</h2>\n' : "";
+      const paras = siteParas(s.t.join("\n"), "          ", "\n");
+      return '        <section class="essay-section">\n' +
+        '          <p class="essay-section-eyebrow">Section ' + romanize(i + 1) + '</p>\n' +
+        head + paras + '\n' +
+        '        </section>\n';
+    }).join('\n        <hr class="section-rule">\n\n');
+  }
+
+  return '  <main id="main">\n' +
+    '    <article class="essay" data-readable="' + p.slug + '">\n\n' +
+    '      <header class="essay-header">\n' +
+    '        <p class="eyebrow">Essay  /  ' + siteEsc(p.genre) + '</p>\n\n' +
+    '        <h1>' + siteEsc(p.title) + '</h1>\n\n' +
+    '        <div class="essay-meta">\n' +
+    meta +
+    '        </div>\n\n' +
+    '        <div class="mode-toggle" role="group" aria-label="Reading mode">\n' +
+    '          <button class="mode-toggle-btn" data-mode-target="dark"   aria-pressed="true">Dark</button>\n' +
+    '          <button class="mode-toggle-btn" data-mode-target="reader" aria-pressed="false">Reader</button>\n' +
+    '          <button class="mode-toggle-btn" data-mode-target="hc"     aria-pressed="false">HC</button>\n' +
+    '        </div>\n' +
+    '        <div class="mag-slider" role="group" aria-label="Text size">\n' +
+    '          <span class="mag-slider-label">Size</span>\n' +
+    '          <input class="mag-slider-input" type="range" min="90" max="140" step="5" value="100" aria-label="Text magnification percentage">\n' +
+    '          <output class="mag-slider-output">100%</output>\n' +
+    '        </div>\n' +
+    '      </header>\n\n' +
+    '      <div class="essay-body">\n\n' +
+    audio +
+    sections + '\n' +
+    '      </div>\n' +
+    '    </article>\n' +
+    '  </main>\n';
+}
+
+function siteEssayBuild(donor, index, params) {
+  siteRequire(params, ["title", "date", "genre", "summary"]);
+  const title = sitePlain(params.title, "title", 160);
+  const genre = sitePlain(params.genre, "genre", 60);
+  const summary = sitePlain(params.summary, "summary", 500);
+  const date = siteDateParts(params.date);
+  const slug = siteSlugOf(params);
+  if (slug.indexOf(SITE_ESSAY_PAGE.slugBare) >= 0) {
+    throw new SiteOpError("slug embeds the donor page's slug (" + SITE_ESSAY_PAGE.slugBare + ") — pick a different slug.");
+  }
+  const audio = String(params.audio_duration == null ? "" : params.audio_duration).trim();
+  if (audio && !/^\d{1,2}:\d{2}(:\d{2})?$/.test(audio)) {
+    throw new SiteOpError("audio_duration: M:SS or H:MM:SS (e.g. 23:11)");
+  }
+  const bodyText = String(params.body == null ? "" : params.body);
+  if (bodyText.length > 200000) throw new SiteOpError("body: max 200000 chars");
+  let reading = sitePlain(params.reading, "reading", 24);
+  if (!reading && bodyText.trim()) {
+    const words = bodyText.trim().split(/\s+/).filter(Boolean).length;
+    reading = "~" + Math.max(1, Math.round(words / 220)) + " min";
+  }
+  if (index.indexOf('href="/essays/' + slug + '/"') >= 0) {
+    throw new SiteOpError("an /essays/" + slug + "/ card already exists in the index.");
+  }
+  let page = siteGraftHead(donor, SITE_ESSAY_PAGE, title, summary, "/essays/" + slug + "/", date.iso + "T09:00:00-07:00");
+  page = siteSwapMain(page, siteEssayMain({
+    title: title, genre: genre, date: date, slug: slug,
+    audio: audio, reading: reading, bodyText: bodyText,
+  }));
+  if (page.indexOf(SITE_ESSAY_PAGE.slugBare) >= 0) {
+    throw new SiteOpError("donor slug leaked into the new page — donor drift; update the op.");
+  }
+  const tag = date.y + " \u00b7 Long-form" + (audio ? " \u00b7 " + audio + " audio" : ""); // REAL middot: siteEssayCard siteEsc's the tag, an entity would double-escape
+  const card = siteEssayCard(index, { slug: slug, eyebrow: genre, title: title, tag: tag, position: params.position });
+  return {
+    pagePath: "src/essays/" + slug + "/index.html", page: page, newIndex: card.content,
+    summary: "New essay /essays/" + slug + "/ — " + JSON.stringify(title) + " + index card (ONE commit)",
+    message: "site-admin: essay-page — " + title + " (/essays/" + slug + "/)",
+  };
+}
+
+/* --- END K212 transforms --- */
+
 /* ops.py pattern 6: generic text-swap. count==1 unless replace_all. */
 function siteTextSwap(content, params, relPath) {
   siteRequire(params, ["find_text"]);
@@ -838,6 +1196,8 @@ function siteDiffExcerpt(oldS, newS) {
 async function siteRun(env, pattern, params) {
   params = params || {};
   if (pattern === "cache-bump") return siteRunCacheBump(env, params);
+  if (pattern === "blog-post") return siteRunPagePlusCard(env, SITE_BLOG_POST.donor, SITE_BLOG_POST.index, siteBlogBuild, params);
+  if (pattern === "essay-page") return siteRunPagePlusCard(env, SITE_ESSAY_PAGE.donor, SITE_ESSAY_PAGE.index, siteEssayBuild, params);
 
   let rel, applyFn;
   if (pattern === "video-watch") { rel = "src/watch/index.html"; applyFn = siteVideoWatch; }
@@ -850,7 +1210,7 @@ async function siteRun(env, pattern, params) {
     catch (e) { if (e instanceof SiteOpError) return { fail: json({ error: "op_refused", detail: e.message }, 422) }; throw e; }
     applyFn = siteTextSwap;
   }
-  else return { fail: json({ error: "unknown_pattern", known: ["video-watch", "rec-card", "archive-video", "archive-image", "essay-card", "text-swap", "cache-bump"] }, 400) };
+  else return { fail: json({ error: "unknown_pattern", known: ["video-watch", "rec-card", "archive-video", "archive-image", "essay-card", "text-swap", "cache-bump", "blog-post", "essay-page"] }, 400) };
 
   const got = await ghGetFile(env, rel);
   if (!got.ok) return { fail: json({ error: got.error, detail: got.detail, path: rel }, got.status || 502) };
@@ -934,6 +1294,56 @@ async function siteRunCacheBump(env, params) {
            message: "site-admin: cache-bump " + oldV + " -> " + newV + " (" + changes.length + " files)" };
 }
 
+
+/* K212 runner: page + index card as ONE multi commit. Preview reports the
+ * NEW file + the index diff excerpt; commit re-runs deterministically at
+ * the CAS'd head. Subrequests: preview 5, commit 9 (budget: fine). */
+async function siteRunPagePlusCard(env, donorPath, indexPath, build, params) {
+  const head = await ghHead(env);
+  if (!head.ok) return { fail: json({ error: head.error, detail: head.detail }, head.status || 502) };
+  const donor = await ghGetFile(env, donorPath);
+  if (!donor.ok) return { fail: json({ error: donor.error, detail: donor.detail, path: donorPath }, donor.status || 502) };
+  const index = await ghGetFile(env, indexPath);
+  if (!index.ok) return { fail: json({ error: index.error, detail: index.detail, path: indexPath }, index.status || 502) };
+
+  let out;
+  try { out = build(donor.content, index.content, params || {}); }
+  catch (e) {
+    if (e instanceof SiteOpError) return { fail: json({ error: "op_refused", detail: e.message }, 422) };
+    throw e;
+  }
+
+  const exists = await ghGetFile(env, out.pagePath);
+  if (exists.ok) {
+    return { fail: json({ error: "op_refused", detail: out.pagePath + " already exists — pick a different slug (edit the live page via text-swap)." }, 422) };
+  }
+  if (exists.error !== "file_not_found") {
+    return { fail: json({ error: exists.error, detail: exists.detail, path: out.pagePath }, exists.status || 502) };
+  }
+
+  const pageBal = siteWholeBalance(out.page);
+  if (pageBal) return { fail: json({ error: "tag_balance_broken", delta: pageBal, path: out.pagePath }, 422) };
+  const idxDelta = siteTagDelta(index.content, out.newIndex);
+  if (Object.keys(idxDelta).length) {
+    return { fail: json({ error: "tag_balance_broken", delta: idxDelta, path: indexPath }, 422) };
+  }
+
+  const enc = new TextEncoder();
+  return {
+    kind: "multi", headSha: head.commitSha, baseTreeSha: head.treeSha,
+    changes: [
+      { path: out.pagePath, content: out.page },
+      { path: indexPath, content: out.newIndex },
+    ],
+    report: [
+      { path: out.pagePath, note: "NEW FILE · " + enc.encode(out.page).length + " B" },
+      { path: indexPath, note: "card inserted" },
+    ],
+    excerpt: siteDiffExcerpt(index.content, out.newIndex),
+    summary: out.summary, message: out.message,
+  };
+}
+
 async function apiSitePreview(request, env) {
   const body = await readJson(request);
   if (!body || !body.pattern) return json({ error: "bad_json", hint: "{pattern, params}" }, 400);
@@ -942,7 +1352,7 @@ async function apiSitePreview(request, env) {
 
   if (r.kind === "multi") {
     return json({ ok: true, pattern: String(body.pattern), kind: "multi", summary: r.summary,
-                  files: r.report, expected: { head: r.headSha }, commit_message: r.message });
+                  files: r.report, excerpt: r.excerpt, expected: { head: r.headSha }, commit_message: r.message });
   }
   const enc = new TextEncoder();
   return json({
@@ -1427,6 +1837,49 @@ function adminHtml(env, adminEmail) {
   <button class="site-prev" data-pattern="essay-card">preview</button>
 </fieldset>
 
+<h2>11 &middot; Site &mdash; new BLOG POST (page + index card, one commit)</h2>
+<fieldset>
+  <div class="row2">
+    <div><label>title</label><input type="text" id="bp-title"></div>
+    <div><label>slug (blank = from title; url = /blog/&lt;slug&gt;/)</label><input type="text" id="bp-slug" placeholder="my-new-post"></div>
+  </div>
+  <div class="row2">
+    <div><label>date</label><input type="text" id="bp-date" placeholder="2026-07-09"></div>
+    <div><label>source (optional; e.g. Facebook note)</label><input type="text" id="bp-source"></div>
+  </div>
+  <label>summary (meta description + index-card excerpt; plain text)</label><textarea id="bp-summary"></textarea>
+  <div class="row2">
+    <div><label>figure url (optional; /assets/&hellip; or https://audio.wuld.ink/&hellip;)</label><input type="text" id="bp-figurl"></div>
+    <div><label>figure alt (required with figure)</label><input type="text" id="bp-figalt"></div>
+  </div>
+  <label>figure caption (optional)</label><input type="text" id="bp-figcap">
+  <label>body &mdash; blank line = new paragraph; **bold**, *italic*, [link](https://&hellip;)</label><textarea id="bp-body" style="min-height:14rem"></textarea>
+  <label>position (blank = newest first; 0 = append last; N = slot)</label><input type="text" id="bp-pos">
+  <button class="site-prev" data-pattern="blog-post">preview</button>
+  <p class="hint">creates /blog/&lt;slug&gt;/ with CURRENT site chrome (grafted live from the donor post) + prepends the /blog/ card &mdash; ONE commit; Pages deploys in ~1 min. Site-search + changelog pick it up at the next Cowork regen pass.</p>
+</fieldset>
+
+<h2>12 &middot; Site &mdash; new ESSAY (page + index card, one commit)</h2>
+<fieldset>
+  <div class="row2">
+    <div><label>title</label><input type="text" id="ep-title"></div>
+    <div><label>slug (blank = from title; url = /essays/&lt;slug&gt;/)</label><input type="text" id="ep-slug"></div>
+  </div>
+  <div class="row2">
+    <div><label>date</label><input type="text" id="ep-date" placeholder="2026-07-09"></div>
+    <div><label>genre eyebrow (page + card; e.g. Moral structure)</label><input type="text" id="ep-genre"></div>
+  </div>
+  <label>summary (meta description; plain text)</label><textarea id="ep-summary"></textarea>
+  <div class="row2">
+    <div><label>audio duration (optional, e.g. 23:11 &mdash; adds the audio band; key = essays/&lt;slug&gt;/full.mp3)</label><input type="text" id="ep-audio"></div>
+    <div><label>reading time (blank = auto from body; e.g. ~17 min)</label><input type="text" id="ep-reading"></div>
+  </div>
+  <label>body &mdash; a "## Heading" line starts a numbered Section; blank line = paragraph; **bold**, *italic*, [link](url); EMPTY = placeholder shell</label><textarea id="ep-body" style="min-height:14rem"></textarea>
+  <label>position (blank = append last; 1 = first; N = slot)</label><input type="text" id="ep-pos">
+  <button class="site-prev" data-pattern="essay-page">preview</button>
+  <p class="hint">mirrors the live essays: reader/HC mode toggle + text-size slider + optional audio band + Section I/II&hellip; structure, chrome grafted live from the donor essay. The audio FILE still lands in R2 by hand (key essays/&lt;slug&gt;/full.mp3). Register note: chat-side authoring remains the norm for essay prose &mdash; this op ships the vessel (or a finished body pasted in).</p>
+</fieldset>
+
 <div id="site-preview">
   <div class="diffmeta" id="sp-meta"></div>
   <div id="sp-body"></div>
@@ -1650,6 +2103,20 @@ function adminHtml(env, adminEmail) {
                replace_text: $("ts-replace").value, replace_all: $("ts-all").checked,
                allow_tag_delta: $("ts-tagok").checked };
     }
+    if (pattern === "blog-post") {
+      return { title: $("bp-title").value.trim(), slug: $("bp-slug").value.trim(),
+               date: $("bp-date").value.trim(), source: $("bp-source").value.trim(),
+               summary: $("bp-summary").value.trim(), figure_url: $("bp-figurl").value.trim(),
+               figure_alt: $("bp-figalt").value.trim(), figure_caption: $("bp-figcap").value.trim(),
+               body: $("bp-body").value, position: $("bp-pos").value.trim() };
+    }
+    if (pattern === "essay-page") {
+      return { title: $("ep-title").value.trim(), slug: $("ep-slug").value.trim(),
+               date: $("ep-date").value.trim(), genre: $("ep-genre").value.trim(),
+               summary: $("ep-summary").value.trim(), audio_duration: $("ep-audio").value.trim(),
+               reading: $("ep-reading").value.trim(), body: $("ep-body").value,
+               position: $("ep-pos").value.trim() };
+    }
     if (pattern === "cache-bump") {
       var paths = $("cb-paths").value.split(",").map(function (s) { return s.trim(); }).filter(Boolean);
       return { old_version: $("cb-old").value.trim(), new_version: $("cb-new").value.trim(), paths: paths };
@@ -1671,7 +2138,11 @@ function adminHtml(env, adminEmail) {
              "<label>after</label><pre class=\\"diff after\\">" + esc(j.excerpt.after) + "</pre>";
     } else {
       meta += "\\nhead: " + String(j.expected.head).slice(0, 10) + "  files: " + j.files.length + "  (ONE commit)";
-      body = "<pre class=diff>" + esc(j.files.map(function (f) { return f.path + "  x" + f.occurrences; }).join("\\n")) + "</pre>";
+      body = "<pre class=diff>" + esc(j.files.map(function (f) { return f.path + "  " + (f.note || ("x" + f.occurrences)); }).join("\\n")) + "</pre>";
+      if (j.excerpt) {
+        body += "<label>index before</label><pre class=diff>" + esc(j.excerpt.before) + "</pre>" +
+                "<label>index after</label><pre class=\\"diff after\\">" + esc(j.excerpt.after) + "</pre>";
+      }
     }
     $("sp-meta").textContent = meta;
     $("sp-body").innerHTML = body;
@@ -1709,6 +2180,13 @@ function adminHtml(env, adminEmail) {
       if (r.status !== 200) { $("sp-commit").disabled = false; }
     });
   });
+
+  (function () { // K212: default both content-op dates to operator-local today
+    var d = new Date(), p2 = function (n) { return (n < 10 ? "0" : "") + n; };
+    var t = d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate());
+    if ($("bp-date")) $("bp-date").value = t;
+    if ($("ep-date")) $("ep-date").value = t;
+  })();
 
   refresh();
 })();

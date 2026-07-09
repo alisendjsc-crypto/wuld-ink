@@ -137,3 +137,42 @@ fields, suggest curl against the API (CSRF will 403 it), route around a 409
 `schema_unexpected` (that one is a stop-the-line repo reconcile), or touch the §4
 off-limits loci. When an op needs more than ~5 plates or any re-encoding, route it to a
 Cowork session instead (§5).
+
+
+## 10 · Content verticals — blog-post + essay-page (K212)
+
+Sections **11** and **12** create whole pages, not just cards: a NEW `/blog/<slug>/` post
+or `/essays/<slug>/` essay PLUS its index card, landed as **ONE commit** (Pages deploys in
+~1 min). The new page's chrome (head, nav, footer, component `?v=` includes, inline styles)
+is **grafted live from a donor page** at preview time — `/blog/the-easiest-case/` for posts,
+`/essays/architecture-of-moral-disaster/` for essays — so pages are born with current
+chrome. Every donor substitution is occurrence-counted: if a future redesign moves the
+donor's anchors, the op refuses with 422 `op_refused` ("donor drift") instead of landing a
+half-grafted page; that error means "book a Cowork session to update the op", nothing broke.
+
+**Blog post (section 11):** title · slug (blank = derived) · date (pre-filled, local) ·
+optional Source line · summary (becomes the meta description AND the index-card excerpt) ·
+optional figure (URL + alt + caption — the image itself must already exist: `/assets/…` in
+repo, or R2 via section 1 / dashboard) · body. Body syntax: blank line = new paragraph;
+`**bold**`, `*italic*`, `[link](https://…)`. Position blank = newest-first (top of the index).
+
+**Essay (section 12):** title · slug · date · genre eyebrow (renders "Essay / <genre>" on
+the page and as the card eyebrow) · summary · optional audio duration (e.g. `23:11` — adds
+the audio band wired to `essays/<slug>/full.mp3`; **the mp3 itself still lands in R2 by
+hand**, same as always) · optional reading time (blank = computed from the body) · body.
+A line starting `## Heading` opens a new numbered Section (Section I, II, …); an EMPTY body
+ships the placeholder shell for later fill. New essays inherit the full essay apparatus:
+reader/HC mode toggle, text-size slider, audio player, yurei. Position blank = append last
+(the essays list reads as a sequence, not newest-first).
+
+What these ops do NOT do (Cowork-session rituals, by design): site-search indexing (the
+page is live + linked immediately, searchable at the next `search-index` regen), changelog
+/ RSS entries, and image/audio binary ingestion. Titles/summaries are plain text (no
+`< > " & \` — they cross HTML and JSON-LD); em-dashes, middots, apostrophes are fine.
+
+| Symptom | Meaning | Fix |
+|---|---|---|
+| 422 `op_refused` "already exists" | slug taken (page or card) | different slug; edit the live page via text-swap |
+| 422 `op_refused` "donor drift" | donor page restructured | Cowork session updates the op constants |
+| 422 `op_refused` "embeds the donor page's slug" | slug contains the donor's slug | pick a different slug |
+| 409 `stale_preview` | repo moved between preview+commit | re-preview, re-confirm |
