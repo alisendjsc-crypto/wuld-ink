@@ -51,6 +51,12 @@
  *   the ?v sweeps maintain the donors, so new pages are born with current
  *   chrome instead of forking a template the sweeps would miss. Every
  *   donor substitution is occurrence-counted; drift fails loud at preview.
+ *
+ * K213: UI redraft for ease of use — sticky jump bar (14 anchors), the 12
+ *   tool sections collapse to <details> (open-state persisted in
+ *   localStorage; hash/jump links auto-open; edit auto-opens the form),
+ *   plates table paginated (25/50/100/all) + live filter + row counter.
+ *   Zero endpoint/transform changes — adminHtml + UI script only.
  * ========================================================================== */
 
 const MAX_UPLOAD_BYTES = 25 * 1024 * 1024; // 25 MiB cap (plates run ~0.8 MB)
@@ -1677,14 +1683,50 @@ function adminHtml(env, adminEmail) {
   pre.diff.after { border-color:var(--accent); }
   .diffmeta { color:var(--dim); font-size:11px; white-space:pre-wrap; }
   #site-preview { display:none; border:1px solid var(--accent); padding:1rem; margin:1rem 0; }
+  .jump { position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--border); padding:.55rem 0 .6rem; display:flex; flex-wrap:wrap; gap:.3rem 1rem; }
+  .jump a { color:var(--dim); text-decoration:none; font-size:10px; text-transform:uppercase; letter-spacing:.12em; border-bottom:1px solid transparent; }
+  .jump a:hover, .jump a:focus-visible { color:var(--accent); border-bottom-color:var(--accent); outline:none; }
+  details.tool { border-bottom:1px dashed var(--border); scroll-margin-top:3rem; }
+  details.tool summary { list-style:none; cursor:pointer; }
+  details.tool summary::-webkit-details-marker { display:none; }
+  details.tool summary h2 { margin:1.1rem 0 .8rem; }
+  details.tool summary h2::before { content:"+ "; color:var(--dim); }
+  details.tool[open] summary h2::before { content:"- "; }
+  details.tool summary:focus-visible { outline:1px solid var(--accent); outline-offset:2px; }
+  details.tool > fieldset, details.tool > table { margin-bottom:1.25rem; }
+  h2[id] { scroll-margin-top:3rem; }
+  .tablebar { display:flex; gap:.5rem; align-items:center; margin:.25rem 0 .5rem; }
+  .tablebar input[type=text] { flex:1; min-width:10rem; }
+  .tablebar select { width:auto; }
+  .tablebar button { margin-top:0; padding:.2rem .6rem; }
+  .tablebar span { color:var(--dim); font-size:11px; white-space:nowrap; }
+  .vh { position:absolute; clip:rect(0 0 0 0); clip-path:inset(50%); width:1px; height:1px; overflow:hidden; white-space:nowrap; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior:smooth; } }
 </style></head>
 <body><main>
 <h1>gallery-admin <small>${escHtml(adminEmail || "")} &middot; ${escHtml(env.GITHUB_REPO || "")}</small></h1>
 
-<h2>Status</h2>
+<nav class="jump" aria-label="Section index">
+  <a href="#sec-status">status</a>
+  <a href="#sec-upload">upload</a>
+  <a href="#sec-plate">plate form</a>
+  <a href="#sec-plates">plates</a>
+  <a href="#sec-watch">watch card</a>
+  <a href="#sec-rec">rec card</a>
+  <a href="#sec-swap">text-swap</a>
+  <a href="#sec-bump">cache-bump</a>
+  <a href="#sec-archv">archive video</a>
+  <a href="#sec-archi">archive image</a>
+  <a href="#sec-essaycard">essay card</a>
+  <a href="#sec-blog">new blog post</a>
+  <a href="#sec-essay">new essay</a>
+  <a href="#sec-log">log</a>
+</nav>
+
+<h2 id="sec-status">Status</h2>
 <div class="status" id="status">loading manifest&hellip;</div>
 
-<h2>1 &middot; Upload media &rarr; R2 (${escHtml(prefix)})</h2>
+<details class="tool" id="sec-upload"><summary><h2>1 &middot; Upload media &rarr; R2 (${escHtml(prefix)})</h2></summary>
 <fieldset>
   <label>file (webp / png / jpeg / mp4, &le; 25 MiB)</label>
   <input type="file" id="up-file" accept="image/webp,image/png,image/jpeg,video/mp4">
@@ -1695,7 +1737,9 @@ function adminHtml(env, adminEmail) {
   <p class="hint">interim alternative: R2 dashboard drag-drop into ${escHtml(prefix)} still works.</p>
 </fieldset>
 
-<h2>2 &middot; Plate entry &rarr; manifest commit</h2>
+</details>
+
+<details class="tool" id="sec-plate"><summary><h2>2 &middot; Plate entry &rarr; manifest commit</h2></summary>
 <fieldset id="plate-form">
   <input type="hidden" id="pf-mode" value="add">
   <div class="row2">
@@ -1736,11 +1780,22 @@ function adminHtml(env, adminEmail) {
   <button id="pf-cancel" style="display:none">cancel edit</button>
 </fieldset>
 
-<h2>3 &middot; Plates</h2>
-<table><thead><tr><th>ord</th><th>num</th><th>id</th><th>title</th><th>flags</th><th>tier</th><th></th></tr></thead>
+</details>
+
+<details class="tool" id="sec-plates"><summary><h2>3 &middot; Plates</h2></summary>
+<div class="tablebar">
+  <input type="text" id="pl-q" placeholder="filter: id / title / series / num / flag / category&hellip;" aria-label="Filter plates">
+  <select id="pl-size" aria-label="Rows per page"><option selected>25</option><option>50</option><option>100</option><option value="all">all</option></select>
+  <button id="pl-prev" type="button" aria-label="Previous page">&laquo;</button>
+  <span id="pl-info" role="status">&ndash;</span>
+  <button id="pl-next" type="button" aria-label="Next page">&raquo;</button>
+</div>
+<table><caption class="vh">Plates &mdash; filtered, paginated manifest table</caption><thead><tr><th>ord</th><th>num</th><th>id</th><th>title</th><th>flags</th><th>tier</th><th></th></tr></thead>
 <tbody id="plates"></tbody></table>
 
-<h2>4 &middot; Site &mdash; add /watch/ video card</h2>
+</details>
+
+<details class="tool" id="sec-watch"><summary><h2>4 &middot; Site &mdash; add /watch/ video card</h2></summary>
 <fieldset>
   <div class="row2">
     <div><label>youtube id</label><input type="text" id="vw-id" placeholder="GSDN0vu18Fo"></div>
@@ -1753,7 +1808,9 @@ function adminHtml(env, adminEmail) {
   <button class="site-prev" data-pattern="video-watch">preview</button>
 </fieldset>
 
-<h2>5 &middot; Site &mdash; add recommendation card</h2>
+</details>
+
+<details class="tool" id="sec-rec"><summary><h2>5 &middot; Site &mdash; add recommendation card</h2></summary>
 <fieldset>
   <div class="row2">
     <div><label>section</label><select id="rc-section"><option>media</option><option>film</option><option>books</option><option>sites</option><option>groups</option><option>work</option><option>art</option></select></div>
@@ -1768,7 +1825,9 @@ function adminHtml(env, adminEmail) {
   <button class="site-prev" data-pattern="rec-card">preview</button>
 </fieldset>
 
-<h2>6 &middot; Site &mdash; text-swap</h2>
+</details>
+
+<details class="tool" id="sec-swap"><summary><h2>6 &middot; Site &mdash; text-swap</h2></summary>
 <fieldset>
   <label>file (src/&hellip; relative path)</label><input type="text" id="ts-path" placeholder="src/blog/index.html">
   <label>find (exact bytes; must be unique unless replace-all)</label><textarea id="ts-find"></textarea>
@@ -1778,7 +1837,9 @@ function adminHtml(env, adminEmail) {
   <button class="site-prev" data-pattern="text-swap">preview</button>
 </fieldset>
 
-<h2>7 &middot; Site &mdash; cache-bump (?v= sweep, one commit)</h2>
+</details>
+
+<details class="tool" id="sec-bump"><summary><h2>7 &middot; Site &mdash; cache-bump (?v= sweep, one commit)</h2></summary>
 <fieldset>
   <div class="row2">
     <div><label>old version</label><input type="text" id="cb-old" placeholder="K46"></div>
@@ -1790,7 +1851,9 @@ function adminHtml(env, adminEmail) {
   <p class="hint">sweeps src HTML via the repo tree; K26 xcvii discipline &mdash; bump when a versioned component changes.</p>
 </fieldset>
 
-<h2>8 &middot; Site &mdash; add /archive/ video card</h2>
+</details>
+
+<details class="tool" id="sec-archv"><summary><h2>8 &middot; Site &mdash; add /archive/ video card</h2></summary>
 <fieldset>
   <div class="row2">
     <div><label>youtube / playlist id</label><input type="text" id="av-id" placeholder="GSDN0vu18Fo or PL…"></div>
@@ -1808,7 +1871,9 @@ function adminHtml(env, adminEmail) {
   <button class="site-prev" data-pattern="archive-video">preview</button>
 </fieldset>
 
-<h2>9 &middot; Site &mdash; add /archive/ image card</h2>
+</details>
+
+<details class="tool" id="sec-archi"><summary><h2>9 &middot; Site &mdash; add /archive/ image card</h2></summary>
 <fieldset>
   <div class="row2">
     <div><label>slug (filename stem; url = audio.wuld.ink/archive/images/&lt;slug&gt;.webp)</label><input type="text" id="ai-slug" placeholder="some-plate"></div>
@@ -1823,7 +1888,9 @@ function adminHtml(env, adminEmail) {
   <button class="site-prev" data-pattern="archive-image">preview</button>
 </fieldset>
 
-<h2>10 &middot; Site &mdash; add /essays/ index card</h2>
+</details>
+
+<details class="tool" id="sec-essaycard"><summary><h2>10 &middot; Site &mdash; add /essays/ index card</h2></summary>
 <fieldset>
   <div class="row2">
     <div><label>slug (essay dir stem; href = /essays/&lt;slug&gt;/)</label><input type="text" id="ec-slug" placeholder="a-new-essay"></div>
@@ -1837,7 +1904,9 @@ function adminHtml(env, adminEmail) {
   <button class="site-prev" data-pattern="essay-card">preview</button>
 </fieldset>
 
-<h2>11 &middot; Site &mdash; new BLOG POST (page + index card, one commit)</h2>
+</details>
+
+<details class="tool" id="sec-blog"><summary><h2>11 &middot; Site &mdash; new BLOG POST (page + index card, one commit)</h2></summary>
 <fieldset>
   <div class="row2">
     <div><label>title</label><input type="text" id="bp-title"></div>
@@ -1859,7 +1928,9 @@ function adminHtml(env, adminEmail) {
   <p class="hint">creates /blog/&lt;slug&gt;/ with CURRENT site chrome (grafted live from the donor post) + prepends the /blog/ card &mdash; ONE commit; Pages deploys in ~1 min. Site-search + changelog pick it up at the next Cowork regen pass.</p>
 </fieldset>
 
-<h2>12 &middot; Site &mdash; new ESSAY (page + index card, one commit)</h2>
+</details>
+
+<details class="tool" id="sec-essay"><summary><h2>12 &middot; Site &mdash; new ESSAY (page + index card, one commit)</h2></summary>
 <fieldset>
   <div class="row2">
     <div><label>title</label><input type="text" id="ep-title"></div>
@@ -1879,6 +1950,7 @@ function adminHtml(env, adminEmail) {
   <button class="site-prev" data-pattern="essay-page">preview</button>
   <p class="hint">mirrors the live essays: reader/HC mode toggle + text-size slider + optional audio band + Section I/II&hellip; structure, chrome grafted live from the donor essay. The audio FILE still lands in R2 by hand (key essays/&lt;slug&gt;/full.mp3). Register note: chat-side authoring remains the norm for essay prose &mdash; this op ships the vessel (or a finished body pasted in).</p>
 </fieldset>
+</details>
 
 <div id="site-preview">
   <div class="diffmeta" id="sp-meta"></div>
@@ -1888,13 +1960,14 @@ function adminHtml(env, adminEmail) {
 </div>
 
 
-<h2>Log</h2>
+<h2 id="sec-log">Log</h2>
 <div id="log"></div>
 
 <script>
 (function () {
   "use strict";
   var MANIFEST = null;
+  var PLATE_PAGE = 1, PLATE_SIZE = 25, PLATE_Q = "";
   function $(id) { return document.getElementById(id); }
   function esc(s) {
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
@@ -1934,10 +2007,25 @@ function adminHtml(env, adminEmail) {
     });
   }
 
+  // K213: paginated + filterable render. Filter matches id/title/series/num/
+  // flags/category/tier; pager clamps; "all" restores the old full render.
+  function plateMatches(p, q) {
+    var hay = (p.id + " " + p.title + " " + p.series + " " + p.num + " " +
+      p.content_flags.join(" ") + " " + (p.category || "") + " " + p.tier).toLowerCase();
+    return hay.indexOf(q) >= 0;
+  }
   function renderTable() {
     var tb = $("plates");
     tb.innerHTML = "";
-    MANIFEST.plates.forEach(function (p) {
+    if (!MANIFEST) return;
+    var q = PLATE_Q.toLowerCase();
+    var rows = q ? MANIFEST.plates.filter(function (p) { return plateMatches(p, q); }) : MANIFEST.plates;
+    var size = PLATE_SIZE === "all" ? (rows.length || 1) : PLATE_SIZE;
+    var pages = Math.max(1, Math.ceil(rows.length / size));
+    if (PLATE_PAGE > pages) PLATE_PAGE = pages;
+    if (PLATE_PAGE < 1) PLATE_PAGE = 1;
+    var start = (PLATE_PAGE - 1) * size;
+    rows.slice(start, start + size).forEach(function (p) {
       var tr = document.createElement("tr");
       tr.innerHTML =
         "<td>" + esc(p.order) + "</td><td>" + esc(p.num) + "</td>" +
@@ -1950,6 +2038,12 @@ function adminHtml(env, adminEmail) {
         "<button class=\\"rowbtn danger\\" data-act=del data-id=\\"" + esc(p.id) + "\\">del</button></td>";
       tb.appendChild(tr);
     });
+    $("pl-info").textContent = rows.length
+      ? (start + 1) + "-" + Math.min(start + size, rows.length) + " / " + rows.length +
+        (q ? " (of " + MANIFEST.plates.length + ")" : "") + "  p." + PLATE_PAGE + "/" + pages
+      : "0 matches";
+    $("pl-prev").disabled = PLATE_PAGE <= 1;
+    $("pl-next").disabled = PLATE_PAGE >= pages;
   }
 
   // Delegated row actions (K27 lesson: re-renders never orphan listeners).
@@ -1983,6 +2077,7 @@ function adminHtml(env, adminEmail) {
       $("pf-video").value = plate.video || "";
       $("pf-go").textContent = "commit update";
       $("pf-cancel").style.display = "";
+      $("sec-plate").open = true;
       window.scrollTo(0, $("plate-form").offsetTop - 60);
     }
     if (act === "flag") {
@@ -2180,6 +2275,39 @@ function adminHtml(env, adminEmail) {
       if (r.status !== 200) { $("sp-commit").disabled = false; }
     });
   });
+
+  $("pl-q").addEventListener("input", function () { PLATE_Q = $("pl-q").value.trim(); PLATE_PAGE = 1; renderTable(); });
+  $("pl-size").addEventListener("change", function () { var v = $("pl-size").value; PLATE_SIZE = v === "all" ? "all" : parseInt(v, 10); PLATE_PAGE = 1; renderTable(); });
+  $("pl-prev").addEventListener("click", function () { PLATE_PAGE--; renderTable(); });
+  $("pl-next").addEventListener("click", function () { PLATE_PAGE++; renderTable(); });
+
+  (function () { // K213: collapsed sections — persist open state; hash + jump links auto-open
+    var KEY = "wuld-admin-open";
+    var all = document.querySelectorAll("details.tool");
+    var open = [];
+    try { open = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { open = []; }
+    Array.prototype.forEach.call(all, function (d) {
+      if (open.indexOf(d.id) >= 0) d.open = true;
+      d.addEventListener("toggle", function () {
+        var ids = [];
+        Array.prototype.forEach.call(all, function (x) { if (x.open) ids.push(x.id); });
+        try { localStorage.setItem(KEY, JSON.stringify(ids)); } catch (e) {}
+      });
+    });
+    function openFromHash() {
+      var id = location.hash.slice(1);
+      var d = id && $(id);
+      if (d && d.tagName === "DETAILS") d.open = true;
+    }
+    document.addEventListener("click", function (ev) {
+      var a = ev.target.closest(".jump a");
+      if (!a) return;
+      var d = $(a.getAttribute("href").slice(1));
+      if (d && d.tagName === "DETAILS") d.open = true;
+    });
+    window.addEventListener("hashchange", openFromHash);
+    openFromHash();
+  })();
 
   (function () { // K212: default both content-op dates to operator-local today
     var d = new Date(), p2 = function (n) { return (n < 10 ? "0" : "") + n; };
