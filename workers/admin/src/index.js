@@ -57,6 +57,10 @@
  *   localStorage; hash/jump links auto-open; edit auto-opens the form),
  *   plates table paginated (25/50/100/all) + live filter + row counter.
  *   Zero endpoint/transform changes — adminHtml + UI script only.
+ *
+ * K214: legibility — every panel font-size x1.5 (body 13->20px, h1 15->23,
+ *   h2/table 12->18, label/log/hint/diff/rowbtn/tablebar 11->17, th/jump
+ *   10->15). Form controls inherit body. Zero structural/JS changes.
  * ========================================================================== */
 
 const MAX_UPLOAD_BYTES = 25 * 1024 * 1024; // 25 MiB cap (plates run ~0.8 MB)
@@ -1656,35 +1660,35 @@ function adminHtml(env, adminEmail) {
 <style>
   :root { --bg:#0a0a0a; --fg:#f0ebe5; --dim:#8a857e; --accent:#c41e3a; --border:#2a2a2a; }
   * { box-sizing: border-box; }
-  body { background:var(--bg); color:var(--fg); font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:13px; line-height:1.6; margin:0; padding:2rem 1.5rem 6rem; }
+  body { background:var(--bg); color:var(--fg); font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:20px; line-height:1.6; margin:0; padding:2rem 1.5rem 6rem; }
   main { max-width: 64rem; margin: 0 auto; }
-  h1 { font-size:15px; letter-spacing:.2em; text-transform:uppercase; border-bottom:1px solid var(--accent); padding-bottom:.5rem; }
+  h1 { font-size:23px; letter-spacing:.2em; text-transform:uppercase; border-bottom:1px solid var(--accent); padding-bottom:.5rem; }
   h1 small { color:var(--dim); letter-spacing:.05em; text-transform:none; float:right; }
-  h2 { font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin:2.5rem 0 .75rem; }
+  h2 { font-size:18px; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin:2.5rem 0 .75rem; }
   fieldset { border:1px solid var(--border); padding:1rem; margin:0 0 1rem; }
-  label { display:block; color:var(--dim); font-size:11px; text-transform:uppercase; letter-spacing:.1em; margin:.6rem 0 .15rem; }
+  label { display:block; color:var(--dim); font-size:17px; text-transform:uppercase; letter-spacing:.1em; margin:.6rem 0 .15rem; }
   input[type=text], input[type=number], textarea, select { width:100%; background:#111; color:var(--fg); border:1px solid var(--border); padding:.4rem .5rem; font:inherit; }
   textarea { min-height:4.5rem; resize:vertical; }
   input:focus, textarea:focus, select:focus { outline:1px solid var(--accent); }
   button { background:none; border:1px solid var(--border); color:var(--fg); font:inherit; padding:.4rem .9rem; cursor:pointer; margin-top:.75rem; }
   button:hover { border-color:var(--accent); color:var(--accent); }
   button.danger { border-color:var(--accent); color:var(--accent); }
-  table { width:100%; border-collapse:collapse; font-size:12px; }
+  table { width:100%; border-collapse:collapse; font-size:18px; }
   th, td { text-align:left; padding:.35rem .5rem; border-bottom:1px solid var(--border); vertical-align:top; }
-  th { color:var(--dim); font-weight:normal; text-transform:uppercase; font-size:10px; letter-spacing:.1em; }
-  td .rowbtn { margin:0 .35rem 0 0; padding:.1rem .45rem; font-size:11px; }
+  th { color:var(--dim); font-weight:normal; text-transform:uppercase; font-size:15px; letter-spacing:.1em; }
+  td .rowbtn { margin:0 .35rem 0 0; padding:.1rem .45rem; font-size:17px; }
   .status { border:1px solid var(--border); padding:.75rem 1rem; color:var(--dim); white-space:pre-wrap; }
   .status b { color:var(--fg); font-weight:normal; }
   .flag { color:var(--accent); }
-  #log { color:var(--dim); font-size:11px; white-space:pre-wrap; max-height:14rem; overflow:auto; border:1px dashed var(--border); padding:.5rem .75rem; }
+  #log { color:var(--dim); font-size:17px; white-space:pre-wrap; max-height:14rem; overflow:auto; border:1px dashed var(--border); padding:.5rem .75rem; }
   .row2 { display:grid; grid-template-columns:1fr 1fr; gap:0 1rem; }
-  .hint { color:var(--dim); font-size:11px; margin:.25rem 0 0; }
-  pre.diff { background:#111; border:1px solid var(--border); padding:.5rem .75rem; font-size:11px; line-height:1.5; white-space:pre-wrap; word-break:break-all; max-height:11rem; overflow:auto; margin:.35rem 0 .6rem; }
+  .hint { color:var(--dim); font-size:17px; margin:.25rem 0 0; }
+  pre.diff { background:#111; border:1px solid var(--border); padding:.5rem .75rem; font-size:17px; line-height:1.5; white-space:pre-wrap; word-break:break-all; max-height:11rem; overflow:auto; margin:.35rem 0 .6rem; }
   pre.diff.after { border-color:var(--accent); }
-  .diffmeta { color:var(--dim); font-size:11px; white-space:pre-wrap; }
+  .diffmeta { color:var(--dim); font-size:17px; white-space:pre-wrap; }
   #site-preview { display:none; border:1px solid var(--accent); padding:1rem; margin:1rem 0; }
   .jump { position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--border); padding:.55rem 0 .6rem; display:flex; flex-wrap:wrap; gap:.3rem 1rem; }
-  .jump a { color:var(--dim); text-decoration:none; font-size:10px; text-transform:uppercase; letter-spacing:.12em; border-bottom:1px solid transparent; }
+  .jump a { color:var(--dim); text-decoration:none; font-size:15px; text-transform:uppercase; letter-spacing:.12em; border-bottom:1px solid transparent; }
   .jump a:hover, .jump a:focus-visible { color:var(--accent); border-bottom-color:var(--accent); outline:none; }
   details.tool { border-bottom:1px dashed var(--border); scroll-margin-top:3rem; }
   details.tool summary { list-style:none; cursor:pointer; }
@@ -1699,7 +1703,7 @@ function adminHtml(env, adminEmail) {
   .tablebar input[type=text] { flex:1; min-width:10rem; }
   .tablebar select { width:auto; }
   .tablebar button { margin-top:0; padding:.2rem .6rem; }
-  .tablebar span { color:var(--dim); font-size:11px; white-space:nowrap; }
+  .tablebar span { color:var(--dim); font-size:17px; white-space:nowrap; }
   .vh { position:absolute; clip:rect(0 0 0 0); clip-path:inset(50%); width:1px; height:1px; overflow:hidden; white-space:nowrap; }
   @media (prefers-reduced-motion: no-preference) { html { scroll-behavior:smooth; } }
 </style></head>
