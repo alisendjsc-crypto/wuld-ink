@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Jul 2026 10:05:59 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 05:48:46 +0000</lastBuildDate>
+    <item>
+      <title>The argument library takes its first content step since the v3.8 freeze: version 4.0.0. An 82nd objection joins the catalogue — the Kantian charge that 'do not procreate' cannot be willed as universal law — with the full three-depth treatment and its own plain-language card, and the contractualism entry is regenerated to meet the strongest modern ex-ante form of that objection, its plain card re-mirrored to match. The maps and the grading ledger move in step: 82 objections, a 117-node mechanism web, 255 dependency edges.</title>
+      <link>https://wuld.ink/changelog/#2026-07-11-library-v4-0-0</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-11-library-v4-0-0</guid>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The argument library takes its first content step since the v3.8 freeze: version 4.0.0. An 82nd objection joins the catalogue — the Kantian charge that 'do not procreate' cannot be willed as universal law — with the full three-depth treatment and its own plain-language card, and the contractualism entry is regenerated to meet the strongest modern ex-ante form of that objection, its plain card re-mirrored to match. The maps and the grading ledger move in step: 82 objections, a 117-node mechanism web, 255 dependency edges. (Sections: /argument-library/)</description>
+    </item>
     <item>
       <title>The default ambience is calmer now: the YouTube background player no longer starts on its own — turn it on from the bar if you want it — and the generative synth bed carries the room by default, opening on breeze: a deep, methodic drone with an aching resonant wind that rises and aches back between movements, after the opening of Éliane Radigue's Triptych. Two other moods sit a tap away in the [fx] panel — a colder clinical hum and a deeper oceanic drift tuned to carry on smaller speakers.</title>
       <link>https://wuld.ink/changelog/#2026-07-07-ambient-breeze</link>

@@ -1,0 +1,30 @@
+{
+  "release": "v4.0.0",
+  "canon": {
+    "version": "38.0",
+    "bump": "MAJOR v37.40 -> v38.0 (invariant block revised: objection_count 82, map web 117/142, dep 95/255; t5 register dispositions canonized; rider promoted to root)",
+    "invariant_block_changed": true,
+    "note": "K219: flagship v4.0.0 CONTENT cut — the first corpus change since the v3.8 freeze. +self-effacing-under-universalization (objection #82, T5 routed; CE+FLA web; ledger A) and a wholesale ex-ante regeneration of contractualism-scanlon (identity locked; ledger B->A supersession). Layman index v0_3 (82 cards, per-node T5 register, source_index_pin rotated), objections-index 82, validator v0_4 register-keyed, ledger 82 rows. Corpus/JSX minted at _v4_0_0; four-surface sync verified (parse-parity + reverse-splice conservation + render-sim 82/82)."
+  },
+  "git": {
+    "baseline": "efilist K219 commit atop 4bb9cc4 (K218 BLOCK-1)",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "combined.html 6dfeb5d4 -> e654eabd/2,963,752 (+7,912). Data splices: OBJECTIONS +82nd node + contractualism triple + self-defeating reciprocal pointer; MAP_GRAPH_DATA 117/142 (CE 6, FLA 13); DEP_GRAPH_DATA 95/255 (inert premise counters left as-found per the K92 in-file rule); REBUTTAL_STRENGTH 82 entries; display counts 82/142/255; provenance \"all 81 entries\" NOTES held as history. rwe-data (78-node curation) byte-held. Reverse-splice == base byte-exact; node --check 4/4; render-sim 82/82; triple id-closure 82."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "e654eabd32fa95e5969d49e6eb15aa87",
+      "size_bytes": 2963752,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "6dfeb5d4bb625fbb061b1cf0432f48ca",
+    "new": "e654eabd32fa95e5969d49e6eb15aa87",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "K219: v4.0.0 pin move (6dfeb5d4->e654eabd; flagship v4.0.0 content cut — 82nd objection + contractualism ex-ante regeneration; canon v37.40->v38.0)"
+}
