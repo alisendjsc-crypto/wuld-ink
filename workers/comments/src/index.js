@@ -7,11 +7,10 @@
  * Routes:
  *   GET  /api/comments?board=global          public list (visible only; NO email/ip)
  *   POST /api/comments                       create (honeypot + rate-limit + caps)
- *   GET  /admin   (and /admin/)              Access-gated moderation UI (all rows)
- *   POST /api/admin/hide                     { id }      Access-gated
- *   POST /api/admin/unhide                   { id }      Access-gated
- *   POST /api/admin/delete                   { id }      Access-gated (hard delete)
- *   POST /api/admin/edit                     { id, body} Access-gated
+ *   GET  /admin   (and /admin/)              RETIRED (K222): 302 -> admin.wuld.ink/#sec-cmod
+ *   POST /api/admin/*                        RETIRED (K222): 410 Gone -- moderation
+ *                                            moved to the admin worker's /api/cmod/*
+ *                                            (same D1; parity verified 2026-07-11)
  *
  * Security posture:
  *   - email is PRIVATE: never returned by the public API, never rendered publicly.
@@ -45,25 +44,17 @@ export default {
         return json({ error: "method_not_allowed" }, 405, cors(env, request));
       }
 
-      // ---- Admin moderation UI (Access-gated) ---------------------------
+      // ---- Admin moderation UI: RETIRED (K222) --------------------------
+      // Moderation lives at admin.wuld.ink section 14 (COMMENTS_DB, same D1;
+      // operator parity verified). adminHtml/verifyAccess stay in-file as
+      // dead code deliberately (smallest blast radius).
       if (pathname === "/admin" || pathname === "/admin/") {
-        const gate = await verifyAccess(request, env);
-        if (!gate.ok) return new Response(gate.reason || "Forbidden", { status: 403 });
-        return new Response(await adminHtml(env, gate.email), {
-          status: 200,
-          headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
-        });
+        return Response.redirect("https://admin.wuld.ink/#sec-cmod", 302);
       }
 
-      // ---- Admin actions (Access-gated mutations) -----------------------
+      // ---- Admin actions: RETIRED (K222) — 410 Gone ---------------------
       if (pathname.startsWith("/api/admin/")) {
-        if (method !== "POST") return json({ error: "method_not_allowed" }, 405);
-        const gate = await verifyAccess(request, env);
-        if (!gate.ok) return json({ error: "forbidden", reason: gate.reason }, 403);
-        // CSRF: admin mutations must originate from our own origin.
-        if (!sameOrigin(request, env)) return json({ error: "bad_origin" }, 403);
-        const action = pathname.slice("/api/admin/".length);
-        return adminAction(action, request, env);
+        return json({ error: "gone", moved: "https://admin.wuld.ink/#sec-cmod" }, 410);
       }
 
       return json({ error: "not_found" }, 404);
