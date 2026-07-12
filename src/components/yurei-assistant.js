@@ -21,7 +21,8 @@
 
   var COMP = "/components/";
   var ASSET = "/assets/yurei/";
-  var MANIFEST_URL = ASSET + "manifest_v2.json";   // one-line swap point for final art
+  var MANIFEST_URL = ASSET + "avatar/avatar_manifest_v2.json";   // K224d: dedicated assistant avatar set (the haunting keeps manifest_v2.json)
+  var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);   // assets resolve alongside the manifest
   var VER = "K224";
 
   // ---- guards (kill-switch parity + reduced-motion + session dismiss) ----
@@ -96,19 +97,19 @@
   // sprite resolution — animation_hint -> manifest role, graceful fallback.
   // Final art (more roles: listen/speak/long_idle...) binds automatically.
   // =====================================================================
-  var HINT_ROLE = {
-    idle: "idle", speak: "speak", listen: "listen", deflect: "speak", glitch: "idle",
-    appear: "surface", dismiss: "drift", return_ack: "peek", long_idle: "long_idle",
-    wrong_hour: "canonical-p0", idle_breeze: "idle", regard: "idle"
-  };
-  var ROLE_FALLBACK = { speak: "idle", listen: "idle", long_idle: "idle", surface: "idle", peek: "idle", drift: "idle", idle: "canonical-p0" };
-  function resolveAsset(role) {
-    var seen = {};
+  // Resolve an animation_hint to a manifest asset, DATA-DRIVEN off the manifest's
+  // own animation_fallback: use the role of the same name if it exists, else walk
+  // the fallback chain to an existing role, else idle/canonical-p0. The 3D seat owns
+  // the map, so a new art set with new roles binds with no code change (K224d).
+  function resolveAsset(hint) {
+    var fb = (manifest && manifest.animation_fallback) || {};
+    var seen = {}, role = hint;
     while (role && !seen[role]) {
       if (assetByRole[role]) return assetByRole[role];
-      seen[role] = 1; role = ROLE_FALLBACK[role];
+      seen[role] = 1;
+      role = fb[role] || (role === "idle" ? "canonical-p0" : "idle");
     }
-    return assetByRole["canonical-p0"] || (manifest && manifest.assets && manifest.assets[0]) || null;
+    return assetByRole["idle"] || assetByRole["canonical-p0"] || (manifest && manifest.assets && manifest.assets[0]) || null;
   }
   var flavorClasses = ["yasst-speaking", "yasst-glitch", "yasst-breeze", "yasst-wrong"];
   function setFlavor(hint) {
@@ -120,28 +121,28 @@
   }
   function showSprite(hint, opts) {
     opts = opts || {};
-    var role = HINT_ROLE[hint] || "idle";
-    var a = resolveAsset(role);
+    var a = resolveAsset(hint);
     setFlavor(hint);
     if (!a) return;
-    var url = ASSET + a.file;
+    var url = MANIFEST_BASE + a.file;
     if (reduced() || a.kind === "still") {                  // still frame — no motion
       if (avatarVideo) { try { avatarVideo.pause(); } catch (e) {} avatarVideo.style.display = "none"; }
-      avatarImg.src = (a.kind === "still") ? url : (ASSET + (assetByRole["canonical-p0"] ? assetByRole["canonical-p0"].file : a.file));
+      avatarImg.src = (a.kind === "still") ? url : (MANIFEST_BASE + (assetByRole["canonical-p0"] ? assetByRole["canonical-p0"].file : a.file));
       avatarImg.style.display = "";
       return;
     }
     // motion
     avatarImg.style.display = "none";
     avatarVideo.style.display = "";
-    avatarVideo.loop = (a.kind === "loop");
+    var looping = (a.loop === true) || (a.kind === "loop");   // new manifest: kind "clip" + loop bool; old widget: kind "loop"
+    avatarVideo.loop = looping;
     if (avatarVideo.getAttribute("data-file") !== a.file) {
       avatarVideo.setAttribute("data-file", a.file);
       avatarVideo.src = url;
     }
     var p = avatarVideo.play();
-    if (p && p.catch) p.catch(function () { avatarVideo.style.display = "none"; avatarImg.src = ASSET + (assetByRole["canonical-p0"] ? assetByRole["canonical-p0"].file : a.file); avatarImg.style.display = ""; });
-    if (a.kind === "oneshot") {
+    if (p && p.catch) p.catch(function () { avatarVideo.style.display = "none"; avatarImg.src = MANIFEST_BASE + (assetByRole["canonical-p0"] ? assetByRole["canonical-p0"].file : a.file); avatarImg.style.display = ""; });
+    if (!looping) {                                            // one-shot clip -> return to idle when it ends
       avatarVideo.onended = function () { showSprite(opts.then || "idle"); };
     } else { avatarVideo.onended = null; }
   }
@@ -167,7 +168,7 @@
       "type": "button", "aria-label": "Ask Yūrei, the desk", "aria-expanded": "false", "title": "The desk"
     });
     var still = assetByRole["canonical-p0"];
-    if (still) launcher.style.backgroundImage = "url(" + ASSET + still.file + ")";
+    if (still) launcher.style.backgroundImage = "url(" + MANIFEST_BASE + still.file + ")";
     launcher.addEventListener("click", toggle);
 
     // panel
