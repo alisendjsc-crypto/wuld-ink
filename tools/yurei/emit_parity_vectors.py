@@ -160,6 +160,44 @@ def main():
             "seq": seq, "out": run(pub, seq, False, 5),
         })
 
+    # --- K225 desk-Yurei coverage additions (new-input regression lock) ---
+    #     each single-turn probe pins a previously-missed input to its new route.
+    COVERAGE = [
+        ("cov-whois-yurei",        ["who is yurei"]),          # r-id-01
+        ("cov-whois-yurei-macron", ["who is yūrei"]),          # r-id-01
+        ("cov-whois-yurei-contr",  ["whos yurei"]),            # r-id-01
+        ("cov-yurei-mean",         ["what does yurei mean"]),  # r-id-12
+        ("cov-yurei-mean-macron",  ["what does yūrei mean"]),  # r-id-12
+        ("cov-yurei-meaning",      ["yurei meaning"]),         # r-id-12
+        ("cov-name-mean",          ["what does your name mean"]),  # r-id-12
+        ("cov-who-made-you",       ["who made you"]),          # r-id-11
+        ("cov-who-creator",        ["who is your creator"]),   # r-id-11
+        ("cov-who-created-this",   ["who created this"]),      # r-site-16
+        ("cov-who-designed-this",  ["who designed this"]),     # r-site-16
+        ("cov-howmany-resp",       ["how many responses do you have"]),  # r-meta-06
+        ("cov-howmany-say",        ["how many things can you say"]),     # r-meta-06
+        ("cov-howmany-answers",    ["how many answers"]),      # r-meta-06
+        ("cov-what-can-tell",      ["what can you tell me"]),  # r-meta-02
+        ("cov-joke",               ["tell me a joke"]),        # r-meta-07
+        ("cov-entertain",          ["entertain me"]),          # r-meta-07
+        ("cov-sing",               ["sing me a song"]),        # r-meta-07
+        ("cov-trivia",             ["trivia"]),                # r-meta-07
+        ("cov-randomfact",         ["random fact"]),           # r-meta-07
+        ("cov-makelaugh",          ["make me laugh"]),         # r-meta-07
+        ("cov-surprise",           ["surprise me"]),           # r-lore-01
+        ("cov-something-new",      ["something new"]),         # r-lore-06
+        ("cov-something-interest", ["something interesting"]), # r-lore-12
+        ("cov-anything-interest",  ["anything interesting"]),  # r-lore-16
+        ("cov-tell-else",          ["tell me something else"]),# r-lore-06
+        ("cov-math",               ["what is 2 plus 2"]),      # r-meta-08
+        ("cov-calculate",          ["calculate"]),             # r-meta-08
+    ]
+    for vid, seq in COVERAGE:
+        vectors.append({
+            "id": vid, "corpus": "public", "unsealed": False, "repeat_window": 5,
+            "seq": seq, "out": run(pub, seq, False, 5),
+        })
+
     # --- ORACLE lane (Act 2c) ---
     oracle = []
     if len(sys.argv) > 3:

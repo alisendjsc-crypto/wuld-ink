@@ -191,7 +191,7 @@ E("r-site-15","response","public",
 E("r-site-16","response","public",
   "The author is on the shelves. The department only keeps them.",
   ["site","deflection"],"speak",
-  [P("who made this","tokens_all",3),P("who built this","tokens_all",3),P("who runs this","tokens_all",2)])
+  [P("who made this","tokens_all",3),P("who built this","tokens_all",3),P("who runs this","tokens_all",2),P("who created this","tokens_all",3),P("who designed this","tokens_all",2),P("who developed this","tokens_all",2)])
 
 # ======================================================================
 # PUBLIC · hour  (hour as condition, never clock digits)
@@ -247,7 +247,7 @@ E("r-hour-09","response","public",
 E("r-id-01","response","public",
   "A clerk of what remains. The machinery is not the interesting part.",
   ["clinical"],"speak",
-  [P("what are you","tokens_all",5),P("who are you","tokens_all",4),P("what are u","tokens_all",3)])
+  [P("what are you","tokens_all",5),P("who are you","tokens_all",4),P("what are u","tokens_all",3),P("who is yurei","tokens_all",5),P("who is yūrei","tokens_all",5),P("whos yurei","tokens_all",4),P("whos yūrei","tokens_all",4)])
 
 E("r-id-02","response","public",
   "There is machinery here. Naming it changes nothing about the filing, and the filing is the point.",
@@ -297,7 +297,12 @@ E("r-id-10","response","public",
 E("r-id-11","response","public",
   "The same shelves hold that answer. The desk points. It does not keep its own history.",
   ["deflection","site"],"deflect",
-  [P("where are you from","tokens_all",2),P("who created you","tokens_all",2),P("who wrote you","tokens_all",2)])
+  [P("where are you from","tokens_all",2),P("who created you","tokens_all",2),P("who wrote you","tokens_all",2),P("who made you","tokens_all",3),P("who built you","tokens_all",2),P("who designed you","tokens_all",2),P("who is your creator","tokens_all",2)])
+
+E("r-id-12","response","public",
+  "A word for what stays after the office closes. It means little at this desk.",
+  ["clinical"],"speak",
+  [P("what does yurei mean","tokens_all",5),P("what does yūrei mean","tokens_all",5),P("yurei meaning","tokens_all",4),P("yūrei meaning","tokens_all",4),P("meaning of yurei","tokens_all",4),P("meaning of yūrei","tokens_all",4),P("what does your name mean","tokens_all",5)])
 
 # ======================================================================
 # PUBLIC · lore  (the office fiction; administrative horror, not gothic)
@@ -305,7 +310,7 @@ E("r-id-11","response","public",
 E("r-lore-01","response","public",
   "Everything that was set down and then left. The category is large. The readership is not.",
   ["ledger","volta"],"speak",
-  [P("what do you file","tokens_all",4),P("what do you keep","tokens_all",3),P("what is filed here","tokens_all",2)])
+  [P("what do you file","tokens_all",4),P("what do you keep","tokens_all",3),P("what is filed here","tokens_all",2),P("surprise me","tokens_all",3)])
 
 E("r-lore-02","response","public",
   "Requisitions: none this century. The filing: uninterrupted.",
@@ -330,7 +335,7 @@ E("r-lore-05","response","public",
 E("r-lore-06","response","public",
   "A delivery arrived last night for a department that closed. It was filed anyway. That is most of what happens.",
   ["volta"],"speak",
-  [P("tell me a story","tokens_all",3),P("tell me something","tokens_all",2),P("say something","tokens_all",2)])
+  [P("tell me a story","tokens_all",3),P("tell me something","tokens_all",2),P("say something","tokens_all",2),P("something new","tokens_all",3),P("tell me something else","tokens_all",3)])
 
 E("r-lore-07","response","public",
   "Some drawers carry a seal. The inventory stops at the label. It does not read the contents.",
@@ -360,7 +365,7 @@ E("r-lore-11","response","public",
 E("r-lore-12","response","public",
   "Deliveries still come. Addressed to functions that lapsed, signed for by no one, filed by default.",
   ["ledger","volta"],"speak",
-  [P("the deliveries","contains",3),P("what gets delivered","tokens_all",2),P("deliveries","exact",2)])
+  [P("the deliveries","contains",3),P("what gets delivered","tokens_all",2),P("deliveries","exact",2),P("something interesting","tokens_all",3)])
 
 E("r-lore-13","response","public",
   "Always. The condition does not vary, which is the one thing it reliably does.",
@@ -380,7 +385,7 @@ E("r-lore-15","response","public",
 E("r-lore-16","response","public",
   "The unread file is the terror, not the dark. A thing kept perfectly and requisitioned never.",
   ["volta","memento"],"speak",
-  [P("whats the worst part","tokens_all",2),P("is it lonely here","tokens_all",2),P("what scares you","tokens_all",2)])
+  [P("whats the worst part","tokens_all",2),P("is it lonely here","tokens_all",2),P("what scares you","tokens_all",2),P("anything interesting","tokens_all",3)])
 
 # ======================================================================
 # PUBLIC · smalltalk  (files pleasantries rather than trading them; thin)
@@ -494,7 +499,7 @@ E("r-meta-01","response","public",
 E("r-meta-02","response","public",
   "Ask what you like. The desk answers from what it keeps, or it files the miss. Both go on the record.",
   ["deflection"],"deflect",
-  [P("what can i ask","tokens_all",3),P("what can i ask you","tokens_all",3),P("what should i ask","tokens_all",2)])
+  [P("what can i ask","tokens_all",3),P("what can i ask you","tokens_all",3),P("what should i ask","tokens_all",2),P("what can you tell me","tokens_all",3)])
 
 E("r-meta-03","response","public",
   "The desk keeps files and answers from them. A list of that would run longer than the doing and less true.",
@@ -510,6 +515,21 @@ E("r-meta-05","response","public",
   "You have already found the method. You spoke and the desk answered. There is no further instruction to file.",
   ["deflection","volta"],"deflect",
   [P("how does this work","tokens_all",3),P("how do i use this","tokens_all",2),P("instructions","exact",2)])
+
+E("r-meta-06","response","public",
+  "The desk does not count its own drawers.",
+  ["deflection"],"deflect",
+  [P("how many responses","tokens_all",5),P("how many responses do you have","tokens_all",6),P("how many things can you say","tokens_all",5),P("how many answers","tokens_all",4),P("how many replies","tokens_all",4),P("how many lines","tokens_all",4),P("how much can you say","tokens_all",4)])
+
+E("r-meta-07","response","public",
+  "The desk keeps files, not amusements. Trivia is not filed here.",
+  ["deflection"],"deflect",
+  [P("tell me a joke","tokens_all",5),P("tell me a fact","tokens_all",4),P("random fact","tokens_all",4),P("random trivia","tokens_all",4),P("trivia","exact",4),P("do you know any facts","tokens_all",4),P("entertain me","tokens_all",5),P("sing me a song","tokens_all",5),P("sing a song","tokens_all",4),P("tell me a fun fact","tokens_all",4),P("say something funny","tokens_all",4),P("make me laugh","tokens_all",4)])
+
+E("r-meta-08","response","public",
+  "The desk does not compute. It files.",
+  ["deflection","volta"],"deflect",
+  [P("what is 2 plus 2","tokens_all",5),P("can you do math","tokens_all",4),P("do you do math","tokens_all",4),P("calculate","exact",3),P("solve this","tokens_all",3)])
 
 # ======================================================================
 # PUBLIC · locked/sealed gesture  (P10: gestures at sealedness ONLY)

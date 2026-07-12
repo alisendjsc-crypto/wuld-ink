@@ -1679,6 +1679,342 @@
    ]
   },
   {
+   "id": "cov-whois-yurei",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "who is yurei"
+   ],
+   "out": [
+    "r-id-01"
+   ]
+  },
+  {
+   "id": "cov-whois-yurei-macron",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "who is yūrei"
+   ],
+   "out": [
+    "r-id-01"
+   ]
+  },
+  {
+   "id": "cov-whois-yurei-contr",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "whos yurei"
+   ],
+   "out": [
+    "r-id-01"
+   ]
+  },
+  {
+   "id": "cov-yurei-mean",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what does yurei mean"
+   ],
+   "out": [
+    "r-id-12"
+   ]
+  },
+  {
+   "id": "cov-yurei-mean-macron",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what does yūrei mean"
+   ],
+   "out": [
+    "r-id-12"
+   ]
+  },
+  {
+   "id": "cov-yurei-meaning",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "yurei meaning"
+   ],
+   "out": [
+    "r-id-12"
+   ]
+  },
+  {
+   "id": "cov-name-mean",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what does your name mean"
+   ],
+   "out": [
+    "r-id-12"
+   ]
+  },
+  {
+   "id": "cov-who-made-you",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "who made you"
+   ],
+   "out": [
+    "r-id-11"
+   ]
+  },
+  {
+   "id": "cov-who-creator",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "who is your creator"
+   ],
+   "out": [
+    "r-id-11"
+   ]
+  },
+  {
+   "id": "cov-who-created-this",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "who created this"
+   ],
+   "out": [
+    "r-site-16"
+   ]
+  },
+  {
+   "id": "cov-who-designed-this",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "who designed this"
+   ],
+   "out": [
+    "r-site-16"
+   ]
+  },
+  {
+   "id": "cov-howmany-resp",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "how many responses do you have"
+   ],
+   "out": [
+    "r-meta-06"
+   ]
+  },
+  {
+   "id": "cov-howmany-say",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "how many things can you say"
+   ],
+   "out": [
+    "r-meta-06"
+   ]
+  },
+  {
+   "id": "cov-howmany-answers",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "how many answers"
+   ],
+   "out": [
+    "r-meta-06"
+   ]
+  },
+  {
+   "id": "cov-what-can-tell",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what can you tell me"
+   ],
+   "out": [
+    "r-meta-02"
+   ]
+  },
+  {
+   "id": "cov-joke",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "tell me a joke"
+   ],
+   "out": [
+    "r-meta-07"
+   ]
+  },
+  {
+   "id": "cov-entertain",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "entertain me"
+   ],
+   "out": [
+    "r-meta-07"
+   ]
+  },
+  {
+   "id": "cov-sing",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "sing me a song"
+   ],
+   "out": [
+    "r-meta-07"
+   ]
+  },
+  {
+   "id": "cov-trivia",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "trivia"
+   ],
+   "out": [
+    "r-meta-07"
+   ]
+  },
+  {
+   "id": "cov-randomfact",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "random fact"
+   ],
+   "out": [
+    "r-meta-07"
+   ]
+  },
+  {
+   "id": "cov-makelaugh",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "make me laugh"
+   ],
+   "out": [
+    "r-meta-07"
+   ]
+  },
+  {
+   "id": "cov-surprise",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "surprise me"
+   ],
+   "out": [
+    "r-lore-01"
+   ]
+  },
+  {
+   "id": "cov-something-new",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "something new"
+   ],
+   "out": [
+    "r-lore-06"
+   ]
+  },
+  {
+   "id": "cov-something-interest",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "something interesting"
+   ],
+   "out": [
+    "r-lore-12"
+   ]
+  },
+  {
+   "id": "cov-anything-interest",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "anything interesting"
+   ],
+   "out": [
+    "r-lore-16"
+   ]
+  },
+  {
+   "id": "cov-tell-else",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "tell me something else"
+   ],
+   "out": [
+    "r-lore-06"
+   ]
+  },
+  {
+   "id": "cov-math",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what is 2 plus 2"
+   ],
+   "out": [
+    "r-meta-08"
+   ]
+  },
+  {
+   "id": "cov-calculate",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "calculate"
+   ],
+   "out": [
+    "r-meta-08"
+   ]
+  },
+  {
    "id": "oinert-hello",
    "corpus": "public_oracle",
    "unsealed": false,
@@ -1984,9 +2320,9 @@
   }
  ],
  "counts": {
-  "public": 161,
+  "public": 165,
   "room": 31,
   "oracle": 50,
-  "vectors": 72
+  "vectors": 100
  }
 }

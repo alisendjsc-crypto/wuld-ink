@@ -836,6 +836,21 @@
       "form": "who runs this",
       "mode": "tokens_all",
       "weight": 2
+     },
+     {
+      "form": "who created this",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "who designed this",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "who developed this",
+      "mode": "tokens_all",
+      "weight": 2
      }
     ]
    },
@@ -1122,6 +1137,26 @@
       "form": "what are u",
       "mode": "tokens_all",
       "weight": 3
+     },
+     {
+      "form": "who is yurei",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "who is yūrei",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "whos yurei",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "whos yūrei",
+      "mode": "tokens_all",
+      "weight": 4
      }
     ]
    },
@@ -1427,6 +1462,74 @@
       "form": "who wrote you",
       "mode": "tokens_all",
       "weight": 2
+     },
+     {
+      "form": "who made you",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "who built you",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "who designed you",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "who is your creator",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-12",
+    "class": "response",
+    "tier": "public",
+    "response": "A word for what stays after the office closes. It means little at this desk.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what does yurei mean",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "what does yūrei mean",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "yurei meaning",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "yūrei meaning",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "meaning of yurei",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "meaning of yūrei",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "what does your name mean",
+      "mode": "tokens_all",
+      "weight": 5
      }
     ]
    },
@@ -1456,6 +1559,11 @@
       "form": "what is filed here",
       "mode": "tokens_all",
       "weight": 2
+     },
+     {
+      "form": "surprise me",
+      "mode": "tokens_all",
+      "weight": 3
      }
     ]
    },
@@ -1598,6 +1706,16 @@
       "form": "say something",
       "mode": "tokens_all",
       "weight": 2
+     },
+     {
+      "form": "something new",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "tell me something else",
+      "mode": "tokens_all",
+      "weight": 3
      }
     ]
    },
@@ -1769,6 +1887,11 @@
       "form": "deliveries",
       "mode": "exact",
       "weight": 2
+     },
+     {
+      "form": "something interesting",
+      "mode": "tokens_all",
+      "weight": 3
      }
     ]
    },
@@ -1882,6 +2005,11 @@
       "form": "what scares you",
       "mode": "tokens_all",
       "weight": 2
+     },
+     {
+      "form": "anything interesting",
+      "mode": "tokens_all",
+      "weight": 3
      }
     ]
    },
@@ -2491,6 +2619,11 @@
       "form": "what should i ask",
       "mode": "tokens_all",
       "weight": 2
+     },
+     {
+      "form": "what can you tell me",
+      "mode": "tokens_all",
+      "weight": 3
      }
     ]
    },
@@ -2582,6 +2715,166 @@
       "form": "instructions",
       "mode": "exact",
       "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-meta-06",
+    "class": "response",
+    "tier": "public",
+    "response": "The desk does not count its own drawers.",
+    "register_tags": [
+     "deflection"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "how many responses",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "how many responses do you have",
+      "mode": "tokens_all",
+      "weight": 6
+     },
+     {
+      "form": "how many things can you say",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "how many answers",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "how many replies",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "how many lines",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "how much can you say",
+      "mode": "tokens_all",
+      "weight": 4
+     }
+    ]
+   },
+   {
+    "id": "r-meta-07",
+    "class": "response",
+    "tier": "public",
+    "response": "The desk keeps files, not amusements. Trivia is not filed here.",
+    "register_tags": [
+     "deflection"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "tell me a joke",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "tell me a fact",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "random fact",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "random trivia",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "trivia",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "do you know any facts",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "entertain me",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "sing me a song",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "sing a song",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "tell me a fun fact",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "say something funny",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "make me laugh",
+      "mode": "tokens_all",
+      "weight": 4
+     }
+    ]
+   },
+   {
+    "id": "r-meta-08",
+    "class": "response",
+    "tier": "public",
+    "response": "The desk does not compute. It files.",
+    "register_tags": [
+     "deflection",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "what is 2 plus 2",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "can you do math",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "do you do math",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "calculate",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "solve this",
+      "mode": "tokens_all",
+      "weight": 3
      }
     ]
    },
