@@ -753,7 +753,19 @@
   // one chime the first time the CLOCK crosses into deep night — bleedNow() >= 0.85 ~ 1:40am..4:20am.
   function maybeBell() {
     if (bellDone || prefs.sfx <= 0) return;
-    if (bleedNow() >= 0.85) { bellDone = true; whenReady(function () { bell(); }); }
+    if (bleedNow() >= 0.85) {
+      bellDone = true;
+      // K224c fix: the deep-night bell must toll ONCE per night, not on every page
+      // load. bellDone is per-page-load (resets on navigation), so persist the toll
+      // by the night's date — otherwise the bell re-rang on every nav click and every
+      // site open during the 1:40-4:20am window.
+      try {
+        var d = new Date(), key = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+        if (localStorage.getItem("wuld:wrongHour.belled") === key) return;
+        localStorage.setItem("wuld:wrongHour.belled", key);
+      } catch (e) {}
+      whenReady(function () { bell(); });
+    }
   }
 
   // ---------------- placement: default + declarative + per-scene + typing ----------------
