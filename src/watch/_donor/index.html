@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
+  <link rel="stylesheet" href="/components/wrong-hour.css?v=K208">
+  <link rel="license" href="/LICENSE">
+  <title>Media donor template page &middot; wuld.ink</title>
+  <meta name="description" content="Donor summary placeholder for hosted media pages; replaced verbatim at publish time.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="wuld-search" content="exclude">
+
+  <link rel="canonical" href="https://wuld.ink/watch/_donor/">
+  <meta property="og:title" content="Media donor template page">
+  <meta property="og:description" content="Donor summary placeholder for hosted media pages; replaced verbatim at publish time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/watch/_donor/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K43">
+  <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
+  <link rel="stylesheet" href="/components/footer.css?v=K43">
+
+  <style>
+    /* ==========================================================
+       Hosted media page (K220). This donor is the graft source for
+       admin-published /watch/<slug>/ pages: the admin worker swaps
+       the head strings + the whole <main>, so chrome stays current
+       (the ?v sweeps maintain THIS page; published pages are born
+       with whatever chrome the donor carries at publish time).
+       The player JS lives in the HEAD below so it survives the
+       main swap — one copy, donor-maintained.
+       ========================================================== */
+    .media-page {
+      max-width: var(--w-text);
+      margin-inline: auto;
+      padding-inline: var(--s-5);
+      padding-block-end: var(--s-9);
+    }
+
+    .media-meta {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-dim);
+      margin-block: var(--s-2) 0;
+    }
+
+    .media-summary {
+      font-family: var(--font-body);
+      font-size: var(--t-base);
+      color: var(--c-fg-muted);
+      max-width: 44rem;
+      line-height: 1.6;
+      margin-block: var(--s-4) var(--s-6);
+    }
+
+    .media-player {
+      border: var(--bw-base) solid var(--c-border);
+      background: #000;
+      aspect-ratio: 16 / 9;
+      max-width: 56rem;
+      margin-block: var(--s-5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .media-video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #000;
+    }
+
+    .media-noscript,
+    .media-blank {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      color: var(--c-fg-dim);
+      letter-spacing: var(--ls-wide);
+      padding: var(--s-5);
+      text-align: center;
+    }
+
+    .media-consent,
+    .media-lock {
+      padding: var(--s-6);
+      max-width: 34rem;
+      text-align: center;
+    }
+
+    .media-consent-title,
+    .media-lock-title {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin-block: 0 var(--s-3);
+    }
+
+    .media-consent-body,
+    .media-lock-body {
+      font-family: var(--font-body);
+      font-size: var(--t-base);
+      color: var(--c-fg-muted);
+      line-height: 1.6;
+      margin-block: 0 var(--s-4);
+    }
+
+    .media-consent-row {
+      display: flex;
+      gap: var(--s-4);
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .media-consent-yes {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      background: none;
+      color: var(--c-fg);
+      border: var(--bw-base) solid var(--c-border);
+      padding: 0.6rem 1.1rem;
+      cursor: pointer;
+    }
+
+    .media-consent-yes:hover,
+    .media-consent-yes:focus-visible {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+      outline: none;
+    }
+
+    .media-consent-no {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-dim);
+    }
+
+    .media-back {
+      font-family: var(--font-mono);
+      font-size: var(--t-sm);
+      letter-spacing: var(--ls-wide);
+      margin-block-start: var(--s-7);
+    }
+
+    .media-back a { color: var(--c-accent); text-decoration: none; }
+    .media-back a:hover { text-decoration: underline; }
+  </style>
+
+  <script>
+    /* Hosted-media player boot (K220). Reads #media-config, then:
+       exclusive -> lock panel (stub; no access path wired yet);
+       nsfw && no stored consent -> 18+ interstitial (localStorage
+       "wuld:media-consent"; NOTHING loads pre-consent - no <video>,
+       no src, no poster in the DOM, the gallery consent discipline);
+       else -> HTML5 <video> (range requests native on R2).
+       Lives in the donor HEAD so it survives the main swap. */
+    (function () {
+      "use strict";
+      var CONSENT_KEY = "wuld:media-consent";
+      function boot() {
+        var cfgEl = document.getElementById("media-config");
+        var mount = document.getElementById("media-player");
+        if (!cfgEl || !mount) return;
+        var cfg;
+        try { cfg = JSON.parse(cfgEl.textContent); } catch (e) { return; }
+        function hasConsent() {
+          try { return !!localStorage.getItem(CONSENT_KEY); } catch (e) { return false; }
+        }
+        function storeConsent() {
+          try { localStorage.setItem(CONSENT_KEY, new Date().toISOString()); } catch (e) {}
+        }
+        function el(tag, cls, text) {
+          var n = document.createElement(tag);
+          if (cls) n.className = cls;
+          if (text != null) n.textContent = text;
+          return n;
+        }
+        function clear() { while (mount.firstChild) mount.removeChild(mount.firstChild); }
+        function buildPlayer() {
+          clear();
+          if (!cfg.src) { mount.appendChild(el("p", "media-blank", "No media configured (donor page).")); return; }
+          var v = document.createElement("video");
+          v.className = "media-video";
+          v.controls = true;
+          v.preload = "metadata";
+          v.playsInline = true;
+          v.setAttribute("data-wh", "none");
+          if (cfg.poster) v.poster = cfg.poster;
+          v.src = cfg.src;
+          mount.appendChild(v);
+        }
+        function buildLock() {
+          clear();
+          var box = el("div", "media-lock");
+          box.appendChild(el("p", "media-lock-title", "Supporter exclusive"));
+          box.appendChild(el("p", "media-lock-body", "Access for supporters is coming. This one stays sealed until that door exists."));
+          mount.appendChild(box);
+        }
+        function buildGate() {
+          clear();
+          var box = el("div", "media-consent");
+          box.appendChild(el("p", "media-consent-title", "18+ · Consent required"));
+          box.appendChild(el("p", "media-consent-body", "This video is adult material intended for viewers 18 and over. It is lawful content, hosted first-party. Confirm you are of age to load the player — nothing loads before you confirm."));
+          var row = el("div", "media-consent-row");
+          var yes = el("button", "media-consent-yes", "I am 18+ — load it");
+          yes.type = "button";
+          var no = el("a", "media-consent-no", "Take me back");
+          no.href = "/watch/";
+          row.appendChild(yes);
+          row.appendChild(no);
+          box.appendChild(row);
+          mount.appendChild(box);
+          yes.addEventListener("click", function () { storeConsent(); buildPlayer(); });
+        }
+        if (cfg.exclusive) { buildLock(); return; }
+        if (cfg.nsfw && !hasConsent()) { buildGate(); return; }
+        buildPlayer();
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+      } else {
+        boot();
+      }
+    })();
+  </script>
+</head>
+<body data-mode="dark">
+
+  <header class="site-header">
+    <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink"><img src="/assets/site-banner-1920.webp" srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w" sizes="100vw" width="1920" height="443" alt="W.U.L.D.: Incorporated" decoding="async" loading="eager"></a>
+    <div class="site-header-inner">
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+        <a href="/recommendations/">Recommendations</a>
+        <a href="/archive/">Archive</a>
+        <a href="/preface/">About</a>
+        <a href="/donations/">Support</a>
+        <a href="/contact/">Contact</a>
+        <a href="/chat/">Chat</a>
+        <a href="/search/">Search</a>
+        <a href="/notes/">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="media-page">
+
+      <header class="page-hero">
+        <p class="page-hero-eyebrow">Watch &middot; Hosted &middot; Donor</p>
+        <h1 class="page-hero-title">Media donor template page</h1>
+        <p class="media-meta">Never linked, never indexed &mdash; the graft source for published media pages.</p>
+      </header>
+
+      <p class="media-summary">Donor page for the hosted-media vertical. The admin publish op swaps this main region wholesale and rewrites the head strings; what you are reading only ever renders on the donor page itself.</p>
+
+      <div class="media-player" id="media-player">
+        <noscript><p class="media-noscript">Video playback requires JavaScript.</p></noscript>
+      </div>
+      <script type="application/json" id="media-config">{"src":"","poster":"","nsfw":false,"exclusive":false}</script>
+
+      <p class="media-back"><a href="/watch/">&larr; Watch index</a></p>
+
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+        <a class="disclaimer-link" href="/troubleshooting/">Site won&rsquo;t load?</a>
+    </div>
+    <div class="page-footer-inner footer-meta">
+      <a class="changelog-link" href="/changelog/">Changelog</a>
+      <a class="changelog-link" href="/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js?v=K43"></script>
+  <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
+    <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
+    <div class="ambient-bar">
+      <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
+      <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
+      <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
+      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
+    </div>
+    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
+  </div>
+
+  <script src="/components/ambient-player.js?v=K209"></script>
+<script src="/components/wrong-hour.js?v=K211" defer></script>
+</body>
+</html>

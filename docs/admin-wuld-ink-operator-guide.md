@@ -176,3 +176,88 @@ page is live + linked immediately, searchable at the next `search-index` regen),
 | 422 `op_refused` "donor drift" | donor page restructured | Cowork session updates the op constants |
 | 422 `op_refused` "embeds the donor page's slug" | slug contains the donor's slug | pick a different slug |
 | 409 `stale_preview` | repo moved between preview+commit | re-preview, re-confirm |
+
+
+## 11 · MEDIA vertical — hosted video (K220)
+
+Section 13 in the terminal. Storage: R2 bucket `wuld-audio` under the fenced `media/`
+prefix, served at `audio.wuld.ink/media/…` — public-URL like the gallery (the 18+ gate is
+consent discipline, not byte-security; unlisted items are simply never enumerated: the
+media manifest lives at `tools/media-manifest.json`, OUTSIDE the deployed src tree).
+
+Flow, in order:
+
+1. **Upload the video** (mp4/webm, any size). Files over 32 MiB slice into uniform 32 MiB
+   parts automatically (R2 multipart through the Worker — no browser CORS, no extra
+   credentials); the bar tracks parts; a failed part retries once; a failed run aborts the
+   R2 upload session cleanly. Optional poster (webp/png/jpeg ≤ 25 MiB, keyed
+   `<stem>-poster`). Magic-byte checks run on upload (single-shot) or at assembly
+   (multipart) — a mismatched file is deleted, not stored.
+2. **Add item (draft).** id (slug — becomes `/watch/<id>/`), title, date, summary,
+   optional duration, flags, listed. The r2key field is filled by the upload. A draft is a
+   manifest entry only — nothing public exists yet. `[view]` previews the raw R2 object
+   inside the terminal.
+3. **Publish** from the item row — the standard diff-confirm preview shows all three
+   files: the NEW `/watch/<id>/` page (chrome grafted live from `/watch/_donor/`), the
+   hosted card on `/watch/` (listed items; the Hosted section itself appears with the
+   first card and retires with the last), and the manifest flip. ONE commit; live in ~1
+   minute. **Unpublish** reverses all of it (page deleted, card removed, back to draft).
+
+Gating semantics: **nsfw** ⇒ the page ships an 18+ consent interstitial (nothing loads
+pre-confirm — no video element, no src, no poster in the DOM; decline routes to /watch/),
+keeps robots-noindex, carries the `wuld-search` exclude marker (site-search skips it at
+every regen), and never gets a thumbnail — a listed 18+ item renders a text-only card
+tagged 18+; the form defaults 18+ items to UNLISTED (direct link only). **exclusive** ⇒
+the player is replaced by a locked "supporter exclusive" panel — a STUB; no payment or
+access wiring exists yet (a later session, after the Stripe W-9 elective). Lawful content
+only — this is a single-operator terminal and what lands here is on the operator.
+
+Notes: editing a published item's manifest fields does NOT rebuild the live page (it is
+static) — unpublish + republish to refresh. The FIRST hosted publish is changelog-worthy:
+ask Cowork for the releases.json entry. Extra failure rows for section 13:
+
+| Symptom | Meaning | Fix |
+|---|---|---|
+| 422 "r2key missing/invalid" / "R2 object absent" | publish before upload finished | upload, or correct the r2key |
+| 415 `content_mismatch` (assembled object deleted) | file bytes ≠ declared type | re-export the file, re-upload |
+| 409 `key_exists` | stem already in R2 | tick overwrite, or new stem |
+| 422 "item is 'published' — publish needs a draft" | double publish | already live; unpublish first to re-cut |
+
+## 12 · Comments moderation — one roof (K220), parity, retirement
+
+Section 14 moderates the SAME D1 rows as the old `wuld.ink/admin` surface (binding
+`COMMENTS_DB` → database `wuld-comments`). The public board on /chat/ still posts through
+the comments worker — untouched by this consolidation.
+
+Parity map (old → new):
+
+| Old (comments worker) | New (admin terminal) |
+|---|---|
+| GET `wuld.ink/admin` UI | section 14 (`#sec-cmod`) |
+| POST `/api/admin/hide` `{id}` | `/api/cmod/act` `{action:"hide", id}` |
+| unhide · delete · edit `{id, body}` | same action names via `/api/cmod/act` |
+| board-state `{open}` | `{action:"board-state", open}` |
+| purge `{scope}` (3 scopes, typed DELETE ALL) | `{action:"purge", scope}` — same scopes, same confirms |
+| list (server-rendered, email visible) | GET `/api/cmod/list` (client-rendered; email admin-only; escape-on-render) |
+| Access app "wuld comments admin" (own OTP) | the admin.wuld.ink Access app — one login |
+
+The SQL is a byte-parity port (verified string-for-string at build). **Retirement** — only
+AFTER a live parity check (hide/unhide/edit/delete one test comment + toggle the board
+both ways from section 14): a later session edits `workers/comments/src/index.js` to 302
+`/admin` → `admin.wuld.ink` (optionally 410 `/api/admin/*`), deploys from
+`workers\comments`, and then the old Access app "wuld comments admin" can be deleted in
+Zero Trust (keep it while `/api/admin/*` stays live). Until then both surfaces work — they
+share one database, so nothing drifts.
+
+## 13 · K220 dissection notes + electives
+
+Shipped in the K220 pass: 16-anchor jump bar; ~38 px row-button touch targets; the log is
+`aria-live`; file/checkbox inputs got focus-visible outlines; disabled buttons read as
+disabled; media + comments sections lazy-load on first open (no boot-time GitHub/D1
+reads); media date pre-fills operator-local.
+
+Electives, effort-tagged: `label for=/id` association sweep across all sections (M) ·
+XHR fine-grained upload progress + 2-way parallel parts (M) · `/` focuses the plates
+filter (S) · `th scope=col` on tables (S) · media-items pagination once the list passes
+~50 (S). Site-side (from `docs/site-gap-audit-K220.md`): sitemap freshen/generator (S/M) ·
+discreet inbound links for `/coda/` + `/library-about/` (S).

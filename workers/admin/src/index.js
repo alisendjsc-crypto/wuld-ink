@@ -61,6 +61,24 @@
  * K214: legibility — every panel font-size x1.5 (body 13->20px, h1 15->23,
  *   h2/table 12->18, label/log/hint/diff/rowbtn/tablebar 11->17, th/jump
  *   10->15). Form controls inherit body. Zero structural/JS changes.
+ *
+ * K220: MEDIA vertical + moderation consolidation.
+ *   - Hosted-video pipes: R2 multipart uploads via MEDIA_BUCKET (bucket
+ *     wuld-audio, fenced media/ prefix; 32 MiB parts through the Worker —
+ *     no new S3 credentials, no bucket CORS), draft items in
+ *     tools/media-manifest.json (repo-committed, NOT deployed — the item
+ *     list incl. unlisted 18+ slugs never ships), publish/unpublish as
+ *     diff-confirm site patterns: donor-grafted /watch/<id>/ page +
+ *     /watch/ hosted card + manifest flip, ONE Git Data commit (delete
+ *     via tree sha:null on unpublish). nsfw => 18+ interstitial page,
+ *     robots-noindex + the wuld-search exclude marker (build_index skips
+ *     it); exclusive => locked stub, no payment wiring yet. Donor page:
+ *     src/watch/_donor/index.html (the ?v sweeps maintain it).
+ *   - Comment-board moderation moves under THIS roof: COMMENTS_DB D1
+ *     binding (the same wuld-comments database), /api/cmod/* routes with
+ *     byte-parity SQL from workers/comments, UI section 14. The PUBLIC
+ *     board routes stay on the comments worker; the old wuld.ink/admin
+ *     UI retires only after the operator parity check (guide §12).
  * ========================================================================== */
 
 const MAX_UPLOAD_BYTES = 25 * 1024 * 1024; // 25 MiB cap (plates run ~0.8 MB)
@@ -76,6 +94,21 @@ const VALID_TIERS = ["standard", "sealed"];
 const VALID_KINDS = ["image", "video"];
 const VALID_CAPTION_TIERS = ["full", "title", "none"];
 const KNOWN_FLAGS = ["nsfw"];     // advisory; unknown flags pass with a warning
+
+/* ---- K220 media vertical ---- */
+const MEDIA_ALLOWED = {
+  "video/mp4": "mp4",
+  "video/webm": "webm",
+  "image/webp": "webp",
+  "image/png": "png",
+  "image/jpeg": "jpg",
+};
+const MEDIA_PUT_MAX = 32 * 1024 * 1024;   // single-request cap; bigger files go multipart
+const MEDIA_PART_SIZE = 32 * 1024 * 1024; // uniform R2 part size (last part may run short)
+const MEDIA_FLAGS = ["nsfw", "exclusive"];
+const MEDIA_ID_RE = /^[a-z0-9][a-z0-9-]{1,62}[a-z0-9]$/;
+const MEDIA_DUR_RE = /^(\d{1,2}:)?[0-5]?\d:[0-5]\d$/;
+const CMOD_MAX_BODY = 2000;               // parity: workers/comments MAX_BODY
 
 export default {
   async fetch(request, env) {
@@ -101,17 +134,37 @@ export default {
       if (request.method === "GET" && path === "/api/r2list") {
         return apiR2List(env, url);
       }
+      if (request.method === "GET" && path === "/api/media/manifest") {
+        return apiMediaManifest(env);
+      }
+      if (request.method === "GET" && path === "/api/media/r2list") {
+        return apiMediaR2List(env, url);
+      }
+      if (request.method === "GET" && path === "/api/cmod/list") {
+        return apiCmodList(env);
+      }
       if (request.method === "POST") {
         // CSRF + rate belt on every mutation.
         if (!gate.service && !sameOrigin(request)) return json({ error: "csrf_origin_mismatch" }, 403);
-        const rl = rateCheck(gate.email);
-        if (!rl.ok) return json({ error: "rate_capped", retry_in_s: rl.retryS }, 429);
+        if (path !== "/api/media/mpu-part") { // a long upload's parts outrun the write belt; Access + CSRF still gate them
+          const rl = rateCheck(gate.email);
+          if (!rl.ok) return json({ error: "rate_capped", retry_in_s: rl.retryS }, 429);
+        }
 
         if (path === "/api/upload") return apiUpload(request, env);
         if (path === "/api/plate/add") return apiPlateAdd(request, env);
         if (path === "/api/plate/update") return apiPlateUpdate(request, env);
         if (path === "/api/plate/flag") return apiPlateFlag(request, env);
         if (path === "/api/plate/delete") return apiPlateDelete(request, env);
+        if (path === "/api/media/put") return apiMediaPut(request, env, url);
+        if (path === "/api/media/mpu-init") return apiMediaMpuInit(request, env);
+        if (path === "/api/media/mpu-part") return apiMediaMpuPart(request, env, url);
+        if (path === "/api/media/mpu-complete") return apiMediaMpuComplete(request, env);
+        if (path === "/api/media/mpu-abort") return apiMediaMpuAbort(request, env);
+        if (path === "/api/media/item/add") return apiMediaItemAdd(request, env);
+        if (path === "/api/media/item/update") return apiMediaItemUpdate(request, env);
+        if (path === "/api/media/item/delete") return apiMediaItemDelete(request, env);
+        if (path === "/api/cmod/act") return apiCmodAct(request, env);
         if (path === "/api/site/preview") return apiSitePreview(request, env);
         if (path === "/api/site/commit") return apiSiteCommit(request, env);
       }
@@ -204,6 +257,384 @@ function sanitizeStem(s) {
     .replace(/-{2,}/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 100);
+}
+
+/* ========================== MEDIA vertical (K220) ========================= */
+/* Self-hosted video/media pipes. Storage = R2 bucket wuld-audio under the
+ * fenced media/ prefix (second binding MEDIA_BUCKET; gallery/ blast radius
+ * untouched — the two prefix guards are mutually exclusive). Uploads ride
+ * the Worker in 32 MiB slices (R2 multipart via the binding; free-plan body
+ * cap 100 MB; no new S3 credentials, no bucket CORS — presign would need
+ * both). Metadata = tools/media-manifest.json (repo-committed like the
+ * gallery manifest, but OUTSIDE src/ so the item list — including unlisted
+ * 18+ slugs — never deploys). Draft -> published via the site-op patterns
+ * media-publish / media-unpublish (diff-confirm; page grafted from the
+ * /watch/_donor/ page + /watch/ hosted card + manifest flip, ONE commit). */
+
+function mediaManifestPath(env) { return env.MEDIA_MANIFEST_PATH || "tools/media-manifest.json"; }
+function mediaPrefixOf(env) { return env.MEDIA_PREFIX || "media/"; }
+function mediaBaseOf(env) { return env.MEDIA_BASE || "https://audio.wuld.ink"; }
+
+function mediaKeyOk(env, key) {
+  const pre = mediaPrefixOf(env);
+  return typeof key === "string" && key.length > pre.length && key.length <= 200 &&
+    key.indexOf(pre) === 0 && key.indexOf("..") < 0 && key.indexOf("//") < 0 &&
+    /^[a-z0-9/._-]+$/.test(key);
+}
+
+/* webm = EBML magic; everything else defers to the existing sniffer. */
+function sniffMediaAny(b) {
+  if (b.length > 4 && b[0] === 0x1a && b[1] === 0x45 && b[2] === 0xdf && b[3] === 0xa3) return "video/webm";
+  return sniffMediaType(b);
+}
+
+function mediaPlain(errs, v, label, max) {
+  const s = String(v == null ? "" : v).trim();
+  if (s.length > max) errs.push(label + ": max " + max + " chars (got " + s.length + ")");
+  if (/[<>"&\\]/.test(s)) errs.push(label + ": plain text only — no < > \" & or backslash");
+  return s;
+}
+
+/* ------------------------- media manifest RW ----------------------------- */
+/* Mirror of withManifest, path-parametric via the generic gh layer. One
+ * commit per CMS action; sha optimistic-concurrency with one retry. */
+
+async function withMediaManifest(env, mutate) {
+  if (!env.GITHUB_PAT) return json({ error: "no_github_pat", detail: "secret unset — fail closed (README step 4)." }, 503);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const got = await ghGetFile(env, mediaManifestPath(env));
+    if (!got.ok) return json({ error: got.error, detail: got.detail, path: mediaManifestPath(env) }, got.status || 502);
+    let man;
+    try { man = JSON.parse(got.content); }
+    catch { return json({ error: "media_manifest_parse_failed" }, 502); }
+    if (man.schema_version !== 1 || !Array.isArray(man.items)) {
+      return json({ error: "schema_unexpected", detail: "media manifest schema_version!==1 — refusing to write (K220 pin)" }, 409);
+    }
+    const out = await mutate(man);
+    if (out.fail) return out.fail;
+    man.updated = today();
+    const put = await ghPutFile(env, mediaManifestPath(env), JSON.stringify(man, null, 2) + "\n", got.sha, out.message);
+    if (put.ok) return json({ ...out.result, commit: put.commit, manifest_updated: man.updated });
+    if (put.error === "sha_conflict" && attempt === 0) continue;
+    return json({ error: put.error, detail: put.detail }, put.status || 502);
+  }
+  return json({ error: "conflict_retry_exhausted" }, 409);
+}
+
+async function apiMediaManifest(env) {
+  const got = await ghGetFile(env, mediaManifestPath(env));
+  if (!got.ok) return json({ error: got.error, detail: got.detail, path: mediaManifestPath(env) }, got.status || 502);
+  let man;
+  try { man = JSON.parse(got.content); }
+  catch { return json({ error: "media_manifest_parse_failed" }, 502); }
+  return json({ manifest: man, sha: got.sha });
+}
+
+async function apiMediaR2List(env, url) {
+  if (!env.MEDIA_BUCKET) return json({ error: "no_r2_binding", detail: "MEDIA_BUCKET absent — deploy with the K220 wrangler.toml." }, 503);
+  const cursor = url.searchParams.get("cursor") || undefined;
+  const listed = await env.MEDIA_BUCKET.list({ prefix: mediaPrefixOf(env), cursor, limit: 200 });
+  return json({
+    objects: listed.objects.map(function (o) { return { key: o.key, size: o.size, uploaded: o.uploaded }; }),
+    truncated: listed.truncated,
+    cursor: listed.truncated ? listed.cursor : null,
+  });
+}
+
+/* --------------------------- media item ops ------------------------------ */
+
+function mediaValidateFields(env, src, errs, out) {
+  if ("title" in src) {
+    out.title = mediaPlain(errs, src.title, "title", 160);
+    if (!out.title) errs.push("title: required");
+  }
+  if ("date" in src) {
+    out.date = String(src.date || "").trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(out.date)) errs.push("date: YYYY-MM-DD");
+  }
+  if ("summary" in src) {
+    out.summary = mediaPlain(errs, src.summary, "summary", 500);
+    if (!out.summary) errs.push("summary: required");
+  }
+  if ("duration" in src) {
+    out.duration = String(src.duration || "").trim();
+    if (out.duration && !MEDIA_DUR_RE.test(out.duration)) errs.push("duration: M:SS or H:MM:SS");
+  }
+  if ("r2key" in src) {
+    out.r2key = String(src.r2key || "").trim();
+    if (out.r2key && !mediaKeyOk(env, out.r2key)) errs.push("r2key: must live under " + mediaPrefixOf(env) + " ([a-z0-9/._-])");
+  }
+  if ("poster" in src) {
+    out.poster = String(src.poster || "").trim();
+    if (out.poster && !mediaKeyOk(env, out.poster)) errs.push("poster: must live under " + mediaPrefixOf(env));
+  }
+  if ("bytes" in src) {
+    out.bytes = parseInt(src.bytes, 10) || 0;
+  }
+  if ("content_flags" in src) {
+    out.content_flags = Array.isArray(src.content_flags)
+      ? src.content_flags.filter(function (f) { return MEDIA_FLAGS.indexOf(f) >= 0; })
+      : [];
+  }
+  if ("listed" in src) out.listed = src.listed !== false;
+  return out;
+}
+
+async function apiMediaItemAdd(request, env) {
+  const body = await readJson(request);
+  if (!body || !body.item) return json({ error: "bad_json", hint: "{item}" }, 400);
+  const errs = [];
+  const id = String(body.item.id || "").trim();
+  if (!MEDIA_ID_RE.test(id) || id.indexOf("--") >= 0) errs.push("id: 3-64 chars of [a-z0-9-], no leading/trailing/double hyphen");
+  if (id === "_donor" || id.indexOf("_") === 0) errs.push("id: underscore-led ids are reserved (donor/sealed convention)");
+  const fields = mediaValidateFields(env, {
+    title: body.item.title, date: body.item.date, summary: body.item.summary,
+    duration: body.item.duration || "", r2key: body.item.r2key || "", poster: body.item.poster || "",
+    bytes: body.item.bytes || 0, content_flags: body.item.content_flags || [], listed: body.item.listed,
+  }, errs, {});
+  if (errs.length) return json({ error: "validation", detail: errs }, 422);
+  return withMediaManifest(env, function (man) {
+    if (man.items.some(function (x) { return x.id === id; })) {
+      return { fail: json({ error: "duplicate_id", id: id }, 409) };
+    }
+    man.items.push({
+      id: id, title: fields.title, date: fields.date, summary: fields.summary,
+      duration: fields.duration, r2key: fields.r2key, poster: fields.poster,
+      bytes: fields.bytes, content_flags: fields.content_flags, listed: fields.listed,
+      status: "draft", added: today(), published: "",
+    });
+    return { result: { ok: true, id: id, status: "draft" }, message: "media-admin: add " + id + " (draft)" };
+  });
+}
+
+async function apiMediaItemUpdate(request, env) {
+  const body = await readJson(request);
+  if (!body || !body.id || !body.patch) return json({ error: "bad_json", hint: "{id, patch}" }, 400);
+  const errs = [];
+  const fields = mediaValidateFields(env, body.patch, errs, {});
+  ["id", "status", "added", "published"].forEach(function (k) {
+    if (k in body.patch) errs.push(k + ": not editable here (publish/unpublish own status)");
+  });
+  if (errs.length) return json({ error: "validation", detail: errs }, 422);
+  return withMediaManifest(env, function (man) {
+    const item = man.items.find(function (x) { return x.id === body.id; });
+    if (!item) return { fail: json({ error: "not_found", id: body.id }, 404) };
+    Object.keys(fields).forEach(function (k) { item[k] = fields[k]; });
+    const note = item.status === "published"
+      ? "live page NOT rebuilt — unpublish + republish to refresh /watch/" + item.id + "/"
+      : "";
+    return { result: { ok: true, id: item.id, note: note }, message: "media-admin: update " + item.id };
+  });
+}
+
+async function apiMediaItemDelete(request, env) {
+  const body = await readJson(request);
+  if (!body || !body.id) return json({ error: "bad_json", hint: "{id, confirm, delete_objects}" }, 400);
+  if (body.confirm !== body.id) return json({ error: "confirm_mismatch", detail: "type the item id to confirm" }, 400);
+  let dropped = null;
+  const resp = await withMediaManifest(env, function (man) {
+    const i = man.items.findIndex(function (x) { return x.id === body.id; });
+    if (i < 0) return { fail: json({ error: "not_found", id: body.id }, 404) };
+    if (man.items[i].status === "published") {
+      return { fail: json({ error: "op_refused", detail: "item is published — unpublish first (the page + card must come down with it)." }, 422) };
+    }
+    dropped = man.items[i];
+    man.items.splice(i, 1);
+    return { result: { ok: true, id: body.id, deleted: true }, message: "media-admin: delete " + body.id + " (draft)" };
+  });
+  if (body.delete_objects === true && dropped && env.MEDIA_BUCKET) {
+    try {
+      if (dropped.r2key && mediaKeyOk(env, dropped.r2key)) await env.MEDIA_BUCKET.delete(dropped.r2key);
+      if (dropped.poster && mediaKeyOk(env, dropped.poster)) await env.MEDIA_BUCKET.delete(dropped.poster);
+    } catch (e) { /* manifest commit already landed; object cleanup is best-effort */ }
+  }
+  return resp;
+}
+
+/* --------------------------- media uploads ------------------------------- */
+/* Small files (posters + clips <= 32 MiB): one buffered PUT, magic-sniffed.
+ * Big files: R2 multipart via the binding — init / N x 32 MiB parts
+ * (streamed, never buffered) / complete. R2 requires uniform part size
+ * except the last; the admin UI slices at the part_size init returns.
+ * The magic sniff runs post-hoc at complete via a 16-byte range read —
+ * mismatch deletes the assembled object. */
+
+async function apiMediaPut(request, env, url) {
+  if (!env.MEDIA_BUCKET) return json({ error: "no_r2_binding", detail: "MEDIA_BUCKET absent — deploy with the K220 wrangler.toml." }, 503);
+  const declaredType = (request.headers.get("content-type") || "").toLowerCase().split(";")[0].trim();
+  if (!MEDIA_ALLOWED[declaredType]) return json({ error: "type_not_allowed", allowed: Object.keys(MEDIA_ALLOWED) }, 415);
+  const stem = sanitizeStem(String(url.searchParams.get("stem") || ""));
+  if (!stem) return json({ error: "bad_key", detail: "stem sanitized to empty — supply [a-z0-9-]" }, 400);
+  const buf = await request.arrayBuffer();
+  if (!buf.byteLength) return json({ error: "empty_file" }, 400);
+  if (buf.byteLength > MEDIA_PUT_MAX) {
+    return json({ error: "too_large", max_bytes: MEDIA_PUT_MAX, hint: "larger files go multipart — the admin UI slices automatically" }, 413);
+  }
+  const sniffed = sniffMediaAny(new Uint8Array(buf));
+  if (sniffed !== declaredType) return json({ error: "content_mismatch", declared: declaredType, sniffed: sniffed || "unknown" }, 415);
+  const key = mediaPrefixOf(env) + stem + "." + MEDIA_ALLOWED[declaredType];
+  const overwrite = url.searchParams.get("overwrite") === "true";
+  const existing = await env.MEDIA_BUCKET.head(key);
+  if (existing && !overwrite) return json({ error: "key_exists", key: key, size: existing.size, hint: "set overwrite to replace" }, 409);
+  await env.MEDIA_BUCKET.put(key, buf, { httpMetadata: { contentType: declaredType } });
+  return json({ ok: true, key: key, bytes: buf.byteLength, overwrote: Boolean(existing), url: mediaBaseOf(env) + "/" + key });
+}
+
+async function apiMediaMpuInit(request, env) {
+  if (!env.MEDIA_BUCKET) return json({ error: "no_r2_binding", detail: "MEDIA_BUCKET absent — deploy with the K220 wrangler.toml." }, 503);
+  const body = await readJson(request);
+  if (!body) return json({ error: "bad_json", hint: "{stem, type, head16?, overwrite?}" }, 400);
+  const declaredType = String(body.type || "").toLowerCase();
+  if (!MEDIA_ALLOWED[declaredType]) return json({ error: "type_not_allowed", allowed: Object.keys(MEDIA_ALLOWED) }, 415);
+  const stem = sanitizeStem(String(body.stem || ""));
+  if (!stem) return json({ error: "bad_key", detail: "stem sanitized to empty — supply [a-z0-9-]" }, 400);
+  if (typeof body.head16 === "string" && /^[0-9a-f]{8,32}$/.test(body.head16)) {
+    const bytes = new Uint8Array(body.head16.match(/../g).map(function (h) { return parseInt(h, 16); }));
+    const sniffed = sniffMediaAny(bytes);
+    if (sniffed !== declaredType) return json({ error: "content_mismatch", declared: declaredType, sniffed: sniffed || "unknown" }, 415);
+  }
+  const key = mediaPrefixOf(env) + stem + "." + MEDIA_ALLOWED[declaredType];
+  const existing = await env.MEDIA_BUCKET.head(key);
+  if (existing && body.overwrite !== true) return json({ error: "key_exists", key: key, size: existing.size, hint: "set overwrite to replace" }, 409);
+  const mpu = await env.MEDIA_BUCKET.createMultipartUpload(key, { httpMetadata: { contentType: declaredType } });
+  return json({ ok: true, key: key, uploadId: mpu.uploadId, part_size: MEDIA_PART_SIZE });
+}
+
+async function apiMediaMpuPart(request, env, url) {
+  if (!env.MEDIA_BUCKET) return json({ error: "no_r2_binding" }, 503);
+  const key = String(url.searchParams.get("key") || "");
+  const uploadId = String(url.searchParams.get("uploadId") || "");
+  const partNumber = parseInt(url.searchParams.get("part") || "", 10);
+  if (!mediaKeyOk(env, key) || !uploadId || !Number.isInteger(partNumber) || partNumber < 1 || partNumber > 10000) {
+    return json({ error: "bad_part_request", hint: "?key=&uploadId=&part=N with a raw body" }, 400);
+  }
+  const len = parseInt(request.headers.get("content-length") || "0", 10);
+  if (!len) return json({ error: "length_required", detail: "part body must carry Content-Length" }, 411);
+  if (len > MEDIA_PART_SIZE) return json({ error: "part_too_large", max_bytes: MEDIA_PART_SIZE }, 413);
+  const mpu = env.MEDIA_BUCKET.resumeMultipartUpload(key, uploadId);
+  try {
+    const p = await mpu.uploadPart(partNumber, request.body);
+    return json({ ok: true, partNumber: p.partNumber, etag: p.etag });
+  } catch (e) {
+    return json({ error: "part_failed", detail: String(e && e.message || e).slice(0, 200), hint: "the UI retries a failed part once" }, 502);
+  }
+}
+
+async function apiMediaMpuComplete(request, env) {
+  if (!env.MEDIA_BUCKET) return json({ error: "no_r2_binding" }, 503);
+  const body = await readJson(request);
+  if (!body || !body.key || !body.uploadId || !Array.isArray(body.parts)) {
+    return json({ error: "bad_json", hint: "{key, uploadId, parts:[{partNumber, etag}]}" }, 400);
+  }
+  if (!mediaKeyOk(env, body.key)) return json({ error: "bad_key" }, 400);
+  const parts = body.parts.map(function (p) { return { partNumber: parseInt(p.partNumber, 10), etag: String(p.etag || "") }; });
+  if (parts.some(function (p) { return !Number.isInteger(p.partNumber) || p.partNumber < 1 || !p.etag; })) {
+    return json({ error: "bad_parts" }, 400);
+  }
+  const mpu = env.MEDIA_BUCKET.resumeMultipartUpload(body.key, body.uploadId);
+  let obj;
+  try { obj = await mpu.complete(parts); }
+  catch (e) { return json({ error: "complete_failed", detail: String(e && e.message || e).slice(0, 200) }, 502); }
+  // Post-hoc magic sniff: the parts streamed through unbuffered, so the
+  // content check lands here — 16-byte range read vs the declared type.
+  const head = await env.MEDIA_BUCKET.head(body.key);
+  const declared = head && head.httpMetadata && head.httpMetadata.contentType;
+  const range = await env.MEDIA_BUCKET.get(body.key, { range: { offset: 0, length: 16 } });
+  const first = range ? new Uint8Array(await range.arrayBuffer()) : new Uint8Array(0);
+  const sniffed = sniffMediaAny(first);
+  if (!declared || sniffed !== declared) {
+    await env.MEDIA_BUCKET.delete(body.key);
+    return json({ error: "content_mismatch", declared: declared || "unknown", sniffed: sniffed || "unknown", deleted: true }, 415);
+  }
+  return json({ ok: true, key: body.key, bytes: obj.size, url: mediaBaseOf(env) + "/" + body.key });
+}
+
+async function apiMediaMpuAbort(request, env) {
+  if (!env.MEDIA_BUCKET) return json({ error: "no_r2_binding" }, 503);
+  const body = await readJson(request);
+  if (!body || !body.key || !body.uploadId) return json({ error: "bad_json", hint: "{key, uploadId}" }, 400);
+  if (!mediaKeyOk(env, body.key)) return json({ error: "bad_key" }, 400);
+  try { await env.MEDIA_BUCKET.resumeMultipartUpload(body.key, body.uploadId).abort(); }
+  catch (e) { /* already gone/expired — abort is idempotent from the operator's seat */ }
+  return json({ ok: true, aborted: body.key });
+}
+
+/* ==================== COMMENT-BOARD moderation (K220) ===================== */
+/* Consolidation of the workers/comments moderation surface under THIS roof
+ * (one auth, one UI). Reads/writes the SAME D1 database (binding
+ * COMMENTS_DB -> wuld-comments) with byte-parity SQL ported from
+ * workers/comments/src/index.js adminAction/adminHtml. The PUBLIC board
+ * routes (GET/POST wuld.ink/api/comments) STAY on the comments worker —
+ * same-origin posting from /chat/ depends on them. The old wuld.ink/admin
+ * UI retires only after the operator checks parity (guide section 12). */
+
+async function apiCmodList(env) {
+  if (!env.COMMENTS_DB) return json({ error: "no_d1_binding", detail: "COMMENTS_DB absent — deploy with the K220 wrangler.toml." }, 503);
+  let open = true, note = "";
+  try {
+    const row = await env.COMMENTS_DB.prepare("SELECT value FROM settings WHERE key = ?").bind("board_open").first();
+    open = !(row && row.value === "0");
+  } catch (e) { note = "settings table unreadable — board shown OPEN (comments-worker fail-open parity)"; }
+  const { results } = await env.COMMENTS_DB.prepare(
+    "SELECT id, board, name, email, body, created_at, hidden FROM comments ORDER BY created_at DESC, id DESC LIMIT 1000"
+  ).all();
+  const rows = results || [];
+  const visible = rows.filter(function (r) { return !r.hidden; }).length;
+  return json({ comments: rows, open: open, total: rows.length, visible: visible, hidden: rows.length - visible, note: note });
+}
+
+async function apiCmodAct(request, env) {
+  if (!env.COMMENTS_DB) return json({ error: "no_d1_binding", detail: "COMMENTS_DB absent — deploy with the K220 wrangler.toml." }, 503);
+  const data = await readJson(request);
+  if (!data || typeof data.action !== "string") return json({ error: "bad_json", hint: "{action, ...}" }, 400);
+  const action = data.action;
+
+  if (action === "board-state") {
+    const open = data.open === true || data.open === 1 || data.open === "1" || data.open === "true";
+    await env.COMMENTS_DB.prepare(
+      "INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value"
+    ).bind("board_open", open ? "1" : "0").run();
+    return json({ ok: true, open: open });
+  }
+  if (action === "purge") {
+    const scope = String(data.scope || "");
+    if (scope === "hide-all") {
+      const r = await env.COMMENTS_DB.prepare("UPDATE comments SET hidden = 1 WHERE hidden = 0").run();
+      return json({ ok: true, scope: scope, affected: (r.meta && r.meta.changes) || 0 });
+    }
+    if (scope === "delete-hidden") {
+      const r = await env.COMMENTS_DB.prepare("DELETE FROM comments WHERE hidden = 1").run();
+      return json({ ok: true, scope: scope, affected: (r.meta && r.meta.changes) || 0 });
+    }
+    if (scope === "delete-all") {
+      const r = await env.COMMENTS_DB.prepare("DELETE FROM comments").run();
+      return json({ ok: true, scope: scope, affected: (r.meta && r.meta.changes) || 0 });
+    }
+    return json({ error: "bad_scope" }, 400);
+  }
+
+  const id = parseInt(data.id, 10);
+  if (!Number.isInteger(id) || id < 1) return json({ error: "bad_id" }, 400);
+  if (action === "hide") {
+    await env.COMMENTS_DB.prepare("UPDATE comments SET hidden = 1 WHERE id = ?").bind(id).run();
+    return json({ ok: true, id: id, hidden: 1 });
+  }
+  if (action === "unhide") {
+    await env.COMMENTS_DB.prepare("UPDATE comments SET hidden = 0 WHERE id = ?").bind(id).run();
+    return json({ ok: true, id: id, hidden: 0 });
+  }
+  if (action === "delete") {
+    await env.COMMENTS_DB.prepare("DELETE FROM comments WHERE id = ?").bind(id).run();
+    return json({ ok: true, id: id, deleted: true });
+  }
+  if (action === "edit") {
+    const bodyText = typeof data.body === "string" ? data.body.trim() : "";
+    if (bodyText.length < 1) return json({ error: "empty_body" }, 400);
+    if (bodyText.length > CMOD_MAX_BODY) return json({ error: "body_too_long", max: CMOD_MAX_BODY }, 400);
+    await env.COMMENTS_DB.prepare("UPDATE comments SET body = ? WHERE id = ?").bind(bodyText, id).run();
+    return json({ ok: true, id: id, edited: true });
+  }
+  return json({ error: "unknown_action" }, 404);
 }
 
 /* --------------------------- API: manifest ops --------------------------- */
@@ -1199,6 +1630,114 @@ function siteDiffExcerpt(oldS, newS) {
   };
 }
 
+/* --- K220 media page + hosted card builders (pure) --- */
+/* Donor-graft class (K212): the published page's chrome comes from the LIVE
+ * donor src/watch/_donor/index.html at publish time; every substitution is
+ * occurrence-counted, so donor drift 422s loud at preview. The player JS +
+ * page CSS live in the donor HEAD (they survive the main swap) — one copy,
+ * donor-maintained. nsfw pages KEEP the donor's robots-noindex + the
+ * wuld-search exclude marker (build_index skips them); sfw pages strip both. */
+
+const SITE_MEDIA_PAGE = {
+  donor: "src/watch/_donor/index.html",
+  index: "src/watch/index.html",
+  slugBare: "_donor",
+  title: "Media donor template page", titleCount: 3,
+  desc: "Donor summary placeholder for hosted media pages; replaced verbatim at publish time.", descCount: 2,
+  url: "/watch/_donor/", urlCount: 2,
+  noindexLine: '  <meta name="robots" content="noindex,nofollow">\n',
+  excludeLine: '  <meta name="wuld-search" content="exclude">\n',
+};
+
+const SITE_MEDIA_CARD_ANCHOR = "<!-- hosted-media-cards -->\n";
+const SITE_MEDIA_SECTION = '    <!-- ============================================================\n' +
+  '         Hosted — first-party media (admin media vertical, K220).\n' +
+  '         Section + cards are inserted/removed by the admin publish ops;\n' +
+  '         the section exists only while at least one card does.\n' +
+  '         ============================================================ -->\n' +
+  '    <section class="hosted-media" id="hosted">\n' +
+  '      <h2 class="video-grid-heading">Hosted</h2>\n' +
+  '      <div class="hosted-grid">\n' +
+  SITE_MEDIA_CARD_ANCHOR +
+  '      </div>\n' +
+  '    </section>\n\n';
+const SITE_MEDIA_GRID_COMMENT = '    <!-- Video grid. To refresh: swap in new <article class="video-card">';
+
+function siteMediaGraft(donor, p) {
+  let page = donor;
+  page = siteReplaceCount(page, SITE_MEDIA_PAGE.desc, p.summary, SITE_MEDIA_PAGE.descCount, "donor description");
+  page = siteReplaceCount(page, SITE_MEDIA_PAGE.title, p.title, SITE_MEDIA_PAGE.titleCount, "donor title");
+  page = siteReplaceCount(page, SITE_MEDIA_PAGE.url, "/watch/" + p.id + "/", SITE_MEDIA_PAGE.urlCount, "donor url");
+  if (!p.nsfw) {
+    page = siteReplaceCount(page, SITE_MEDIA_PAGE.noindexLine, "", 1, "donor robots line");
+    page = siteReplaceCount(page, SITE_MEDIA_PAGE.excludeLine, "", 1, "donor search-exclude line");
+  }
+  return page;
+}
+
+function siteMediaMain(p) {
+  const tags = (p.nsfw ? " &middot; 18+" : "") + (p.exclusive ? " &middot; Exclusive" : "");
+  const cfg = JSON.stringify({
+    src: p.srcUrl, poster: p.posterUrl || "", nsfw: !!p.nsfw, exclusive: !!p.exclusive,
+  }).replace(/</g, "\\u003c");
+  return '  <main id="main">\n' +
+    '    <article class="media-page">\n\n' +
+    '      <header class="page-hero">\n' +
+    '        <p class="page-hero-eyebrow">Watch &middot; Hosted' + tags + '</p>\n' +
+    '        <h1 class="page-hero-title">' + siteEsc(p.title) + '</h1>\n' +
+    '        <p class="media-meta">' + p.date.monthName + " " + p.date.day + ", " + p.date.y +
+      (p.duration ? " &middot; " + siteEsc(p.duration) : "") + '</p>\n' +
+    '      </header>\n\n' +
+    '      <p class="media-summary">' + siteEsc(p.summary) + '</p>\n\n' +
+    '      <div class="media-player" id="media-player">\n' +
+    '        <noscript><p class="media-noscript">Video playback requires JavaScript' + (p.nsfw ? " and an age confirmation" : "") + '.</p></noscript>\n' +
+    '      </div>\n' +
+    '      <script type="application/json" id="media-config">' + cfg + '</script>\n\n' +
+    '      <p class="media-back"><a href="/watch/">&larr; Watch index</a></p>\n\n' +
+    '    </article>\n' +
+    '  </main>\n';
+}
+
+function siteMediaCard(p) {
+  return '        <a class="hosted-card" href="/watch/' + p.id + '/">\n' +
+    '          <p class="hosted-card-eyebrow">Hosted' + (p.nsfw ? " &middot; 18+" : "") + '</p>\n' +
+    '          <h3 class="hosted-card-title">' + siteEsc(p.title) + '</h3>\n' +
+    '          <p class="hosted-card-meta">' + p.date.monAbbr + " " + p.date.y +
+      (p.duration ? " &middot; " + siteEsc(p.duration) : "") + '</p>\n' +
+    '        </a>\n';
+}
+
+/* First listed publish inserts the whole section (before the video-grid
+ * comment); later ones insert a card after the anchor (newest first). */
+function siteMediaIndexAdd(content, p) {
+  const card = siteMediaCard(p);
+  if (content.indexOf('id="hosted"') >= 0) {
+    return siteReplaceCount(content, SITE_MEDIA_CARD_ANCHOR, SITE_MEDIA_CARD_ANCHOR + card, 1, "hosted cards anchor");
+  }
+  const section = SITE_MEDIA_SECTION.replace(SITE_MEDIA_CARD_ANCHOR, SITE_MEDIA_CARD_ANCHOR + card);
+  return siteReplaceCount(content, SITE_MEDIA_GRID_COMMENT, section + SITE_MEDIA_GRID_COMMENT, 1, "watch grid comment anchor");
+}
+
+/* Card removal is TOLERANT of an absent card (unlisted items have none);
+ * removing the last card retires the whole — then byte-deterministic —
+ * empty section, so /watch/ never shows an empty Hosted heading. */
+function siteMediaIndexRemove(content, id) {
+  const opener = '        <a class="hosted-card" href="/watch/' + id + '/">\n';
+  const i = content.indexOf(opener);
+  if (i < 0) return content;
+  if (content.indexOf(opener, i + 1) >= 0) throw new SiteOpError("hosted card for '" + id + "' not unique — index drift.");
+  const CLOSE = "        </a>\n";
+  const j = content.indexOf(CLOSE, i);
+  if (j < 0) throw new SiteOpError("hosted card close not found — index drift.");
+  let next = content.slice(0, i) + content.slice(j + CLOSE.length);
+  if (next.indexOf('class="hosted-card"') < 0) {
+    const empty = next.indexOf(SITE_MEDIA_SECTION);
+    if (empty >= 0) next = next.slice(0, empty) + next.slice(empty + SITE_MEDIA_SECTION.length);
+  }
+  return next;
+}
+/* --- END K220 media builders (pure) --- */
+
 /* --- END SITE TRANSFORMS (pure) --- */
 
 /* ------------------------ site-edit endpoint layer ------------------------ */
@@ -1208,6 +1747,8 @@ async function siteRun(env, pattern, params) {
   if (pattern === "cache-bump") return siteRunCacheBump(env, params);
   if (pattern === "blog-post") return siteRunPagePlusCard(env, SITE_BLOG_POST.donor, SITE_BLOG_POST.index, siteBlogBuild, params);
   if (pattern === "essay-page") return siteRunPagePlusCard(env, SITE_ESSAY_PAGE.donor, SITE_ESSAY_PAGE.index, siteEssayBuild, params);
+  if (pattern === "media-publish") return siteRunMediaFlip(env, params, "publish");
+  if (pattern === "media-unpublish") return siteRunMediaFlip(env, params, "unpublish");
 
   let rel, applyFn;
   if (pattern === "video-watch") { rel = "src/watch/index.html"; applyFn = siteVideoWatch; }
@@ -1220,7 +1761,7 @@ async function siteRun(env, pattern, params) {
     catch (e) { if (e instanceof SiteOpError) return { fail: json({ error: "op_refused", detail: e.message }, 422) }; throw e; }
     applyFn = siteTextSwap;
   }
-  else return { fail: json({ error: "unknown_pattern", known: ["video-watch", "rec-card", "archive-video", "archive-image", "essay-card", "text-swap", "cache-bump", "blog-post", "essay-page"] }, 400) };
+  else return { fail: json({ error: "unknown_pattern", known: ["video-watch", "rec-card", "archive-video", "archive-image", "essay-card", "text-swap", "cache-bump", "blog-post", "essay-page", "media-publish", "media-unpublish"] }, 400) };
 
   const got = await ghGetFile(env, rel);
   if (!got.ok) return { fail: json({ error: got.error, detail: got.detail, path: rel }, got.status || 502) };
@@ -1351,6 +1892,127 @@ async function siteRunPagePlusCard(env, donorPath, indexPath, build, params) {
     ],
     excerpt: siteDiffExcerpt(index.content, out.newIndex),
     summary: out.summary, message: out.message,
+  };
+}
+
+/* K220 runner: media publish/unpublish as diff-confirm site patterns.
+ * publish  = NEW /watch/<id>/ page (donor graft) + /watch/ hosted card
+ *            (when listed) + manifest status flip — ONE Git Data commit.
+ * unpublish = page DELETE (tree sha:null) + card removal + flip back.
+ * R2 gates run at preview AND commit (the object must exist to publish). */
+async function siteRunMediaFlip(env, params, mode) {
+  try { siteRequire(params, ["id"]); }
+  catch (e) {
+    if (e instanceof SiteOpError) return { fail: json({ error: "op_refused", detail: e.message }, 422) };
+    throw e;
+  }
+  const id = String(params.id).trim();
+  const head = await ghHead(env);
+  if (!head.ok) return { fail: json({ error: head.error, detail: head.detail }, head.status || 502) };
+  const manPath = mediaManifestPath(env);
+  const manGot = await ghGetFile(env, manPath);
+  if (!manGot.ok) return { fail: json({ error: manGot.error, detail: manGot.detail, path: manPath }, manGot.status || 502) };
+  let man;
+  try { man = JSON.parse(manGot.content); }
+  catch { return { fail: json({ error: "media_manifest_parse_failed" }, 502) }; }
+  if (man.schema_version !== 1 || !Array.isArray(man.items)) {
+    return { fail: json({ error: "schema_unexpected", detail: "media manifest schema_version!==1" }, 409) };
+  }
+  const item = man.items.find(function (x) { return x.id === id; });
+  if (!item) return { fail: json({ error: "op_refused", detail: "no media item '" + id + "' in the manifest." }, 422) };
+  const pagePath = "src/watch/" + id + "/index.html";
+  const idx = await ghGetFile(env, SITE_MEDIA_PAGE.index);
+  if (!idx.ok) return { fail: json({ error: idx.error, detail: idx.detail, path: SITE_MEDIA_PAGE.index }, idx.status || 502) };
+
+  let p;
+  try {
+    p = {
+      id: id,
+      title: sitePlain(item.title, "title", 160),
+      summary: sitePlain(item.summary, "summary", 500),
+      date: siteDateParts(item.date),
+      duration: sitePlain(item.duration, "duration", 12),
+      nsfw: (item.content_flags || []).indexOf("nsfw") >= 0,
+      exclusive: (item.content_flags || []).indexOf("exclusive") >= 0,
+      srcUrl: mediaBaseOf(env) + "/" + String(item.r2key || ""),
+      posterUrl: item.poster ? mediaBaseOf(env) + "/" + item.poster : "",
+    };
+  } catch (e) {
+    if (e instanceof SiteOpError) return { fail: json({ error: "op_refused", detail: e.message }, 422) };
+    throw e;
+  }
+
+  const changes = [];
+  const report = [];
+  let newIndex = idx.content;
+
+  if (mode === "publish") {
+    if (item.status !== "draft") return { fail: json({ error: "op_refused", detail: "item is '" + item.status + "' — publish needs a draft." }, 422) };
+    if (!env.MEDIA_BUCKET) return { fail: json({ error: "no_r2_binding" }, 503) };
+    if (!mediaKeyOk(env, item.r2key)) return { fail: json({ error: "op_refused", detail: "item.r2key missing/invalid — upload the video first." }, 422) };
+    const have = await env.MEDIA_BUCKET.head(item.r2key);
+    if (!have) return { fail: json({ error: "op_refused", detail: "R2 object absent: " + item.r2key + " — upload before publish." }, 422) };
+    if (item.poster) {
+      const ph = await env.MEDIA_BUCKET.head(item.poster);
+      if (!ph) return { fail: json({ error: "op_refused", detail: "poster R2 object absent: " + item.poster }, 422) };
+    }
+    const exists = await ghGetFile(env, pagePath);
+    if (exists.ok) return { fail: json({ error: "op_refused", detail: pagePath + " already exists." }, 422) };
+    if (exists.error !== "file_not_found") return { fail: json({ error: exists.error, detail: exists.detail, path: pagePath }, exists.status || 502) };
+    const donor = await ghGetFile(env, SITE_MEDIA_PAGE.donor);
+    if (!donor.ok) return { fail: json({ error: donor.error, detail: donor.detail, path: SITE_MEDIA_PAGE.donor }, donor.status || 502) };
+    let page;
+    try {
+      page = siteSwapMain(siteMediaGraft(donor.content, p), siteMediaMain(p));
+      if (page.indexOf(SITE_MEDIA_PAGE.slugBare) >= 0) {
+        throw new SiteOpError("donor slug leaked into the new page — donor drift; update the op.");
+      }
+      if (item.listed) newIndex = siteMediaIndexAdd(newIndex, p);
+    } catch (e) {
+      if (e instanceof SiteOpError) return { fail: json({ error: "op_refused", detail: e.message }, 422) };
+      throw e;
+    }
+    const bal = siteWholeBalance(page);
+    if (bal) return { fail: json({ error: "tag_balance_broken", delta: bal, path: pagePath }, 422) };
+    item.status = "published";
+    item.published = today();
+    changes.push({ path: pagePath, content: page });
+    report.push({ path: pagePath, note: "NEW FILE · " + new TextEncoder().encode(page).length + " B" + (p.nsfw ? " · noindex + search-excluded (18+)" : "") });
+  } else {
+    if (item.status !== "published") return { fail: json({ error: "op_refused", detail: "item is '" + item.status + "' — unpublish needs a published item." }, 422) };
+    const exists = await ghGetFile(env, pagePath);
+    if (!exists.ok) return { fail: json({ error: "op_refused", detail: pagePath + " not found — already unpublished?" }, 422) };
+    try { newIndex = siteMediaIndexRemove(newIndex, id); }
+    catch (e) {
+      if (e instanceof SiteOpError) return { fail: json({ error: "op_refused", detail: e.message }, 422) };
+      throw e;
+    }
+    item.status = "draft";
+    item.published = "";
+    changes.push({ path: pagePath, delete: true });
+    report.push({ path: pagePath, note: "DELETED (page comes down)" });
+  }
+
+  if (newIndex !== idx.content) {
+    const d = siteTagDelta(idx.content, newIndex);
+    if (Object.keys(d).length) return { fail: json({ error: "tag_balance_broken", delta: d, path: SITE_MEDIA_PAGE.index }, 422) };
+    changes.push({ path: SITE_MEDIA_PAGE.index, content: newIndex });
+    report.push({ path: SITE_MEDIA_PAGE.index, note: mode === "publish" ? "hosted card added" : "hosted card removed" });
+  } else {
+    report.push({ path: SITE_MEDIA_PAGE.index, note: "unchanged (unlisted item)" });
+  }
+  man.updated = today();
+  changes.push({ path: manPath, content: JSON.stringify(man, null, 2) + "\n" });
+  report.push({ path: manPath, note: "status -> " + item.status });
+
+  return {
+    kind: "multi", headSha: head.commitSha, baseTreeSha: head.treeSha,
+    changes: changes, report: report,
+    excerpt: newIndex !== idx.content ? siteDiffExcerpt(idx.content, newIndex) : undefined,
+    summary: (mode === "publish" ? "Publish" : "Unpublish") + " hosted media /watch/" + id + "/ — " +
+      JSON.stringify(item.title) + (item.listed ? " (listed)" : " (unlisted)") +
+      (p.nsfw ? " [18+]" : "") + (p.exclusive ? " [exclusive-stub]" : ""),
+    message: "media-admin: " + mode + " — " + item.title + " (/watch/" + id + "/)",
   };
 }
 
@@ -1490,7 +2152,11 @@ async function ghMultiCommit(env, parentSha, baseTreeSha, changes, message) {
     method: "POST", headers: ghHeaders(env, true),
     body: JSON.stringify({
       base_tree: baseTreeSha,
-      tree: changes.map(function (c) { return { path: c.path, mode: "100644", type: "blob", content: c.content }; }),
+      tree: changes.map(function (c) {
+        return c.delete === true
+          ? { path: c.path, mode: "100644", type: "blob", sha: null }   // K220: tree-level delete (media-unpublish)
+          : { path: c.path, mode: "100644", type: "blob", content: c.content };
+      }),
     }),
   });
   if (!tr.ok) return { ok: false, error: "github_tree_create_failed", detail: await safeText(tr), status: 502 };
@@ -1621,7 +2287,7 @@ function html(body) {
       "cache-control": "no-store",
       "referrer-policy": "no-referrer",
       "x-content-type-options": "nosniff",
-      "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src https://audio.wuld.ink; connect-src 'self'",
+      "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src https://audio.wuld.ink; media-src https://audio.wuld.ink; connect-src 'self'",
     },
   });
 }
@@ -1652,6 +2318,7 @@ function b64urlPad(str) {
 function adminHtml(env, adminEmail) {
   const mediaBase = env.MEDIA_BASE || "https://audio.wuld.ink";
   const prefix = env.R2_PREFIX || "gallery/";
+  const mediaPrefix = env.MEDIA_PREFIX || "media/";
   return `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1676,7 +2343,7 @@ function adminHtml(env, adminEmail) {
   table { width:100%; border-collapse:collapse; font-size:18px; }
   th, td { text-align:left; padding:.35rem .5rem; border-bottom:1px solid var(--border); vertical-align:top; }
   th { color:var(--dim); font-weight:normal; text-transform:uppercase; font-size:15px; letter-spacing:.1em; }
-  td .rowbtn { margin:0 .35rem 0 0; padding:.1rem .45rem; font-size:17px; }
+  td .rowbtn { margin:0 .35rem .2rem 0; padding:.3rem .55rem; font-size:17px; }
   .status { border:1px solid var(--border); padding:.75rem 1rem; color:var(--dim); white-space:pre-wrap; }
   .status b { color:var(--fg); font-weight:normal; }
   .flag { color:var(--accent); }
@@ -1705,6 +2372,17 @@ function adminHtml(env, adminEmail) {
   .tablebar button { margin-top:0; padding:.2rem .6rem; }
   .tablebar span { color:var(--dim); font-size:17px; white-space:nowrap; }
   .vh { position:absolute; clip:rect(0 0 0 0); clip-path:inset(50%); width:1px; height:1px; overflow:hidden; white-space:nowrap; }
+  .cmt { border:1px solid var(--border); padding:.6rem .75rem; margin:.6rem 0; }
+  .cmt.is-hidden { opacity:.55; border-style:dashed; }
+  .cmt-meta { color:var(--dim); font-size:15px; letter-spacing:.06em; display:flex; flex-wrap:wrap; gap:.2rem .9rem; }
+  .cmt-meta b { color:var(--fg); font-weight:normal; }
+  .cmt-flag { color:#fff; background:var(--accent); padding:0 .35rem; }
+  .cmt textarea { margin-top:.4rem; min-height:3rem; }
+  #md-preview video { width:100%; max-width:32rem; margin-top:.75rem; border:1px solid var(--border); background:#000; }
+  progress { width:100%; accent-color:var(--accent); }
+  button:disabled { opacity:.45; cursor:default; }
+  input[type=file] { color:var(--dim); font-size:17px; max-width:100%; }
+  input[type=file]:focus-visible, input[type=checkbox]:focus-visible { outline:1px solid var(--accent); outline-offset:2px; }
   @media (prefers-reduced-motion: no-preference) { html { scroll-behavior:smooth; } }
 </style></head>
 <body><main>
@@ -1724,6 +2402,8 @@ function adminHtml(env, adminEmail) {
   <a href="#sec-essaycard">essay card</a>
   <a href="#sec-blog">new blog post</a>
   <a href="#sec-essay">new essay</a>
+  <a href="#sec-media">media</a>
+  <a href="#sec-cmod">comments</a>
   <a href="#sec-log">log</a>
 </nav>
 
@@ -1956,6 +2636,81 @@ function adminHtml(env, adminEmail) {
 </fieldset>
 </details>
 
+<details class="tool" id="sec-media"><summary><h2>13 &middot; MEDIA &mdash; hosted video (R2 ${escHtml(mediaPrefix)} &middot; draft &rarr; publish)</h2></summary>
+<fieldset>
+  <label>video file (mp4 / webm; any size &mdash; big files slice into 32 MiB parts)</label>
+  <input type="file" id="md-file" accept="video/mp4,video/webm">
+  <div class="row2">
+    <div><label>key stem (blank = from filename)</label><input type="text" id="md-stem" placeholder="my-video"></div>
+    <div><label style="text-transform:none"><input type="checkbox" id="md-overwrite"> overwrite if key exists</label>
+    <button id="md-upload" type="button">upload video</button></div>
+  </div>
+  <progress id="md-prog" max="100" value="0" style="width:100%" hidden aria-label="Upload progress"></progress>
+  <p class="hint" id="md-prog-note" role="status"></p>
+  <label>poster image (webp / png / jpeg, &le; 25 MiB &mdash; optional; key = &lt;stem&gt;-poster)</label>
+  <input type="file" id="md-poster-file" accept="image/webp,image/png,image/jpeg">
+  <button id="md-poster-upload" type="button">upload poster</button>
+  <div id="md-preview"></div>
+</fieldset>
+<fieldset id="media-form">
+  <input type="hidden" id="mi-mode" value="add">
+  <div class="row2">
+    <div><label>id (slug; fixed after add; page = /watch/&lt;id&gt;/)</label><input type="text" id="mi-id" placeholder="my-video"></div>
+    <div><label>title</label><input type="text" id="mi-title"></div>
+  </div>
+  <div class="row2">
+    <div><label>date</label><input type="text" id="mi-date" placeholder="2026-07-11"></div>
+    <div><label>duration (optional; M:SS or H:MM:SS)</label><input type="text" id="mi-duration" placeholder="23:59"></div>
+  </div>
+  <label>summary (meta description + page lede; plain text)</label><textarea id="mi-summary"></textarea>
+  <div class="row2">
+    <div><label>video r2key (filled by upload)</label><input type="text" id="mi-r2key" placeholder="${escHtml(mediaPrefix)}my-video.mp4"></div>
+    <div><label>poster r2key (optional)</label><input type="text" id="mi-poster" placeholder="${escHtml(mediaPrefix)}my-video-poster.webp"></div>
+  </div>
+  <div class="row2">
+    <div><label>flags</label>
+      <label style="text-transform:none"><input type="checkbox" id="mi-nsfw"> nsfw &mdash; 18+ interstitial, noindex, search-excluded</label>
+      <label style="text-transform:none"><input type="checkbox" id="mi-exclusive"> exclusive &mdash; locked stub (access wiring is a later session)</label>
+    </div>
+    <div><label>listing</label>
+      <label style="text-transform:none"><input type="checkbox" id="mi-listed" checked> listed on /watch/ (18+ items list text-only, tagged 18+)</label>
+    </div>
+  </div>
+  <button id="mi-go" type="button">add item (draft, 1 commit)</button>
+  <button id="mi-cancel" type="button" style="display:none">cancel edit</button>
+  <p class="hint">flow: upload &rarr; add item (draft) &rarr; publish from the row below. publish opens the standard diff-confirm preview (grafted /watch/&lt;id&gt;/ page + hosted card + manifest flip, ONE commit; ~1 min to live). unpublish takes the page down the same way. Lawful content only &mdash; this terminal is single-operator and what lands here is on the operator.</p>
+</fieldset>
+<table><caption class="vh">Media items &mdash; manifest table</caption><thead><tr><th>id</th><th>title</th><th>date</th><th>status</th><th>flags</th><th>listed</th><th></th></tr></thead>
+<tbody id="media-items"></tbody></table>
+
+</details>
+
+<details class="tool" id="sec-cmod"><summary><h2>14 &middot; COMMENTS &mdash; board moderation (one roof)</h2></summary>
+<fieldset>
+  <div class="tablebar">
+    <span>board</span>
+    <span id="cm-state" role="status">&ndash;</span>
+    <button id="cm-toggle" type="button">toggle</button>
+    <button id="cm-reload" type="button">reload</button>
+    <span id="cm-counts"></span>
+  </div>
+  <div class="tablebar">
+    <span>purge</span>
+    <button id="cm-hide-all" type="button">hide all visible</button>
+    <button id="cm-del-hidden" type="button">delete hidden</button>
+    <button id="cm-del-all" type="button" class="danger">delete ALL</button>
+  </div>
+  <p class="hint">same D1 rows the old wuld.ink/admin surface moderates (parity table: operator guide &sect;12). the public board on /chat/ still posts through the comments worker; email stays admin-only. retire the old surface only after this one checks out.</p>
+  <div id="cm-list"></div>
+  <div class="tablebar">
+    <button id="cm-prev" type="button" aria-label="Previous comments page">&laquo;</button>
+    <span id="cm-info" role="status">&ndash;</span>
+    <button id="cm-next" type="button" aria-label="Next comments page">&raquo;</button>
+  </div>
+</fieldset>
+
+</details>
+
 <div id="site-preview">
   <div class="diffmeta" id="sp-meta"></div>
   <div id="sp-body"></div>
@@ -1965,7 +2720,7 @@ function adminHtml(env, adminEmail) {
 
 
 <h2 id="sec-log">Log</h2>
-<div id="log"></div>
+<div id="log" aria-live="polite"></div>
 
 <script>
 (function () {
@@ -2256,6 +3011,7 @@ function adminHtml(env, adminEmail) {
     if (!b) return;
     var pattern = b.getAttribute("data-pattern");
     var params = siteCollect(pattern);
+    if (b.getAttribute("data-id")) params.id = b.getAttribute("data-id"); // row-scoped patterns (media publish/unpublish)
     log("preview " + pattern + " …");
     post("/api/site/preview", { pattern: pattern, params: params }).then(function (r) {
       log("preview " + pattern + " -> " + r.status + " " + JSON.stringify(r.j).slice(0, 160));
@@ -2275,7 +3031,10 @@ function adminHtml(env, adminEmail) {
     $("sp-commit").disabled = true;
     post("/api/site/commit", SITE_PENDING).then(function (r) {
       log("commit " + SITE_PENDING.pattern + " -> " + r.status + " " + JSON.stringify(r.j).slice(0, 200));
-      if (r.status === 200) { SITE_PENDING = null; $("site-preview").style.display = "none"; }
+      if (r.status === 200) {
+        if (SITE_PENDING.pattern.indexOf("media-") === 0 && typeof refreshMedia === "function") refreshMedia();
+        SITE_PENDING = null; $("site-preview").style.display = "none";
+      }
       if (r.status !== 200) { $("sp-commit").disabled = false; }
     });
   });
@@ -2284,6 +3043,316 @@ function adminHtml(env, adminEmail) {
   $("pl-size").addEventListener("change", function () { var v = $("pl-size").value; PLATE_SIZE = v === "all" ? "all" : parseInt(v, 10); PLATE_PAGE = 1; renderTable(); });
   $("pl-prev").addEventListener("click", function () { PLATE_PAGE--; renderTable(); });
   $("pl-next").addEventListener("click", function () { PLATE_PAGE++; renderTable(); });
+
+  /* ---- MEDIA vertical (K220): items + chunked uploads + publish ---- */
+  var MEDIA_BASE = ${JSON.stringify(mediaBase)};
+  var MEDIA_MAN = null;
+  var mediaLoaded = false, cmodLoaded = false;
+
+  function refreshMedia() {
+    api("/api/media/manifest").then(function (r) {
+      if (r.status !== 200) { log("media manifest load failed " + r.status + " " + JSON.stringify(r.j).slice(0, 140)); return; }
+      MEDIA_MAN = r.j.manifest;
+      renderMedia();
+    });
+  }
+  function renderMedia() {
+    var tb = $("media-items");
+    tb.innerHTML = "";
+    if (!MEDIA_MAN) return;
+    MEDIA_MAN.items.forEach(function (m) {
+      var pub = m.status === "published";
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td>" + esc(m.id) + "</td><td>" + esc(m.title) + "</td>" +
+        "<td>" + esc(m.date) + "</td><td>" + (pub ? "<b>published</b>" : "draft") + "</td>" +
+        "<td class=flag>" + esc((m.content_flags || []).join(",")) + "</td>" +
+        "<td>" + (m.listed ? "yes" : "no") + "</td>" +
+        "<td><button class=rowbtn data-mact=edit data-id='" + esc(m.id) + "'>edit</button>" +
+        "<button class=rowbtn data-mact=view data-id='" + esc(m.id) + "'>view</button>" +
+        (pub
+          ? "<button class='rowbtn site-prev' data-pattern=media-unpublish data-id='" + esc(m.id) + "'>unpublish</button>"
+          : "<button class='rowbtn site-prev' data-pattern=media-publish data-id='" + esc(m.id) + "'>publish</button>" +
+            "<button class='rowbtn danger' data-mact=del data-id='" + esc(m.id) + "'>del</button>") +
+        "</td>";
+      tb.appendChild(tr);
+    });
+    if (!MEDIA_MAN.items.length) tb.innerHTML = "<tr><td colspan=7 class=hint>no media items yet - upload a video, then add an item.</td></tr>";
+  }
+
+  document.addEventListener("click", function (ev) {
+    var b = ev.target.closest("button[data-mact]");
+    if (!b || !MEDIA_MAN) return;
+    var id = b.getAttribute("data-id");
+    var m = MEDIA_MAN.items.find(function (x) { return x.id === id; });
+    if (!m) return;
+    var act = b.getAttribute("data-mact");
+    if (act === "edit") {
+      $("mi-mode").value = "update:" + id;
+      $("mi-id").value = m.id; $("mi-id").disabled = true;
+      $("mi-title").value = m.title;
+      $("mi-date").value = m.date;
+      $("mi-duration").value = m.duration || "";
+      $("mi-summary").value = m.summary;
+      $("mi-r2key").value = m.r2key || "";
+      $("mi-poster").value = m.poster || "";
+      $("mi-nsfw").checked = (m.content_flags || []).indexOf("nsfw") >= 0;
+      $("mi-exclusive").checked = (m.content_flags || []).indexOf("exclusive") >= 0;
+      $("mi-listed").checked = m.listed !== false;
+      $("mi-go").textContent = "commit update";
+      $("mi-cancel").style.display = "";
+      $("sec-media").open = true;
+      window.scrollTo(0, $("media-form").offsetTop - 60);
+    }
+    if (act === "view") {
+      var mp = $("md-preview");
+      mp.innerHTML = "";
+      if (!m.r2key) { log("no r2key on " + m.id + " - upload first"); return; }
+      var v = document.createElement("video");
+      v.controls = true; v.preload = "metadata";
+      v.src = MEDIA_BASE + "/" + m.r2key;
+      if (m.poster) v.poster = MEDIA_BASE + "/" + m.poster;
+      mp.appendChild(v);
+      log("draft preview: " + m.r2key);
+    }
+    if (act === "del") {
+      var typed = prompt("Delete media item '" + id + "' (draft). Type the id to confirm:");
+      if (typed !== id) { log("media delete aborted (confirm mismatch)"); return; }
+      var alsoObjects = confirm("Also delete the R2 file(s) for '" + id + "'? OK = delete files too; Cancel = keep files.");
+      post("/api/media/item/delete", { id: id, confirm: typed, delete_objects: alsoObjects }).then(function (r) {
+        log("media delete " + id + " -> " + r.status + " " + JSON.stringify(r.j).slice(0, 160));
+        refreshMedia();
+      });
+    }
+  });
+
+  function mediaResetForm() {
+    $("mi-mode").value = "add";
+    $("mi-id").disabled = false;
+    ["mi-id", "mi-title", "mi-date", "mi-duration", "mi-summary", "mi-r2key", "mi-poster"].forEach(function (i) { $(i).value = ""; });
+    $("mi-nsfw").checked = false;
+    $("mi-exclusive").checked = false;
+    $("mi-listed").checked = true;
+    $("mi-go").textContent = "add item (draft, 1 commit)";
+    $("mi-cancel").style.display = "none";
+    var d = new Date(), p2 = function (n) { return (n < 10 ? "0" : "") + n; };
+    $("mi-date").value = d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate());
+  }
+  $("mi-cancel").addEventListener("click", mediaResetForm);
+  $("mi-nsfw").addEventListener("change", function () {
+    if ($("mi-nsfw").checked) $("mi-listed").checked = false;
+  });
+  $("mi-go").addEventListener("click", function () {
+    var mode = $("mi-mode").value;
+    var flags = [];
+    if ($("mi-nsfw").checked) flags.push("nsfw");
+    if ($("mi-exclusive").checked) flags.push("exclusive");
+    var fields = {
+      title: $("mi-title").value.trim(), date: $("mi-date").value.trim(),
+      summary: $("mi-summary").value.trim(), duration: $("mi-duration").value.trim(),
+      r2key: $("mi-r2key").value.trim(), poster: $("mi-poster").value.trim(),
+      content_flags: flags, listed: $("mi-listed").checked,
+    };
+    if (mode === "add") {
+      fields.id = $("mi-id").value.trim();
+      post("/api/media/item/add", { item: fields }).then(function (r) {
+        log("media add -> " + r.status + " " + JSON.stringify(r.j).slice(0, 200));
+        if (r.status === 200) { mediaResetForm(); refreshMedia(); }
+      });
+    } else {
+      var uid = mode.slice(7);
+      post("/api/media/item/update", { id: uid, patch: fields }).then(function (r) {
+        log("media update " + uid + " -> " + r.status + " " + JSON.stringify(r.j).slice(0, 200));
+        if (r.status === 200) { mediaResetForm(); refreshMedia(); }
+      });
+    }
+  });
+
+  function hex16(f) {
+    return f.slice(0, 16).arrayBuffer().then(function (ab) {
+      var b = new Uint8Array(ab), s = "";
+      for (var i = 0; i < b.length; i++) s += (b[i] < 16 ? "0" : "") + b[i].toString(16);
+      return s;
+    });
+  }
+  function rawPost(path, blob, type) {
+    return fetch(path, { method: "POST", headers: { "content-type": type }, body: blob })
+      .then(function (r) { return r.json().then(function (j) { return { status: r.status, j: j }; }); });
+  }
+  $("md-upload").addEventListener("click", function () {
+    var f = $("md-file").files[0];
+    if (!f) { log("no video file chosen"); return; }
+    var type = (f.type || "").toLowerCase();
+    if (type !== "video/mp4" && type !== "video/webm") { log("pick an mp4 or webm (got '" + (type || "unknown") + "')"); return; }
+    var stem = $("md-stem").value.trim() || f.name.replace(/\.[a-z0-9]+$/i, "");
+    var over = $("md-overwrite").checked;
+    var prog = $("md-prog"), note = $("md-prog-note");
+    prog.hidden = false; prog.value = 0; note.textContent = "";
+    if (f.size <= 32 * 1024 * 1024) {
+      log("uploading " + f.name + " (" + f.size + " B, single request)...");
+      rawPost("/api/media/put?stem=" + encodeURIComponent(stem) + (over ? "&overwrite=true" : ""), f, type)
+        .then(function (r) {
+          prog.value = r.status === 200 ? 100 : 0;
+          log("media put -> " + r.status + " " + JSON.stringify(r.j).slice(0, 200));
+          if (r.status === 200 && r.j.key) { $("mi-r2key").value = r.j.key; note.textContent = "done: " + r.j.key; }
+          else { note.textContent = "upload failed - see log"; }
+        });
+      return;
+    }
+    hex16(f).then(function (h16) {
+      return post("/api/media/mpu-init", { stem: stem, type: type, head16: h16, overwrite: over });
+    }).then(function (r) {
+      if (!r || r.status !== 200) { if (r) log("mpu init -> " + r.status + " " + JSON.stringify(r.j).slice(0, 200)); note.textContent = "init failed - see log"; return; }
+      var key = r.j.key, uploadId = r.j.uploadId, PART = r.j.part_size;
+      var total = Math.ceil(f.size / PART), parts = [];
+      log("mpu " + key + ": " + total + " parts x " + PART + " B");
+      function sendPart(n, retried) {
+        var blob = f.slice((n - 1) * PART, Math.min(n * PART, f.size));
+        return fetch("/api/media/mpu-part?key=" + encodeURIComponent(key) + "&uploadId=" + encodeURIComponent(uploadId) + "&part=" + n,
+          { method: "POST", headers: { "content-type": "application/octet-stream" }, body: blob })
+          .then(function (res) { return res.json().then(function (j) { return { status: res.status, j: j }; }); })
+          .then(function (pr) {
+            if (pr.status !== 200) {
+              if (!retried) { log("part " + n + " failed (" + pr.status + ") - retrying once"); return sendPart(n, true); }
+              throw new Error("part " + n + ": " + JSON.stringify(pr.j).slice(0, 160));
+            }
+            parts.push({ partNumber: pr.j.partNumber, etag: pr.j.etag });
+            prog.value = Math.round(100 * n / (total + 1));
+            note.textContent = "part " + n + " / " + total;
+          });
+      }
+      var chain = Promise.resolve();
+      for (var n = 1; n <= total; n++) (function (nn) { chain = chain.then(function () { return sendPart(nn, false); }); })(n);
+      chain.then(function () {
+        note.textContent = "assembling...";
+        return post("/api/media/mpu-complete", { key: key, uploadId: uploadId, parts: parts });
+      }).then(function (cr) {
+        log("mpu complete -> " + cr.status + " " + JSON.stringify(cr.j).slice(0, 200));
+        if (cr.status === 200) { prog.value = 100; $("mi-r2key").value = key; note.textContent = "done: " + key + " (" + cr.j.bytes + " B)"; }
+        else { note.textContent = "complete FAILED - see log"; }
+      }).catch(function (err) {
+        log("mpu failed: " + err.message + " - aborting upload session");
+        note.textContent = "upload failed - aborted";
+        post("/api/media/mpu-abort", { key: key, uploadId: uploadId });
+      });
+    });
+  });
+  $("md-poster-upload").addEventListener("click", function () {
+    var f = $("md-poster-file").files[0];
+    if (!f) { log("no poster file chosen"); return; }
+    var ptype = (f.type || "").toLowerCase();
+    var stem = ($("md-stem").value.trim() || f.name.replace(/\.[a-z0-9]+$/i, "")) + "-poster";
+    log("uploading poster " + f.name + "...");
+    rawPost("/api/media/put?stem=" + encodeURIComponent(stem) + "&overwrite=true", f, ptype).then(function (r) {
+      log("poster put -> " + r.status + " " + JSON.stringify(r.j).slice(0, 200));
+      if (r.status === 200 && r.j.key) $("mi-poster").value = r.j.key;
+    });
+  });
+
+  /* ---- COMMENTS moderation (K220): one roof; parity with wuld.ink/admin ---- */
+  var CM = { rows: [], open: true, page: 1, size: 25, meta: null };
+  function refreshCmod() {
+    api("/api/cmod/list").then(function (r) {
+      if (r.status !== 200) {
+        log("cmod list failed " + r.status + " " + JSON.stringify(r.j).slice(0, 140));
+        $("cm-state").textContent = "unavailable";
+        return;
+      }
+      CM.rows = r.j.comments || [];
+      CM.open = !!r.j.open;
+      CM.meta = r.j;
+      if (r.j.note) log("cmod note: " + r.j.note);
+      renderCmod();
+    });
+  }
+  function renderCmod() {
+    $("cm-state").textContent = CM.open ? "OPEN" : "CLOSED";
+    $("cm-toggle").textContent = CM.open ? "close board" : "open board";
+    var vis = CM.rows.filter(function (c) { return !c.hidden; }).length;
+    $("cm-counts").textContent = CM.rows.length + " total / " + vis + " visible / " + (CM.rows.length - vis) + " hidden";
+    var list = $("cm-list");
+    list.innerHTML = "";
+    var pages = Math.max(1, Math.ceil(CM.rows.length / CM.size));
+    if (CM.page > pages) CM.page = pages;
+    if (CM.page < 1) CM.page = 1;
+    var start = (CM.page - 1) * CM.size;
+    CM.rows.slice(start, start + CM.size).forEach(function (c) {
+      var box = document.createElement("article");
+      box.className = "cmt" + (c.hidden ? " is-hidden" : "");
+      var when = new Date(c.created_at).toISOString().replace("T", " ").slice(0, 16) + " UTC";
+      box.innerHTML =
+        "<div class=cmt-meta><span>#" + c.id + "</span><b>" + (c.name ? esc(c.name) : "anonymous") + "</b>" +
+        "<span>" + (c.email ? esc(c.email) : "no email") + "</span><span>" + when + "</span>" +
+        "<span>" + esc(c.board) + "</span>" + (c.hidden ? "<span class=cmt-flag>HIDDEN</span>" : "") + "</div>" +
+        "<textarea data-cid='" + c.id + "' aria-label='Comment " + c.id + " body'>" + esc(c.body) + "</textarea>" +
+        "<div><button class=rowbtn data-cact=save data-cid='" + c.id + "'>save edit</button>" +
+        (c.hidden
+          ? "<button class=rowbtn data-cact=unhide data-cid='" + c.id + "'>unhide</button>"
+          : "<button class=rowbtn data-cact=hide data-cid='" + c.id + "'>hide</button>") +
+        "<button class='rowbtn danger' data-cact=del data-cid='" + c.id + "'>delete</button></div>";
+      list.appendChild(box);
+    });
+    if (!CM.rows.length) list.innerHTML = "<p class=hint>no comments.</p>";
+    $("cm-info").textContent = CM.rows.length
+      ? (start + 1) + "-" + Math.min(start + CM.size, CM.rows.length) + " / " + CM.rows.length + "  p." + CM.page + "/" + pages
+      : "0";
+    $("cm-prev").disabled = CM.page <= 1;
+    $("cm-next").disabled = CM.page >= pages;
+  }
+  function cmAct(payload, label) {
+    post("/api/cmod/act", payload).then(function (r) {
+      log("cmod " + label + " -> " + r.status + " " + JSON.stringify(r.j).slice(0, 160));
+      if (r.status === 200) refreshCmod();
+    });
+  }
+  $("cm-list").addEventListener("click", function (ev) {
+    var b = ev.target.closest("button[data-cact]");
+    if (!b) return;
+    var cid = parseInt(b.getAttribute("data-cid"), 10);
+    var act = b.getAttribute("data-cact");
+    if (act === "save") {
+      var ta = document.querySelector("textarea[data-cid='" + cid + "']");
+      if (ta) cmAct({ action: "edit", id: cid, body: ta.value }, "edit #" + cid);
+    }
+    if (act === "hide") cmAct({ action: "hide", id: cid }, "hide #" + cid);
+    if (act === "unhide") cmAct({ action: "unhide", id: cid }, "unhide #" + cid);
+    if (act === "del") {
+      if (!confirm("Hard-delete comment #" + cid + "? This cannot be undone. (Use hide for reversible removal.)")) return;
+      cmAct({ action: "delete", id: cid }, "delete #" + cid);
+    }
+  });
+  $("cm-toggle").addEventListener("click", function () {
+    var willOpen = !CM.open;
+    if (!willOpen && !confirm("Close the board? New posts are refused immediately. The thread stays readable; reopen here any time.")) return;
+    cmAct({ action: "board-state", open: willOpen }, "board-state " + (willOpen ? "open" : "close"));
+  });
+  $("cm-reload").addEventListener("click", refreshCmod);
+  $("cm-hide-all").addEventListener("click", function () {
+    if (confirm("Hide ALL visible comments? Reversible - unhide individually, or delete the hidden pile later.")) cmAct({ action: "purge", scope: "hide-all" }, "purge hide-all");
+  });
+  $("cm-del-hidden").addEventListener("click", function () {
+    if (confirm("Permanently delete every HIDDEN comment? This cannot be undone.")) cmAct({ action: "purge", scope: "delete-hidden" }, "purge delete-hidden");
+  });
+  $("cm-del-all").addEventListener("click", function () {
+    var t = prompt("This permanently deletes EVERY comment on the board. Type  DELETE ALL  to confirm:");
+    if (t === "DELETE ALL") cmAct({ action: "purge", scope: "delete-all" }, "purge delete-all");
+    else log("delete-all cancelled");
+  });
+  $("cm-prev").addEventListener("click", function () { CM.page--; renderCmod(); });
+  $("cm-next").addEventListener("click", function () { CM.page++; renderCmod(); });
+
+  (function () { // media form date defaults to operator-local today (K212 convention)
+    var d = new Date(), p2 = function (n) { return (n < 10 ? "0" : "") + n; };
+    if ($("mi-date")) $("mi-date").value = d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate());
+  })();
+
+  /* lazy loads: the manifest/D1 reads run on first section open, not boot */
+  $("sec-media").addEventListener("toggle", function () {
+    if ($("sec-media").open && !mediaLoaded) { mediaLoaded = true; refreshMedia(); }
+  });
+  $("sec-cmod").addEventListener("toggle", function () {
+    if ($("sec-cmod").open && !cmodLoaded) { cmodLoaded = true; refreshCmod(); }
+  });
 
   (function () { // K213: collapsed sections — persist open state; hash + jump links auto-open
     var KEY = "wuld-admin-open";

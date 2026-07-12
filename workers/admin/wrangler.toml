@@ -30,6 +30,23 @@ custom_domain = true
 binding = "GALLERY_BUCKET"
 bucket_name = "wuld-audio"
 
+# K220 media vertical: a SECOND binding to the SAME bucket, fenced under the
+# media/ prefix (handlers guard prefixes both ways; the gallery/ blast radius
+# is untouched). Re-pointing media at a dedicated bucket later = change
+# bucket_name here only.
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "wuld-audio"
+
+# ---- D1 binding (K220 moderation consolidation) -------------------------------
+# The SAME database the comments worker owns (wuld-comments): moderation
+# reads/writes move under admin.wuld.ink; the PUBLIC board routes
+# (wuld.ink/api/comments GET+POST) stay on workers/comments.
+[[d1_databases]]
+binding = "COMMENTS_DB"
+database_name = "wuld-comments"
+database_id = "fbae13d3-7ec2-4c09-96a8-031046241f5a"
+
 # ---- Non-secret vars ----------------------------------------------------------
 # GITHUB_PAT is a SECRET — set with `wrangler secret put GITHUB_PAT` (NOT here).
 # Fine-grained, contents:read+write on alisendjsc-crypto/wuld-ink ONLY.
@@ -45,6 +62,8 @@ GITHUB_BRANCH = "main"
 MANIFEST_PATH = "src/gallery/manifest.json"
 R2_PREFIX = "gallery/"
 MEDIA_BASE = "https://audio.wuld.ink"
+MEDIA_PREFIX = "media/"
+MEDIA_MANIFEST_PATH = "tools/media-manifest.json"
 
 # ---- Observability (free) -----------------------------------------------------
 [observability]

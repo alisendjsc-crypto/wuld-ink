@@ -31,6 +31,11 @@ library   src/library-objections.json - vendored {id,title,gloss} projection
             cross-domain results deep-link
             library.wuld.ink/<surface_route>#obj-<id> (new tab).
 
+K220 skips: pages under any underscore-led path segment (donor pages, the
+sealed /_/ tree, templates) and pages carrying
+<meta name="wuld-search" content="exclude"> (18+ hosted-media pages) never
+enter the index.
+
 Unknown manifest fields (featured, print_url, ...) are ignored by design.
 """
 import argparse, collections, html, json, os, re, sys
@@ -139,10 +144,14 @@ def build(src):
         rel = os.path.relpath(os.path.join(dirpath, "index.html"), src).replace(os.sep, "/")
         if rel in SKIP_RELPATHS or rel.startswith("templates/"):
             continue
+        if any(seg.startswith("_") for seg in rel.split("/")):
+            continue  # K220: underscore segment = sealed / donor / template — never indexed
         route = "/" if rel == "index.html" else "/" + rel[: -len("index.html")]
         if route.startswith(SKIP_ROUTE_PREFIXES) or route in SKIP_ROUTES:
             continue
         raw = open(os.path.join(dirpath, "index.html"), encoding="utf-8").read()
+        if 'name="wuld-search" content="exclude"' in raw:
+            continue  # K220: explicit per-page opt-out (nsfw hosted-media pages carry it)
         t = strip_blocks(raw)
         title = page_title(t, route)
         lede = page_lede(t)

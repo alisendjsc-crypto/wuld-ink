@@ -334,7 +334,7 @@
       }
     }
 
-    /* Footer rules promoted to /components/footer.css?v=K30 (session J);
+    /* Footer rules promoted to /components/footer.css?v=K43 (session J);
        inline duplicates removed (session K). */
 
     /* ---------- Narrow viewport adjustments ---------- */
@@ -344,6 +344,60 @@
         flex-direction: column;
         align-items: flex-start;
       }
+    }
+
+    /* ============================================================
+       Hosted media (K220) — first-party cards. The section itself is
+       inserted by the admin publish op and exists only while at least
+       one card does; these rules wait for it. Text-only cards by
+       design (18+ items stay imageless pre-click).
+       ============================================================ */
+    .hosted-media { margin-block-end: var(--s-8); }
+
+    .hosted-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+      gap: var(--s-4);
+    }
+
+    .hosted-card {
+      display: block;
+      border: var(--bw-base) solid var(--c-border);
+      padding: var(--s-4);
+      text-decoration: none;
+      background: var(--c-bg);
+    }
+
+    .hosted-card:hover,
+    .hosted-card:focus-visible {
+      border-color: var(--c-accent);
+      outline: none;
+    }
+
+    .hosted-card-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-accent);
+      margin: 0 0 var(--s-2);
+    }
+
+    .hosted-card-title {
+      font-family: var(--font-headline);
+      font-size: var(--t-h3, 1.2rem);
+      color: var(--c-fg);
+      margin: 0 0 var(--s-2);
+    }
+
+    .hosted-card:hover .hosted-card-title { color: var(--c-accent); }
+
+    .hosted-card-meta {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      color: var(--c-fg-dim);
+      letter-spacing: var(--ls-wide);
+      margin: 0;
     }
   </style>
 </head>
