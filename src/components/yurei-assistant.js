@@ -146,6 +146,17 @@
     } else { avatarVideo.onended = null; }
   }
 
+  // seat the chrome ABOVE the fixed ambient-player bar (it can be dismissed / resize)
+  function positionChrome() {
+    if (!launcher) return;
+    var barH = 0, bar = document.getElementById("ambient-player") || document.querySelector(".ambient-player");
+    if (bar) { var r = bar.getBoundingClientRect(); var c = getComputedStyle(bar);
+      if (r.height > 4 && r.bottom >= window.innerHeight - 8 && c.display !== "none" && c.visibility !== "hidden") barH = r.height; }
+    var lb = barH ? (barH + 14) : 18;
+    launcher.style.bottom = lb + "px";
+    if (panel) panel.style.bottom = (lb + launcher.offsetHeight + 10) + "px";
+  }
+
   // =====================================================================
   // UI
   // =====================================================================
@@ -194,9 +205,12 @@
 
     document.body.appendChild(launcher);
     document.body.appendChild(panel);
+    positionChrome();
+    window.addEventListener("resize", positionChrome, { passive: true });
+    if (sessGet("wuld:yurei.assistant.seen") !== "1") { launcher.classList.add("yasst-pulse"); sessSet("wuld:yurei.assistant.seen", "1"); window.setTimeout(function () { if (launcher) launcher.classList.remove("yasst-pulse"); }, 7200); }
 
-    // greeting line (first open only, in-register, not a matcher call)
-    addLine("desk", "The desk is attended. Speak, and it is filed.", null, "appear");
+    // greeting line (first open only, in-register; sprite deferred to first open)
+    addLine("desk", "The desk is attended. Speak, and it is filed.", null, null);
 
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && open) { close(); launcher.focus(); } });
     if (mqReduce && mqReduce.addEventListener) mqReduce.addEventListener("change", function () { if (open) showSprite("idle"); });
@@ -289,12 +303,11 @@
     document.addEventListener("visibilitychange", function () {
       if (!document.hidden && open) { showSprite("return_ack", { then: "idle" }); }
     });
-    // breeze mood follows the bed
+    // breeze mood follows the bed; keep chrome seated above the ambient bar
     window.setInterval(function () {
-      if (!open) return;
-      if (ambientActive()) avatarWrap.classList.add("yasst-breeze");
-      else avatarWrap.classList.remove("yasst-breeze");
-    }, 8000);
+      positionChrome();
+      if (open) { if (ambientActive()) avatarWrap.classList.add("yasst-breeze"); else avatarWrap.classList.remove("yasst-breeze"); }
+    }, 6000);
   }
 
   // =====================================================================
