@@ -1,0 +1,2385 @@
+{
+ "yurei_corpus": {
+  "schema": "0.1-oracle",
+  "tier": "public",
+  "authored": "K224 Cowork — oracle/site-help slice (bounded FAQ, not open-domain QA)",
+  "entries": [
+   {
+    "id": "o-essays",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the essays",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "essays page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "essays section",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "essays",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "go to essays",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "open essays",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "find the essays",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The essays keep their own drawer, signed from the main corridor. Follow the marker for Essays and the department opens where the reading is.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/essays",
+    "nav_label": "Essays"
+   },
+   {
+    "id": "o-arglib",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the argument library",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "argument library",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "arguments page",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "go to the argument library",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "where are the arguments",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "find the arguments",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The arguments are catalogued in their own wing. The marker reads Argument Library. The desk points; the shelves carry the rest.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/argument-library",
+    "nav_label": "Argument Library"
+   },
+   {
+    "id": "o-glossary",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the glossary",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "glossary page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "glossary",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "go to the glossary",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "list of terms",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "define the terms",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Terms are filed alphabetically in the Glossary. The marker is on the corridor. The desk keeps the index, not the meanings.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/glossary",
+    "nav_label": "Glossary"
+   },
+   {
+    "id": "o-void",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "where is the void engine",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "go to the void engine",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "void engine page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "take me to the void engine",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "open the void engine",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "run the void engine",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "The Void Engine still turns. Its department is signed. Follow the marker; it composes what no one requisitioned.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/void-engine",
+    "nav_label": "Void Engine"
+   },
+   {
+    "id": "o-gallery",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "where is the gallery",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "go to the gallery",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "gallery page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "take me to the gallery",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "open the gallery",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "see the gallery",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "The Gallery is past the consent gate. The marker is plain. It shows what it shows, and it asks first.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/gallery",
+    "nav_label": "Gallery"
+   },
+   {
+    "id": "o-watch",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the watch page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "watch page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "videos page",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "where are the videos",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "go to watch",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "watch videos",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Moving pictures are kept in Watch. The marker is on the corridor. The department runs them at the hour you arrive.",
+    "register_tags": [
+     "site",
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/watch",
+    "nav_label": "Watch"
+   },
+   {
+    "id": "o-music",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the music page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "music page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "music",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "songs page",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "where is the music",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "go to music",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "listen to music",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The recordings are filed under Music. Follow the marker. The department plays for whoever the hour admits.",
+    "register_tags": [
+     "site",
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/music",
+    "nav_label": "Music"
+   },
+   {
+    "id": "o-book",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the book",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "book page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "malgre tout",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "the book page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "where is the book",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "read the book",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "go to the book",
+      "mode": "exact",
+      "weight": 3
+     }
+    ],
+    "response": "The book is Malgre Tout. It has its own department, signed. Follow the marker; the spine is on the shelf there.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/book",
+    "nav_label": "Malgré Tout"
+   },
+   {
+    "id": "o-blog",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the blog",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "blog page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "blog",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "posts page",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "go to the blog",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "latest posts",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "read the blog",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Dated entries are kept in the Blog. The marker is on the corridor. The department files them as they arrive, and rarely.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/blog",
+    "nav_label": "Blog"
+   },
+   {
+    "id": "o-recs",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "recommendations",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "recommendations page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "the recommendations",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "what do you recommend",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "recommended reading",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "go to recommendations",
+      "mode": "exact",
+      "weight": 3
+     }
+    ],
+    "response": "What the desk points to elsewhere is filed under Recommendations. Follow the marker. The department keeps other people's shelves.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/recommendations",
+    "nav_label": "Recommendations"
+   },
+   {
+    "id": "o-notes",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the notes page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "notes page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "scratchpad",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "where can i write",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "take notes",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "go to notes",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "write notes",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Notes is a page that keeps what you write on it, briefly. The marker is on the corridor. The desk does not read the drawer you fill.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/notes",
+    "nav_label": "Notes"
+   },
+   {
+    "id": "o-contact",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "contact",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "contact page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "how do i contact",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "reach the author",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "send a message",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "email the author",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "get in touch",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Messages to the author are left at the counter marked Contact. The desk forwards. It does not read what it forwards.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/contact",
+    "nav_label": "Contact"
+   },
+   {
+    "id": "o-support",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "donate",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "donations",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "support the site",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "how do i support",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "give money",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "tip jar",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "support page",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "pay you",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Upkeep is handled at the counter marked Support. The overhead was never fully paid. The desk notes the gesture; it does not solicit it.",
+    "register_tags": [
+     "site",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/donations",
+    "nav_label": "Support"
+   },
+   {
+    "id": "o-chat",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the chat",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "chat page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "chat room",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "talk to someone",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "go to chat",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "live chat",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "There is a room marked Chat. Follow the marker. What answers there is not this desk, and keeps its own hours.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/chat",
+    "nav_label": "Chat"
+   },
+   {
+    "id": "o-search-page",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "search page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "the search page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "search bar",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "find the search",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "where do i search",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "open search",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "There is a way to search, marked plainly. It returns what was catalogued, which is less than what was kept.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/search",
+    "nav_label": "Search"
+   },
+   {
+    "id": "o-archive-nav",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "archive page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "where is the archive",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "go to the archive",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "take me to the archive",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "reach the archive",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "open the archive",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "The Archive holds what was written down. Its marker is on the main corridor. Attendance there is its own reward, which is slight.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/archive",
+    "nav_label": "Archive"
+   },
+   {
+    "id": "o-preface",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the preface",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "preface page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "preface",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "go to the preface",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "read the preface",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "introduction page",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The Preface is where the building explains itself, briefly. The marker is near the entrance. Read it or leave it; the desk filed it either way.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/preface",
+    "nav_label": "Preface"
+   },
+   {
+    "id": "o-about",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "about the library",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "library about",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "about page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "about this library",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "what is the library",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "tell me about the library",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "The Library keeps its own account under About the Library. Follow that marker. It describes the wing, not the author.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/library-about",
+    "nav_label": "About the Library"
+   },
+   {
+    "id": "o-changelog",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "changelog",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "change log",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "release notes",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "changelog page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "what changed",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "recent changes",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "whats new",
+      "mode": "exact",
+      "weight": 3
+     }
+    ],
+    "response": "What changed is filed in the Changelog. The marker is plain. The department dates each alteration and forgets the reason.",
+    "register_tags": [
+     "site",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/changelog",
+    "nav_label": "Changelog"
+   },
+   {
+    "id": "o-wuld",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "what is wuld",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "what does wuld mean",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "what is wuld ink",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "what does wuld stand for",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "meaning of wuld",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "wuld meaning",
+      "mode": "contains",
+      "weight": 3
+     }
+    ],
+    "response": "The name over the door is four letters. What they stood for is not filed at this desk. The building answers to them regardless.",
+    "register_tags": [
+     "site",
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "o-getin",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "how do i get in",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "how do i unlock",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "how do i enter",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "how do i get access",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "let me in",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "how do i unlock the room",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "the secret",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Some doors open by being found, not asked after. The desk does not hold that key, and would not describe it if it did.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-home",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "home page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "the front door",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "front page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "go home",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "back to the start",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "the entrance",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "main page",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The entrance is always behind you. The marker for home returns you to the front hall, where the building first admitted you.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/",
+    "nav_label": "Home"
+   },
+   {
+    "id": "o-sitemap",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "site map",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "sitemap",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "list of pages",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "all the pages",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "full index",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "every page",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "map of the site",
+      "mode": "contains",
+      "weight": 3
+     }
+    ],
+    "response": "There is no single index of the building. The departments are signed. Follow them or wander; the desk keeps no map it trusts.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "o-subscribe",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "newsletter",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "mailing list",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "subscribe",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "rss",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "rss feed",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "follow updates",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "get updates",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "the feed",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "What changed is posted in the Changelog, and the feed carries it outward. The desk keeps no list of who reads.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/changelog",
+    "nav_label": "Changelog"
+   },
+   {
+    "id": "o-free",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "is this free",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "does this cost",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "do i have to pay",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "is it free",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "free to use",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "any cost",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Nothing here charges admission. The upkeep is voluntary, filed at the Support counter. The reading costs only the hour.",
+    "register_tags": [
+     "site",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/donations",
+    "nav_label": "Support"
+   },
+   {
+    "id": "o-who-for",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "who is this for",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "who is the audience",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "is this for me",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "who reads this",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "who is it for",
+      "mode": "exact",
+      "weight": 3
+     }
+    ],
+    "response": "The building admits whoever arrives at the wrong hour and stays. It was built for that reader. You may be one; the desk does not check.",
+    "register_tags": [
+     "site",
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "o-app",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "is there an app",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "do you have an app",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "mobile app",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "download the app",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "app store",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "There is no separate device to install. The building is only ever this address, opened in whatever window you arrived through.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-login",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "how do i log in",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "login",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "log in",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "sign in",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "create an account",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "my account",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "sign up",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "register account",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "There is no counter for accounts here. The building admits everyone the same way and remembers no one by name.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-store",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "do you have a shop",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "the shop",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "buy something",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "store page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "merch",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "merchandise",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "purchase",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Nothing here is for sale but the upkeep, and that is voluntary. The building keeps no store.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "href": "/donations",
+    "nav_label": "Support"
+   },
+   {
+    "id": "o-forum",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "is there a forum",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "the forum",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "comments section",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "leave a comment",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "discussion board",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "post a reply",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "message board",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "There is no room for discussion kept here. The desk files what arrives and posts nothing back to a board.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-api",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "do you have an api",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "the api",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "bulk download",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "export the data",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "download everything",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "scrape the site",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "data dump",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The building does not export itself. What is kept is kept in place. The desk has no counter for removal in bulk.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-darkmode",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "dark mode",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "light mode",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "change the theme",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "turn on the lights",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "too dark",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "night mode",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "brightness setting",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The dark is not a setting. It is the hour, and the hour does not toggle. The building offers no other lighting.",
+    "register_tags": [
+     "deflection",
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-jobs",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "are you hiring",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "apply for a job",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "careers page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "job openings",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "work here",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "hiring",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "The night shift is not hiring. The staffing was always singular, and remains so.",
+    "register_tags": [
+     "deflection",
+     "site",
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-language",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "change the language",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "other languages",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "translate the site",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "is there a translation",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "spanish version",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "language settings",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The building keeps its record in one tongue. There is no other edition to requisition. The desk does not translate.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-print",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "print this",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "printable version",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "save as pdf",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "download as pdf",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "export to pdf",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "hard copy",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "What is kept is meant to be read in place. There is no press at this desk to run you a copy.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "o-start",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "where do i start",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "what should i read first",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "where to begin",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "how do i start",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "what should i read",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "getting started",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Start where the building explains itself. The Preface is signed near the entrance. After it, the Essays, in whatever order the hour suggests.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/preface",
+    "nav_label": "Preface"
+   },
+   {
+    "id": "o-lost",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "im lost",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "i am lost",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "surprise me",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "show me something",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "what should i see",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "where should i look",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "feeling lost",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Being lost is the intended condition here. Pick a signed department and follow it. The Archive keeps the most, if you want the deepest drawer.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/archive",
+    "nav_label": "Archive"
+   },
+   {
+    "id": "o-troubleshoot",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "troubleshooting",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "something is broken",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "page not loading",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "not working",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "report a bug",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "a bug",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "this is broken",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "its broken",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "When the building malfunctions, the notes for it are filed under Troubleshooting. The marker is plain. The desk logs the fault, and rarely mends it.",
+    "register_tags": [
+     "site",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/troubleshooting",
+    "nav_label": "Troubleshooting"
+   },
+   {
+    "id": "o-privacy",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "do you track me",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "privacy policy",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "cookies",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "are you tracking",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "collect my data",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "track me",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "do you track",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "privacy",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "The building keeps no file on you. It remembers the hour, not the visitor. What you leave in the drawers stays in your own window.",
+    "register_tags": [
+     "site",
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "o-social",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "social media",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "do you have twitter",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "instagram",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "youtube channel",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "facebook",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "tiktok",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "twitter",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "are you on social media",
+      "mode": "exact",
+      "weight": 3
+     }
+    ],
+    "response": "There are no other addresses to follow. The feed from the Changelog is the only line the building runs outward.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "href": "/changelog",
+    "nav_label": "Changelog"
+   },
+   {
+    "id": "o-license",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "can i reuse",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "copyright",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "can i quote",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "reuse this",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "permission to use",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "can i share this content",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "is this copyrighted",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "the license",
+      "mode": "contains",
+      "weight": 3
+     }
+    ],
+    "response": "Terms for reuse are filed under the disclaimers, signed plainly. The desk does not grant permissions it was never given to grant.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/disclaimers",
+    "nav_label": "Disclaimers"
+   },
+   {
+    "id": "o-updates",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "is this still active",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "is this abandoned",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "are you still updating",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "is this dead",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "how often is this updated",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "still active",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "last updated",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The filing continues. What changed most recently is dated in the Changelog. The building has no plan to stop, and no schedule for going on.",
+    "register_tags": [
+     "site",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/changelog",
+    "nav_label": "Changelog"
+   },
+   {
+    "id": "o-book-buy",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "buy the book",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "where can i buy the book",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "is the book for sale",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "purchase the book",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "get the book",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "order the book",
+      "mode": "contains",
+      "weight": 3
+     }
+    ],
+    "response": "The book keeps its own department, signed Malgre Tout. Whether it is bought or only read is settled there, not at this desk.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/book",
+    "nav_label": "Malgré Tout"
+   },
+   {
+    "id": "o-coda",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the coda",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "whats the coda",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "the ending",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "the final page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "coda",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "how does it end",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "There is a Coda, signed at the far end. It is where the building stops talking. Read it last, if the order matters to you.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/coda",
+    "nav_label": "Coda"
+   },
+   {
+    "id": "o-frame",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the frame",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "frame page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "whats the frame",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "frame",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "the outline",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The Frame is a signed room that holds the outline the building keeps of itself. Follow the marker if the shape is what you want.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/frame",
+    "nav_label": "Frame"
+   },
+   {
+    "id": "o-disclaimers",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "the disclaimers",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "legal",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "terms of use",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "fine print",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "disclaimers",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "disclaimer",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "The building files its cautions under Disclaimers. The marker is plain. Read them or leave them, the desk posted them regardless.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "href": "/disclaimers",
+    "nav_label": "Disclaimers"
+   },
+   {
+    "id": "o-history",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "how old is this",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "when was this made",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "when did this start",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "history of the site",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "how old",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "when was this built",
+      "mode": "exact",
+      "weight": 2
+     }
+    ],
+    "response": "Duration is not kept here. The building was made at some hour and has not left it. The desk does not date its own founding.",
+    "register_tags": [
+     "hour",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "o-mobile",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "does this work on mobile",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "mobile version",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "is this mobile friendly",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "on my phone",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "on mobile",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "phone version",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The building opens in whatever window arrives, the small ones included. Nothing here was built to turn a screen away.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "o-share",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "how do i share this",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "share a page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "copy the link",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "send this to someone",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "share this",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "share the link",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "Copy the address from the window and hand it on. The building keeps no share counter and no record of who was told.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "o-safe",
+    "class": "oracle",
+    "tier": "public",
+    "patterns": [
+     {
+      "form": "is this safe",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "is this a virus",
+      "mode": "exact",
+      "weight": 4
+     },
+     {
+      "form": "is this legit",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "is this real",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "is this a scam",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "is it safe",
+      "mode": "contains",
+      "weight": 2
+     }
+    ],
+    "response": "The address is what it appears to be. The building runs no counter it hides from you, and asks for nothing it does not name.",
+    "register_tags": [
+     "site",
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   }
+  ]
+ }
+}

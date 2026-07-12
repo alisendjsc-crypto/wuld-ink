@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Jul 2026 05:48:46 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 07:24:17 +0000</lastBuildDate>
+    <item>
+      <title>Yūrei, the interior's resident, steps out from the margins into a desk you can address directly. Ask where something lives and she points you to the department — the essays, the argument library, the void engine, the gallery, and the building's other signed rooms; say anything else and she files it in character. She keeps to a bounded repertoire rather than pretending to answer everything, reads the hour and the room, and drops the fiction for a real crisis line when it matters. Dismissible, keyboard-operable, and quiet under reduced-motion.</title>
+      <link>https://wuld.ink/changelog/#2026-07-12-yurei-desk-assistant</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-12-yurei-desk-assistant</guid>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Yūrei, the interior's resident, steps out from the margins into a desk you can address directly. Ask where something lives and she points you to the department — the essays, the argument library, the void engine, the gallery, and the building's other signed rooms; say anything else and she files it in character. She keeps to a bounded repertoire rather than pretending to answer everything, reads the hour and the room, and drops the fiction for a real crisis line when it matters. Dismissible, keyboard-operable, and quiet under reduced-motion.</description>
+    </item>
     <item>
       <title>The argument library takes its first content step since the v3.8 freeze: version 4.0.0. An 82nd objection joins the catalogue — the Kantian charge that 'do not procreate' cannot be willed as universal law — with the full three-depth treatment and its own plain-language card, and the contractualism entry is regenerated to meet the strongest modern ex-ante form of that objection, its plain card re-mirrored to match. The maps and the grading ledger move in step: 82 objections, a 117-node mechanism web, 255 dependency edges.</title>
       <link>https://wuld.ink/changelog/#2026-07-11-library-v4-0-0</link>

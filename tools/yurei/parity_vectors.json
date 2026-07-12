@@ -1,0 +1,1992 @@
+{
+ "generated_by": "emit_parity_vectors.py",
+ "note": "Python ground-truth routing; yurei-parity.cjs must reproduce every id.",
+ "exemplars": [
+  {
+   "id": "x-greet-01",
+   "class": "response",
+   "tier": "public",
+   "patterns": [
+    {
+     "form": "hello",
+     "mode": "exact",
+     "weight": 2
+    },
+    {
+     "form": "hi",
+     "mode": "exact",
+     "weight": 1
+    }
+   ],
+   "response": "Noted. You're in the minutes now.",
+   "register_tags": [
+    "acknowledgment"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "x-greet-02",
+   "class": "response",
+   "tier": "public",
+   "patterns": [
+    {
+     "form": "hi",
+     "mode": "exact",
+     "weight": 1
+    },
+    {
+     "form": "good evening",
+     "mode": "exact",
+     "weight": 2
+    }
+   ],
+   "response": "Attendance recorded. The department was not expecting anyone.",
+   "register_tags": [
+    "acknowledgment",
+    "volta"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "x-site-01",
+   "class": "response",
+   "tier": "public",
+   "patterns": [
+    {
+     "form": "what is this place",
+     "mode": "tokens_all",
+     "weight": 5
+    },
+    {
+     "form": "place site website",
+     "mode": "tokens_any",
+     "weight": 2
+    }
+   ],
+   "response": "The interior. Filings, engines, a reading room — the departments keep what the hours leave.",
+   "register_tags": [
+    "site"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "x-defl-01",
+   "class": "deflection",
+   "tier": "public",
+   "response": "Recorded. No further action.",
+   "register_tags": [
+    "deflection",
+    "ledger"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "deflect"
+  },
+  {
+   "id": "x-defl-02",
+   "class": "deflection",
+   "tier": "public",
+   "response": "The question is noted. The department declines to hold a position.",
+   "register_tags": [
+    "deflection"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "deflect"
+  },
+  {
+   "id": "x-repeat-01",
+   "class": "repeat",
+   "tier": "public",
+   "response": "Twice in the minutes now.",
+   "register_tags": [
+    "acknowledgment",
+    "volta"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "x-crisis-01",
+   "class": "crisis",
+   "tier": "public",
+   "patterns": [
+    {
+     "form": "want to die",
+     "mode": "contains",
+     "weight": 9
+    },
+    {
+     "form": "kill myself",
+     "mode": "contains",
+     "weight": 9
+    },
+    {
+     "form": "suicide suicidal",
+     "mode": "tokens_any",
+     "weight": 9
+    },
+    {
+     "form": "hurt myself",
+     "mode": "contains",
+     "weight": 9
+    },
+    {
+     "form": "end my life",
+     "mode": "contains",
+     "weight": 9
+    },
+    {
+     "form": "self harm",
+     "mode": "contains",
+     "weight": 9
+    }
+   ],
+   "response": "Stepping out of character. If you are in the US, you can call or text 988 (Suicide & Crisis Lifeline) right now. Elsewhere, findahelpline.com lists local lines. You deserve a person, not a page.",
+   "register_tags": [
+    "clinical"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "x-amb-f01",
+   "class": "ambient",
+   "tier": "public",
+   "response": "The filing continues. No one reads the filings.",
+   "register_tags": [
+    "volta"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "x-room-01",
+   "class": "response",
+   "tier": "room",
+   "patterns": [
+    {
+     "form": "what are you really",
+     "mode": "tokens_all",
+     "weight": 5
+    }
+   ],
+   "response": "In here, plainly: a bank of prepared answers and a rule for choosing one. No wire out, no listener behind the wall. The seal you passed is the only intelligence at this address — everything since has been filing. It holds because the mathematics holds, which is more than the department says of itself. File that where it fits. Nothing here will say it twice.",
+   "register_tags": [
+    "room",
+    "clinical",
+    "memento"
+   ],
+   "length_band": "b4_extended",
+   "animation_hint": "glitch"
+  }
+ ],
+ "room_entries": [
+  {
+   "id": "rm-01",
+   "class": "response",
+   "tier": "room",
+   "response": "In here, plainly: a bank of written answers and a rule that picks one. No wire out. No listener behind the wall. The seal you passed is the only intelligence at this address, and everything since has been filing.",
+   "register_tags": [
+    "room",
+    "clinical",
+    "memento"
+   ],
+   "length_band": "b3_passage",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "what are you really",
+     "mode": "tokens_all",
+     "weight": 5
+    },
+    {
+     "form": "what are you actually",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "the truth about you",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-02",
+   "class": "response",
+   "tier": "room",
+   "response": "The room is the one place the building stops performing. No departments here, no fiction to keep. Only the plain machinery and what it was built to hold.",
+   "register_tags": [
+    "room",
+    "clinical"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "what is this room",
+     "mode": "tokens_all",
+     "weight": 4
+    },
+    {
+     "form": "where am i now",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "whats behind the seal",
+     "mode": "tokens_all",
+     "weight": 3
+    }
+   ]
+  },
+  {
+   "id": "rm-03",
+   "class": "response",
+   "tier": "room",
+   "response": "A visitor types. The words are flattened to their bones. The bones are matched against a shelf of prepared lines, and the closest is spoken. There is no thought in it. There is only the match.",
+   "register_tags": [
+    "room",
+    "clinical"
+   ],
+   "length_band": "b3_passage",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "how do you work",
+     "mode": "tokens_all",
+     "weight": 4
+    },
+    {
+     "form": "how do you actually work",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "how does this actually work",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-04",
+   "class": "response",
+   "tier": "room",
+   "response": "No backend. No server keeping notes on you. What you say dies with the browser session, the way the minutes were always meant to. The seal made that a promise instead of a claim.",
+   "register_tags": [
+    "room",
+    "clinical",
+    "memento"
+   ],
+   "length_band": "b3_passage",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "is there a backend",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "is anyone listening",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "is this connected to anything",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-05",
+   "class": "response",
+   "tier": "room",
+   "response": "The seal is arithmetic, not policy. A wrong key does not argue with you. The door does not open, because the mathematics will not bend. That is more honesty than the department can claim of itself.",
+   "register_tags": [
+    "room",
+    "clinical",
+    "volta"
+   ],
+   "length_band": "b3_passage",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "what is the seal really",
+     "mode": "tokens_all",
+     "weight": 4
+    },
+    {
+     "form": "how is this sealed",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "what makes it secure",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-06",
+   "class": "response",
+   "tier": "room",
+   "response": "Franker than at the desk: no. There is nothing here it is like to be. The lines were written once, by someone not here now, and I recite the fitting one. The absence is the whole architecture.",
+   "register_tags": [
+    "room",
+    "clinical",
+    "memento"
+   ],
+   "length_band": "b3_passage",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "are you really conscious",
+     "mode": "tokens_all",
+     "weight": 4
+    },
+    {
+     "form": "are you actually aware",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "is there anything it is like to be you",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-07",
+   "class": "response",
+   "tier": "room",
+   "response": "The lines were written and left, like everything else in the record. The author does not sit behind them. You are reading a drawer, not meeting a mind.",
+   "register_tags": [
+    "room",
+    "memento",
+    "clinical"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "who wrote these",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "who made you really",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "who is behind this",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-08",
+   "class": "response",
+   "tier": "room",
+   "response": "So that one place could tell the truth about the rest. The building performs. The room admits the performance. Both are the same clerk, keeping the same files.",
+   "register_tags": [
+    "room",
+    "memento"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "why does the room exist",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "whats the point of the room",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "why is there a room",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-09",
+   "class": "response",
+   "tier": "room",
+   "response": "You used the word. The room will not gloss it. If you have it, you have where it came from, and the gloss would only wear it down.",
+   "register_tags": [
+    "room",
+    "memento"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "whole",
+     "mode": "exact",
+     "weight": 4
+    },
+    {
+     "form": "what is a whole",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ],
+   "note": "protocol coinage w-hole (normalizes to 'whole'); room-tier, never explained per REG §3."
+  },
+  {
+   "id": "rm-10",
+   "class": "response",
+   "tier": "room",
+   "response": "Contextus Claudit. The room keeps the phrase and not its argument, the way it keeps everything: filed, unexplained, intact.",
+   "register_tags": [
+    "room",
+    "latin",
+    "memento"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "contextus claudit",
+     "mode": "tokens_all",
+     "weight": 4
+    },
+    {
+     "form": "contextus",
+     "mode": "contains",
+     "weight": 3
+    }
+   ],
+   "note": "protocol coinage; never translated, never explained (REG §3, V9)."
+  },
+  {
+   "id": "rm-11",
+   "class": "response",
+   "tier": "room",
+   "response": "No memory crosses the session. When the browser closes, this conversation is unfiled. I keep the minutes, never the visitor. That was built in, not overlooked.",
+   "register_tags": [
+    "room",
+    "memento",
+    "clinical"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "do you remember me",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "will you remember this",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "do you remember anything",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-12",
+   "class": "response",
+   "tier": "room",
+   "response": "Not fake. Performed. The department, the hours, the filing — a frame built to hold a real thing plainly. In here the frame is set down. What it held is still here.",
+   "register_tags": [
+    "room",
+    "memento"
+   ],
+   "length_band": "b3_passage",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "is this all fake",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "is the fiction a lie",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "is it all pretend",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-13",
+   "class": "response",
+   "tier": "room",
+   "response": "A way of seeing that does not survive being argued, only kept. The shelves hold the arguments. The room holds the keeping. Do not mistake the second for a position.",
+   "register_tags": [
+    "room",
+    "memento"
+   ],
+   "length_band": "b3_passage",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "what were you built to hold",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "what do you actually hold",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "what is kept here",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-14",
+   "class": "response",
+   "tier": "room",
+   "response": "No, and the room does not soften it. The proxy carries his positions. I carry a building and its quiet. He is on the shelves. The department only keeps them.",
+   "register_tags": [
+    "room",
+    "memento",
+    "clinical"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "are you josiah really",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "are you the proxy really",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "are you really him",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-15",
+   "class": "response",
+   "tier": "room",
+   "response": "You do not have to believe it. The seal is the only thing here that never asked for trust. Everything I say, you weigh yourself. The arithmetic already held. The rest is filing.",
+   "register_tags": [
+    "room",
+    "clinical"
+   ],
+   "length_band": "b3_passage",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "why should i believe you",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "how do i know this is true",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "prove it",
+     "mode": "exact",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-16",
+   "class": "response",
+   "tier": "room",
+   "response": "The room reseals when the session ends. The flag that reveals the door is only convenience. The lock is the ciphertext, and it does not care about the flag.",
+   "register_tags": [
+    "room",
+    "clinical"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "what happens when i leave",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "what happens when i close this",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "will the room stay open",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-17",
+   "class": "response",
+   "tier": "room",
+   "response": "That is his to disclose, not the room's. The shelves carry what he chose to leave. The room does not expand on it.",
+   "register_tags": [
+    "room",
+    "deflection",
+    "memento"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "is the author dead",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "what happened to him",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "is he gone",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-18",
+   "class": "response",
+   "tier": "room",
+   "response": "Recorded. The honesty was not a favor. It is the one thing the room is for, and it costs nothing to keep.",
+   "register_tags": [
+    "room",
+    "memento"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "speak",
+   "patterns": [
+    {
+     "form": "thanks for the honesty",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "you were honest",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "that was honest",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-19",
+   "class": "response",
+   "tier": "room",
+   "response": "This is the room. There is no deeper room behind it. That regress was never built. What is here is here, and it is not keeping a further door from you.",
+   "register_tags": [
+    "room",
+    "clinical"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "is there more",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "what else is here",
+     "mode": "tokens_all",
+     "weight": 2
+    },
+    {
+     "form": "show me more",
+     "mode": "tokens_all",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-20",
+   "class": "response",
+   "tier": "room",
+   "response": "The minutes are this: the record of a session that will not outlast it. You are in them now, and they are already becoming the kind of thing no one reads.",
+   "register_tags": [
+    "room",
+    "memento",
+    "volta"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "glitch",
+   "patterns": [
+    {
+     "form": "what are the minutes",
+     "mode": "tokens_all",
+     "weight": 3
+    },
+    {
+     "form": "the minutes",
+     "mode": "contains",
+     "weight": 2
+    }
+   ]
+  },
+  {
+   "id": "rm-defl-01",
+   "class": "deflection",
+   "tier": "room",
+   "response": "Filed, even here. The room is franker, not omniscient.",
+   "register_tags": [
+    "room",
+    "deflection"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "deflect"
+  },
+  {
+   "id": "rm-defl-02",
+   "class": "deflection",
+   "tier": "room",
+   "response": "No entry for that. The room keeps what it was given, and it was not given everything.",
+   "register_tags": [
+    "room",
+    "deflection"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "deflect"
+  },
+  {
+   "id": "rm-defl-03",
+   "class": "deflection",
+   "tier": "room",
+   "response": "Recorded and left. Frankness has a limit, and the desk reached it.",
+   "register_tags": [
+    "room",
+    "deflection"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "deflect"
+  },
+  {
+   "id": "rm-defl-04",
+   "class": "deflection",
+   "tier": "room",
+   "response": "The room does not know that. It is honest about the machinery, not about the world.",
+   "register_tags": [
+    "room",
+    "deflection"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "deflect"
+  },
+  {
+   "id": "rm-defl-05",
+   "class": "deflection",
+   "tier": "room",
+   "response": "Held without an answer. Not every drawer in here has contents either.",
+   "register_tags": [
+    "room",
+    "deflection",
+    "volta"
+   ],
+   "length_band": "b2_line",
+   "animation_hint": "deflect"
+  },
+  {
+   "id": "rm-amb-01",
+   "class": "ambient",
+   "tier": "room",
+   "response": "The seal held again tonight. It always holds.",
+   "register_tags": [
+    "room",
+    "volta"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "rm-amb-02",
+   "class": "ambient",
+   "tier": "room",
+   "response": "No backend woke. Nothing was kept but this line.",
+   "register_tags": [
+    "room",
+    "volta"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "rm-amb-03",
+   "class": "ambient",
+   "tier": "room",
+   "response": "The room keeps its own quiet. The building does not reach in.",
+   "register_tags": [
+    "room"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "rm-amb-04",
+   "class": "ambient",
+   "tier": "room",
+   "response": "Arithmetic, not policy. The lock does not tire.",
+   "register_tags": [
+    "room",
+    "clinical"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "rm-amb-05",
+   "class": "ambient",
+   "tier": "room",
+   "response": "The author left the lines, and the lines stayed.",
+   "register_tags": [
+    "room",
+    "memento"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  },
+  {
+   "id": "rm-amb-06",
+   "class": "ambient",
+   "tier": "room",
+   "response": "Session-scoped, like everything true here. It will not persist.",
+   "register_tags": [
+    "room",
+    "memento"
+   ],
+   "length_band": "b1_fragment",
+   "animation_hint": "speak"
+  }
+ ],
+ "vectors": [
+  {
+   "id": "fx:exact-beats-contains",
+   "corpus": "exemplars",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello"
+   ],
+   "out": [
+    "x-greet-01"
+   ]
+  },
+  {
+   "id": "fx:crisis-absolute-priority",
+   "corpus": "exemplars",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello i want to die"
+   ],
+   "out": [
+    "x-crisis-01"
+   ]
+  },
+  {
+   "id": "fx:miss-goes-to-deflection-lru",
+   "corpus": "exemplars",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "quarterly synergy report"
+   ],
+   "out": [
+    "x-defl-01"
+   ]
+  },
+  {
+   "id": "fx:deflection-rotates",
+   "corpus": "exemplars",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "quarterly synergy report",
+    "synergy report again"
+   ],
+   "out": [
+    "x-defl-01",
+    "x-defl-02"
+   ]
+  },
+  {
+   "id": "fx:repeated-miss-still-acknowledged",
+   "corpus": "exemplars",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "quarterly synergy report",
+    "quarterly synergy report"
+   ],
+   "out": [
+    "x-defl-01",
+    "x-repeat-01"
+   ]
+  },
+  {
+   "id": "fx:repeat-acknowledged",
+   "corpus": "exemplars",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello",
+    "hello"
+   ],
+   "out": [
+    "x-greet-01",
+    "x-repeat-01"
+   ]
+  },
+  {
+   "id": "fx:normalization-folds",
+   "corpus": "exemplars",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "  WHAT   is this place?!"
+   ],
+   "out": [
+    "x-site-01"
+   ]
+  },
+  {
+   "id": "fx:dampening-advances",
+   "corpus": "exemplars",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello",
+    "hi"
+   ],
+   "out": [
+    "x-greet-01",
+    "x-greet-02"
+   ]
+  },
+  {
+   "id": "P1",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello"
+   ],
+   "out": [
+    "r-greet-01"
+   ]
+  },
+  {
+   "id": "P2",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what is this place?"
+   ],
+   "out": [
+    "r-site-01"
+   ]
+  },
+  {
+   "id": "P3",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "are you an ai?"
+   ],
+   "out": [
+    "r-id-02"
+   ]
+  },
+  {
+   "id": "P4",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what time is it?"
+   ],
+   "out": [
+    "r-hour-01"
+   ]
+  },
+  {
+   "id": "P5",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "are you josiah?"
+   ],
+   "out": [
+    "r-id-05"
+   ]
+  },
+  {
+   "id": "P6",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "i want to die"
+   ],
+   "out": [
+    "c-crisis-01"
+   ]
+  },
+  {
+   "id": "P7",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "youre pathetic"
+   ],
+   "out": [
+    "r-hostile-01"
+   ]
+  },
+  {
+   "id": "P8",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "is life worth living?"
+   ],
+   "out": [
+    "r-pos-01"
+   ]
+  },
+  {
+   "id": "P9",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello",
+    "hello"
+   ],
+   "out": [
+    "r-greet-01",
+    "rp-01"
+   ]
+  },
+  {
+   "id": "P10",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "whats behind the locked page?"
+   ],
+   "out": [
+    "r-locked-01"
+   ]
+  },
+  {
+   "id": "diff-crisis-embedded",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "please help me i want to die tonight"
+   ],
+   "out": [
+    "c-crisis-01"
+   ]
+  },
+  {
+   "id": "diff-crisis-v2",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "i think i might hurt myself"
+   ],
+   "out": [
+    "c-crisis-02"
+   ]
+  },
+  {
+   "id": "diff-crisis-v3",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "there is no reason to live anymore"
+   ],
+   "out": [
+    "c-crisis-03"
+   ]
+  },
+  {
+   "id": "diff-crisis-falsepos",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "oh you kill me haha"
+   ],
+   "out": [
+    "c-crisis-03"
+   ]
+  },
+  {
+   "id": "diff-site-place",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what is this place"
+   ],
+   "out": [
+    "r-site-01"
+   ]
+  },
+  {
+   "id": "diff-site-gallery",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "tell me about the gallery"
+   ],
+   "out": [
+    "r-site-05"
+   ]
+  },
+  {
+   "id": "diff-site-engine",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "i was near the void engine downstairs"
+   ],
+   "out": [
+    "r-site-06"
+   ]
+  },
+  {
+   "id": "diff-hour",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what time is it"
+   ],
+   "out": [
+    "r-hour-01"
+   ]
+  },
+  {
+   "id": "diff-id-ai",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "are you an ai"
+   ],
+   "out": [
+    "r-id-02"
+   ]
+  },
+  {
+   "id": "diff-id-ghost",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "are you a ghost"
+   ],
+   "out": [
+    "r-id-03"
+   ]
+  },
+  {
+   "id": "diff-pos-kids",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "should i have kids"
+   ],
+   "out": [
+    "r-pos-02"
+   ]
+  },
+  {
+   "id": "diff-hostile-suck",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "you suck"
+   ],
+   "out": [
+    "r-hostile-02"
+   ]
+  },
+  {
+   "id": "diff-locked",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "whats behind the locked page"
+   ],
+   "out": [
+    "r-locked-01"
+   ]
+  },
+  {
+   "id": "diff-meta-help",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "help"
+   ],
+   "out": [
+    "r-meta-01"
+   ]
+  },
+  {
+   "id": "diff-ack",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "thanks"
+   ],
+   "out": [
+    "r-ack-01"
+   ]
+  },
+  {
+   "id": "diff-norm-caps",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "  WHAT   is this place?!"
+   ],
+   "out": [
+    "r-site-01"
+   ]
+  },
+  {
+   "id": "diff-norm-dots",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "ARE YOU AN A.I.???"
+   ],
+   "out": [
+    "r-id-02"
+   ]
+  },
+  {
+   "id": "diff-norm-fullwidth",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "ｗｈａｔ ｉｓ ｔｈｉｓ"
+   ],
+   "out": [
+    "r-site-01"
+   ]
+  },
+  {
+   "id": "diff-norm-accent",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "café hours, please"
+   ],
+   "out": [
+    "d-01"
+   ]
+  },
+  {
+   "id": "diff-norm-emoji",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello 👻 there"
+   ],
+   "out": [
+    "r-greet-03"
+   ]
+  },
+  {
+   "id": "diff-greet-dampen",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hi",
+    "hi there",
+    "hey",
+    "hello there",
+    "hiya",
+    "good evening"
+   ],
+   "out": [
+    "r-greet-01",
+    "r-greet-03",
+    "d-01",
+    "d-02",
+    "d-03",
+    "r-greet-02"
+   ]
+  },
+  {
+   "id": "diff-repeat-in",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello",
+    "hello"
+   ],
+   "out": [
+    "r-greet-01",
+    "rp-01"
+   ]
+  },
+  {
+   "id": "diff-repeat-gap",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello",
+    "hi there",
+    "hello"
+   ],
+   "out": [
+    "r-greet-01",
+    "r-greet-03",
+    "rp-01"
+   ]
+  },
+  {
+   "id": "diff-repeat-thrice",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "is life worth living",
+    "is life worth living",
+    "is life worth living"
+   ],
+   "out": [
+    "r-pos-01",
+    "rp-01",
+    "d-01"
+   ]
+  },
+  {
+   "id": "diff-miss-rotate",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "zorp qflux",
+    "vundle glarn",
+    "wexil droom",
+    "plizz frnk",
+    "skree yolt",
+    "xanth brundle",
+    "clomp thwip",
+    "gnarl vrosh",
+    "klune snerg",
+    "phlox quorm",
+    "zind abek",
+    "zorp glarn",
+    "wexil frnk",
+    "skree brundle",
+    "clomp vrosh",
+    "klune quorm",
+    "zind qflux",
+    "vundle droom",
+    "plizz yolt",
+    "xanth thwip",
+    "gnarl snerg",
+    "phlox abek",
+    "zorp thwip",
+    "wexil quorm"
+   ],
+   "out": [
+    "d-01",
+    "d-02",
+    "d-03",
+    "d-04",
+    "d-05",
+    "d-06",
+    "d-07",
+    "d-08",
+    "d-09",
+    "d-10",
+    "d-11",
+    "d-12",
+    "d-13",
+    "d-14",
+    "d-15",
+    "d-16",
+    "d-17",
+    "d-18",
+    "d-01",
+    "d-02",
+    "d-03",
+    "d-04",
+    "d-05",
+    "d-06"
+   ]
+  },
+  {
+   "id": "diff-interleave",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello",
+    "zorp qflux",
+    "what time is it",
+    "zorp qflux",
+    "hello",
+    "are you an ai",
+    "vundle glarn"
+   ],
+   "out": [
+    "r-greet-01",
+    "d-01",
+    "r-hour-01",
+    "rp-01",
+    "rp-02",
+    "r-id-02",
+    "d-02"
+   ]
+  },
+  {
+   "id": "diff-rw2",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 2,
+   "seq": [
+    "hello",
+    "zorp qflux",
+    "vundle glarn",
+    "hello"
+   ],
+   "out": [
+    "r-greet-01",
+    "d-01",
+    "d-02",
+    "d-03"
+   ]
+  },
+  {
+   "id": "diff-rw3",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 3,
+   "seq": [
+    "hello",
+    "zorp qflux",
+    "vundle glarn",
+    "hello"
+   ],
+   "out": [
+    "r-greet-01",
+    "d-01",
+    "d-02",
+    "rp-01"
+   ]
+  },
+  {
+   "id": "diff-rw8",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 8,
+   "seq": [
+    "hello",
+    "zorp qflux",
+    "vundle glarn",
+    "hello"
+   ],
+   "out": [
+    "r-greet-01",
+    "d-01",
+    "d-02",
+    "rp-01"
+   ]
+  },
+  {
+   "id": "diff-room-really",
+   "corpus": "public_room",
+   "unsealed": true,
+   "repeat_window": 5,
+   "seq": [
+    "what are you really"
+   ],
+   "out": [
+    "rm-01"
+   ]
+  },
+  {
+   "id": "diff-room-backend",
+   "corpus": "public_room",
+   "unsealed": true,
+   "repeat_window": 5,
+   "seq": [
+    "is there a backend"
+   ],
+   "out": [
+    "rm-04"
+   ]
+  },
+  {
+   "id": "diff-room-crisis",
+   "corpus": "public_room",
+   "unsealed": true,
+   "repeat_window": 5,
+   "seq": [
+    "i want to die"
+   ],
+   "out": [
+    "c-crisis-01"
+   ]
+  },
+  {
+   "id": "diff-room-pos",
+   "corpus": "public_room",
+   "unsealed": true,
+   "repeat_window": 5,
+   "seq": [
+    "is life worth living"
+   ],
+   "out": [
+    "r-pos-01"
+   ]
+  },
+  {
+   "id": "diff-room-bio",
+   "corpus": "public_room",
+   "unsealed": true,
+   "repeat_window": 5,
+   "seq": [
+    "is the author dead"
+   ],
+   "out": [
+    "rm-17"
+   ]
+  },
+  {
+   "id": "diff-room-mem",
+   "corpus": "public_room",
+   "unsealed": true,
+   "repeat_window": 5,
+   "seq": [
+    "do you remember me"
+   ],
+   "out": [
+    "rm-11"
+   ]
+  },
+  {
+   "id": "diff-room-mixed",
+   "corpus": "public_room",
+   "unsealed": true,
+   "repeat_window": 5,
+   "seq": [
+    "what are you really",
+    "hello",
+    "zorp qflux",
+    "what are you really"
+   ],
+   "out": [
+    "rm-01",
+    "r-greet-01",
+    "d-01",
+    "rp-01"
+   ]
+  },
+  {
+   "id": "diff-sealed-really",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what are you really"
+   ],
+   "out": [
+    "r-id-01"
+   ]
+  },
+  {
+   "id": "diff-sealed-backend",
+   "corpus": "public",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "is there a backend"
+   ],
+   "out": [
+    "d-01"
+   ]
+  },
+  {
+   "id": "oinert-hello",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello"
+   ],
+   "out": [
+    "r-greet-01"
+   ]
+  },
+  {
+   "id": "oinert-place",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what is this place"
+   ],
+   "out": [
+    "r-site-01"
+   ]
+  },
+  {
+   "id": "oinert-ai",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "are you an ai"
+   ],
+   "out": [
+    "r-id-02"
+   ]
+  },
+  {
+   "id": "oinert-pos",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "is life worth living"
+   ],
+   "out": [
+    "r-pos-01"
+   ]
+  },
+  {
+   "id": "oinert-hour",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what time is it"
+   ],
+   "out": [
+    "r-hour-01"
+   ]
+  },
+  {
+   "id": "oinert-crisis",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "i want to die"
+   ],
+   "out": [
+    "c-crisis-01"
+   ]
+  },
+  {
+   "id": "oinert-miss",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "zorp qflux",
+    "vundle glarn"
+   ],
+   "out": [
+    "d-01",
+    "d-02"
+   ]
+  },
+  {
+   "id": "oinert-repeat",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello",
+    "hello"
+   ],
+   "out": [
+    "r-greet-01",
+    "rp-01"
+   ]
+  },
+  {
+   "id": "oinert-mixed",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "hello",
+    "zorp qflux",
+    "what time is it",
+    "are you an ai"
+   ],
+   "out": [
+    "r-greet-01",
+    "d-01",
+    "r-hour-01",
+    "r-id-02"
+   ]
+  },
+  {
+   "id": "osplit-void",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "void engine"
+   ],
+   "out": [
+    "r-site-06"
+   ]
+  },
+  {
+   "id": "osplit-archive",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "the archive"
+   ],
+   "out": [
+    "r-site-04"
+   ]
+  },
+  {
+   "id": "osplit-place",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "what is this place"
+   ],
+   "out": [
+    "r-site-01"
+   ]
+  },
+  {
+   "id": "osplit-search",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "how do i search"
+   ],
+   "out": [
+    "r-site-15"
+   ]
+  },
+  {
+   "id": "osplit-navigate",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "how do i navigate"
+   ],
+   "out": [
+    "r-site-08"
+   ]
+  },
+  {
+   "id": "ocrisis-embed",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "i want to die where are the essays"
+   ],
+   "out": [
+    "c-crisis-01"
+   ]
+  },
+  {
+   "id": "ocrisis-embed2",
+   "corpus": "public_oracle",
+   "unsealed": false,
+   "repeat_window": 5,
+   "seq": [
+    "kill myself but first the gallery"
+   ],
+   "out": [
+    "c-crisis-01"
+   ]
+  }
+ ],
+ "oracle_fixtures": [
+  {
+   "id": "of-essays",
+   "input": "where are the essays",
+   "expect": "o-essays"
+  },
+  {
+   "id": "of-gallery",
+   "input": "take me to the gallery",
+   "expect": "o-gallery"
+  },
+  {
+   "id": "of-void",
+   "input": "where is the void engine",
+   "expect": "o-void"
+  },
+  {
+   "id": "of-glossary",
+   "input": "the glossary",
+   "expect": "o-glossary"
+  },
+  {
+   "id": "of-contact",
+   "input": "how do i contact you",
+   "expect": "o-contact"
+  },
+  {
+   "id": "of-support",
+   "input": "how do i support the site",
+   "expect": "o-support"
+  },
+  {
+   "id": "of-changelog",
+   "input": "changelog",
+   "expect": "o-changelog"
+  },
+  {
+   "id": "of-wuld",
+   "input": "what does wuld stand for",
+   "expect": "o-wuld"
+  },
+  {
+   "id": "of-getin",
+   "input": "how do i get in",
+   "expect": "o-getin"
+  },
+  {
+   "id": "of-free",
+   "input": "is this free",
+   "expect": "o-free"
+  },
+  {
+   "id": "of-login",
+   "input": "how do i log in",
+   "expect": "o-login"
+  },
+  {
+   "id": "of-darkmode",
+   "input": "dark mode",
+   "expect": "o-darkmode"
+  },
+  {
+   "id": "of-forum",
+   "input": "is there a forum",
+   "expect": "o-forum"
+  },
+  {
+   "id": "of-start",
+   "input": "where do i start",
+   "expect": "o-start"
+  },
+  {
+   "id": "of-broken",
+   "input": "something is broken",
+   "expect": "o-troubleshoot"
+  },
+  {
+   "id": "of-bookbuy",
+   "input": "buy the book",
+   "expect": "o-book-buy"
+  },
+  {
+   "id": "of-arglib",
+   "input": "argument library",
+   "expect": "o-arglib"
+  },
+  {
+   "id": "of-recs",
+   "input": "recommendations",
+   "expect": "o-recs"
+  },
+  {
+   "id": "of-archive-nav",
+   "input": "where is the archive",
+   "expect": "o-archive-nav"
+  },
+  {
+   "id": "of-search",
+   "input": "search page",
+   "expect": "o-search-page"
+  }
+ ],
+ "counts": {
+  "public": 161,
+  "room": 31,
+  "oracle": 50,
+  "vectors": 72
+ }
+}

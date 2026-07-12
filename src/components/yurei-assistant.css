@@ -1,0 +1,142 @@
+/* yurei-assistant.css — K224 interactive desk-assistant chrome.
+   Ghostly presence lives in the 0.42–0.62 band (assets ship full-alpha; this is
+   the site-side CSS the 3D relay left us). Same-origin, no external refs. */
+
+:root {
+  --yasst-presence: 0.55;          /* idle apparition opacity (0.42–0.62 band) */
+  --yasst-presence-active: 0.74;   /* while attended, for legibility */
+  --yasst-bg: rgba(12, 12, 15, 0.94);
+  --yasst-fg: #d8d6cf;
+  --yasst-fg-dim: #8f8c85;
+  --yasst-line: rgba(216, 214, 207, 0.14);
+  --yasst-accent: #b7a98c;
+  --yasst-you: rgba(183, 169, 140, 0.10);
+  --yasst-z: 9998;
+}
+
+/* ---------- launcher ---------- */
+.yasst-launcher {
+  position: fixed; right: 18px; bottom: 18px;
+  width: 58px; height: 58px; border-radius: 50%;
+  border: 1px solid var(--yasst-line);
+  background: #0c0c0f center 16% / 190% no-repeat;
+  opacity: var(--yasst-presence);
+  filter: grayscale(0.25) contrast(1.02);
+  cursor: pointer; padding: 0;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  transition: opacity 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  z-index: var(--yasst-z);
+}
+.yasst-launcher::after {                 /* faint ring */
+  content: ""; position: absolute; inset: -3px; border-radius: 50%;
+  border: 1px solid rgba(183, 169, 140, 0.22); pointer-events: none;
+}
+.yasst-launcher:hover, .yasst-launcher:focus-visible {
+  opacity: var(--yasst-presence-active); transform: translateY(-2px);
+  outline: none; box-shadow: 0 8px 26px rgba(0, 0, 0, 0.55);
+}
+.yasst-launcher:focus-visible { outline: 2px solid var(--yasst-accent); outline-offset: 2px; }
+
+/* ---------- panel ---------- */
+.yasst-panel {
+  position: fixed; right: 18px; bottom: 86px;
+  width: 328px; max-width: calc(100vw - 24px); max-height: 72vh;
+  display: flex; flex-direction: column;
+  background: var(--yasst-bg); color: var(--yasst-fg);
+  border: 1px solid var(--yasst-line); border-radius: 12px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  font: 400 15px/1.5 ui-serif, Georgia, "Times New Roman", serif;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 240ms ease, transform 240ms ease;
+  z-index: var(--yasst-z);
+  overflow: hidden;
+}
+.yasst-panel.yasst-open { opacity: 1; transform: translateY(0); }
+.yasst-panel[hidden] { display: none; }
+
+.yasst-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-bottom: 1px solid var(--yasst-line);
+}
+.yasst-avatar {
+  position: relative; width: 64px; height: 64px; flex: 0 0 auto;
+  border-radius: 8px; overflow: hidden; background: #0a0a0d;
+  opacity: var(--yasst-presence);
+}
+.yasst-av-vid, .yasst-av-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 16%;
+  filter: grayscale(0.2) contrast(1.03);
+}
+.yasst-titlewrap { flex: 1 1 auto; min-width: 0; }
+.yasst-title { font-size: 17px; letter-spacing: 0.02em; }
+.yasst-sub { font-size: 12px; color: var(--yasst-fg-dim); font-style: italic; }
+.yasst-close {
+  flex: 0 0 auto; width: 30px; height: 30px; border-radius: 6px;
+  background: transparent; border: 1px solid transparent; color: var(--yasst-fg-dim);
+  font-size: 20px; line-height: 1; cursor: pointer;
+}
+.yasst-close:hover, .yasst-close:focus-visible { color: var(--yasst-fg); border-color: var(--yasst-line); outline: none; }
+
+.yasst-transcript {
+  flex: 1 1 auto; overflow-y: auto; padding: 12px;
+  display: flex; flex-direction: column; gap: 10px; min-height: 90px;
+}
+.yasst-line { display: flex; }
+.yasst-line.yasst-you { justify-content: flex-end; }
+.yasst-line.yasst-desk { justify-content: flex-start; }
+.yasst-bubble {
+  max-width: 86%; padding: 8px 11px; border-radius: 10px;
+  font-size: 14.5px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word;
+}
+.yasst-desk .yasst-bubble { background: rgba(255, 255, 255, 0.035); border: 1px solid var(--yasst-line); border-bottom-left-radius: 3px; }
+.yasst-you .yasst-bubble { background: var(--yasst-you); border: 1px solid rgba(183, 169, 140, 0.2); border-bottom-right-radius: 3px; color: var(--yasst-fg); }
+.yasst-navlink {
+  display: inline-block; margin-top: 6px; color: var(--yasst-accent);
+  text-decoration: none; font-size: 13px; letter-spacing: 0.01em;
+  border-bottom: 1px solid rgba(183, 169, 140, 0.35);
+}
+.yasst-navlink:hover, .yasst-navlink:focus-visible { color: #d8c9a6; outline: none; border-bottom-color: #d8c9a6; }
+
+.yasst-form { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--yasst-line); }
+.yasst-input {
+  flex: 1 1 auto; min-width: 0; padding: 9px 11px;
+  background: rgba(0, 0, 0, 0.35); color: var(--yasst-fg);
+  border: 1px solid var(--yasst-line); border-radius: 8px;
+  font: inherit; font-size: 14px;
+}
+.yasst-input::placeholder { color: var(--yasst-fg-dim); font-style: italic; }
+.yasst-input:focus-visible { outline: none; border-color: var(--yasst-accent); }
+.yasst-send {
+  flex: 0 0 auto; padding: 0 14px; border-radius: 8px; cursor: pointer;
+  background: rgba(183, 169, 140, 0.14); color: var(--yasst-fg);
+  border: 1px solid rgba(183, 169, 140, 0.3); font: inherit; font-size: 13px; letter-spacing: 0.03em;
+}
+.yasst-send:hover, .yasst-send:focus-visible { background: rgba(183, 169, 140, 0.24); outline: none; }
+.yasst-status { display: none; }
+
+/* ---------- sprite flavors ---------- */
+.yasst-avatar.yasst-speaking { animation: yasst-breathe 2.4s ease-in-out infinite; }
+.yasst-avatar.yasst-glitch { animation: yasst-glitch 0.5s steps(2) 2; }
+.yasst-avatar.yasst-breeze .yasst-av-vid, .yasst-avatar.yasst-breeze .yasst-av-img { animation: yasst-sway 7s ease-in-out infinite; }
+.yasst-avatar.yasst-wrong { filter: contrast(1.1) brightness(0.92) saturate(0.8); }
+@keyframes yasst-breathe { 0%, 100% { opacity: var(--yasst-presence); } 50% { opacity: var(--yasst-presence-active); } }
+@keyframes yasst-glitch { 0% { transform: translateX(0); } 25% { transform: translateX(-1px) skewX(-1deg); } 75% { transform: translateX(1px) skewX(1deg); } 100% { transform: translateX(0); } }
+@keyframes yasst-sway { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+
+/* ---------- small screens ---------- */
+@media (max-width: 480px) {
+  .yasst-panel { right: 12px; left: 12px; width: auto; bottom: 80px; max-height: 68vh; }
+  .yasst-launcher { right: 14px; bottom: 14px; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .yasst-panel { transition: opacity 120ms linear; transform: none; }
+  .yasst-panel.yasst-open { transform: none; }
+  .yasst-launcher { transition: opacity 120ms linear; }
+  .yasst-avatar.yasst-speaking, .yasst-avatar.yasst-glitch,
+  .yasst-avatar.yasst-breeze .yasst-av-vid, .yasst-avatar.yasst-breeze .yasst-av-img { animation: none; }
+  .yasst-av-vid { display: none !important; }
+}

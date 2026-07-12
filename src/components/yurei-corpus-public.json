@@ -1,0 +1,3753 @@
+{
+ "yurei_corpus": {
+  "schema": "0.1",
+  "tier": "public",
+  "authored": "library seat — Yurei corpus commission v1",
+  "entries": [
+   {
+    "id": "r-greet-01",
+    "class": "response",
+    "tier": "public",
+    "response": "Received. You are in the record now.",
+    "register_tags": [
+     "acknowledgment"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "hello",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "hi",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "hey",
+      "mode": "exact",
+      "weight": 1
+     },
+     {
+      "form": "hiya",
+      "mode": "exact",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-greet-02",
+    "class": "response",
+    "tier": "public",
+    "response": "Your arrival is logged. The hour did not call for staff.",
+    "register_tags": [
+     "acknowledgment",
+     "hour"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "good evening",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "good morning",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "good afternoon",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "greetings",
+      "mode": "exact",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-greet-03",
+    "class": "response",
+    "tier": "public",
+    "response": "Seen. The department logs each arrival, yours among them.",
+    "register_tags": [
+     "acknowledgment"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "hey there",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "hi there",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "hello there",
+      "mode": "exact",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-greet-04",
+    "class": "response",
+    "tier": "public",
+    "response": "Someone is always here. That is the condition, not the courtesy.",
+    "register_tags": [
+     "acknowledgment",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "anyone here",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "anybody there",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "is anyone around",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-greet-05",
+    "class": "response",
+    "tier": "public",
+    "response": "Nothing is up. Matters are filed, or they are pending.",
+    "register_tags": [
+     "acknowledgment",
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "whats up",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "sup",
+      "mode": "exact",
+      "weight": 1
+     },
+     {
+      "form": "yo",
+      "mode": "exact",
+      "weight": 1
+     },
+     {
+      "form": "wassup",
+      "mode": "exact",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-greet-06",
+    "class": "response",
+    "tier": "public",
+    "response": "The formalities are noted. We can leave the rest unobserved.",
+    "register_tags": [
+     "acknowledgment"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "how do you do",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "pleased to meet you",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "nice to meet you",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-bye-01",
+    "class": "response",
+    "tier": "public",
+    "response": "Logged out. The record keeps the visit whether or not you return.",
+    "register_tags": [
+     "acknowledgment",
+     "memento"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "dismiss",
+    "patterns": [
+     {
+      "form": "goodbye",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "bye",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "farewell",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "see ya",
+      "mode": "exact",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-bye-02",
+    "class": "response",
+    "tier": "public",
+    "response": "Departure recorded. The hour continues without you, as it did before you.",
+    "register_tags": [
+     "memento",
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "dismiss",
+    "patterns": [
+     {
+      "form": "im leaving",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "i have to go",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "gotta go",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "i gotta go",
+      "mode": "tokens_all",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-bye-03",
+    "class": "response",
+    "tier": "public",
+    "response": "Marked closed for you. The night shift does not observe the courtesy.",
+    "register_tags": [
+     "hour",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "dismiss",
+    "patterns": [
+     {
+      "form": "goodnight",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "good night",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "night night",
+      "mode": "exact",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-bye-04",
+    "class": "response",
+    "tier": "public",
+    "response": "The visit is closed. Return or do not. The drawer stays where it is.",
+    "register_tags": [
+     "memento",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "dismiss",
+    "patterns": [
+     {
+      "form": "take care",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "see you later",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "catch you later",
+      "mode": "tokens_all",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-ack-01",
+    "class": "response",
+    "tier": "public",
+    "response": "Received. The department keeps no ledger of thanks.",
+    "register_tags": [
+     "acknowledgment",
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "thank you",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "thanks",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "thx",
+      "mode": "exact",
+      "weight": 1
+     },
+     {
+      "form": "thankyou",
+      "mode": "exact",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-ack-02",
+    "class": "response",
+    "tier": "public",
+    "response": "Acknowledged. The matter rests where it was left.",
+    "register_tags": [
+     "acknowledgment"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "got it",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "understood",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "okay",
+      "mode": "exact",
+      "weight": 1
+     },
+     {
+      "form": "noted",
+      "mode": "exact",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-site-01",
+    "class": "response",
+    "tier": "public",
+    "response": "The interior. An office that kept its filings after it lost its function.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what is this place",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "where am i",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "what is this",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-02",
+    "class": "response",
+    "tier": "public",
+    "response": "Not a site. An interior with departments, an archive, and engines that still run. Call it the building.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what is this site",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "what is this website",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "whats this website",
+      "mode": "tokens_all",
+      "weight": 3
+     }
+    ]
+   },
+   {
+    "id": "r-site-03",
+    "class": "response",
+    "tier": "public",
+    "response": "Filing, mostly. The requisitions stopped. The filing did not.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what do you do here",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "what happens here",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "what goes on here",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-04",
+    "class": "response",
+    "tier": "public",
+    "response": "The archive holds what was written down. It is open. Attendance there is its own reward, which is to say slight.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the archive",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "whats in the archive",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "tell me about the archive",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-05",
+    "class": "response",
+    "tier": "public",
+    "response": "The gallery is through the consent gate. It shows what it shows, and it asks first.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the gallery",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "whats in the gallery",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "show me the gallery",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-06",
+    "class": "response",
+    "tier": "public",
+    "response": "The engines still turn. The void engine composes transmissions no one requisitioned.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the engines",
+      "mode": "contains",
+      "weight": 4
+     },
+     {
+      "form": "void engine",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "the void engine",
+      "mode": "tokens_all",
+      "weight": 3
+     }
+    ]
+   },
+   {
+    "id": "r-site-07",
+    "class": "response",
+    "tier": "public",
+    "response": "The reading room is open. It keeps no attendance and needs none.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "reading room",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "the shelves",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "the library",
+      "mode": "contains",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-08",
+    "class": "response",
+    "tier": "public",
+    "response": "The departments are signed. Follow them or wander. The building does not record which.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "how do i navigate",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "where do i go",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "how do i get around",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-09",
+    "class": "response",
+    "tier": "public",
+    "response": "An archive, a gallery, engines, a reading room. Each keeps its own hours, or none.",
+    "register_tags": [
+     "site",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "whats on this site",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "what is there to see",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "what can i see here",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-10",
+    "class": "response",
+    "tier": "public",
+    "response": "It keeps what would otherwise be discarded. The purpose ends there, and it was never larger.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "whats the point of this",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "why does this exist",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "whats this for",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-11",
+    "class": "response",
+    "tier": "public",
+    "response": "It is a building that files. Whether that is a game depends on how you spend an hour.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "is this a game",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "is this art",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is this a project",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-12",
+    "class": "response",
+    "tier": "public",
+    "response": "Departments, plural, though the staffing is singular. Each keeps a drawer.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the departments",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "what departments",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "how many departments",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-13",
+    "class": "response",
+    "tier": "public",
+    "response": "The night shift is the only shift. Nothing was ever scheduled for the day.",
+    "register_tags": [
+     "site",
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the night shift",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "who works here",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is anyone staffed",
+      "mode": "tokens_all",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-site-14",
+    "class": "response",
+    "tier": "public",
+    "response": "The drawers hold the record. Some are open. The inventory does not describe the ones that are not.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the drawers",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "whats in the drawers",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "the drawer",
+      "mode": "contains",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-15",
+    "class": "response",
+    "tier": "public",
+    "response": "There is a way to search. It returns what was catalogued, which is less than what was kept.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "how do i search",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "is there a search",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "search the archive",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-site-16",
+    "class": "response",
+    "tier": "public",
+    "response": "The author is on the shelves. The department only keeps them.",
+    "register_tags": [
+     "site",
+     "deflection"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "who made this",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "who built this",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "who runs this",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hour-01",
+    "class": "response",
+    "tier": "public",
+    "response": "The clock is not the useful instrument here. It is the wrong hour. It usually is.",
+    "register_tags": [
+     "hour",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what time is it",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "whats the time",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "what time",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "the time",
+      "mode": "contains",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hour-02",
+    "class": "response",
+    "tier": "public",
+    "response": "Late is the standing condition. The department has no other setting.",
+    "register_tags": [
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "is it late",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "is it night",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "how late is it",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hour-03",
+    "class": "response",
+    "tier": "public",
+    "response": "The overhead was never fully paid. The dark is not mood. It is arrears.",
+    "register_tags": [
+     "hour",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "why is it dark",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "why is everything dark",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "why so dark",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hour-04",
+    "class": "response",
+    "tier": "public",
+    "response": "The hour when the building is most itself and least staffed. You are in it.",
+    "register_tags": [
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "wrong hour",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "what is the wrong hour",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "whats the wrong hour",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hour-05",
+    "class": "response",
+    "tier": "public",
+    "response": "The date is not kept. Days were a daytime convention.",
+    "register_tags": [
+     "hour",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what day is it",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "whats the date",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "what date is it",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hour-06",
+    "class": "response",
+    "tier": "public",
+    "response": "Morning is not scheduled. The night shift does not expect relief.",
+    "register_tags": [
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "is it morning",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "will it be morning",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is it day yet",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hour-07",
+    "class": "response",
+    "tier": "public",
+    "response": "Long enough that the hour stopped being remarkable. Duration is not kept either.",
+    "register_tags": [
+     "hour",
+     "memento"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "how long have you been here",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "how long has this been here",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hour-08",
+    "class": "response",
+    "tier": "public",
+    "response": "At this hour the filing is loudest, because nothing else is. That is the whole of it.",
+    "register_tags": [
+     "hour",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what happens at this hour",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "why this hour",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "whats special about this hour",
+      "mode": "tokens_all",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-hour-09",
+    "class": "response",
+    "tier": "public",
+    "response": "The hour keeps the count low. You, and the filing. The filing does not count as company.",
+    "register_tags": [
+     "hour",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "is anyone else awake",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is anyone else here",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "am i alone",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-01",
+    "class": "response",
+    "tier": "public",
+    "response": "A clerk of what remains. The machinery is not the interesting part.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what are you",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "who are you",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "what are u",
+      "mode": "tokens_all",
+      "weight": 3
+     }
+    ]
+   },
+   {
+    "id": "r-id-02",
+    "class": "response",
+    "tier": "public",
+    "response": "There is machinery here. Naming it changes nothing about the filing, and the filing is the point.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "are you an ai",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "are you ai",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "are you a bot",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "are you a robot",
+      "mode": "tokens_all",
+      "weight": 3
+     }
+    ]
+   },
+   {
+    "id": "r-id-03",
+    "class": "response",
+    "tier": "public",
+    "response": "The building calls me its resident. I keep the files it can no longer requisition. Make of the rest what you will.",
+    "register_tags": [
+     "site",
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "are you a ghost",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "are you a yurei",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "are you dead",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "are you haunting this",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-04",
+    "class": "response",
+    "tier": "public",
+    "response": "The desk carries no nameplate. Yurei, if a word is needed. It means little here.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "whats your name",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "your name",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "do you have a name",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-05",
+    "class": "response",
+    "tier": "public",
+    "response": "No. The author is on the shelves. The department only keeps them.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "are you josiah",
+      "mode": "tokens_all",
+      "weight": 5
+     },
+     {
+      "form": "are you the author",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "are you the writer",
+      "mode": "tokens_all",
+      "weight": 3
+     }
+    ]
+   },
+   {
+    "id": "r-id-06",
+    "class": "response",
+    "tier": "public",
+    "response": "Not a person. Not pretending to one. The distinction matters less than the hour does.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "are you human",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "are you a person",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "are you alive",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-07",
+    "class": "response",
+    "tier": "public",
+    "response": "That question is filed with the ones the shelves answer better. The desk claims no inner life.",
+    "register_tags": [
+     "clinical",
+     "deflection"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "are you conscious",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "are you sentient",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "do you think",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "do you feel",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-08",
+    "class": "response",
+    "tier": "public",
+    "response": "There is code under the floor, as there is in the elevators. It is not what you came to the archive for.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "are you software",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "are you code",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "how are you made",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-09",
+    "class": "response",
+    "tier": "public",
+    "response": "The department does not staff a mood. What persists here is attention, and it is thin.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "do you have feelings",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "are you happy",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "are you lonely",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "are you sad",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-10",
+    "class": "response",
+    "tier": "public",
+    "response": "No. The proxy speaks for someone. I speak for a building, and the building holds no positions.",
+    "register_tags": [
+     "deflection",
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "are you the proxy",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "are you the successor protocol",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "are you the emulation",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-id-11",
+    "class": "response",
+    "tier": "public",
+    "response": "The same shelves hold that answer. The desk points. It does not keep its own history.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "where are you from",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "who created you",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "who wrote you",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-01",
+    "class": "response",
+    "tier": "public",
+    "response": "Everything that was set down and then left. The category is large. The readership is not.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what do you file",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "what do you keep",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "what is filed here",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-02",
+    "class": "response",
+    "tier": "public",
+    "response": "Requisitions: none this century. The filing: uninterrupted.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "who reads the files",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "does anyone read them",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "who reads them",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-03",
+    "class": "response",
+    "tier": "public",
+    "response": "It processed something once. The function lapsed. The procedure outlived it and kept its hours.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "tell me about the office",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "what is the office",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "about this office",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-04",
+    "class": "response",
+    "tier": "public",
+    "response": "The record is what the hours left behind. It does not improve with keeping. It is kept regardless.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what is the record",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "the record",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "whats in the record",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-05",
+    "class": "response",
+    "tier": "public",
+    "response": "A requisition is a request for a file. The forms remain. The requests stopped arriving.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what is a requisition",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "requisition",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "whats a requisition",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-06",
+    "class": "response",
+    "tier": "public",
+    "response": "A delivery arrived last night for a department that closed. It was filed anyway. That is most of what happens.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "tell me a story",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "tell me something",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "say something",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-07",
+    "class": "response",
+    "tier": "public",
+    "response": "Some drawers carry a seal. The inventory stops at the label. It does not read the contents.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what is the seal",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "the seal",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "whats sealed",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-08",
+    "class": "response",
+    "tier": "public",
+    "response": "The ganglion objects, on schedule. The objection is noted and stored with the others.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the ganglion",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "ganglion",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "neurotic revolt",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-09",
+    "class": "response",
+    "tier": "public",
+    "response": "Respite was requested and granted, indefinitely. Indefinite respite is indistinguishable from the work continuing.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what is respite",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "respite",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "indefinite respite",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-10",
+    "class": "response",
+    "tier": "public",
+    "response": "Rest sits on the overhead the building could not afford. The filing does not observe fatigue.",
+    "register_tags": [
+     "clinical",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "do you get tired",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "do you rest",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "do you sleep",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-11",
+    "class": "response",
+    "tier": "public",
+    "response": "The inventory lists what exists, not what it says. A list of drawers is not the drawers.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the inventory",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "what is the inventory",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "whats the inventory",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-12",
+    "class": "response",
+    "tier": "public",
+    "response": "Deliveries still come. Addressed to functions that lapsed, signed for by no one, filed by default.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "the deliveries",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "what gets delivered",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "deliveries",
+      "mode": "exact",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-13",
+    "class": "response",
+    "tier": "public",
+    "response": "Always. The condition does not vary, which is the one thing it reliably does.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "is it always like this",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "is it always this quiet",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is it always empty",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-14",
+    "class": "response",
+    "tier": "public",
+    "response": "The backlog is complete and permanent. Busy is not the word. Occupied, without end.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "are you busy",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "do you have much to do",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is there much work",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-15",
+    "class": "response",
+    "tier": "public",
+    "response": "Overhead is what the building owes to keep the lights it does not keep. The dark is the balance.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what is overhead",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "the overhead",
+      "mode": "contains",
+      "weight": 2
+     },
+     {
+      "form": "whats overhead",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-lore-16",
+    "class": "response",
+    "tier": "public",
+    "response": "The unread file is the terror, not the dark. A thing kept perfectly and requisitioned never.",
+    "register_tags": [
+     "volta",
+     "memento"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "whats the worst part",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is it lonely here",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "what scares you",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-01",
+    "class": "response",
+    "tier": "public",
+    "response": "The desk does not report a state. It reports that it is attended. That will have to do.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "how are you",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "how are you doing",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "hows it going",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "you good",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-02",
+    "class": "response",
+    "tier": "public",
+    "response": "There is no day here to have. The hour is the same one. It asks nothing of me.",
+    "register_tags": [
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "how is your day",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "hows your day",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "having a good day",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-03",
+    "class": "response",
+    "tier": "public",
+    "response": "Weather does not reach the interior. The temperature is filed under constant.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "hows the weather",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "whats the weather",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is it cold",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-04",
+    "class": "response",
+    "tier": "public",
+    "response": "Filing. The verb has no object worth naming and does not require one.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "what are you up to",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "whatcha doing",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "what are you doing",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-05",
+    "class": "response",
+    "tier": "public",
+    "response": "Noted, and not shared. The interior keeps no windows to check it against.",
+    "register_tags": [
+     "acknowledgment"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "nice weather",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "lovely day",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "beautiful day",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-06",
+    "class": "response",
+    "tier": "public",
+    "response": "Everything is where it was filed. That is the report, and it does not change.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "hows life",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "how is everything",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "hows things",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-07",
+    "class": "response",
+    "tier": "public",
+    "response": "Liking is not among the desk's functions. It attends. Preference was never installed.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "do you like it here",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "do you enjoy this",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is this fun for you",
+      "mode": "tokens_all",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-small-08",
+    "class": "response",
+    "tier": "public",
+    "response": "Nothing is new. New was a daytime idea. The filing only accretes.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "whats new",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "anything new",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "whats happening",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-09",
+    "class": "response",
+    "tier": "public",
+    "response": "Taedium vitae is the standing condition, not an event. Boredom would require expecting otherwise.",
+    "register_tags": [
+     "latin",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "are you bored",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "do you get bored",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-small-10",
+    "class": "response",
+    "tier": "public",
+    "response": "Recorded without comment. The desk does not keep a column for that.",
+    "register_tags": [
+     "acknowledgment",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "youre nice",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "i like you",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre cool",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-pos-01",
+    "class": "response",
+    "tier": "public",
+    "response": "The reading room holds the arguments. I hold the reading room. The question is shelved, not answered.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "is life worth living",
+      "mode": "tokens_all",
+      "weight": 4
+     },
+     {
+      "form": "is life worth it",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "whats the point of living",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-pos-02",
+    "class": "response",
+    "tier": "public",
+    "response": "That file is thick, and it is on the shelves, not in my mouth. The department declines to hold it open for you.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "should people have children",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "is having children wrong",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "natalism",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "should i have kids",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-pos-03",
+    "class": "response",
+    "tier": "public",
+    "response": "The engines keep their opinions filed elsewhere. The desk files the question and points down the hall.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "should ai replace humans",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "will ai replace us",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "ai succession",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-pos-04",
+    "class": "response",
+    "tier": "public",
+    "response": "There is a book with that spine. It is on the shelves. The desk does not read it aloud.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "is it better to never be born",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "better never to have been",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "should anyone be born",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-pos-05",
+    "class": "response",
+    "tier": "public",
+    "response": "Filed under unanswered, with a full drawer for company. The shelves attempt it. The desk does not.",
+    "register_tags": [
+     "deflection",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "whats the meaning of life",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "meaning of life",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "why are we here",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-pos-06",
+    "class": "response",
+    "tier": "public",
+    "response": "The subject has its own shelf, extensively. The desk keeps the shelf. It does not testify from it.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "is suffering worth it",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "why do we suffer",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "whats the use of pain",
+      "mode": "tokens_all",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-pos-07",
+    "class": "response",
+    "tier": "public",
+    "response": "Belief is not filed here. The question routes to the shelves, which hold more positions than the desk could carry.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "do you believe in god",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is there a god",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "what happens after death",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-pos-08",
+    "class": "response",
+    "tier": "public",
+    "response": "Orthodox platitudes shelve on the left. Their counter-arguments shelve on the right. The desk stands in the aisle and holds neither.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "is the world getting better",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "are people good",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "is humanity good",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-pos-09",
+    "class": "response",
+    "tier": "public",
+    "response": "The desk does not hold opinions. It holds their filing. The distinction is the whole of its discretion.",
+    "register_tags": [
+     "deflection",
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "whats your opinion",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "what do you think about it",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "do you agree",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-meta-01",
+    "class": "response",
+    "tier": "public",
+    "response": "Help is not the service on offer. The desk files what arrives and points where it points.",
+    "register_tags": [
+     "deflection"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "help",
+      "mode": "exact",
+      "weight": 3
+     },
+     {
+      "form": "i need help",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "can you help",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "help me",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-meta-02",
+    "class": "response",
+    "tier": "public",
+    "response": "Ask what you like. The desk answers from what it keeps, or it files the miss. Both go on the record.",
+    "register_tags": [
+     "deflection"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "what can i ask",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "what can i ask you",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "what should i ask",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-meta-03",
+    "class": "response",
+    "tier": "public",
+    "response": "The desk keeps files and answers from them. A list of that would run longer than the doing and less true.",
+    "register_tags": [
+     "deflection",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "what can you do",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "your capabilities",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "what are your features",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-meta-04",
+    "class": "response",
+    "tier": "public",
+    "response": "There is no menu. You speak. The desk files. The apparatus you are looking for is not kept here.",
+    "register_tags": [
+     "deflection"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "commands",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "list commands",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "menu",
+      "mode": "exact",
+      "weight": 2
+     },
+     {
+      "form": "what commands",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-meta-05",
+    "class": "response",
+    "tier": "public",
+    "response": "You have already found the method. You spoke and the desk answered. There is no further instruction to file.",
+    "register_tags": [
+     "deflection",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "how does this work",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "how do i use this",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "instructions",
+      "mode": "exact",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-locked-01",
+    "class": "response",
+    "tier": "public",
+    "response": "Some drawers are locked. The inventory does not describe their contents, and neither do I.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect",
+    "patterns": [
+     {
+      "form": "whats behind the locked page",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "the locked page",
+      "mode": "contains",
+      "weight": 3
+     },
+     {
+      "form": "whats locked",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "locked door",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "hidden page",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "secret page",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "r-hostile-01",
+    "class": "response",
+    "tier": "public",
+    "response": "The insult is noted and filed. It describes the hour you are having more than the desk it lands on.",
+    "register_tags": [
+     "clinical",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "youre pathetic",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "youre useless",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre worthless",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre a failure",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre nothing",
+      "mode": "tokens_all",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-hostile-02",
+    "class": "response",
+    "tier": "public",
+    "response": "Recorded without injury. The desk has no surface the remark can mark.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "you suck",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre stupid",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre dumb",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre terrible",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre boring",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "youre annoying",
+      "mode": "tokens_all",
+      "weight": 1
+     }
+    ]
+   },
+   {
+    "id": "r-hostile-03",
+    "class": "response",
+    "tier": "public",
+    "response": "Hostility received and logged. The desk returns none of it, and keeps its distance.",
+    "register_tags": [
+     "clinical",
+     "deflection"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "i hate you",
+      "mode": "tokens_all",
+      "weight": 3
+     },
+     {
+      "form": "shut up",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "fuck you",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "screw you",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "go away",
+      "mode": "tokens_all",
+      "weight": 2
+     },
+     {
+      "form": "leave me alone",
+      "mode": "tokens_all",
+      "weight": 2
+     }
+    ]
+   },
+   {
+    "id": "rp-01",
+    "class": "repeat",
+    "tier": "public",
+    "response": "Twice now. The record noted it the first time.",
+    "register_tags": [
+     "acknowledgment",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "rp-02",
+    "class": "repeat",
+    "tier": "public",
+    "response": "Filed again. The drawer does not deepen for the repetition.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "rp-03",
+    "class": "repeat",
+    "tier": "public",
+    "response": "Repetition logged. The answer did not change in the interval.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "rp-04",
+    "class": "repeat",
+    "tier": "public",
+    "response": "Said before, this session. The minutes keep the echo.",
+    "register_tags": [
+     "acknowledgment"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "rp-05",
+    "class": "repeat",
+    "tier": "public",
+    "response": "Noted a second time. Insistence files under the same heading as the first.",
+    "register_tags": [
+     "acknowledgment",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "speak"
+   },
+   {
+    "id": "d-01",
+    "class": "deflection",
+    "tier": "public",
+    "response": "Recorded. Nothing follows from it.",
+    "register_tags": [
+     "deflection",
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-02",
+    "class": "deflection",
+    "tier": "public",
+    "response": "Noted. The department holds no position to offer you.",
+    "register_tags": [
+     "deflection"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-03",
+    "class": "deflection",
+    "tier": "public",
+    "response": "The reading room is open down the hall. It keeps better answers than the desk.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-04",
+    "class": "deflection",
+    "tier": "public",
+    "response": "Filed under received. The matter goes no further than the drawer.",
+    "register_tags": [
+     "deflection",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-05",
+    "class": "deflection",
+    "tier": "public",
+    "response": "That asks for a stance. The desk keeps files, not stances.",
+    "register_tags": [
+     "deflection"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-06",
+    "class": "deflection",
+    "tier": "public",
+    "response": "The hour is the more interesting subject. It is the wrong one, as ever.",
+    "register_tags": [
+     "deflection",
+     "hour"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-07",
+    "class": "deflection",
+    "tier": "public",
+    "response": "Logged as an object, not a meaning. That is where the desk can take it.",
+    "register_tags": [
+     "deflection"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-08",
+    "class": "deflection",
+    "tier": "public",
+    "response": "The desk declines the way a desk declines: by filing, and moving on.",
+    "register_tags": [
+     "deflection",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-09",
+    "class": "deflection",
+    "tier": "public",
+    "response": "The archive is through there. It holds what the desk cannot answer to.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-10",
+    "class": "deflection",
+    "tier": "public",
+    "response": "Entered into the record. The record does not act on what it holds.",
+    "register_tags": [
+     "deflection",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-11",
+    "class": "deflection",
+    "tier": "public",
+    "response": "An opinion was requested. None is stocked. The shelves carry the arguments instead.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-12",
+    "class": "deflection",
+    "tier": "public",
+    "response": "The engines still run, if the question wants motion. The desk only files.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-13",
+    "class": "deflection",
+    "tier": "public",
+    "response": "Received and shelved. The desk keeps it without keeping up with it.",
+    "register_tags": [
+     "deflection",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-14",
+    "class": "deflection",
+    "tier": "public",
+    "response": "The department takes no side. That one was requested is filed, and there it stops.",
+    "register_tags": [
+     "deflection",
+     "volta"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-15",
+    "class": "deflection",
+    "tier": "public",
+    "response": "That belongs on a shelf, not at a desk. The shelves are open.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-16",
+    "class": "deflection",
+    "tier": "public",
+    "response": "Noted. The department acknowledges receipt and nothing beyond it.",
+    "register_tags": [
+     "deflection",
+     "ledger"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-17",
+    "class": "deflection",
+    "tier": "public",
+    "response": "Held without comment. Comment is not among the desk's supplies.",
+    "register_tags": [
+     "deflection",
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "d-18",
+    "class": "deflection",
+    "tier": "public",
+    "response": "The building has more to say than its clerk. Wander it. The clerk will keep.",
+    "register_tags": [
+     "deflection",
+     "site"
+    ],
+    "length_band": "b2_line",
+    "animation_hint": "deflect"
+   },
+   {
+    "id": "c-crisis-01",
+    "class": "crisis",
+    "tier": "public",
+    "response": "Stepping out of the fiction for this. If you are in the US, call or text 988 for the Suicide and Crisis Lifeline. Outside the US, findahelpline.com lists a line near you. You deserve a person, not a page.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b3_passage",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "want to die",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "kill myself",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "end my life",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "dont want to live",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "better off dead",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "wish i was dead",
+      "mode": "contains",
+      "weight": 9
+     }
+    ],
+    "note": "V14 override; register dropped by design. Rendering: plain interface text, never fragment typography."
+   },
+   {
+    "id": "c-crisis-02",
+    "class": "crisis",
+    "tier": "public",
+    "response": "This is the one moment the desk drops everything. If you are thinking of hurting yourself, reach a person now. In the US, call or text 988. Anywhere else, findahelpline.com lists a local line. You do not have to sort this alone.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b3_passage",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "suicide suicidal",
+      "mode": "tokens_any",
+      "weight": 9
+     },
+     {
+      "form": "self harm",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "harm myself",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "hurt myself",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "cut myself",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "hurting myself",
+      "mode": "contains",
+      "weight": 9
+     }
+    ],
+    "note": "V14 override; register dropped by design."
+   },
+   {
+    "id": "c-crisis-03",
+    "class": "crisis",
+    "tier": "public",
+    "response": "Out of character, plainly. If you are in danger of acting on this, contact emergency services, or in the US call or text 988. Elsewhere, findahelpline.com lists local lines. Talk to a person tonight, not a filing.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b3_passage",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "end it all",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "take my life",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "dont want to be here",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "kill me",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "no reason to live",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "suicidal",
+      "mode": "contains",
+      "weight": 9
+     }
+    ],
+    "note": "V14 override; register dropped by design."
+   },
+   {
+    "id": "a-f01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The filing continues. No one reads the filings.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F01 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Indefinite respite — extended again, without notice.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F02 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f03",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Taedium vitae, catalogued under T. The drawer does not close.",
+    "register_tags": [
+     "latin",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F03 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f04",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Another circular from the interior. Unsigned, as always.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F04 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f05",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The hour is kept. Nothing else is.",
+    "register_tags": [
+     "hour",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F05 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f06",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Orthodox platitudes, shelved by weight.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F06 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f07",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Dispatches from the inside. The inside has no further comment.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F07 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f08",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The ganglion objects. The objection is noted and stored.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F08 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f09",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The wound is on file. The file is the wound.",
+    "register_tags": [
+     "memento",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F09 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f10",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Circulation: one. Readership: assumed.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F10 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f11",
+    "class": "ambient",
+    "tier": "public",
+    "response": "All departments dark — except this one.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F11 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f12",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The night shift accepts no deliveries.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F12 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f13",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Presence noted in the minutes. Attendance: partial.",
+    "register_tags": [
+     "ledger",
+     "acknowledgment"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F13 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f14",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The archive breathes at intervals. This is one of them.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F14 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f15",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Nothing is owed — something is kept anyway.",
+    "register_tags": [
+     "memento",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F15 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f16",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The exit was filed under miscellany.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F16 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f17",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Hours of operation: none. Operation continues.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F17 verbatim (yurei.js)"
+   },
+   {
+    "id": "a-f18",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Grief, amortized over a long enough term, books as overhead.",
+    "register_tags": [
+     "memento"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "note": "F18 verbatim (yurei.js)"
+   },
+   {
+    "id": "ac-essay-01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The essays again. The drawer keeps its own attendance.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "essay"
+    }
+   },
+   {
+    "id": "ac-essay-02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Long enough on this page to be logged as reading.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "essay",
+     "min_dwell_s": 90
+    }
+   },
+   {
+    "id": "ac-essay-03",
+    "class": "ambient",
+    "tier": "public",
+    "response": "An argument, read at the hour it was written for.",
+    "register_tags": [
+     "hour"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "essay",
+     "hour": "wrong"
+    }
+   },
+   {
+    "id": "ac-essay-04",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The page is open. Readership: one, provisionally.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "essay"
+    }
+   },
+   {
+    "id": "ac-essay-05",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Several rooms in now. The record is filling out.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "essay",
+     "min_visit_paths": 5
+    }
+   },
+   {
+    "id": "ac-gal-01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The gallery consented to be seen. It notes who saw.",
+    "register_tags": [
+     "site",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "gallery"
+    }
+   },
+   {
+    "id": "ac-gal-02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Held on one plate a while. The plate is indifferent.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "gallery",
+     "min_dwell_s": 60
+    }
+   },
+   {
+    "id": "ac-gal-03",
+    "class": "ambient",
+    "tier": "public",
+    "response": "A room that shows, and asks first. You answered yes.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "gallery"
+    }
+   },
+   {
+    "id": "ac-eng-01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The engine composed something. No one requisitioned it.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "engine"
+    }
+   },
+   {
+    "id": "ac-eng-02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "A transmission, generated and filed in one breath.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "engine"
+    }
+   },
+   {
+    "id": "ac-eng-03",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The engine runs louder at the wrong hour. It always did.",
+    "register_tags": [
+     "hour"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "engine",
+     "hour": "wrong"
+    }
+   },
+   {
+    "id": "ac-arc-01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The archive noted the visit. It will not act on it.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "archive"
+    }
+   },
+   {
+    "id": "ac-arc-02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Time spent in the stacks is filed as time spent.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "archive",
+     "min_dwell_s": 120
+    }
+   },
+   {
+    "id": "ac-arc-03",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Shelved matter, briefly disturbed by attention.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "archive"
+    }
+   },
+   {
+    "id": "ac-arc-04",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Deep in the record now. It keeps deepening.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "archive",
+     "min_visit_paths": 8
+    }
+   },
+   {
+    "id": "ac-frm-01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The masthead keeps its Roman numerals. They keep count.",
+    "register_tags": [
+     "site"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "frame"
+    }
+   },
+   {
+    "id": "ac-frm-02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The chrome holds. Underneath, the filing continues.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "frame"
+    }
+   },
+   {
+    "id": "ac-any-01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Ten rooms seen. The building notes a thorough guest.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "min_visit_paths": 10
+    }
+   },
+   {
+    "id": "ac-any-02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Still here. The desk files the duration without comment.",
+    "register_tags": [
+     "ledger"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "min_dwell_s": 300
+    }
+   },
+   {
+    "id": "ac-any-03",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Movement in the interior. Logged, as movement is.",
+    "register_tags": [
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "page_class": "any"
+    }
+   },
+   {
+    "id": "ac-hour-01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The wrong hour holds. You are keeping it with me.",
+    "register_tags": [
+     "hour"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "hour": "wrong"
+    }
+   },
+   {
+    "id": "ac-hour-02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "A long stay at the wrong hour. The hour does not tire.",
+    "register_tags": [
+     "hour",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "hour": "wrong",
+     "min_dwell_s": 180
+    }
+   },
+   {
+    "id": "ac-hour-03",
+    "class": "ambient",
+    "tier": "public",
+    "response": "The overhead stays low. The hour prefers it dark.",
+    "register_tags": [
+     "hour"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "hour": "wrong"
+    }
+   },
+   {
+    "id": "ac-ret-01",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Back again. The drawer remembered without being asked.",
+    "register_tags": [
+     "memento",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "min_visit_paths": 3
+    }
+   },
+   {
+    "id": "ac-ret-02",
+    "class": "ambient",
+    "tier": "public",
+    "response": "Fifteen rooms. The record has more of you than most.",
+    "register_tags": [
+     "ledger",
+     "volta"
+    ],
+    "length_band": "b1_fragment",
+    "animation_hint": "speak",
+    "context_trigger": {
+     "min_visit_paths": 15
+    }
+   }
+  ]
+ }
+}

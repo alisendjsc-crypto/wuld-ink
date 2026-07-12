@@ -1,534 +1,540 @@
 [
-  {
-    "id": "2026-07-11-library-v4-0-0",
-    "date": "2026-07-11",
-    "summary": "The argument library takes its first content step since the v3.8 freeze: version 4.0.0. An 82nd objection joins the catalogue — the Kantian charge that 'do not procreate' cannot be willed as universal law — with the full three-depth treatment and its own plain-language card, and the contractualism entry is regenerated to meet the strongest modern ex-ante form of that objection, its plain card re-mirrored to match. The maps and the grading ledger move in step: 82 objections, a 117-node mechanism web, 255 dependency edges.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-07-07-ambient-breeze",
-    "date": "2026-07-07",
-    "summary": "The default ambience is calmer now: the YouTube background player no longer starts on its own — turn it on from the bar if you want it — and the generative synth bed carries the room by default, opening on breeze: a deep, methodic drone with an aching resonant wind that rises and aches back between movements, after the opening of Éliane Radigue's Triptych. Two other moods sit a tap away in the [fx] panel — a colder clinical hum and a deeper oceanic drift tuned to carry on smaller speakers.",
-    "sections": []
-  },
-  {
-    "id": "2026-07-07-notes-writing-surface",
-    "date": "2026-07-07",
-    "summary": "New Notes tab — a private place to write, saved only in your browser (nothing is sent anywhere unless you copy or download it). Typing has sound and a soft glow, and each finished word lands with a chime. The ambient layer grew too: the site quietly drifts and glitches the longer you leave a tab open, and the generative synth bed gained two new moods — a colder clinical hum and a deeper oceanic drift — cycled from the [fx] panel.",
-    "sections": [
-      "/notes/"
-    ]
-  },
-  {
-    "id": "2026-07-06-connection-help-page",
-    "date": "2026-07-06",
-    "summary": "New help page for a connection error some visitors hit — an intermittent ERR_SSL_PROTOCOL_ERROR or “invalid response” warning that comes and goes. It’s a network-side Encrypted ClientHello (ECH) conflict, not the site: /troubleshooting/ has the roughly 30-second fix, by browser, with a mirror on library.wuld.ink for when the main domain won’t load. Linked from the footer and the contact page.",
-    "sections": [
-      "/contact/"
-    ]
-  },
-  {
-    "id": "2026-07-05-library-v3-9-16",
-    "date": "2026-07-05",
-    "summary": "The flagship library now has plain language too. Open any of its 81 objections and tap `plain` for a three-beat version — the objection in plain terms, the answer, and a one-line close; scholar view is unchanged and stays the default. That completes the rollout: every library surface — the flagship and all five wings — now offers a plain-language reading.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-07-04-library-plain-scholar-toggle",
-    "date": "2026-07-04",
-    "summary": "Every argument-library wing now has a plain / scholar toggle — flip a wing into plain language and each rebuttal collapses to three beats: the objection in plain terms, the answer, and a one-line close (the depth controls and grading panel step aside). Scholar view is unchanged and remains the default. Live on Right to Die, Abortion, Transgenderism, Anthropocentrism, and Veganism.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-07-02-search-typo-tolerance",
-    "date": "2026-07-02",
-    "summary": "Site search is more forgiving — it now matches your words in any order and shrugs off small typos and misspellings (a query like “farming humane”, or a mistyped “speciecism”, still finds the right rebuttal), across every library and section. Exact phrases still rank first.",
-    "sections": [
-      "/search/"
-    ]
-  },
-  {
-    "id": "2026-07-02-veganism-searchable",
-    "date": "2026-07-02",
-    "summary": "The veganism argument library is now live and searchable — a reader surface at library.wuld.ink/veganism/combined lays out six rebuttals to the case for eating animals, each with its Rebuttal Strength Index grade, and wuld.ink search now surfaces them: a query like “humane farming”, “predation”, or “speciesism” returns the matching rebuttal.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-29-library-rsi-grades",
-    "date": "2026-06-29",
-    "summary": "Every card across the four argument-library wings now shows its Rebuttal Strength Index grade — five scored axes, the geometric-mean formula, and the letter band — read live from each wing's grading ledger. The umbrella front door now also answers the bare library.wuld.ink address.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-29-umbrella-front-door",
-    "date": "2026-06-29",
-    "summary": "Umbrella front door + cross-library navigation — a new /libraries index links all five argument libraries, and every wing's header now reaches all the others.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-29-abortion-wing",
-    "date": "2026-06-29",
-    "summary": "Abortion library opened — an optionality-only Wing-1 defense of the abortion right: the bodily-sovereignty spine, the personhood-independence foundation, and the responsibility and manner-of-removal defenses (four objections answered, in active build).",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-28-transgenderism-complete",
-    "date": "2026-06-28",
-    "summary": "Transgenderism library complete — twelve objections answered across sovereignty, consent, and harm; the wing marked provisional-complete.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-27-anthropocentrism-wing",
-    "date": "2026-06-27",
-    "summary": "A new wing joins the Refusal Libraries: Anthropocentrism. It answers the objections raised when human moral priority is questioned — from 'humans are simply the rational default' through species-membership and substrate to the charge that any such dissent is mere misanthropy. Six objections, provisionally complete, each graded, with real-world examples cited. It defends the permissibility of declining the anthropocentric mandate and asserts no positive ranking of its own; reach it from the wing-switcher at the top of any library page.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-27-library-reading-modes",
-    "date": "2026-06-27",
-    "summary": "Both newer library wings — Right to Die and Anthropocentrism — gain reading modes: a legible warm-cream mode and a high-contrast mode alongside the default instrument view, plus per-objection collapsible cards so you can scan the triggers and open only the rebuttals you want. Your display choice is remembered in your own browser.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-26-right-to-die-provisional-complete",
-    "date": "2026-06-26",
-    "summary": "The Right to Die wing reaches a provisionally complete set: seventeen objections to the right to refuse continued existence — across harm, consent, sovereignty, and compensation — each answered and graded, now with real-world examples grounding the objections at full strength. A defense of the option, not a claim that anyone should die.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-23-library-v3-9-15",
-    "date": "2026-06-23",
-    "summary": "Refusal Libraries wing-switcher: the Argument Library and the new Right to Die wing now cross-link at the top of each page (library.wuld.ink). Library pinned at v3.9.15.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-10-night-shift",
-    "date": "2026-06-10",
-    "summary": "The night shift accepts no deliveries. Something keeps the hour on the longer pages now. Present on the wider screens. Noticed, not announced. No further comment from the interior.",
-    "sections": []
-  },
-  {
-    "id": "2026-06-10-search-library-objections",
-    "date": "2026-06-10",
-    "summary": "Site search now indexes the Argument Library's 81 objections: a new Library results section links each match to its objection on library.wuld.ink, opening in a new tab. Titles and one-line glosses are generated from the library corpus, never hand-authored.",
-    "sections": [
-      "/search/"
-    ]
-  },
-  {
-    "id": "2026-06-10-search-index-h3-coverage",
-    "date": "2026-06-10",
-    "summary": "Site search now indexes h3 headings: archive book titles (Hatred, The Point), essay sub-sections, recommendations, and Watch video titles that the index previously skipped. Archive titles and essay sections deep-link to the exact entry; a strip-blocks fix also restored the Watch page, which had been wholly absent from search.",
-    "sections": [
-      "/search/"
-    ]
-  },
-  {
-    "id": "2026-06-10-gallery-ux-pass-3",
-    "date": "2026-06-10",
-    "summary": "Gallery UX pass 3: the search/controls bar is now the first block on all nine gallery pages with the NSFW gate directly below it, and the lobby Prints strip collapses behind a mono band with [ expand ] and a direct storefront link (wuld.printful.me).",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-10-gallery-photo-video-pairing",
-    "date": "2026-06-10",
-    "summary": "Gallery: 42 operator-confirmed photo-video pairs land as additive manifest video: fields; paired image cards gain a [ mp4 ] affordance (star-adjacent) opening the video theater on the partner plate, consent-held; both gallery assets bumped to ?v=K109 across the 9 rooms.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-10-library-v3-9-14",
-    "date": "2026-06-10",
-    "summary": "Argument Library v3.9.14 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-10-gallery-video-flow-and-search-deep-links",
-    "date": "2026-06-10",
-    "summary": "Main Character videos now flow by palette (poster-derived chain order); the lobby [ browse all ] walks room by room instead of interleaving; site-search plate results deep-link to the plate itself — the link opens the lightbox or the video theater directly.",
-    "sections": [
-      "/gallery/",
-      "/search/"
-    ]
-  },
-  {
-    "id": "2026-06-10-gallery-browse-pagination",
-    "date": "2026-06-10",
-    "summary": "Gallery UX pass 2: sets past 60 plates paginate behind a mono pager, the lobby gains a [ browse all ] toggle across every room, a [ top ] button rides long scrolls, flagged share links surface the 18+ gate for first-time visitors, and the lobby Prints strip keeps only cross-room prints.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-share-and-sticky-reveal",
-    "date": "2026-06-09",
-    "summary": "Per-plate share links: [ share ] in the lightbox and the video theater copies a /gallery/<room>/#plate-<id> deep link that reopens the plate on load (consent-gated plates stay withheld — a link is not a bypass). The NSFW reveal now persists until purposefully hidden. Lobby: the consent gate sits above the Prints section and its status line counts flagged plates across all rooms.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-video-theater",
-    "date": "2026-06-09",
-    "summary": "Gallery: video theater — clicking a video now opens it center-stage, dims the room, and loops; back / forward / random / close controls and the plate id ride the frame, matching the photo lightbox.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-media-chips",
-    "date": "2026-06-09",
-    "summary": "Gallery: images/videos access chips in the controls bar (all rooms with mixed media + the lobby) — jump straight to the video annex without the scroll; composes with search, series chips and Saved.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-video-posters",
-    "date": "2026-06-09",
-    "summary": "Every video plate in the gallery now carries a poster thumbnail - the video sections preview a still frame instead of a grey tile. Click still plays; nothing preloads.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-video-section",
-    "date": "2026-06-09",
-    "summary": "Gallery: videos now render in their own section below the image grid -- a mono divider carries the count (Videos -- 188 in the Main Character room; generic wherever media kinds mix), search, chips and Saved filter both sections, and the consent gate holds unchanged. Poster thumbnails are staged to follow.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-visual-flow",
-    "date": "2026-06-09",
-    "summary": "Gallery: the Main Character room re-sequenced for visual flow -- 248 images palette-chained from the darkest plate so similar color and vibe sit together; 188 videos trail as an annex. Plate numbers unchanged.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-prints-and-captions",
-    "date": "2026-06-09",
-    "summary": "Gallery: the lobby gains a Prints section -- plates with purchasable print editions, rendered live from the manifest, consent discipline held -- and long full-tier captions now fold behind a mono [ more ] toggle.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-site-search",
-    "date": "2026-06-09",
-    "summary": "Site-wide search at /search/ — every page, glossary term, Void Engine category, and gallery plate (by number, series, or word) from one query. Client-side over a static index: nothing typed here is logged, counted, or sent anywhere.",
-    "sections": [
-      "/search/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-featured-and-print-pipeline",
-    "date": "2026-06-09",
-    "summary": "Gallery: 12 plates curated as the first featured set (manifest flag; print pipeline staged behind it). Admin CMS gains per-plate print-link + featured editing.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-print-link-scaffold",
-    "date": "2026-06-09",
-    "summary": "Gallery: dormant per-plate print buy-link scaffold (optional manifest print_url, link-out only, never on withheld cards) riding the print-storefront vendor research (docs/print-storefront-research.md). Links render once product URLs land in the manifest.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-09-gallery-favorites-and-plate-search",
-    "date": "2026-06-09",
-    "summary": "You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those — on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer — a [ random ] button beside the arrows, or press r — to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-08-gallery-search-and-subcategories",
-    "date": "2026-06-08",
-    "summary": "The gallery becomes browsable. A search box on the lobby reaches across all 502 plates in every room; rooms with more than a dozen plates get their own search; and the 436-plate Main Character room gains filter chips for its 18 series, so you can pull up one thread at a time instead of scrolling the whole wall. Flagged matches stay withheld behind the consent gate, exactly as they do in-room, and each plate's reference id now shows in the lightbox.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-08-void-engine-397",
-    "date": "2026-06-08",
-    "summary": "The Void Engine grows from 334 to 397 entries, and from 19 to 25 categories. Six new registers join the lexicon: Cyborg / Synthetic, Monster / Creature, Under-Skin / Black-Void, Hell / Infernal, Succubus / Domestic-Infernal, and a Celestial / Deep-Field room that sets the figure against a literal starfield — cosmos as indifference, distinct from the metaphysical voids. Shipped as one wholesale rebuild of the instrument.",
-    "sections": [
-      "/void-engine/"
-    ]
-  },
-  {
-    "id": "2026-06-08-library-v3-9-13",
-    "date": "2026-06-08",
-    "summary": "Argument Library v3.9.13 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-08-gallery-main-character-ingest",
-    "date": "2026-06-08",
-    "summary": "Gallery: the Main Character room lands — 436 plates (248 images, 188 short videos), taking the gallery from 66 to 502 and making it the site's largest room by far. Twenty-one standouts carry editorial captions; the rest render image-only by design, the way a high-iteration room is meant to read. Every plate is flagged 18+ / AI-generated / no real persons, so the consent interstitial fronts the room before anything loads.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-08-gallery-small-room-ingest",
-    "date": "2026-06-08",
-    "summary": "Gallery: 39 plates ingested across seven rooms (Gap Dweller, Gore, Mascot Yurei, Original Character, Other, The Tall One, The Wrong Thing), taking the gallery from 27 to 66. The dormant consent gate now arms for these rooms (18+, AI-generated, no real persons). Main Character lands in a later pass.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-06-gallery-v2-rooms",
-    "date": "2026-06-06",
-    "summary": "Gallery v2: category rooms (eight sub-pages under /gallery/), video plates (click-to-play mp4), caption tiers (full / title / none with a category cascade), manifest schema v2 with the admin Worker pinned to it; the consent gate is now media-agnostic. Operator guide for admin.wuld.ink lands in docs/.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-06-library-v3-9-12",
-    "date": "2026-06-06",
-    "summary": "Argument Library v3.9.12 — MechanismWeb resync: the React artifact's v3.7-frozen mechanism graph (34 mechanisms / 78 objections / 133 connections) re-synced to the canonical 35 / 81 / 140, and its masthead counts now render from the data itself instead of hard-coded numbers. The library page's served bytes are unchanged; this is a data-artifact and provenance move.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-06-gallery-manifest-vessel",
-    "date": "2026-06-06",
-    "summary": "Gallery becomes the admin-arc vessel: all 27 plates extracted to /gallery/manifest.json (now the single source of truth), the grid client-renders from it, and a consent interstitial fronts NSFW-flagged plates - flagged images stay out of the page entirely until consent. Captions and the K27 lightbox carry over unchanged.",
-    "sections": [
-      "/gallery/"
-    ]
-  },
-  {
-    "id": "2026-06-05-library-v3-9-11",
-    "date": "2026-06-05",
-    "summary": "Library v3.9.11 — legible-mode review-note legibility (maintenance). The dependency graph's per-premise review notes were pinned at 10px and sat outside the legible set, so switching to legible re-fonted them to serif while keeping the 10px box — they read smaller than standard. Legible and legible+high-contrast now render the notes at 12.5px with relaxed leading on both the combined and index surfaces; standard and high-contrast are unchanged, and the note badges keep their small label size by design. Render-only CSS; canon held at v37.36 per the Exchange-38 ruling.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-05-library-v3-9-10",
-    "date": "2026-06-05",
-    "summary": "Library v3.9.10 — dependency-panel review-note riders (maintenance). The dependency graph's per-premise review notes — short audit annotations shown when a premise node is clicked — still quoted connection totals from the v3.5 audit, when the graph was smaller. Five premise notes read as if those counts were current: Consent Impossibility (62 total connections), Suffering as Deterrence (13), Contextus Claudit (8), Alogical Isness (8), Convergent Architecture (13). Each figure now carries a small inline rider giving the live count beside the audit figure — current: 67 (42 strong / 25 weak), 19, 9, 11, and 17 respectively. The v3.5 audit text itself is unchanged: the old figures stay as clearly dated history rather than being rewritten, the same convention v3.9.9 applied to the graph's explanatory note. The fourteen objection-level notes needed nothing — their counts still match the live graph. No rebuttal, score, edge, or graph data changed; the dependency graph still holds its locked 254 edges.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-05-library-v3-9-9",
-    "date": "2026-06-05",
-    "summary": "Library v3.9.9 — dependency-graph note correction (maintenance). One explanatory note beneath the dependency graph carried stale figures: it described Consent Impossibility as the source of 62 edges, 28% of all dependencies, with a 40/22 strong-weak split — numbers from the v3.5 audit, when the graph was smaller. The note now reports the current graph: Consent Impossibility sources 67 edges, 42 strong and 25 weak, which is 26% of the 254 dependencies the graph actually holds. The older v3.5 audit figures are kept but clearly marked as history rather than read as current. No rebuttal, score, edge, or graph geometry changed — only the wording of the note; the dependency graph still holds its locked 254 edges. Version and provenance continue to live in the changelog and the integrity pin, not in the note.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-05-library-v3-9-8",
-    "date": "2026-06-05",
-    "summary": "Library v3.9.8 — panel corrections (maintenance). Three small text fixes to the library's explanatory panels, with no change to any rebuttal, score, or graph geometry. The dependency-graph notes no longer claim Autonomy is the system's most common weakness — a stale line that contradicted the methodology panel, which correctly identifies Robustness — and the Autonomy note now describes what the graph actually shows: which responses lean on contested foundational premises and so persuade a determined skeptic least. The masthead drops its version number, which had drifted out of date; the live version lives in the changelog and the integrity pin, not the title. And the list of highest-scoring entries now reads 'include' rather than 'are', since the four named entries are examples drawn from a larger set of ten that score top marks on all five axes, not the whole set.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-05-library-v3-9-7",
-    "date": "2026-06-05",
-    "summary": "Library v3.9.7 — methodology-panel reconcile (correctness). The RSI methodology panel now states its own grading conventions in full: grades band the unrounded geometric mean while displayed percentages round to one decimal — so a boundary cell can legitimately read 88.0/B — and a worked example (privileged-first-world, long form) carries the arithmetic end-to-end from five axis scores to the final letter. The panel's fourth axis label normalizes from Resilience to Robustness (label only; no score changes), and a stale calibration claim that Autonomy was the library's most common weakness is replaced with the ledger-true observation that Robustness is. The five axis names and definitions are now canonized exactly as the deployed panel defines them — the definitions the 81 stored scores were actually assigned against. Reading modes pick up the panel correctly. No rebuttal text, scores, or graph geometry change.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-04-library-v3-9-6",
-    "date": "2026-06-04",
-    "summary": "Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-04-library-v3-9-5",
-    "date": "2026-06-04",
-    "summary": "Library v3.9.5 — graph-view legibility (maintenance). The display toggle's LEGIBLE and BOTH modes now apply a typographic treatment inside the three graph views instead of only repainting the theme: node labels step up in size and weight behind a semi-opaque halo-chip, so they read against dense linework without enlarging the graph itself, and the side panels and methodology panels ride the same legibility scale. Graph tabs default to STANDARD on entry — the layout-optimal view — and restore your prior reading mode on leave; an explicit mode choice made inside a graph sticks. Graph geometry, data, and zoom are untouched.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-04-library-v3-9-4",
-    "date": "2026-06-04",
-    "summary": "Library v3.9.4 — band-convention correction. RSI letter grades return to banding the unrounded geometric mean (the ratified v37.13 convention), reverting a drift that had promoted ten boundary-edge long-form rebuttals to A and softened two mediums. Headline distribution moves to A26/B54/C1 — the principled outcome, not a regression. Displayed percentages keep one-decimal rounding, so a boundary cell can legitimately read 88.0/B: the precise value sits just under the line.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-04-library-v3-9-3",
-    "date": "2026-06-04",
-    "summary": "Library pinned to v3.9.3. Rebuttal-strength badges now display and band on the rounded one-decimal RSI, so the rendered grade matches the grading ledger on all 231 graded register tiers — privileged-first-world long reads 88.0 A, and the held-override map is regenerated ledger-true (a stale negative-utilitarian short value corrected four points down). Combined and index page titles drop their version strings for good. Last round's standard-mode card gripe verify-closed: a saved display-mode booting from localStorage, not a styling defect — card CSS untouched.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-04-library-v3-9-2",
-    "date": "2026-06-04",
-    "summary": "Argument Library v3.9.2 — cluster-C archetype variants live: red-button-repugnant now carries a sophisticate register (the NU-entails-omnicide formal reductio, met on person-affecting/ex-ante ground) and a defender register (the public-square repugnance charge, dissolved against the thought-experiment's own stipulations). 16 nodes / 39 variant bodies; 81 objections and the grading ledger unchanged. Integrity pin f26dfdd4 → f3870f6e.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-04-library-v3-9-1r",
-    "date": "2026-06-04",
-    "summary": "Argument Library v3.9.1r — correction to the v3.9.1 sweep: in the combined LEGIBLE + HIGH-CONTRAST mode the new example cards rendered as dark slabs on the light page; the light surface now wins that stack. Byte-neutral, no content change.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-04-library-v3-9-1",
-    "date": "2026-06-04",
-    "summary": "Argument Library v3.9.1 — legibility sweep: real-world-example cards re-registered to the library's fixed-px type scale with full legible / high-contrast mode adaptation, UI chrome labels lifted off the sub-10px floor, and 14 rebuttal grade-bands corrected against the canonical band rule; 81 objections / 35 mechanisms / 136 examples / 15 variant carriers held.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-03-library-v3-9-0",
-    "date": "2026-06-03",
-    "summary": "Argument Library v3.9.0 — archetype-variant rebuttal registers live on 15 nodes (11 defender, 5 sophisticate; per-card toggle) plus 136 real-world deployment examples as expandable cards; 81 objections / 35 mechanisms held.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-03-library-v3-8-22",
-    "date": "2026-06-03",
-    "summary": "Argument Library updated to v3.8.22 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.",
-    "sections": [
-      "/argument-library/"
-    ]
-  },
-  {
-    "id": "2026-06-01-void-engine-glow",
-    "date": "2026-06-01",
-    "summary": "The Void Engine now flags what's new for you — fresh prompts and categories glow until you've seen them (remembered on your device, no tracking). Plus a pinned stat header, model-agnostic targeting copy, site-matched accent colors, a clearer Diagnosis form, and a new figure-DNA prompt filter for the figure sets. Still 334 prompts across 19 categories.",
-    "sections": [
-      "/void-engine/"
-    ]
-  },
-  {
-    "id": "2026-06-01-void-engine-334",
-    "date": "2026-06-01",
-    "summary": "The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it.",
-    "sections": [
-      "/void-engine/"
-    ]
-  },
-  {
-    "id": "2026-05-31-comment-board",
-    "date": "2026-05-31",
-    "summary": "The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed.",
-    "sections": [
-      "/chat/"
-    ]
-  },
-  {
-    "id": "2026-05-31-changelog",
-    "date": "2026-05-31",
-    "summary": "Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.",
-    "sections": []
-  },
-  {
-    "id": "2026-05-30-void-engine-310",
-    "date": "2026-05-30",
-    "summary": "Void Engine lexicon expanded to 310 entries across 19 categories.",
-    "sections": [
-      "/void-engine/"
-    ]
-  },
-  {
-    "id": "2026-05-18-archive-expansion",
-    "date": "2026-05-18",
-    "summary": "Archive expanded with additional video selections and a content disclaimer.",
-    "sections": [
-      "/archive/"
-    ]
-  },
-  {
-    "id": "2026-05-17-gallery-recs-tabs",
-    "date": "2026-05-17",
-    "summary": "Gallery images optimized for faster loading; Recommendations filled out across film, books, art, groups, and media; Support, Contact, and Chat tabs added.",
-    "sections": [
-      "/gallery/",
-      "/recommendations/",
-      "/donations/",
-      "/contact/",
-      "/chat/"
-    ]
-  },
-  {
-    "id": "2026-05-16-music-watch-ambient",
-    "date": "2026-05-16",
-    "summary": "Music and Watch pages added, the Archive opened, and a site-wide ambient background player introduced.",
-    "sections": [
-      "/music/",
-      "/watch/",
-      "/archive/"
-    ]
-  },
-  {
-    "id": "2026-05-11-launch",
-    "date": "2026-05-11",
-    "summary": "wuld.ink registered and launched — the umbrella for all of WULD's philosophical output. Core surfaces stood up: Essays, Glossary, Book, and Blog.",
-    "sections": [
-      "/essays/",
-      "/glossary/",
-      "/book/",
-      "/blog/"
-    ]
-  }
+ {
+  "id": "2026-07-12-yurei-desk-assistant",
+  "date": "2026-07-12",
+  "summary": "Yūrei, the interior's resident, steps out from the margins into a desk you can address directly. Ask where something lives and she points you to the department — the essays, the argument library, the void engine, the gallery, and the building's other signed rooms; say anything else and she files it in character. She keeps to a bounded repertoire rather than pretending to answer everything, reads the hour and the room, and drops the fiction for a real crisis line when it matters. Dismissible, keyboard-operable, and quiet under reduced-motion.",
+  "sections": []
+ },
+ {
+  "id": "2026-07-11-library-v4-0-0",
+  "date": "2026-07-11",
+  "summary": "The argument library takes its first content step since the v3.8 freeze: version 4.0.0. An 82nd objection joins the catalogue — the Kantian charge that 'do not procreate' cannot be willed as universal law — with the full three-depth treatment and its own plain-language card, and the contractualism entry is regenerated to meet the strongest modern ex-ante form of that objection, its plain card re-mirrored to match. The maps and the grading ledger move in step: 82 objections, a 117-node mechanism web, 255 dependency edges.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-07-07-ambient-breeze",
+  "date": "2026-07-07",
+  "summary": "The default ambience is calmer now: the YouTube background player no longer starts on its own — turn it on from the bar if you want it — and the generative synth bed carries the room by default, opening on breeze: a deep, methodic drone with an aching resonant wind that rises and aches back between movements, after the opening of Éliane Radigue's Triptych. Two other moods sit a tap away in the [fx] panel — a colder clinical hum and a deeper oceanic drift tuned to carry on smaller speakers.",
+  "sections": []
+ },
+ {
+  "id": "2026-07-07-notes-writing-surface",
+  "date": "2026-07-07",
+  "summary": "New Notes tab — a private place to write, saved only in your browser (nothing is sent anywhere unless you copy or download it). Typing has sound and a soft glow, and each finished word lands with a chime. The ambient layer grew too: the site quietly drifts and glitches the longer you leave a tab open, and the generative synth bed gained two new moods — a colder clinical hum and a deeper oceanic drift — cycled from the [fx] panel.",
+  "sections": [
+   "/notes/"
+  ]
+ },
+ {
+  "id": "2026-07-06-connection-help-page",
+  "date": "2026-07-06",
+  "summary": "New help page for a connection error some visitors hit — an intermittent ERR_SSL_PROTOCOL_ERROR or “invalid response” warning that comes and goes. It’s a network-side Encrypted ClientHello (ECH) conflict, not the site: /troubleshooting/ has the roughly 30-second fix, by browser, with a mirror on library.wuld.ink for when the main domain won’t load. Linked from the footer and the contact page.",
+  "sections": [
+   "/contact/"
+  ]
+ },
+ {
+  "id": "2026-07-05-library-v3-9-16",
+  "date": "2026-07-05",
+  "summary": "The flagship library now has plain language too. Open any of its 81 objections and tap `plain` for a three-beat version — the objection in plain terms, the answer, and a one-line close; scholar view is unchanged and stays the default. That completes the rollout: every library surface — the flagship and all five wings — now offers a plain-language reading.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-07-04-library-plain-scholar-toggle",
+  "date": "2026-07-04",
+  "summary": "Every argument-library wing now has a plain / scholar toggle — flip a wing into plain language and each rebuttal collapses to three beats: the objection in plain terms, the answer, and a one-line close (the depth controls and grading panel step aside). Scholar view is unchanged and remains the default. Live on Right to Die, Abortion, Transgenderism, Anthropocentrism, and Veganism.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-07-02-search-typo-tolerance",
+  "date": "2026-07-02",
+  "summary": "Site search is more forgiving — it now matches your words in any order and shrugs off small typos and misspellings (a query like “farming humane”, or a mistyped “speciecism”, still finds the right rebuttal), across every library and section. Exact phrases still rank first.",
+  "sections": [
+   "/search/"
+  ]
+ },
+ {
+  "id": "2026-07-02-veganism-searchable",
+  "date": "2026-07-02",
+  "summary": "The veganism argument library is now live and searchable — a reader surface at library.wuld.ink/veganism/combined lays out six rebuttals to the case for eating animals, each with its Rebuttal Strength Index grade, and wuld.ink search now surfaces them: a query like “humane farming”, “predation”, or “speciesism” returns the matching rebuttal.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-29-library-rsi-grades",
+  "date": "2026-06-29",
+  "summary": "Every card across the four argument-library wings now shows its Rebuttal Strength Index grade — five scored axes, the geometric-mean formula, and the letter band — read live from each wing's grading ledger. The umbrella front door now also answers the bare library.wuld.ink address.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-29-umbrella-front-door",
+  "date": "2026-06-29",
+  "summary": "Umbrella front door + cross-library navigation — a new /libraries index links all five argument libraries, and every wing's header now reaches all the others.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-29-abortion-wing",
+  "date": "2026-06-29",
+  "summary": "Abortion library opened — an optionality-only Wing-1 defense of the abortion right: the bodily-sovereignty spine, the personhood-independence foundation, and the responsibility and manner-of-removal defenses (four objections answered, in active build).",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-28-transgenderism-complete",
+  "date": "2026-06-28",
+  "summary": "Transgenderism library complete — twelve objections answered across sovereignty, consent, and harm; the wing marked provisional-complete.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-27-anthropocentrism-wing",
+  "date": "2026-06-27",
+  "summary": "A new wing joins the Refusal Libraries: Anthropocentrism. It answers the objections raised when human moral priority is questioned — from 'humans are simply the rational default' through species-membership and substrate to the charge that any such dissent is mere misanthropy. Six objections, provisionally complete, each graded, with real-world examples cited. It defends the permissibility of declining the anthropocentric mandate and asserts no positive ranking of its own; reach it from the wing-switcher at the top of any library page.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-27-library-reading-modes",
+  "date": "2026-06-27",
+  "summary": "Both newer library wings — Right to Die and Anthropocentrism — gain reading modes: a legible warm-cream mode and a high-contrast mode alongside the default instrument view, plus per-objection collapsible cards so you can scan the triggers and open only the rebuttals you want. Your display choice is remembered in your own browser.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-26-right-to-die-provisional-complete",
+  "date": "2026-06-26",
+  "summary": "The Right to Die wing reaches a provisionally complete set: seventeen objections to the right to refuse continued existence — across harm, consent, sovereignty, and compensation — each answered and graded, now with real-world examples grounding the objections at full strength. A defense of the option, not a claim that anyone should die.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-23-library-v3-9-15",
+  "date": "2026-06-23",
+  "summary": "Refusal Libraries wing-switcher: the Argument Library and the new Right to Die wing now cross-link at the top of each page (library.wuld.ink). Library pinned at v3.9.15.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-10-night-shift",
+  "date": "2026-06-10",
+  "summary": "The night shift accepts no deliveries. Something keeps the hour on the longer pages now. Present on the wider screens. Noticed, not announced. No further comment from the interior.",
+  "sections": []
+ },
+ {
+  "id": "2026-06-10-search-library-objections",
+  "date": "2026-06-10",
+  "summary": "Site search now indexes the Argument Library's 81 objections: a new Library results section links each match to its objection on library.wuld.ink, opening in a new tab. Titles and one-line glosses are generated from the library corpus, never hand-authored.",
+  "sections": [
+   "/search/"
+  ]
+ },
+ {
+  "id": "2026-06-10-search-index-h3-coverage",
+  "date": "2026-06-10",
+  "summary": "Site search now indexes h3 headings: archive book titles (Hatred, The Point), essay sub-sections, recommendations, and Watch video titles that the index previously skipped. Archive titles and essay sections deep-link to the exact entry; a strip-blocks fix also restored the Watch page, which had been wholly absent from search.",
+  "sections": [
+   "/search/"
+  ]
+ },
+ {
+  "id": "2026-06-10-gallery-ux-pass-3",
+  "date": "2026-06-10",
+  "summary": "Gallery UX pass 3: the search/controls bar is now the first block on all nine gallery pages with the NSFW gate directly below it, and the lobby Prints strip collapses behind a mono band with [ expand ] and a direct storefront link (wuld.printful.me).",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-10-gallery-photo-video-pairing",
+  "date": "2026-06-10",
+  "summary": "Gallery: 42 operator-confirmed photo-video pairs land as additive manifest video: fields; paired image cards gain a [ mp4 ] affordance (star-adjacent) opening the video theater on the partner plate, consent-held; both gallery assets bumped to ?v=K109 across the 9 rooms.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-10-library-v3-9-14",
+  "date": "2026-06-10",
+  "summary": "Argument Library v3.9.14 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-10-gallery-video-flow-and-search-deep-links",
+  "date": "2026-06-10",
+  "summary": "Main Character videos now flow by palette (poster-derived chain order); the lobby [ browse all ] walks room by room instead of interleaving; site-search plate results deep-link to the plate itself — the link opens the lightbox or the video theater directly.",
+  "sections": [
+   "/gallery/",
+   "/search/"
+  ]
+ },
+ {
+  "id": "2026-06-10-gallery-browse-pagination",
+  "date": "2026-06-10",
+  "summary": "Gallery UX pass 2: sets past 60 plates paginate behind a mono pager, the lobby gains a [ browse all ] toggle across every room, a [ top ] button rides long scrolls, flagged share links surface the 18+ gate for first-time visitors, and the lobby Prints strip keeps only cross-room prints.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-share-and-sticky-reveal",
+  "date": "2026-06-09",
+  "summary": "Per-plate share links: [ share ] in the lightbox and the video theater copies a /gallery/<room>/#plate-<id> deep link that reopens the plate on load (consent-gated plates stay withheld — a link is not a bypass). The NSFW reveal now persists until purposefully hidden. Lobby: the consent gate sits above the Prints section and its status line counts flagged plates across all rooms.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-video-theater",
+  "date": "2026-06-09",
+  "summary": "Gallery: video theater — clicking a video now opens it center-stage, dims the room, and loops; back / forward / random / close controls and the plate id ride the frame, matching the photo lightbox.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-media-chips",
+  "date": "2026-06-09",
+  "summary": "Gallery: images/videos access chips in the controls bar (all rooms with mixed media + the lobby) — jump straight to the video annex without the scroll; composes with search, series chips and Saved.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-video-posters",
+  "date": "2026-06-09",
+  "summary": "Every video plate in the gallery now carries a poster thumbnail - the video sections preview a still frame instead of a grey tile. Click still plays; nothing preloads.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-video-section",
+  "date": "2026-06-09",
+  "summary": "Gallery: videos now render in their own section below the image grid -- a mono divider carries the count (Videos -- 188 in the Main Character room; generic wherever media kinds mix), search, chips and Saved filter both sections, and the consent gate holds unchanged. Poster thumbnails are staged to follow.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-visual-flow",
+  "date": "2026-06-09",
+  "summary": "Gallery: the Main Character room re-sequenced for visual flow -- 248 images palette-chained from the darkest plate so similar color and vibe sit together; 188 videos trail as an annex. Plate numbers unchanged.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-prints-and-captions",
+  "date": "2026-06-09",
+  "summary": "Gallery: the lobby gains a Prints section -- plates with purchasable print editions, rendered live from the manifest, consent discipline held -- and long full-tier captions now fold behind a mono [ more ] toggle.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-site-search",
+  "date": "2026-06-09",
+  "summary": "Site-wide search at /search/ — every page, glossary term, Void Engine category, and gallery plate (by number, series, or word) from one query. Client-side over a static index: nothing typed here is logged, counted, or sent anywhere.",
+  "sections": [
+   "/search/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-featured-and-print-pipeline",
+  "date": "2026-06-09",
+  "summary": "Gallery: 12 plates curated as the first featured set (manifest flag; print pipeline staged behind it). Admin CMS gains per-plate print-link + featured editing.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-print-link-scaffold",
+  "date": "2026-06-09",
+  "summary": "Gallery: dormant per-plate print buy-link scaffold (optional manifest print_url, link-out only, never on withheld cards) riding the print-storefront vendor research (docs/print-storefront-research.md). Links render once product URLs land in the manifest.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-09-gallery-favorites-and-plate-search",
+  "date": "2026-06-09",
+  "summary": "You can now save plates. A star in the corner of every plate bookmarks it to a Saved list that persists in your browser, and the controls bar gains a Saved toggle that filters to just those — on any page, and across every room from the lobby. Search now understands plate numbers: type 1, 001, or plate 001 to pull up every plate numbered one, across rooms (the Roman-numbered editorial plates included), instead of matching id fragments. And the lightbox gains a randomizer — a [ random ] button beside the arrows, or press r — to jump to a random plate. Flagged plates stay withheld behind the consent gate throughout; starring is by id, so it works before you reveal anything.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-08-gallery-search-and-subcategories",
+  "date": "2026-06-08",
+  "summary": "The gallery becomes browsable. A search box on the lobby reaches across all 502 plates in every room; rooms with more than a dozen plates get their own search; and the 436-plate Main Character room gains filter chips for its 18 series, so you can pull up one thread at a time instead of scrolling the whole wall. Flagged matches stay withheld behind the consent gate, exactly as they do in-room, and each plate's reference id now shows in the lightbox.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-08-void-engine-397",
+  "date": "2026-06-08",
+  "summary": "The Void Engine grows from 334 to 397 entries, and from 19 to 25 categories. Six new registers join the lexicon: Cyborg / Synthetic, Monster / Creature, Under-Skin / Black-Void, Hell / Infernal, Succubus / Domestic-Infernal, and a Celestial / Deep-Field room that sets the figure against a literal starfield — cosmos as indifference, distinct from the metaphysical voids. Shipped as one wholesale rebuild of the instrument.",
+  "sections": [
+   "/void-engine/"
+  ]
+ },
+ {
+  "id": "2026-06-08-library-v3-9-13",
+  "date": "2026-06-08",
+  "summary": "Argument Library v3.9.13 — dep-graph render-from-data: the dependency graph's dependent-objection counts (panel header, the strong/weak sublabel, node width, and the premise ordering) now derive live from the links data instead of stale per-node numbers baked into the graph, so a premise that depends on 67 objections reads 67 — not the frozen 66. An in-page check confirms the tally is exhaustive (it sums to the full 254 edges). The library's served bytes change only by the small render-logic edit; no argument content moved.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-08-gallery-main-character-ingest",
+  "date": "2026-06-08",
+  "summary": "Gallery: the Main Character room lands — 436 plates (248 images, 188 short videos), taking the gallery from 66 to 502 and making it the site's largest room by far. Twenty-one standouts carry editorial captions; the rest render image-only by design, the way a high-iteration room is meant to read. Every plate is flagged 18+ / AI-generated / no real persons, so the consent interstitial fronts the room before anything loads.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-08-gallery-small-room-ingest",
+  "date": "2026-06-08",
+  "summary": "Gallery: 39 plates ingested across seven rooms (Gap Dweller, Gore, Mascot Yurei, Original Character, Other, The Tall One, The Wrong Thing), taking the gallery from 27 to 66. The dormant consent gate now arms for these rooms (18+, AI-generated, no real persons). Main Character lands in a later pass.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-06-gallery-v2-rooms",
+  "date": "2026-06-06",
+  "summary": "Gallery v2: category rooms (eight sub-pages under /gallery/), video plates (click-to-play mp4), caption tiers (full / title / none with a category cascade), manifest schema v2 with the admin Worker pinned to it; the consent gate is now media-agnostic. Operator guide for admin.wuld.ink lands in docs/.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-06-library-v3-9-12",
+  "date": "2026-06-06",
+  "summary": "Argument Library v3.9.12 — MechanismWeb resync: the React artifact's v3.7-frozen mechanism graph (34 mechanisms / 78 objections / 133 connections) re-synced to the canonical 35 / 81 / 140, and its masthead counts now render from the data itself instead of hard-coded numbers. The library page's served bytes are unchanged; this is a data-artifact and provenance move.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-06-gallery-manifest-vessel",
+  "date": "2026-06-06",
+  "summary": "Gallery becomes the admin-arc vessel: all 27 plates extracted to /gallery/manifest.json (now the single source of truth), the grid client-renders from it, and a consent interstitial fronts NSFW-flagged plates - flagged images stay out of the page entirely until consent. Captions and the K27 lightbox carry over unchanged.",
+  "sections": [
+   "/gallery/"
+  ]
+ },
+ {
+  "id": "2026-06-05-library-v3-9-11",
+  "date": "2026-06-05",
+  "summary": "Library v3.9.11 — legible-mode review-note legibility (maintenance). The dependency graph's per-premise review notes were pinned at 10px and sat outside the legible set, so switching to legible re-fonted them to serif while keeping the 10px box — they read smaller than standard. Legible and legible+high-contrast now render the notes at 12.5px with relaxed leading on both the combined and index surfaces; standard and high-contrast are unchanged, and the note badges keep their small label size by design. Render-only CSS; canon held at v37.36 per the Exchange-38 ruling.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-05-library-v3-9-10",
+  "date": "2026-06-05",
+  "summary": "Library v3.9.10 — dependency-panel review-note riders (maintenance). The dependency graph's per-premise review notes — short audit annotations shown when a premise node is clicked — still quoted connection totals from the v3.5 audit, when the graph was smaller. Five premise notes read as if those counts were current: Consent Impossibility (62 total connections), Suffering as Deterrence (13), Contextus Claudit (8), Alogical Isness (8), Convergent Architecture (13). Each figure now carries a small inline rider giving the live count beside the audit figure — current: 67 (42 strong / 25 weak), 19, 9, 11, and 17 respectively. The v3.5 audit text itself is unchanged: the old figures stay as clearly dated history rather than being rewritten, the same convention v3.9.9 applied to the graph's explanatory note. The fourteen objection-level notes needed nothing — their counts still match the live graph. No rebuttal, score, edge, or graph data changed; the dependency graph still holds its locked 254 edges.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-05-library-v3-9-9",
+  "date": "2026-06-05",
+  "summary": "Library v3.9.9 — dependency-graph note correction (maintenance). One explanatory note beneath the dependency graph carried stale figures: it described Consent Impossibility as the source of 62 edges, 28% of all dependencies, with a 40/22 strong-weak split — numbers from the v3.5 audit, when the graph was smaller. The note now reports the current graph: Consent Impossibility sources 67 edges, 42 strong and 25 weak, which is 26% of the 254 dependencies the graph actually holds. The older v3.5 audit figures are kept but clearly marked as history rather than read as current. No rebuttal, score, edge, or graph geometry changed — only the wording of the note; the dependency graph still holds its locked 254 edges. Version and provenance continue to live in the changelog and the integrity pin, not in the note.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-05-library-v3-9-8",
+  "date": "2026-06-05",
+  "summary": "Library v3.9.8 — panel corrections (maintenance). Three small text fixes to the library's explanatory panels, with no change to any rebuttal, score, or graph geometry. The dependency-graph notes no longer claim Autonomy is the system's most common weakness — a stale line that contradicted the methodology panel, which correctly identifies Robustness — and the Autonomy note now describes what the graph actually shows: which responses lean on contested foundational premises and so persuade a determined skeptic least. The masthead drops its version number, which had drifted out of date; the live version lives in the changelog and the integrity pin, not the title. And the list of highest-scoring entries now reads 'include' rather than 'are', since the four named entries are examples drawn from a larger set of ten that score top marks on all five axes, not the whole set.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-05-library-v3-9-7",
+  "date": "2026-06-05",
+  "summary": "Library v3.9.7 — methodology-panel reconcile (correctness). The RSI methodology panel now states its own grading conventions in full: grades band the unrounded geometric mean while displayed percentages round to one decimal — so a boundary cell can legitimately read 88.0/B — and a worked example (privileged-first-world, long form) carries the arithmetic end-to-end from five axis scores to the final letter. The panel's fourth axis label normalizes from Resilience to Robustness (label only; no score changes), and a stale calibration claim that Autonomy was the library's most common weakness is replaced with the ledger-true observation that Robustness is. The five axis names and definitions are now canonized exactly as the deployed panel defines them — the definitions the 81 stored scores were actually assigned against. Reading modes pick up the panel correctly. No rebuttal text, scores, or graph geometry change.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-04-library-v3-9-6",
+  "date": "2026-06-04",
+  "summary": "Library v3.9.6 — dependency-graph de-clutter (maintenance). The dependency graph's objection band now lays out as five tier-keyed columns instead of one crowded strip: each objection sits in its tier's column, dense tiers stagger their entries around the column line with spacing sized to each node, and the heaviest premise hubs hold their dependents at distance instead of knotting them into a clump. Reading modes that narrow the page to a comfortable prose measure no longer narrow the graphs with it — all three graph views keep the full frame while prose pages keep their measure. Geometry only; graph data and the reading modes themselves are untouched.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-04-library-v3-9-5",
+  "date": "2026-06-04",
+  "summary": "Library v3.9.5 — graph-view legibility (maintenance). The display toggle's LEGIBLE and BOTH modes now apply a typographic treatment inside the three graph views instead of only repainting the theme: node labels step up in size and weight behind a semi-opaque halo-chip, so they read against dense linework without enlarging the graph itself, and the side panels and methodology panels ride the same legibility scale. Graph tabs default to STANDARD on entry — the layout-optimal view — and restore your prior reading mode on leave; an explicit mode choice made inside a graph sticks. Graph geometry, data, and zoom are untouched.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-04-library-v3-9-4",
+  "date": "2026-06-04",
+  "summary": "Library v3.9.4 — band-convention correction. RSI letter grades return to banding the unrounded geometric mean (the ratified v37.13 convention), reverting a drift that had promoted ten boundary-edge long-form rebuttals to A and softened two mediums. Headline distribution moves to A26/B54/C1 — the principled outcome, not a regression. Displayed percentages keep one-decimal rounding, so a boundary cell can legitimately read 88.0/B: the precise value sits just under the line.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-04-library-v3-9-3",
+  "date": "2026-06-04",
+  "summary": "Library pinned to v3.9.3. Rebuttal-strength badges now display and band on the rounded one-decimal RSI, so the rendered grade matches the grading ledger on all 231 graded register tiers — privileged-first-world long reads 88.0 A, and the held-override map is regenerated ledger-true (a stale negative-utilitarian short value corrected four points down). Combined and index page titles drop their version strings for good. Last round's standard-mode card gripe verify-closed: a saved display-mode booting from localStorage, not a styling defect — card CSS untouched.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-04-library-v3-9-2",
+  "date": "2026-06-04",
+  "summary": "Argument Library v3.9.2 — cluster-C archetype variants live: red-button-repugnant now carries a sophisticate register (the NU-entails-omnicide formal reductio, met on person-affecting/ex-ante ground) and a defender register (the public-square repugnance charge, dissolved against the thought-experiment's own stipulations). 16 nodes / 39 variant bodies; 81 objections and the grading ledger unchanged. Integrity pin f26dfdd4 → f3870f6e.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-04-library-v3-9-1r",
+  "date": "2026-06-04",
+  "summary": "Argument Library v3.9.1r — correction to the v3.9.1 sweep: in the combined LEGIBLE + HIGH-CONTRAST mode the new example cards rendered as dark slabs on the light page; the light surface now wins that stack. Byte-neutral, no content change.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-04-library-v3-9-1",
+  "date": "2026-06-04",
+  "summary": "Argument Library v3.9.1 — legibility sweep: real-world-example cards re-registered to the library's fixed-px type scale with full legible / high-contrast mode adaptation, UI chrome labels lifted off the sub-10px floor, and 14 rebuttal grade-bands corrected against the canonical band rule; 81 objections / 35 mechanisms / 136 examples / 15 variant carriers held.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-03-library-v3-9-0",
+  "date": "2026-06-03",
+  "summary": "Argument Library v3.9.0 — archetype-variant rebuttal registers live on 15 nodes (11 defender, 5 sophisticate; per-card toggle) plus 136 real-world deployment examples as expandable cards; 81 objections / 35 mechanisms held.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-03-library-v3-8-22",
+  "date": "2026-06-03",
+  "summary": "Argument Library updated to v3.8.22 — 81 objections / 35 mechanisms, with regraded rebuttals and a cleared danger-quadrant; actively maintained, not archived.",
+  "sections": [
+   "/argument-library/"
+  ]
+ },
+ {
+  "id": "2026-06-01-void-engine-glow",
+  "date": "2026-06-01",
+  "summary": "The Void Engine now flags what's new for you — fresh prompts and categories glow until you've seen them (remembered on your device, no tracking). Plus a pinned stat header, model-agnostic targeting copy, site-matched accent colors, a clearer Diagnosis form, and a new figure-DNA prompt filter for the figure sets. Still 334 prompts across 19 categories.",
+  "sections": [
+   "/void-engine/"
+  ]
+ },
+ {
+  "id": "2026-06-01-void-engine-334",
+  "date": "2026-06-01",
+  "summary": "The Void Engine lexicon grew to 334 prompts across 19 categories -- Apophatica, Luminous-Void, and Void / Dissolution deepened, the Figure sets broadened, and the Chaos reroll now takes a scoped multi-select so you can aim the randomness instead of only shielding it.",
+  "sections": [
+   "/void-engine/"
+  ]
+ },
+ {
+  "id": "2026-05-31-comment-board",
+  "date": "2026-05-31",
+  "summary": "The comment board is live on the Chat page — leave a public note for me or anyone reading, anonymous or signed. Be civil; spam and bad faith get removed.",
+  "sections": [
+   "/chat/"
+  ]
+ },
+ {
+  "id": "2026-05-31-changelog",
+  "date": "2026-05-31",
+  "summary": "Added this changelog, an RSS feed, and a nav indicator that glows when a section you haven't visited has changed.",
+  "sections": []
+ },
+ {
+  "id": "2026-05-30-void-engine-310",
+  "date": "2026-05-30",
+  "summary": "Void Engine lexicon expanded to 310 entries across 19 categories.",
+  "sections": [
+   "/void-engine/"
+  ]
+ },
+ {
+  "id": "2026-05-18-archive-expansion",
+  "date": "2026-05-18",
+  "summary": "Archive expanded with additional video selections and a content disclaimer.",
+  "sections": [
+   "/archive/"
+  ]
+ },
+ {
+  "id": "2026-05-17-gallery-recs-tabs",
+  "date": "2026-05-17",
+  "summary": "Gallery images optimized for faster loading; Recommendations filled out across film, books, art, groups, and media; Support, Contact, and Chat tabs added.",
+  "sections": [
+   "/gallery/",
+   "/recommendations/",
+   "/donations/",
+   "/contact/",
+   "/chat/"
+  ]
+ },
+ {
+  "id": "2026-05-16-music-watch-ambient",
+  "date": "2026-05-16",
+  "summary": "Music and Watch pages added, the Archive opened, and a site-wide ambient background player introduced.",
+  "sections": [
+   "/music/",
+   "/watch/",
+   "/archive/"
+  ]
+ },
+ {
+  "id": "2026-05-11-launch",
+  "date": "2026-05-11",
+  "summary": "wuld.ink registered and launched — the umbrella for all of WULD's philosophical output. Core surfaces stood up: Essays, Glossary, Book, and Blog.",
+  "sections": [
+   "/essays/",
+   "/glossary/",
+   "/book/",
+   "/blog/"
+  ]
+ }
 ]

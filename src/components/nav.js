@@ -118,9 +118,25 @@
     navGlow(links, here);
   }
 
+  // K224 — bootstrap the interactive Yūrei desk-assistant on every surface that
+  // carries the nav. It coexists with the ambient haunting engine (yurei.js) and
+  // self-gates on kill-switch (wuld:yurei.off), reduced-motion, and session
+  // dismissal. Loaded here so a single component wires it site-wide; the /components
+  // 300s TTL propagates this within ~5 min without a per-page ?v bump.
+  function bootYureiAssistant() {
+    if (document.getElementById("yurei-assistant-js")) return;
+    var s = document.createElement("script");
+    s.id = "yurei-assistant-js";
+    s.src = "/components/yurei-assistant.js?v=K224";
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  function boot() { init(); bootYureiAssistant(); }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", boot);
   } else {
-    init();
+    boot();
   }
 })();
