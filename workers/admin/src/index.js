@@ -143,6 +143,15 @@ export default {
       if (request.method === "GET" && path === "/api/cmod/list") {
         return apiCmodList(env);
       }
+      if (request.method === "GET" && path.startsWith("/api/gaplog/proxy/")) {
+        return apiGaplogProxy(path.slice("/api/gaplog/proxy/".length));
+      }
+      if (request.method === "GET" && path === "/api/gaplog/rows") {
+        return apiGaplogRows(env, url);
+      }
+      if (request.method === "GET" && path === "/api/gaplog/export") {
+        return apiGaplogExport(env, url);
+      }
       if (request.method === "POST") {
         // CSRF + rate belt on every mutation.
         if (!gate.service && !sameOrigin(request)) return json({ error: "csrf_origin_mismatch" }, 403);
@@ -167,6 +176,10 @@ export default {
         if (path === "/api/cmod/act") return apiCmodAct(request, env);
         if (path === "/api/site/preview") return apiSitePreview(request, env);
         if (path === "/api/site/commit") return apiSiteCommit(request, env);
+        if (path === "/api/gaplog/log") return apiGaplogLog(request, env);
+        if (path === "/api/gaplog/resolve") return apiGaplogMod(request, env, "resolve");
+        if (path === "/api/gaplog/redact") return apiGaplogMod(request, env, "redact");
+        if (path === "/api/gaplog/drop") return apiGaplogMod(request, env, "drop");
       }
       return json({ error: "not_found" }, 404);
     } catch (e) {
@@ -635,6 +648,150 @@ async function apiCmodAct(request, env) {
     return json({ ok: true, id: id, edited: true });
   }
   return json({ error: "unknown_action" }, 404);
+}
+
+/* ------------------------- API: Gap Log (K228, Build 1.5a) -------------------------
+ * Admin-side testing lane for the Yūrei matcher. The matcher runs CLIENT-side on the
+ * LIVE wuld.ink bytes proxied same-origin here (no fork, no reimplementation). This
+ * Worker only (a) proxies the matcher + corpora, (b) persists PII-scrubbed misses +
+ * anonymous hit-quality flags to D1.
+ * PRIVACY FLOOR (invariant): no identity field is read, derived, or stored — ever.
+ * The client scrubs; the Worker RE-scrubs (defense in depth) and never persists raw.
+ * Miss lane = scrubbed content + dedup count; hit lane = entry_id + kind only.
+ * persona-scoped ('yurei'); a future Omega/proxy log is a SEPARATE store (§4.5/§5). */
+
+const GAPLOG_PERSONA = "yurei";
+const GAPLOG_SRC = {
+  matcher: "https://wuld.ink/components/yurei-oracle.js",
+  "corpus-public": "https://wuld.ink/components/yurei-corpus-public.json",
+  "corpus-oracle": "https://wuld.ink/components/yurei-corpus-oracle.json",
+};
+
+// Phoenix (UTC-7, no DST) day-granular stamp — matches Josiah's tz; dodges dual-boot UTC skew.
+function gaplogToday() {
+  return new Date(Date.now() - 7 * 3600 * 1000).toISOString().slice(0, 10);
+}
+
+// PII scrub — IDENTICAL to the client's gaplogScrub (ty_client.js). Mechanical
+// redaction only, deterministic; the 1.5b visitor pipeline reuses this exact code.
+function gaplogScrub(s) {
+  s = String(s == null ? "" : s);
+  s = s.replace(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g, "[email]");
+  s = s.replace(/\bhttps?:\/\/\S+/gi, "[url]");
+  s = s.replace(/\bwww\.\S+/gi, "[url]");
+  s = s.replace(/(^|\s)@[A-Za-z0-9_]{2,}/g, "$1[handle]");
+  s = s.replace(/\+?\d[\d\s().\-]{6,}\d/g, "[number]");
+  s = s.replace(/\s+/g, " ").trim();
+  return s.slice(0, 500);
+}
+
+// GET /api/gaplog/proxy/<name> — server-fetch the LIVE public bytes, serve same-origin
+// so the admin page's strict CSP (connect-src 'self', script-src 'self') can load them.
+async function apiGaplogProxy(name) {
+  const src = GAPLOG_SRC[name];
+  if (!src) return json({ error: "unknown_asset", name: String(name).slice(0, 40) }, 404);
+  let r;
+  try { r = await fetch(src, { cf: { cacheTtl: 30, cacheEverything: true } }); }
+  catch (e) { return json({ error: "upstream_fetch", detail: String(e && e.message || e).slice(0, 160) }, 502); }
+  if (!r.ok) return json({ error: "upstream_status", status: r.status, asset: name }, 502);
+  const body = await r.text();
+  const ct = name === "matcher" ? "text/javascript; charset=utf-8" : "application/json; charset=utf-8";
+  return new Response(body, { status: 200, headers: { "content-type": ct, "cache-control": "no-store", "x-content-type-options": "nosniff" } });
+}
+
+// GET /api/gaplog/rows?lane=miss|hit&sort=count|date|class
+async function apiGaplogRows(env, url) {
+  if (!env.COMMENTS_DB) return json({ error: "no_d1_binding", detail: "COMMENTS_DB absent — deploy with the K220 wrangler.toml." }, 503);
+  const lane = url.searchParams.get("lane") === "hit" ? "hit" : "miss";
+  const sort = url.searchParams.get("sort") || "count";
+  if (lane === "miss") {
+    const order = sort === "date" ? "last_date DESC, count DESC"
+      : sort === "class" ? "class ASC, count DESC"
+      : "count DESC, last_date DESC";
+    const q = await env.COMMENTS_DB.prepare(
+      "SELECT id, content_scrubbed, class, count, first_date, last_date, resolved FROM gap_log_miss WHERE persona = ? ORDER BY " + order + " LIMIT 2000"
+    ).bind(GAPLOG_PERSONA).all();
+    return json({ lane: "miss", rows: q.results || [] });
+  }
+  const order2 = sort === "date" ? "last_date DESC, count DESC" : "count DESC, last_date DESC";
+  const q2 = await env.COMMENTS_DB.prepare(
+    "SELECT id, entry_id, kind, count, first_date, last_date FROM gap_log_hit WHERE persona = ? ORDER BY " + order2 + " LIMIT 2000"
+  ).bind(GAPLOG_PERSONA).all();
+  return json({ lane: "hit", rows: q2.results || [] });
+}
+
+// POST /api/gaplog/log  {items:[{lane:'miss',content_scrubbed,class} | {lane:'hit',entry_id,kind}]}
+async function apiGaplogLog(request, env) {
+  if (!env.COMMENTS_DB) return json({ error: "no_d1_binding", detail: "COMMENTS_DB absent — deploy with the K220 wrangler.toml." }, 503);
+  const data = await readJson(request);
+  const items = data && Array.isArray(data.items) ? data.items : (data && data.lane ? [data] : []);
+  if (!items.length) return json({ error: "bad_json", hint: "{items:[{lane,...}]}" }, 400);
+  const today = gaplogToday();
+  let miss = 0, hit = 0, skipped = 0;
+  for (let i = 0; i < items.length && i < 200; i++) {
+    const it = items[i] || {};
+    if (it.lane === "miss") {
+      const content = gaplogScrub(it.content_scrubbed); // RE-scrub server-side (defense in depth)
+      if (!content) { skipped++; continue; }
+      const cls = it.class === "all_damped" ? "all_damped" : "below_threshold";
+      await env.COMMENTS_DB.prepare(
+        "INSERT INTO gap_log_miss (persona, content_scrubbed, class, count, first_date, last_date, resolved) VALUES (?,?,?,1,?,?,0) " +
+        "ON CONFLICT(persona, content_scrubbed) DO UPDATE SET count = count + 1, last_date = excluded.last_date, class = excluded.class"
+      ).bind(GAPLOG_PERSONA, content, cls, today, today).run();
+      miss++;
+    } else if (it.lane === "hit") {
+      const kind = String(it.kind || "");
+      if (kind !== "thin" && kind !== "novel" && kind !== "repetitive") { skipped++; continue; }
+      const eid = String(it.entry_id || "").slice(0, 80);
+      if (!/^[A-Za-z0-9_.:-]{1,80}$/.test(eid)) { skipped++; continue; } // entry-id SHAPE only; never content
+      await env.COMMENTS_DB.prepare(
+        "INSERT INTO gap_log_hit (persona, entry_id, kind, count, first_date, last_date) VALUES (?,?,?,1,?,?) " +
+        "ON CONFLICT(persona, entry_id, kind) DO UPDATE SET count = count + 1, last_date = excluded.last_date"
+      ).bind(GAPLOG_PERSONA, eid, kind, today, today).run();
+      hit++;
+    } else { skipped++; }
+  }
+  return json({ ok: true, miss, hit, skipped });
+}
+
+// POST /api/gaplog/{resolve,redact,drop}  {id, [resolved], [lane]}
+async function apiGaplogMod(request, env, action) {
+  if (!env.COMMENTS_DB) return json({ error: "no_d1_binding", detail: "COMMENTS_DB absent — deploy with the K220 wrangler.toml." }, 503);
+  const data = await readJson(request);
+  const id = parseInt(data && data.id, 10);
+  if (!Number.isInteger(id) || id < 1) return json({ error: "bad_id" }, 400);
+  if (action === "resolve") {
+    const v = (data.resolved === 0 || data.resolved === false || data.resolved === "0") ? 0 : 1;
+    await env.COMMENTS_DB.prepare("UPDATE gap_log_miss SET resolved = ? WHERE persona = ? AND id = ?").bind(v, GAPLOG_PERSONA, id).run();
+    return json({ ok: true, id, resolved: v });
+  }
+  if (action === "redact") { // blank content, keep the row+count (never auto-deleted; manual remedy)
+    await env.COMMENTS_DB.prepare("UPDATE gap_log_miss SET content_scrubbed = '[redacted]' WHERE persona = ? AND id = ?").bind(GAPLOG_PERSONA, id).run();
+    return json({ ok: true, id, redacted: true });
+  }
+  if (action === "drop") { // remove a single row (explicit manual removal)
+    const tbl = data.lane === "hit" ? "gap_log_hit" : "gap_log_miss";
+    await env.COMMENTS_DB.prepare("DELETE FROM " + tbl + " WHERE persona = ? AND id = ?").bind(GAPLOG_PERSONA, id).run();
+    return json({ ok: true, id, dropped: true, lane: tbl });
+  }
+  return json({ error: "unknown_action" }, 404);
+}
+
+// GET /api/gaplog/export?lane=miss|hit — JSON download
+async function apiGaplogExport(env, url) {
+  if (!env.COMMENTS_DB) return json({ error: "no_d1_binding", detail: "COMMENTS_DB absent — deploy with the K220 wrangler.toml." }, 503);
+  const lane = url.searchParams.get("lane") === "hit" ? "hit" : "miss";
+  const tbl = lane === "hit" ? "gap_log_hit" : "gap_log_miss";
+  const q = await env.COMMENTS_DB.prepare("SELECT * FROM " + tbl + " WHERE persona = ? ORDER BY count DESC, last_date DESC").bind(GAPLOG_PERSONA).all();
+  const payload = JSON.stringify({ persona: GAPLOG_PERSONA, lane, exported: gaplogToday(), rows: q.results || [] }, null, 2);
+  return new Response(payload, {
+    status: 200,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "content-disposition": 'attachment; filename="gaplog-' + lane + "-" + gaplogToday() + '.json"',
+      "cache-control": "no-store",
+    },
+  });
 }
 
 /* --------------------------- API: manifest ops --------------------------- */
@@ -2287,7 +2444,7 @@ function html(body) {
       "cache-control": "no-store",
       "referrer-policy": "no-referrer",
       "x-content-type-options": "nosniff",
-      "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src https://audio.wuld.ink; media-src https://audio.wuld.ink; connect-src 'self'; frame-src https://wuld.ink",
+      "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline' 'self'; img-src https://audio.wuld.ink; media-src https://audio.wuld.ink; connect-src 'self'; frame-src https://wuld.ink",
     },
   });
 }
@@ -2405,6 +2562,8 @@ function adminHtml(env, adminEmail) {
   <a href="#sec-media">media</a>
   <a href="#sec-cmod">comments</a>
   <a href="#sec-fx">fx</a>
+  <a href="#sec-yurei">y&#363;rei</a>
+  <a href="#sec-gaplog">gap log</a>
   <a href="#sec-log">log</a>
 </nav>
 
@@ -2723,6 +2882,55 @@ function adminHtml(env, adminEmail) {
 <details class="tool" id="sec-fx"><summary><h2>15 &middot; FX / Voice bench</h2></summary>
 <p>Live control of the wrong-hour FX system + her voice, embedded from wuld.ink so audition works here. Tuning writes this browser's localStorage (every page reads it). "copy site-fx.json" exports the config for a future site-wide default.</p>
 <iframe src="https://wuld.ink/_/fx-bench/" title="FX / Voice bench" loading="lazy" style="width:100%;height:660px;border:1px solid #3a3a3a;border-radius:2px;background:#0a0a0a"></iframe>
+</details>
+
+
+<details class="tool" id="sec-yurei"><summary><h2>16 &middot; Testing Y&#363;rei &mdash; live matcher + coverage HUD</h2></summary>
+<style>
+  #ty-transcript { display:flex; flex-direction:column; gap:.5rem; margin:.6rem 0; max-height:520px; overflow:auto; }
+  .ty-turn { display:flex; flex-direction:column; gap:.25rem; }
+  .ty-q { color:var(--dim); font-size:15px; }
+  .ty-bubble { border-left:3px solid var(--border); padding:.4rem .6rem; background:rgba(255,255,255,.02); border-radius:2px; }
+  .ty-bubble.ty-fresh { border-left-color:#3fb950; }
+  .ty-bubble.ty-seen  { border-left-color:#d29922; }
+  .ty-bubble.ty-miss  { border-left-color:#6e7681; opacity:.92; }
+  .ty-r { white-space:pre-wrap; }
+  .ty-meta { display:flex; flex-wrap:wrap; gap:.3rem .8rem; margin-top:.35rem; font-size:13px; color:var(--dim); text-transform:uppercase; letter-spacing:.08em; align-items:center; }
+  .ty-meta .rowbtn { text-transform:none; letter-spacing:normal; }
+  .gl-row { border-bottom:1px solid var(--border); padding:.45rem 0; }
+  .gl-row.gl-resolved { opacity:.5; }
+  .gl-c { white-space:pre-wrap; }
+  .gl-tags { display:flex; flex-wrap:wrap; gap:.3rem .8rem; margin-top:.3rem; font-size:13px; color:var(--dim); align-items:center; }
+</style>
+<p class="hint">Runs the EXACT live matcher (wuld.ink/components/yurei-oracle.js) + corpora, proxied same-origin &mdash; nothing here touches the public widget. <b>Green</b> = a response id never shown before (new coverage); <b>yellow</b> = seen before; grey = deflection/miss. Miss turns (below-threshold or all-damped, never repeats) log <b>PII-scrubbed</b> to the Gap Log. Raw input never leaves this browser &mdash; only scrubbed misses + anonymous votes are sent.</p>
+<div class="tablebar">
+  <span id="ty-status" role="status">not loaded</span>
+  <label><input type="checkbox" id="ty-unsealed"> unsealed (room tier)</label>
+  <button id="ty-reset-seen" type="button">reset seen (<span id="ty-seen-n">0</span>)</button>
+  <button id="ty-new-session" type="button">new session</button>
+</div>
+<div id="ty-transcript" aria-live="polite"></div>
+<form id="ty-form" autocomplete="off"><div class="tablebar">
+  <input type="text" id="ty-input" aria-label="Ask the testing Yurei" placeholder="type an input to test coverage&hellip;" style="flex:1 1 auto">
+  <button type="submit">send</button>
+</div></form>
+</details>
+
+<details class="tool" id="sec-gaplog"><summary><h2>17 &middot; Gap Log &mdash; coverage misses + hit quality</h2></summary>
+<div class="tablebar">
+  <span>lane</span>
+  <button id="gl-lane-miss" type="button">misses</button>
+  <button id="gl-lane-hit" type="button">hit quality</button>
+  <span>&middot; sort</span>
+  <button id="gl-sort-count" type="button">count</button>
+  <button id="gl-sort-date" type="button">date</button>
+  <button id="gl-sort-class" type="button">class</button>
+  <button id="gl-reload" type="button">reload</button>
+  <a id="gl-export" class="rowbtn" href="/api/gaplog/export?lane=miss" download>export</a>
+</div>
+<p class="hint">Miss rows are PII-scrubbed inputs the matcher had no answer for &mdash; <b>never auto-deleted</b>. <b>resolve</b> marks a gap handled; <b>redact</b> blanks one row's content; <b>drop</b> removes one row (manual remedy only). Hit-quality: <b>thin</b> = one entry fired &ge;3&times; in a session; <b>novel</b>/<b>repetitive</b> are your votes. No identity, no query content on the hit lane.</p>
+<div id="gl-info" role="status">&ndash;</div>
+<div id="gl-list"></div>
 </details>
 
 <h2 id="sec-log">Log</h2>
@@ -3394,6 +3602,163 @@ function adminHtml(env, adminEmail) {
     if ($("bp-date")) $("bp-date").value = t;
     if ($("ep-date")) $("ep-date").value = t;
   })();
+
+  /* ===== Testing Yurei + Gap Log (K228, Build 1.5a) ===== */
+  var SEEN_KEY = "wuld:admin-yurei-seen";
+  var TY = { loaded:false, loading:false, entries:[], unsealed:false, matcher:null, seen:null, sessFires:{}, THIN_K:3 };
+  var GL = { lane:"miss", sort:"count", loaded:false };
+  var GAP_QUEUE = [], GAP_TIMER = null, GAP_FLUSH_MS = 2500;
+
+  // PII scrub — shared VERBATIM with the Worker's gaplogScrub (1.5b reuses this pipeline).
+  function gaplogScrub(s) {
+    s = String(s == null ? "" : s);
+    s = s.replace(/\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b/g, "[email]");
+    s = s.replace(/\\bhttps?:\\/\\/\\S+/gi, "[url]");
+    s = s.replace(/\\bwww\\.\\S+/gi, "[url]");
+    s = s.replace(/(^|\\s)@[A-Za-z0-9_]{2,}/g, "$1[handle]");
+    s = s.replace(/\\+?\\d[\\d\\s().\\-]{6,}\\d/g, "[number]");
+    s = s.replace(/\\s+/g, " ").trim();
+    return s.slice(0, 500);
+  }
+  // Classify one turn on the LIVE matcher; loggable miss = score-step _miss (lane
+  // 'deflection' AND not a repeat). Reads the matcher's own input_hist — no re-impl.
+  function gapClassifyTurn(M, matcher, raw) {
+    var norm = M.normalize(raw);
+    var win = matcher.input_hist.slice(-matcher.repeat_window);
+    var priorCount = 0;
+    for (var i = 0; i < win.length; i++) if (win[i] === norm) priorCount++;
+    var r = matcher.respond(raw);
+    var isMiss = (r.lane === "deflection" && priorCount === 0);
+    var missClass = null;
+    if (isMiss) {
+      var best = 0, resp = matcher.responses || [];
+      for (var j = 0; j < resp.length; j++) { var sc = M.entryScore(resp[j], norm)[0]; if (sc > best) best = sc; }
+      missClass = best < M.CONST.MISS_THRESHOLD ? "below_threshold" : "all_damped";
+    }
+    return { r:r, isMiss:isMiss, missClass:missClass, priorCount:priorCount };
+  }
+
+  // debounced batch writer — one POST per flush keeps us under the 30/min write belt
+  function gapEnqueue(item) { GAP_QUEUE.push(item); if (!GAP_TIMER) GAP_TIMER = setTimeout(gapFlush, GAP_FLUSH_MS); }
+  function gapFlush() {
+    GAP_TIMER = null;
+    if (!GAP_QUEUE.length) return;
+    var batch = GAP_QUEUE.splice(0, 200);
+    post("/api/gaplog/log", { items: batch }).then(function (r) {
+      if (r.status === 429) { GAP_QUEUE = batch.concat(GAP_QUEUE); GAP_TIMER = setTimeout(gapFlush, (r.j && r.j.retry_in_s ? r.j.retry_in_s * 1000 : 5000)); return; }
+      if (r.status !== 200) log("gaplog write failed " + r.status);
+      if (GAP_QUEUE.length && !GAP_TIMER) GAP_TIMER = setTimeout(gapFlush, GAP_FLUSH_MS);
+    });
+  }
+
+  function tyLoadSeen() { try { TY.seen = new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || "[]")); } catch (e) { TY.seen = new Set(); } tySeenN(); }
+  function tySaveSeen() { try { localStorage.setItem(SEEN_KEY, JSON.stringify(Array.prototype.slice.call(TY.seen))); } catch (e) {} }
+  function tySeenN() { if ($("ty-seen-n")) $("ty-seen-n").textContent = TY.seen ? TY.seen.size : 0; }
+
+  function tyRebuild() { if (window.YureiOracle) { TY.matcher = new window.YureiOracle.Matcher(TY.entries, { unsealed: TY.unsealed }); TY.sessFires = {}; } }
+  function tyBootstrap() {
+    if (TY.loading || TY.loaded) return;
+    TY.loading = true; $("ty-status").textContent = "loading live matcher...";
+    import("/api/gaplog/proxy/matcher").then(function () {
+      return Promise.all([
+        fetch("/api/gaplog/proxy/corpus-public").then(function (r) { return r.ok ? r.json() : null; }),
+        fetch("/api/gaplog/proxy/corpus-oracle").then(function (r) { return r.ok ? r.json() : null; })
+      ]);
+    }).then(function (res) {
+      if (!window.YureiOracle) throw new Error("matcher global missing after import");
+      var pe = (res[0] && res[0].yurei_corpus && res[0].yurei_corpus.entries) || [];
+      var oe = (res[1] && res[1].yurei_corpus && res[1].yurei_corpus.entries) || [];
+      TY.entries = pe.concat(oe); TY.loaded = true; TY.loading = false; tyRebuild();
+      $("ty-status").textContent = "live matcher ready - " + pe.length + " public + " + oe.length + " oracle entries";
+      log("testing-yurei: loaded " + TY.entries.length + " entries");
+    }).catch(function (e) {
+      TY.loading = false; $("ty-status").textContent = "load FAILED: " + (e && e.message || e);
+      log("testing-yurei load failed: " + (e && e.message || e));
+    });
+  }
+
+  function tySend(raw) {
+    if (!TY.matcher) { log("testing-yurei: matcher not ready"); return; }
+    var M = window.YureiOracle;
+    var c = gapClassifyTurn(M, TY.matcher, raw);
+    var r = c.r, isNew = false;
+    if (r.id) { isNew = !TY.seen.has(r.id); if (isNew) { TY.seen.add(r.id); tySaveSeen(); tySeenN(); } }
+    tyRender(raw, r, isNew, c.isMiss);
+    if (c.isMiss) gapEnqueue({ lane:"miss", content_scrubbed: gaplogScrub(raw), class: c.missClass });
+    if (r.id) { TY.sessFires[r.id] = (TY.sessFires[r.id] || 0) + 1; if (TY.sessFires[r.id] === TY.THIN_K) gapEnqueue({ lane:"hit", entry_id:r.id, kind:"thin" }); }
+  }
+  function tyRender(raw, r, isNew, isMiss) {
+    var wrap = $("ty-transcript");
+    var row = document.createElement("div"); row.className = "ty-turn";
+    var bcls = r.id ? (isNew ? "ty-bubble ty-fresh" : "ty-bubble ty-seen") : "ty-bubble ty-miss";
+    var laneTag = isMiss ? "miss:" + (r.lane || "-") : (r.lane || "-");
+    var votes = r.id ? ('<button class=rowbtn data-vote=novel data-id="' + esc(r.id) + '">novel</button><button class=rowbtn data-vote=repetitive data-id="' + esc(r.id) + '">repetitive</button>') : "";
+    row.innerHTML =
+      '<div class=ty-q><b>you</b> ' + esc(raw) + '</div>' +
+      '<div class="' + bcls + '"><div class=ty-r>' + (r.response ? esc(r.response) : '<i>(deflection &mdash; no response)</i>') + '</div>' +
+      '<div class=ty-meta><span>id ' + (r.id ? esc(r.id) : "&mdash;") + '</span><span>lane ' + esc(laneTag) + '</span>' +
+      (r.tier ? '<span>tier ' + esc(r.tier) + '</span>' : "") + votes + '</div></div>';
+    wrap.insertBefore(row, wrap.firstChild);
+  }
+
+  function glSetLane(lane) { GL.lane = lane; if (lane === "hit" && GL.sort === "class") GL.sort = "count"; glReload(); }
+  function glReload() {
+    if ($("gl-export")) $("gl-export").setAttribute("href", "/api/gaplog/export?lane=" + GL.lane);
+    api("/api/gaplog/rows?lane=" + GL.lane + "&sort=" + GL.sort).then(function (r) {
+      if (r.status !== 200) { $("gl-info").textContent = "unavailable: " + JSON.stringify(r.j).slice(0, 160); $("gl-list").innerHTML = ""; return; }
+      glRender(r.j.rows || []);
+    });
+  }
+  function glRender(rows) {
+    $("gl-info").textContent = GL.lane + " - " + rows.length + " rows - sort " + GL.sort;
+    var list = $("gl-list"); list.innerHTML = "";
+    if (!rows.length) { list.innerHTML = "<p class=hint>no rows.</p>"; return; }
+    rows.forEach(function (row) {
+      var d = document.createElement("div");
+      if (GL.lane === "miss") {
+        d.className = "gl-row" + (row.resolved ? " gl-resolved" : "");
+        d.innerHTML =
+          '<div class=gl-c>' + esc(row.content_scrubbed) + '</div>' +
+          '<div class=gl-tags><span>#' + row.id + '</span><span>&times;' + row.count + '</span><span>' + esc(row.class) + '</span>' +
+          '<span>' + esc(row.first_date) + ' &rarr; ' + esc(row.last_date) + '</span>' +
+          '<button class=rowbtn data-gl=resolve data-id=' + row.id + '>' + (row.resolved ? "unresolve" : "resolve") + '</button>' +
+          '<button class=rowbtn data-gl=redact data-id=' + row.id + '>redact</button>' +
+          '<button class="rowbtn danger" data-gl=drop data-id=' + row.id + '>drop</button></div>';
+      } else {
+        d.className = "gl-row";
+        d.innerHTML =
+          '<div class=gl-tags><span>#' + row.id + '</span><b>' + esc(row.entry_id) + '</b><span>' + esc(row.kind) + '</span><span>&times;' + row.count + '</span>' +
+          '<span>' + esc(row.first_date) + ' &rarr; ' + esc(row.last_date) + '</span>' +
+          '<button class="rowbtn danger" data-gl=drop data-id=' + row.id + ' data-lane=hit>drop</button></div>';
+      }
+      list.appendChild(d);
+    });
+  }
+
+  tyLoadSeen();
+  $("sec-yurei").addEventListener("toggle", function () { if ($("sec-yurei").open) tyBootstrap(); });
+  $("ty-form").addEventListener("submit", function (ev) { ev.preventDefault(); var v = $("ty-input").value; if (v && v.trim()) { tySend(v); $("ty-input").value = ""; } });
+  $("ty-unsealed").addEventListener("change", function () { TY.unsealed = $("ty-unsealed").checked; tyRebuild(); $("ty-transcript").innerHTML = ""; log("testing-yurei: unsealed=" + TY.unsealed + " (fresh session)"); });
+  $("ty-reset-seen").addEventListener("click", function () { TY.seen = new Set(); tySaveSeen(); tySeenN(); log("testing-yurei: seen-set reset"); });
+  $("ty-new-session").addEventListener("click", function () { tyRebuild(); $("ty-transcript").innerHTML = ""; log("testing-yurei: new matcher session"); });
+  $("ty-transcript").addEventListener("click", function (ev) {
+    var b = ev.target.closest && ev.target.closest("button[data-vote]"); if (!b) return;
+    gapEnqueue({ lane:"hit", entry_id: b.getAttribute("data-id"), kind: b.getAttribute("data-vote") });
+    b.disabled = true; b.textContent = b.getAttribute("data-vote") + " ok";
+  });
+  $("sec-gaplog").addEventListener("toggle", function () { if ($("sec-gaplog").open && !GL.loaded) { GL.loaded = true; glReload(); } });
+  $("gl-lane-miss").addEventListener("click", function () { glSetLane("miss"); });
+  $("gl-lane-hit").addEventListener("click", function () { glSetLane("hit"); });
+  $("gl-sort-count").addEventListener("click", function () { GL.sort = "count"; glReload(); });
+  $("gl-sort-date").addEventListener("click", function () { GL.sort = "date"; glReload(); });
+  $("gl-sort-class").addEventListener("click", function () { GL.sort = "class"; glReload(); });
+  $("gl-reload").addEventListener("click", glReload);
+  $("gl-list").addEventListener("click", function (ev) {
+    var b = ev.target.closest && ev.target.closest("button[data-gl]"); if (!b) return;
+    var act = b.getAttribute("data-gl"), id = parseInt(b.getAttribute("data-id"), 10);
+    var body = { id: id }; if (b.getAttribute("data-lane") === "hit") body.lane = "hit";
+    post("/api/gaplog/" + act, body).then(function (r) { if (r.status === 200) glReload(); else log("gaplog " + act + " failed " + r.status); });
+  });
 
   refresh();
 })();

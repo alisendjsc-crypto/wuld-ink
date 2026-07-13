@@ -101,6 +101,12 @@ def _word_boundary_contains(form, text):
         i = text.find(form, i + 1)
     return False
 
+# §2.1 completeness guard: the word-boundary property that a raw-substring
+# (`form in text`) refactor would silently break. 'art' must NOT match inside
+# 'artist'; it MUST match at a real boundary. Pinned so the regression fails loudly.
+assert not _word_boundary_contains("art", "artist")
+assert _word_boundary_contains("art", "art of war")
+
 def pattern_match(pat, text):
     """Return True if pattern form matches normalized text under its mode."""
     form, mode = pat["form"], pat["mode"]
