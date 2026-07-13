@@ -2287,7 +2287,7 @@ function html(body) {
       "cache-control": "no-store",
       "referrer-policy": "no-referrer",
       "x-content-type-options": "nosniff",
-      "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src https://audio.wuld.ink; media-src https://audio.wuld.ink; connect-src 'self'",
+      "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src https://audio.wuld.ink; media-src https://audio.wuld.ink; connect-src 'self'; frame-src https://wuld.ink",
     },
   });
 }
@@ -2404,6 +2404,7 @@ function adminHtml(env, adminEmail) {
   <a href="#sec-essay">new essay</a>
   <a href="#sec-media">media</a>
   <a href="#sec-cmod">comments</a>
+  <a href="#sec-fx">fx</a>
   <a href="#sec-log">log</a>
 </nav>
 
@@ -2718,6 +2719,11 @@ function adminHtml(env, adminEmail) {
   <button id="sp-discard">discard</button>
 </div>
 
+
+<details class="tool" id="sec-fx"><summary><h2>15 &middot; FX / Voice bench</h2></summary>
+<p>Live control of the wrong-hour FX system + her voice, embedded from wuld.ink so audition works here. Tuning writes this browser's localStorage (every page reads it). "copy site-fx.json" exports the config for a future site-wide default.</p>
+<iframe src="https://wuld.ink/_/fx-bench/" title="FX / Voice bench" loading="lazy" style="width:100%;height:660px;border:1px solid #3a3a3a;border-radius:2px;background:#0a0a0a"></iframe>
+</details>
 
 <h2 id="sec-log">Log</h2>
 <div id="log" aria-live="polite"></div>

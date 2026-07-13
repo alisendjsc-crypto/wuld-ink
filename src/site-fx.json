@@ -11,6 +11,7 @@
     "voice.style": "YureiVoice.set({style})",
     "voice.pitch": "YureiVoice.set({pitch})",
     "voice.rate": "YureiVoice.set({rate})",
+    "voice.volume": "YureiVoice.set({volume})",
     "voice.speak": "YureiVoice.speak(text,{force:true})"
   },
   "groups": [
@@ -49,6 +50,7 @@
       "controls": [
         { "id": "voiceOn", "label": "Voice on", "type": "toggle", "default": false, "target": "voice.on" },
         { "id": "voiceStyle", "label": "Style", "type": "select", "options": ["inner", "animalese", "whisper"], "default": "inner", "target": "voice.style" },
+        { "id": "voiceVolume", "label": "Volume", "type": "range", "min": 0, "max": 1.5, "step": 0.05, "default": 1, "target": "voice.volume" },
         { "id": "voicePitch", "label": "Pitch", "type": "range", "min": 0.5, "max": 2, "step": 0.05, "default": 1, "target": "voice.pitch" },
         { "id": "voiceRate", "label": "Rate", "type": "range", "min": 0.5, "max": 2, "step": 0.05, "default": 1, "target": "voice.rate" },
         { "id": "voiceSay", "label": "Say a line", "type": "speak", "default": "the desk is attended; speak, and it is filed", "target": "voice.speak" }

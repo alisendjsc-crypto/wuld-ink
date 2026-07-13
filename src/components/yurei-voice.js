@@ -236,7 +236,7 @@
   // prefs (per-browser, default OFF) + speak
   // ==================================================================
   var STORAGE = "wuld:yurei.voice";
-  var DEFAULTS = { on: false, style: "inner", pitch: 1, rate: 1 };
+  var DEFAULTS = { on: false, style: "inner", pitch: 1, rate: 1, volume: 1 };
   function load() {
     try {
       var r = JSON.parse(localStorage.getItem(STORAGE));
@@ -244,12 +244,13 @@
         on: (typeof r.on === "boolean" ? r.on : DEFAULTS.on),
         style: (STYLES.indexOf(r.style) >= 0 ? r.style : DEFAULTS.style),
         pitch: clampRange(r.pitch, 0.5, 2, DEFAULTS.pitch),
-        rate: clampRange(r.rate, 0.5, 2, DEFAULTS.rate)
+        rate: clampRange(r.rate, 0.5, 2, DEFAULTS.rate),
+        volume: clampRange(r.volume, 0, 1.5, DEFAULTS.volume)
       };
     } catch (e) {}
-    return { on: DEFAULTS.on, style: DEFAULTS.style, pitch: DEFAULTS.pitch, rate: DEFAULTS.rate };
+    return { on: DEFAULTS.on, style: DEFAULTS.style, pitch: DEFAULTS.pitch, rate: DEFAULTS.rate, volume: DEFAULTS.volume };
   }
-  var prefs = (typeof localStorage !== "undefined") ? load() : { on: DEFAULTS.on, style: DEFAULTS.style, pitch: DEFAULTS.pitch, rate: DEFAULTS.rate };
+  var prefs = (typeof localStorage !== "undefined") ? load() : { on: DEFAULTS.on, style: DEFAULTS.style, pitch: DEFAULTS.pitch, rate: DEFAULTS.rate, volume: DEFAULTS.volume };
   function save() { try { localStorage.setItem(STORAGE, JSON.stringify(prefs)); } catch (e) {} }
 
   function reduced() { try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch (e) { return false; } }
@@ -268,11 +269,12 @@
     var ac = bus.ctx, dest = bus.dest;
     try { var p = ac.resume(); if (p && p.then) p.then(function () {}, function () {}); } catch (e) {}
     var o = { pitch: (opts.pitch || prefs.pitch), rate: (opts.rate || prefs.rate), bleed: bleedNow() };
+    var vg = ac.createGain(); vg.gain.value = clampRange(opts.volume != null ? opts.volume : prefs.volume, 0, 1.5, 1); vg.connect(dest); // K227c: her master volume
     var dur = 0;
     try {
-      if (style === "animalese") dur = renderAnimalese(ac, dest, n, o);
-      else if (style === "whisper") dur = renderWhisper(ac, dest, n, o);
-      else dur = renderInner(ac, dest, n, o);
+      if (style === "animalese") dur = renderAnimalese(ac, vg, n, o);
+      else if (style === "whisper") dur = renderWhisper(ac, vg, n, o);
+      else dur = renderInner(ac, vg, n, o);
     } catch (e) { return 0; }
     if (bus.duck) { try { bus.duck(dur); } catch (e) {} }   // duck wrong-hour's bed under her
     return dur;
@@ -281,16 +283,17 @@
   var API = {
     STYLES: STYLES.slice(),
     sylCount: sylCount,
-    get: function () { return { on: prefs.on, style: prefs.style, pitch: prefs.pitch, rate: prefs.rate }; },
+    get: function () { return { on: prefs.on, style: prefs.style, pitch: prefs.pitch, rate: prefs.rate, volume: prefs.volume }; },
     set: function (o) {
       if (o && typeof o === "object") {
         if (typeof o.on === "boolean") prefs.on = o.on;
         if (o.style && STYLES.indexOf(o.style) >= 0) prefs.style = o.style;
         if ("pitch" in o) prefs.pitch = clampRange(o.pitch, 0.5, 2, prefs.pitch);
         if ("rate" in o) prefs.rate = clampRange(o.rate, 0.5, 2, prefs.rate);
+        if ("volume" in o) prefs.volume = clampRange(o.volume, 0, 1.5, prefs.volume);
         save();
       }
-      return { on: prefs.on, style: prefs.style, pitch: prefs.pitch, rate: prefs.rate };
+      return { on: prefs.on, style: prefs.style, pitch: prefs.pitch, rate: prefs.rate, volume: prefs.volume };
     },
     speak: speak,
     ready: function () { return !!((typeof window !== "undefined") && (window.AudioContext || window.webkitAudioContext)); }

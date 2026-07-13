@@ -84,11 +84,11 @@
       else if (t === "wronghour.bedOn" && WH()) WH().bed(!!value);
       else if (t === "wronghour.mood" && WH()) WH().mood(value);
       else if (t === "wronghour.play" && WH()) WH().play(ctrl.cue);
-      else if (t === "voice.on") ensureVoice(function () { if (VOICE()) VOICE().set({ on: !!value }); });
-      else if (t === "voice.style") ensureVoice(function () { if (VOICE()) VOICE().set({ style: value }); });
-      else if (t === "voice.pitch") ensureVoice(function () { if (VOICE()) VOICE().set({ pitch: +value }); });
-      else if (t === "voice.rate") ensureVoice(function () { if (VOICE()) VOICE().set({ rate: +value }); });
       else if (t === "voice.speak") ensureVoice(function () { if (VOICE()) VOICE().speak(String(value || ""), { force: true }); });
+      else if (t.indexOf("voice.") === 0) {                             // generic: voice.<field> -> YureiVoice.set (on=bool, style=string, else number)
+        var f = t.slice(6);
+        ensureVoice(function () { if (VOICE()) { var vo = {}; vo[f] = (f === "on") ? !!value : (f === "style") ? value : +value; VOICE().set(vo); } });
+      }
     } catch (e) { status("error: " + e.message); }
   }
 
@@ -100,11 +100,9 @@
         case "wronghour.vfx": return wg ? wg.vfx : ctrl.default;
         case "wronghour.bedOn": return wg ? wg.bedOn : ctrl.default;
         case "wronghour.mood": return wg ? wg.bedMood : ctrl.default;
-        case "voice.on": return vg ? vg.on : ctrl.default;
-        case "voice.style": return vg ? vg.style : ctrl.default;
-        case "voice.pitch": return vg ? vg.pitch : ctrl.default;
-        case "voice.rate": return vg ? vg.rate : ctrl.default;
-        default: return ctrl.default;
+        default:
+          if (vg && ctrl.target && ctrl.target.indexOf("voice.") === 0) { var vf = ctrl.target.slice(6); return (vf in vg) ? vg[vf] : ctrl.default; }
+          return ctrl.default;
       }
     } catch (e) { return ctrl.default; }
   }
