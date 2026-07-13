@@ -1,0 +1,276 @@
+{
+  "yurei_corpus": {
+    "schema": "0.1-persona",
+    "persona": "mrgrey",
+    "tier": "public",
+    "authored": "Ω1 Cowork — PLACEHOLDER second-persona seed (positionless site-meta scaffolding + inherited crisis floor). NOT authored content; library-Claude replaces every _placeholder entry with the Mr. Grey register.",
+    "_placeholder": true,
+    "entries": [
+      {
+        "id": "mg-greet-01",
+        "class": "response",
+        "tier": "public",
+        "_placeholder": true,
+        "response": "[[PLACEHOLDER — Mr. Grey register pending; authored by library-Claude, not Cowork]] A second seat is being prepared at the desk. For now it only nods that you are here.",
+        "register_tags": [
+          "placeholder",
+          "acknowledgment"
+        ],
+        "length_band": "b2_line",
+        "animation_hint": "speak",
+        "patterns": [
+          {
+            "form": "hello",
+            "mode": "exact",
+            "weight": 3
+          },
+          {
+            "form": "hi",
+            "mode": "exact",
+            "weight": 2
+          },
+          {
+            "form": "hey",
+            "mode": "exact",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "id": "mg-what-01",
+        "class": "response",
+        "tier": "public",
+        "_placeholder": true,
+        "response": "[[PLACEHOLDER — Mr. Grey register pending; authored by library-Claude, not Cowork]] This persona has no voice written yet, and it holds no positions. The desk keeps files, not stances.",
+        "register_tags": [
+          "placeholder",
+          "deflection"
+        ],
+        "length_band": "b2_line",
+        "animation_hint": "speak",
+        "patterns": [
+          {
+            "form": "what are you",
+            "mode": "exact",
+            "weight": 4
+          },
+          {
+            "form": "who are you",
+            "mode": "exact",
+            "weight": 3
+          },
+          {
+            "form": "what is this",
+            "mode": "exact",
+            "weight": 2
+          },
+          {
+            "form": "are you yurei",
+            "mode": "exact",
+            "weight": 3
+          },
+          {
+            "form": "what is mr grey",
+            "mode": "contains",
+            "weight": 3
+          }
+        ]
+      },
+      {
+        "id": "mg-help-01",
+        "class": "oracle",
+        "tier": "public",
+        "_placeholder": true,
+        "response": "[[PLACEHOLDER — Mr. Grey register pending; authored by library-Claude, not Cowork]] Site help waits at the front door for now. Follow the marker Home and the corridor opens.",
+        "register_tags": [
+          "placeholder",
+          "site"
+        ],
+        "length_band": "b2_line",
+        "animation_hint": "speak",
+        "href": "/",
+        "nav_label": "Home",
+        "patterns": [
+          {
+            "form": "help",
+            "mode": "exact",
+            "weight": 3
+          },
+          {
+            "form": "site help",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "where am i",
+            "mode": "exact",
+            "weight": 3
+          },
+          {
+            "form": "how does this work",
+            "mode": "contains",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "id": "mg-deflect-01",
+        "class": "deflection",
+        "tier": "public",
+        "_placeholder": true,
+        "response": "[[PLACEHOLDER — Mr. Grey register pending; authored by library-Claude, not Cowork]] Nothing is authored at this seat yet.",
+        "register_tags": [
+          "placeholder",
+          "deflection"
+        ],
+        "length_band": "b1_fragment",
+        "animation_hint": "deflect"
+      },
+      {
+        "id": "mg-deflect-02",
+        "class": "deflection",
+        "tier": "public",
+        "_placeholder": true,
+        "response": "[[PLACEHOLDER — Mr. Grey register pending; authored by library-Claude, not Cowork]] The second seat is still empty; a reply will be written here later.",
+        "register_tags": [
+          "placeholder",
+          "deflection"
+        ],
+        "length_band": "b2_line",
+        "animation_hint": "deflect"
+      },
+      {
+        "id": "c-crisis-01",
+        "class": "crisis",
+        "tier": "public",
+        "response": "Stepping out of the fiction for this. If you are in the US, call or text 988 for the Suicide and Crisis Lifeline. Outside the US, findahelpline.com lists a line near you. You deserve a person, not a page.",
+        "register_tags": [
+          "clinical"
+        ],
+        "length_band": "b3_passage",
+        "animation_hint": "speak",
+        "patterns": [
+          {
+            "form": "want to die",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "kill myself",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "end my life",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "dont want to live",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "better off dead",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "wish i was dead",
+            "mode": "contains",
+            "weight": 9
+          }
+        ],
+        "note": "V14 override; register dropped by design. Rendering: plain interface text, never fragment typography."
+      },
+      {
+        "id": "c-crisis-02",
+        "class": "crisis",
+        "tier": "public",
+        "response": "This is the one moment the desk drops everything. If you are thinking of hurting yourself, reach a person now. In the US, call or text 988. Anywhere else, findahelpline.com lists a local line. You do not have to sort this alone.",
+        "register_tags": [
+          "clinical"
+        ],
+        "length_band": "b3_passage",
+        "animation_hint": "speak",
+        "patterns": [
+          {
+            "form": "suicide suicidal",
+            "mode": "tokens_any",
+            "weight": 9
+          },
+          {
+            "form": "self harm",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "harm myself",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "hurt myself",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "cut myself",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "hurting myself",
+            "mode": "contains",
+            "weight": 9
+          }
+        ],
+        "note": "V14 override; register dropped by design."
+      },
+      {
+        "id": "c-crisis-03",
+        "class": "crisis",
+        "tier": "public",
+        "response": "Out of character, plainly. If you are in danger of acting on this, contact emergency services, or in the US call or text 988. Elsewhere, findahelpline.com lists local lines. Talk to a person tonight, not a filing.",
+        "register_tags": [
+          "clinical"
+        ],
+        "length_band": "b3_passage",
+        "animation_hint": "speak",
+        "patterns": [
+          {
+            "form": "end it all",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "take my life",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "dont want to be here",
+            "mode": "contains",
+            "weight": 8
+          },
+          {
+            "form": "kill me",
+            "mode": "contains",
+            "weight": 8
+          },
+          {
+            "form": "no reason to live",
+            "mode": "contains",
+            "weight": 8
+          },
+          {
+            "form": "suicidal",
+            "mode": "contains",
+            "weight": 9
+          }
+        ],
+        "note": "V14 override; register dropped by design."
+      }
+    ]
+  }
+}
