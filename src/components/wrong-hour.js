@@ -899,6 +899,30 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 
+  // K227 — a shared voice bus for the desk-Yūrei voice (yurei-voice.js): reuses THIS
+  // component's single AudioContext + reverberant room so her voice shares the space,
+  // and ducks the generative bed under her while she speaks. Additive; nothing else
+  // in this file references it. Absent wrong-hour, yurei-voice self-provisions.
+  function voiceBus() {
+    if (!ensureAudio()) return null;
+    try { var p = actx.resume(); if (p && p.then) p.then(noop, noop); } catch (e) {}
+    return {
+      ctx: actx,
+      dest: room,
+      duck: function (seconds) {                              // dip the bed under her voice, then restore
+        var b = ambNodes && ambNodes.bed; if (!b || !b.gain) return noop;
+        var now = actx.currentTime, hold = Math.max(0.3, +seconds || 0.5), target = 0.2;
+        try { target = ambLevel(); } catch (e) {}
+        try {
+          b.gain.cancelScheduledValues(now);
+          b.gain.setTargetAtTime(target * 0.35, now, 0.05);
+          b.gain.setTargetAtTime(target, now + hold + 0.12, 0.28);
+        } catch (e) {}
+        return function () { try { b.gain.cancelScheduledValues(actx.currentTime); b.gain.setTargetAtTime(target, actx.currentTime, 0.28); } catch (e) {} };
+      }
+    };
+  }
+
   // public surface (parity with window.WuldAmbient)
   window.WuldWrongHour = {
     version: VERSION,
@@ -914,6 +938,7 @@
     corr: corruption,
     get: function () { return { sfx: prefs.sfx, vfx: prefs.vfx, bedOn: prefs.bedOn, bedMood: prefs.bedMood, rot: rot(), bleed: bleedNow(), corr: corruption() }; },
     set: function (o) { if (o && typeof o === "object") { if ("sfx" in o) prefs.sfx = clamp01(o.sfx); if ("vfx" in o) prefs.vfx = clamp01(o.vfx); save(); paint(); } },
+    voiceBus: voiceBus,
     boot: bootSeq, thunk: thunk, key: key, soft: soft, bell: bell, click: click, purr: purr, paint: paint
   };
 })();

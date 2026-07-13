@@ -157,3 +157,15 @@
   .yasst-avatar.yasst-breeze .yasst-av-vid, .yasst-avatar.yasst-breeze .yasst-av-img { animation: none; }
   .yasst-av-vid { display: none !important; }
 }
+
+/* ---------- voice control (K227) ---------- */
+.yasst-voicebar { display: flex; gap: 8px; align-items: center; padding: 4px 14px 2px; }
+.yasst-vtoggle, .yasst-vstyle {
+  font: inherit; font-size: 11px; letter-spacing: 0.06em; text-transform: lowercase;
+  background: transparent; color: rgba(183, 169, 140, 0.7);
+  border: 1px solid rgba(183, 169, 140, 0.28); border-radius: 2px; padding: 3px 8px; cursor: pointer;
+}
+.yasst-vtoggle:hover, .yasst-vstyle:hover,
+.yasst-vtoggle:focus-visible, .yasst-vstyle:focus-visible { color: #f0ebe5; border-color: rgba(183, 169, 140, 0.5); outline: none; }
+.yasst-voicebar.yasst-voice-on .yasst-vtoggle { color: #c41e3a; border-color: rgba(196, 30, 58, 0.55); }
+.yasst-vstyle[disabled] { opacity: 0.4; cursor: default; }

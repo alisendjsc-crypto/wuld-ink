@@ -23,7 +23,7 @@
   var ASSET = "/assets/yurei/";
   var MANIFEST_URL = ASSET + "avatar/avatar_manifest_v2.json";   // K224d: dedicated assistant avatar set (the haunting keeps manifest_v2.json)
   var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);   // assets resolve alongside the manifest
-  var VER = "K226";
+  var VER = "K227";
 
   // ---- guards (kill-switch parity + reduced-motion + session dismiss) ----
   function readYureiBlob() { try { return JSON.parse(localStorage.getItem("wuld:yurei") || "{}") || {}; } catch (e) { return {}; } }
@@ -73,11 +73,21 @@
     s.onerror = function () {};
     document.head.appendChild(s);
   }
+  function ensureVoice(cb) {                                  // K227: her synth voice (default OFF; loads lazily; speak degrades silently if it fails)
+    if (window.YureiVoice) { if (cb) cb(); return; }
+    if (document.getElementById("yurei-voice-js")) { if (cb) window.setTimeout(cb, 300); return; }
+    var s = el("script", null, { src: COMP + "yurei-voice.js?v=" + VER });
+    s.id = "yurei-voice-js";
+    s.onload = function () { if (cb) cb(); };
+    s.onerror = function () {};
+    document.head.appendChild(s);
+  }
   function fetchJSON(url) { return fetch(url, { credentials: "same-origin" }).then(function (r) { return r.ok ? r.json() : null; }); }
 
   function boot() {
     if (mounted || killed) return;
     ensurePointing();                                         // K226: pointing module (render degrades to legacy href if it fails to load)
+    ensureVoice();                                            // K227: start loading her voice (stays silent until opted in)
     ensureMatcher(function () {
       if (!window.YureiOracle) return;
       Promise.all([
@@ -209,7 +219,34 @@
 
     statusEl = el("div", "yasst-status"); statusEl.setAttribute("aria-hidden", "true");
 
-    panel.appendChild(head); panel.appendChild(transcript); panel.appendChild(form); panel.appendChild(statusEl);
+    // K227 — voice control: opt-in toggle + style cycle (inner / animalese / whisper), persisted.
+    var voicebar = el("div", "yasst-voicebar");
+    var vToggle = el("button", "yasst-vtoggle", { "type": "button", "aria-pressed": "false", "title": "Her voice — synth, off by default" });
+    var vStyle = el("button", "yasst-vstyle", { "type": "button", "title": "Voice style" });
+    function vRead() { return (window.YureiVoice && window.YureiVoice.get) ? window.YureiVoice.get() : { on: false, style: "inner" }; }
+    function vPaint() {
+      var s = vRead();
+      vToggle.setAttribute("aria-pressed", s.on ? "true" : "false");
+      vToggle.textContent = s.on ? "voice on" : "voice off";
+      voicebar.classList.toggle("yasst-voice-on", !!s.on);
+      vStyle.textContent = s.style;
+      vStyle.disabled = !s.on;
+    }
+    vToggle.addEventListener("click", function () {
+      if (!window.YureiVoice) return;
+      var now = !vRead().on; window.YureiVoice.set({ on: now }); vPaint();
+      if (now) { try { window.YureiVoice.speak("mm, filed", { force: true }); } catch (e) {} }   // audition on enable (this click is the gesture)
+    });
+    vStyle.addEventListener("click", function () {
+      if (!window.YureiVoice) return;
+      var st = window.YureiVoice.STYLES || ["inner"], cur = vRead().style;
+      window.YureiVoice.set({ style: st[(st.indexOf(cur) + 1) % st.length] }); vPaint();
+      try { window.YureiVoice.speak("mm hm", { force: true }); } catch (e) {}                     // audition the new style
+    });
+    voicebar.appendChild(vToggle); voicebar.appendChild(vStyle);
+
+    panel.appendChild(head); panel.appendChild(transcript); panel.appendChild(voicebar); panel.appendChild(form); panel.appendChild(statusEl);
+    ensureVoice(vPaint);                                       // refresh the control once the voice module reports its stored prefs
 
     document.body.appendChild(launcher);
     document.body.appendChild(panel);
@@ -257,7 +294,12 @@
     row.appendChild(bubble);
     transcript.appendChild(row);
     transcript.scrollTop = transcript.scrollHeight;
-    if (who === "desk" && hint) showSprite(hint, { then: "idle" });
+    if (who === "desk" && hint) {
+      showSprite(hint, { then: "idle" });
+      if ((hint === "speak" || hint === "deflect") && window.YureiVoice && typeof window.YureiVoice.speak === "function") {
+        try { window.YureiVoice.speak(text); } catch (e) {}   // K227: synth voice — silent unless opted in (default OFF) + reduced-motion-safe
+      }
+    }
   }
   // entry -> normalized pointing via the shared module; falls back to a legacy same-origin href only.
   function normPointing(e) {
