@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "note": "FX / voice control registry for the wuld.ink bench (/_/fx-bench/). The bench renders one control per entry and wires it to the live component API by `target`; adding an entry here surfaces a new knob with no bench code change. Values here are the SITE DEFAULTS; each visitor's browser still overrides via localStorage. Site-wide default ADOPTION (components reading this at boot) + an admin-Worker commit path are staged follow-ons — see CLAUDE.md K227.",
+  "targets": {
+    "wronghour.sfx": "WuldWrongHour.set({sfx})",
+    "wronghour.vfx": "WuldWrongHour.set({vfx})",
+    "wronghour.bedOn": "WuldWrongHour.bed(bool)",
+    "wronghour.mood": "WuldWrongHour.mood(name)",
+    "wronghour.play": "WuldWrongHour.play(cue)",
+    "voice.on": "YureiVoice.set({on})",
+    "voice.style": "YureiVoice.set({style})",
+    "voice.pitch": "YureiVoice.set({pitch})",
+    "voice.rate": "YureiVoice.set({rate})",
+    "voice.speak": "YureiVoice.speak(text,{force:true})"
+  },
+  "groups": [
+    {
+      "id": "master",
+      "label": "Master",
+      "controls": [
+        { "id": "sfx", "label": "SFX volume", "type": "range", "min": 0, "max": 1, "step": 0.05, "default": 0.35, "target": "wronghour.sfx" },
+        { "id": "vfx", "label": "VFX / rot intensity", "type": "range", "min": 0, "max": 1, "step": 0.05, "default": 0.35, "target": "wronghour.vfx" }
+      ]
+    },
+    {
+      "id": "bed",
+      "label": "Ambient bed",
+      "controls": [
+        { "id": "bedOn", "label": "Bed on", "type": "toggle", "default": true, "target": "wronghour.bedOn" },
+        { "id": "bedMood", "label": "Bed mood", "type": "select", "options": ["room", "clinical", "oceanic", "breeze"], "default": "breeze", "target": "wronghour.mood" }
+      ]
+    },
+    {
+      "id": "cues",
+      "label": "SFX cues (audition)",
+      "controls": [
+        { "id": "boot", "label": "boot", "type": "cue", "cue": "boot", "target": "wronghour.play" },
+        { "id": "key", "label": "key", "type": "cue", "cue": "key", "target": "wronghour.play" },
+        { "id": "soft", "label": "soft (nav)", "type": "cue", "cue": "soft", "target": "wronghour.play" },
+        { "id": "click", "label": "click", "type": "cue", "cue": "click", "target": "wronghour.play" },
+        { "id": "bell", "label": "bell", "type": "cue", "cue": "bell", "target": "wronghour.play" },
+        { "id": "purr", "label": "purr", "type": "cue", "cue": "purr", "target": "wronghour.play" },
+        { "id": "word", "label": "word", "type": "cue", "cue": "word", "target": "wronghour.play" }
+      ]
+    },
+    {
+      "id": "voice",
+      "label": "Her voice",
+      "controls": [
+        { "id": "voiceOn", "label": "Voice on", "type": "toggle", "default": false, "target": "voice.on" },
+        { "id": "voiceStyle", "label": "Style", "type": "select", "options": ["inner", "animalese", "whisper"], "default": "inner", "target": "voice.style" },
+        { "id": "voicePitch", "label": "Pitch", "type": "range", "min": 0.5, "max": 2, "step": 0.05, "default": 1, "target": "voice.pitch" },
+        { "id": "voiceRate", "label": "Rate", "type": "range", "min": 0.5, "max": 2, "step": 0.05, "default": 1, "target": "voice.rate" },
+        { "id": "voiceSay", "label": "Say a line", "type": "speak", "default": "the desk is attended; speak, and it is filed", "target": "voice.speak" }
+      ]
+    }
+  ]
+}
