@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 12 Jul 2026 07:24:17 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 08:10:01 +0000</lastBuildDate>
+    <item>
+      <title>The desk keeps a quieter kind of note now. When Yūrei has no answer for something you ask, the wording of that unanswered question can be recorded — anonymously, stripped of anything that looks personal, and counted by the day — so the gaps in what she knows can be found and filled. Nothing else is kept: not the questions she could answer, and nothing that ties a line to a person. The logging stays dark until it is switched on, asks once before it begins, and can be avoided entirely by not using the desk. The full account is in the disclaimers.</title>
+      <link>https://wuld.ink/changelog/#2026-07-13-yurei-coverage-logging</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-13-yurei-coverage-logging</guid>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The desk keeps a quieter kind of note now. When Yūrei has no answer for something you ask, the wording of that unanswered question can be recorded — anonymously, stripped of anything that looks personal, and counted by the day — so the gaps in what she knows can be found and filled. Nothing else is kept: not the questions she could answer, and nothing that ties a line to a person. The logging stays dark until it is switched on, asks once before it begins, and can be avoided entirely by not using the desk. The full account is in the disclaimers. (Sections: /disclaimers/)</description>
+    </item>
     <item>
       <title>Yūrei, the interior's resident, steps out from the margins into a desk you can address directly. Ask where something lives and she points you to the department — the essays, the argument library, the void engine, the gallery, and the building's other signed rooms; say anything else and she files it in character. She keeps to a bounded repertoire rather than pretending to answer everything, reads the hour and the room, and drops the fiction for a real crisis line when it matters. Dismissible, keyboard-operable, and quiet under reduced-motion.</title>
       <link>https://wuld.ink/changelog/#2026-07-12-yurei-desk-assistant</link>

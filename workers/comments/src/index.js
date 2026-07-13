@@ -29,6 +29,15 @@ const MAX_NAME = 80;
 const MAX_EMAIL = 254;
 const LIST_LIMIT = 500;
 
+/* Yūrei Gap Log — visitor lane (Build 1.5b). Privacy floor === 1.5a: ZERO
+ * identity is ever stored (no IP, no session/cookie/UA). Toggle-gated by the D1
+ * setting `gaplog_visitor_open` (default CLOSED). Public surface logs MISSES
+ * only; thin/novel/repetitive stay admin-only. */
+const GAPLOG_PERSONA = "yurei";
+const GAPLOG_MAX_ITEMS = 20;           // items accepted per POST (public lane is low-volume)
+const GAPLOG_RATE_MAX = 12;            // miss-writes per window per ephemeral ip-hash
+const GAPLOG_RATE_WINDOW_MS = 60_000;  // 60s
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -41,6 +50,17 @@ export default {
         if (method === "OPTIONS") return preflight(env, request);
         if (method === "GET") return listComments(url, env, request);
         if (method === "POST") return createComment(request, env);
+        return json({ error: "method_not_allowed" }, 405, cors(env, request));
+      }
+
+      // ---- Public API: Yūrei Gap Log — visitor-lane coverage logging (1.5b)
+      // Toggle-gated (default CLOSED) + honeypot + same-origin + ephemeral rate
+      // belt + length caps + server RE-scrub. ZERO identity stored; closed ->
+      // 200 no-op. GET returns only the visitor-open boolean.
+      if (pathname === "/api/gaplog") {
+        if (method === "OPTIONS") return preflight(env, request);
+        if (method === "GET") return gaplogStatus(env, request);
+        if (method === "POST") return createGaplog(request, env);
         return json({ error: "method_not_allowed" }, 405, cors(env, request));
       }
 
@@ -85,6 +105,11 @@ async function setSetting(env, key, value) {
 async function isBoardOpen(env) {
   const v = await getSetting(env, "board_open", "1");
   return v !== "0"; // anything but an explicit "0" is open
+}
+// Gap-log visitor lane: DEFAULT CLOSED. The lane is inert (logs nothing) until
+// the operator explicitly opens it from the admin worker (disclosure-first gate).
+async function isGaplogVisitorOpen(env) {
+  return (await getSetting(env, "gaplog_visitor_open", "0")) === "1";
 }
 
 /* ----------------------------- public: list ----------------------------- */
@@ -148,6 +173,104 @@ async function createComment(request, env) {
   const id = res.meta && res.meta.last_row_id;
   // Return ONLY the public projection (no email, no ip_hash).
   return json({ comment: { id, name: name || null, body, created_at: now } }, 201, cors(env, request));
+}
+
+/* --------------------- public: Yūrei Gap Log (1.5b) ---------------------- */
+// PII scrub — byte-identical to the admin Worker's gaplogScrub AND the public
+// widget's client copy (privacy floor: ONE scrub, three call-sites). Mechanical
+// only: strips emails, links, @handles, and long digit runs; caps length.
+function gaplogScrub(s) {
+  s = String(s == null ? "" : s);
+  s = s.replace(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g, "[email]");
+  s = s.replace(/\bhttps?:\/\/\S+/gi, "[url]");
+  s = s.replace(/\bwww\.\S+/gi, "[url]");
+  s = s.replace(/(^|\s)@[A-Za-z0-9_]{2,}/g, "$1[handle]");
+  s = s.replace(/\+?\d[\d\s().\-]{6,}\d/g, "[number]");
+  s = s.replace(/\s+/g, " ").trim();
+  return s.slice(0, 500);
+}
+// Phoenix (UTC-7, no DST) day-granular stamp — matches the 1.5a store exactly.
+function gaplogToday() {
+  return new Date(Date.now() - 7 * 3600 * 1000).toISOString().slice(0, 10);
+}
+
+// Ephemeral, per-isolate rate belt keyed on a SALTED ip-hash. LIMITING ONLY —
+// the hash is NEVER written to a gap_log row (privacy fence) and there is no
+// table: it lives in module memory and resets on isolate recycle. Best-effort;
+// the load-bearing belts are the toggle + consent + honeypot + caps + origin.
+const GAPLOG_RATE = new Map();
+function gaplogRateOk(ipHash) {
+  const now = Date.now();
+  const since = now - GAPLOG_RATE_WINDOW_MS;
+  let hits = (GAPLOG_RATE.get(ipHash) || []).filter((t) => t > since);
+  if (hits.length >= GAPLOG_RATE_MAX) { GAPLOG_RATE.set(ipHash, hits); return false; }
+  hits.push(now);
+  GAPLOG_RATE.set(ipHash, hits);
+  if (GAPLOG_RATE.size > 5000) {               // bound memory: prune empty buckets
+    for (const [k, v] of GAPLOG_RATE) {
+      const f = v.filter((t) => t > since);
+      if (f.length) GAPLOG_RATE.set(k, f); else GAPLOG_RATE.delete(k);
+    }
+  }
+  return true;
+}
+
+// GET /api/gaplog — the visitor-open flag ONLY (a single boolean). The widget
+// reads it on boot and won't POST when closed; createGaplog re-checks too.
+async function gaplogStatus(env, request) {
+  return json({ open: await isGaplogVisitorOpen(env) }, 200, cors(env, request));
+}
+
+// POST /api/gaplog  {items:[{lane:'miss',content_scrubbed,class}]}
+// Mirrors the 1.5a admin /api/gaplog/log MISS contract, minus admin auth/CSRF.
+// Closed toggle -> 200 no-op. Only the MISS lane is accepted here.
+async function createGaplog(request, env) {
+  // Toggle gate (default CLOSED) -> 200 no-op; store nothing.
+  if (!(await isGaplogVisitorOpen(env))) {
+    return json({ ok: true, logged: 0, closed: true }, 200, cors(env, request));
+  }
+  let data;
+  try { data = await request.json(); }
+  catch { return json({ error: "invalid_json" }, 400, cors(env, request)); }
+
+  // Honeypot: a bot filled the hidden field. Benign success; store nothing.
+  if (typeof data.hp === "string" && data.hp.trim() !== "") {
+    return json({ ok: true, logged: 0 }, 200, cors(env, request));
+  }
+  // CSRF: the widget POSTs same-origin from wuld.ink. Reject cross-origin writes.
+  if (!sameOrigin(request, env)) {
+    return json({ error: "csrf_origin_mismatch" }, 403, cors(env, request));
+  }
+
+  // Ephemeral rate belt on a salted ip-hash (LIMIT ONLY; never stored).
+  const ip = request.headers.get("CF-Connecting-IP") || "";
+  const ipHash = await sha256Hex((env.IP_SALT || "no-salt-set") + "|gaplog|" + ip);
+  if (!gaplogRateOk(ipHash)) {
+    return json({ error: "rate_limited", retry_after_s: Math.ceil(GAPLOG_RATE_WINDOW_MS / 1000) }, 429, cors(env, request));
+  }
+
+  const items = Array.isArray(data.items) ? data.items : (data && data.lane ? [data] : []);
+  if (!items.length) {
+    return json({ error: "bad_json", hint: "{items:[{lane:'miss',content_scrubbed,class}]}" }, 400, cors(env, request));
+  }
+
+  const today = gaplogToday();
+  let logged = 0, skipped = 0;
+  for (let i = 0; i < items.length && i < GAPLOG_MAX_ITEMS; i++) {
+    const it = items[i] || {};
+    if (it.lane !== "miss") { skipped++; continue; }          // public lane logs MISSES only
+    const content = gaplogScrub(it.content_scrubbed);          // server RE-scrub (defense in depth)
+    if (!content) { skipped++; continue; }
+    const cls = it.class === "all_damped" ? "all_damped" : "below_threshold";
+    try {
+      await env.DB.prepare(
+        "INSERT INTO gap_log_miss (persona, content_scrubbed, class, count, first_date, last_date, resolved) VALUES (?,?,?,1,?,?,0) " +
+        "ON CONFLICT(persona, content_scrubbed) DO UPDATE SET count = count + 1, last_date = excluded.last_date, class = excluded.class"
+      ).bind(GAPLOG_PERSONA, content, cls, today, today).run();
+      logged++;
+    } catch (e) { skipped++; }                                 // table absent / transient -> fail-safe no-op
+  }
+  return json({ ok: true, logged, skipped }, 200, cors(env, request));
 }
 
 /* ---------------------------- admin: actions ----------------------------- */

@@ -588,12 +588,17 @@ async function apiCmodList(env) {
     const row = await env.COMMENTS_DB.prepare("SELECT value FROM settings WHERE key = ?").bind("board_open").first();
     open = !(row && row.value === "0");
   } catch (e) { note = "settings table unreadable — board shown OPEN (comments-worker fail-open parity)"; }
+  let gaplogVisitorOpen = false;
+  try {
+    const gvo = await env.COMMENTS_DB.prepare("SELECT value FROM settings WHERE key = ?").bind("gaplog_visitor_open").first();
+    gaplogVisitorOpen = !!(gvo && gvo.value === "1");
+  } catch (e2) { gaplogVisitorOpen = false; }   // fail CLOSED: the visitor lane defaults dark
   const { results } = await env.COMMENTS_DB.prepare(
     "SELECT id, board, name, email, body, created_at, hidden FROM comments ORDER BY created_at DESC, id DESC LIMIT 1000"
   ).all();
   const rows = results || [];
   const visible = rows.filter(function (r) { return !r.hidden; }).length;
-  return json({ comments: rows, open: open, total: rows.length, visible: visible, hidden: rows.length - visible, note: note });
+  return json({ comments: rows, open: open, total: rows.length, visible: visible, hidden: rows.length - visible, note: note, gaplog_visitor_open: gaplogVisitorOpen });
 }
 
 async function apiCmodAct(request, env) {
@@ -608,6 +613,14 @@ async function apiCmodAct(request, env) {
       "INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value"
     ).bind("board_open", open ? "1" : "0").run();
     return json({ ok: true, open: open });
+  }
+  if (action === "gaplog-visitor") {
+    // Build 1.5b: opens/closes the PUBLIC visitor gap-log lane (default CLOSED).
+    const on = data.open === true || data.open === 1 || data.open === "1" || data.open === "true";
+    await env.COMMENTS_DB.prepare(
+      "INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value"
+    ).bind("gaplog_visitor_open", on ? "1" : "0").run();
+    return json({ ok: true, gaplog_visitor_open: on });
   }
   if (action === "purge") {
     const scope = String(data.scope || "");
@@ -2927,6 +2940,9 @@ function adminHtml(env, adminEmail) {
   <button id="gl-sort-class" type="button">class</button>
   <button id="gl-reload" type="button">reload</button>
   <a id="gl-export" class="rowbtn" href="/api/gaplog/export?lane=miss" download>export</a>
+    <span>&middot; visitor lane</span>
+    <span id="gl-visitor-chip">&ndash;</span>
+    <button id="gl-visitor-toggle" type="button">toggle</button>
 </div>
 <p class="hint">Miss rows are PII-scrubbed inputs the matcher had no answer for &mdash; <b>never auto-deleted</b>. <b>resolve</b> marks a gap handled; <b>redact</b> blanks one row's content; <b>drop</b> removes one row (manual remedy only). Hit-quality: <b>thin</b> = one entry fired &ge;3&times; in a session; <b>novel</b>/<b>repetitive</b> are your votes. No identity, no query content on the hit lane.</p>
 <div id="gl-info" role="status">&ndash;</div>
@@ -3746,13 +3762,22 @@ function adminHtml(env, adminEmail) {
     gapEnqueue({ lane:"hit", entry_id: b.getAttribute("data-id"), kind: b.getAttribute("data-vote") });
     b.disabled = true; b.textContent = b.getAttribute("data-vote") + " ok";
   });
-  $("sec-gaplog").addEventListener("toggle", function () { if ($("sec-gaplog").open && !GL.loaded) { GL.loaded = true; glReload(); } });
+  $("sec-gaplog").addEventListener("toggle", function () { if ($("sec-gaplog").open) { glLoadVisitor(); if (!GL.loaded) { GL.loaded = true; glReload(); } } });
   $("gl-lane-miss").addEventListener("click", function () { glSetLane("miss"); });
   $("gl-lane-hit").addEventListener("click", function () { glSetLane("hit"); });
   $("gl-sort-count").addEventListener("click", function () { GL.sort = "count"; glReload(); });
   $("gl-sort-date").addEventListener("click", function () { GL.sort = "date"; glReload(); });
   $("gl-sort-class").addEventListener("click", function () { GL.sort = "class"; glReload(); });
   $("gl-reload").addEventListener("click", glReload);
+  function glPaintVisitor(on) { var c = $("gl-visitor-chip"); if (c) { c.textContent = on ? "OPEN" : "CLOSED"; c.style.color = on ? "#fff" : "var(--dim,#8a857d)"; c.style.background = on ? "var(--accent,#c41e3a)" : "transparent"; c.style.padding = "0 .4rem"; } var t = $("gl-visitor-toggle"); if (t) t.textContent = on ? "close lane" : "open lane"; }
+  function glLoadVisitor() { api("/api/cmod/list").then(function (r) { if (r.status === 200 && r.j) glPaintVisitor(!!r.j.gaplog_visitor_open); }); }
+  if ($("gl-visitor-toggle")) $("gl-visitor-toggle").addEventListener("click", function () {
+    api("/api/cmod/list").then(function (r) {
+      var willOpen = !(r.j && r.j.gaplog_visitor_open);
+      if (willOpen && !confirm("Open the PUBLIC visitor gap-log lane? Real visitors' unanswered questions get logged (anonymously, PII-scrubbed). Make sure the disclosure is live first.")) return;
+      post("/api/cmod/act", { action: "gaplog-visitor", open: willOpen }).then(function (rr) { if (rr.status === 200) glPaintVisitor(willOpen); else log("gaplog-visitor toggle failed " + rr.status); });
+    });
+  });
   $("gl-list").addEventListener("click", function (ev) {
     var b = ev.target.closest && ev.target.closest("button[data-gl]"); if (!b) return;
     var act = b.getAttribute("data-gl"), id = parseInt(b.getAttribute("data-id"), 10);

@@ -25,6 +25,14 @@
   var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);   // assets resolve alongside the manifest
   var VER = "K227";
 
+  // ---- Gap Log (Build 1.5b): anonymous coverage logging of UNANSWERED turns.
+  // Double-gated: the server flag gaplog_visitor_open (default CLOSED) AND local
+  // consent. No logging until BOTH are true. Raw input is scrubbed before it
+  // ever leaves the browser; the Worker re-scrubs. Matcher stays byte-unchanged.
+  var GAPLOG_ENDPOINT = "/api/gaplog";
+  var GAPLOG_CONSENT_KEY = "wuld:yurei-gaplog-consent";
+  var GAPLOG_FLUSH_MS = 2500;
+
   // ---- guards (kill-switch parity + reduced-motion + session dismiss) ----
   function readYureiBlob() { try { return JSON.parse(localStorage.getItem("wuld:yurei") || "{}") || {}; } catch (e) { return {}; } }
   function sessGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
@@ -56,6 +64,9 @@
   var mounted = false, open = false, lastActivity = Date.now(), idleTimer = null, killed = false;
   var launcher, panel, transcript, input, avatarWrap, avatarVideo, avatarImg, statusEl;
   var ambientCursor = 0;
+  // gap-log visitor-lane state (inert until the server flag + consent are both on)
+  var gaplogOpen = false, gaplogQueue = [], gaplogTimer = null;
+  var piiWarnEl = null, consentEl = null;
 
   // =====================================================================
   // load matcher dep, corpora, manifest, then build UI
@@ -106,6 +117,7 @@
         buildUI();
         mounted = true;
         armAmbient();
+        gaplogFetchStatus();                                  // learn the visitor-open flag (won't POST when closed)
       }).catch(function () {});
     });
   }
@@ -219,6 +231,21 @@
 
     statusEl = el("div", "yasst-status"); statusEl.setAttribute("aria-hidden", "true");
 
+    // Gap Log (1.5b) chrome — styles injected inline so yurei-assistant.css stays
+    // byte-unchanged. Consent banner (one-time) + persistent PII warning.
+    injectGaplogCSS();
+    consentEl = el("div", "yasst-consent", { "hidden": "", "role": "note" });
+    var consentCopy = el("div", "yasst-consent-copy");
+    consentCopy.textContent = "This desk keeps a note of the questions it couldn't answer — anonymously, to widen what it knows. No name, no account, no tracking; only the wording of unanswered questions, with anything that looks personal stripped out first, kept by the day. Please don't type anything private.";
+    var consentBtn = el("button", "yasst-consent-btn", { "type": "button" });
+    consentBtn.textContent = "Understood";
+    consentBtn.addEventListener("click", function () { gaplogGrantConsent(); consentEl.hidden = true; refreshGaplogChrome(); if (input) input.focus(); });
+    consentEl.appendChild(consentCopy); consentEl.appendChild(consentBtn);
+
+    piiWarnEl = el("div", "yasst-piiwarn");
+    piiWarnEl.textContent = "Unanswered questions are logged anonymously to improve coverage — don't share anything personal.";
+    piiWarnEl.style.display = "none";                          // shown only when the lane is open
+
     // K227 — voice control: opt-in toggle + style cycle (inner / animalese / whisper), persisted.
     var voicebar = el("div", "yasst-voicebar");
     var vToggle = el("button", "yasst-vtoggle", { "type": "button", "aria-pressed": "false", "title": "Her voice — synth, off by default" });
@@ -245,7 +272,7 @@
     });
     voicebar.appendChild(vToggle); voicebar.appendChild(vStyle);
 
-    panel.appendChild(head); panel.appendChild(transcript); panel.appendChild(voicebar); panel.appendChild(form); panel.appendChild(statusEl);
+    panel.appendChild(head); panel.appendChild(consentEl); panel.appendChild(transcript); panel.appendChild(voicebar); panel.appendChild(piiWarnEl); panel.appendChild(form); panel.appendChild(statusEl);
     ensureVoice(vPaint);                                       // refresh the control once the voice module reports its stored prefs
 
     document.body.appendChild(launcher);
@@ -272,6 +299,7 @@
     if (isWrongHour()) queueAmbient("wrong");
     else if (ambientActive()) avatarWrap.classList.add("yasst-breeze");
     input.focus();
+    maybeShowConsent();                                       // one-time consent notice when the lane is open + not consented
     bump();
   }
   function close() {
@@ -326,13 +354,96 @@
     if (box.childNodes.length) bubble.appendChild(box);
   }
 
+  // =====================================================================
+  // Gap Log — anonymous coverage logging of UNANSWERED (miss) turns only.
+  // FENCE: the matcher (yurei-oracle.js) + corpora are BYTE-UNCHANGED. This
+  // reads matcher state and calls respond() exactly ONCE (via submit), so
+  // routing behavior cannot shift. gaplogScrub is byte-identical to the Worker.
+  // =====================================================================
+  function gaplogScrub(s) {
+    s = String(s == null ? "" : s);
+    s = s.replace(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g, "[email]");
+    s = s.replace(/\bhttps?:\/\/\S+/gi, "[url]");
+    s = s.replace(/\bwww\.\S+/gi, "[url]");
+    s = s.replace(/(^|\s)@[A-Za-z0-9_]{2,}/g, "$1[handle]");
+    s = s.replace(/\+?\d[\d\s().\-]{6,}\d/g, "[number]");
+    s = s.replace(/\s+/g, " ").trim();
+    return s.slice(0, 500);
+  }
+  function gaplogConsented() { try { return localStorage.getItem(GAPLOG_CONSENT_KEY) === "1"; } catch (e) { return false; } }
+  function gaplogGrantConsent() { try { localStorage.setItem(GAPLOG_CONSENT_KEY, "1"); } catch (e) {} }
+
+  // priorCount over the repeat window, read BEFORE this turn's single respond()
+  // call (mirrors the 1.5a classifier without a second respond -> state-neutral).
+  function gaplogPreCount(raw) {
+    try {
+      var M = window.YureiOracle;
+      var norm = M.normalize(raw);
+      var win = matcher.input_hist.slice(-matcher.repeat_window);
+      var pc = 0; for (var i = 0; i < win.length; i++) if (win[i] === norm) pc++;
+      return { norm: norm, priorCount: pc };
+    } catch (e) { return { norm: null, priorCount: 1 }; }     // fail-safe: treat as repeat -> not logged
+  }
+  // classify using the ALREADY-obtained response r (no respond() here).
+  function gaplogClassify(r, pre) {
+    var isMiss = !!(r && r.lane === "deflection" && pre.priorCount === 0);
+    var missClass = null;
+    if (isMiss && pre.norm != null) {
+      try {
+        var M = window.YureiOracle, best = 0, resp = matcher.responses || [];
+        for (var j = 0; j < resp.length; j++) { var sc = M.entryScore(resp[j], pre.norm)[0]; if (sc > best) best = sc; }
+        missClass = best < M.CONST.MISS_THRESHOLD ? "below_threshold" : "all_damped";
+      } catch (e) { missClass = "below_threshold"; }
+    }
+    return { isMiss: isMiss, missClass: missClass };
+  }
+
+  function gaplogPost(body, useKeepalive) {
+    var opt = { method: "POST", credentials: "same-origin", headers: { "content-type": "application/json" }, body: JSON.stringify(body) };
+    if (useKeepalive) opt.keepalive = true;
+    return fetch(GAPLOG_ENDPOINT, opt).then(function (res) {
+      return res.json().then(function (j) { return { status: res.status, j: j }; }, function () { return { status: res.status, j: null }; });
+    });
+  }
+  function gapEnqueue(item) { gaplogQueue.push(item); if (!gaplogTimer) gaplogTimer = window.setTimeout(gapFlush, GAPLOG_FLUSH_MS); }
+  function gapFlush(useKeepalive) {
+    gaplogTimer = null;
+    if (!gaplogQueue.length) return;
+    if (!gaplogConsented() || !gaplogOpen) { gaplogQueue = []; return; }  // consent/flag can drop mid-session -> discard
+    var batch = gaplogQueue.splice(0, 20);
+    gaplogPost({ items: batch }, useKeepalive).then(function (r) {
+      if (r.status === 429) { gaplogQueue = batch.concat(gaplogQueue); if (!gaplogTimer) gaplogTimer = window.setTimeout(gapFlush, (r.j && r.j.retry_after_s ? r.j.retry_after_s * 1000 : 5000)); return; }
+      if (gaplogQueue.length && !gaplogTimer) gaplogTimer = window.setTimeout(gapFlush, GAPLOG_FLUSH_MS);
+    }, function () { /* network error: coverage data is best-effort; drop */ });
+  }
+
+  // GET the visitor-open flag; the widget won't POST when the lane is closed.
+  function gaplogFetchStatus() {
+    fetch(GAPLOG_ENDPOINT, { credentials: "same-origin" }).then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { gaplogOpen = !!(j && j.open === true); refreshGaplogChrome(); }, function () {});
+  }
+  // persistent PII warning shows only while the lane is open; consent hidden when closed.
+  function refreshGaplogChrome() {
+    if (piiWarnEl) piiWarnEl.style.display = gaplogOpen ? "" : "none";
+    if (!gaplogOpen && consentEl) consentEl.hidden = true;
+  }
+  // one-time consent notice: only when the lane is open AND not yet consented.
+  function maybeShowConsent() {
+    if (consentEl) consentEl.hidden = !(gaplogOpen && !gaplogConsented());
+  }
+
   function submit() {
     var raw = (input.value || "").trim();
     if (!raw || !matcher) return;
     addLine("you", raw, null, null);
     input.value = "";
     bump();
+    var pre = gaplogPreCount(raw);                           // repeat-window state BEFORE the single respond()
     var r = matcher.respond(raw);                            // {id, lane, response, animation_hint, ...}
+    if (gaplogOpen && gaplogConsented()) {                   // gap-log: record genuine misses only
+      var gc = gaplogClassify(r, pre);
+      if (gc.isMiss) gapEnqueue({ lane: "miss", content_scrubbed: gaplogScrub(raw), class: gc.missClass });
+    }
     if (!r || !r.response) { addLine("desk", "Filed. Nothing in the drawers answers to that.", null, "deflect"); return; }
     var pointing = null;
     if (r.id) { var e = matcher.by_id[r.id]; pointing = normPointing(e); }
@@ -370,8 +481,10 @@
     ["click", "keydown", "pointerdown"].forEach(function (ev) { document.addEventListener(ev, bump, { passive: true }); });
     // tab blur/return
     document.addEventListener("visibilitychange", function () {
-      if (!document.hidden && open) { showSprite("return_ack", { then: "idle" }); }
+      if (document.hidden) { gapFlush(true); }                // best-effort flush of a pending miss on tab-hide (keepalive)
+      else if (open) { showSprite("return_ack", { then: "idle" }); }
     });
+    window.addEventListener("pagehide", function () { gapFlush(true); }, { passive: true });
     // breeze mood follows the bed; keep chrome seated above the ambient bar
     window.setInterval(function () {
       positionChrome();
@@ -412,6 +525,21 @@
     if (document.getElementById("yasst-css")) return;
     var l = el("link", null, { id: "yasst-css", rel: "stylesheet", href: COMP + "yurei-assistant.css?v=" + VER });
     document.head.appendChild(l);
+  }
+  // Gap Log chrome styles — injected inline so the external stylesheet (and its
+  // ?v=) stays byte-unchanged. Scoped to .yasst-*; inherits the panel palette.
+  function injectGaplogCSS() {
+    if (document.getElementById("yasst-gaplog-css")) return;
+    var css = ""
+      + ".yasst-consent{margin:.5rem .75rem 0;padding:.6rem .7rem;border:1px solid rgba(196,30,58,.5);background:rgba(0,0,0,.28);font-size:.72rem;line-height:1.5;color:inherit;opacity:.95}"
+      + ".yasst-consent[hidden]{display:none}"
+      + ".yasst-consent-copy{margin:0 0 .5rem}"
+      + ".yasst-consent-btn{font:inherit;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;padding:.3rem .8rem;background:transparent;color:inherit;border:1px solid rgba(196,30,58,.7)}"
+      + ".yasst-consent-btn:hover{background:rgba(196,30,58,.9);color:#fff;border-color:rgba(196,30,58,.9)}"
+      + ".yasst-piiwarn{margin:.1rem .75rem .35rem;font-size:.64rem;line-height:1.4;letter-spacing:.02em;opacity:.62}";
+    var st = el("style", null, { id: "yasst-gaplog-css" });
+    st.textContent = css;
+    document.head.appendChild(st);
   }
 
   // ---- entry ----
