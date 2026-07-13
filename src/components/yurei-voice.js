@@ -208,27 +208,26 @@
     return at - t0;
   }
 
-  // whisper — filtered-noise breath clusters, no tonal center (the office exhaling).
-  // Cluster count = the line's syllable count; each cluster is 1–2 random breaths.
+  // whisper — a soft, breathy exhale (the office breathing out). Broadband "air":
+  // a highpass to drop the low rumble + a gentle lowpass so it never hisses; NO
+  // resonant band and NO filter sweep — a swept resonant filter over noise reads as
+  // a scratch / turntable, not a breath. One soft breath per syllable, lightly
+  // overlapping; it sinks + lengthens as it sours.
   function renderWhisper(ac, dest, n, opts) {
     var s = clamp01(opts.bleed || 0), rate = opts.rate || 1;
     var bus = ac.createGain(); bus.connect(dest);
-    var t0 = ac.currentTime + 0.03, at = t0, wi, k;
+    var t0 = ac.currentTime + 0.03, at = t0, wi;
     for (wi = 0; wi < n; wi++) {
-      var reps = 1 + ((Math.random() * 2) | 0);
-      for (k = 0; k < reps; k++) {
-        var t = at, dur = (0.10 + 0.05 * Math.random() + 0.05 * s) / rate;
-        var ns = ac.createBufferSource(); ns.buffer = noiseBuf(ac, dur + 0.05);
-        var bp = ac.createBiquadFilter(); bp.type = "bandpass"; bp.Q.value = 3 - 1.5 * s;
-        var cf = 700 + Math.random() * 900 - 300 * s;                     // the breath sinks as it sours
-        bp.frequency.setValueAtTime(cf * 0.8, t); bp.frequency.linearRampToValueAtTime(cf, t + dur * 0.5); bp.frequency.linearRampToValueAtTime(cf * 0.85, t + dur);
-        var lp = ac.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 1800 - 700 * s;
-        var g = ac.createGain();
-        g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.05 + 0.03 * s, t + dur * 0.45); g.gain.linearRampToValueAtTime(0.0001, t + dur);
-        ns.connect(bp); bp.connect(lp); lp.connect(g); g.connect(bus); ns.start(t); ns.stop(t + dur + 0.05);
-        at += dur * 0.7 + 0.02;
-      }
-      at += (0.12 + 0.06 * s) / rate;
+      var t = at, dur = (0.16 + 0.10 * Math.random() + 0.06 * s) / rate;
+      var ns = ac.createBufferSource(); ns.buffer = noiseBuf(ac, dur + 0.06);
+      var hp = ac.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 1400 - 500 * s; hp.Q.value = 0.5; // air, not rumble (sinks as it sours)
+      var lp = ac.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 6000 - 1500 * s; lp.Q.value = 0.4; // soft top, never hissy
+      var g = ac.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(0.055 + 0.02 * s, t + dur * 0.4);    // slow breathy swell
+      g.gain.linearRampToValueAtTime(0.0001, t + dur);
+      ns.connect(hp); hp.connect(lp); lp.connect(g); g.connect(bus); ns.start(t); ns.stop(t + dur + 0.06);
+      at += dur * 0.85 + (0.05 + 0.04 * s) / rate;                        // gentle gap; breaths overlap slightly
     }
     return at - t0;
   }
