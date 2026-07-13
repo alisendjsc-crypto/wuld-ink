@@ -23,7 +23,7 @@
   var ASSET = "/assets/yurei/";
   var MANIFEST_URL = ASSET + "avatar/avatar_manifest_v2.json";   // K224d: dedicated assistant avatar set (the haunting keeps manifest_v2.json)
   var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);   // assets resolve alongside the manifest
-  var VER = "K224";
+  var VER = "K226";
 
   // ---- guards (kill-switch parity + reduced-motion + session dismiss) ----
   function readYureiBlob() { try { return JSON.parse(localStorage.getItem("wuld:yurei") || "{}") || {}; } catch (e) { return {}; } }
@@ -67,10 +67,17 @@
     s.onerror = function () { /* matcher missing -> assistant cannot answer; abort quietly */ };
     document.head.appendChild(s);
   }
+  function ensurePointing() {                                 // K226: declarative pointing (links + lazy thumb); render falls back to legacy href if absent
+    if (window.YureiPointing) return;
+    var s = el("script", null, { src: COMP + "yurei-pointing.js?v=" + VER });
+    s.onerror = function () {};
+    document.head.appendChild(s);
+  }
   function fetchJSON(url) { return fetch(url, { credentials: "same-origin" }).then(function (r) { return r.ok ? r.json() : null; }); }
 
   function boot() {
     if (mounted || killed) return;
+    ensurePointing();                                         // K226: pointing module (render degrades to legacy href if it fails to load)
     ensureMatcher(function () {
       if (!window.YureiOracle) return;
       Promise.all([
@@ -241,21 +248,40 @@
     window.setTimeout(function () { if (launcher && launcher.parentNode) launcher.parentNode.removeChild(launcher); }, 280);
   }
 
-  // add a line to the transcript. who: "you" | "desk". link: {href,label} | null. hint: animation_hint
-  function addLine(who, text, link, hint) {
+  // add a line. who: "you"|"desk". pointing: normalized {links,image}|null. hint: animation_hint
+  function addLine(who, text, pointing, hint) {
     var row = el("div", "yasst-line yasst-" + who);
     var bubble = el("div", "yasst-bubble");
     bubble.textContent = text;
-    if (link && link.href) {
-      var a = el("a", "yasst-navlink", { "href": link.href });
-      a.textContent = "→ " + (link.label || link.href);
-      bubble.appendChild(document.createElement("br"));
-      bubble.appendChild(a);
-    }
+    if (pointing) renderPointing(bubble, pointing);
     row.appendChild(bubble);
     transcript.appendChild(row);
     transcript.scrollTop = transcript.scrollHeight;
     if (who === "desk" && hint) showSprite(hint, { then: "idle" });
+  }
+  // entry -> normalized pointing via the shared module; falls back to a legacy same-origin href only.
+  function normPointing(e) {
+    if (!e) return null;
+    if (window.YureiPointing && window.YureiPointing.normalize) return window.YureiPointing.normalize(e);
+    if (typeof e.href === "string" && e.href.charAt(0) === "/" && e.href.slice(0, 2) !== "//")
+      return { links: [{ href: e.href, label: e.nav_label || e.href }], image: null };
+    return null;
+  }
+  // draw the "desk points" block: same-origin links + an optional lazy thumbnail.
+  // pointing is pre-guarded by YureiPointing.normalize (same-origin + alt required); this only renders.
+  function renderPointing(bubble, pt) {
+    var box = el("div", "yasst-pointing");
+    (pt.links || []).forEach(function (l) {
+      var a = el("a", "yasst-navlink", { "href": l.href });
+      a.textContent = "→ " + l.label;
+      box.appendChild(a);
+    });
+    if (pt.image) {
+      var img = el("img", "yasst-thumb", { "loading": "lazy", "decoding": "async", "alt": pt.image.alt, "src": pt.image.src });
+      if (pt.image.full) { var a2 = el("a", "yasst-thumblink", { "href": pt.image.full }); a2.appendChild(img); box.appendChild(a2); }
+      else box.appendChild(img);
+    }
+    if (box.childNodes.length) bubble.appendChild(box);
   }
 
   function submit() {
@@ -266,9 +292,9 @@
     bump();
     var r = matcher.respond(raw);                            // {id, lane, response, animation_hint, ...}
     if (!r || !r.response) { addLine("desk", "Filed. Nothing in the drawers answers to that.", null, "deflect"); return; }
-    var link = null;
-    if (r.id) { var e = matcher.by_id[r.id]; if (e && e.href) link = { href: e.href, label: e.nav_label || e.href }; }
-    addLine("desk", r.response, link, r.animation_hint || "speak");
+    var pointing = null;
+    if (r.id) { var e = matcher.by_id[r.id]; pointing = normPointing(e); }
+    addLine("desk", r.response, pointing, r.animation_hint || "speak");
   }
 
   // =====================================================================
