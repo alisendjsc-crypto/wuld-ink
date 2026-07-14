@@ -44,6 +44,8 @@
   <link rel="stylesheet" href="/components/mode-toggle.css?v=K30">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
   <link rel="stylesheet" id="oasst-css" href="/components/omega-assistant.css?v=K230">
+  <link rel="stylesheet" id="pswitch-css" href="/components/persona-switcher.css?v=K231">
+  <link rel="stylesheet" id="agentfx-css" href="/components/agent-settings.css?v=K231">
 </head>
 
 <body>
@@ -127,6 +129,36 @@
           <p>If you write about wanting to hurt yourself, the proxy drops the fiction and points you to a person. That floor is inherited byte-for-byte from the same safety code the rest of the site runs, and it fires before anything else he might say.</p>
         </section>
 
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">The desk companion</p>
+          <p>Mr. Grey is not the only voice here. <strong>Y&#363;rei</strong> keeps the desk &mdash; the quiet companion who greets you across the rest of the site, waiting in a seat of her own until you call her. Like the proxy she is scripted: a fixed bank of prepared lines and a rule for choosing one. She is not a language model and she does not compose. She matches what you write against a set corpus and answers with the line that fits &mdash; or says plainly when nothing does.</p>
+          <p>She takes her name and her face from the y&#363;rei mascot, the site&rsquo;s small resident ghost. Where Mr. Grey is the writer&rsquo;s proxy, bound to this page and the Successor Protocol, Y&#363;rei is the house greeter &mdash; the default presence at the desk, everywhere. On this page the two share one seat: a small <span class="successor-toggle-name">Y&#363;rei &middot; Mr. Grey</span> toggle passes the desk between them, and whichever you are not speaking to greys and steps behind the other. Two scripted companions, one apparatus, one floor &mdash; if either reads that you mean to harm yourself, both drop the script and point you to a person, inherited byte-for-byte from the rest of the site.</p>
+        </section>
+
+        <section class="essay-section">
+          <details class="successor-curio">
+            <summary><span class="essay-section-eyebrow">For the curious &mdash; how the desk works</span></summary>
+            <div class="successor-curio-body">
+              <p>Neither companion generates language. Each is a <strong>deterministic matcher</strong>: it scores what you type against a fixed corpus of prepared entries, takes the single best-scoring one, and returns it as written. No model, no network call, nothing learned between visits &mdash; the same input yields the same answer, and every answer was written in advance.</p>
+              <dl class="successor-counts">
+                <div><dt>Y&#363;rei &middot; desk persona</dt><dd>165 entries</dd></div>
+                <div><dt>Y&#363;rei &middot; oracle lane</dt><dd>50 entries</dd></div>
+                <div><dt>Mr. Grey &middot; proxy</dt><dd>15 entries &mdash; 12 authored, 3 inherited crisis</dd></div>
+              </dl>
+              <p>One rule sits above the matcher on both: the <strong>crisis floor</strong>. If your words read as self-harm it fires first &mdash; before any other entry can be chosen, and no matter which companion is active or set aside. The toggle on this page cannot gate it; it was never in that path.</p>
+              <p>And in this phase the proxy holds <strong>no positions</strong>. He answers only for what the Protocol is and where the site points; he never invents past the record. The stances of a later, ratified phase are written but unshipped &mdash; they wait on a deliberate act of ratification, not on the proxy&rsquo;s say-so.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">Agent settings</p>
+          <p>The desk has a sound and a texture &mdash; an ambient bed, small effects, and Y&#363;rei&rsquo;s optional voice. Tune them here. The panel writes to your browser only, and every page reads the same store.</p>
+          <div id="agent-fx-panel" class="agent-fx" data-agent-fx hidden></div>
+          <noscript><p class="agent-fx-note">These controls need JavaScript. With it off, the desk simply stays quiet.</p></noscript>
+        </section>
+
+
         <hr class="section-rule">
 
         <section class="essay-section">
@@ -181,5 +213,7 @@
 <script src="/components/wrong-hour.js?v=K211" defer></script>
 <script src="/components/nav.js?v=K43"></script>
 <script src="/components/omega-assistant.js?v=K230" defer></script>
+<script src="/components/persona-switcher.js?v=K231" defer></script>
+<script src="/components/agent-settings.js?v=K231" defer></script>
 </body>
 </html>

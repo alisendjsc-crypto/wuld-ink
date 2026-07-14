@@ -1,0 +1,102 @@
+/* persona-switcher.css — Ω2.1 surface-coordination overlay (K231).
+   ===========================================================================
+   Seats Yūrei (.yasst-*) and Mr. Grey (.oasst-*) in ONE anchored seat and lets
+   a toggle choose which is active; the inactive persona recedes behind the
+   active one via a runtime .persona-dormant class.
+
+   CLASS-ONLY over their PUBLIC ROOT elements — this file never touches
+   yurei-assistant.js / omega-assistant.js / either corpus. Everything is
+   scoped under body.persona-switch-on, which the switcher adds ONLY where BOTH
+   personas have mounted; a single-persona surface is left exactly as today.
+   Same-origin, no external refs. */
+
+:root { --pswitch-z: 10000; }
+
+/* ---- one seat: pull Yūrei (bottom-RIGHT) into Mr. Grey's bottom-LEFT seat so
+        both launchers + panels stack at a single anchor. Body-scoped (0,2,1)
+        outranks each widget's own .yasst-*/.oasst-* rule (0,1,0), so no
+        !important and no source edit. ---- */
+body.persona-switch-on .yasst-launcher,
+body.persona-switch-on .oasst-launcher {
+  left: 20px; right: auto; bottom: 88px;
+  z-index: 9997;
+}
+body.persona-switch-on .yasst-panel,
+body.persona-switch-on .oasst-panel {
+  left: 20px; right: auto; bottom: 156px;
+  z-index: 9997;
+}
+
+/* active = whichever root lacks .persona-dormant — lift it above the resting
+   layer so it reads as forward. */
+body.persona-switch-on .yasst-launcher:not(.persona-dormant),
+body.persona-switch-on .oasst-launcher:not(.persona-dormant),
+body.persona-switch-on .yasst-panel:not(.persona-dormant),
+body.persona-switch-on .oasst-panel:not(.persona-dormant) {
+  z-index: 9999;
+}
+
+/* ---- dormant: grey out + recede BEHIND the active one. Two classes under the
+        body scope (0,3,1) win over the base seat rule (0,2,1). ---- */
+body.persona-switch-on .yasst-launcher.persona-dormant,
+body.persona-switch-on .oasst-launcher.persona-dormant,
+body.persona-switch-on .yasst-panel.persona-dormant,
+body.persona-switch-on .oasst-panel.persona-dormant {
+  opacity: 0.30;
+  filter: blur(1.5px);
+  transform: scale(0.9) translateY(8px);
+  transform-origin: 20px bottom;
+  pointer-events: none;
+  z-index: 9990;
+  transition: opacity 0.28s ease, filter 0.28s ease, transform 0.28s ease;
+}
+
+/* ---- the toggle: a mono segmented control docked beside the launcher stack ---- */
+.persona-switch {
+  position: fixed; left: 88px; bottom: 94px;
+  z-index: var(--pswitch-z);
+  display: inline-flex; align-items: stretch;
+  font-family: var(--font-mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 11px; line-height: 1; letter-spacing: 0.04em;
+  border: 1px solid rgba(240, 235, 229, 0.22);
+  border-radius: 3px; overflow: hidden;
+  background: rgba(10, 10, 10, 0.82);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  -webkit-user-select: none; user-select: none;
+}
+.persona-switch[hidden] { display: none; }
+.persona-switch-seg {
+  -webkit-appearance: none; appearance: none;
+  border: 0; margin: 0; cursor: pointer;
+  padding: 7px 11px;
+  font: inherit; color: rgba(240, 235, 229, 0.60);
+  background: transparent;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+.persona-switch-seg + .persona-switch-seg { border-left: 1px solid rgba(240, 235, 229, 0.16); }
+.persona-switch-seg:hover { color: rgba(240, 235, 229, 0.92); }
+.persona-switch-seg[aria-checked="true"] {
+  color: #f0ebe5;
+  background: rgba(196, 30, 58, 0.22);
+  box-shadow: inset 0 -2px 0 #c41e3a;
+}
+.persona-switch-seg:focus-visible { outline: 2px solid #c41e3a; outline-offset: -2px; }
+
+/* narrow screens: panels go full-width (their native mobile behavior); the
+   toggle stays beside the launcher (small enough to fit). */
+@media (max-width: 620px) {
+  body.persona-switch-on .yasst-panel,
+  body.persona-switch-on .oasst-panel { left: 12px; right: 12px; }
+}
+
+/* reduced-motion: grey/recede with NO motion — opacity swap only. */
+@media (prefers-reduced-motion: reduce) {
+  body.persona-switch-on .yasst-launcher.persona-dormant,
+  body.persona-switch-on .oasst-launcher.persona-dormant,
+  body.persona-switch-on .yasst-panel.persona-dormant,
+  body.persona-switch-on .oasst-panel.persona-dormant {
+    filter: none; transform: none; transition: none;
+  }
+  .persona-switch-seg { transition: none; }
+}
