@@ -47,9 +47,81 @@
   <link rel="stylesheet" id="pswitch-css" href="/components/persona-switcher.css?v=K231">
   <link rel="stylesheet" id="agentfx-css" href="/components/agent-settings.css?v=K231">
   <link rel="stylesheet" id="sstage-css" href="/components/successor-stage.css?v=K232">
+  <style id="sgate-style">
+    /* sgate (K233) — a soft "not yet released" curtain over /successor/. Client-side only:
+       the page bytes remain public, so this is a dormancy curtain, not a security boundary. */
+    #successor-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6vh 5vw;
+      background: var(--c-bg, #0a0a0a);
+      color: var(--c-fg, #e9e6df);
+    }
+    html.sgate-open #successor-gate { display: none; }
+    .sgate-box {
+      width: min(30rem, 94vw);
+      text-align: center;
+      border: 1px solid var(--c-border-strong, #3a3b40);
+      border-radius: 12px;
+      padding: 2.2rem 1.6rem;
+      background: var(--c-bg-elevated, #17181c);
+    }
+    .sgate-eyebrow {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-fg-muted, #8b8880);
+      margin: 0 0 1rem;
+    }
+    .sgate-lede { font-size: 1.05rem; line-height: 1.6; margin: 0 0 1.5rem; }
+    .sgate-form { display: flex; flex-direction: column; gap: 0.7rem; align-items: stretch; max-width: 20rem; margin: 0 auto; }
+    .sgate-label {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--c-fg-muted, #8b8880); text-align: left;
+    }
+    .sgate-input {
+      padding: 0.6rem 0.8rem; font: inherit;
+      background: var(--c-bg, #0a0a0a); color: var(--c-fg, #e9e6df);
+      border: 1px solid var(--c-border, #2a2b30); border-radius: 8px;
+    }
+    .sgate-input:focus-visible { outline: none; border-color: var(--c-accent, #c41e3a); }
+    .sgate-btn {
+      padding: 0.55rem 1rem; cursor: pointer; font: inherit;
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 0.82rem; letter-spacing: 0.05em;
+      background: var(--c-bg-overlay, #202127); color: var(--c-fg, #e9e6df);
+      border: 1px solid var(--c-border-strong, #3a3b40); border-radius: 8px;
+    }
+    .sgate-btn:hover { border-color: var(--c-accent, #c41e3a); }
+    .sgate-err { color: var(--c-accent, #c41e3a); font-size: 0.82rem; margin: 0.2rem 0 0; min-height: 1em; }
+    .sgate-foot { margin: 1.5rem 0 0; font-size: 0.82rem; }
+    .sgate-foot a { color: var(--c-fg-muted, #8b8880); }
+  </style>
+  <script>/*sgate-prepaint*/try{if(localStorage.getItem('wuld:successor:unlocked')==='1')document.documentElement.classList.add('sgate-open');}catch(e){}</script>
 </head>
 
 <body>
+
+  <div id="successor-gate" role="dialog" aria-modal="true" aria-labelledby="sgate-lede">
+    <div class="sgate-box">
+      <p class="sgate-eyebrow">&#937; &nbsp;/&nbsp; Successor</p>
+      <p class="sgate-lede" id="sgate-lede">This surface is still being fleshed out. It&rsquo;s dormant until release.</p>
+      <form class="sgate-form" autocomplete="off">
+        <label class="sgate-label" for="sgate-input">Passphrase</label>
+        <input id="sgate-input" class="sgate-input" type="password" autocomplete="off" spellcheck="false" autocapitalize="none">
+        <button type="submit" class="sgate-btn">enter</button>
+        <p class="sgate-err" role="alert" hidden>Not this time.</p>
+      </form>
+      <p class="sgate-foot"><a href="/">&larr; back to wuld.ink</a></p>
+    </div>
+  </div>
+  <script>/*sgate-logic*/(function(){var PASS="ne-hoc-fiat";var norm=function(s){return (s||"").trim().toLowerCase().replace(/[\s\-]+/g,"");};var g=document.getElementById("successor-gate");if(!g)return;if(document.documentElement.classList.contains("sgate-open"))return;var f=g.querySelector("form"),i=g.querySelector(".sgate-input"),e=g.querySelector(".sgate-err");if(f){f.addEventListener("submit",function(ev){ev.preventDefault();if(norm(i&&i.value)===norm(PASS)){try{localStorage.setItem("wuld:successor:unlocked","1");}catch(_){}document.documentElement.classList.add("sgate-open");}else{if(e)e.hidden=false;if(i){i.value="";i.focus();}}});}if(i)i.focus();})();</script>
 
   <a href="#main" class="skip-link">Skip to content</a>
 

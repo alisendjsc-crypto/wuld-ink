@@ -215,3 +215,9 @@ body.home .site-banner img {
     text-shadow: 0 0 4px var(--c-accent);
   }
 }
+
+/* K233 — Successor tab greyed dormant until the surface is released.
+   Reversible: delete this block to re-activate the tab. */
+.site-nav a[href="/successor/"] { opacity: 0.4; }
+.site-nav a[href="/successor/"]:hover,
+.site-nav a[href="/successor/"]:focus-visible { opacity: 0.72; }
