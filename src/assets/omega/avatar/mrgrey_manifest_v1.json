@@ -1,0 +1,41 @@
+{
+  "contract": "avatar_manifest_v2",
+  "schema_version": "1.0",
+  "status": "placeholder",
+  "persona": "mrgrey",
+  "generated": "2026-07-14",
+  "substrate": "PLACEHOLDER — a grey-cat silhouette (mrgrey_placeholder.svg) standing in for the game-side black-cat 'Mr. Grey' asset set, which has not landed yet. The resolver is data-driven off animation_fallback, so when the real clips exist, swap assets[] + set status:complete with NO code change in omega-assistant.js. Same manifest/resolver tech as the Yurei avatar (avatar_manifest_v2); this is a separate SKIN, not a separate register.",
+  "animation_fallback": {
+    "deflect": "idle",
+    "speak": "idle",
+    "dismiss": "idle",
+    "appear": "idle",
+    "return_ack": "idle",
+    "long_idle": "idle",
+    "listen": "idle",
+    "regard": "idle",
+    "glitch": "idle",
+    "wrong_hour": "idle",
+    "idle": "idle"
+  },
+  "assets": [
+    {
+      "role": "idle",
+      "kind": "still",
+      "file": "mrgrey_placeholder.svg",
+      "px": [540, 720],
+      "anchorPx": [270, 169],
+      "anchor_confidence": "authored",
+      "loop": false
+    },
+    {
+      "role": "canonical-p0",
+      "kind": "still",
+      "file": "mrgrey_placeholder.svg",
+      "px": [540, 720],
+      "anchorPx": [270, 169],
+      "anchor_confidence": "authored",
+      "loop": false
+    }
+  ]
+}

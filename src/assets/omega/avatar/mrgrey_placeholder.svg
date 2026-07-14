@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 720" width="540" height="720" role="img" aria-label="Mr. Grey — placeholder avatar (grey cat silhouette)">
+  <title>Mr. Grey — placeholder avatar</title>
+  <desc>A grey cat silhouette standing in for the game-side black-cat asset set until it lands.</desc>
+  <defs>
+    <linearGradient id="mg-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#767b84"/>
+      <stop offset="1" stop-color="#4c5057"/>
+    </linearGradient>
+    <radialGradient id="mg-eye" cx="0.5" cy="0.45" r="0.7">
+      <stop offset="0" stop-color="#e7ebf2"/>
+      <stop offset="0.7" stop-color="#aab0bb"/>
+      <stop offset="1" stop-color="#8b919c"/>
+    </radialGradient>
+  </defs>
+
+  <!-- silhouette (one colour = reads as a single shape) -->
+  <g fill="url(#mg-body)">
+    <!-- ears -->
+    <path d="M162 262 L204 104 L282 232 Z"/>
+    <path d="M378 262 L336 104 L258 232 Z"/>
+    <!-- head -->
+    <ellipse cx="270" cy="312" rx="138" ry="128"/>
+    <!-- seated body -->
+    <path d="M150 452 C112 556 116 606 168 662 L372 662 C424 606 428 556 390 452 C356 500 184 500 150 452 Z"/>
+    <!-- front paws -->
+    <ellipse cx="214" cy="656" rx="48" ry="30"/>
+    <ellipse cx="326" cy="656" rx="48" ry="30"/>
+    <!-- tail curling up the right side -->
+    <path d="M388 622 C486 616 520 520 480 462 C462 436 428 444 436 486 C446 524 420 566 352 592 Z"/>
+  </g>
+
+  <!-- faintly luminous eyes so it reads as a watching cat, not a blob -->
+  <g>
+    <path d="M198 300 C214 286 242 286 256 302 C242 320 214 320 198 300 Z" fill="url(#mg-eye)" opacity="0.92"/>
+    <path d="M284 302 C298 286 326 286 342 300 C326 320 298 320 284 302 Z" fill="url(#mg-eye)" opacity="0.92"/>
+    <path d="M223 292 C231 292 233 314 227 314 C221 314 215 292 223 292 Z" fill="#2a2c31"/>
+    <path d="M313 292 C321 292 315 314 309 314 C303 314 305 292 313 292 Z" fill="#2a2c31"/>
+    <!-- nose -->
+    <path d="M263 350 L277 350 L270 362 Z" fill="#3b3e44"/>
+  </g>
+</svg>

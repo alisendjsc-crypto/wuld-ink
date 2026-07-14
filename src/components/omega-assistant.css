@@ -1,0 +1,173 @@
+/* omega-assistant.css — Ω2 Mr. Grey proxy desk (the Successor-Protocol surface).
+   A SEPARATE persona chrome that mounts the byte-identical Yurei engine
+   (yurei-oracle.js) on the mrgrey corpus. Re-scoped to .oasst-* with a cool
+   grey skin and a bottom-LEFT seat, so Mr. Grey and Yurei (bottom-right) read
+   as two personas. Mirrors the yasst reduced-motion / dismiss discipline.
+   Same-origin only; no external refs. Yurei's stylesheet is untouched. */
+
+:root {
+  --oasst-presence: 0.62;
+  --oasst-presence-active: 0.82;
+  --oasst-bg: rgba(14, 15, 18, 0.95);
+  --oasst-fg: #d6d8de;
+  --oasst-fg-dim: #868a93;
+  --oasst-line: rgba(214, 216, 222, 0.14);
+  --oasst-accent: #9aa1ad;      /* cool grey, distinct from Yurei's bone */
+  --oasst-you: rgba(154, 161, 173, 0.10);
+  --oasst-z: 9997;              /* just under Yurei so she wins z-ties if they ever overlap */
+}
+
+/* ---------- launcher (bottom-LEFT) ---------- */
+.oasst-launcher {
+  position: fixed; left: 18px; bottom: 84px;
+  width: 62px; height: 62px; border-radius: 50%;
+  border: 1px solid rgba(154, 161, 173, 0.5);
+  background: #121318 center 16% / 168% no-repeat;
+  opacity: 0.74;
+  filter: grayscale(0.35) contrast(1.05);
+  cursor: pointer; padding: 0;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5), 0 0 18px rgba(154, 161, 173, 0.14);
+  transition: opacity 200ms ease, transform 200ms ease, box-shadow 200ms ease, bottom 200ms ease;
+  z-index: var(--oasst-z);
+}
+.oasst-launcher::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%;
+  border: 1px dashed rgba(154, 161, 173, 0.42); pointer-events: none;   /* dashed = "placeholder skin" tell */
+}
+.oasst-launcher:hover, .oasst-launcher:focus-visible {
+  opacity: 0.97; transform: translateY(-2px);
+  outline: none; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6), 0 0 22px rgba(154, 161, 173, 0.3);
+}
+.oasst-launcher:focus-visible { outline: 2px solid var(--oasst-accent); outline-offset: 2px; }
+.oasst-launcher.oasst-pulse { animation: oasst-pulse 2.2s ease-in-out 3; }
+@keyframes oasst-pulse {
+  0%, 100% { box-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 0 18px rgba(154,161,173,0.14); }
+  50% { box-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 0 30px rgba(154,161,173,0.5); }
+}
+
+/* ---------- panel ---------- */
+.oasst-panel {
+  position: fixed; left: 18px; bottom: 154px;
+  width: 330px; max-width: calc(100vw - 24px); max-height: 72vh;
+  display: flex; flex-direction: column;
+  background: var(--oasst-bg); color: var(--oasst-fg);
+  border: 1px solid var(--oasst-line); border-radius: 12px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  font: 400 15px/1.5 ui-serif, Georgia, "Times New Roman", serif;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 240ms ease, transform 240ms ease;
+  z-index: var(--oasst-z);
+  overflow: hidden;
+}
+.oasst-panel.oasst-open { opacity: 1; transform: translateY(0); }
+.oasst-panel[hidden] { display: none; }
+
+.oasst-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-bottom: 1px solid var(--oasst-line);
+}
+.oasst-avatar {
+  position: relative; width: 64px; height: 64px; flex: 0 0 auto;
+  border-radius: 8px; overflow: hidden; background: #0b0c0f;
+  opacity: var(--oasst-presence);
+}
+.oasst-av-vid, .oasst-av-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 20%;
+  filter: grayscale(0.3) contrast(1.03);
+}
+.oasst-titlewrap { flex: 1 1 auto; min-width: 0; }
+.oasst-title { font-size: 17px; letter-spacing: 0.02em; }
+.oasst-sub { font-size: 12px; color: var(--oasst-fg-dim); font-style: italic; }
+.oasst-close {
+  flex: 0 0 auto; width: 30px; height: 30px; border-radius: 6px;
+  background: transparent; border: 1px solid transparent; color: var(--oasst-fg-dim);
+  font-size: 20px; line-height: 1; cursor: pointer;
+}
+.oasst-close:hover, .oasst-close:focus-visible { color: var(--oasst-fg); border-color: var(--oasst-line); outline: none; }
+
+.oasst-transcript {
+  flex: 1 1 auto; overflow-y: auto; padding: 12px;
+  display: flex; flex-direction: column; gap: 10px; min-height: 90px;
+}
+.oasst-line { display: flex; }
+.oasst-line.oasst-you { justify-content: flex-end; }
+.oasst-line.oasst-grey { justify-content: flex-start; }
+.oasst-bubble {
+  max-width: 86%; padding: 8px 11px; border-radius: 10px;
+  font-size: 14.5px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word;
+}
+.oasst-grey .oasst-bubble { background: rgba(255, 255, 255, 0.035); border: 1px solid var(--oasst-line); border-bottom-left-radius: 3px; }
+.oasst-you .oasst-bubble { background: var(--oasst-you); border: 1px solid rgba(154, 161, 173, 0.2); border-bottom-right-radius: 3px; color: var(--oasst-fg); }
+/* crisis: the floor drops the register — force plain interface text, never fragment typography (corpus V14 note) */
+.oasst-line.oasst-crisis .oasst-bubble {
+  background: rgba(196, 30, 58, 0.09); border: 1px solid rgba(196, 30, 58, 0.4);
+  border-radius: 8px; font-style: normal; letter-spacing: 0;
+}
+
+.oasst-sys { align-self: center; max-width: 92%; margin: 2px 0; text-align: center;
+  font-size: 12px; line-height: 1.45; color: var(--oasst-fg-dim); font-style: italic; }
+
+.oasst-navlink {
+  display: inline-block; margin-top: 6px; color: var(--oasst-accent);
+  text-decoration: none; font-size: 13px; letter-spacing: 0.01em;
+  border-bottom: 1px solid rgba(154, 161, 173, 0.35);
+}
+.oasst-navlink:hover, .oasst-navlink:focus-visible { color: #cfd4dd; outline: none; border-bottom-color: #cfd4dd; }
+.oasst-pointing { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.oasst-pointing .oasst-navlink { margin-top: 0; align-self: flex-start; }
+
+.oasst-form { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--oasst-line); }
+.oasst-input {
+  flex: 1 1 auto; min-width: 0; padding: 9px 11px;
+  background: rgba(0, 0, 0, 0.35); color: var(--oasst-fg);
+  border: 1px solid var(--oasst-line); border-radius: 8px;
+  font: inherit; font-size: 14px;
+}
+.oasst-input::placeholder { color: var(--oasst-fg-dim); font-style: italic; }
+.oasst-input:focus-visible { outline: none; border-color: var(--oasst-accent); }
+.oasst-send {
+  flex: 0 0 auto; padding: 0 14px; border-radius: 8px; cursor: pointer;
+  background: rgba(154, 161, 173, 0.14); color: var(--oasst-fg);
+  border: 1px solid rgba(154, 161, 173, 0.3); font: inherit; font-size: 13px; letter-spacing: 0.03em;
+}
+.oasst-send:hover, .oasst-send:focus-visible { background: rgba(154, 161, 173, 0.24); outline: none; }
+
+/* ---------- in-page summon (the /successor/ centerpiece) ---------- */
+.oasst-summon-fig { display: flex; flex-direction: column; align-items: center; gap: 14px; margin: 1.75rem 0 1rem; }
+.oasst-summon-av {
+  width: 150px; height: 200px; border-radius: 12px; background: #0b0c0f;
+  border: 1px solid var(--oasst-line); object-fit: cover; object-position: 50% 22%;
+  filter: grayscale(0.3) contrast(1.03); opacity: 0.92;
+}
+.oasst-summon {
+  font: inherit; cursor: pointer; padding: 0.6rem 1.35rem; border-radius: 8px;
+  background: rgba(154, 161, 173, 0.14); color: #d6d8de; border: 1px solid rgba(154, 161, 173, 0.42);
+  letter-spacing: 0.04em;
+}
+.oasst-summon:hover, .oasst-summon:focus-visible { background: rgba(154, 161, 173, 0.26); outline: none; }
+.oasst-summon:focus-visible { outline: 2px solid var(--oasst-accent); outline-offset: 2px; }
+.oasst-summon-cap { font-size: 0.8rem; color: var(--oasst-fg-dim); font-style: italic; max-width: 34rem; text-align: center; line-height: 1.5; }
+
+/* ---------- sprite flavors (harmless on the still placeholder; bind to real clips later) ---------- */
+.oasst-avatar.oasst-speaking { animation: oasst-breathe 2.4s ease-in-out infinite; }
+.oasst-avatar.oasst-glitch { animation: oasst-glitch 0.5s steps(2) 2; }
+@keyframes oasst-breathe { 0%, 100% { opacity: var(--oasst-presence); } 50% { opacity: var(--oasst-presence-active); } }
+@keyframes oasst-glitch { 0% { transform: translateX(0); } 25% { transform: translateX(-1px) skewX(-1deg); } 75% { transform: translateX(1px) skewX(1deg); } 100% { transform: translateX(0); } }
+
+/* ---------- small screens ---------- */
+@media (max-width: 480px) {
+  .oasst-panel { left: 12px; right: 12px; width: auto; bottom: 150px; max-height: 62vh; }
+  .oasst-launcher { left: 14px; bottom: 84px; }
+}
+
+/* ---------- reduced motion (mirror yasst) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .oasst-panel { transition: opacity 120ms linear; transform: none; }
+  .oasst-panel.oasst-open { transform: none; }
+  .oasst-launcher { transition: opacity 120ms linear; }
+  .oasst-launcher.oasst-pulse { animation: none; }
+  .oasst-avatar.oasst-speaking, .oasst-avatar.oasst-glitch { animation: none; }
+  .oasst-av-vid { display: none !important; }
+}
