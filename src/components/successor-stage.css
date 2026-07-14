@@ -1,0 +1,260 @@
+/* successor-stage.css — Build B: the Successor Stage (K232).
+   A Messenger-style enlargement of whichever desk companion holds the seat.
+   Opt-in from the /successor/ Hub; the corner bubbles stay the default. Styled
+   entirely on the site's --c-* tokens so it tracks dark / reader / high-contrast
+   automatically — mono for chrome, the inherited serif for the conversation.
+   No !important on layout, no external refs, no page-mode. */
+
+/* ---------- Hub affordance (injected into [data-successor-stage]) ---------- */
+.sstage-open-btn {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.55rem 1.3rem;
+  border-radius: 8px;
+  background: var(--c-bg-elevated, #17181c);
+  color: var(--c-fg, #e9e6df);
+  border: 1px solid var(--c-border-strong, #3a3b40);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+.sstage-open-btn:hover {
+  background: var(--c-bg-overlay, #202127);
+  border-color: var(--c-border-accent, var(--c-accent, #c41e3a));
+  transform: translateY(-1px);
+}
+.sstage-open-btn:focus-visible {
+  outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a));
+  outline-offset: 2px;
+}
+.sstage-open-cap {
+  margin: 0.65rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  max-width: 40rem;
+  color: var(--c-fg-muted, #8b8880);
+  font-style: italic;
+}
+
+/* ---------- overlay ---------- */
+.sstage-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vh 3vw;
+  background: color-mix(in srgb, var(--c-bg, #0a0a0a) 78%, transparent);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.sstage-overlay.sstage-visible { opacity: 1; }
+.sstage-overlay[hidden] { display: none; }
+
+/* ---------- panel ---------- */
+.sstage-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(680px, 96vw);
+  height: min(82vh, 760px);
+  background: var(--c-bg, #0a0a0a);
+  color: var(--c-fg, #e9e6df);
+  border: 1px solid var(--c-border-strong, #3a3b40);
+  border-radius: 12px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transform: translateY(12px);
+  transition: transform 220ms ease;
+}
+.sstage-overlay.sstage-visible .sstage-panel { transform: translateY(0); }
+
+/* ---------- head ---------- */
+.sstage-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--c-border, #2a2b30);
+}
+.sstage-avatar {
+  position: relative;
+  flex: 0 0 auto;
+  width: 80px;
+  height: 108px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--c-bg-elevated, #17181c);
+  border: 1px solid var(--c-border, #2a2b30);
+}
+.sstage-av-img, .sstage-av-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+.sstage-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  color: var(--c-fg, #e9e6df);
+}
+.sstage-x {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--c-fg-dim, #a6a29a);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.sstage-x:hover { color: var(--c-fg, #e9e6df); border-color: var(--c-border, #2a2b30); }
+.sstage-x:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
+
+/* ---------- transcript ---------- */
+.sstage-transcript {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sstage-line { display: flex; flex-direction: column; max-width: 88%; }
+.sstage-line.sstage-you { align-self: flex-end; align-items: flex-end; }
+.sstage-line.sstage-them { align-self: flex-start; align-items: flex-start; }
+.sstage-line.sstage-sys { align-self: center; max-width: 92%; text-align: center; }
+.sstage-who {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-fg-muted, #8b8880);
+  margin: 0 2px 3px;
+}
+.sstage-bubble {
+  padding: 9px 13px;
+  border-radius: 11px;
+  font-size: 1rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.sstage-them .sstage-bubble {
+  background: var(--c-bg-elevated, #17181c);
+  border: 1px solid var(--c-border, #2a2b30);
+  border-bottom-left-radius: 3px;
+}
+.sstage-you .sstage-bubble {
+  background: color-mix(in srgb, var(--c-accent, #c41e3a) 12%, transparent);
+  border: 1px solid var(--c-border-accent, color-mix(in srgb, var(--c-accent, #c41e3a) 40%, transparent));
+  border-bottom-right-radius: 3px;
+}
+.sstage-sys .sstage-bubble {
+  background: transparent;
+  color: var(--c-fg-muted, #8b8880);
+  font-size: 0.82rem;
+  font-style: italic;
+  padding: 2px 0;
+}
+.sstage-sys .sstage-who { display: none; }
+/* crisis: the floor drops the register — force plain interface text, never fragment typography */
+.sstage-line.sstage-crisis .sstage-bubble {
+  background: color-mix(in srgb, var(--c-accent, #c41e3a) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c-accent, #c41e3a) 42%, transparent);
+  border-radius: 8px;
+  font-style: normal;
+  letter-spacing: 0;
+  color: var(--c-fg, #e9e6df);
+}
+
+/* ---------- form ---------- */
+.sstage-form {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--c-border, #2a2b30);
+}
+.sstage-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 12px;
+  background: var(--c-bg-elevated, #17181c);
+  color: var(--c-fg, #e9e6df);
+  border: 1px solid var(--c-border, #2a2b30);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.95rem;
+}
+.sstage-input::placeholder { color: var(--c-fg-muted, #8b8880); font-style: italic; }
+.sstage-input:focus-visible { outline: none; border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
+.sstage-send {
+  flex: 0 0 auto;
+  padding: 0 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--c-bg-overlay, #202127);
+  color: var(--c-fg, #e9e6df);
+  border: 1px solid var(--c-border-strong, #3a3b40);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+.sstage-send:hover { background: var(--c-bg-elevated, #17181c); border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
+.sstage-send:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
+
+/* ---------- foot ---------- */
+.sstage-foot {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 12px;
+  flex-wrap: wrap;
+}
+.sstage-btn {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--c-fg-dim, #a6a29a);
+  border: 1px solid var(--c-border, #2a2b30);
+}
+.sstage-btn:hover { color: var(--c-fg, #e9e6df); border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
+.sstage-btn:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
+.sstage-note {
+  font-size: 0.72rem;
+  color: var(--c-fg-muted, #8b8880);
+  font-style: italic;
+  margin-left: auto;
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 520px) {
+  .sstage-overlay { padding: 0; }
+  .sstage-panel { width: 100vw; height: 100vh; border-radius: 0; border: none; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .sstage-open-btn { transition: none; }
+  .sstage-overlay { transition: none; }
+  .sstage-panel { transition: none; transform: none; }
+  .sstage-overlay.sstage-visible .sstage-panel { transform: none; }
+  .sstage-av-video { display: none; }
+}
