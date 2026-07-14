@@ -51,7 +51,7 @@ const VEC = path.join(ROOT, "tools", "yurei", "parity_vectors.json");
 const YO = require(path.join(COMP, "yurei-oracle.js"));
 const normalize = YO.normalize;
 
-const personaPath = process.argv[2] || path.join(COMP, "omega-corpus-placeholder.json");
+const personaPath = process.argv[2] || path.join(COMP, "omega-corpus-mrgrey.json");
 const pubPath     = process.argv[3] || path.join(COMP, "yurei-corpus-public.json");
 const oraPath     = process.argv[4] || path.join(COMP, "yurei-corpus-oracle.json");
 
@@ -95,6 +95,7 @@ function gate(name, ok, detail) { results.push({ name, ok: !!ok, detail: detail 
 // ---------- B. positionless + schema-valid persona ----------
 (function () {
   const errs = [];
+  const isScaffold = persona._placeholder === true;
   if (persona.persona == null) errs.push("corpus missing persona id");
   for (const e of personaEnts) {
     const tag = "[" + e.id + "]";
@@ -112,8 +113,13 @@ function gate(name, ok, detail) { results.push({ name, ok: !!ok, detail: detail 
       errs.push(tag + " class '" + e.class + "' needs patterns");
     if (e.class === "crisis") {
       if (e._placeholder) errs.push(tag + " crisis must NOT be _placeholder (inherited-real floor)");
+    } else if (isScaffold) {
+      if (e._placeholder !== true) errs.push(tag + " scaffold non-crisis must be _placeholder:true");
     } else {
-      if (e._placeholder !== true) errs.push(tag + " non-crisis scaffolding must be _placeholder:true");
+      if (e._placeholder) errs.push(tag + " real corpus entry must NOT carry _placeholder");
+    }
+    for (const fid of (e.followups || [])) {
+      if (!personaEnts.some(function (x) { return x.id === fid; })) errs.push(tag + " followup '" + fid + "' target missing in persona");
     }
   }
   gate("B positionless + schema-valid", errs.length === 0, errs.slice(0, 12).join(" | "));

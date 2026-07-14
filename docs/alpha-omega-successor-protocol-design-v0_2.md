@@ -97,6 +97,8 @@ convention + schema note, a clearly-marked **placeholder** second-persona corpus
 validator/parity gate, and a loader convention. See
 `omega-persona-convention.md` and `tools/omega/`.
 
-The Mr. Grey **surface** (tab + avatar mount) is Ω2. The Mr. Grey **register and
-real entries** are chat/library-Claude authoring. Cowork authors no persona
-register and no positions.
+The Mr. Grey **surface** (tab + avatar mount) is Ω2. The proxy's **register and
+real entries** are authored by the **Successor Protocol seat** (Josiah's own
+register); "Mr. Grey" is only the black-cat avatar (a skin), not a separate
+register. Cowork authors no persona register and no positions (positions are
+Phase 4).
