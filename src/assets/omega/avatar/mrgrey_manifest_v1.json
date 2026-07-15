@@ -1,40 +1,184 @@
 {
   "contract": "avatar_manifest_v2",
   "schema_version": "1.0",
-  "status": "placeholder",
+  "status": "complete",
   "persona": "mrgrey",
-  "generated": "2026-07-14",
-  "substrate": "PLACEHOLDER — a grey-cat silhouette (mrgrey_placeholder.svg) standing in for the game-side black-cat 'Mr. Grey' asset set, which has not landed yet. The resolver is data-driven off animation_fallback, so when the real clips exist, swap assets[] + set status:complete with NO code change in omega-assistant.js. Same manifest/resolver tech as the Yurei avatar (avatar_manifest_v2); this is a separate SKIN, not a separate register.",
+  "generated": "2026-07-15",
+  "substrate": "Black-shorthair 'Mr. Grey' avatar (mr_grey_v1.blend): procedural fur + gold-green tapetum slit-eyes + single deep-crimson rim; 540x720 / 24fps / EEVEE 256-TAA; VP9 yuva420p full-alpha. Idle MVP + 5 reactive clips (appear/speak/dismiss/listen/long_idle) authored on the locked rig (object-TRS + tapetum material keys, flatten-safe). Resolver is asset-first, data-driven off animation_fallback; same manifest tech as the Yurei avatar (avatar_manifest_v2) -- a separate SKIN, not a separate register.",
   "animation_fallback": {
-    "deflect": "idle",
-    "speak": "idle",
-    "dismiss": "idle",
-    "appear": "idle",
+    "deflect": "speak",
+    "glitch": "speak",
+    "regard": "long_idle",
     "return_ack": "idle",
-    "long_idle": "idle",
-    "listen": "idle",
-    "regard": "idle",
-    "glitch": "idle",
     "wrong_hour": "idle",
-    "idle": "idle"
+    "idle_breeze": "idle",
+    "appear": "idle",
+    "listen": "idle",
+    "dismiss": "idle",
+    "speak": "idle",
+    "long_idle": "idle"
   },
   "assets": [
     {
       "role": "idle",
-      "kind": "still",
-      "file": "mrgrey_placeholder.svg",
-      "px": [540, 720],
-      "anchorPx": [270, 169],
-      "anchor_confidence": "authored",
+      "kind": "clip",
+      "file": "mrgrey_av_idle.webm",
+      "md5": "66a67d242e3c1aab59e2e94da7f842b0",
+      "sha256": "64c0fc973f751c7ba1f9d6073baf39a9ff4d725a51f054cf8297b0e336c4bfa6",
+      "size_bytes": 148579,
+      "px": [
+        540,
+        720
+      ],
+      "anchorPx": [
+        267,
+        259
+      ],
+      "anchor_confidence": "computed",
+      "frames": 192,
+      "fps": 24,
+      "durationMs": 8000,
+      "loop": true
+    },
+    {
+      "role": "appear",
+      "kind": "clip",
+      "file": "mrgrey_av_appear.webm",
+      "md5": "7a75ce9750dd63bf0cf1f4ef96e551ee",
+      "sha256": "7225c32fb87f496b674f27fa8a8b25c323af9afaa8208304191c6206d94f0fa7",
+      "size_bytes": 70063,
+      "px": [
+        540,
+        720
+      ],
+      "anchorPx": [
+        267,
+        259
+      ],
+      "anchor_confidence": "computed",
+      "frames": 72,
+      "fps": 24,
+      "durationMs": 3000,
+      "loop": false
+    },
+    {
+      "role": "speak",
+      "kind": "clip",
+      "file": "mrgrey_av_speak.webm",
+      "md5": "32548a4fa7e30b3ced111c09115f189b",
+      "sha256": "9839d2c372412592538196db33e72f578ee5d4ee7d4605b7f4e457af874b08cb",
+      "size_bytes": 170988,
+      "px": [
+        540,
+        720
+      ],
+      "anchorPx": [
+        267,
+        259
+      ],
+      "anchor_confidence": "computed",
+      "frames": 144,
+      "fps": 24,
+      "durationMs": 6000,
+      "loop": false
+    },
+    {
+      "role": "dismiss",
+      "kind": "clip",
+      "file": "mrgrey_av_dismiss.webm",
+      "md5": "916227e6be8c9b6d2bc93024c5dda42d",
+      "sha256": "ffbf302d674f7cbfb33991c803f89e330b10a2c9d38ae6a59be54e7f32241e5f",
+      "size_bytes": 107335,
+      "px": [
+        540,
+        720
+      ],
+      "anchorPx": [
+        267,
+        259
+      ],
+      "anchor_confidence": "computed",
+      "frames": 96,
+      "fps": 24,
+      "durationMs": 4000,
+      "loop": false
+    },
+    {
+      "role": "listen",
+      "kind": "clip",
+      "file": "mrgrey_av_listen.webm",
+      "md5": "780e2ae94f6806676714c2e6e8bc8faa",
+      "sha256": "1b7a33d62d4db99de776c2b6605cffc2c15e27127221b32f77a4d89aa93b2361",
+      "size_bytes": 89420,
+      "px": [
+        540,
+        720
+      ],
+      "anchorPx": [
+        267,
+        259
+      ],
+      "anchor_confidence": "computed",
+      "frames": 96,
+      "fps": 24,
+      "durationMs": 4000,
+      "loop": true
+    },
+    {
+      "role": "long_idle",
+      "kind": "clip",
+      "file": "mrgrey_av_long_idle.webm",
+      "md5": "776fcb6eb0d514b38d7934041147bb11",
+      "sha256": "dce4154420e2d52e9e8f65601620dd1015e32da72d3f1992f63efd43fca848ca",
+      "size_bytes": 161465,
+      "px": [
+        540,
+        720
+      ],
+      "anchorPx": [
+        267,
+        259
+      ],
+      "anchor_confidence": "computed",
+      "frames": 192,
+      "fps": 24,
+      "durationMs": 8000,
       "loop": false
     },
     {
       "role": "canonical-p0",
       "kind": "still",
-      "file": "mrgrey_placeholder.svg",
-      "px": [540, 720],
-      "anchorPx": [270, 169],
-      "anchor_confidence": "authored",
+      "file": "mrgrey_av_still.png",
+      "md5": "ad7a90a04dfc88fc0d484bd039c847e5",
+      "sha256": "43408300015e766ba62f1139ce770e31ce39fe414104a8f5d91072b50f09abaa",
+      "size_bytes": 250364,
+      "px": [
+        540,
+        720
+      ],
+      "anchorPx": [
+        267,
+        259
+      ],
+      "anchor_confidence": "computed",
+      "loop": false
+    },
+    {
+      "role": "long_idle-still",
+      "kind": "still",
+      "file": "mrgrey_av_long_idle_still.png",
+      "md5": "bcf386471fb47ecd24e9ae610b75d31d",
+      "sha256": "e875d41343fd11957c0b62b9e205fb21b08cfc00b0a5a88f90624c9daef980b1",
+      "size_bytes": 250396,
+      "px": [
+        540,
+        720
+      ],
+      "anchorPx": [
+        267,
+        259
+      ],
+      "anchor_confidence": "computed",
       "loop": false
     }
   ]

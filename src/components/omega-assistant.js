@@ -27,7 +27,7 @@
   var MANIFEST_URL = ASSET + "avatar/mrgrey_manifest_v1.json";
   var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);
   var CORPUS_URL = COMP + "omega-corpus-mrgrey.json";
-  var VER = "K230";
+  var VER = "K237";
 
   // ---- persona-keyed stores (never commingled with Yurei's wuld:yurei*) ----
   var KILL_KEY = "wuld:mrgrey";                        // { off:true } — proxy opt-out
@@ -166,7 +166,7 @@
     avatarImg.style.display = "none";
     avatarWrap.appendChild(avatarVideo); avatarWrap.appendChild(avatarImg);
     var title = el("div", "oasst-title"); title.textContent = "Mr. Grey";
-    var sub = el("div", "oasst-sub"); sub.textContent = "the proxy · placeholder skin";
+    var sub = el("div", "oasst-sub"); sub.textContent = "the proxy";
     var titleWrap = el("div", "oasst-titlewrap"); titleWrap.appendChild(title); titleWrap.appendChild(sub);
     var closeBtn = el("button", "oasst-close", { "type": "button", "aria-label": "Dismiss the proxy" });
     closeBtn.innerHTML = "&#215;";
