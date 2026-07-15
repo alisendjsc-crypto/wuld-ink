@@ -262,11 +262,19 @@ async function createGaplog(request, env) {
     const content = gaplogScrub(it.content_scrubbed);          // server RE-scrub (defense in depth)
     if (!content) { skipped++; continue; }
     const cls = it.class === "all_damped" ? "all_damped" : "below_threshold";
+    // 1.5c share-context: an OPTIONAL scrubbed transcript. RE-scrub every line
+    // (defense in depth — identical scrub), cap to the last 40, store as JSON.
+    let ctx = null;
+    if (Array.isArray(it.context_scrubbed) && it.context_scrubbed.length) {
+      const lines = it.context_scrubbed.slice(-40).map(function (x) { return gaplogScrub(x); }).filter(function (x) { return x; });
+      if (lines.length) ctx = JSON.stringify(lines);
+    }
     try {
       await env.DB.prepare(
-        "INSERT INTO gap_log_miss (persona, content_scrubbed, class, count, first_date, last_date, resolved) VALUES (?,?,?,1,?,?,0) " +
-        "ON CONFLICT(persona, content_scrubbed) DO UPDATE SET count = count + 1, last_date = excluded.last_date, class = excluded.class"
-      ).bind(GAPLOG_PERSONA, content, cls, today, today).run();
+        "INSERT INTO gap_log_miss (persona, content_scrubbed, class, count, first_date, last_date, resolved, context_scrubbed) VALUES (?,?,?,1,?,?,0,?) " +
+        "ON CONFLICT(persona, content_scrubbed) DO UPDATE SET count = count + 1, last_date = excluded.last_date, class = excluded.class, " +
+        "context_scrubbed = CASE WHEN excluded.context_scrubbed IS NOT NULL AND excluded.context_scrubbed <> '' THEN excluded.context_scrubbed ELSE gap_log_miss.context_scrubbed END"
+      ).bind(GAPLOG_PERSONA, content, cls, today, today, ctx).run();
       logged++;
     } catch (e) { skipped++; }                                 // table absent / transient -> fail-safe no-op
   }

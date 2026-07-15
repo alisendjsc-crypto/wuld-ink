@@ -11,8 +11,10 @@
 --     here to tie a row to a person; the testing lane is provably Josiah's by
 --     the Cloudflare Access mount, never by anything stored.
 --   * Dates are DAY-GRANULAR only (YYYY-MM-DD, America/Phoenix).
---   * Miss lane stores PII-scrubbed content + a dedup count. The hit-quality
---     lane stores entry_id + kind ONLY — never query content.
+--   * Miss lane stores PII-scrubbed content + a dedup count. 1.5c adds an OPT-IN,
+--     off-by-default scrubbed conversation (context_scrubbed) written ONLY when the
+--     visitor enables "share context"; scrubbed line-by-line, day-granular, no identity.
+--     The hit-quality lane stores entry_id + kind ONLY — never query content.
 --   * persona-scoped ('yurei'); a future Omega/proxy log is a SEPARATE store,
 --     never commingled (design v0.5 §4.5 / §5).
 --
@@ -29,7 +31,8 @@ CREATE TABLE IF NOT EXISTS gap_log_miss (
   count            INTEGER NOT NULL DEFAULT 1,
   first_date       TEXT    NOT NULL,                            -- YYYY-MM-DD (America/Phoenix)
   last_date        TEXT    NOT NULL,
-  resolved         INTEGER NOT NULL DEFAULT 0                   -- 0 | 1 (manual mark; never auto-deleted)
+  resolved         INTEGER NOT NULL DEFAULT 0,                  -- 0 | 1 (manual mark; never auto-deleted)
+  context_scrubbed TEXT                                         -- 1.5c: OPT-IN scrubbed conversation (JSON array of lines); NULL by default
 );
 CREATE UNIQUE INDEX IF NOT EXISTS gap_log_miss_key
   ON gap_log_miss (persona, content_scrubbed);

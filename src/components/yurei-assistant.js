@@ -23,7 +23,7 @@
   var ASSET = "/assets/yurei/";
   var MANIFEST_URL = ASSET + "avatar/avatar_manifest_v2.json";   // K224d: dedicated assistant avatar set (the haunting keeps manifest_v2.json)
   var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);   // assets resolve alongside the manifest
-  var VER = "K227";
+  var VER = "K234";
 
   // ---- Gap Log (Build 1.5b): anonymous coverage logging of UNANSWERED turns.
   // Double-gated: the server flag gaplog_visitor_open (default CLOSED) AND local
@@ -32,6 +32,12 @@
   var GAPLOG_ENDPOINT = "/api/gaplog";
   var GAPLOG_CONSENT_KEY = "wuld:yurei-gaplog-consent";
   var GAPLOG_FLUSH_MS = 2500;
+  // 1.5c — visitor-owned toggle + share-context. All persona-keyed (wuld:yurei-gaplog-*).
+  var GAPLOG_ON_KEY = "wuld:yurei-gaplog-on";                // visitor master toggle (default off)
+  var GAPLOG_CTX_KEY = "wuld:yurei-gaplog-context";          // share-context opt-in (default off)
+  var GAPLOG_CTX_CONSENT_KEY = "wuld:yurei-gaplog-context-consent";
+  var GAPLOG_HL_KEY = "wuld:yurei-gaplog-hl";                // chip highlight styling (default on)
+  var GAPLOG_CTX_LINES = 40;                                 // share-context cap: last N transcript lines
 
   // ---- guards (kill-switch parity + reduced-motion + session dismiss) ----
   function readYureiBlob() { try { return JSON.parse(localStorage.getItem("wuld:yurei") || "{}") || {}; } catch (e) { return {}; } }
@@ -66,7 +72,9 @@
   var ambientCursor = 0;
   // gap-log visitor-lane state (inert until the server flag + consent are both on)
   var gaplogOpen = false, gaplogQueue = [], gaplogTimer = null;
-  var piiWarnEl = null, consentEl = null;
+  var piiWarnEl = null, consentEl = null, ctxConsentEl = null;
+  var gaplogBar = null, gaplogChip = null, gaplogToggle = null, ctxRow = null, ctxToggle = null, hlToggle = null;
+  var convo = [];                                            // running transcript {who,text}; scrubbed at send time for share-context
 
   // =====================================================================
   // load matcher dep, corpora, manifest, then build UI
@@ -231,8 +239,9 @@
 
     statusEl = el("div", "yasst-status"); statusEl.setAttribute("aria-hidden", "true");
 
-    // Gap Log (1.5b) chrome — styles injected inline so yurei-assistant.css stays
-    // byte-unchanged. Consent banner (one-time) + persistent PII warning.
+    // Gap Log (1.5c) chrome — styles injected inline so yurei-assistant.css stays
+    // byte-unchanged. Tier-1 consent (base logging) + Tier-2 consent (share-context)
+    // + the visitor toggle bar. Nothing here is intrusive until the visitor turns it on.
     injectGaplogCSS();
     consentEl = el("div", "yasst-consent", { "hidden": "", "role": "note" });
     var consentCopy = el("div", "yasst-consent-copy");
@@ -242,9 +251,50 @@
     consentBtn.addEventListener("click", function () { gaplogGrantConsent(); consentEl.hidden = true; refreshGaplogChrome(); if (input) input.focus(); });
     consentEl.appendChild(consentCopy); consentEl.appendChild(consentBtn);
 
+    // Tier-2 — the heavier, ratified notice shown only when the visitor turns SHARE CONTEXT on.
+    ctxConsentEl = el("div", "yasst-consent yasst-consent-ctx", { "hidden": "", "role": "note" });
+    var ctxCopy = el("div", "yasst-consent-copy");
+    ctxCopy.textContent = "Sharing context adds the conversation from this visit — including questions the desk did answer — to a logged gap, so what you were after is easier to make out. Every line is put through the same scrub first (emails, links, @handles, long number strings removed), and no name, account, or device is ever attached. This is more than the default, which keeps only the wording of unanswered questions. Turn it on only if you're comfortable the whole exchange, scrubbed, can be kept by the day. Off unless you enable it; off again whenever you like.";
+    var ctxBtn = el("button", "yasst-consent-btn", { "type": "button" });
+    ctxBtn.textContent = "Understood";
+    ctxBtn.addEventListener("click", function () { gaplogGrantCtxConsent(); ctxConsentEl.hidden = true; refreshGaplogChrome(); if (input) input.focus(); });
+    ctxConsentEl.appendChild(ctxCopy); ctxConsentEl.appendChild(ctxBtn);
+
+    // The visitor toggle bar — hidden until the server lane is open (zero footprint by default).
+    gaplogBar = el("div", "yasst-gaplogbar");
+    var glMain = el("div", "yasst-gl-main");
+    gaplogToggle = el("button", "yasst-gl-toggle", { "type": "button", "aria-pressed": "false", "title": "Coverage log — anonymous, off by default" });
+    var glLabel = el("span", "yasst-gl-label"); glLabel.textContent = "coverage log";
+    gaplogChip = el("span", "yasst-gaplog-chip yasst-gl-off"); gaplogChip.textContent = "off";
+    gaplogToggle.appendChild(glLabel); gaplogToggle.appendChild(gaplogChip);
+    hlToggle = el("button", "yasst-gl-hl", { "type": "button", "aria-pressed": "true", "title": "Show the log state in colour (styling only)" });
+    hlToggle.textContent = "highlight";
+    glMain.appendChild(gaplogToggle); glMain.appendChild(hlToggle);
+    ctxRow = el("div", "yasst-gl-ctxrow");
+    ctxToggle = el("button", "yasst-gl-ctx", { "type": "button", "aria-pressed": "false", "title": "Also keep the scrubbed conversation with a logged gap" });
+    ctxToggle.textContent = "share context";
+    var ctxHint = el("span", "yasst-gl-ctxhint"); ctxHint.textContent = "adds the scrubbed conversation";
+    ctxRow.appendChild(ctxToggle); ctxRow.appendChild(ctxHint);
+    ctxRow.style.display = "none";
+    gaplogBar.appendChild(glMain); gaplogBar.appendChild(ctxRow);
+    gaplogBar.style.display = "none";
+    gaplogToggle.addEventListener("click", function () {
+      var now = !gaplogOn(); gaplogSetOn(now);
+      if (now && !gaplogConsented()) consentEl.hidden = false;   // activation shows the Tier-1 notice
+      else consentEl.hidden = true;
+      refreshGaplogChrome();
+    });
+    ctxToggle.addEventListener("click", function () {
+      var now = !gaplogCtxOn(); gaplogSetCtxOn(now);
+      if (now && !gaplogCtxConsented()) ctxConsentEl.hidden = false;   // activation shows the Tier-2 notice
+      else ctxConsentEl.hidden = true;
+      refreshGaplogChrome();
+    });
+    hlToggle.addEventListener("click", function () { gaplogSetHl(!gaplogHl()); refreshGaplogChrome(); });
+
     piiWarnEl = el("div", "yasst-piiwarn");
     piiWarnEl.textContent = "Unanswered questions are logged anonymously to improve coverage — don't share anything personal.";
-    piiWarnEl.style.display = "none";                          // shown only when the lane is open
+    piiWarnEl.style.display = "none";                          // shown only once the visitor turns logging on
 
     // K227 — voice control: opt-in toggle + style cycle (inner / animalese / whisper), persisted.
     var voicebar = el("div", "yasst-voicebar");
@@ -272,7 +322,7 @@
     });
     voicebar.appendChild(vToggle); voicebar.appendChild(vStyle);
 
-    panel.appendChild(head); panel.appendChild(consentEl); panel.appendChild(transcript); panel.appendChild(voicebar); panel.appendChild(piiWarnEl); panel.appendChild(form); panel.appendChild(statusEl);
+    panel.appendChild(head); panel.appendChild(consentEl); panel.appendChild(ctxConsentEl); panel.appendChild(transcript); panel.appendChild(voicebar); panel.appendChild(gaplogBar); panel.appendChild(piiWarnEl); panel.appendChild(form); panel.appendChild(statusEl);
     ensureVoice(vPaint);                                       // refresh the control once the voice module reports its stored prefs
 
     document.body.appendChild(launcher);
@@ -299,7 +349,7 @@
     if (isWrongHour()) queueAmbient("wrong");
     else if (ambientActive()) avatarWrap.classList.add("yasst-breeze");
     input.focus();
-    maybeShowConsent();                                       // one-time consent notice when the lane is open + not consented
+    refreshGaplogChrome();                                    // reflect toggle/lane state; never auto-opens the notice
     bump();
   }
   function close() {
@@ -322,6 +372,7 @@
     row.appendChild(bubble);
     transcript.appendChild(row);
     transcript.scrollTop = transcript.scrollHeight;
+    convo.push({ who: who, text: text });                   // running transcript for share-context (scrubbed only at send time)
     if (who === "desk" && hint) {
       showSprite(hint, { then: "idle" });
       if ((hint === "speak" || hint === "deflect") && window.YureiVoice && typeof window.YureiVoice.speak === "function") {
@@ -372,6 +423,26 @@
   }
   function gaplogConsented() { try { return localStorage.getItem(GAPLOG_CONSENT_KEY) === "1"; } catch (e) { return false; } }
   function gaplogGrantConsent() { try { localStorage.setItem(GAPLOG_CONSENT_KEY, "1"); } catch (e) {} }
+  // 1.5c store helpers (persona-keyed) + the layered gate. LOGGING is LIVE only when
+  // the server lane is open AND the visitor toggled it on AND base consent is granted.
+  function glGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function glSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function gaplogOn() { return glGet(GAPLOG_ON_KEY) === "1"; }
+  function gaplogSetOn(v) { glSet(GAPLOG_ON_KEY, v ? "1" : "0"); }
+  function gaplogCtxOn() { return glGet(GAPLOG_CTX_KEY) === "1"; }
+  function gaplogSetCtxOn(v) { glSet(GAPLOG_CTX_KEY, v ? "1" : "0"); }
+  function gaplogCtxConsented() { return glGet(GAPLOG_CTX_CONSENT_KEY) === "1"; }
+  function gaplogGrantCtxConsent() { glSet(GAPLOG_CTX_CONSENT_KEY, "1"); }
+  function gaplogHl() { return glGet(GAPLOG_HL_KEY) !== "0"; }              // default ON
+  function gaplogSetHl(v) { glSet(GAPLOG_HL_KEY, v ? "1" : "0"); }
+  function gaplogLive() { return gaplogOpen && gaplogOn() && gaplogConsented(); }
+  function gaplogCtxLive() { return gaplogLive() && gaplogCtxOn() && gaplogCtxConsented(); }
+  // scrubbed recent transcript (both sides), capped — every line through the SAME scrub.
+  function gaplogContext() {
+    var out = [], lines = convo.slice(-GAPLOG_CTX_LINES);
+    for (var i = 0; i < lines.length; i++) { var t = gaplogScrub(lines[i].text); if (t) out.push((lines[i].who === "you" ? "you: " : "desk: ") + t); }
+    return out;
+  }
 
   // priorCount over the repeat window, read BEFORE this turn's single respond()
   // call (mirrors the 1.5a classifier without a second respond -> state-neutral).
@@ -409,7 +480,7 @@
   function gapFlush(useKeepalive) {
     gaplogTimer = null;
     if (!gaplogQueue.length) return;
-    if (!gaplogConsented() || !gaplogOpen) { gaplogQueue = []; return; }  // consent/flag can drop mid-session -> discard
+    if (!gaplogLive()) { gaplogQueue = []; return; }         // any gate (server / visitor toggle / consent) off -> discard
     var batch = gaplogQueue.splice(0, 20);
     gaplogPost({ items: batch }, useKeepalive).then(function (r) {
       if (r.status === 429) { gaplogQueue = batch.concat(gaplogQueue); if (!gaplogTimer) gaplogTimer = window.setTimeout(gapFlush, (r.j && r.j.retry_after_s ? r.j.retry_after_s * 1000 : 5000)); return; }
@@ -424,13 +495,24 @@
   }
   // persistent PII warning shows only while the lane is open; consent hidden when closed.
   function refreshGaplogChrome() {
-    if (piiWarnEl) piiWarnEl.style.display = gaplogOpen ? "" : "none";
-    if (!gaplogOpen && consentEl) consentEl.hidden = true;
+    var offered = gaplogOpen;                                // server lane open == the feature is offered at all
+    if (gaplogBar) gaplogBar.style.display = offered ? "" : "none";        // zero footprint when the lane is closed
+    if (!offered) {
+      if (consentEl) consentEl.hidden = true;
+      if (ctxConsentEl) ctxConsentEl.hidden = true;
+      if (piiWarnEl) piiWarnEl.style.display = "none";
+      return;
+    }
+    var on = gaplogOn(), state = !on ? "off" : (gaplogLive() ? "live" : "armed");
+    if (gaplogChip) { gaplogChip.className = "yasst-gaplog-chip yasst-gl-" + state; gaplogChip.textContent = state === "live" ? "logging" : state; }
+    if (gaplogToggle) gaplogToggle.setAttribute("aria-pressed", on ? "true" : "false");
+    if (gaplogBar) gaplogBar.classList.toggle("yasst-gl-hlon", gaplogHl());
+    if (hlToggle) hlToggle.setAttribute("aria-pressed", gaplogHl() ? "true" : "false");
+    if (piiWarnEl) piiWarnEl.style.display = on ? "" : "none";             // PII warning only once the visitor turns it on
+    if (ctxRow) ctxRow.style.display = on ? "" : "none";                   // share-context only relevant when logging is on
+    if (ctxToggle) ctxToggle.setAttribute("aria-pressed", gaplogCtxOn() ? "true" : "false");
   }
-  // one-time consent notice: only when the lane is open AND not yet consented.
-  function maybeShowConsent() {
-    if (consentEl) consentEl.hidden = !(gaplogOpen && !gaplogConsented());
-  }
+  // (1.5c) the notice is activation-gated now — shown by the toggle handlers, never auto-opened.
 
   function submit() {
     var raw = (input.value || "").trim();
@@ -440,9 +522,13 @@
     bump();
     var pre = gaplogPreCount(raw);                           // repeat-window state BEFORE the single respond()
     var r = matcher.respond(raw);                            // {id, lane, response, animation_hint, ...}
-    if (gaplogOpen && gaplogConsented()) {                   // gap-log: record genuine misses only
+    if (gaplogLive()) {                                      // gap-log: record genuine misses only (server-open AND visitor-on AND consented)
       var gc = gaplogClassify(r, pre);
-      if (gc.isMiss) gapEnqueue({ lane: "miss", content_scrubbed: gaplogScrub(raw), class: gc.missClass });
+      if (gc.isMiss) {
+        var _item = { lane: "miss", content_scrubbed: gaplogScrub(raw), class: gc.missClass };
+        if (gaplogCtxLive()) { var _ctx = gaplogContext(); if (_ctx.length) _item.context_scrubbed = _ctx; }
+        gapEnqueue(_item);
+      }
     }
     if (!r || !r.response) { addLine("desk", "Filed. Nothing in the drawers answers to that.", null, "deflect"); return; }
     var pointing = null;
@@ -536,7 +622,20 @@
       + ".yasst-consent-copy{margin:0 0 .5rem}"
       + ".yasst-consent-btn{font:inherit;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;padding:.3rem .8rem;background:transparent;color:inherit;border:1px solid rgba(196,30,58,.7)}"
       + ".yasst-consent-btn:hover{background:rgba(196,30,58,.9);color:#fff;border-color:rgba(196,30,58,.9)}"
-      + ".yasst-piiwarn{margin:.1rem .75rem .35rem;font-size:.64rem;line-height:1.4;letter-spacing:.02em;opacity:.62}";
+      + ".yasst-piiwarn{margin:.1rem .75rem .35rem;font-size:.64rem;line-height:1.4;letter-spacing:.02em;opacity:.62}"
+      + ".yasst-gaplogbar{margin:.35rem .75rem 0;font-size:.66rem;letter-spacing:.03em;opacity:.9}"
+      + ".yasst-gl-main{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}"
+      + ".yasst-gl-toggle,.yasst-gl-hl,.yasst-gl-ctx{font:inherit;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;padding:.22rem .55rem;background:transparent;color:inherit;border:1px solid rgba(240,235,229,.28)}"
+      + ".yasst-gl-toggle{display:inline-flex;gap:.4rem;align-items:center}"
+      + ".yasst-gl-toggle:hover,.yasst-gl-hl:hover,.yasst-gl-ctx:hover{border-color:rgba(240,235,229,.55)}"
+      + ".yasst-gl-hl[aria-pressed=false],.yasst-gl-ctx[aria-pressed=false]{opacity:.5}"
+      + ".yasst-gaplog-chip{font-size:.58rem;letter-spacing:.08em;padding:0 .35rem;border:1px solid currentColor;opacity:.8}"
+      + ".yasst-gl-ctxrow{display:flex;gap:.45rem;align-items:baseline;margin-top:.3rem}"
+      + ".yasst-gl-ctxhint{font-size:.58rem;opacity:.48}"
+      + ".yasst-consent-ctx{border-color:rgba(196,30,58,.7)}"
+      + ".yasst-gl-hlon .yasst-gl-live{color:#57b66a}"
+      + ".yasst-gl-hlon .yasst-gl-armed{color:#d8a13a}"
+      + ".yasst-gl-hlon .yasst-gl-off{opacity:.5}";
     var st = el("style", null, { id: "yasst-gaplog-css" });
     st.textContent = css;
     document.head.appendChild(st);

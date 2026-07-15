@@ -1,0 +1,19 @@
+-- =============================================================================
+-- schema-gaplog-context.sql — 1.5c — ONE-TIME migration: add the OPT-IN
+-- share-context column to the EXISTING gap_log_miss table (admin Worker binding
+-- COMMENTS_DB, id fbae13d3-7ec2-4c09-96a8-031046241f5a). Touches NOTHING else.
+--
+-- Run ONCE against the live DB, after the Worker deploy:
+--   npx wrangler d1 execute wuld-comments --file schema-gaplog-context.sql --remote
+--
+-- SQLite ADD COLUMN is NOT idempotent — re-running errors "duplicate column name:
+-- context_scrubbed", which is harmless (it just means the column already exists).
+-- Fresh installs get the column from schema-gaplog.sql directly; this file is only
+-- for the already-deployed table.
+--
+-- PRIVACY: context_scrubbed holds a JSON array of PII-scrubbed transcript lines,
+-- written ONLY when a visitor opts into "share context" (off by default). Every
+-- line is scrubbed client-side AND re-scrubbed server-side; no identity, ever;
+-- day-granular. NULL for every row logged without the opt-in.
+-- =============================================================================
+ALTER TABLE gap_log_miss ADD COLUMN context_scrubbed TEXT;
