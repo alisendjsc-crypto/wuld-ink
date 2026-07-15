@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
+  <link rel="stylesheet" href="/components/wrong-hour.css?v=K208">
+  <link rel="stylesheet" href="/components/console.css?v=K235">
+  <link rel="license" href="/LICENSE">
+  <title>Console &mdash; a seeded descent &middot; wuld.ink</title>
+  <meta name="description" content="A black-console descent, generated from a seed. Type to move room to room through an ashen structure. Deterministic, private, keyboard-first &mdash; a small piece of fiction.">
+  <meta name="wuld-search" content="exclude">
+
+  <link rel="canonical" href="https://wuld.ink/console/">
+  <meta property="og:title" content="Console &mdash; a seeded descent &middot; wuld.ink">
+  <meta property="og:description" content="A black-console descent, generated from a seed. Type to move through an ashen structure. Deterministic, private, keyboard-first.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wuld.ink/console/">
+  <meta property="og:image" content="https://wuld.ink/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="wuld.ink">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Console &mdash; a seeded descent">
+  <meta name="twitter:description" content="A black-console descent through an ashen structure. Deterministic, private, keyboard-first.">
+  <meta name="twitter:image" content="https://wuld.ink/assets/og-default.png">
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/components/nav.css?v=K43">
+  <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
+  <link rel="stylesheet" href="/components/footer.css?v=K43">
+
+  <style id="cgate-style">
+    /* cgate (K235) — a soft "not yet released" curtain over /console/. Client-side
+       only: the page bytes remain public, so this is a dormancy curtain, not a
+       security boundary. Mirrors the /successor/ sgate. */
+    #console-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6vh 5vw;
+      background: var(--c-bg, #0a0a0a);
+      color: var(--c-fg, #e9e6df);
+    }
+    html.cgate-open #console-gate { display: none; }
+    .cgate-box {
+      width: min(30rem, 94vw);
+      text-align: center;
+      border: 1px solid var(--c-border-strong, #3a3b40);
+      border-radius: 12px;
+      padding: 2.2rem 1.6rem;
+      background: var(--c-bg-elevated, #17181c);
+    }
+    .cgate-eyebrow {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-fg-muted, #8b8880);
+      margin: 0 0 1rem;
+    }
+    .cgate-lede { font-size: 1.05rem; line-height: 1.6; margin: 0 0 1.5rem; }
+    .cgate-form { display: flex; flex-direction: column; gap: 0.7rem; align-items: stretch; max-width: 20rem; margin: 0 auto; }
+    .cgate-label {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--c-fg-muted, #8b8880); text-align: left;
+    }
+    .cgate-input {
+      padding: 0.6rem 0.8rem; font: inherit;
+      background: var(--c-bg, #0a0a0a); color: var(--c-fg, #e9e6df);
+      border: 1px solid var(--c-border, #2a2b30); border-radius: 8px;
+    }
+    .cgate-input:focus-visible { outline: none; border-color: var(--c-accent, #c41e3a); }
+    .cgate-btn {
+      padding: 0.55rem 1rem; cursor: pointer; font: inherit;
+      font-family: var(--font-mono, ui-monospace, monospace);
+      background: var(--c-bg-overlay, #202127); color: var(--c-fg, #e9e6df);
+      border: 1px solid var(--c-border-strong, #3a3b40); border-radius: 8px;
+    }
+    .cgate-btn:hover { border-color: var(--c-accent, #c41e3a); }
+    .cgate-err { color: var(--c-accent, #c41e3a); font-size: 0.82rem; margin: 0.2rem 0 0; min-height: 1em; }
+    .cgate-foot { margin: 1.5rem 0 0; font-size: 0.82rem; }
+    .cgate-foot a { color: var(--c-fg-muted, #8b8880); }
+  </style>
+  <script>/*cgate-prepaint*/try{if(localStorage.getItem('wuld:console:unlocked')==='1')document.documentElement.classList.add('cgate-open');}catch(e){}</script>
+</head>
+
+<body data-mode="dark">
+
+  <div id="console-gate" role="dialog" aria-modal="true" aria-labelledby="cgate-lede">
+    <div class="cgate-box">
+      <p class="cgate-eyebrow">wuld:&#47;&#47;console</p>
+      <p class="cgate-lede" id="cgate-lede">This descent is still being cut. It&rsquo;s dormant until release.</p>
+      <form class="cgate-form" autocomplete="off">
+        <label class="cgate-label" for="cgate-input">Passphrase</label>
+        <input id="cgate-input" class="cgate-input" type="password" autocomplete="off" spellcheck="false" autocapitalize="none">
+        <button type="submit" class="cgate-btn">enter</button>
+        <p class="cgate-err" role="alert" hidden>Not this time.</p>
+      </form>
+      <p class="cgate-foot"><a href="/">&larr; back to wuld.ink</a></p>
+    </div>
+  </div>
+  <script>/*cgate-logic*/(function(){var PASS="facilis-descensus";var norm=function(s){return (s||"").trim().toLowerCase().replace(/[\s\-]+/g,"");};var g=document.getElementById("console-gate");if(!g)return;if(document.documentElement.classList.contains("cgate-open"))return;var f=g.querySelector("form"),i=g.querySelector(".cgate-input"),e=g.querySelector(".cgate-err");if(f){f.addEventListener("submit",function(ev){ev.preventDefault();if(norm(i&&i.value)===norm(PASS)){try{localStorage.setItem("wuld:console:unlocked","1");}catch(_){}document.documentElement.classList.add("cgate-open");}else{if(e)e.hidden=false;if(i){i.value="";i.focus();}}});}if(i)i.focus();})();</script>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="site-banner" href="/" aria-label="W.U.L.D.: Incorporated — wuld.ink"><img src="/assets/site-banner-1920.webp" srcset="/assets/site-banner-800.webp 800w, /assets/site-banner-1280.webp 1280w, /assets/site-banner-1920.webp 1920w" sizes="100vw" width="1920" height="443" alt="W.U.L.D.: Incorporated" decoding="async" loading="eager"></a>
+    <div class="site-header-inner">
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/essays/">Essays</a>
+        <a href="/argument-library/">Library</a>
+        <a href="/glossary/">Glossary</a>
+        <a href="/void-engine/">Void</a>
+        <a href="/gallery/">Gallery</a>
+        <a href="/watch/">Watch</a>
+        <a href="/music/">Music</a>
+        <a href="/book/">Book</a>
+        <a href="/blog/">Blog</a>
+        <a href="/recommendations/">Recommendations</a>
+        <a href="/archive/">Archive</a>
+        <a href="/preface/">About</a>
+        <a href="/donations/">Support</a>
+        <a href="/contact/">Contact</a>
+        <a href="/chat/">Chat</a>
+        <a href="/search/">Search</a>
+        <a href="/notes/">Notes</a>
+        <a href="/successor/">Successor</a>
+        <a href="/console/">Console</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="console-wrap">
+
+    <header class="page-hero">
+      <p class="page-hero-eyebrow">18 &middot; Console</p>
+      <h1 class="page-hero-title">Console</h1>
+      <p class="page-intro">A descent, generated from a seed. You wake at a threshold; the way back is a wall now, and the structure goes down. Type to move &mdash; <code>north</code>, <code>look</code>, <code>take</code>, <code>map</code> &mdash; and find the way further down. The same seed always makes the same place. Nothing you do here leaves your browser.</p>
+    </header>
+
+    <div id="console-app" data-console>
+      <noscript>
+        <p class="con-noscript">The console needs JavaScript to run &mdash; it generates the world in your browser and saves nothing to any server. With scripting off there is nothing to descend into.</p>
+      </noscript>
+    </div>
+
+    <p class="con-page-foot">
+      <span class="con-page-accent">wuld://console</span> &middot; a small piece of fiction, not a place with an ending you were promised.
+      Seeds are yours: <code>new</code> for another structure, <code>new&nbsp;&lt;word&gt;</code> to name one and share it. Progress is saved only in this browser.
+    </p>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="copyright">
+        <strong>&copy;</strong> Josiah S. Cooper &middot; 2010&ndash;2026 &middot; Licensed CC-BY-4.0
+      </span>
+      <span class="footer-pending">
+        <a class="library-link" href="https://library.wuld.ink/">library.wuld.ink</a> &mdash; v4.0.0 stable
+        <a class="disclaimer-link" href="/disclaimers/">Legal &amp; personal disclaimers</a>
+        <a class="disclaimer-link" href="/troubleshooting/">Site won&rsquo;t load?</a>
+      </span>
+    </div>
+    <div class="page-footer-inner footer-meta">
+      <a class="changelog-link" href="/changelog/">Changelog</a>
+      <a class="changelog-link" href="/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script src="/components/nav.js?v=K43"></script>
+  <div class="ambient-player" id="ambient-player" hidden aria-label="Ambient background player">
+    <div class="ambient-iframe-wrap" aria-hidden="true"><div id="ambient-iframe"></div></div>
+    <div class="ambient-bar">
+      <span class="ambient-track" id="ambient-track">ambient</span>
+      <input class="ambient-seek" id="ambient-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Track position">
+      <span class="ambient-time" id="ambient-time" aria-label="Track time">0:00 / 0:00</span>
+      <button class="ambient-btn" id="ambient-playpause" type="button" aria-label="Play">[play]</button>
+      <button class="ambient-btn" id="ambient-skip" type="button" aria-label="Skip">[skip]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-shuffle" type="button" aria-pressed="true">[shuffle on]</button>
+      <input class="ambient-volume" id="ambient-volume" type="range" min="0" max="100" step="5" value="40" aria-label="Volume">
+      <button class="ambient-btn ambient-toggle" id="ambient-loop" type="button" aria-pressed="false">[loop off]</button>
+      <button class="ambient-btn ambient-toggle" id="ambient-onoff" type="button" aria-pressed="true">[ambient on]</button>
+      <button class="ambient-btn ambient-dismiss" id="ambient-dismiss" type="button" aria-label="Hide ambient bar">[v]</button>
+    </div>
+    <div class="ambient-sliver" id="ambient-sliver" role="button" tabindex="0" aria-label="Show ambient bar"></div>
+  </div>
+
+  <script src="/components/ambient-player.js?v=K209"></script>
+  <script src="/components/wrong-hour.js?v=K211" defer></script>
+
+  <script src="/components/console-prng.js?v=K235"></script>
+  <script src="/components/console-engine.js?v=K235"></script>
+  <script src="/components/console.js?v=K235"></script>
+</body>
+</html>

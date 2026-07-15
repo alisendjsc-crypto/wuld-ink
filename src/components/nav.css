@@ -221,3 +221,9 @@ body.home .site-banner img {
 .site-nav a[href="/successor/"] { opacity: 0.4; }
 .site-nav a[href="/successor/"]:hover,
 .site-nav a[href="/successor/"]:focus-visible { opacity: 0.72; }
+
+/* K235 — Console tab greyed dormant until the surface is released (soft curtain).
+   Reversible: delete this block to re-activate the tab. */
+.site-nav a[href="/console/"] { opacity: 0.4; }
+.site-nav a[href="/console/"]:hover,
+.site-nav a[href="/console/"]:focus-visible { opacity: 0.72; }
