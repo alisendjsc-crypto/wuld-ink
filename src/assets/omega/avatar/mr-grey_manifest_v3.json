@@ -1,0 +1,309 @@
+{
+ "contract": "avatar_manifest_v2",
+ "schema_version": "1.0",
+ "status": "complete",
+ "generated": "2026-07-17",
+ "substrate": "mr_grey_v1.blend (procedural black-shorthair cat; grey_fur = anisotropic Principled + facing-mix rufous undercoat + micro-fur noise-bump + v3 Phase D surfacing: bump breakup D1_w0.8 / silhouette tufts / inner-ear emission glints / muzzle-nose pass_index split D4_w1.0 / tapetum radial striation D5_w0.7 + dilation knob; tapetum slit-eye = generated-X mask, gold-green emissive; single red rim; tail rest-pose tucked (camera-occlusion law); 540x720 / 24fps / Eevee BLENDER_EEVEE 256-TAA; Mr. Grey sessions 1-3; s3 2026-07-17 = v3 full 12-role set on the surfaced substrate)",
+ "animation_fallback": {
+  "deflect": "speak",
+  "idle_breeze": "idle",
+  "wrong_hour": "idle",
+  "return_ack": "blink_ack",
+  "regard": "listen",
+  "glitch": "speak",
+  "long_idle": "idle",
+  "listen": "idle",
+  "appear": "idle",
+  "dismiss": "idle",
+  "speak": "idle",
+  "blink_ack": "idle"
+ },
+ "assets": [
+  {
+   "role": "idle",
+   "kind": "clip",
+   "file": "mr-grey_av_idle_v3.webm",
+   "md5": "57872c9cbe69702bab0cdc60538e1905",
+   "sha256": "77331415cf079e1a565465fd919ba5921c0f3baa554b4983ae3a7894dec25809",
+   "size_bytes": 99186,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 192,
+   "fps": 24,
+   "durationMs": 8000,
+   "loop": true
+  },
+  {
+   "role": "appear",
+   "kind": "clip",
+   "file": "mr-grey_av_appear_v3.webm",
+   "md5": "1c435c4b6b061b3e3d2c2ef31bcba2e0",
+   "sha256": "d16bc09793a163fe239e0ea16878fdb1b5f2f7083bd55ee699bcd9525b6c692d",
+   "size_bytes": 43099,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 60,
+   "fps": 24,
+   "durationMs": 2500,
+   "loop": false
+  },
+  {
+   "role": "speak",
+   "kind": "clip",
+   "file": "mr-grey_av_speak_v3.webm",
+   "md5": "97e5b580c9394c2a7c6c702599b6c04a",
+   "sha256": "aa0c38c629e5fb78be560c406fbbea396aa5baff87b3d0a940439748bbff32c0",
+   "size_bytes": 141239,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 144,
+   "fps": 24,
+   "durationMs": 6000,
+   "loop": false
+  },
+  {
+   "role": "dismiss",
+   "kind": "clip",
+   "file": "mr-grey_av_dismiss_v3.webm",
+   "md5": "a7c95cd9c46921ff26d8ddab84434351",
+   "sha256": "ae47bc8204215c8ce94ba91b6c5302c5f17a42ad4b32f5196357acba2018ede8",
+   "size_bytes": 143940,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": false
+  },
+  {
+   "role": "listen",
+   "kind": "clip",
+   "file": "mr-grey_av_listen_v3.webm",
+   "md5": "f8cbe454a8cb64c2e7e68aee0a95ba82",
+   "sha256": "85f5208ff5510781086cafa9a10a69474ea06d822fac173d21ff630ad512c888",
+   "size_bytes": 55061,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": true
+  },
+  {
+   "role": "long_idle",
+   "kind": "clip",
+   "file": "mr-grey_av_long_idle_v3.webm",
+   "md5": "8ef404883a683c91deccba2f16197daa",
+   "sha256": "4b0fe5fe78abbfb107b1fbace85c82999f12076856bf3df37ad7b83b34e19653",
+   "size_bytes": 102981,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 192,
+   "fps": 24,
+   "durationMs": 8000,
+   "loop": true
+  },
+  {
+   "role": "wrong_hour",
+   "kind": "clip",
+   "file": "mr-grey_av_wrong_hour_v3.webm",
+   "md5": "da64018296361703a6482543275d6233",
+   "sha256": "233a69a0be47bcd0a66c4afb4a9cebda392402e2202a9bb079bf198e78106a2c",
+   "size_bytes": 39357,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": true
+  },
+  {
+   "role": "return_ack",
+   "kind": "clip",
+   "file": "mr-grey_av_return_ack_v3.webm",
+   "md5": "bc66c72ceb0abd22fb45f62cba53154c",
+   "sha256": "4c9038f6810847dcfff883370b3699f9fd7c10a53ca74293d6051f76b06bb2f3",
+   "size_bytes": 54910,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 48,
+   "fps": 24,
+   "durationMs": 2000,
+   "loop": false
+  },
+  {
+   "role": "regard",
+   "kind": "clip",
+   "file": "mr-grey_av_regard_v3.webm",
+   "md5": "0377722bea2661dbf21cf89f1e08ac2b",
+   "sha256": "8076a7e3eb9a6fd3e9c63677f00001e5976935b087bf4e934857fa5314432771",
+   "size_bytes": 111699,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 72,
+   "fps": 24,
+   "durationMs": 3000,
+   "loop": false
+  },
+  {
+   "role": "idle_breeze",
+   "kind": "clip",
+   "file": "mr-grey_av_idle_breeze_v3.webm",
+   "md5": "06627c7a894dda079f0d87fe5c9d8bf1",
+   "sha256": "296e9a9d180286f177f1e637fc1b0e518f5cf8804e74a117493a9a1c19bc33b8",
+   "size_bytes": 104508,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 192,
+   "fps": 24,
+   "durationMs": 8000,
+   "loop": true
+  },
+  {
+   "role": "blink_ack",
+   "kind": "clip",
+   "file": "mr-grey_av_blink_ack_v3.webm",
+   "md5": "a16428fc100811c093dc9a54fa759170",
+   "sha256": "989e39e603170036f5b477a4020c95d6099f96a97c139d1f85fb050c04eded3b",
+   "size_bytes": 30186,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 36,
+   "fps": 24,
+   "durationMs": 1500,
+   "loop": false
+  },
+  {
+   "role": "deflect",
+   "kind": "clip",
+   "file": "mr-grey_av_deflect_v3.webm",
+   "md5": "4b037c53090c9f003228a5e6f3516f7b",
+   "sha256": "6345d6e4ddf1268c667d4bdf52431dbb7dbab84a2ba55151a93747014e8c5e3d",
+   "size_bytes": 90615,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed",
+   "frames": 60,
+   "fps": 24,
+   "durationMs": 2500,
+   "loop": false
+  },
+  {
+   "role": "canonical-p0",
+   "kind": "still",
+   "file": "mr-grey_av_still_v3.png",
+   "md5": "a063e743f9260e7353f6f316d8edfccd",
+   "sha256": "cdad7165ea4ff17e2ea84f7e96444f1cc705dee205722122bea4dd7ed75595ae",
+   "size_bytes": 261063,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed"
+  },
+  {
+   "role": "long_idle-still",
+   "kind": "still",
+   "file": "mr-grey_av_long_idle_still_v3.png",
+   "md5": "337f6d465ef8733648c2579aaa676e11",
+   "sha256": "5417cc10e66a8116d9e40062726f825ce54c8a4c11c505bea693b4261ec26d96",
+   "size_bytes": 256895,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    267,
+    259
+   ],
+   "anchor_confidence": "computed"
+  }
+ ]
+}
