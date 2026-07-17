@@ -29,7 +29,7 @@
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
   var COMP = "/components/";
-  var VER = "K238";                                 // cache-bust for corpus + manifest fetch (parity w/ omega-assistant)
+  var VER = "K242";                                 // cache-bust for corpus + manifest fetch (parity w/ omega-assistant)
   var STAGE_KEY = "wuld:successor:stage";          // { open:bool } — last stage view state (informational)
   var TX_PREFIX = "wuld:successor:transcript:";     // + persona -> { v:1, lines:[{who,text,crisis}], updated }
   var ACTIVE_KEY = "wuld:persona-active";           // the SHARED persona key — read at open; WRITTEN only by the in-stage toggle (K241)
@@ -44,13 +44,13 @@
     yurei: {
       label: "Yūrei",
       corpus: [ COMP + "yurei-corpus-public.json", COMP + "yurei-corpus-oracle.json" ],
-      manifest: "/assets/yurei/avatar/avatar_manifest_v2.json",
+      manifest: "/assets/yurei/avatar/avatar_manifest_v3.json",
       api: function () { return (window.yurei && window.yurei.assistant) || null; }
     },
     mrgrey: {
       label: "Mr. Grey",
       corpus: [ COMP + "omega-corpus-mrgrey.json" ],
-      manifest: "/assets/omega/avatar/mrgrey_manifest_v1.json",
+      manifest: "/assets/omega/avatar/mrgrey_manifest_v2.json",
       api: function () { return (window.omega && window.omega.assistant) || null; }
     }
   };

@@ -21,9 +21,9 @@
 
   var COMP = "/components/";
   var ASSET = "/assets/yurei/";
-  var MANIFEST_URL = ASSET + "avatar/avatar_manifest_v2.json";   // K224d: dedicated assistant avatar set (the haunting keeps manifest_v2.json)
+  var MANIFEST_URL = ASSET + "avatar/avatar_manifest_v3.json";   // K224d: dedicated assistant avatar set (the haunting keeps manifest_v2.json)
   var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);   // assets resolve alongside the manifest
-  var VER = "K234";
+  var VER = "K242";
 
   // ---- Gap Log (Build 1.5b): anonymous coverage logging of UNANSWERED turns.
   // Double-gated: the server flag gaplog_visitor_open (default CLOSED) AND local

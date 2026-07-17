@@ -1,0 +1,203 @@
+{
+ "contract": "avatar_manifest_v2",
+ "schema_version": "1.0",
+ "status": "complete",
+ "generated": "2026-07-17",
+ "substrate": "wuld_phase3_mascot_v1_3_10_fidelity.blend (3_9 substrate + T2 density 654 + T3 card-twist/shell + T4 aniso sheen-fix; T5 anatomy banked factor=0; session-1 ratified 2026-07-12)",
+ "animation_fallback": {
+  "deflect": "speak",
+  "idle_breeze": "idle",
+  "wrong_hour": "idle",
+  "return_ack": "idle",
+  "regard": "long_idle",
+  "glitch": "speak",
+  "long_idle": "idle",
+  "listen": "idle",
+  "appear": "idle",
+  "dismiss": "idle",
+  "speak": "idle"
+ },
+ "assets": [
+  {
+   "role": "idle",
+   "kind": "clip",
+   "file": "yurei_av_idle_v3.webm",
+   "md5": "c0dec25e136550fc1a5a635732d63353",
+   "sha256": "f2f98a6bf9477ec30f1a0993419eef2766a890a95b35af6ab32a2374dc382d4e",
+   "size_bytes": 558280,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 288,
+   "fps": 24,
+   "durationMs": 12000,
+   "loop": true
+  },
+  {
+   "role": "appear",
+   "kind": "clip",
+   "file": "yurei_av_appear_v3.webm",
+   "md5": "3dc83f9dd6d0e4c982391540f6c4ed22",
+   "sha256": "15b9eb7fd596ea23d4b8fdcf7e4f37dfdcc45df25a32a0b7cff4a2b798797d2c",
+   "size_bytes": 283439,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 84,
+   "fps": 24,
+   "durationMs": 3500,
+   "loop": false
+  },
+  {
+   "role": "listen",
+   "kind": "clip",
+   "file": "yurei_av_listen_v2.webm",
+   "md5": "f03d0d17250ea9bfb75b0f4afd3a1591",
+   "sha256": "cd4dbc7c934452e2bb2c746e8264cb1f1ac4478e40eccc627c2c985043fd6511",
+   "size_bytes": 223627,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": true
+  },
+  {
+   "role": "speak",
+   "kind": "clip",
+   "file": "yurei_av_speak_v3.webm",
+   "md5": "b38eaec15086af4652baf1e5dae4ce66",
+   "sha256": "02a9ce240f5eb0d309e50c77b0fc4d638e468183e3c1ce634f2b54af1a8f8e92",
+   "size_bytes": 180706,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": false
+  },
+  {
+   "role": "dismiss",
+   "kind": "clip",
+   "file": "yurei_av_dismiss_v2.webm",
+   "md5": "9d5019e50f0a0e5c2a1fd94588e3ffae",
+   "sha256": "f2d698e6e01528f5f451a94dfd6f834a9c21d64f99269d0e74f0bd560808cb8f",
+   "size_bytes": 278511,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": false
+  },
+  {
+   "role": "long_idle",
+   "kind": "clip",
+   "file": "yurei_av_long_idle_v2.webm",
+   "md5": "cf32464de7fe60c13bee7e83e698b6ec",
+   "sha256": "676a0cdbd3ab6087c8b1bb1fd66929cb710ee6f4ccc8a19ebaa60ce20e1fbae3",
+   "size_bytes": 370831,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 192,
+   "fps": 24,
+   "durationMs": 8000,
+   "loop": false
+  },
+  {
+   "role": "canonical-p0",
+   "kind": "still",
+   "file": "yurei_av_still_v2.png",
+   "md5": "9efe39e6e0e7e27ec94e3816ee495b0e",
+   "sha256": "6f95937ffb49469d70d6447b65eaf8995bb87abcff93aab1a181dada8bbed034",
+   "size_bytes": 239342,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed"
+  },
+  {
+   "role": "long_idle-still",
+   "kind": "still",
+   "file": "yurei_av_long_idle_still_v2.png",
+   "md5": "22389af35fdd4944d47f614d515aec58",
+   "sha256": "ffe1c390fb59f64131bd3e9699d9f85d30e820c0250009d53d344cb77762c23f",
+   "size_bytes": 272029,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed"
+  },
+  {
+   "role": "glitch",
+   "kind": "clip",
+   "file": "yurei_av_glitch_v3.webm",
+   "md5": "dd2d74e27348fa01305ff851d6fd16e7",
+   "sha256": "4485877d4b59d0b9ed2f6881adc5ccb026536388584230aa7d97d685ee074ab5",
+   "size_bytes": 101574,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 40,
+   "fps": 24,
+   "durationMs": 1667,
+   "loop": false
+  }
+ ]
+}
