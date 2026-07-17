@@ -1,0 +1,287 @@
+{
+ "contract": "avatar_manifest_v2",
+ "schema_version": "1.0",
+ "status": "complete",
+ "generated": "2026-07-17",
+ "substrate": "wuld_phase3_mascot_v1_3_10_fidelity.blend (3_10 + fidelity v4: Phase A arm unweld [clavicle/upperarm/forearm/hand L+R chains, capped shadow-gap seams, feathered breath] + Phase B surfacing ratified-ON [P4A anatomy W=1.3, P4B grain, P4C hair variance + deepened ramp] + Phase C 900 strands [MascotHairStrands4] + Phase F mitt-grooves [P4F] + fingers_L/R curl bones; wave-2 motion set, 13 roles; rendered 2026-07-17)",
+ "animation_fallback": {
+  "deflect": "speak",
+  "idle_breeze": "idle",
+  "wrong_hour": "idle",
+  "return_ack": "idle",
+  "regard": "long_idle",
+  "glitch": "speak",
+  "long_idle": "idle",
+  "listen": "idle",
+  "appear": "idle",
+  "dismiss": "idle",
+  "speak": "idle"
+ },
+ "assets": [
+  {
+   "role": "idle",
+   "kind": "clip",
+   "file": "yurei_av_idle_v4.webm",
+   "md5": "8be14c85731fa78cdb2b4bb539502148",
+   "sha256": "6d5c75499021f9d0b7491b1f68b2a40498289fc992fbbd491824dbc8241c9590",
+   "size_bytes": 733236,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 288,
+   "fps": 24,
+   "durationMs": 12000,
+   "loop": true
+  },
+  {
+   "role": "appear",
+   "kind": "clip",
+   "file": "yurei_av_appear_v4.webm",
+   "md5": "8c8420472f6c35b5c51f958076f9a48a",
+   "sha256": "16c72a8a71fa45c92fd912b491241fca2122c82846d42ac91f7b331d9ff90633",
+   "size_bytes": 384500,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 84,
+   "fps": 24,
+   "durationMs": 3500,
+   "loop": false
+  },
+  {
+   "role": "listen",
+   "kind": "clip",
+   "file": "yurei_av_listen_v4.webm",
+   "md5": "0a255d0d2633134e19ba2356b3615957",
+   "sha256": "a88f408a70985c3ade6e5bf1df686577500819a874374d2085252e7c64ba906a",
+   "size_bytes": 362429,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 192,
+   "fps": 24,
+   "durationMs": 8000,
+   "loop": true
+  },
+  {
+   "role": "speak",
+   "kind": "clip",
+   "file": "yurei_av_speak_v4.webm",
+   "md5": "201f843616d2933a094d73967f0df91b",
+   "sha256": "69f547a190217220b7aface2c248b3fd655f8fe5499cf45f507bf7ed86fb5037",
+   "size_bytes": 270599,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": false
+  },
+  {
+   "role": "dismiss",
+   "kind": "clip",
+   "file": "yurei_av_dismiss_v4.webm",
+   "md5": "99ef4b5f18cc49c24f2e6e5f297083a8",
+   "sha256": "9248a73ebb8956803f66acbb56a25bc6210aae5bfbc69aaf18c95b84ac0defa3",
+   "size_bytes": 1049300,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": false
+  },
+  {
+   "role": "long_idle",
+   "kind": "clip",
+   "file": "yurei_av_long_idle_v4.webm",
+   "md5": "26e9e2b1ba90d46212a2e98fcbcbd141",
+   "sha256": "0db7e9bc3f006494cca4852fb2aab2527cb859db0cd6d3b6c6c0f20dfe60c9fd",
+   "size_bytes": 590433,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 192,
+   "fps": 24,
+   "durationMs": 8000,
+   "loop": false
+  },
+  {
+   "role": "glitch",
+   "kind": "clip",
+   "file": "yurei_av_glitch_v4.webm",
+   "md5": "836a884fd9903dca2bb360418531993b",
+   "sha256": "4609b162344e0d6fefba5bb488e036487b0d5e9b5dc896d88d46d1bdc4765b28",
+   "size_bytes": 140730,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 40,
+   "fps": 24,
+   "durationMs": 1666,
+   "loop": false
+  },
+  {
+   "role": "wrong_hour",
+   "kind": "clip",
+   "file": "yurei_av_wrong_hour_v4.webm",
+   "md5": "02483da3e9776a63c43a19aeae6202f4",
+   "sha256": "0c13b3a46ed18de00922bd366daf6c4a2af45686e0c5d994f1a9c19fc2feb246",
+   "size_bytes": 370098,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 96,
+   "fps": 24,
+   "durationMs": 4000,
+   "loop": true
+  },
+  {
+   "role": "regard",
+   "kind": "clip",
+   "file": "yurei_av_regard_v4.webm",
+   "md5": "8bcf58fbc80d234c75cc051d22f06fd7",
+   "sha256": "ca1cf15fcacf0234c5ff772e3f0c0f044aa73bddec6509878219403bdbe4d346",
+   "size_bytes": 576366,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 72,
+   "fps": 24,
+   "durationMs": 3000,
+   "loop": false
+  },
+  {
+   "role": "deflect",
+   "kind": "clip",
+   "file": "yurei_av_deflect_v4.webm",
+   "md5": "7d1f1edec2712b1aede8f1e3ef9d59e4",
+   "sha256": "b00f3200f64577d768ed4f079deec5508cf3afe37da147379314f2a39afd82e9",
+   "size_bytes": 383062,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 60,
+   "fps": 24,
+   "durationMs": 2500,
+   "loop": false
+  },
+  {
+   "role": "idle_breeze",
+   "kind": "clip",
+   "file": "yurei_av_idle_breeze_v4.webm",
+   "md5": "dcbfcdceb7e702ad314f73c660426ae8",
+   "sha256": "d2c98ccfeb295eb8c195a9618aff68f33233fe8e86f102038c196e6ce8401082",
+   "size_bytes": 624352,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed",
+   "frames": 192,
+   "fps": 24,
+   "durationMs": 8000,
+   "loop": true
+  },
+  {
+   "role": "canonical-p0",
+   "kind": "still",
+   "file": "yurei_av_still_v4.png",
+   "md5": "4dd13f2be53c6398d571ab466bf11a79",
+   "sha256": "f864a18762213308d9453cad5ea067398e34dc2d594ccd65044fe92f029996c4",
+   "size_bytes": 1220960,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed"
+  },
+  {
+   "role": "long_idle-still",
+   "kind": "still",
+   "file": "yurei_av_long_idle_still_v4.png",
+   "md5": "3ef70a81bf074fd0af68eb64794a928f",
+   "sha256": "e40c2e41590b2a8c2a6a52bd817bd6955f5969dcaecddffa5b78d9b692b99669",
+   "size_bytes": 1203492,
+   "px": [
+    540,
+    720
+   ],
+   "anchorPx": [
+    270,
+    169
+   ],
+   "anchor_confidence": "computed"
+  }
+ ]
+}

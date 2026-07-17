@@ -127,7 +127,7 @@
     if (document.getElementById("yurei-assistant-js")) return;
     var s = document.createElement("script");
     s.id = "yurei-assistant-js";
-    s.src = "/components/yurei-assistant.js?v=K242";
+    s.src = "/components/yurei-assistant.js?v=K243";
     s.defer = true;
     document.head.appendChild(s);
   }
