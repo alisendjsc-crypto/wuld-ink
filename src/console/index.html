@@ -31,11 +31,11 @@
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
 
-  <style id="cgate-style">
-    /* cgate (K235) — a soft "not yet released" curtain over /console/. Client-side
-       only: the page bytes remain public, so this is a dormancy curtain, not a
-       security boundary. Mirrors the /successor/ sgate. */
-    #console-gate {
+  <!-- wgate:head:start slug=console (K246 canonical curtain; soft dormancy, view-source-visible, not a security boundary) -->
+  <style id="wgate-style">
+    /* wgate (K246) — canonical soft "not yet released" curtain. Client-side only:
+       the page bytes remain public, so this is a dormancy curtain, not a security boundary. */
+    #wgate-console {
       position: fixed;
       inset: 0;
       z-index: 2147483000;
@@ -46,8 +46,8 @@
       background: var(--c-bg, #0a0a0a);
       color: var(--c-fg, #e9e6df);
     }
-    html.cgate-open #console-gate { display: none; }
-    .cgate-box {
+    html.cgate-open #wgate-console { display: none; }
+    .wgate-box {
       width: min(30rem, 94vw);
       text-align: center;
       border: 1px solid var(--c-border-strong, #3a3b40);
@@ -55,7 +55,7 @@
       padding: 2.2rem 1.6rem;
       background: var(--c-bg-elevated, #17181c);
     }
-    .cgate-eyebrow {
+    .wgate-eyebrow {
       font-family: var(--font-mono, ui-monospace, monospace);
       font-size: 0.72rem;
       letter-spacing: 0.14em;
@@ -63,50 +63,52 @@
       color: var(--c-fg-muted, #8b8880);
       margin: 0 0 1rem;
     }
-    .cgate-lede { font-size: 1.05rem; line-height: 1.6; margin: 0 0 1.5rem; }
-    .cgate-form { display: flex; flex-direction: column; gap: 0.7rem; align-items: stretch; max-width: 20rem; margin: 0 auto; }
-    .cgate-label {
+    .wgate-lede { font-size: 1.05rem; line-height: 1.6; margin: 0 0 1.5rem; }
+    .wgate-form { display: flex; flex-direction: column; gap: 0.7rem; align-items: stretch; max-width: 20rem; margin: 0 auto; }
+    .wgate-label {
       font-family: var(--font-mono, ui-monospace, monospace);
       font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--c-fg-muted, #8b8880); text-align: left;
     }
-    .cgate-input {
+    .wgate-input {
       padding: 0.6rem 0.8rem; font: inherit;
       background: var(--c-bg, #0a0a0a); color: var(--c-fg, #e9e6df);
       border: 1px solid var(--c-border, #2a2b30); border-radius: 8px;
     }
-    .cgate-input:focus-visible { outline: none; border-color: var(--c-accent, #c41e3a); }
-    .cgate-btn {
+    .wgate-input:focus-visible { outline: none; border-color: var(--c-accent, #c41e3a); }
+    .wgate-btn {
       padding: 0.55rem 1rem; cursor: pointer; font: inherit;
       font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 0.82rem; letter-spacing: 0.05em;
       background: var(--c-bg-overlay, #202127); color: var(--c-fg, #e9e6df);
       border: 1px solid var(--c-border-strong, #3a3b40); border-radius: 8px;
     }
-    .cgate-btn:hover { border-color: var(--c-accent, #c41e3a); }
-    .cgate-err { color: var(--c-accent, #c41e3a); font-size: 0.82rem; margin: 0.2rem 0 0; min-height: 1em; }
-    .cgate-foot { margin: 1.5rem 0 0; font-size: 0.82rem; }
-    .cgate-foot a { color: var(--c-fg-muted, #8b8880); }
+    .wgate-btn:hover { border-color: var(--c-accent, #c41e3a); }
+    .wgate-err { color: var(--c-accent, #c41e3a); font-size: 0.82rem; margin: 0.2rem 0 0; min-height: 1em; }
+    .wgate-foot { margin: 1.5rem 0 0; font-size: 0.82rem; }
+    .wgate-foot a { color: var(--c-fg-muted, #8b8880); }
   </style>
-  <script>/*cgate-prepaint*/try{if(localStorage.getItem('wuld:console:unlocked')==='1')document.documentElement.classList.add('cgate-open');}catch(e){}</script>
+  <script>/*wgate-prepaint*/try{if(localStorage.getItem('wuld:console:unlocked')==='1')document.documentElement.classList.add('cgate-open');}catch(e){}</script>
+  <!-- wgate:head:end -->
 </head>
 
 <body data-mode="dark">
-
-  <div id="console-gate" role="dialog" aria-modal="true" aria-labelledby="cgate-lede">
-    <div class="cgate-box">
-      <p class="cgate-eyebrow">wuld:&#47;&#47;console</p>
-      <p class="cgate-lede" id="cgate-lede">This descent is still being cut. It&rsquo;s dormant until release.</p>
-      <form class="cgate-form" autocomplete="off">
-        <label class="cgate-label" for="cgate-input">Passphrase</label>
-        <input id="cgate-input" class="cgate-input" type="password" autocomplete="off" spellcheck="false" autocapitalize="none">
-        <button type="submit" class="cgate-btn">enter</button>
-        <p class="cgate-err" role="alert" hidden>Not this time.</p>
+  <!-- wgate:body:start slug=console -->
+  <div id="wgate-console" role="dialog" aria-modal="true" aria-labelledby="wgate-lede">
+    <div class="wgate-box">
+      <p class="wgate-eyebrow">wuld:&#47;&#47;console</p>
+      <p class="wgate-lede" id="wgate-lede">This descent is still being cut. It&rsquo;s dormant until release.</p>
+      <form class="wgate-form" autocomplete="off">
+        <label class="wgate-label" for="wgate-input">Passphrase</label>
+        <input id="wgate-input" class="wgate-input" type="password" autocomplete="off" spellcheck="false" autocapitalize="none">
+        <button type="submit" class="wgate-btn">enter</button>
+        <p class="wgate-err" role="alert" hidden>Not this time.</p>
       </form>
-      <p class="cgate-foot"><a href="/">&larr; back to wuld.ink</a></p>
+      <p class="wgate-foot"><a href="/">&larr; back to wuld.ink</a></p>
     </div>
   </div>
-  <script>/*cgate-logic*/(function(){var PASS="facilis-descensus";var norm=function(s){return (s||"").trim().toLowerCase().replace(/[\s\-]+/g,"");};var g=document.getElementById("console-gate");if(!g)return;if(document.documentElement.classList.contains("cgate-open"))return;var f=g.querySelector("form"),i=g.querySelector(".cgate-input"),e=g.querySelector(".cgate-err");if(f){f.addEventListener("submit",function(ev){ev.preventDefault();if(norm(i&&i.value)===norm(PASS)){try{localStorage.setItem("wuld:console:unlocked","1");}catch(_){}document.documentElement.classList.add("cgate-open");}else{if(e)e.hidden=false;if(i){i.value="";i.focus();}}});}if(i)i.focus();})();</script>
-
+  <script>/*wgate-logic*/(function(){var PASS="facilis-descensus";var norm=function(s){return (s||"").trim().toLowerCase().replace(/[\s\-]+/g,"");};var g=document.getElementById("wgate-console");if(!g)return;if(document.documentElement.classList.contains("cgate-open"))return;var f=g.querySelector("form"),i=g.querySelector(".wgate-input"),e=g.querySelector(".wgate-err");if(f){f.addEventListener("submit",function(ev){ev.preventDefault();if(norm(i&&i.value)===norm(PASS)){try{localStorage.setItem("wuld:console:unlocked","1");}catch(_){}document.documentElement.classList.add("cgate-open");}else{if(e)e.hidden=false;if(i){i.value="";i.focus();}}});}if(i)i.focus();})();</script>
+  <!-- wgate:body:end -->
   <a href="#main" class="skip-link">Skip to content</a>
 
   <header class="site-header">

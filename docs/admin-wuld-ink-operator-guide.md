@@ -261,3 +261,50 @@ XHR fine-grained upload progress + 2-way parallel parts (M) · `/` focuses the p
 filter (S) · `th scope=col` on tables (S) · media-items pagination once the list passes
 ~50 (S). Site-side (from `docs/site-gap-audit-K220.md`): sitemap freshen/generator (S/M) ·
 discreet inbound links for `/coda/` + `/library-about/` (S).
+
+
+## 14 - GATEKEEPER: page curtains (gate-apply / gate-rotate / gate-remove, K246)
+
+Panel section 18. Three site-edit ops that password-curtain a page, riding the same
+preview -> diff-confirm -> one-commit machinery as text-swap / blog / media. NO PIN:
+every commit auto-deploys via Pages. The worker itself redeploys separately --
+`npx wrangler deploy` from `workers\admin` after any worker change.
+
+HONESTY GATE (binding): these are SOFT dormancy curtains. The passphrase is a plain
+constant in the page source -- anyone who reads the HTML sees it. This manages *dormancy*
+(a "not yet released" veil), NOT security. A real lock is Cloudflare Access (operator-side
+Zero Trust; the `/_/successor-protocol/` pattern). Never present a gate as a security
+boundary.
+
+gate-apply -- curtain a page. Fields: page (src/... path), slug (lowercase-hyphen; drives
+the storage key `wuld:gate:<slug>:unlocked`, the open-class, and the nav selector),
+passphrase, optional eyebrow/lede (HTML; blank = default). Two checkboxes, both default
+ON: "exclude from site search" (adds the `wuld-search` meta) and "grey the nav tab"
+(appends a reversible rule to `src/components/nav.css`). Produces a one-commit multi-file
+change (page [+ nav.css]); refuses with 422 if the page is already curtained. The curtain
+injects marker-wrapped blocks: a prepaint script + inline style at the end of <head>, and
+an opaque overlay + logic script as the FIRST <body> child, OUTSIDE <main> (so site-search
+never harvests it).
+
+gate-rotate -- change a passphrase. Fields: page, new passphrase. Single-file; swaps the
+one `var PASS="..."` constant (422 unless exactly one canonical curtain is on the page).
+
+gate-remove -- strip a curtain (byte-inverse of apply). Fields: page, slug (blank = auto
+from the curtain marker), "un-grey the nav tab" (default ON), "re-include in site search"
+(default OFF). Removes the marker-wrapped blocks and, optionally, the nav rule + the
+`wuld-search` meta.
+
+SEARCH / SITEMAP CADENCE: admin-created `wuld-search` / nav-meta changes leave the
+COMMITTED `src/search-index.json` and `src/sitemap.xml` stale until the next Cowork regen
+sweep (the accumulate-then-regen class). The UI flags this; it does not block the op.
+Curtain markup lives outside <main>, so a gate on an already-excluded page is
+search-neutral by construction.
+
+CANONICAL SOURCE + REGRESSION: the transforms live in `tools/gate/wgate-core.cjs` (single
+source of truth) and are embedded verbatim into the worker between the `wgate:embed`
+markers -- treat that block as generated (change the curtain by editing wgate-core.cjs and
+re-embedding, never by hand). Regression: `node tools/omega/wgate-e2e.cjs <page>` (curtain
+behaviour; 24 checks; auto-derives key / open-class / pass / id). K246 migrated the two
+live bespoke curtains -- /successor/ (`ne-hoc-fiat`) and /console/ (`facilis-descensus`) --
+to this canonical shape, preserving each page's passphrase, storage key, and open-class
+token (the last protects successor-stage.js's K241 auto-open coupling to `sgate-open`).
