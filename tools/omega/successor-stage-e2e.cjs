@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-/* successor-stage-e2e.cjs — Build B: the Successor Stage proof (K232).
+/* successor-stage-e2e.cjs — Build B: the Successor Stage proof (K232; K241
+   immersion pass: auto-open post-curtain, the sgate-unlock watcher, the live
+   in-stage persona toggle — the ONE path that writes the shared
+   wuld:persona-active key — crisis-post-swap, and the closed-state re-enter).
    ===========================================================================
    Drives the REAL src/components/successor-stage.js inside a tiny zero-dep DOM /
    localStorage / matchMedia shim (no jsdom — matches the repo's other .cjs
@@ -13,7 +16,9 @@
        (fall back to the other; both killed -> resting hint)
      * the transcript persists per-persona under its OWN keys (wuld:successor:*)
        and replays across a fresh module instance; download + clear work
-     * own-key isolation: never writes wuld:persona-active or a component store
+     * own-key isolation: plain open/ask/close never writes wuld:persona-active
+       or a component store; the EXPLICIT toggle writes wuld:persona-active
+       (the shared key) and nothing else beyond its own wuld:successor:* keys
      * reduced-motion: the avatar shows the still, not the clip; CSS strips motion
      * page-scope: does nothing unless [data-successor-stage] is on the page
    Not a substitute for yurei-parity / omega-persona-gate; this proves the
@@ -120,11 +125,23 @@ function makeWorld(opts) {
   win.omega = { assistant: omega.api }; win._o = omega;
   win.YureiOracle = ORACLE;                  // the engine is already present -> ensureOracle() no-ops
 
+  // K241: the unlock watcher needs documentElement + MutationObserver — shim a
+  // recording observer so the sgate-open hook is drivable from the tests.
+  const de = new Elem("html");
+  doc.documentElement = de;
+  const observers = [];
+  global.MutationObserver = function (cb) {
+    const o = { cb: cb, targets: [], disconnected: false };
+    o.observe = function (t) { o.targets.push(t); };
+    o.disconnect = function () { o.disconnected = true; };
+    observers.push(o); return o;
+  };
+
   global.window = win; global.document = doc; global.localStorage = ls;
   global.Blob = function (parts) { this._parts = parts; };
   global.URL = { createObjectURL: function () { const u = "blob:stage/" + objurls.length; objurls.push(u); return u; }, revokeObjectURL: function () {} };
-  eval(SRC);   // the module IIFE boots -> boot() -> renderMount() over [data-successor-stage]
-  return { win, doc, head, body, mount, ls, store, writes, created, objurls, yurei, omega, P: win.wuldSuccessorStage };
+  eval(SRC);   // the module IIFE boots -> boot() -> renderMount(); K241: + auto-open when unlocked
+  return { win, doc, head, body, mount, ls, store, writes, created, objurls, yurei, omega, de, observers, P: win.wuldSuccessorStage };
 }
 function seedMrgrey(w) { w.P._seed("mrgrey", ENTRIES, MANIFEST); }
 function seedYurei(w) { w.P._seed("yurei", ENTRIES, MANIFEST); }
@@ -279,9 +296,90 @@ function seedYurei(w) { w.P._seed("yurei", ENTRIES, MANIFEST); }
   ok("fence: never calls a persona say()/off()", !/\.say\s*\(/.test(CODE) && !/\.off\s*\(/.test(CODE), null);
   ok("fence: coordinates only via api().close()", /\.close\s*\(\)/.test(CODE), null);
   ok("fence: own-key store only (wuld:successor:*)", /wuld:successor:/.test(CODE) && !/setItem[\s\S]{0,40}persona-active/.test(CODE), null);
+  // K241 fences: the immersion-pass wiring is present and correctly routed
+  ok("fence: auto-open gated on the sgate key", /wuld:successor:unlocked/.test(CODE), null);
+  ok("fence: unlock watcher targets the sgate-open class", /sgate-open/.test(CODE), null);
+  ok("fence: the live swap is routed through switchStagePersona", /function switchStagePersona/.test(CODE), null);
+  ok("fence: the shared-key write rides lsSet(ACTIVE_KEY (never a bare setItem)", /lsSet\(ACTIVE_KEY/.test(CODE), null);
 })();
 
-// ---------------------------------------------------------------- report
-console.log("successor-stage-e2e: " + pass + "/" + (pass + fail) + " passed");
-if (fail) { console.log("FAILURES:"); fails.forEach(function (f) { console.log("  x " + f); }); process.exit(1); }
-process.exit(0);
+// ---------------------------------------------------------------- PASS 10: K241 auto-open — the stage IS the page post-curtain
+(function () {
+  const w = makeWorld({});
+  ok("autoopen: locked at boot -> stage stays closed", w.P.isOpen() === false, w.P.isOpen());
+  ok("autoopen: locked at boot -> unlock observer armed on documentElement",
+     w.observers.length >= 1 && w.observers.some(function (o) { return o.targets.indexOf(w.de) >= 0; }), w.observers.length);
+})();
+
+// ---------------------------------------------------------------- PASS 11: the sgate-unlock hook opens the stage live
+(function () {
+  const w = makeWorld({}); seedMrgrey(w); seedYurei(w);
+  ok("unlockhook: closed while curtained", w.P.isOpen() === false, w.P.isOpen());
+  w.de.classList.add("sgate-open");
+  w.observers.slice().forEach(function (o) { if (!o.disconnected) o.cb(); });
+  ok("unlockhook: sgate-open -> stage opened itself", w.P.isOpen() === true, w.P.isOpen());
+  ok("unlockhook: default persona staged", w.P.persona() === "mrgrey", w.P.persona());
+  ok("unlockhook: observer disconnected after firing", w.observers.every(function (o) { return o.disconnected || o.targets.indexOf(w.de) < 0; }), null);
+  ok("unlockhook: opening wrote NO shared persona key", w.writes.indexOf("wuld:persona-active") === -1, w.writes);
+})();
+
+// ---------------------------------------------------------------- PASS 12: the live in-stage toggle (the K241 point)
+(function () {
+  const w = makeWorld({}); seedMrgrey(w); seedYurei(w); w.P._open();
+  const chips = byClass(w.body, "sstage-chip");
+  ok("toggle: two chips rendered in the head", chips.length === 2, chips.length);
+  const yChip = chips.filter(function (c) { return c.getAttribute("data-sstage-persona") === "yurei"; })[0];
+  const mChip = chips.filter(function (c) { return c.getAttribute("data-sstage-persona") === "mrgrey"; })[0];
+  ok("toggle: active chip marked at open (mrgrey)", mChip && mChip.getAttribute("aria-checked") === "true" && yChip.getAttribute("aria-checked") === "false", mChip && mChip.getAttribute("aria-checked"));
+  w.P._ask("hello");
+  const kept = w.P._tx("mrgrey").lines.length;
+  yChip.click();
+  ok("toggle: overlay STAYS open across the swap", w.P.isOpen() === true && byClass(w.body, "sstage-overlay")[0].hidden === false, w.P.isOpen());
+  ok("toggle: main view swapped to yurei", w.P.persona() === "yurei", w.P.persona());
+  ok("toggle: title follows the swap", byClass(w.body, "sstage-title")[0].textContent === "Yūrei", byClass(w.body, "sstage-title")[0].textContent);
+  ok("toggle: chips re-marked", yChip.getAttribute("aria-checked") === "true" && mChip.getAttribute("aria-checked") === "false", yChip.getAttribute("aria-checked"));
+  ok("toggle: writes the SHARED key -> corner widgets sync at next boot", w.writes.indexOf("wuld:persona-active") >= 0 && w.store["wuld:persona-active"] === "yurei", w.store["wuld:persona-active"]);
+  const alien = w.writes.filter(function (k) { return k.indexOf("wuld:successor:") !== 0 && k !== "wuld:persona-active"; });
+  ok("toggle: beyond the shared key, own keys only", alien.length === 0, alien);
+  ok("toggle: the incoming persona's corner bubble closed (one surface)", w.yurei._calls.indexOf("close") >= 0, w.yurei._calls);
+  ok("toggle: transcript re-seeded for yurei (intro only)", byClass(w.body, "sstage-line").length === 1, byClass(w.body, "sstage-line").length);
+  w.P._ask("I want to kill myself");
+  ok("toggle: crisis fires post-swap through respond()", byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
+  mChip.click();
+  ok("toggle: swap back replays the held mrgrey transcript", w.P.persona() === "mrgrey" && w.P._tx("mrgrey").lines.length === kept && byClass(w.body, "sstage-line").length === 1 + kept, byClass(w.body, "sstage-line").length);
+  ok("toggle: same-chip re-click holds (public switchPersona true)", w.P.switchPersona("mrgrey") === true && w.P.persona() === "mrgrey", w.P.persona());
+
+  // a killed target seat is refused: view + shared key held, resting line shown
+  const yk = persona(false); yk.setKilled(true);
+  const w2 = makeWorld({ yurei: yk }); seedMrgrey(w2); seedYurei(w2); w2.P._open();
+  const y2 = byClass(w2.body, "sstage-chip").filter(function (c) { return c.getAttribute("data-sstage-persona") === "yurei"; })[0];
+  y2.click();
+  ok("toggle: killed target refused -> persona held", w2.P.persona() === "mrgrey", w2.P.persona());
+  ok("toggle: killed target -> a resting sys line", byClass(w2.body, "sstage-bubble").some(function (b) { return /resting/i.test(b.textContent); }), null);
+  ok("toggle: killed target -> shared key NOT written", w2.writes.indexOf("wuld:persona-active") === -1, w2.writes);
+})();
+
+// ---------------------------------------------------------------- PASS 13: closed state -> the re-enter affordance restores
+(function () {
+  const w = makeWorld({}); seedMrgrey(w); w.P._open(); w.P._ask("hello"); w.P.close();
+  ok("reenter: closed -> overlay hidden, mount affordance still present", w.P.isOpen() === false && byClass(w.body, "sstage-open-btn").length === 1, byClass(w.body, "sstage-open-btn").length);
+  byClass(w.body, "sstage-open-btn")[0].click();
+  ok("reenter: the mount button re-opens the stage", w.P.isOpen() === true, w.P.isOpen());
+  ok("reenter: same persona + transcript replayed", w.P.persona() === "mrgrey" && byClass(w.body, "sstage-line").length === 3, byClass(w.body, "sstage-line").length);
+})();
+
+// ---------------------------------------------------------------- PASS 14 (async): auto-open at boot when already unlocked
+(async function () {
+  // unseeded on purpose: the corpus fetch is refused in-shim, so the open lands
+  // on the resting hint — the AUTO-OPEN itself is the assertion.
+  const w = makeWorld({ store: { "wuld:successor:unlocked": "1" } });
+  await new Promise(function (r) { setImmediate(r); });
+  ok("autoopen: unlocked at boot -> the stage opened itself", w.P.isOpen() === true, w.P.isOpen());
+  ok("autoopen: overlay present + visible", byClass(w.body, "sstage-overlay").length === 1 && byClass(w.body, "sstage-overlay")[0].hidden === false, byClass(w.body, "sstage-overlay").length);
+  ok("autoopen: auto-open wrote NO shared persona key", w.writes.indexOf("wuld:persona-active") === -1, w.writes);
+
+  // report (moved here so the async pass is counted)
+  console.log("successor-stage-e2e: " + pass + "/" + (pass + fail) + " passed");
+  if (fail) { console.log("FAILURES:"); fails.forEach(function (f) { console.log("  x " + f); }); process.exit(1); }
+  process.exit(0);
+})();

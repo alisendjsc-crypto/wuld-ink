@@ -1,4 +1,7 @@
-/* successor-stage.css — Build B: the Successor Stage (K239 hero-avatar redesign).
+/* successor-stage.css — Build B: the Successor Stage (K239 hero-avatar redesign;
+   K241 immersion pass: near-viewport geometry on the dedicated page, the in-stage
+   persona toggle chips, the page-scoped corner suppression, and the one discreet
+   prose disclosure).
    The desk companion (Mr. Grey / Yūrei, via the switcher) is now the HERO: its
    reactive clip fills the stage as the background layer, and the conversation
    floats over it as a legible glass layer in the LOWER band — animation first,
@@ -65,8 +68,11 @@
 /* ---------- panel = the stage (portrait; the avatar is the background) ---------- */
 .sstage-panel {
   position: relative;
-  width: clamp(380px, 52vw, 660px);
-  height: min(92vh, 880px);
+  /* K241: /successor/ is a dedicated page, so the auto-opened stage reads
+     near-viewport — height leads, width follows at ~0.78 so the 3:4 avatar
+     stays framed (grows the K240 clamp(380px,52vw,660px) x min(92vh,880px)). */
+  width: min(92vw, calc(min(94vh, 1060px) * 0.78));
+  height: min(94vh, 1060px);
   background: var(--c-bg, #0a0a0a);
   color: var(--c-fg, #e9e6df);
   border: 1px solid var(--c-border-strong, #3a3b40);
@@ -136,6 +142,44 @@
 }
 .sstage-x:hover { border-color: var(--c-border, #2a2b30); background: color-mix(in srgb, var(--c-bg, #0a0a0a) 55%, transparent); }
 .sstage-x:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
+
+/* ---------- in-stage persona toggle (K241): two mono chips, pill-consistent ---------- */
+.sstage-toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid color-mix(in srgb, var(--c-fg, #e9e6df) 22%, transparent);
+  border-radius: 7px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--c-bg, #0a0a0a) 46%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.sstage-chip {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  margin: 0;
+  cursor: pointer;
+  padding: 7px 11px;
+  background: transparent;
+  color: color-mix(in srgb, var(--c-fg, #e9e6df) 62%, transparent);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  transition: color 180ms ease, background 180ms ease;
+}
+.sstage-chip + .sstage-chip { border-left: 1px solid color-mix(in srgb, var(--c-fg, #e9e6df) 16%, transparent); }
+.sstage-chip:hover { color: var(--c-fg, #e9e6df); }
+.sstage-chip.sstage-chip-on,
+.sstage-chip[aria-checked="true"] {
+  color: var(--c-fg, #e9e6df);
+  background: color-mix(in srgb, var(--c-accent, #c41e3a) 30%, transparent);
+  box-shadow: inset 0 -2px 0 var(--c-accent, #c41e3a);
+}
+.sstage-chip:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: -2px; }
 
 /* ---------- foreground chat cluster: glass over the avatar, anchored low ---------- */
 .sstage-fg {
@@ -305,6 +349,41 @@
 .sstage-panel.sstage-peeked .sstage-form { opacity: 0.62; }
 .sstage-panel.sstage-peeked .sstage-fg { background: none; }
 
+/* ---------- /successor/ solo mode (K241): one surface, one toggle ----------
+   The corner desk companions + the site persona pill are page-suppressed here —
+   the stage carries the persona swap itself. Scoped by the body marker on
+   successor/index.html AND by this file loading only on /successor/; fully
+   reversible (delete this block); their site-wide behavior everywhere else is
+   untouched. No kill-key is written — the widgets still boot, they just have
+   no visible seat on this one page. */
+body[data-sstage-solo] .yasst-launcher,
+body[data-sstage-solo] .yasst-panel,
+body[data-sstage-solo] .oasst-launcher,
+body[data-sstage-solo] .oasst-panel,
+body[data-sstage-solo] .persona-switch { display: none; }
+
+/* ---------- the one discreet disclosure (K241): all Hub prose folds here ---------- */
+.successor-about { margin: 0; }
+.successor-about > summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-block;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  text-transform: lowercase;
+  color: var(--c-fg-muted, #8b8880);
+  border: 1px solid var(--c-border, #2a2b30);
+  border-radius: 7px;
+  padding: 0.45rem 0.9rem;
+}
+.successor-about > summary::-webkit-details-marker { display: none; }
+.successor-about > summary::before { content: "+ "; color: var(--c-accent, #c41e3a); }
+.successor-about[open] > summary::before { content: "\2212 "; }
+.successor-about > summary:hover { color: var(--c-fg, #e9e6df); border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
+.successor-about > summary:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
+.successor-about-body { padding: 1.2rem 0 0; }
+
 /* ---------- small screens ---------- */
 @media (max-width: 520px) {
   .sstage-overlay { padding: 0; }
@@ -318,6 +397,7 @@
   .sstage-overlay,
   .sstage-panel,
   .sstage-head,
+  .sstage-chip,
   .sstage-transcript,
   .sstage-form,
   .sstage-foot { transition: none; }

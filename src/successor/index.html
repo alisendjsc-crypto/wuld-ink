@@ -47,7 +47,7 @@
   <link rel="stylesheet" id="oasst-css" href="/components/omega-assistant.css?v=K230">
   <link rel="stylesheet" id="pswitch-css" href="/components/persona-switcher.css?v=K231">
   <link rel="stylesheet" id="agentfx-css" href="/components/agent-settings.css?v=K231">
-  <link rel="stylesheet" id="sstage-css" href="/components/successor-stage.css?v=K240">
+  <link rel="stylesheet" id="sstage-css" href="/components/successor-stage.css?v=K241">
   <style id="sgate-style">
     /* sgate (K233) — a soft "not yet released" curtain over /successor/. Client-side only:
        the page bytes remain public, so this is a dormancy curtain, not a security boundary. */
@@ -107,7 +107,7 @@
   <script>/*sgate-prepaint*/try{if(localStorage.getItem('wuld:successor:unlocked')==='1')document.documentElement.classList.add('sgate-open');}catch(e){}</script>
 </head>
 
-<body>
+<body data-sstage-solo>
 
   <div id="successor-gate" role="dialog" aria-modal="true" aria-labelledby="sgate-lede">
     <div class="sgate-box">
@@ -186,11 +186,22 @@
         </section>
 
         <section class="essay-section">
-          <p class="essay-section-eyebrow">Wake him</p>
+          <p class="essay-section-eyebrow">The stage</p>
+          <p>The stage is the room itself &mdash; whichever companion holds the desk, at full size, the conversation floating over them. Same scripted matcher, same crisis floor; nothing you type leaves this browser. The <span class="successor-toggle-name">Y&#363;rei &middot; Mr. Grey</span> toggle at the head of the stage passes the desk live.</p>
+          <div id="successor-stage-mount" data-successor-stage hidden></div>
+          <noscript><p>The stage needs JavaScript. With it off, the room stays dark.</p></noscript>
+        </section>
+
+        <section class="essay-section">
+          <details class="successor-about">
+            <summary>about &middot; how it works &middot; settings</summary>
+            <div class="successor-about-body">
+
+        <section class="essay-section">
+          <p class="essay-section-eyebrow">The proxy</p>
           <div class="oasst-summon-fig">
             <img class="oasst-summon-av" src="/assets/omega/avatar/mrgrey_av_still.png" alt="Mr. Grey &mdash; the black-cat proxy avatar, forward regard" width="150" height="200" decoding="async">
-            <button type="button" class="oasst-summon" data-omega-open>Wake the proxy</button>
-            <p class="oasst-summon-cap">Mr. Grey&rsquo;s black-cat avatar has landed. He wakes into a slow regard, holds a listening stillness, and answers in his own register &mdash; and keeps a seat at the lower-left of every page here.</p>
+            <p class="oasst-summon-cap">Mr. Grey&rsquo;s black-cat avatar wakes into a slow regard, holds a listening stillness, and answers in his own register. He keeps a corner seat across the rest of the site; here, the stage is his.</p>
           </div>
         </section>
 
@@ -207,14 +218,7 @@
         <section class="essay-section">
           <p class="essay-section-eyebrow">The desk companion</p>
           <p>Mr. Grey is not the only voice here. <strong>Y&#363;rei</strong> keeps the desk &mdash; the quiet companion who greets you across the rest of the site, waiting in a seat of her own until you call her. Like the proxy she is scripted: a fixed bank of prepared lines and a rule for choosing one. She is not a language model and she does not compose. She matches what you write against a set corpus and answers with the line that fits &mdash; or says plainly when nothing does.</p>
-          <p>She takes her name and her face from the y&#363;rei mascot, the site&rsquo;s small resident ghost. Where Mr. Grey is the writer&rsquo;s proxy, bound to this page and the Successor Protocol, Y&#363;rei is the house greeter &mdash; the default presence at the desk, everywhere. On this page the two share one seat: a small <span class="successor-toggle-name">Y&#363;rei &middot; Mr. Grey</span> toggle passes the desk between them, and whichever you are not speaking to greys and steps behind the other. Two scripted companions, one apparatus, one floor &mdash; if either reads that you mean to harm yourself, both drop the script and point you to a person, inherited byte-for-byte from the rest of the site.</p>
-        </section>
-
-        <section class="essay-section">
-          <p class="essay-section-eyebrow">Open the stage</p>
-          <p>Prefer more room? Open the stage to bring whichever companion holds the desk into a full panel &mdash; a scrolling transcript, a field to type in, and the avatar at size. It is the same scripted matcher and the same crisis floor; only the view is larger. Your side of the conversation is saved in this browser and nowhere else, and closing the stage returns the desk to its corner.</p>
-          <div id="successor-stage-mount" data-successor-stage hidden></div>
-          <noscript><p>The stage needs JavaScript. With it off, the companions stay in their corners.</p></noscript>
+          <p>She takes her name and her face from the y&#363;rei mascot, the site&rsquo;s small resident ghost. Where Mr. Grey is the writer&rsquo;s proxy, bound to this page and the Successor Protocol, Y&#363;rei is the house greeter &mdash; the default presence at the desk, everywhere. On this page the two share one stage: a small <span class="successor-toggle-name">Y&#363;rei &middot; Mr. Grey</span> toggle at its head passes the desk between them live, and whichever you are not speaking to waits behind the curtain. Two scripted companions, one apparatus, one floor &mdash; if either reads that you mean to harm yourself, both drop the script and point you to a person, inherited byte-for-byte from the rest of the site.</p>
         </section>
 
         <section class="essay-section">
@@ -240,7 +244,6 @@
           <noscript><p class="agent-fx-note">These controls need JavaScript. With it off, the desk simply stays quiet.</p></noscript>
         </section>
 
-
         <hr class="section-rule">
 
         <section class="essay-section">
@@ -250,6 +253,10 @@
             Y&#363;rei, the desk &mdash; <a href="/chat/">/chat/</a><br>
             About &mdash; <a href="/preface/">/preface/</a>
           </p>
+        </section>
+
+            </div>
+          </details>
         </section>
 
       </div>
@@ -297,6 +304,6 @@
 <script src="/components/omega-assistant.js?v=K237" defer></script>
 <script src="/components/persona-switcher.js?v=K231" defer></script>
 <script src="/components/agent-settings.js?v=K231" defer></script>
-<script src="/components/successor-stage.js?v=K239" defer></script>
+<script src="/components/successor-stage.js?v=K241" defer></script>
 </body>
 </html>
