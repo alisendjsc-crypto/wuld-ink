@@ -24,6 +24,7 @@
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
   var COMP = "/components/";
+  var VER = "K238";                                 // cache-bust for corpus + manifest fetch (parity w/ omega-assistant)
   var STAGE_KEY = "wuld:successor:stage";          // { open:bool } — last stage view state (informational)
   var TX_PREFIX = "wuld:successor:transcript:";     // + persona -> { v:1, lines:[{who,text,crisis}], updated }
   var ACTIVE_KEY = "wuld:persona-active";           // switcher's key — READ ONLY here
@@ -99,7 +100,7 @@
     ensureOracle(function () {
       if (!window.YureiOracle) { then(); return; }
       var cfg = PERSONAS[persona];
-      var jobs = cfg.corpus.map(fetchJSON).concat([ fetchJSON(cfg.manifest) ]);
+      var jobs = cfg.corpus.map(function (u) { return fetchJSON(u + "?v=" + VER); }).concat([ fetchJSON(cfg.manifest + "?v=" + VER) ]);
       Promise.all(jobs).then(function (res) {
         var manifest = res[res.length - 1], entries = [];
         for (var i = 0; i < res.length - 1; i++) { var c = res[i]; if (c && c.yurei_corpus && c.yurei_corpus.entries) entries = entries.concat(c.yurei_corpus.entries); }
