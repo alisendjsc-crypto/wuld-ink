@@ -65,7 +65,7 @@
 /* ---------- panel = the stage (portrait; the avatar is the background) ---------- */
 .sstage-panel {
   position: relative;
-  width: clamp(360px, 42vw, 520px);
+  width: clamp(380px, 52vw, 660px);
   height: min(92vh, 880px);
   background: var(--c-bg, #0a0a0a);
   color: var(--c-fg, #e9e6df);
