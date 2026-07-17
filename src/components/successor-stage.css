@@ -1,9 +1,15 @@
-/* successor-stage.css — Build B: the Successor Stage (K232).
-   A Messenger-style enlargement of whichever desk companion holds the seat.
-   Opt-in from the /successor/ Hub; the corner bubbles stay the default. Styled
-   entirely on the site's --c-* tokens so it tracks dark / reader / high-contrast
-   automatically — mono for chrome, the inherited serif for the conversation.
-   No !important on layout, no external refs, no page-mode. */
+/* successor-stage.css — Build B: the Successor Stage (K239 hero-avatar redesign).
+   The desk companion (Mr. Grey / Yūrei, via the switcher) is now the HERO: its
+   reactive clip fills the stage as the background layer, and the conversation
+   floats over it as a legible glass layer in the LOWER band — animation first,
+   chat as a translucent instrument over it. Opt-in from the /successor/ Hub; the
+   corner bubbles stay the default. Persona-AGNOSTIC — object-fit: cover + a safe
+   anchor absorb either manifest's geometry (no hard-coded avatar dimensions).
+   Styled on the site's --c-* tokens so it tracks dark / reader / high-contrast
+   automatically; mono for chrome, the inherited serif for the conversation. The
+   glass + scrim are functional legibility over animated video, not decoration:
+   text is held to WCAG-AA over the darkest AND brightest avatar frames.
+   No page-mode, no external refs, no !important on layout. */
 
 /* ---------- Hub affordance (injected into [data-successor-stage]) ---------- */
 .sstage-open-btn {
@@ -48,6 +54,7 @@
   justify-content: center;
   padding: 3vh 3vw;
   background: color-mix(in srgb, var(--c-bg, #0a0a0a) 78%, transparent);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   opacity: 0;
   transition: opacity 200ms ease;
@@ -55,12 +62,11 @@
 .sstage-overlay.sstage-visible { opacity: 1; }
 .sstage-overlay[hidden] { display: none; }
 
-/* ---------- panel ---------- */
+/* ---------- panel = the stage (portrait; the avatar is the background) ---------- */
 .sstage-panel {
-  display: flex;
-  flex-direction: column;
-  width: min(680px, 96vw);
-  height: min(82vh, 760px);
+  position: relative;
+  width: clamp(360px, 42vw, 520px);
+  height: min(92vh, 880px);
   background: var(--c-bg, #0a0a0a);
   color: var(--c-fg, #e9e6df);
   border: 1px solid var(--c-border-strong, #3a3b40);
@@ -72,24 +78,13 @@
 }
 .sstage-overlay.sstage-visible .sstage-panel { transform: translateY(0); }
 
-/* ---------- head ---------- */
-.sstage-head {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--c-border, #2a2b30);
-}
+/* ---------- avatar: the hero background layer ---------- */
 .sstage-avatar {
-  position: relative;
-  flex: 0 0 auto;
-  width: 80px;
-  height: 108px;
-  border-radius: 10px;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
   background: var(--c-bg-elevated, #17181c);
-  border: 1px solid var(--c-border, #2a2b30);
 }
 .sstage-av-img, .sstage-av-video {
   position: absolute;
@@ -97,51 +92,97 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 20%;
+  object-position: 50% 22%;          /* frame the head / upper third for either manifest */
+}
+
+/* ---------- top bar: title + close, a minimal translucent glass strip ---------- */
+.sstage-head {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: linear-gradient(to bottom,
+     color-mix(in srgb, var(--c-bg, #0a0a0a) 84%, transparent) 0%,
+     color-mix(in srgb, var(--c-bg, #0a0a0a) 46%, transparent) 62%,
+     transparent 100%);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  transition: opacity 480ms ease;
 }
 .sstage-title {
   flex: 1 1 auto;
   min-width: 0;
   font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: 1rem;
+  font-size: 0.95rem;
   letter-spacing: 0.03em;
   color: var(--c-fg, #e9e6df);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
 }
 .sstage-x {
   flex: 0 0 auto;
   width: 34px;
   height: 34px;
   border-radius: 7px;
-  background: transparent;
+  background: color-mix(in srgb, var(--c-bg, #0a0a0a) 30%, transparent);
   border: 1px solid transparent;
-  color: var(--c-fg-dim, #a6a29a);
+  color: var(--c-fg, #e9e6df);
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
 }
-.sstage-x:hover { color: var(--c-fg, #e9e6df); border-color: var(--c-border, #2a2b30); }
+.sstage-x:hover { border-color: var(--c-border, #2a2b30); background: color-mix(in srgb, var(--c-bg, #0a0a0a) 55%, transparent); }
 .sstage-x:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
+
+/* ---------- foreground chat cluster: glass over the avatar, anchored low ---------- */
+.sstage-fg {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;              /* the transparent upper region passes clicks through */
+  background: linear-gradient(to top,
+     color-mix(in srgb, var(--c-bg, #0a0a0a) 90%, transparent) 0%,
+     color-mix(in srgb, var(--c-bg, #0a0a0a) 66%, transparent) 30%,
+     transparent 62%);
+}
+.sstage-fg > * { pointer-events: auto; }
 
 /* ---------- transcript ---------- */
 .sstage-transcript {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
+  max-height: 54%;
   overflow-y: auto;
-  padding: 16px;
+  padding: 14px 14px 8px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  transition: opacity 480ms ease;
+  scrollbar-width: thin;
 }
-.sstage-line { display: flex; flex-direction: column; max-width: 88%; }
+.sstage-line { display: flex; flex-direction: column; max-width: 90%; }
 .sstage-line.sstage-you { align-self: flex-end; align-items: flex-end; }
 .sstage-line.sstage-them { align-self: flex-start; align-items: flex-start; }
-.sstage-line.sstage-sys { align-self: center; max-width: 92%; text-align: center; }
+.sstage-line.sstage-sys { align-self: center; max-width: 94%; text-align: center; }
 .sstage-who {
+  /* a mono chip so the speaker label stays legible even over a bright avatar
+     frame — bare text on the clip can't be guaranteed AA, a dark backing can */
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--c-fg-muted, #8b8880);
-  margin: 0 2px 3px;
+  color: var(--c-fg, #e9e6df);
+  background: color-mix(in srgb, var(--c-bg, #0a0a0a) 68%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  padding: 1px 7px;
+  border-radius: 5px;
+  margin: 0 2px 4px;
 }
 .sstage-bubble {
   padding: 9px 13px;
@@ -150,50 +191,57 @@
   line-height: 1.55;
   white-space: pre-wrap;
   word-wrap: break-word;
+  color: var(--c-fg, #e9e6df);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
 }
 .sstage-them .sstage-bubble {
-  background: var(--c-bg-elevated, #17181c);
-  border: 1px solid var(--c-border, #2a2b30);
+  background: color-mix(in srgb, var(--c-bg, #0a0a0a) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c-fg, #e9e6df) 15%, transparent);
   border-bottom-left-radius: 3px;
 }
 .sstage-you .sstage-bubble {
-  background: color-mix(in srgb, var(--c-accent, #c41e3a) 12%, transparent);
-  border: 1px solid var(--c-border-accent, color-mix(in srgb, var(--c-accent, #c41e3a) 40%, transparent));
+  background: color-mix(in srgb, var(--c-accent, #c41e3a) 26%, color-mix(in srgb, var(--c-bg, #0a0a0a) 72%, transparent));
+  border: 1px solid color-mix(in srgb, var(--c-accent, #c41e3a) 55%, transparent);
   border-bottom-right-radius: 3px;
 }
 .sstage-sys .sstage-bubble {
-  background: transparent;
-  color: var(--c-fg-muted, #8b8880);
+  background: color-mix(in srgb, var(--c-bg, #0a0a0a) 70%, transparent);
+  color: var(--c-fg, #e9e6df);
   font-size: 0.82rem;
   font-style: italic;
-  padding: 2px 0;
+  padding: 4px 11px;
+  border-radius: 8px;
 }
 .sstage-sys .sstage-who { display: none; }
 /* crisis: the floor drops the register — force plain interface text, never fragment typography */
 .sstage-line.sstage-crisis .sstage-bubble {
-  background: color-mix(in srgb, var(--c-accent, #c41e3a) 9%, transparent);
-  border: 1px solid color-mix(in srgb, var(--c-accent, #c41e3a) 42%, transparent);
+  background: color-mix(in srgb, var(--c-accent, #c41e3a) 22%, color-mix(in srgb, var(--c-bg, #0a0a0a) 76%, transparent));
+  border: 1px solid color-mix(in srgb, var(--c-accent, #c41e3a) 55%, transparent);
   border-radius: 8px;
   font-style: normal;
   letter-spacing: 0;
+  opacity: 1;
   color: var(--c-fg, #e9e6df);
 }
 
-/* ---------- form ---------- */
+/* ---------- form (glass, pinned at the very bottom) ---------- */
 .sstage-form {
   flex: 0 0 auto;
   display: flex;
   gap: 8px;
-  padding: 12px 14px;
-  border-top: 1px solid var(--c-border, #2a2b30);
+  padding: 10px 12px 6px;
+  transition: opacity 480ms ease;
 }
 .sstage-input {
   flex: 1 1 auto;
   min-width: 0;
   padding: 10px 12px;
-  background: var(--c-bg-elevated, #17181c);
+  background: color-mix(in srgb, var(--c-bg, #0a0a0a) 80%, transparent);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
   color: var(--c-fg, #e9e6df);
-  border: 1px solid var(--c-border, #2a2b30);
+  border: 1px solid var(--c-border-strong, #3a3b40);
   border-radius: 8px;
   font: inherit;
   font-size: 0.95rem;
@@ -205,14 +253,16 @@
   padding: 0 16px;
   border-radius: 8px;
   cursor: pointer;
-  background: var(--c-bg-overlay, #202127);
+  background: color-mix(in srgb, var(--c-bg-overlay, #202127) 82%, transparent);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
   color: var(--c-fg, #e9e6df);
   border: 1px solid var(--c-border-strong, #3a3b40);
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 0.8rem;
   letter-spacing: 0.04em;
 }
-.sstage-send:hover { background: var(--c-bg-elevated, #17181c); border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
+.sstage-send:hover { border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
 .sstage-send:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
 
 /* ---------- foot ---------- */
@@ -221,8 +271,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 14px 12px;
+  padding: 0 12px 12px;
   flex-wrap: wrap;
+  transition: opacity 480ms ease;
 }
 .sstage-btn {
   font-family: var(--font-mono, ui-monospace, monospace);
@@ -231,7 +282,7 @@
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 6px;
-  background: transparent;
+  background: color-mix(in srgb, var(--c-bg, #0a0a0a) 55%, transparent);
   color: var(--c-fg-dim, #a6a29a);
   border: 1px solid var(--c-border, #2a2b30);
 }
@@ -242,19 +293,35 @@
   color: var(--c-fg-muted, #8b8880);
   font-style: italic;
   margin-left: auto;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
+
+/* ---------- idle-peek: after ~4s the chat eases back so the clip is unobstructed;
+   any key / new line / hover snaps it to full (JS toggles .sstage-peeked; never
+   under reduced-motion, and the input stays a visible, focusable affordance) ---- */
+.sstage-panel.sstage-peeked .sstage-head,
+.sstage-panel.sstage-peeked .sstage-transcript { opacity: 0.15; }
+.sstage-panel.sstage-peeked .sstage-foot { opacity: 0.12; }
+.sstage-panel.sstage-peeked .sstage-form { opacity: 0.62; }
+.sstage-panel.sstage-peeked .sstage-fg { background: none; }
 
 /* ---------- small screens ---------- */
 @media (max-width: 520px) {
   .sstage-overlay { padding: 0; }
-  .sstage-panel { width: 100vw; height: 100vh; border-radius: 0; border: none; }
+  .sstage-panel { width: 100vw; height: 100vh; height: 100dvh; border-radius: 0; border: none; box-shadow: none; }
+  .sstage-transcript { max-height: 48%; }
 }
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .sstage-open-btn { transition: none; }
-  .sstage-overlay { transition: none; }
-  .sstage-panel { transition: none; transform: none; }
+  .sstage-open-btn,
+  .sstage-overlay,
+  .sstage-panel,
+  .sstage-head,
+  .sstage-transcript,
+  .sstage-form,
+  .sstage-foot { transition: none; }
+  .sstage-panel { transform: none; }
   .sstage-overlay.sstage-visible .sstage-panel { transform: none; }
   .sstage-av-video { display: none; }
 }

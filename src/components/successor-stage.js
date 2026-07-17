@@ -29,6 +29,7 @@
   var TX_PREFIX = "wuld:successor:transcript:";     // + persona -> { v:1, lines:[{who,text,crisis}], updated }
   var ACTIVE_KEY = "wuld:persona-active";           // switcher's key — READ ONLY here
   var DEFAULT_PERSONA = "mrgrey";
+  var PEEK_MS = 4000;                                // idle-peek: ease the chat back after this idle span to reveal the clip
   var ORACLE_SRC = COMP + "yurei-oracle.js";        // the SAME engine the widgets inject; not new matcher bytes
 
   // Per-persona binding: the corpus files (same the corner widget loads), the
@@ -71,7 +72,7 @@
   var built = false, viewOpen = false;
   var current = null;                 // persona currently staged
   var cache = {};                     // persona -> { matcher, assetByRole, manifest, base }
-  var listenTimer = null, idleTimer = null;
+  var listenTimer = null, idleTimer = null, peekTimer = null;
 
   // ---- the engine: our own Matcher over the reused corpus ----------------
   var oracleLoading = false, oracleThens = [];
@@ -160,6 +161,14 @@
   }
   function toIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(function () { showSprite("idle"); }, 60); }
   function toListen() { clearTimeout(listenTimer); showSprite("listen"); listenTimer = setTimeout(function () { showSprite("idle"); }, 1400); }
+  // idle-peek: rest the glass chat to low opacity so the animation reads clearly; any
+  // key / new line / hover wakes it. Disabled under reduced-motion (instant, never a fade).
+  function wake() {
+    clearTimeout(peekTimer);
+    if (panel) panel.classList.remove("sstage-peeked");
+    if (!viewOpen || reduced()) return;
+    peekTimer = setTimeout(function () { if (viewOpen && !reduced() && panel) panel.classList.add("sstage-peeked"); }, PEEK_MS);
+  }
 
   // ---- transcript rendering / persistence --------------------------------
   function labelFor(who, p) { if (who === "you") return "You"; if (who === "sys") return "System"; return (PERSONAS[p || current] && PERSONAS[p || current].label) || "Them"; }
@@ -170,6 +179,7 @@
     var bub = el("div", "sstage-bubble"); bub.textContent = text; row.appendChild(bub);
     transcriptEl.appendChild(row);
     transcriptEl.scrollTop = transcriptEl.scrollHeight;
+    wake();                                                  // a new line counts as activity — snap the chat back to full
   }
   function pushLine(who, text, crisis) {
     renderLine(who, text, crisis);
@@ -221,7 +231,7 @@
   }
 
   // ---- overlay ------------------------------------------------------------
-  function onKey(ev) { if (!viewOpen) return; if (ev && (ev.key === "Escape" || ev.keyCode === 27)) closeStage(); }
+  function onKey(ev) { if (!viewOpen) return; wake(); if (ev && (ev.key === "Escape" || ev.keyCode === 27)) closeStage(); }
   function buildOverlay() {
     if (built) return;
     overlay = el("div", "sstage-overlay");
@@ -231,17 +241,20 @@
 
     panel = el("div", "sstage-panel");
 
-    var head = el("div", "sstage-head");
+    // avatar: the hero background layer — fills the panel behind the glass chat
     avatarWrap = el("div", "sstage-avatar");
     avatarImg = el("img", "sstage-av-img"); avatarImg.setAttribute("alt", ""); avatarImg.setAttribute("decoding", "async");
     avatarVideo = el("video", "sstage-av-video");
     avatarVideo.muted = true; avatarVideo.setAttribute("muted", "muted"); avatarVideo.setAttribute("playsinline", "playsinline"); avatarVideo.setAttribute("preload", "auto");
     avatarVideo.style.display = "none";
     avatarWrap.appendChild(avatarImg); avatarWrap.appendChild(avatarVideo);
+
+    // top bar: title + close, floating as a minimal translucent strip over the avatar
+    var head = el("div", "sstage-head");
     labelEl = el("div", "sstage-title");
     var x = el("button", "sstage-x", "×"); x.setAttribute("type", "button"); x.setAttribute("aria-label", "Close the stage");
     x.addEventListener("click", function () { closeStage(); });
-    head.appendChild(avatarWrap); head.appendChild(labelEl); head.appendChild(x);
+    head.appendChild(labelEl); head.appendChild(x);
 
     transcriptEl = el("div", "sstage-transcript");
     transcriptEl.setAttribute("role", "log"); transcriptEl.setAttribute("aria-live", "polite"); transcriptEl.setAttribute("aria-label", "Conversation");
@@ -252,7 +265,7 @@
     inputEl.setAttribute("placeholder", "Say something…"); inputEl.setAttribute("aria-label", "Message");
     inputEl.setAttribute("data-wh", "none");                 // mute the wrong-hour focus cue (matches the notes editor)
     var send = el("button", "sstage-send", "Send"); send.setAttribute("type", "submit");
-    inputEl.addEventListener("input", function () { toListen(); });
+    inputEl.addEventListener("input", function () { toListen(); wake(); });
     form.addEventListener("submit", function (ev) { if (ev && ev.preventDefault) ev.preventDefault(); submit(); });
     form.appendChild(inputEl); form.appendChild(send);
 
@@ -261,9 +274,14 @@
     var clr = el("button", "sstage-btn", "[ clear ]"); clr.setAttribute("type", "button"); clr.addEventListener("click", clearTx);
     foot.appendChild(dl); foot.appendChild(clr); foot.appendChild(el("span", "sstage-note", "Saved in this browser only."));
 
-    panel.appendChild(head); panel.appendChild(transcriptEl); panel.appendChild(form); panel.appendChild(foot);
+    // foreground glass cluster: the conversation floats in the lower band over the avatar
+    var fg = el("div", "sstage-fg");
+    fg.appendChild(transcriptEl); fg.appendChild(form); fg.appendChild(foot);
+
+    panel.appendChild(avatarWrap); panel.appendChild(head); panel.appendChild(fg);
     overlay.appendChild(panel);
     overlay.addEventListener("click", function (ev) { if (ev && ev.target === overlay) closeStage(); });
+    overlay.addEventListener("mousemove", function () { wake(); });
     document.addEventListener("keydown", onKey);
     document.body.appendChild(overlay);
     built = true;
@@ -272,9 +290,11 @@
     if (!overlay) return;
     overlay.hidden = false; overlay.classList.add("sstage-visible");
     viewOpen = true; setStageOpen(true);
+    wake();                                                  // arm the idle-peek (a no-op under reduced-motion)
   }
   function closeStage() {
     if (overlay) { overlay.hidden = true; overlay.classList.remove("sstage-visible"); }
+    clearTimeout(peekTimer); if (panel) panel.classList.remove("sstage-peeked");
     viewOpen = false; setStageOpen(false);
     toIdle();
   }
@@ -294,7 +314,7 @@
       var api = PERSONAS[persona].api();                     // one surface at a time — close the corner bubble
       if (api && api.close) { try { api.close(); } catch (e) {} }
       showOverlay();
-      showSprite("idle");
+      showSprite("appear", { then: "idle" });                // waking-regard entrance; resolver falls back to idle if absent
       if (inputEl && inputEl.focus) { try { inputEl.focus(); } catch (e) {} }
     });
   }
