@@ -144,7 +144,7 @@ export default {
         return apiCmodList(env);
       }
       if (request.method === "GET" && path.startsWith("/api/gaplog/proxy/")) {
-        return apiGaplogProxy(path.slice("/api/gaplog/proxy/".length));
+        return apiGaplogProxy(path.slice("/api/gaplog/proxy/".length), url);
       }
       if (request.method === "GET" && path === "/api/gaplog/rows") {
         return apiGaplogRows(env, url);
@@ -671,13 +671,27 @@ async function apiCmodAct(request, env) {
  * PRIVACY FLOOR (invariant): no identity field is read, derived, or stored — ever.
  * The client scrubs; the Worker RE-scrubs (defense in depth) and never persists raw.
  * Miss lane = scrubbed content + dedup count; hit lane = entry_id + kind only.
- * persona-scoped ('yurei'); a future Omega/proxy log is a SEPARATE store (§4.5/§5). */
+ * PERSONA LANES (K247, supersedes the K228 "separate store" note — ratified): 'yurei'
+ * + 'mrgrey' share the store; every read/write/mod/export binds ONE validated persona
+ * server-side (the tables were built persona-first: unique keys lead with persona).
+ * Lanes never commingle in any query. Absent/unknown persona -> 'yurei', so every
+ * pre-K247 request shape gets byte-identical Yurei-lane behavior. */
 
-const GAPLOG_PERSONA = "yurei";
+/* wgl-persona:begin (K247) — single chokepoint; every handler resolves through it. */
+const GAPLOG_PERSONAS = { yurei: "yurei", mrgrey: "mrgrey" };
+function gaplogPersona(v) { return GAPLOG_PERSONAS[String(v == null ? "" : v)] || "yurei"; }
+/* wgl-persona:end */
+
 const GAPLOG_SRC = {
-  matcher: "https://wuld.ink/components/yurei-oracle.js",
-  "corpus-public": "https://wuld.ink/components/yurei-corpus-public.json",
-  "corpus-oracle": "https://wuld.ink/components/yurei-corpus-oracle.json",
+  yurei: {
+    matcher: "https://wuld.ink/components/yurei-oracle.js",
+    "corpus-public": "https://wuld.ink/components/yurei-corpus-public.json",
+    "corpus-oracle": "https://wuld.ink/components/yurei-corpus-oracle.json",
+  },
+  mrgrey: {
+    matcher: "https://wuld.ink/components/yurei-oracle.js",
+    "corpus-public": "https://wuld.ink/components/omega-corpus-mrgrey.json",
+  },
 };
 
 // Phoenix (UTC-7, no DST) day-granular stamp — matches Josiah's tz; dodges dual-boot UTC skew.
@@ -700,8 +714,9 @@ function gaplogScrub(s) {
 
 // GET /api/gaplog/proxy/<name> — server-fetch the LIVE public bytes, serve same-origin
 // so the admin page's strict CSP (connect-src 'self', script-src 'self') can load them.
-async function apiGaplogProxy(name) {
-  const src = GAPLOG_SRC[name];
+async function apiGaplogProxy(name, url) {
+  const persona = gaplogPersona(url && url.searchParams.get("persona"));
+  const src = (GAPLOG_SRC[persona] || {})[name];
   if (!src) return json({ error: "unknown_asset", name: String(name).slice(0, 40) }, 404);
   let r;
   try { r = await fetch(src, { cf: { cacheTtl: 30, cacheEverything: true } }); }
@@ -717,19 +732,20 @@ async function apiGaplogRows(env, url) {
   if (!env.COMMENTS_DB) return json({ error: "no_d1_binding", detail: "COMMENTS_DB absent — deploy with the K220 wrangler.toml." }, 503);
   const lane = url.searchParams.get("lane") === "hit" ? "hit" : "miss";
   const sort = url.searchParams.get("sort") || "count";
+  const persona = gaplogPersona(url.searchParams.get("persona"));
   if (lane === "miss") {
     const order = sort === "date" ? "last_date DESC, count DESC"
       : sort === "class" ? "class ASC, count DESC"
       : "count DESC, last_date DESC";
     const q = await env.COMMENTS_DB.prepare(
       "SELECT id, content_scrubbed, class, count, first_date, last_date, resolved FROM gap_log_miss WHERE persona = ? ORDER BY " + order + " LIMIT 2000"
-    ).bind(GAPLOG_PERSONA).all();
+    ).bind(persona).all();
     return json({ lane: "miss", rows: q.results || [] });
   }
   const order2 = sort === "date" ? "last_date DESC, count DESC" : "count DESC, last_date DESC";
   const q2 = await env.COMMENTS_DB.prepare(
     "SELECT id, entry_id, kind, count, first_date, last_date FROM gap_log_hit WHERE persona = ? ORDER BY " + order2 + " LIMIT 2000"
-  ).bind(GAPLOG_PERSONA).all();
+  ).bind(persona).all();
   return json({ lane: "hit", rows: q2.results || [] });
 }
 
@@ -739,10 +755,12 @@ async function apiGaplogLog(request, env) {
   const data = await readJson(request);
   const items = data && Array.isArray(data.items) ? data.items : (data && data.lane ? [data] : []);
   if (!items.length) return json({ error: "bad_json", hint: "{items:[{lane,...}]}" }, 400);
+  const reqPersona = gaplogPersona(data && data.persona);
   const today = gaplogToday();
   let miss = 0, hit = 0, skipped = 0;
   for (let i = 0; i < items.length && i < 200; i++) {
     const it = items[i] || {};
+    const persona = it.persona == null ? reqPersona : gaplogPersona(it.persona); // per-item lane; absent -> request default -> 'yurei'
     if (it.lane === "miss") {
       const content = gaplogScrub(it.content_scrubbed); // RE-scrub server-side (defense in depth)
       if (!content) { skipped++; continue; }
@@ -750,7 +768,7 @@ async function apiGaplogLog(request, env) {
       await env.COMMENTS_DB.prepare(
         "INSERT INTO gap_log_miss (persona, content_scrubbed, class, count, first_date, last_date, resolved) VALUES (?,?,?,1,?,?,0) " +
         "ON CONFLICT(persona, content_scrubbed) DO UPDATE SET count = count + 1, last_date = excluded.last_date, class = excluded.class"
-      ).bind(GAPLOG_PERSONA, content, cls, today, today).run();
+      ).bind(persona, content, cls, today, today).run();
       miss++;
     } else if (it.lane === "hit") {
       const kind = String(it.kind || "");
@@ -760,7 +778,7 @@ async function apiGaplogLog(request, env) {
       await env.COMMENTS_DB.prepare(
         "INSERT INTO gap_log_hit (persona, entry_id, kind, count, first_date, last_date) VALUES (?,?,?,1,?,?) " +
         "ON CONFLICT(persona, entry_id, kind) DO UPDATE SET count = count + 1, last_date = excluded.last_date"
-      ).bind(GAPLOG_PERSONA, eid, kind, today, today).run();
+      ).bind(persona, eid, kind, today, today).run();
       hit++;
     } else { skipped++; }
   }
@@ -773,18 +791,19 @@ async function apiGaplogMod(request, env, action) {
   const data = await readJson(request);
   const id = parseInt(data && data.id, 10);
   if (!Number.isInteger(id) || id < 1) return json({ error: "bad_id" }, 400);
+  const persona = gaplogPersona(data && data.persona); // lane-bound: a mod can never cross personas
   if (action === "resolve") {
     const v = (data.resolved === 0 || data.resolved === false || data.resolved === "0") ? 0 : 1;
-    await env.COMMENTS_DB.prepare("UPDATE gap_log_miss SET resolved = ? WHERE persona = ? AND id = ?").bind(v, GAPLOG_PERSONA, id).run();
+    await env.COMMENTS_DB.prepare("UPDATE gap_log_miss SET resolved = ? WHERE persona = ? AND id = ?").bind(v, persona, id).run();
     return json({ ok: true, id, resolved: v });
   }
   if (action === "redact") { // blank content, keep the row+count (never auto-deleted; manual remedy)
-    await env.COMMENTS_DB.prepare("UPDATE gap_log_miss SET content_scrubbed = '[redacted]' WHERE persona = ? AND id = ?").bind(GAPLOG_PERSONA, id).run();
+    await env.COMMENTS_DB.prepare("UPDATE gap_log_miss SET content_scrubbed = '[redacted]' WHERE persona = ? AND id = ?").bind(persona, id).run();
     return json({ ok: true, id, redacted: true });
   }
   if (action === "drop") { // remove a single row (explicit manual removal)
     const tbl = data.lane === "hit" ? "gap_log_hit" : "gap_log_miss";
-    await env.COMMENTS_DB.prepare("DELETE FROM " + tbl + " WHERE persona = ? AND id = ?").bind(GAPLOG_PERSONA, id).run();
+    await env.COMMENTS_DB.prepare("DELETE FROM " + tbl + " WHERE persona = ? AND id = ?").bind(persona, id).run();
     return json({ ok: true, id, dropped: true, lane: tbl });
   }
   return json({ error: "unknown_action" }, 404);
@@ -795,13 +814,15 @@ async function apiGaplogExport(env, url) {
   if (!env.COMMENTS_DB) return json({ error: "no_d1_binding", detail: "COMMENTS_DB absent — deploy with the K220 wrangler.toml." }, 503);
   const lane = url.searchParams.get("lane") === "hit" ? "hit" : "miss";
   const tbl = lane === "hit" ? "gap_log_hit" : "gap_log_miss";
-  const q = await env.COMMENTS_DB.prepare("SELECT * FROM " + tbl + " WHERE persona = ? ORDER BY count DESC, last_date DESC").bind(GAPLOG_PERSONA).all();
-  const payload = JSON.stringify({ persona: GAPLOG_PERSONA, lane, exported: gaplogToday(), rows: q.results || [] }, null, 2);
+  const persona = gaplogPersona(url.searchParams.get("persona"));
+  const fnamePersona = persona === "yurei" ? "" : persona + "-"; // yurei filename byte-identical to pre-K247
+  const q = await env.COMMENTS_DB.prepare("SELECT * FROM " + tbl + " WHERE persona = ? ORDER BY count DESC, last_date DESC").bind(persona).all();
+  const payload = JSON.stringify({ persona: persona, lane, exported: gaplogToday(), rows: q.results || [] }, null, 2);
   return new Response(payload, {
     status: 200,
     headers: {
       "content-type": "application/json; charset=utf-8",
-      "content-disposition": 'attachment; filename="gaplog-' + lane + "-" + gaplogToday() + '.json"',
+      "content-disposition": 'attachment; filename="gaplog-' + fnamePersona + lane + "-" + gaplogToday() + '.json"',
       "cache-control": "no-store",
     },
   });
@@ -3256,7 +3277,7 @@ function adminHtml(env, adminEmail) {
 </details>
 
 
-<details class="tool" id="sec-yurei"><summary><h2>16 &middot; Testing Y&#363;rei &mdash; live matcher + coverage HUD</h2></summary>
+<details class="tool" id="sec-yurei"><summary><h2>16 &middot; Testing Y&#363;rei / Mr&nbsp;Grey &mdash; live matcher + coverage HUD</h2></summary>
 <style>
   #ty-transcript { display:flex; flex-direction:column; gap:.5rem; margin:.6rem 0; max-height:520px; overflow:auto; }
   .ty-turn { display:flex; flex-direction:column; gap:.25rem; }
@@ -3272,9 +3293,13 @@ function adminHtml(env, adminEmail) {
   .gl-row.gl-resolved { opacity:.5; }
   .gl-c { white-space:pre-wrap; }
   .gl-tags { display:flex; flex-wrap:wrap; gap:.3rem .8rem; margin-top:.3rem; font-size:13px; color:var(--dim); align-items:center; }
+  .ty-pbtn.ty-p-on { background:var(--accent,#c41e3a); color:#fff; border-color:var(--accent,#c41e3a); }
 </style>
-<p class="hint">Runs the EXACT live matcher (wuld.ink/components/yurei-oracle.js) + corpora, proxied same-origin &mdash; nothing here touches the public widget. <b>Green</b> = a response id never shown before (new coverage); <b>yellow</b> = seen before; grey = deflection/miss. Miss turns (below-threshold or all-damped, never repeats) log <b>PII-scrubbed</b> to the Gap Log. Raw input never leaves this browser &mdash; only scrubbed misses + anonymous votes are sent.</p>
+<p class="hint">Runs the EXACT live matcher (wuld.ink/components/yurei-oracle.js) + corpora, proxied same-origin &mdash; nothing here touches the public widget. <b>Green</b> = a response id never shown before (new coverage); <b>yellow</b> = seen before; grey = deflection/miss. Miss turns (below-threshold or all-damped, never repeats) log <b>PII-scrubbed</b> to the Gap Log. Raw input never leaves this browser &mdash; only scrubbed misses + anonymous votes are sent. <b>Persona</b> scopes this bench <i>and</i> the Gap Log below to one lane (Y&#363;rei or Mr&nbsp;Grey) &mdash; same machinery, same scrub, per-persona store that never mixes. Mr&nbsp;Grey's corpus is young, so most turns will miss-log: that is the corpus-building signal.</p>
 <div class="tablebar">
+  <span>persona</span>
+  <button id="ty-p-yurei" type="button" class="ty-pbtn ty-p-on">Y&#363;rei</button>
+  <button id="ty-p-mrgrey" type="button" class="ty-pbtn">Mr Grey</button>
   <span id="ty-status" role="status">not loaded</span>
   <label><input type="checkbox" id="ty-unsealed"> unsealed (room tier)</label>
   <button id="ty-reset-seen" type="button">reset seen (<span id="ty-seen-n">0</span>)</button>
@@ -3289,7 +3314,9 @@ function adminHtml(env, adminEmail) {
 
 <details class="tool" id="sec-gaplog"><summary><h2>17 &middot; Gap Log &mdash; coverage misses + hit quality</h2></summary>
 <div class="tablebar">
-  <span>lane</span>
+  <span>persona</span>
+  <button id="gl-persona" type="button" class="ty-pbtn">Y&#363;rei</button>
+  <span>&middot; lane</span>
   <button id="gl-lane-miss" type="button">misses</button>
   <button id="gl-lane-hit" type="button">hit quality</button>
   <span>&middot; sort</span>
@@ -3298,11 +3325,11 @@ function adminHtml(env, adminEmail) {
   <button id="gl-sort-class" type="button">class</button>
   <button id="gl-reload" type="button">reload</button>
   <a id="gl-export" class="rowbtn" href="/api/gaplog/export?lane=miss" download>export</a>
-    <span>&middot; visitor lane</span>
+    <span id="gl-visitor-label">&middot; visitor lane</span>
     <span id="gl-visitor-chip">&ndash;</span>
     <button id="gl-visitor-toggle" type="button">toggle</button>
 </div>
-<p class="hint">Miss rows are PII-scrubbed inputs the matcher had no answer for &mdash; <b>never auto-deleted</b>. <b>resolve</b> marks a gap handled; <b>redact</b> blanks one row's content; <b>drop</b> removes one row (manual remedy only). Hit-quality: <b>thin</b> = one entry fired &ge;3&times; in a session; <b>novel</b>/<b>repetitive</b> are your votes. No identity, no query content on the hit lane.</p>
+<p class="hint">Miss rows are PII-scrubbed inputs the matcher had no answer for &mdash; <b>never auto-deleted</b>. <b>resolve</b> marks a gap handled; <b>redact</b> blanks one row's content; <b>drop</b> removes one row (manual remedy only). Hit-quality: <b>thin</b> = one entry fired &ge;3&times; in a session; <b>novel</b>/<b>repetitive</b> are your votes. No identity, no query content on the hit lane. The same scrub + controls govern <b>every persona lane</b> (Y&#363;rei and Mr&nbsp;Grey alike); the visitor lane is Y&#363;rei-only &mdash; the public Mr&nbsp;Grey surface stays separately gated.</p>
 <div id="gl-info" role="status">&ndash;</div>
 <div id="gl-list"></div>
 </details>
@@ -4019,9 +4046,12 @@ function adminHtml(env, adminEmail) {
     if ($("ep-date")) $("ep-date").value = t;
   })();
 
-  /* ===== Testing Yurei + Gap Log (K228, Build 1.5a) ===== */
-  var SEEN_KEY = "wuld:admin-yurei-seen";
-  var TY = { loaded:false, loading:false, entries:[], unsealed:false, matcher:null, seen:null, sessFires:{}, THIN_K:3 };
+  /* ===== Testing Yurei / Mr Grey + Gap Log (K228 Build 1.5a; K247 persona lanes) ===== */
+  var PERSONAS = {
+    yurei:  { label: "Yūrei",  seenKey: "wuld:admin-yurei-seen" },
+    mrgrey: { label: "Mr Grey",     seenKey: "wuld:admin-mrgrey-seen" }
+  };
+  var TY = { persona:"yurei", cache:{}, loading:false, entries:[], unsealed:false, matcher:null, seen:null, sessFires:{}, THIN_K:3 };
   var GL = { lane:"miss", sort:"count", loaded:false };
   var GAP_QUEUE = [], GAP_TIMER = null, GAP_FLUSH_MS = 2500;
 
@@ -4067,29 +4097,40 @@ function adminHtml(env, adminEmail) {
     });
   }
 
-  function tyLoadSeen() { try { TY.seen = new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || "[]")); } catch (e) { TY.seen = new Set(); } tySeenN(); }
-  function tySaveSeen() { try { localStorage.setItem(SEEN_KEY, JSON.stringify(Array.prototype.slice.call(TY.seen))); } catch (e) {} }
+  function tyLoadSeen() { try { TY.seen = new Set(JSON.parse(localStorage.getItem(PERSONAS[TY.persona].seenKey) || "[]")); } catch (e) { TY.seen = new Set(); } tySeenN(); }
+  function tySaveSeen() { try { localStorage.setItem(PERSONAS[TY.persona].seenKey, JSON.stringify(Array.prototype.slice.call(TY.seen))); } catch (e) {} }
   function tySeenN() { if ($("ty-seen-n")) $("ty-seen-n").textContent = TY.seen ? TY.seen.size : 0; }
 
-  function tyRebuild() { if (window.YureiOracle) { TY.matcher = new window.YureiOracle.Matcher(TY.entries, { unsealed: TY.unsealed }); TY.sessFires = {}; } }
+  function tyRebuild() { if (window.YureiOracle) { TY.matcher = new window.YureiOracle.Matcher(TY.entries, { unsealed: TY.persona === "yurei" && TY.unsealed }); TY.sessFires = {}; } }
+  function tyStatusLine(p) {
+    var c = TY.cache[p] || { pub: 0, orc: 0 };
+    $("ty-status").textContent = p === "yurei"
+      ? "live matcher ready - " + c.pub + " public + " + c.orc + " oracle entries"
+      : "live matcher ready - " + c.pub + " Mr Grey entries (no room tier yet)";
+  }
   function tyBootstrap() {
-    if (TY.loading || TY.loaded) return;
+    var p = TY.persona;
+    if (TY.loading) return;
+    if (TY.cache[p]) { TY.entries = TY.cache[p].entries; tyRebuild(); tyStatusLine(p); return; }
     TY.loading = true; $("ty-status").textContent = "loading live matcher...";
     import("/api/gaplog/proxy/matcher").then(function () {
-      return Promise.all([
-        fetch("/api/gaplog/proxy/corpus-public").then(function (r) { return r.ok ? r.json() : null; }),
-        fetch("/api/gaplog/proxy/corpus-oracle").then(function (r) { return r.ok ? r.json() : null; })
-      ]);
+      var reqs = [fetch("/api/gaplog/proxy/corpus-public?persona=" + p).then(function (r) { return r.ok ? r.json() : null; })];
+      if (p === "yurei") reqs.push(fetch("/api/gaplog/proxy/corpus-oracle?persona=" + p).then(function (r) { return r.ok ? r.json() : null; }));
+      return Promise.all(reqs);
     }).then(function (res) {
       if (!window.YureiOracle) throw new Error("matcher global missing after import");
       var pe = (res[0] && res[0].yurei_corpus && res[0].yurei_corpus.entries) || [];
       var oe = (res[1] && res[1].yurei_corpus && res[1].yurei_corpus.entries) || [];
-      TY.entries = pe.concat(oe); TY.loaded = true; TY.loading = false; tyRebuild();
-      $("ty-status").textContent = "live matcher ready - " + pe.length + " public + " + oe.length + " oracle entries";
-      log("testing-yurei: loaded " + TY.entries.length + " entries");
+      TY.cache[p] = { entries: pe.concat(oe), pub: pe.length, orc: oe.length };
+      TY.loading = false;
+      if (TY.persona !== p) { tyBootstrap(); return; } // flipped mid-load: cache kept, load the active lane
+      TY.entries = TY.cache[p].entries; tyRebuild(); tyStatusLine(p);
+      log("testing-" + p + ": loaded " + TY.entries.length + " entries");
     }).catch(function (e) {
-      TY.loading = false; $("ty-status").textContent = "load FAILED: " + (e && e.message || e);
-      log("testing-yurei load failed: " + (e && e.message || e));
+      TY.loading = false;
+      if (TY.persona !== p) { tyBootstrap(); return; }
+      $("ty-status").textContent = "load FAILED: " + (e && e.message || e);
+      log("testing-" + p + " load failed: " + (e && e.message || e));
     });
   }
 
@@ -4100,15 +4141,15 @@ function adminHtml(env, adminEmail) {
     var r = c.r, isNew = false;
     if (r.id) { isNew = !TY.seen.has(r.id); if (isNew) { TY.seen.add(r.id); tySaveSeen(); tySeenN(); } }
     tyRender(raw, r, isNew, c.isMiss);
-    if (c.isMiss) gapEnqueue({ lane:"miss", content_scrubbed: gaplogScrub(raw), class: c.missClass });
-    if (r.id) { TY.sessFires[r.id] = (TY.sessFires[r.id] || 0) + 1; if (TY.sessFires[r.id] === TY.THIN_K) gapEnqueue({ lane:"hit", entry_id:r.id, kind:"thin" }); }
+    if (c.isMiss) gapEnqueue({ lane:"miss", persona: TY.persona, content_scrubbed: gaplogScrub(raw), class: c.missClass });
+    if (r.id) { TY.sessFires[r.id] = (TY.sessFires[r.id] || 0) + 1; if (TY.sessFires[r.id] === TY.THIN_K) gapEnqueue({ lane:"hit", persona: TY.persona, entry_id:r.id, kind:"thin" }); }
   }
   function tyRender(raw, r, isNew, isMiss) {
     var wrap = $("ty-transcript");
     var row = document.createElement("div"); row.className = "ty-turn";
     var bcls = r.id ? (isNew ? "ty-bubble ty-fresh" : "ty-bubble ty-seen") : "ty-bubble ty-miss";
     var laneTag = isMiss ? "miss:" + (r.lane || "-") : (r.lane || "-");
-    var votes = r.id ? ('<button class=rowbtn data-vote=novel data-id="' + esc(r.id) + '">novel</button><button class=rowbtn data-vote=repetitive data-id="' + esc(r.id) + '">repetitive</button>') : "";
+    var votes = r.id ? ('<button class=rowbtn data-vote=novel data-id="' + esc(r.id) + '" data-persona="' + esc(TY.persona) + '">novel</button><button class=rowbtn data-vote=repetitive data-id="' + esc(r.id) + '" data-persona="' + esc(TY.persona) + '">repetitive</button>') : "";
     row.innerHTML =
       '<div class=ty-q><b>you</b> ' + esc(raw) + '</div>' +
       '<div class="' + bcls + '"><div class=ty-r>' + (r.response ? esc(r.response) : '<i>(deflection &mdash; no response)</i>') + '</div>' +
@@ -4117,20 +4158,48 @@ function adminHtml(env, adminEmail) {
     wrap.insertBefore(row, wrap.firstChild);
   }
 
+  /* --- K247 persona switch: ONE state (TY.persona) scopes the bench (sec 16),
+   * the gap log (sec 17) and the LOG tags. Default 'yurei' — nothing about the
+   * K246 view changes until flipped. Queued gap items carry their persona at
+   * enqueue time, so a flip never retags in-flight writes. --- */
+  function tyPaintPersona() {
+    var p = TY.persona, grey = p === "mrgrey";
+    if ($("ty-p-yurei")) $("ty-p-yurei").className = "ty-pbtn" + (grey ? "" : " ty-p-on");
+    if ($("ty-p-mrgrey")) $("ty-p-mrgrey").className = "ty-pbtn" + (grey ? " ty-p-on" : "");
+    if ($("gl-persona")) { $("gl-persona").textContent = PERSONAS[p].label; $("gl-persona").className = "ty-pbtn" + (grey ? " ty-p-on" : ""); }
+    if ($("ty-unsealed")) { $("ty-unsealed").disabled = grey; $("ty-unsealed").title = grey ? "Yūrei-only (Mr Grey has no room tier yet)" : ""; }
+    var ids = ["gl-visitor-label", "gl-visitor-chip", "gl-visitor-toggle"];
+    for (var i = 0; i < ids.length; i++) { if ($(ids[i])) $(ids[i]).style.display = grey ? "none" : ""; }
+  }
+  function tySetPersona(p) {
+    if (!PERSONAS[p] || TY.persona === p) return;
+    tySaveSeen();
+    TY.persona = p;
+    tyLoadSeen();
+    TY.matcher = null; TY.entries = (TY.cache[p] && TY.cache[p].entries) || []; TY.sessFires = {};
+    $("ty-transcript").innerHTML = "";
+    tyPaintPersona();
+    if ($("sec-yurei").open) tyBootstrap();
+    if (GL.loaded) glReload();
+    log("persona: " + p + " (" + PERSONAS[p].label + ") - bench + gap log scoped");
+  }
+
   function glSetLane(lane) { GL.lane = lane; if (lane === "hit" && GL.sort === "class") GL.sort = "count"; glReload(); }
   function glReload() {
-    if ($("gl-export")) $("gl-export").setAttribute("href", "/api/gaplog/export?lane=" + GL.lane);
-    api("/api/gaplog/rows?lane=" + GL.lane + "&sort=" + GL.sort).then(function (r) {
+    if ($("gl-export")) $("gl-export").setAttribute("href", "/api/gaplog/export?lane=" + GL.lane + "&persona=" + TY.persona);
+    api("/api/gaplog/rows?lane=" + GL.lane + "&sort=" + GL.sort + "&persona=" + TY.persona).then(function (r) {
       if (r.status !== 200) { $("gl-info").textContent = "unavailable: " + JSON.stringify(r.j).slice(0, 160); $("gl-list").innerHTML = ""; return; }
       glRender(r.j.rows || []);
     });
   }
   function glRender(rows) {
-    $("gl-info").textContent = GL.lane + " - " + rows.length + " rows - sort " + GL.sort;
+    var rp = TY.persona;
+    $("gl-info").textContent = GL.lane + " - " + rows.length + " rows - sort " + GL.sort + (rp === "yurei" ? "" : " - " + PERSONAS[rp].label);
     var list = $("gl-list"); list.innerHTML = "";
     if (!rows.length) { list.innerHTML = "<p class=hint>no rows.</p>"; return; }
     rows.forEach(function (row) {
       var d = document.createElement("div");
+      d.setAttribute("data-persona", rp);
       if (GL.lane === "miss") {
         d.className = "gl-row" + (row.resolved ? " gl-resolved" : "");
         d.innerHTML =
@@ -4152,14 +4221,18 @@ function adminHtml(env, adminEmail) {
   }
 
   tyLoadSeen();
+  tyPaintPersona();
+  $("ty-p-yurei").addEventListener("click", function () { tySetPersona("yurei"); });
+  $("ty-p-mrgrey").addEventListener("click", function () { tySetPersona("mrgrey"); });
+  if ($("gl-persona")) $("gl-persona").addEventListener("click", function () { tySetPersona(TY.persona === "yurei" ? "mrgrey" : "yurei"); });
   $("sec-yurei").addEventListener("toggle", function () { if ($("sec-yurei").open) tyBootstrap(); });
   $("ty-form").addEventListener("submit", function (ev) { ev.preventDefault(); var v = $("ty-input").value; if (v && v.trim()) { tySend(v); $("ty-input").value = ""; } });
   $("ty-unsealed").addEventListener("change", function () { TY.unsealed = $("ty-unsealed").checked; tyRebuild(); $("ty-transcript").innerHTML = ""; log("testing-yurei: unsealed=" + TY.unsealed + " (fresh session)"); });
-  $("ty-reset-seen").addEventListener("click", function () { TY.seen = new Set(); tySaveSeen(); tySeenN(); log("testing-yurei: seen-set reset"); });
-  $("ty-new-session").addEventListener("click", function () { tyRebuild(); $("ty-transcript").innerHTML = ""; log("testing-yurei: new matcher session"); });
+  $("ty-reset-seen").addEventListener("click", function () { TY.seen = new Set(); tySaveSeen(); tySeenN(); log("testing-" + TY.persona + ": seen-set reset"); });
+  $("ty-new-session").addEventListener("click", function () { tyRebuild(); $("ty-transcript").innerHTML = ""; log("testing-" + TY.persona + ": new matcher session"); });
   $("ty-transcript").addEventListener("click", function (ev) {
     var b = ev.target.closest && ev.target.closest("button[data-vote]"); if (!b) return;
-    gapEnqueue({ lane:"hit", entry_id: b.getAttribute("data-id"), kind: b.getAttribute("data-vote") });
+    gapEnqueue({ lane:"hit", persona: b.getAttribute("data-persona") || TY.persona, entry_id: b.getAttribute("data-id"), kind: b.getAttribute("data-vote") });
     b.disabled = true; b.textContent = b.getAttribute("data-vote") + " ok";
   });
   $("sec-gaplog").addEventListener("toggle", function () { if ($("sec-gaplog").open) { glLoadVisitor(); if (!GL.loaded) { GL.loaded = true; glReload(); } } });
@@ -4181,7 +4254,8 @@ function adminHtml(env, adminEmail) {
   $("gl-list").addEventListener("click", function (ev) {
     var b = ev.target.closest && ev.target.closest("button[data-gl]"); if (!b) return;
     var act = b.getAttribute("data-gl"), id = parseInt(b.getAttribute("data-id"), 10);
-    var body = { id: id }; if (b.getAttribute("data-lane") === "hit") body.lane = "hit";
+    var rowEl = b.closest ? b.closest("[data-persona]") : null;
+    var body = { id: id, persona: (rowEl && rowEl.getAttribute("data-persona")) || TY.persona }; if (b.getAttribute("data-lane") === "hit") body.lane = "hit";
     post("/api/gaplog/" + act, body).then(function (r) { if (r.status === 200) glReload(); else log("gaplog " + act + " failed " + r.status); });
   });
 
