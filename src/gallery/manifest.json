@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "media_base": "https://audio.wuld.ink",
-  "updated": "2026-06-11",
+  "updated": "2026-07-18",
   "categories": [
     {
       "slug": "editorial",
@@ -47,6 +47,11 @@
       "slug": "the-wrong-thing",
       "name": "The Wrong Thing",
       "caption_tier": "title"
+    },
+    {
+      "slug": "workshop",
+      "name": "The Workshop",
+      "caption_tier": "full"
     }
   ],
   "plates": [
@@ -10885,6 +10890,1165 @@
         "poster": "gallery/main-character/posters/main-character-f88e4fe53480.webp"
       },
       "caption_tier": "none"
+    },
+    {
+      "id": "workshop-cat",
+      "r2key": "gallery/workshop/cat_preview_v1.webp",
+      "num": "001",
+      "title": "cat_v1",
+      "technique": "40 KB, five clips (idle_breathe, purr, sit, curl, tail_flick), no armature — the cheapest character in the bank. The hinge character.",
+      "body": "",
+      "epitaph": "",
+      "series": "characters",
+      "order": 1,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-house-ranch-a",
+      "r2key": "gallery/workshop/house_ranch_a_preview_v1.webp",
+      "num": "002",
+      "title": "house_ranch_a_v1",
+      "technique": "144 tris — flat-roof brick rancher; door recess sized to take door_v1 whole — the kit assembles.",
+      "body": "",
+      "epitaph": "",
+      "series": "structures",
+      "order": 2,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-house-ranch-b",
+      "r2key": "gallery/workshop/house_ranch_b_preview_v1.webp",
+      "num": "003",
+      "title": "house_ranch_b_v1",
+      "technique": "152 tris — gable variant of the rancher.",
+      "body": "",
+      "epitaph": "",
+      "series": "structures",
+      "order": 3,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-carport",
+      "r2key": "gallery/workshop/carport_preview_v1.webp",
+      "num": "004",
+      "title": "carport_v1",
+      "technique": "72 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "structures",
+      "order": 4,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-yard-wall",
+      "r2key": "gallery/workshop/yard_wall_preview_v1.webp",
+      "num": "005",
+      "title": "yard_wall_v1",
+      "technique": "48 tris — tiles at 4.0.",
+      "body": "",
+      "epitaph": "",
+      "series": "structures",
+      "order": 5,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-garage-face",
+      "r2key": "gallery/workshop/garage_face_preview_v1.webp",
+      "num": "006",
+      "title": "garage_face_v1",
+      "technique": "24 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "structures",
+      "order": 6,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-campus-building",
+      "r2key": "gallery/workshop/campus_building_preview_v1.webp",
+      "num": "007",
+      "title": "campus_building_v1",
+      "technique": "312 tris — two-story — the block's only vertical mass; double-entry takes door_v1 whole.",
+      "body": "",
+      "epitaph": "",
+      "series": "structures",
+      "order": 7,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-store-front",
+      "r2key": "gallery/workshop/store_front_preview_v1.webp",
+      "num": "008",
+      "title": "store_front_v1",
+      "technique": "156 tris — blank signboard slot.",
+      "body": "",
+      "epitaph": "",
+      "series": "structures",
+      "order": 8,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-wall-brickiron",
+      "r2key": "gallery/workshop/wall_brickiron_preview_v1.webp",
+      "num": "009",
+      "title": "wall_brickiron_v1",
+      "technique": "Tiles at 4.0.",
+      "body": "",
+      "epitaph": "",
+      "series": "structures",
+      "order": 9,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-streetlight",
+      "r2key": "gallery/workshop/streetlight_preview_v1.webp",
+      "num": "010",
+      "title": "streetlight_v1",
+      "technique": "72 tris — pale glow plate on its own slot, for a code light.",
+      "body": "",
+      "epitaph": "",
+      "series": "street-curb",
+      "order": 10,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-pole-power",
+      "r2key": "gallery/workshop/pole_power_preview_v1.webp",
+      "num": "011",
+      "title": "pole_power_v1",
+      "technique": "216 tris — catenary spans chain at exactly 8.0.",
+      "body": "",
+      "epitaph": "",
+      "series": "street-curb",
+      "order": 11,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-sign-stop",
+      "r2key": "gallery/workshop/sign_stop_preview_v1.webp",
+      "num": "012",
+      "title": "sign_stop_v1",
+      "technique": "52 tris — octagon; optional shiver-loop.",
+      "body": "",
+      "epitaph": "",
+      "series": "street-curb",
+      "order": 12,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-hydrant",
+      "r2key": "gallery/workshop/hydrant_preview_v1.webp",
+      "num": "013",
+      "title": "hydrant_v1",
+      "technique": "84 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "street-curb",
+      "order": 13,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-car-sedan",
+      "r2key": "gallery/workshop/car_sedan_preview_v1.webp",
+      "num": "014",
+      "title": "car_sedan_v1",
+      "technique": "220 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "street-curb",
+      "order": 14,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-fence-picket",
+      "r2key": "gallery/workshop/fence_picket_preview_v1.webp",
+      "num": "015",
+      "title": "fence_picket_v1",
+      "technique": "204 tris — tiles at 4.0.",
+      "body": "",
+      "epitaph": "",
+      "series": "street-curb",
+      "order": 15,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-mailbox",
+      "r2key": "gallery/workshop/mailbox_preview_v1.webp",
+      "num": "016",
+      "title": "mailbox_v1",
+      "technique": "100 tris — flag down; flag-up is a dormant story hook.",
+      "body": "",
+      "epitaph": "",
+      "series": "street-curb",
+      "order": 16,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-bin-trash",
+      "r2key": "gallery/workshop/bin_trash_preview_v1.webp",
+      "num": "017",
+      "title": "bin_trash_v1",
+      "technique": "108 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "street-curb",
+      "order": 17,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-tree",
+      "r2key": "gallery/workshop/tree_preview_v1.webp",
+      "num": "018",
+      "title": "tree_v1",
+      "technique": "80 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 18,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-hedge",
+      "r2key": "gallery/workshop/hedge_preview_v1.webp",
+      "num": "019",
+      "title": "hedge_v1",
+      "technique": "24 tris — tiles at 2.0.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 19,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-bench-park",
+      "r2key": "gallery/workshop/bench_park_preview_v1.webp",
+      "num": "020",
+      "title": "bench_park_v1",
+      "technique": "132 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 20,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-rack-bike",
+      "r2key": "gallery/workshop/rack_bike_preview_v1.webp",
+      "num": "021",
+      "title": "rack_bike_v1",
+      "technique": "108 tris — empty slots — the withdrawn-campus register.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 21,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-sign-busstop",
+      "r2key": "gallery/workshop/sign_busstop_preview_v1.webp",
+      "num": "022",
+      "title": "sign_busstop_v1",
+      "technique": "36 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 22,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-shelter-bus",
+      "r2key": "gallery/workshop/shelter_bus_preview_v1.webp",
+      "num": "023",
+      "title": "shelter_bus_v1",
+      "technique": "96 tris — the game's one glass value.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 23,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-swing",
+      "r2key": "gallery/workshop/swing_preview_v1.webp",
+      "num": "024",
+      "title": "swing_v1",
+      "technique": "132 tris — sway-loop; the second seat dead-still.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 24,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-slide-park",
+      "r2key": "gallery/workshop/slide_park_preview_v1.webp",
+      "num": "025",
+      "title": "slide_park_v1",
+      "technique": "168 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 25,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-seesaw-park",
+      "r2key": "gallery/workshop/seesaw_park_preview_v1.webp",
+      "num": "026",
+      "title": "seesaw_park_v1",
+      "technique": "132 tris — frozen 13-degree tilt — someone just left.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 26,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-roundabout-park",
+      "r2key": "gallery/workshop/roundabout_park_preview_v1.webp",
+      "num": "027",
+      "title": "roundabout_park_v1",
+      "technique": "180 tris — frozen.",
+      "body": "",
+      "epitaph": "",
+      "series": "lawn-transit-playground",
+      "order": 27,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-tree-pine",
+      "r2key": "gallery/workshop/tree_pine_preview_v1.webp",
+      "num": "028",
+      "title": "tree_pine_v1",
+      "technique": "80 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 28,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-stump-woods",
+      "r2key": "gallery/workshop/stump_woods_preview_v1.webp",
+      "num": "029",
+      "title": "stump_woods_v1",
+      "technique": "120 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 29,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-log-woods",
+      "r2key": "gallery/workshop/log_woods_preview_v1.webp",
+      "num": "030",
+      "title": "log_woods_v1",
+      "technique": "92 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 30,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-rocks-woods",
+      "r2key": "gallery/workshop/rocks_woods_preview_v1.webp",
+      "num": "031",
+      "title": "rocks_woods_v1",
+      "technique": "60 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 31,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-branches-woods",
+      "r2key": "gallery/workshop/branches_woods_preview_v1.webp",
+      "num": "032",
+      "title": "branches_woods_v1",
+      "technique": "80 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 32,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-boulder-woods",
+      "r2key": "gallery/workshop/boulder_woods_preview_v1.webp",
+      "num": "033",
+      "title": "boulder_woods_v1",
+      "technique": "36 tris — waist cover.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 33,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-marker-woods",
+      "r2key": "gallery/workshop/marker_woods_preview_v1.webp",
+      "num": "034",
+      "title": "marker_woods_v1",
+      "technique": "24 tris — blank trailhead plank.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 34,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-trunk-fallen",
+      "r2key": "gallery/workshop/trunk_fallen_preview_v1.webp",
+      "num": "035",
+      "title": "trunk_fallen_v1",
+      "technique": "120 tris — torn root plate.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 35,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-scrub-clump",
+      "r2key": "gallery/workshop/scrub_clump_preview_v1.webp",
+      "num": "036",
+      "title": "scrub_clump_v1",
+      "technique": "68 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "woods",
+      "order": 36,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-car-tarped",
+      "r2key": "gallery/workshop/car_tarped_preview_v1.webp",
+      "num": "037",
+      "title": "car_tarped_v1",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 37,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-sedan-deadblocks",
+      "r2key": "gallery/workshop/sedan_deadblocks_preview_v1.webp",
+      "num": "038",
+      "title": "sedan_deadblocks_v1",
+      "technique": "264 tris — wheels-off on cribs; hood-off dark bay.",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 38,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-boat-trailer",
+      "r2key": "gallery/workshop/boat_trailer_preview_v1.webp",
+      "num": "039",
+      "title": "boat_trailer_v1",
+      "technique": "260 tris — tarp on its own killable slot.",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 39,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-rv-5thwheel",
+      "r2key": "gallery/workshop/rv_5thwheel_preview_v1.webp",
+      "num": "040",
+      "title": "rv_5thwheel_v1",
+      "technique": "264 tris — dead-parked.",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 40,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-trailer-horse",
+      "r2key": "gallery/workshop/trailer_horse_preview_v1.webp",
+      "num": "041",
+      "title": "trailer_horse_v1",
+      "technique": "216 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 41,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-trailer-utility",
+      "r2key": "gallery/workshop/trailer_utility_preview_v1.webp",
+      "num": "042",
+      "title": "trailer_utility_v1",
+      "technique": "272 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 42,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-canopy-pipe",
+      "r2key": "gallery/workshop/canopy_pipe_preview_v1.webp",
+      "num": "043",
+      "title": "canopy_pipe_v1",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 43,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-roof-cooler",
+      "r2key": "gallery/workshop/roof_cooler_preview_v1.webp",
+      "num": "044",
+      "title": "roof_cooler_v1",
+      "technique": "",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 44,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-roof-vents",
+      "r2key": "gallery/workshop/roof_vents_preview_v1.webp",
+      "num": "045",
+      "title": "roof_vents_v1",
+      "technique": "144 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 45,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-pole-transformer",
+      "r2key": "gallery/workshop/pole_transformer_preview_v1.webp",
+      "num": "046",
+      "title": "pole_transformer_v1",
+      "technique": "104 tris — mounts on the pole.",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 46,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-cypress",
+      "r2key": "gallery/workshop/cypress_preview_v1.webp",
+      "num": "047",
+      "title": "cypress_v1",
+      "technique": "80 tris — plants in pairs at house fronts.",
+      "body": "",
+      "epitaph": "",
+      "series": "yard-stagnation",
+      "order": 47,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-chair-restraint",
+      "r2key": "gallery/workshop/chair_restraint_preview_v1.webp",
+      "num": "048",
+      "title": "chair_restraint_v1",
+      "technique": "264 tris — creak-loop.",
+      "body": "",
+      "epitaph": "",
+      "series": "institutional",
+      "order": 48,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-desk-school",
+      "r2key": "gallery/workshop/desk_school_preview_v1.webp",
+      "num": "049",
+      "title": "desk_school_v1",
+      "technique": "120 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "institutional",
+      "order": 49,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-door",
+      "r2key": "gallery/workshop/door_preview_v1.webp",
+      "num": "050",
+      "title": "door_v1",
+      "technique": "96 tris — open, close, drift_open at 8.5 s — the horror beat.",
+      "body": "",
+      "epitaph": "",
+      "series": "institutional",
+      "order": 50,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-locker-bank",
+      "r2key": "gallery/workshop/locker_bank_preview_v1.webp",
+      "num": "051",
+      "title": "locker_bank_v1",
+      "technique": "168 tris — drift_open; optional rattle-loop.",
+      "body": "",
+      "epitaph": "",
+      "series": "institutional",
+      "order": 51,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-fan-ceiling",
+      "r2key": "gallery/workshop/fan_ceiling_preview_v1.webp",
+      "num": "052",
+      "title": "fan_ceiling_v1",
+      "technique": "84 tris — spin.",
+      "body": "",
+      "epitaph": "",
+      "series": "institutional",
+      "order": 52,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-hang-lamp",
+      "r2key": "gallery/workshop/hang_lamp_preview_v1.webp",
+      "num": "053",
+      "title": "hang_lamp_v1",
+      "technique": "48 tris — sway; ceiling-mount origin.",
+      "body": "",
+      "epitaph": "",
+      "series": "institutional",
+      "order": 53,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-clock-wall",
+      "r2key": "gallery/workshop/clock_wall_preview_v1.webp",
+      "num": "054",
+      "title": "clock_wall_v1",
+      "technique": "104 tris — frozen at 2:47; red second hand; 60 s tick-loop.",
+      "body": "",
+      "epitaph": "",
+      "series": "institutional",
+      "order": 54,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-photo-frame",
+      "r2key": "gallery/workshop/photo_frame_preview_v1.webp",
+      "num": "055",
+      "title": "photo_frame_v1",
+      "technique": "36 tris — blank photo on its own slot; the image is author-gated.",
+      "body": "",
+      "epitaph": "",
+      "series": "items-weapons",
+      "order": 55,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-phone-screen",
+      "r2key": "gallery/workshop/phone_screen_preview_v1.webp",
+      "num": "056",
+      "title": "phone_screen_v1",
+      "technique": "24 tris — screen slot — code owns the glow.",
+      "body": "",
+      "epitaph": "",
+      "series": "items-weapons",
+      "order": 56,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-weapon-bat",
+      "r2key": "gallery/workshop/weapon_bat_preview_v1.webp",
+      "num": "057",
+      "title": "weapon_bat_v1",
+      "technique": "112 tris — origin at the grip, length +Y.",
+      "body": "",
+      "epitaph": "",
+      "series": "items-weapons",
+      "order": 57,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-weapon-pipe",
+      "r2key": "gallery/workshop/weapon_pipe_preview_v1.webp",
+      "num": "058",
+      "title": "weapon_pipe_v1",
+      "technique": "56 tris — origin at the grip, length +Y.",
+      "body": "",
+      "epitaph": "",
+      "series": "items-weapons",
+      "order": 58,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-loot-box",
+      "r2key": "gallery/workshop/loot_box_preview_v1.webp",
+      "num": "059",
+      "title": "loot_box_v1",
+      "technique": "72 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "items-weapons",
+      "order": 59,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-loot-crate",
+      "r2key": "gallery/workshop/loot_crate_preview_v1.webp",
+      "num": "060",
+      "title": "loot_crate_v1",
+      "technique": "232 tris — half-emptied bottle crate.",
+      "body": "",
+      "epitaph": "",
+      "series": "items-weapons",
+      "order": 60,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
+    },
+    {
+      "id": "workshop-loot-canister",
+      "r2key": "gallery/workshop/loot_canister_preview_v1.webp",
+      "num": "061",
+      "title": "loot_canister_v1",
+      "technique": "112 tris.",
+      "body": "",
+      "epitaph": "",
+      "series": "items-weapons",
+      "order": 61,
+      "tier": "standard",
+      "content_flags": [],
+      "added": "2026-07-18",
+      "category": "workshop",
+      "media": {
+        "kind": "image"
+      },
+      "caption_tier": "full"
     }
   ]
 }
