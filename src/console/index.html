@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/components/ambient-player.css?v=K30">
   <link rel="stylesheet" href="/components/wrong-hour.css?v=K208">
   <link rel="stylesheet" href="/components/console.css?v=K235">
+  <link rel="stylesheet" href="/components/console-scene.css?v=K248">
   <link rel="license" href="/LICENSE">
   <title>Console &mdash; a seeded descent &middot; wuld.ink</title>
   <meta name="description" content="A black-console descent, generated from a seed. Type to move room to room through an ashen structure. Deterministic, private, keyboard-first &mdash; a small piece of fiction.">
@@ -109,6 +110,7 @@
   </div>
   <script>/*wgate-logic*/(function(){var PASS="facilis-descensus";var norm=function(s){return (s||"").trim().toLowerCase().replace(/[\s\-]+/g,"");};var g=document.getElementById("wgate-console");if(!g)return;if(document.documentElement.classList.contains("cgate-open"))return;var f=g.querySelector("form"),i=g.querySelector(".wgate-input"),e=g.querySelector(".wgate-err");if(f){f.addEventListener("submit",function(ev){ev.preventDefault();if(norm(i&&i.value)===norm(PASS)){try{localStorage.setItem("wuld:console:unlocked","1");}catch(_){}document.documentElement.classList.add("cgate-open");}else{if(e)e.hidden=false;if(i){i.value="";i.focus();}}});}if(i)i.focus();})();</script>
   <!-- wgate:body:end -->
+  <div id="con-scene" data-con-scene aria-hidden="true" hidden></div>
   <a href="#main" class="skip-link">Skip to content</a>
 
   <header class="site-header">
@@ -200,5 +202,6 @@
   <script src="/components/console-prng.js?v=K235"></script>
   <script src="/components/console-engine.js?v=K235"></script>
   <script src="/components/console.js?v=K235"></script>
+  <script src="/components/console-scene.js?v=K248"></script>
 </body>
 </html>

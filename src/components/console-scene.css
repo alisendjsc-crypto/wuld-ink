@@ -1,0 +1,69 @@
+/* console-scene.css -- the /console/ immersion layer (K248). Loaded ONLY by
+   /console/. A fixed full-bleed scene canvas behind the page; the terminal
+   becomes a translucent near-black glass band over it. Everything is scoped
+   under body.con-scene-on (added by console-scene.js at boot), so with the
+   script absent or failed the page renders exactly as it did at K235 --
+   console.css is byte-held and owns the terminal's base styling.
+   LEGIBILITY FIRST: the band backing is rgba(5,5,6,0.82) -- over the scene's
+   darkest region (the floor plane, by palette construction) the effective
+   backing stays near #101012, keeping mono text far past WCAG AAA. No color
+   override touches the terminal's text. */
+
+#con-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+  background: #050506;
+}
+body.con-scene-on #con-scene { display: block; }
+#con-scene canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  opacity: 0;
+  transition: opacity 0.3s ease;   /* the room crossfade */
+}
+#con-scene canvas.con-scene-live { opacity: 1; }
+
+/* page content rides above the scene */
+body.con-scene-on .site-header,
+body.con-scene-on main,
+body.con-scene-on .page-footer,
+body.con-scene-on .skip-link {
+  position: relative;
+  z-index: 1;
+}
+
+/* the terminal becomes the glass band -- backing + blur only; the text colors,
+   borders, scanlines and cursor stay console.css's (byte-held) */
+body.con-scene-on .con-term {
+  background: rgba(5, 5, 6, 0.82);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+}
+
+/* hero + page-foot stay legible over the scene: a soft dark halo, no re-color */
+body.con-scene-on .page-hero,
+body.con-scene-on .con-page-foot {
+  text-shadow: 0 1px 10px rgba(5, 5, 6, 0.9), 0 0 2px rgba(5, 5, 6, 0.9);
+}
+
+/* the stage: hero holds the top, the glass band sits low, the scene owns the
+   space between -- the K239 hero pattern mirrored onto a chrome-bearing page */
+body.con-scene-on .console-wrap {
+  min-height: calc(100vh - 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+body.con-scene-on .page-hero { margin-block-end: auto; }
+body.con-scene-on .con-term { min-height: 0; }
+body.con-scene-on .con-out { min-height: 16vh; max-height: 30vh; }
+
+@media (prefers-reduced-motion: reduce) {
+  #con-scene canvas { transition: none; }   /* room change = instant swap, no fade */
+}
