@@ -95,7 +95,7 @@
   ];
 
   var BASE = "/assets/yurei/";
-  var MANIFEST_URL = BASE + "manifest_v2.json";
+  var MANIFEST_URL = BASE + "manifest_v5.json";
   var KEY = "wuld:yurei";        // RESERVED localStorage (cross-session)
   var SKEY = "wuld:yurei.s";     // session-scoped sibling (sessionStorage)
   var MOUNT_PROB = 0.01;         // K117c: per-visitor election — ~1 in 100 first-time browsers get her (sticky); summon() + archive-bottom override

@@ -21,7 +21,7 @@
 
   var COMP = "/components/";
   var ASSET = "/assets/yurei/";
-  var MANIFEST_URL = ASSET + "avatar/avatar_manifest_v4.json";   // K224d: dedicated assistant avatar set (the haunting keeps manifest_v2.json)
+  var MANIFEST_URL = ASSET + "avatar/avatar_manifest_v5.json";   // K224d: dedicated assistant avatar set (the haunting keeps manifest_v2.json)
   var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);   // assets resolve alongside the manifest
   var VER = "K243";
 

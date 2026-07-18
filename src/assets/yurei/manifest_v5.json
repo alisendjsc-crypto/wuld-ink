@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.1",
+  "set": "wuld-yurei-widget",
+  "manifest_version": "v5",
+  "generated": "2026-07-18",
+  "status": "complete",
+  "notes": "haunt_v5: 13-asset re-render adding TRUE GEOMETRIC RELIEF (T5_relief Geometry Nodes modifier, pre-Armature: linear subdiv L2 167k verts + normal displacement from the full 29-element analytic field [17 P4A: spine groove amp -1 + paraspinals + scapular medial-borders + scapular spines + traps + 8 vertebra dots; 12 T4: lumbar channel + erectors + rib arcs + flanks + iliac crests + PSIS dimples + sacral flat], nmask n_y 0.05-0.45 linear + z-window smoothstep rise 0.80-0.834 fall 1.435-1.475, amplitude 0.5x apparent [strength 0.0091 m/unit; spine groove ~9mm true depth]) + shader anatomy halved in tandem (NEW T5_w_p4a 0.5 x existing T4_w_ana 0.5; h_ana stays 1.3 so grain/pores/streaks/hand-grooves keep full strength) + driver-class micro-articulation (breath-spine spine_03.rotX k=0.15deg reading breath_sternum.value directly; finger micro-sines +-0.75deg w96-family, closes at 96/192/288, phase-coherent at f1 across all clips). Rig drivers 61->64. Silhouette: WATCH alpha-centroid delta <=0.008px x8; rest candidate 0.02px. Rollback: T5_relief hidden + T5_w_p4a/T4_w_ana 1.0 + 3 new drivers muted == v4 surface (zero-gate <=2px at 1/255). Framing/anchor identical: head-bone projection (270,168.72) == anchorPx (270,169). P0 = PIL-optimized idle f0001. Set size 1.005x v4 (0.475x v2). md5 = build-time gate; sha256 = runtime browser gate (SubtleCrypto).",
+  "assets": [
+    {
+      "file": "yurei_idle_v5.webm",
+      "role": "idle",
+      "kind": "loop",
+      "frames": 288,
+      "fps": 24,
+      "durationMs": 12000,
+      "loop": true,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "e93801b38271f259bf33147b0d774f43",
+      "sha256": "e24b9a68dee51b77617e07df426262b6a1054c83c38a5d966c13ea5cca11e980",
+      "size_bytes": 688686,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_drift_v5.webm",
+      "role": "drift",
+      "kind": "oneshot",
+      "frames": 96,
+      "fps": 24,
+      "durationMs": 4000,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "191f5740f4b0c3a0a0538f9526b2a8e3",
+      "sha256": "1e2fa0e808c9979ef2a8095ec02332285cd31e52930374eeba4cadf7f43a5ddc",
+      "size_bytes": 558018,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_peek_v5.webm",
+      "role": "peek",
+      "kind": "oneshot",
+      "frames": 72,
+      "fps": 24,
+      "durationMs": 3000,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "542da56703fdbfb57bb12b9b83d22224",
+      "sha256": "ff813ce56ae793feddca671eac25a18e78196c198dffa8f27882c70d93ff7950",
+      "size_bytes": 440976,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_surface_v5.webm",
+      "role": "surface",
+      "kind": "oneshot",
+      "frames": 288,
+      "fps": 24,
+      "durationMs": 12000,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "5192e1b37c35419677c2c0f4295054b1",
+      "sha256": "ce03e16f984dae664301f57bedd1d4c69fc53a298bfa99edb3295bbcd846e4e5",
+      "size_bytes": 474440,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_still_v5.png",
+      "role": "canonical-p0",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "b8f69b0518085706e40c338572da8b19",
+      "sha256": "f62f7a5754367c14e24051495f51a7dea564c16bbd1513d354a6a6712c4a7634",
+      "size_bytes": 353003,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_head_n_v5.png",
+      "role": "watch-n",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "9211fcee1cd5514d178d90ae8c22ebfb",
+      "sha256": "b9229cb8e06134dbf33988ec7ad3dbc2efe49b9a532f71db7e451785c71e23b0",
+      "size_bytes": 353846,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_head_ne_v5.png",
+      "role": "watch-ne",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "2b6963058cbf4dc72edf8a9d4fbf4ddb",
+      "sha256": "e291b89c3dad998165ebd4b6dbc66f0ac9e91b43731099fdcfd1719e7c3b4570",
+      "size_bytes": 343218,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_head_e_v5.png",
+      "role": "watch-e",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "cc44fb7a0eafcd03cf864544e17891b6",
+      "sha256": "ad93b598902c1e1f0716a63aad161d8a0b7277b87032f36c15b3e586b4ec8250",
+      "size_bytes": 337852,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_head_se_v5.png",
+      "role": "watch-se",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "da18f0420ed7c5e14a7b25442c093fe9",
+      "sha256": "0f2765e3c150e7d30236a373c4aea662660432e68635fa8fe33ed7ee4db17ae4",
+      "size_bytes": 347981,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_head_s_v5.png",
+      "role": "watch-s",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "8fdba9b511f95a46b04f46045debbfd7",
+      "sha256": "417251fed38a6b14498e4be656fad2e58434a1db7000a82246cf62a3b3492144",
+      "size_bytes": 346563,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_head_sw_v5.png",
+      "role": "watch-sw",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "2bb5af87612e36b96c33438793970192",
+      "sha256": "732539f0014ad7738ddbe9c48618bf53f6a6f6c71bd7aafb5fafe403dd23f99c",
+      "size_bytes": 346456,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_head_w_v5.png",
+      "role": "watch-w",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "ea807da8b0b0bb80b17e8379e4a59bba",
+      "sha256": "7c10e3263b0a565445ecc54789be6be5b0e37c680d7cfcbb940879ad27dd757e",
+      "size_bytes": 340100,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    },
+    {
+      "file": "yurei_head_nw_v5.png",
+      "role": "watch-nw",
+      "kind": "still",
+      "frames": 1,
+      "fps": null,
+      "durationMs": null,
+      "loop": false,
+      "px": {
+        "w": 540,
+        "h": 720
+      },
+      "anchorPx": {
+        "x": 270,
+        "y": 169
+      },
+      "anchor_confidence": "computed",
+      "md5": "a08b9a7abcee28969be8c72e46c3e378",
+      "sha256": "f3e3aacbe3a945efea262ddea61a77c5fa290c98d6af6e4aea3b11dadc4e0bf9",
+      "size_bytes": 343282,
+      "version": "v5",
+      "render": "3.10-v4fidelity-hauntv5-T5relief"
+    }
+  ],
+  "has_source_ref": false,
+  "upgraded_roles": [
+    "idle",
+    "drift",
+    "peek",
+    "surface",
+    "canonical-p0",
+    "watch-n",
+    "watch-ne",
+    "watch-e",
+    "watch-se",
+    "watch-s",
+    "watch-sw",
+    "watch-w",
+    "watch-nw"
+  ],
+  "deferred_roles": []
+}
