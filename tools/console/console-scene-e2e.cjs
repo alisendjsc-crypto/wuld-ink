@@ -400,9 +400,11 @@ t("desk companions suppressed while the takeover is up",
   /body\.con-takeover\s+\.yasst-launcher[\s\S]*?display:\s*none/.test(css));
 t("closed overlay renders nothing", /#con-scene\[hidden\]\s*{\s*display:\s*none/.test(css));
 t("open overlay fades up via the visible class", /#con-scene\.con-ovl-visible\s*{\s*opacity:\s*1/.test(css));
-const alphas = [...css.matchAll(/rgba\(\s*5\s*,\s*5\s*,\s*6\s*,\s*(0?\.\d+)\s*\)/g)].map(m => parseFloat(m[1]));
-t("every glass strip backs at alpha >= 0.78", alphas.length >= 3 && Math.min(...alphas) >= 0.78);
-t("glass strips blur the scene", /backdrop-filter:\s*blur\(/.test(css));
+const alphas = [...css.matchAll(/background:\s*rgba\(\s*5\s*,\s*5\s*,\s*6\s*,\s*(0?\.\d+)\s*\)/g)].map(m => parseFloat(m[1]));
+t("glass strips are a thin tint (0.22 <= alpha <= 0.4 -- the fx must pass through)",
+  alphas.length >= 3 && Math.min(...alphas) >= 0.22 && Math.max(...alphas) <= 0.4);
+t("legibility halo: the band carries a dark text-shadow", /#con-scene\s+\.con-out\s*{[^}]*text-shadow:/.test(css));
+t("blur is a hint, not a frost (blur(2px), nothing heavier)", /backdrop-filter:\s*blur\(2px\)/.test(css) && !/blur\(7px\)/.test(css));
 t("crossfade transition on the canvases", /transition:\s*opacity\s*0?\.3s/.test(css));
 t("transcript band anchors low, never fills the middle",
   /#con-scene\s+\.con-out\s*{[^}]*margin-block-start:\s*auto/.test(css) && /#con-scene\s+\.con-out\s*{[^}]*flex:\s*0\s+1\s+auto/.test(css));
@@ -420,8 +422,8 @@ t("no U+FFFD in scene css", css.indexOf("�") < 0);
 
 // ---------------------------------------------------------------- 6. page splice
 const page = fs.readFileSync(PAGE, "utf8");
-t("scene css include at ?v=K249", (page.match(/console-scene\.css\?v=K249/g) || []).length === 1 && page.indexOf("console-scene.css?v=K248") < 0);
-t("scene js include at ?v=K249", (page.match(/console-scene\.js\?v=K249/g) || []).length === 1 && page.indexOf("console-scene.js?v=K248") < 0);
+t("scene css include at ?v=K249a", (page.match(/console-scene\.css\?v=K249a"/g) || []).length === 1 && page.indexOf('console-scene.css?v=K249"') < 0);
+t("scene js include at ?v=K249a", (page.match(/console-scene\.js\?v=K249a"/g) || []).length === 1 && page.indexOf('console-scene.js?v=K249"') < 0);
 t("scene js loads after the shell trio", page.indexOf("console-scene.js?v=K249") > page.indexOf("console.js?v=K235"));
 t("mount present, outside <main> (before it)", page.indexOf("data-con-scene") > 0 && page.indexOf("data-con-scene") < page.indexOf("<main"));
 t("enter affordance: hidden static markup, below the lede, inside <main>", (() => {

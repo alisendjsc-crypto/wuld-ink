@@ -144,36 +144,36 @@
   function paint(ctx, spec, frame, w, h) {
     var pal = PALETTES[spec.tone] || PALETTES[0];
     var fl = 1 + Math.sin(frame * 0.31) * spec.flicker * 6;   // faint luminance flicker
-    var hy = spec.horizon * h * 0.74;   // painter-side lift: the structure sits in the open stage above the glass band
+    var hy = spec.horizon * h * 0.88;   // painter-side lift: the structure sits in the open stage above the glass band
     var vx = spec.vanish * w;
 
     // base wash: bg above, wash at the horizon line, floor (darkest) below
     var g = ctx.createLinearGradient(0, 0, 0, h);
     g.addColorStop(0, rgba(scale(pal.bg, 0.85 * fl)));
-    g.addColorStop(Math.max(0.02, spec.horizon * 0.74 - 0.1), rgba(scale(pal.wash, 0.75 * fl)));
-    g.addColorStop(spec.horizon * 0.74, rgba(scale(pal.wash, fl)));
-    g.addColorStop(Math.min(1, spec.horizon * 0.74 + 0.05), rgba(scale(pal.mid, 0.5 * fl)));
-    g.addColorStop(1, rgba(scale(pal.floor, fl)));
+    g.addColorStop(Math.max(0.02, spec.horizon * 0.88 - 0.1), rgba(scale(pal.wash, 0.75 * fl)));
+    g.addColorStop(spec.horizon * 0.88, rgba(scale(pal.wash, fl)));
+    g.addColorStop(Math.min(1, spec.horizon * 0.88 + 0.05), rgba(scale(pal.mid, 0.5 * fl)));
+    g.addColorStop(1, rgba(scale(pal.floor, 7 * fl)));   // K249a: the floor carries light now -- the band is glass, so the room must reach it
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
 
     drawArch(ctx, spec, pal, frame, fl, w, h, hy, vx);
 
     // floor sheen: faint vertical streak under the vanishing point
-    ctx.fillStyle = rgba(scale(pal.mid, fl), 0.1);
+    ctx.fillStyle = rgba(scale(pal.mid, fl), 0.16);
     ctx.fillRect(vx - w * 0.02, hy, w * 0.04, h - hy);
 
     // fog bands, drifting slowly sideways under motion
     for (var f = 0; f < spec.fog.length; f++) {
       var b = spec.fog[f];
-      var by = b.y * h;
-      ctx.fillStyle = rgba(scale(pal.fog, fl), b.a * 1.5);
+      var by = b.y * h * 1.4;   // K249a: fog drifts the full height -- through the glass band too
+      ctx.fillStyle = rgba(scale(pal.fog, fl), b.a * 2.2);
       ctx.fillRect(0, by, w, b.h * h);
       var span = w + 160;
       var bx = ((b.ph * span) + frame * spec.drift * b.sp * 1.4) % span - 80;
       var grad = ctx.createLinearGradient(bx - 90, 0, bx + 90, 0);
       grad.addColorStop(0, rgba(pal.fog, 0));
-      grad.addColorStop(0.5, rgba(scale(pal.fog, 1.25 * fl), b.a * 1.4));
+      grad.addColorStop(0.5, rgba(scale(pal.fog, 1.25 * fl), b.a * 2));
       grad.addColorStop(1, rgba(pal.fog, 0));
       ctx.fillStyle = grad;
       ctx.fillRect(bx - 90, by, 180, b.h * h);
@@ -193,7 +193,7 @@
     // vignette
     var vg = ctx.createRadialGradient(w / 2, h * 0.55, h * 0.22, w / 2, h * 0.55, w * 0.72);
     vg.addColorStop(0, "rgba(0,0,0,0)");
-    vg.addColorStop(1, "rgba(0,0,0," + (spec.vig * 0.55) + ")");   // painter-side attenuation; spec.vig is fingerprinted
+    vg.addColorStop(1, "rgba(0,0,0," + (spec.vig * 0.42) + ")");   // painter-side attenuation; spec.vig is fingerprinted
     ctx.fillStyle = vg;
     ctx.fillRect(0, 0, w, h);
 
