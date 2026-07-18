@@ -1,17 +1,23 @@
-/* console-scene.js -- procedural scene layer for /console/ (K248).
-   A full-bleed seeded canvas behind the terminal: each room of the descent
-   paints its own atmosphere -- palette from the room's tone, structure from the
-   room's own title (a corridor converges, a stairwell goes down, a furnace
-   grows pipework) -- derived from the SAME seed that built the room, so the
-   same seed always paints the same place. Zero assets; the picture is code.
-   Pure spec generation (node-testable) is split from the canvas painter
-   (browser-only). The layer READS game state through the public
-   window.wuldConsole hooks only -- it never mutates engine state, never calls
-   a verb, never touches storage, never constructs audio. Ambient motion runs
-   on a modest tick and is fully static under prefers-reduced-motion (the
-   room-state watcher still runs there: repainting a still frame on a room
-   change is function, not motion). FICTION ONLY -- zero argument-library
-   import, zero philosophical stance, ever. */
+/* console-scene.js -- the /console/ takeover surface (K249; scene layer K248).
+   The terminal is a full-viewport overlay you ENTER -- the successor-stage
+   move mirrored onto the console. Opening the takeover REPARENTS the live
+   .con-term (console.js's node -- listeners, state, transcript intact) into a
+   fixed overlay whose backdrop is the procedural scene: each room of the
+   descent paints its own atmosphere -- palette from the room's tone, structure
+   from the room's own title (a corridor converges, a stairwell goes down, a
+   furnace grows pipework) -- derived from the SAME seed that built the room,
+   so the same seed always paints the same place. Zero assets; the picture is
+   code. Closing returns the terminal to the page and the cover renders as the
+   plain K235 page. Pure spec generation (node-testable) is split from the
+   canvas painter (browser-only); the spec is fingerprinted, the painter is
+   not. The layer READS game state through the public window.wuldConsole hooks
+   only -- it never mutates engine state, never calls a verb, never touches
+   storage (the wgate's own cgate-open class on <html> is the unlock signal).
+   Ambient motion runs on a modest tick only while the takeover is open and is
+   fully static under prefers-reduced-motion (the room-state watcher still
+   runs there: repainting a still frame on a room change is function, not
+   motion). FICTION ONLY -- zero argument-library import, zero philosophical
+   stance, ever. */
 (function (root, factory) {
   "use strict";
   var PRNG = (typeof require === "function")
@@ -420,10 +426,17 @@
   }
 
   // ---------------------------------------------------------------- browser attach
-  // _attach(win, doc): mounts into [data-con-scene], watches the public
-  // wuldConsole hooks, paints per room, crossfades on change (CSS handles the
-  // fade; under reduced-motion the transition is stripped so the swap is
-  // instant and no ambient tick is ever registered).
+  // _attach(win, doc): K249 -- the takeover. Builds a fixed full-viewport
+  // overlay inside [data-con-scene]; entering it REPARENTS the live .con-term
+  // (same node -- console.js's listeners and state ride the move) into the
+  // overlay and paints the scene full-bleed behind it; leaving moves the
+  // terminal back into [data-console] and the page is the plain cover again.
+  // Entry is automatic once the wgate curtain lifts: the unlock signal is the
+  // gate's own cgate-open class on <html>, read from the DOM and observed
+  // while the curtain is down -- this layer still touches no storage. Esc and
+  // [ x ] leave; the cover's [ enter the console ] affordance re-enters.
+  // Ticks run only while the takeover is open; under reduced-motion only the
+  // room-state watcher ever registers and the overlay opens to a still frame.
   function _attach(win, doc) {
     if (!PRNG || !win || !doc) return null;
     var mount = doc.querySelector("[data-con-scene]");
@@ -432,14 +445,48 @@
     var reduced = false;
     try { reduced = !!(win.matchMedia && win.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch (e) {}
 
+    // ---- overlay chrome (built once; closed until entered)
+    try {
+      mount.setAttribute("role", "dialog");
+      mount.setAttribute("aria-modal", "true");
+      mount.setAttribute("aria-label", "wuld://console -- the takeover terminal");
+    } catch (e) {}
     var cvA = doc.createElement("canvas"), cvB = doc.createElement("canvas");
     cvA.setAttribute("aria-hidden", "true"); cvB.setAttribute("aria-hidden", "true");
     mount.appendChild(cvA); mount.appendChild(cvB);
-    mount.hidden = false;
-    try { doc.body.classList.add("con-scene-on"); } catch (e) {}
+    var closeBtn = doc.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "con-btn con-ovl-close";
+    closeBtn.textContent = "[ x ]";
+    try { closeBtn.setAttribute("aria-label", "leave the console (Escape)"); } catch (e) {}
+    mount.appendChild(closeBtn);
+    var slot = doc.createElement("div");
+    slot.className = "con-ovl-slot";
+    mount.appendChild(slot);
+
+    // ---- the live terminal (console.js's node; found lazily, moved whole)
+    var host = null, term = null;
+    function findTerm() {
+      if (term) return true;
+      host = doc.querySelector("[data-console]");
+      term = (host && host.querySelector) ? host.querySelector(".con-term") : null;
+      return !!term;
+    }
+    function q(sel) { return (term && term.querySelector) ? term.querySelector(sel) : null; }
+
+    // ---- the cover's enter affordance (static markup, unhidden + wired here)
+    var enterBtn = null;
+    (function () {
+      var wrap = doc.querySelector("[data-con-enter]");
+      if (!wrap) return;
+      enterBtn = (wrap.querySelector && wrap.querySelector("button")) || wrap;
+      wrap.hidden = false;
+      if (enterBtn.addEventListener) enterBtn.addEventListener("click", function () { open(); });
+    })();
 
     var live = null, back = cvA;
     var curSpec = null, lastKey = "", frame = 0;
+    var isOpen = false, watchId = 0, animId = 0, mo = null;
 
     function sizeOf() {
       var iw = win.innerWidth || 1280, ih = win.innerHeight || 720;
@@ -486,20 +533,113 @@
       frame++;
       paintTo(live, curSpec, frame);
     }
-    function onResize() { if (curSpec && live) paintTo(live, curSpec, frame); }
+    function onResize() { if (isOpen && curSpec && live) paintTo(live, curSpec, frame); }
+    function startTicks() {
+      if (!watchId) watchId = win.setInterval(watch, WATCH_MS);
+      if (!reduced && !animId) animId = win.setInterval(anim, TICK_MS);
+    }
+    function stopTicks() {
+      if (watchId) { try { win.clearInterval(watchId); } catch (e) {} watchId = 0; }
+      if (animId) { try { win.clearInterval(animId); } catch (e) {} animId = 0; }
+    }
 
-    var watchId = win.setInterval(watch, WATCH_MS);
-    var animId = reduced ? 0 : win.setInterval(anim, TICK_MS);
+    // ---- enter / leave
+    function open() {
+      if (isOpen) return false;
+      if (!findTerm()) return false;
+      var out = q(".con-out");
+      var st = out ? out.scrollTop : 0;
+      slot.appendChild(term);                      // the reparent IN -- same node, listeners intact
+      mount.hidden = false;
+      try { mount.removeAttribute("aria-hidden"); } catch (e) {}
+      mount.classList.add("con-ovl-visible");
+      try { doc.body.classList.add("con-takeover"); } catch (e) {}
+      isOpen = true;
+      if (out) out.scrollTop = st;                 // the move must not lose the transcript position
+      startTicks();
+      watch();                                     // paint the current room now
+      if (curSpec && live) paintTo(live, curSpec, frame);   // refit after any closed-state resize
+      var inp = q(".con-in");
+      try { if (inp && inp.focus) inp.focus(); } catch (e) {}
+      return true;
+    }
+    function close() {
+      if (!isOpen) return false;
+      stopTicks();
+      var out = q(".con-out");
+      var st = out ? out.scrollTop : 0;
+      if (term && host) host.appendChild(term);    // the reparent OUT -- the cover terminal again
+      if (out) out.scrollTop = st;
+      mount.classList.remove("con-ovl-visible");
+      mount.hidden = true;
+      try { mount.setAttribute("aria-hidden", "true"); } catch (e) {}
+      try { doc.body.classList.remove("con-takeover"); } catch (e) {}
+      isOpen = false;
+      try { if (enterBtn && enterBtn.focus) enterBtn.focus(); } catch (e) {}
+      return true;
+    }
+
+    // ---- wiring
+    if (closeBtn.addEventListener) closeBtn.addEventListener("click", function () { close(); });
+    function onKey(ev) {
+      if (!isOpen) return;
+      var k = ev && (ev.key || ev.keyCode);
+      if (k === "Escape" || k === "Esc" || k === 27) {
+        if (ev.preventDefault) ev.preventDefault();
+        close();
+      }
+    }
+    function onOvlClick(ev) {
+      if (!isOpen) return;
+      var t = ev && ev.target;
+      if (t && t.tagName && /^(BUTTON|INPUT|A|SELECT|TEXTAREA|LABEL)$/.test(String(t.tagName))) return;
+      var inp = q(".con-in");
+      try { if (inp && inp.focus) inp.focus(); } catch (e) {}
+    }
+    if (doc.addEventListener) doc.addEventListener("keydown", onKey);
+    if (mount.addEventListener) mount.addEventListener("click", onOvlClick);
     if (win.addEventListener) win.addEventListener("resize", onResize);
-    watch();
+
+    // ---- entry: the wgate's own unlock class IS the signal (no storage read)
+    function unlockedNow() {
+      try {
+        var de = doc.documentElement;
+        return !!(de && de.classList && de.classList.contains("cgate-open"));
+      } catch (e) { return false; }
+    }
+    function bootOpen(tries) {
+      if (isOpen) return;
+      if (findTerm() || tries <= 0) { open(); return; }
+      try { win.setTimeout(function () { bootOpen(tries - 1); }, 250); } catch (e) {}
+    }
+    function watchUnlock() {
+      try {
+        var de = doc.documentElement;
+        var MO = win.MutationObserver;
+        if (!de || !de.classList || !MO) return;
+        mo = new MO(function () {
+          if (unlockedNow()) {
+            try { mo.disconnect(); } catch (e) {}
+            if (!isOpen) bootOpen(24);
+          }
+        });
+        mo.observe(de, { attributes: true, attributeFilter: ["class"] });
+      } catch (e) {}
+    }
+    if (unlockedNow()) bootOpen(24);
+    else watchUnlock();
 
     return {
       reduced: reduced,
+      open: open,
+      close: close,
+      isOpen: function () { return isOpen; },
       off: function () {
-        try { win.clearInterval(watchId); } catch (e) {}
-        try { if (animId) win.clearInterval(animId); } catch (e) {}
+        if (isOpen) close();
+        stopTicks();
+        try { if (mo) mo.disconnect(); } catch (e) {}
+        try { if (doc.removeEventListener) doc.removeEventListener("keydown", onKey); } catch (e) {}
         try { if (win.removeEventListener) win.removeEventListener("resize", onResize); } catch (e) {}
-        try { doc.body.classList.remove("con-scene-on"); } catch (e) {}
         mount.hidden = true;
       },
       _key: function () { return lastKey; },
@@ -508,7 +648,13 @@
       _live: function () { return live; },
       _canvases: function () { return [cvA, cvB]; },
       _watch: watch,
-      _anim: anim
+      _anim: anim,
+      _term: function () { return term; },
+      _host: function () { return host; },
+      _slot: function () { return slot; },
+      _closeBtn: function () { return closeBtn; },
+      _enterBtn: function () { return enterBtn; },
+      _ticks: function () { return { watch: !!watchId, anim: !!animId }; }
     };
   }
 

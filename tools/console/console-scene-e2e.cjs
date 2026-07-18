@@ -1,12 +1,19 @@
 #!/usr/bin/env node
-/* console-scene-e2e.cjs -- gate for the K248 /console/ immersion layer.
-   Runs the REAL modules (console-prng + console-engine + console-scene) plus a
-   zero-dep DOM/matchMedia/interval shim. Gates: spec determinism (goldens +
-   twice-equal + distinct-across-rooms over 8 seeds), archetype mapping, spec
-   ranges, purity fences (source scans + deep-frozen runtime state), the
-   reduced-motion static path, the crossfade swap, the glass-band contrast
-   tokens in console-scene.css, and the page splice (includes + mount placement
-   + wgate curtain regions held).  Usage: node tools/console/console-scene-e2e.cjs */
+/* console-scene-e2e.cjs -- gate for the K249 /console/ takeover surface
+   (scene layer K248 + overlay takeover K249).
+   Runs the REAL modules (console-prng + console-engine + console-scene, plus
+   the REAL console.js shell for the reparent tests) against a zero-dep
+   DOM/matchMedia/interval/MutationObserver shim. Gates: spec determinism
+   (goldens + twice-equal + distinct-across-rooms over 8 seeds -- the goldens
+   ARE the pure-refactor proof), archetype mapping, spec ranges, purity fences
+   (source scans + deep-frozen runtime state), the overlay round-trip
+   (reparent preserves node identity + listeners; focus in/out; Esc; [ x ];
+   enter affordance), auto-open off the wgate's cgate-open class (present at
+   attach + MutationObserver flip), canvases INSIDE the overlay, the
+   reduced-motion static path, the crossfade swap, the glass-band contrast +
+   z-order tokens in console-scene.css, and the page splice (includes + mount
+   + affordance + wgate curtain regions held).
+   Usage: node tools/console/console-scene-e2e.cjs */
 "use strict";
 
 const fs = require("fs");
@@ -15,10 +22,13 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..", "..");
 const SCENE_JS = path.join(ROOT, "src", "components", "console-scene.js");
 const SCENE_CSS = path.join(ROOT, "src", "components", "console-scene.css");
+const CONSOLE_JS = path.join(ROOT, "src", "components", "console.js");
 const PAGE = path.join(ROOT, "src", "console", "index.html");
 
 const E = require(path.join(ROOT, "src", "components", "console-engine.js"));
+const PRNG = require(path.join(ROOT, "src", "components", "console-prng.js"));
 const S = require(SCENE_JS);
+const CONSOLE_SRC = fs.readFileSync(CONSOLE_JS, "utf8");
 
 let pass = 0, fail = 0;
 function t(name, cond) {
@@ -30,8 +40,8 @@ function t(name, cond) {
 const GOLDEN_SEED = "wuld-descent";
 const gw = E.genWorld(GOLDEN_SEED);
 t("golden world is the K235 fingerprint world (14 rooms)", gw.rooms.length === 14);
-t("golden threshold fp", S.fingerprint(S.sceneSpec(gw.seed, gw.rooms[gw.startId])) === "7e22f759ff61e5d8");
-t("golden descent fp", S.fingerprint(S.sceneSpec(gw.seed, gw.rooms[gw.terminusId])) === "9010b7e215a681d1");
+t("golden threshold fp (K248 shipped -- the refactor proof)", S.fingerprint(S.sceneSpec(gw.seed, gw.rooms[gw.startId])) === "7e22f759ff61e5d8");
+t("golden descent fp (K248 shipped -- the refactor proof)", S.fingerprint(S.sceneSpec(gw.seed, gw.rooms[gw.terminusId])) === "9010b7e215a681d1");
 
 const SEEDS = ["wuld-descent", "test-seed", "alpha", "beta", "gamma", "delta", "epsilon", "omega"];
 let twiceEqual = true, allDistinct = true, ranges = true, archKnown = true, glintRule = true;
@@ -71,7 +81,7 @@ t("same room id, different seed -> different spec",
   S.fingerprint(S.sceneSpec("alpha", E.genWorld("alpha").rooms[0])) !==
   S.fingerprint(S.sceneSpec("beta", E.genWorld("beta").rooms[0])));
 
-// fresh-require determinism (module state free)
+// fresh-require determinism (module state free; runs BEFORE any global DOM shim)
 delete require.cache[require.resolve(SCENE_JS)];
 const S2 = require(SCENE_JS);
 t("fresh require reproduces the golden fp",
@@ -96,50 +106,143 @@ t("palette count is 6, all named", S.PALETTES.length === 6 && S.PALETTES.every(p
 // ---------------------------------------------------------------- 3. purity fences (source)
 const src = fs.readFileSync(SCENE_JS, "utf8");
 t("no storage of any kind", !/localStorage|sessionStorage|\.setItem|\.getItem\(|\.removeItem/.test(src));
-t("no audio (this session ships none)", !/AudioContext|createOscillator|webkitAudio/.test(src));
+t("no audio (this layer ships none)", !/AudioContext|createOscillator|webkitAudio/.test(src));
 t("no engine mutators, no verbs", !/_exec\(|_new\(|_setSound|_resume\(|\.save\(|clearSave|newGame|genWorld\(/.test(src));
 t("reads via the public hooks only", /_world\(\)/.test(src) && /_state\(\)/.test(src));
 t("no network", !/fetch\(|XMLHttpRequest|WebSocket|navigator\.sendBeacon/.test(src));
 t("fiction firewall: zero stance strings (code + strings; the header comment DECLARES the firewall)",
   !/antinatal|natalis|efilist|objection|rebuttal|\bRSI\b|argument.?library|suffering|consent/i
     .test(src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "")));
+t("unlock signal is the wgate class, not a key read", /cgate-open/.test(src) && !/wuld:console:unlocked/.test(src));
 t("no U+FFFD in scene js", src.indexOf("�") < 0);
 
-// ---------------------------------------------------------------- 4. DOM shim + attach
-function mkClassList() {
-  const s = new Set();
-  return { add: c => s.add(c), remove: c => s.delete(c), contains: c => s.has(c), _set: s };
+// ---------------------------------------------------------------- 4. DOM shim
+const LAST_FOCUS = { el: null };
+function Elem(tag) {
+  this.tagName = String(tag || "div").toUpperCase();
+  this.children = []; this.parentNode = null;
+  this._cls = {}; this._attrs = {}; this.style = {};
+  this.textContent = ""; this.type = ""; this.value = ""; this.id = "";
+  this.hidden = false; this.disabled = false; this.title = ""; this.placeholder = ""; this.tabIndex = 0;
+  this.scrollTop = 0; this.scrollHeight = 0; this._ls = {};
+  const el = this;
+  this.classList = {
+    add: function () { for (let i = 0; i < arguments.length; i++) el._cls[arguments[i]] = 1; },
+    remove: function () { for (let i = 0; i < arguments.length; i++) delete el._cls[arguments[i]]; },
+    contains: function (c) { return !!el._cls[c]; }
+  };
 }
-function mkCanvas() {
+Elem.prototype.setAttribute = function (k, v) { this._attrs[k] = String(v); };
+Elem.prototype.getAttribute = function (k) { return (k in this._attrs) ? this._attrs[k] : null; };
+Elem.prototype.removeAttribute = function (k) { delete this._attrs[k]; };
+Elem.prototype.appendChild = function (c) {
+  if (c.parentNode && c.parentNode.children) {           // real-DOM move semantics
+    const i = c.parentNode.children.indexOf(c);
+    if (i >= 0) c.parentNode.children.splice(i, 1);
+  }
+  c.parentNode = this; this.children.push(c); return c;
+};
+Elem.prototype.removeChild = function (c) { const i = this.children.indexOf(c); if (i >= 0) this.children.splice(i, 1); c.parentNode = null; return c; };
+Elem.prototype.addEventListener = function (t2, fn) { (this._ls[t2] = this._ls[t2] || []).push(fn); };
+Elem.prototype.removeEventListener = function (t2, fn) { const a = this._ls[t2]; if (a) { const i = a.indexOf(fn); if (i >= 0) a.splice(i, 1); } };
+Elem.prototype.fire = function (t2, ev) {
+  ev = ev || {};
+  if (!ev.preventDefault) ev.preventDefault = function () {};
+  if (!ev.target) ev.target = this;
+  const self = this;
+  (this._ls[t2] || []).slice().forEach(function (fn) { fn.call(self, ev); });
+};
+Elem.prototype.click = function () { this.fire("click"); };
+Elem.prototype.focus = function () { LAST_FOCUS.el = this; };
+Object.defineProperty(Elem.prototype, "className", {
+  get: function () { return Object.keys(this._cls).join(" "); },
+  set: function (v) { this._cls = {}; String(v).split(/\s+/).forEach(function (c) { if (c) this._cls[c] = 1; }, this); }
+});
+Object.defineProperty(Elem.prototype, "innerHTML", {
+  get: function () { return this._html || ""; },
+  set: function (v) { this._html = String(v); if (v === "") this.children.length = 0; }
+});
+function walk(node, pred) { for (let i = 0; i < node.children.length; i++) { const c = node.children[i]; if (pred(c)) return c; const r = walk(c, pred); if (r) return r; } return null; }
+function byClass(root, cls) { const out = []; (function rec(n) { for (const c of n.children) { if (c._cls[cls]) out.push(c); rec(c); } })(root); return out; }
+Elem.prototype.querySelector = function (sel) {
+  if (sel[0] === ".") { const cl = sel.slice(1); return walk(this, function (c) { return !!c._cls[cl]; }); }
+  return walk(this, function (c) { return String(c.tagName).toLowerCase() === String(sel).toLowerCase(); });
+};
+
+function mkCanvasCtx(el) {
   const calls = [];
-  const ctx = { canvas: null, lineWidth: 1, fillStyle: "", strokeStyle: "" };
+  const ctx = { canvas: el, lineWidth: 1, fillStyle: "", strokeStyle: "" };
   for (const m of ["fillRect", "strokeRect", "beginPath", "moveTo", "lineTo", "stroke", "fill", "arc", "closePath", "save", "restore"]) {
     ctx[m] = function () { calls.push(m); };
   }
   ctx.createLinearGradient = () => ({ addColorStop() {} });
   ctx.createRadialGradient = () => ({ addColorStop() {} });
-  return { width: 0, height: 0, _calls: calls, classList: mkClassList(), setAttribute() {}, getContext: () => ctx };
+  el.width = 0; el.height = 0; el._calls = calls; el.getContext = () => ctx;
 }
-function mkEnv(reduced) {
-  const mount = { children: [], appendChild(c) { this.children.push(c); }, hidden: true };
+
+function mkEnv(opts) {
+  opts = opts || {};
+  const body = new Elem("body"), head = new Elem("head");
+  const documentElement = new Elem("html");
+  if (opts.unlocked) documentElement.classList.add("cgate-open");
+  const mount = new Elem("div"); mount.setAttribute("data-con-scene", ""); mount.hidden = true; mount.setAttribute("aria-hidden", "true");
+  const enterWrap = new Elem("p"); enterWrap.setAttribute("data-con-enter", ""); enterWrap.hidden = true;
+  const enterBtn = new Elem("button"); enterBtn.className = "con-btn con-enter-btn"; enterWrap.appendChild(enterBtn);
+  const host = new Elem("div"); host.setAttribute("data-console", "");
+  if (!opts.noMount) body.appendChild(mount);
+  body.appendChild(enterWrap);
+  body.appendChild(host);
+  if (opts.skeleton) {                                    // a minimal fake .con-term (no real shell)
+    const term = new Elem("div"); term.className = "con-term";
+    const out = new Elem("div"); out.className = "con-out";
+    const inp = new Elem("input"); inp.className = "con-in";
+    term.appendChild(out); term.appendChild(inp); host.appendChild(term);
+  }
+  const docLs = {};
   const doc = {
-    hidden: false, readyState: "complete",
-    querySelector: sel => (sel === "[data-con-scene]" ? mount : null),
-    createElement: tag => (tag === "canvas" ? mkCanvas() : { classList: mkClassList(), setAttribute() {} }),
-    body: { classList: mkClassList() },
-    addEventListener() {}
+    readyState: "complete", head: head, body: body, documentElement: documentElement,
+    hidden: false, activeElement: null,
+    createElement: function (t2) { const el = new Elem(t2); if (String(t2).toLowerCase() === "canvas") mkCanvasCtx(el); return el; },
+    querySelector: function (sel) {
+      if (sel[0] === "[") { const nm = sel.replace(/^\[|\]$/g, "").split("=")[0]; return walk(body, function (c) { return nm in c._attrs; }); }
+      if (sel[0] === "#") { const id = sel.slice(1); return walk(body, function (c) { return c.id === id; }); }
+      if (sel[0] === ".") { const cl = sel.slice(1); return walk(body, function (c) { return !!c._cls[cl]; }); }
+      return null;
+    },
+    addEventListener: function (t2, fn) { (docLs[t2] = docLs[t2] || []).push(fn); },
+    removeEventListener: function (t2, fn) { const a = docLs[t2]; if (a) { const i = a.indexOf(fn); if (i >= 0) a.splice(i, 1); } }
   };
-  const intervals = [], cleared = [];
+  const intervals = [], cleared = [], timeouts = [], mos = [];
+  function MO(cb) {
+    this._cb = cb; this._dis = false; this._t = null; this._o = null;
+    this.observe = (t2, o) => { this._t = t2; this._o = o; };
+    this.disconnect = () => { this._dis = true; };
+    mos.push(this);
+  }
+  const RM = !!opts.reducedMotion;
   const win = {
     innerWidth: 1280, innerHeight: 720,
-    matchMedia: q => ({ matches: !!reduced && /reduce/.test(q) }),
+    matchMedia: function (q) { return { matches: RM && /reduce/.test(q), media: q, addListener() {}, addEventListener() {} }; },
     setInterval: (fn, ms) => { intervals.push({ fn, ms }); return intervals.length; },
     clearInterval: id => cleared.push(id),
+    setTimeout: (fn, ms) => { timeouts.push({ fn, ms }); return timeouts.length; },
     addEventListener() {}, removeEventListener() {},
+    MutationObserver: MO,
     wuldConsole: null
   };
-  return { mount, doc, win, intervals, cleared };
+  return { body, mount, enterWrap, enterBtn, host, doc, win, intervals, cleared, timeouts, mos,
+    docFire: function (t2, ev) { ev = ev || {}; if (!ev.preventDefault) ev.preventDefault = function () {}; if (!ev.target) ev.target = body; (docLs[t2] || []).slice().forEach(fn => fn(ev)); } };
 }
+function bootShell(env) {                                  // eval the REAL console.js against the shim
+  const store = {};
+  global.localStorage = { getItem: k => (k in store) ? store[k] : null, setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } };
+  env.win.ConsoleEngine = E; env.win.ConsolePRNG = PRNG;
+  env.win.localStorage = global.localStorage; env.win.Math = Math;
+  global.window = env.win; global.document = env.doc;
+  eval(CONSOLE_SRC);                                       // IIFE boots (readyState complete)
+  return env.win.wuldConsole;
+}
+function unShell() { delete global.window; delete global.document; delete global.localStorage; }
 function deepFreeze(o) {
   if (o && typeof o === "object" && !Object.isFrozen(o)) {
     Object.freeze(o);
@@ -148,16 +251,73 @@ function deepFreeze(o) {
   return o;
 }
 
-// -- 4a. boots without wuldConsole, paints once it appears
+// -- 4a..4d. the takeover round-trip on the REAL shell ----------------------
 {
-  const env = mkEnv(false);
+  const env = mkEnv({});                                   // locked: no cgate-open yet
+  const shell = bootShell(env);
+  t("real shell booted a terminal into [data-console]", !!shell && byClass(env.host, "con-term").length === 1);
+  const termRef = byClass(env.host, "con-term")[0];
   const inst = S._attach(env.win, env.doc);
   t("attach returns an instance", !!inst);
-  t("mount unhidden + two canvases", env.mount.hidden === false && env.mount.children.length === 2);
-  t("body gains con-scene-on", env.doc.body.classList.contains("con-scene-on"));
-  t("watcher + ambient tick registered (motion path)",
+  t("overlay chrome built inside the mount (2 canvases + [ x ] + slot)",
+    env.mount.children.length === 4 &&
+    inst._canvases().every(cv => cv.parentNode === env.mount) &&
+    inst._closeBtn().parentNode === env.mount && inst._slot().parentNode === env.mount);
+  t("overlay is a labelled dialog", env.mount.getAttribute("role") === "dialog" && env.mount.getAttribute("aria-modal") === "true" && !!env.mount.getAttribute("aria-label"));
+  t("locked: no auto-open, mount stays hidden, zero ticks",
+    inst.isOpen() === false && env.mount.hidden === true && env.intervals.length === 0);
+  t("locked: unlock observer registered on <html> (class flips)",
+    env.mos.length === 1 && env.mos[0]._t === env.doc.documentElement &&
+    !!env.mos[0]._o && env.mos[0]._o.attributes === true && (env.mos[0]._o.attributeFilter || []).indexOf("class") >= 0);
+  t("enter affordance unhidden + wired", env.enterWrap.hidden === false && !!inst._enterBtn());
+
+  // the unlock: wgate adds cgate-open -> the observer opens the takeover
+  const out = byClass(termRef, "con-out")[0];
+  out.scrollTop = 123;
+  env.doc.documentElement.classList.add("cgate-open");
+  env.mos[0]._cb();
+  t("unlock flip -> the takeover opens", inst.isOpen() === true && env.mount.hidden === false && env.mount.classList.contains("con-ovl-visible"));
+  t("observer disconnected after the unlock", env.mos[0]._dis === true);
+  t("reparent IN: same .con-term node, now inside the overlay slot", inst._term() === termRef && termRef.parentNode === inst._slot());
+  t("transcript scroll position survives the move", out.scrollTop === 123);
+  t("focus lands in the input", LAST_FOCUS.el === byClass(termRef, "con-in")[0]);
+  t("motion path: watcher + ambient tick run only while open",
     env.intervals.length === 2 && env.intervals[0].ms === S.WATCH_MS && env.intervals[1].ms === S.TICK_MS);
-  inst._watch();                                     // no wuldConsole yet
+  t("aria-hidden dropped + page scroll parked", env.mount.getAttribute("aria-hidden") === null && env.body.classList.contains("con-takeover"));
+  t("the room painted on entry (threshold; live canvas marked)",
+    !!inst._spec() && inst._spec().arch === "threshold" && !!inst._live() && inst._live().classList.contains("con-scene-live"));
+
+  // Esc leaves
+  env.docFire("keydown", { key: "Escape" });
+  t("Esc closes the takeover", inst.isOpen() === false && env.mount.hidden === true && env.mount.getAttribute("aria-hidden") === "true");
+  t("reparent OUT: the same node returns to [data-console]", termRef.parentNode === env.host && byClass(env.host, "con-term")[0] === termRef);
+  t("ticks cleared on close", env.cleared.length === 2);
+  t("scroll lock released + focus restored to the enter affordance", !env.body.classList.contains("con-takeover") && LAST_FOCUS.el === env.enterBtn);
+
+  // re-enter via the affordance; the shell's own listeners must survive two moves
+  env.enterBtn.fire("click");
+  t("[ enter the console ] re-opens", inst.isOpen() === true && termRef.parentNode === inst._slot());
+  const inRow = byClass(termRef, "con-in-row")[0];
+  const inp = byClass(termRef, "con-in")[0];
+  const linesBefore = out.children.length;
+  inp.value = "look";
+  inRow.fire("submit");
+  t("submit still routes through the REAL shell after two moves (listeners intact)",
+    out.children.length > linesBefore && /descent|threshold|wall|door|room|air|Threshold/i.test(shell._outText()));
+  t("Esc while typing needs no modifier: close button also leaves", (inst._closeBtn().fire("click"), inst.isOpen() === false && termRef.parentNode === env.host));
+
+  // off() teardown is clean from the closed state
+  inst.off();
+  t("off(): overlay hidden, terminal stays home, no dangling ticks",
+    env.mount.hidden === true && termRef.parentNode === env.host && env.cleared.length >= 4);
+  unShell();
+}
+
+// -- 4e. engine purity on a deep-frozen world (skeleton term, fake hooks) ---
+{
+  const env = mkEnv({ unlocked: true, skeleton: true });
+  const inst = S._attach(env.win, env.doc);
+  t("unlocked at attach -> auto-open without the observer", inst.isOpen() === true && env.mos.length === 0);
   t("no paint before the console exists", inst._spec() === null && inst._key() === "");
 
   const w = deepFreeze(E.genWorld("shim-seed"));
@@ -203,16 +363,16 @@ function deepFreeze(o) {
   t("deep-frozen world byte-identical after the session", JSON.stringify(w) === snap);
 
   inst.off();
-  t("off() clears both intervals + class + mount",
-    env.cleared.length === 2 && !env.doc.body.classList.contains("con-scene-on") && env.mount.hidden === true);
+  t("off() closes, clears the ticks and hides the overlay",
+    inst.isOpen() === false && env.cleared.length >= 2 && env.mount.hidden === true);
 }
 
-// -- 4b. reduced-motion: static path
+// -- 4f. reduced-motion: static takeover
 {
-  const env = mkEnv(true);
+  const env = mkEnv({ unlocked: true, skeleton: true, reducedMotion: true });
   const inst = S._attach(env.win, env.doc);
-  t("reduced instance reports reduced", inst.reduced === true);
-  t("reduced registers ONLY the watcher (no ambient tick)",
+  t("reduced instance reports reduced + still auto-opens", inst.reduced === true && inst.isOpen() === true);
+  t("reduced registers ONLY the watcher (no ambient tick, even open)",
     env.intervals.length === 1 && env.intervals[0].ms === S.WATCH_MS);
   const w = E.genWorld("still-seed");
   env.win.wuldConsole = { _world: () => w, _state: () => ({ pos: w.startId }) };
@@ -223,35 +383,53 @@ function deepFreeze(o) {
   inst.off();
 }
 
-// -- 4c. no-mount page: attach is a no-op
+// -- 4g. no-mount page: attach is a no-op
 {
-  const env = mkEnv(false);
-  env.doc.querySelector = () => null;
+  const env = mkEnv({ noMount: true });
   t("no mount -> attach returns null, nothing registered", S._attach(env.win, env.doc) === null && env.intervals.length === 0);
 }
 
-// ---------------------------------------------------------------- 5. css contrast tokens
+// ---------------------------------------------------------------- 5. css tokens
 const css = fs.readFileSync(SCENE_CSS, "utf8");
-t("scene layer is pointer-transparent at z 0", /#con-scene\s*{[^}]*pointer-events:\s*none/.test(css) && /#con-scene\s*{[^}]*z-index:\s*0/.test(css));
-const alphaM = css.match(/body\.con-scene-on\s+\.con-term\s*{[^}]*rgba\(\s*5\s*,\s*5\s*,\s*6\s*,\s*(0?\.\d+)\s*\)/);
-t("glass band backing present with alpha >= 0.78", !!alphaM && parseFloat(alphaM[1]) >= 0.78);
-t("glass band blurs the scene", /backdrop-filter:\s*blur\(/.test(css));
+const zM = css.match(/#con-scene\s*{[^}]*z-index:\s*(\d+)/);
+t("overlay is fixed full-viewport", /#con-scene\s*{[^}]*position:\s*fixed/.test(css) && /#con-scene\s*{[^}]*inset:\s*0/.test(css));
+t("overlay z parses (10000)", !!zM && parseInt(zM[1], 10) === 10000);
+t("overlay rides above the yurei desk launcher (9998)", !!zM && parseInt(zM[1], 10) > 9998);
+t("wgate curtain stays ABOVE the takeover", !!zM && parseInt(zM[1], 10) < 2147483000);
+t("desk companions suppressed while the takeover is up",
+  /body\.con-takeover\s+\.yasst-launcher[\s\S]*?display:\s*none/.test(css));
+t("closed overlay renders nothing", /#con-scene\[hidden\]\s*{\s*display:\s*none/.test(css));
+t("open overlay fades up via the visible class", /#con-scene\.con-ovl-visible\s*{\s*opacity:\s*1/.test(css));
+const alphas = [...css.matchAll(/rgba\(\s*5\s*,\s*5\s*,\s*6\s*,\s*(0?\.\d+)\s*\)/g)].map(m => parseFloat(m[1]));
+t("every glass strip backs at alpha >= 0.78", alphas.length >= 3 && Math.min(...alphas) >= 0.78);
+t("glass strips blur the scene", /backdrop-filter:\s*blur\(/.test(css));
 t("crossfade transition on the canvases", /transition:\s*opacity\s*0?\.3s/.test(css));
-t("reduced-motion strips the crossfade", /@media\s*\(prefers-reduced-motion:\s*reduce\)\s*{[^}]*{\s*transition:\s*none/.test(css.replace(/\n/g, " ")));
+t("transcript band anchors low, never fills the middle",
+  /#con-scene\s+\.con-out\s*{[^}]*margin-block-start:\s*auto/.test(css) && /#con-scene\s+\.con-out\s*{[^}]*flex:\s*0\s+1\s+auto/.test(css));
+t("page scroll parks under the takeover", /body\.con-takeover\s*{\s*overflow:\s*hidden/.test(css));
+t("reduced-motion strips BOTH transitions (enter + crossfade)", (() => {
+  const m = css.match(/@media\s*\(prefers-reduced-motion:\s*reduce\)\s*{([\s\S]*?)}\s*$/);
+  return !!m && (m[1].match(/transition:\s*none/g) || []).length >= 2;
+})());
 t("no color override on the terminal text", !/[^-]color\s*:/.test(css));
-t("content lifted above the scene", /body\.con-scene-on\s+\.site-header[\s\S]*?z-index:\s*1/.test(css));
-t("scoped: every rule is #con-scene or body.con-scene-on", (() => {
+t("scoped: every rule is overlay-, takeover- or affordance-scoped", (() => {
   const sels = css.replace(/\/\*[\s\S]*?\*\//g, "").match(/(^|})\s*([^{}@]+){/g) || [];
-  return sels.every(s => /#con-scene|body\.con-scene-on|prefers-reduced-motion/.test(s));
+  return sels.every(s => /#con-scene|body\.con-takeover|\.con-enter|prefers-reduced-motion/.test(s));
 })());
 t("no U+FFFD in scene css", css.indexOf("�") < 0);
 
 // ---------------------------------------------------------------- 6. page splice
 const page = fs.readFileSync(PAGE, "utf8");
-t("scene css include at ?v=K248", (page.match(/console-scene\.css\?v=K248/g) || []).length === 1);
-t("scene js include at ?v=K248", (page.match(/console-scene\.js\?v=K248/g) || []).length === 1);
-t("scene js loads after the shell trio", page.indexOf("console-scene.js?v=K248") > page.indexOf("console.js?v=K235"));
+t("scene css include at ?v=K249", (page.match(/console-scene\.css\?v=K249/g) || []).length === 1 && page.indexOf("console-scene.css?v=K248") < 0);
+t("scene js include at ?v=K249", (page.match(/console-scene\.js\?v=K249/g) || []).length === 1 && page.indexOf("console-scene.js?v=K248") < 0);
+t("scene js loads after the shell trio", page.indexOf("console-scene.js?v=K249") > page.indexOf("console.js?v=K235"));
 t("mount present, outside <main> (before it)", page.indexOf("data-con-scene") > 0 && page.indexOf("data-con-scene") < page.indexOf("<main"));
+t("enter affordance: hidden static markup, below the lede, inside <main>", (() => {
+  const i = page.indexOf("data-con-enter");
+  return i > 0 && i > page.indexOf("</header>") && i > page.indexOf("<main") && i < page.indexOf("</main>") &&
+    /<p class="con-enter" data-con-enter hidden>/.test(page) && /con-enter-btn/.test(page);
+})());
+t("no new headings (exactly the one h1)", (page.match(/<h1/g) || []).length === 1 && page.indexOf("<h2") < 0 && page.indexOf("<h3") < 0);
 t("K235 shell trio + css held", ["console.css?v=K235", "console-prng.js?v=K235", "console-engine.js?v=K235", "console.js?v=K235"]
   .every(s => (page.split(s).length - 1) === 1));
 t("wgate curtain markers held", ["wgate:head:start", "wgate:head:end", "wgate:body:start", "wgate:body:end"]

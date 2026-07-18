@@ -1,23 +1,33 @@
-/* console-scene.css -- the /console/ immersion layer (K248). Loaded ONLY by
-   /console/. A fixed full-bleed scene canvas behind the page; the terminal
-   becomes a translucent near-black glass band over it. Everything is scoped
-   under body.con-scene-on (added by console-scene.js at boot), so with the
-   script absent or failed the page renders exactly as it did at K235 --
-   console.css is byte-held and owns the terminal's base styling.
-   LEGIBILITY FIRST: the band backing is rgba(5,5,6,0.82) -- over the scene's
-   darkest region (the floor plane, by palette construction) the effective
-   backing stays near #101012, keeping mono text far past WCAG AAA. No color
-   override touches the terminal's text. */
+/* console-scene.css -- the /console/ takeover surface (K249). Loaded ONLY by
+   /console/. K248 painted the scene behind the page; K249 moves the whole
+   terminal INSIDE a fixed full-viewport overlay you ENTER -- the successor-
+   stage move mirrored. Closed, the page is the plain K235 cover (console.css,
+   byte-held, owns that state; script absent or failed = exactly the K235
+   page). Open, the procedural scene is the overlay's own full-bleed backdrop
+   and the terminal chrome floats over it: the wuld://console head bar as
+   glass at the top, the transcript on a glass band anchored low, the input at
+   its foot -- the open middle belongs to the room.
+   LEGIBILITY FIRST: every glass strip backs at rgba(5,5,6,0.82) or denser;
+   over the scene's darkest region (the floor plane, by palette construction)
+   the effective backing stays near #101012 -- mono text far past WCAG AAA.
+   No color override touches the terminal's text.
+   Z ORDER: the overlay rides at 10000 -- above the ambient bar (100), the
+   wrong-hour layers (90..300) and the yurei desk launcher (9998), BELOW the
+   wgate curtain (2147483000): locked visitors see the curtain, never the
+   console. The desk companion is also suppressed while the takeover is up
+   (the K241 successor-stage precedent) so nothing floats over the descent. */
 
 #con-scene {
   position: fixed;
   inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  display: none;
+  z-index: 10000;
   background: #050506;
+  opacity: 0;
+  transition: opacity 0.25s ease;   /* entering fades the room up */
 }
-body.con-scene-on #con-scene { display: block; }
+#con-scene[hidden] { display: none; }
+#con-scene.con-ovl-visible { opacity: 1; }
+
 #con-scene canvas {
   position: absolute;
   inset: 0;
@@ -25,45 +35,76 @@ body.con-scene-on #con-scene { display: block; }
   height: 100%;
   image-rendering: pixelated;
   opacity: 0;
-  transition: opacity 0.3s ease;   /* the room crossfade */
+  transition: opacity 0.3s ease;    /* the room crossfade */
 }
 #con-scene canvas.con-scene-live { opacity: 1; }
 
-/* page content rides above the scene */
-body.con-scene-on .site-header,
-body.con-scene-on main,
-body.con-scene-on .page-footer,
-body.con-scene-on .skip-link {
-  position: relative;
-  z-index: 1;
+/* the page parks while the takeover is up; the desk companions step out of
+   the frame (and the tab order) -- nothing floats over the descent */
+body.con-takeover { overflow: hidden; }
+body.con-takeover .yasst-launcher,
+body.con-takeover .yasst-panel,
+body.con-takeover .oasst-launcher,
+body.con-takeover .oasst-panel,
+body.con-takeover .persona-switch { display: none; }
+
+/* the terminal slot: a full-height column over the scene */
+#con-scene .con-ovl-slot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-/* the terminal becomes the glass band -- backing + blur only; the text colors,
-   borders, scanlines and cursor stay console.css's (byte-held) */
-body.con-scene-on .con-term {
+/* the reparented terminal decomposes into floating strips: transparent frame,
+   head pinned top, transcript + input + controls anchored low -- the scene
+   owns the middle. Text colors, cursor, blink and the fine scanline weave
+   stay console.css's (byte-held). */
+#con-scene .con-term {
+  flex: 1 1 auto;
+  min-height: 0;
+  border: 0;
+  background: transparent;
+}
+#con-scene .con-out {
+  margin-block-start: auto;
+  flex: 0 1 auto;
+  min-height: 16vh;
+  max-height: 38vh;
   background: rgba(5, 5, 6, 0.82);
   -webkit-backdrop-filter: blur(7px);
   backdrop-filter: blur(7px);
+  border-top: var(--bw-base) solid var(--c-border);
+}
+#con-scene .con-head,
+#con-scene .con-in-row,
+#con-scene .con-ctrl {
+  background: rgba(5, 5, 6, 0.86);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+}
+#con-scene .con-head { padding-inline-end: 5.5rem; }   /* room for the [ x ] */
+
+/* leave: overlay-owned chrome above the head bar (console.css styles .con-btn) */
+#con-scene .con-ovl-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.9rem;
+  z-index: 3;
+  background: rgba(5, 5, 6, 0.86);
 }
 
-/* hero + page-foot stay legible over the scene: a soft dark halo, no re-color */
-body.con-scene-on .page-hero,
-body.con-scene-on .con-page-foot {
-  text-shadow: 0 1px 10px rgba(5, 5, 6, 0.9), 0 0 2px rgba(5, 5, 6, 0.9);
-}
+/* the cover's enter affordance (unhidden by the script; hidden = plain K235) */
+.con-enter { margin-block: var(--s-4) 0; }
+.con-enter-btn { font-size: var(--t-sm); padding: var(--s-2) var(--s-4); }
 
-/* the stage: hero holds the top, the glass band sits low, the scene owns the
-   space between -- the K239 hero pattern mirrored onto a chrome-bearing page */
-body.con-scene-on .console-wrap {
-  min-height: calc(100vh - 3.5rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+@media (max-width: 520px) {
+  #con-scene .con-out { max-height: 46vh; }
+  #con-scene .con-head { padding-inline-end: 4.2rem; }
+  #con-scene .con-ovl-close { top: 0.45rem; right: 0.6rem; }
 }
-body.con-scene-on .page-hero { margin-block-end: auto; }
-body.con-scene-on .con-term { min-height: 0; }
-body.con-scene-on .con-out { min-height: 16vh; max-height: 30vh; }
 
 @media (prefers-reduced-motion: reduce) {
-  #con-scene canvas { transition: none; }   /* room change = instant swap, no fade */
+  #con-scene { transition: none; }          /* entering is instant */
+  #con-scene canvas { transition: none; }   /* room change = instant swap */
 }
