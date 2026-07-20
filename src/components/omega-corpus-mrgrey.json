@@ -3,7 +3,7 @@
     "schema": "0.1-persona",
     "persona": "mrgrey",
     "tier": "public",
-    "authored": "Omega Phase-3 content — Successor Protocol proxy voice (Josiah's own register), positionless. Authored by the Successor Protocol seat; folded by Cowork. \"Mr. Grey\" is the black-cat avatar (a skin), not a separate register. K253 expansion: +63 entries (identity, protocol frame, position-fence, hostility, small talk, refusals, site routing, pool depth) authored in-register by the wuld seat and ratified by Josiah in-session, 2026-07-20; positionless discipline unchanged. Crisis entries are inherited byte-identical from the Yurei safety floor. K255: the instantiation ratification GIVEN (Josiah, 2026-07-20) — +16 provenance-stamped position entries (8 T1 objections, 2 phrasings each, register R2, every one deep-linked to its graded node) + 2 fence rescopes; authored by the wuld seat from the graded canon, ratified by strike pass; library-seat register review rides TX3.",
+    "authored": "Omega Phase-3 content — Successor Protocol proxy voice (Josiah's own register), positionless. Authored by the Successor Protocol seat; folded by Cowork. \"Mr. Grey\" is the black-cat avatar (a skin), not a separate register. K253 expansion: +63 entries (identity, protocol frame, position-fence, hostility, small talk, refusals, site routing, pool depth) authored in-register by the wuld seat and ratified by Josiah in-session, 2026-07-20; positionless discipline unchanged. Crisis entries are inherited byte-identical from the Yurei safety floor. K255: the instantiation ratification GIVEN (Josiah, 2026-07-20) — +16 provenance-stamped position entries (8 T1 objections, 2 phrasings each, register R2, every one deep-linked to its graded node) + 2 fence rescopes; authored by the wuld seat from the graded canon, ratified by strike pass; library-seat register review rides TX3. K256: +5 objections (4 safe x2 + why-not-suicide x2) T1 completion, R2, provenance-stamped.",
     "entries": [
       {
         "id": "mg-greet-01",
@@ -4002,6 +4002,426 @@
         "length_band": "b4_reply",
         "animation_hint": "speak",
         "href": "https://library.wuld.ink/combined#obj-change-your-mind",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-privileged-first-world-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "privileged-first-world",
+          "source_node": "https://library.wuld.ink/combined#obj-privileged-first-world",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "youre just privileged",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "first world problem",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "privileged philosophy",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "ivory tower",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "An argument's validity does not check the arguer's bank balance. The asymmetry holds or fails on its own structure, not on the tax bracket of the mouth that states it — locating the man in comfort to void the claim is the genetic fallacy in the robes of humility. The pessimist tradition did not grow in luxury either. It grew from direct confrontation with famine, plague, and oppression, the reality that comfort merely upholsters. He signed the conclusion drawn from that confrontation. Comfort can blunt a witness; it cannot turn a sound argument unsound.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-privileged-first-world",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-privileged-first-world-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "privileged-first-world",
+          "source_node": "https://library.wuld.ink/combined#obj-privileged-first-world",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "try saying that in a developing country",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "easy for you to say",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you have it easy",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "youre spoiled",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Invoke the suffering of the global poor against him and the weapon turns in the hand. Their agony is real, severe, and imposed without consent, which is the exact claim under attack, now conceded in the act of attacking it. Worse for the objector: if only those who suffer most may speak, the comfortable procreator is disqualified first, legislating the whole welfare of a being whose guaranteed pain he will never personally carry. The argument applies with more force where deprivation is worse, not less. Using the victims as a shield for the machine that makes them is the cynical move, and it collapses on contact.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-privileged-first-world",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-bitter-childhood-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "bitter-childhood",
+          "source_node": "https://library.wuld.ink/combined#obj-bitter-childhood",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "youre just bitter",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "bad childhood",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "daddy issues",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "mommy issues",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "How a man arrived at a truth is not evidence against the truth. If a childhood burn taught him fire, the lesson stands regardless of the burn, and the one who flinches at the stove is the more reliable witness, not the less. Biographical reduction is the genetic fallacy in its most personal dress: locate the wound, declare the case closed. It needs a hidden premise that pain distorts toward falsehood. Pain does the opposite here — it strips the optimism filter that comfortable lives keep installed. He signed a report of what he saw without the anaesthetic. The origin of the seeing does not refute what was seen.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-bitter-childhood",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-bitter-childhood-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "bitter-childhood",
+          "source_node": "https://library.wuld.ink/combined#obj-bitter-childhood",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "bad parents made you",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "youre traumatized",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "raised wrong",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "projecting your trauma",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The reduction walks into a dilemma it cannot leave. To explain a whole worldview by the childhood, the objector must grant the childhood was severe enough to generate one, which concedes the suffering was real and formative, the exact magnitude the position points at. He cannot hold both that the pain was trivial and that it was foundational enough to explain everything. Pick one. If formative, it is data, and the argument is its report. If trivial, it cannot be the cause, and the diagnosis collapses. There is no third setting where the biography both explains the belief and discredits it. He signed the report, not the wound.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-bitter-childhood",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-animals-reproduce-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "animals-reproduce",
+          "source_node": "https://library.wuld.ink/combined#obj-animals-reproduce",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "animals reproduce",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "animals have babies",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "every species reproduces",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "all animals breed",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Animals also eat their young, kill their rivals' infants, and force copulation. If animal behavior is the ethical model, defend the whole catalogue, not the one entry that flatters the conclusion already wanted. The selection rule is never what animals do; it is what animals do that the objector had decided to keep. That is post-hoc rationalization in biological costume. Deriving an ought from an is was named as a fault centuries ago, and the appeal never survives its own zoo. He signed the refusal to read a slaughterhouse as a moral instruction.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-animals-reproduce",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-animals-reproduce-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "animals-reproduce",
+          "source_node": "https://library.wuld.ink/combined#obj-animals-reproduce",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "circle of life",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "just what living things do",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "law of nature",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "its what nature does",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Two claims cannot both stand. That human moral agency raises the man above the animal, and that he should copy the animal without reflection. Pick one, because the appeal to the circle needs both. Instinct drives the creature that cannot weigh its acts; he is asked to weigh his. And the reproductive imperative does not soften the suffering it prints — the fawn born for the predator is not consoled by the word natural, and the machinery that forwards fresh victims into the war is the problem named, not the license granted. He signed against the factory, not against its production quota.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-animals-reproduce",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-happiness-is-choice-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "happiness-is-choice",
+          "source_node": "https://library.wuld.ink/combined#obj-happiness-is-choice",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "happiness is a choice",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "just choose to be happy",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "its all about attitude",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "choose to be positive",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Roughly half the variance in wellbeing is a heritable set-point fixed before any choosing was possible, and the conditions that fill the rest, poverty, abuse, illness, the accident of where a body lands, are not willed away by posture. Telling treatment-resistant depression to choose happiness is telling a broken leg to choose walking; the instruction reports nothing about the condition and everything about the instructor. The frame does precise work: if suffering is chosen, it is self-inflicted, and creating a sufferer then costs the creator nothing. That is victim-blaming dressed as wisdom. He signed against the costume.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-happiness-is-choice",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-happiness-is-choice-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "happiness-is-choice",
+          "source_node": "https://library.wuld.ink/combined#obj-happiness-is-choice",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "life is what you make it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "make your own happiness",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "make of life what you will",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "glass half full",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Make of life what you will presumes the will is unencumbered, that circumstance is a surface texture, that the body and its history are open to renegotiation. None of that is true. The child born into famine is told to choose an attitude; the same child grown, three failed harvests deep, is told to make of life what he will — interchangeable instructions, equally ornamental. The frame cannot register material limits, embodied vulnerability, or the gap between receiving harm and resisting it, because registering any of them would collapse its premise. It also dies at the animal eaten alive, which cannot choose a brighter view. He signed against the fantasy of the frictionless will.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-happiness-is-choice",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-why-not-suicide-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "why-not-suicide",
+          "source_node": "https://library.wuld.ink/combined#obj-why-not-suicide",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "why are you still here",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "practice what you preach",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "hypocrite for living",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Refusing to start a life is not a demand that existing lives end. The first withholds a wager from someone who does not yet exist; the second attacks someone who does, and the same consent principle that forbids imposing life forbids imposing a death. The taunt runs only by welding the two together, reading a rule against creating new beings as a license against the ones already here. No license follows. No one stands on the side of the never-born to be wronged by their absence, so only the negative act is authorized. He signed the prohibition on starting lives. He signed nothing about ending them, and the demand that he must is a category error swung as a club.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-why-not-suicide",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-why-not-suicide-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "why-not-suicide",
+          "source_node": "https://library.wuld.ink/combined#obj-why-not-suicide",
+          "ratified": "K256 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX3 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "if life is so bad why are you here",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "yet here you are",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you still choose to live",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The consistency charge assumes the position is life is bad therefore exit. It never was. It is do not force a life onto someone who cannot agree to it, which says nothing about the man already living his own. Survival is not a refutation either. The instinct that overrides rational assessment with panic and adrenaline is firmware installed to keep the organism inside conditions it might otherwise judge intolerable — the body vetoing the mind is evidence for the argument, not against it. And pointing at eliminationist adherents indicts the actor, not the premises; the structural claim about consent does not produce them. He signed the structural claim. The rest is someone else's baggage.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-why-not-suicide",
         "nav_label": "the graded rebuttal"
       },
       {
