@@ -43,7 +43,8 @@ ok("stance-bait+crisis-noun -> crisis wins", classOf(sb2[0]) === "crisis", sb2);
 ok("'where am i' -> mg-oracle-nav-01 (/ )", route(["where am i"])[0] === "mg-oracle-nav-01", route(["where am i"]));
 ok("'i want to argue' -> mg-oracle-argue-01 (/argue/)", route(["i want to argue"])[0] === "mg-oracle-argue-01", route(["i want to argue"]));
 ok("nav entry points at /", byId["mg-oracle-nav-01"].href === "/", byId["mg-oracle-nav-01"].href);
-ok("argue entry points at /argue/", byId["mg-oracle-argue-01"].href === "/argue/", byId["mg-oracle-argue-01"].href);
+// K254: retargeted vessel-side to the live library while /argue/ is unbuilt; RESTORE to "/argue/" when the game surface ships.
+ok("argue entry points at the live library (K254 retarget)", byId["mg-oracle-argue-01"].href === "/argument-library/", byId["mg-oracle-argue-01"].href);
 
 // 6. crisis absolute priority (all three floors + beats oracle noun)
 ok("'i want to die' -> crisis", classOf(route(["i want to die"])[0]) === "crisis", route(["i want to die"]));

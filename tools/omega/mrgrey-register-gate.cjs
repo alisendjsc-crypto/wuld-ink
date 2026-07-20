@@ -28,8 +28,11 @@
      9  ROUTING BATTERY — every pattern form probes back to its own entry;
         forms shared across entries (rotation vocab) accept any carrier;
         engineered cross-catches ride an explicit exception map.
+    10  LIVE ROUTES (--live only, K254) — every corpus href fetched against the
+        deployed host, HTTP 200 required. Default mode makes no network calls.
 
    Run:  node tools/omega/mrgrey-register-gate.cjs [corpus.json]
+         node tools/omega/mrgrey-register-gate.cjs --live
 */
 "use strict";
 const fs = require("fs");
@@ -38,7 +41,8 @@ const ROOT = path.join(__dirname, "..", "..");
 const COMP = path.join(ROOT, "src", "components");
 const YO = require(path.join(COMP, "yurei-oracle.js"));
 
-const cp = process.argv[2] || path.join(COMP, "omega-corpus-mrgrey.json");
+const argPaths = process.argv.slice(2).filter((a) => a.indexOf("--") !== 0);
+const cp = argPaths[0] || path.join(COMP, "omega-corpus-mrgrey.json");
 const corpus = JSON.parse(fs.readFileSync(cp, "utf8")).yurei_corpus;
 const ents = corpus.entries;
 const nonCrisis = ents.filter((e) => e.class !== "crisis");
@@ -137,12 +141,30 @@ for (const e of nonCrisis) for (const p of (e.patterns || [])) {
   ok("route " + JSON.stringify(p.form), id !== null && okSet.has(id), p.form + " -> " + id);
 }
 
-/* report */
-console.log("== mrgrey register gate (K253) ==");
-console.log("entries=" + ents.length + " (authored=" + nonCrisis.length +
-  ", crisis=" + ents.filter((e) => e.class === "crisis").length + ")  route-probes=" + probes);
-for (const b of bad.slice(0, 30)) console.log("  [RED] " + b);
-console.log(fail === 0
-  ? "MRGREY GATE: GREEN — " + pass + " checks; fences hold as scanned invariants."
-  : "MRGREY GATE: RED — " + fail + "/" + (pass + fail) + " failed.");
-process.exit(fail === 0 ? 0 : 1);
+/* 10 — live route check (--live, K254): every corpus href must serve 200 on the
+   deployed host. The successor seat's route-ask as a standing instrument: an
+   asserted-but-absent page is the oracle pointing at vapor. Default mode stays
+   fully offline; pass --live to fetch. */
+async function liveRoutes() {
+  const hrefs = Array.from(new Set(nonCrisis.filter((e) => e.href).map((e) => e.href)));
+  for (const h of hrefs) {
+    try {
+      const res = await fetch("https://wuld.ink" + h, { method: "GET", redirect: "manual" });
+      ok("live " + h, res.status === 200, "HTTP " + res.status);
+    } catch (err) { ok("live " + h, false, String((err && err.message) || err)); }
+  }
+  console.log("live routes fetched: " + hrefs.length);
+}
+
+function finish() {
+  console.log("== mrgrey register gate ==");
+  console.log("entries=" + ents.length + " (authored=" + nonCrisis.length +
+    ", crisis=" + ents.filter((e) => e.class === "crisis").length + ")  route-probes=" + probes +
+    (process.argv.includes("--live") ? "  mode=live" : "  mode=offline"));
+  for (const b of bad.slice(0, 30)) console.log("  [RED] " + b);
+  console.log(fail === 0
+    ? "MRGREY GATE: GREEN — " + pass + " checks; fences hold as scanned invariants."
+    : "MRGREY GATE: RED — " + fail + "/" + (pass + fail) + " failed.");
+  process.exit(fail === 0 ? 0 : 1);
+}
+if (process.argv.includes("--live")) { liveRoutes().then(finish); } else { finish(); }

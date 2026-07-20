@@ -314,8 +314,8 @@
         ],
         "length_band": "b2_line",
         "animation_hint": "speak",
-        "href": "/argue/",
-        "nav_label": "/argue/"
+        "href": "/argument-library/",
+        "nav_label": "the argument library"
       },
       {
         "id": "mg-oracle-nav-01",
@@ -950,12 +950,12 @@
             "weight": 3
           }
         ],
-        "response": "Nothing leaves the page. The transcript sits in your browser and deletes at your hand — there is no server behind me to tell.",
+        "response": "What you type stays in your browser and deletes at your hand — no server of mine collects it. The page load itself is ordinary web traffic; every host sees that much. What I keep is nothing.",
         "register_tags": [
           "clinical",
           "site"
         ],
-        "length_band": "b2_line",
+        "length_band": "b3_passage",
         "animation_hint": "speak"
       },
       {
@@ -2958,7 +2958,7 @@
             "weight": 3
           }
         ],
-        "response": "Notes is yours, not his — a private page that keeps to your browser and reports to no one. Write; nothing watches.",
+        "response": "Notes is yours, not his — what you write there lives in your browser and is never transmitted. The site cannot read it back. Write.",
         "register_tags": [
           "site"
         ],
