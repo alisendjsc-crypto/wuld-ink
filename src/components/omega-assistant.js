@@ -3,7 +3,7 @@
    The SURFACE for the `mrgrey` persona. Mounts the BYTE-IDENTICAL Yurei engine
    (yurei-oracle.js, window.YureiOracle) on the Successor-Protocol proxy corpus
    (omega-corpus-mrgrey.json) as ONE Matcher instance — the Omega loader
-   convention (docs/omega-persona-convention.md). Positionless (Phase 3); the
+   convention (docs/omega-persona-convention.md). Phase-4 positions ride the provenance-stamped class (K255); the
    crisis floor rides inside the corpus and fires first, exactly as on Yurei.
 
    CONSERVATION: this is a SEPARATE file. It does not import, edit, or perturb
@@ -27,7 +27,7 @@
   var MANIFEST_URL = ASSET + "avatar/mr-grey_manifest_v3.json";
   var MANIFEST_BASE = MANIFEST_URL.slice(0, MANIFEST_URL.lastIndexOf("/") + 1);
   var CORPUS_URL = COMP + "omega-corpus-mrgrey.json";
-  var VER = "K253";
+  var VER = "K255";
 
   // ---- persona-keyed stores (never commingled with Yurei's wuld:yurei*) ----
   var KILL_KEY = "wuld:mrgrey";                        // { off:true } — proxy opt-out
@@ -194,7 +194,7 @@
 
     // Opening lines: a system disclaimer (chrome) + the corpus's OWN authored
     // greeting (never invented here — Cowork authors no register).
-    addLine("sys", "A scripted proxy of the writer — positionless for now. Not the author.");
+    addLine("sys", "A scripted proxy of the writer — his signed positions only, nothing improvised. Not the author.");
     var greet = corpus.filter(function (e) { return e.class === "response" && e.tier === "public"; })[0];
     if (greet) addLine("grey", greet.response, {});   // sprite deferred to first open
 
@@ -239,10 +239,15 @@
     transcript.scrollTop = transcript.scrollHeight;
     if (who === "grey" && opts.hint) showSprite(opts.hint, { then: "idle" });
   }
-  // legacy same-origin href pointing only (the mrgrey oracle entries carry href/nav_label)
+  // same-origin href pointing (the mrgrey oracle entries carry href/nav_label),
+  // plus — K255 — the flagship library's own combined surface for position
+  // deep-links (#obj- card anchors; the register gate allowlists the exact
+  // form and the --live mode fetches it). No other external origin renders.
+  var LIB_PREFIX = "https://library.wuld.ink/combined#obj-";
   function normPointing(e) {
     if (!e) return null;
-    if (typeof e.href === "string" && e.href.charAt(0) === "/" && e.href.slice(0, 2) !== "//")
+    if (typeof e.href === "string" &&
+        ((e.href.charAt(0) === "/" && e.href.slice(0, 2) !== "//") || e.href.indexOf(LIB_PREFIX) === 0))
       return { links: [{ href: e.href, label: e.nav_label || e.href }] };
     return null;
   }

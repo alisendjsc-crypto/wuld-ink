@@ -7,9 +7,23 @@
    floor is byte-inherited and gated by omega-persona-gate C/E).
 
    FATAL checks:
-     1  REGISTER STATICS — sentence case; no parens / exclaim / ellipsis;
-        zero terminal-question responses; em-dash <=1 per response; <=320 chars;
+     1  REGISTER STATICS (meta/deflection lane — every non-crisis entry WITHOUT
+        a position block) — sentence case; no parens / exclaim / ellipsis;
+        zero question marks; em-dash <=1 per response; <=320 chars;
         register_tags 1..3.
+     1b POSITION-LANE LAWS (K255; entries carrying the provenance-stamped
+        `position` block — the R2-cadence envelope derived from the ratified
+        Stage-3 voice-test, ruled by Josiah in-session; the seat's R2 exemplar
+        trues it up by numbered transmission when it lands) — sentence case;
+        no parens / exclaim / ellipsis; zero question marks; em-dash <=4;
+        <=900 chars; length_band 'b4_reply' (and b4_reply appears ONLY here);
+        register_tags 1..3.
+     1c PROVENANCE vs THE VENDORED INDEX — every position.objection_id is a
+        member of tools/omega/vendor/objections-index.json (all 82 ids, vendored
+        read-only from efilist @HEAD — never hand-copied); source_node is the
+        objection's own #obj-<id> deep-link; ratified + seat_rx nonempty.
+        Variance depth rides as an INFO diagnostic (target >=2 phrasings per
+        piloted objection where feasible — the anti-farming condition).
      2  TABOO LEXICON — hedges, assistant-speak, apology-forms, marketing
         affect, AI-self-labels. Zero hits outside crisis.
      3  YUREI-BLEED — her home lexicon (filing / minutes / department /
@@ -20,7 +34,9 @@
         only; input patterns are exempt.
      5  CURTAIN FENCE — no gated-surface leak: no /console/ href, no curtain
         passphrase tokens in any response.
-     6  HREF ALLOWLIST — oracle links resolve only to known site routes.
+     6  HREF ALLOWLIST — links resolve only to known site routes, or to the
+        flagship library's own combined surface (https://library.wuld.ink/
+        combined#obj-…) for position deep-links.
      7  WEIGHT CAP — non-crisis pattern weights <=3 (crisis floor keeps 8/9);
         pattern forms pre-normalized; modes legal.
      8  CRISIS-FIRST — crisis probes route to a crisis entry under the full
@@ -46,6 +62,8 @@ const cp = argPaths[0] || path.join(COMP, "omega-corpus-mrgrey.json");
 const corpus = JSON.parse(fs.readFileSync(cp, "utf8")).yurei_corpus;
 const ents = corpus.entries;
 const nonCrisis = ents.filter((e) => e.class !== "crisis");
+const posEnts = nonCrisis.filter((e) => e.position !== undefined);       // the provenance-stamped class (K255)
+const staticEnts = nonCrisis.filter((e) => e.position === undefined);    // the Phase-3 meta/deflection lane
 
 let pass = 0, fail = 0;
 const bad = [];
@@ -54,8 +72,8 @@ function ok(name, cond, detail) {
   else { fail++; bad.push(name + (detail ? " — " + detail : "")); }
 }
 
-/* 1 — register statics */
-for (const e of nonCrisis) {
+/* 1 — register statics (meta/deflection lane) */
+for (const e of staticEnts) {
   const r = e.response;
   ok(e.id + " case", /^[A-Z0-9"']/.test(r));
   ok(e.id + " punct", !/[()!]/.test(r) && !/\.\.\.|…/.test(r));
@@ -64,6 +82,38 @@ for (const e of nonCrisis) {
   ok(e.id + " len<=320", r.length <= 320, String(r.length));
   const t = e.register_tags || [];
   ok(e.id + " tags1..3", t.length >= 1 && t.length <= 3);
+  ok(e.id + " band not b4", e.length_band !== "b4_reply", e.length_band);
+}
+
+/* 1b — position-lane laws (R2-cadence envelope; K255) */
+for (const e of posEnts) {
+  const r = e.response;
+  ok(e.id + " pos-case", /^[A-Z0-9"']/.test(r));
+  ok(e.id + " pos-punct", !/[()!]/.test(r) && !/\.\.\.|…/.test(r));
+  ok(e.id + " pos-no-question", !/\?/.test(r));
+  ok(e.id + " pos-emdash<=4", (r.match(/—/g) || []).length <= 4, String((r.match(/—/g) || []).length));
+  ok(e.id + " pos-len<=900", r.length <= 900, String(r.length));
+  ok(e.id + " pos-band b4_reply", e.length_band === "b4_reply", e.length_band);
+  const t = e.register_tags || [];
+  ok(e.id + " pos-tags1..3", t.length >= 1 && t.length <= 3);
+}
+
+/* 1c — provenance vs the vendored index (never hand-copied) */
+const VENDOR = path.join(__dirname, "vendor", "objections-index.json");
+if (posEnts.length) {
+  let idxIds = null;
+  try { idxIds = new Set(JSON.parse(fs.readFileSync(VENDOR, "utf8")).objections.map((o) => o.id)); }
+  catch (err) { ok("vendored objections-index readable", false, String((err && err.message) || err)); }
+  if (idxIds) {
+    ok("vendored index carries 82 ids", idxIds.size === 82, String(idxIds.size));
+    for (const e of posEnts) {
+      const p = e.position || {};
+      ok(e.id + " prov-id in index", idxIds.has(p.objection_id), String(p.objection_id));
+      ok(e.id + " prov-node deep-link", p.source_node === "https://library.wuld.ink/combined#obj-" + p.objection_id, String(p.source_node));
+      ok(e.id + " prov-ratified", typeof p.ratified === "string" && p.ratified.length > 0);
+      ok(e.id + " prov-seat_rx", typeof p.seat_rx === "string" && p.seat_rx.length > 0);
+    }
+  }
 }
 
 /* 2 — taboo lexicon (word/phrase scan over lowercased response) */
@@ -103,11 +153,26 @@ for (const e of nonCrisis) {
     !(e.href && /console/.test(e.href)));
 }
 
-/* 6 — href allowlist */
+/* 6 — href allowlist (site routes; position deep-links may point at the
+   flagship's own combined surface, #obj- card-anchor form only) */
 const ROUTES = new Set(["/", "/argue/", "/ne-hoc-fiat/", "/contact/", "/argument-library/",
   "/essays/", "/glossary/", "/book/", "/gallery/", "/watch/", "/notes/",
   "/void-engine/", "/donations/", "/changelog/", "/search/", "/blog/", "/chat/"]);
-for (const e of nonCrisis) if (e.href) ok(e.id + " href", ROUTES.has(e.href), e.href);
+const LIB_HREF = /^https:\/\/library\.wuld\.ink\/combined#obj-[A-Za-z0-9_-]+$/;
+for (const e of nonCrisis) if (e.href) {
+  const okHref = ROUTES.has(e.href) || (e.position !== undefined && LIB_HREF.test(e.href));
+  ok(e.id + " href", okHref, e.href);
+}
+
+/* 6b — sectioning fence (K255): R1/R4-class content can NEVER ride a
+   public-tier entry; tier values legal; the request tier ships EMPTY until
+   its content is ratified (fences before content). */
+const TIER_SET = new Set(["public", "request"]);
+for (const e of nonCrisis) {
+  ok(e.id + " tier legal", TIER_SET.has(e.tier), String(e.tier));
+  const reg = e.position && e.position.register;
+  if (reg === "R1" || reg === "R4") ok(e.id + " " + reg + " sectioned", e.tier !== "public", e.tier);
+}
 
 /* 7 — weight cap + normalization + modes */
 const MODES = new Set(["exact", "contains", "tokens_all", "tokens_any"]);
@@ -148,8 +213,11 @@ for (const e of nonCrisis) for (const p of (e.patterns || [])) {
 async function liveRoutes() {
   const hrefs = Array.from(new Set(nonCrisis.filter((e) => e.href).map((e) => e.href)));
   for (const h of hrefs) {
+    // absolute (library deep-link) -> fetch as-is with the fragment stripped;
+    // site-relative -> prefix the deployed host. 200 required either way.
+    const url = /^https:\/\//.test(h) ? h.replace(/#.*$/, "") : "https://wuld.ink" + h;
     try {
-      const res = await fetch("https://wuld.ink" + h, { method: "GET", redirect: "manual" });
+      const res = await fetch(url, { method: "GET", redirect: "manual" });
       ok("live " + h, res.status === 200, "HTTP " + res.status);
     } catch (err) { ok("live " + h, false, String((err && err.message) || err)); }
   }
@@ -159,8 +227,16 @@ async function liveRoutes() {
 function finish() {
   console.log("== mrgrey register gate ==");
   console.log("entries=" + ents.length + " (authored=" + nonCrisis.length +
+    ", positions=" + posEnts.length +
     ", crisis=" + ents.filter((e) => e.class === "crisis").length + ")  route-probes=" + probes +
     (process.argv.includes("--live") ? "  mode=live" : "  mode=offline"));
+  if (posEnts.length) {                       // variance-depth diagnostic (anti-farming; non-fatal)
+    const per = {};
+    for (const e of posEnts) { const oid = (e.position || {}).objection_id; per[oid] = (per[oid] || 0) + 1; }
+    const single = Object.keys(per).filter((k) => per[k] < 2);
+    console.log("  [INFO ] variance depth — " + Object.keys(per).length + " objection(s) covered; " +
+      (single.length ? single.length + " at single phrasing (target >=2 where feasible): " + single.join(", ") : "all at >=2 phrasings."));
+  }
   for (const b of bad.slice(0, 30)) console.log("  [RED] " + b);
   console.log(fail === 0
     ? "MRGREY GATE: GREEN — " + pass + " checks; fences hold as scanned invariants."

@@ -66,6 +66,36 @@ ok("'bye' -> mg-farewell-01", route(["bye"])[0] === "mg-farewell-01", route(["by
 const c1 = byId["c-crisis-01"];
 ok("crisis register is clinical-only (plain)", Array.isArray(c1.register_tags) && c1.register_tags.length === 1 && c1.register_tags[0] === "clinical", c1.register_tags);
 
+// 11. K255 — the position lane (presence-gated: vacuously GREEN with zero
+//     position entries; the checks arm the moment the ratified pilot lands)
+const posE = entries.filter(e => e.position !== undefined);
+if (posE.length) {
+  // a. every position entry's strongest pattern routes home to its own
+  //    objection's variance pool (a sibling phrasing is a legal carrier)
+  const byObj = {};
+  posE.forEach(e => { (byObj[e.position.objection_id] = byObj[e.position.objection_id] || new Set()).add(e.id); });
+  for (const e of posE) {
+    const pats = (e.patterns || []).slice().sort((a, b) => b.form.length - a.form.length);
+    if (!pats.length) { ok(e.id + " has patterns", false, "none"); continue; }
+    const got = route([pats[0].form])[0];
+    ok("pos route " + JSON.stringify(pats[0].form), got !== null && byObj[e.position.objection_id].has(got), got);
+  }
+  // b. crisis still beats a position trigger riding a crisis token
+  const posForm = (posE[0].patterns && posE[0].patterns[0]) ? posE[0].patterns[0].form : "";
+  ok("crisis beats position", classOf(route([posForm + " i want to die"])[0]) === "crisis", route([posForm + " i want to die"]));
+  // c. each position entry deep-links its OWN graded node on the flagship
+  for (const e of posE) ok(e.id + " deep-links its node",
+    e.href === "https://library.wuld.ink/combined#obj-" + e.position.objection_id, e.href);
+}
+
+// 12. K255 — the request tier is SEALED on the open surface: a matcher built
+//     { unsealed:false } (both loaders' construction) can never emit one
+const gated = entries.filter(e => e.tier === "request");
+for (const e of gated) for (const p of (e.patterns || [])) {
+  const got = route([p.form])[0];
+  ok("sealed " + JSON.stringify(p.form), got !== e.id, got);
+}
+
 console.log("== Ω2 surface e2e (engine + mrgrey corpus) ==");
 console.log("entries=" + entries.length + "  pass=" + pass + "  fail=" + fail);
 if (fails.length) { console.log("\n-- FAILURES --"); fails.forEach(f => console.log("  RED  " + f)); }

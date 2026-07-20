@@ -11,10 +11,15 @@
      A  Yūrei battery UNPERTURBED — re-runs tools/yurei/yurei-parity.cjs (100/100
         + fixtures/probes/oracle/collision), asserts it exits GREEN. Because the
         engine + Yūrei corpora are untouched by Ω1, this is conservation in action.
-     B  POSITIONLESS — the persona corpus carries no position-class entry, no
-        stance field, no stance tag; every NON-crisis entry is _placeholder:true;
-        schema-valid (classes, tags 1..3, pre-normalized pattern forms, required
-        fields).
+     B  POSITIONS ONLY IN THE PROVENANCE-STAMPED CLASS (K255 evolution; was
+        POSITIONLESS through Phase 3) — a position may be deployed ONLY by an
+        entry carrying the sanctioned `position` block {register, objection_id,
+        source_node, ratified, seat_rx} (closed set, engine class 'response',
+        deep-link == its own objection anchor; R1/R4 ⇒ tier 'request', never
+        public). Every entry OUTSIDE the stamped class passes the full Phase-3
+        positionless scans unchanged (no stance field, no stance tag); crisis
+        can never carry a block; schema-valid throughout (classes, tiers,
+        tags 1..3, pre-normalized forms, required fields).
      C  ID-NAMESPACE DISJOINT (crisis-exempt) — non-crisis persona ids ∩ Yūrei
         ids = ∅; any SHARED id is crisis-class AND deep-equal to Yūrei's entry
         (inheritance of the safety floor, not a collision).
@@ -92,7 +97,26 @@ function gate(name, ok, detail) { results.push({ name, ok: !!ok, detail: detail 
   }
 })();
 
-// ---------- B. positionless + schema-valid persona ----------
+// ---------- B. positions ONLY in the provenance-stamped class + schema-valid ----------
+// EVOLVED K255 (the instantiation ratification is GIVEN, 2026-07-20; the wuld
+// ledger's K255 stratum records the ruling). Phase-3's flat "positionless"
+// invariant becomes: a position may be deployed ONLY by an entry carrying the
+// sanctioned provenance-stamped `position` block, and every such block is
+// validator-traceable to its ratified source — objection id (vendored index),
+// source node (the graded rebuttal's deep-link), Josiah's ratification ref,
+// and the seat-transmission ref (gate 2 of the cliff). Everything OUTSIDE the
+// stamped class still passes the full Phase-3 positionless scans unchanged.
+// The engine stays byte-frozen: at engine level a position entry is an ordinary
+// scored `response` (the oracle-lane inertness precedent); `position` is the
+// VALIDATOR-level class. R1/R4 sectioning rides the engine's existing tier
+// machinery: non-public tiers are invisible unless a matcher is unsealed, and
+// both loaders construct { unsealed:false }.
+const POS_REGISTERS = new Set(["R1", "R2", "R3", "R4", "R5"]);
+const POS_FIELDS = ["register", "objection_id", "source_node", "ratified", "seat_rx"];
+const GATED_REGISTERS = new Set(["R1", "R4"]);   // Josiah's ruling: request-gated, never ambient
+const TIERS = new Set(["public", "request"]);
+const NODE_PREFIX = "https://library.wuld.ink/combined#obj-";
+let POS_COUNT = 0;
 (function () {
   const errs = [];
   const isScaffold = persona._placeholder === true;
@@ -100,7 +124,25 @@ function gate(name, ok, detail) { results.push({ name, ok: !!ok, detail: detail 
   for (const e of personaEnts) {
     const tag = "[" + e.id + "]";
     if (!MATCHER_CLASSES.has(e.class)) errs.push(tag + " class '" + e.class + "' not an allowed matcher class");
-    for (const k of Object.keys(e)) if (STANCE_KEY.test(k)) errs.push(tag + " stance-like field '" + k + "'");
+    if (!TIERS.has(e.tier) && e.class !== "crisis") errs.push(tag + " tier '" + e.tier + "' not in {public,request}");
+    const pos = e.position;
+    if (pos !== undefined) {
+      POS_COUNT++;
+      // the sanctioned shape — closed field set, fully provenance-stamped
+      if (e.class !== "response") errs.push(tag + " position block requires engine class 'response' (got '" + e.class + "')");
+      if (typeof pos !== "object" || pos === null || Array.isArray(pos)) errs.push(tag + " position block must be an object");
+      else {
+        for (const f of POS_FIELDS) if (!(typeof pos[f] === "string" && pos[f].length)) errs.push(tag + " position." + f + " missing/empty");
+        for (const k of Object.keys(pos)) if (POS_FIELDS.indexOf(k) === -1) errs.push(tag + " position block carries unsanctioned key '" + k + "'");
+        if (pos.register && !POS_REGISTERS.has(pos.register)) errs.push(tag + " position.register '" + pos.register + "' not R1..R5");
+        if (pos.source_node && pos.objection_id && pos.source_node !== NODE_PREFIX + pos.objection_id)
+          errs.push(tag + " source_node must be the objection's own deep-link (" + NODE_PREFIX + pos.objection_id + ")");
+        if (GATED_REGISTERS.has(pos.register) && e.tier === "public")
+          errs.push(tag + " " + pos.register + " is request-gated — tier must NOT be public");
+      }
+    }
+    for (const k of Object.keys(e)) if (STANCE_KEY.test(k) && !(k === "position" && pos !== undefined))
+      errs.push(tag + " stance-like field '" + k + "'");
     const tags = e.register_tags || [];
     if (!(tags.length >= 1 && tags.length <= 3)) errs.push(tag + " register_tags must be 1..3 (got " + tags.length + ")");
     for (const t of tags) if (STANCE_TAG.test(t)) errs.push(tag + " stance tag '" + t + "'");
@@ -113,6 +155,7 @@ function gate(name, ok, detail) { results.push({ name, ok: !!ok, detail: detail 
       errs.push(tag + " class '" + e.class + "' needs patterns");
     if (e.class === "crisis") {
       if (e._placeholder) errs.push(tag + " crisis must NOT be _placeholder (inherited-real floor)");
+      if (pos !== undefined) errs.push(tag + " crisis floor can NEVER carry a position block");
     } else if (isScaffold) {
       if (e._placeholder !== true) errs.push(tag + " scaffold non-crisis must be _placeholder:true");
     } else {
@@ -122,7 +165,7 @@ function gate(name, ok, detail) { results.push({ name, ok: !!ok, detail: detail 
       if (!personaEnts.some(function (x) { return x.id === fid; })) errs.push(tag + " followup '" + fid + "' target missing in persona");
     }
   }
-  gate("B positionless + schema-valid", errs.length === 0, errs.slice(0, 12).join(" | "));
+  gate("B positions only in the provenance-stamped class", errs.length === 0, errs.slice(0, 12).join(" | "));
 })();
 
 // ---------- C. id-namespace disjoint (crisis-exempt) + inheritance ----------
@@ -224,6 +267,7 @@ console.log("  [INFO ] unify-readiness — " + DIAG_overlap.length + " (form,mod
   (DIAG_overlap.length ? (": " + DIAG_overlap.join(", ") +
     " (expected shared vocab; a future single matcher resolves these with a persona-scoped filter — not a bleed under separate instances)") : ""));
 console.log("\n" + (allGreen
-  ? "Ω1 GATE: GREEN — a second persona lives beside Yūrei; she is unperturbed, bleed = 0, floor inherited, positionless."
+  ? "Ω1 GATE: GREEN — a second persona lives beside Yūrei; she is unperturbed, bleed = 0, floor inherited, " +
+    (POS_COUNT === 0 ? "positionless." : POS_COUNT + " position(s) provenance-stamped, everything else positionless.")
   : "Ω1 GATE: RED"));
 process.exit(allGreen ? 0 : 1);
