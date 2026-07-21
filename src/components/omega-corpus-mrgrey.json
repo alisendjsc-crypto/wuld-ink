@@ -4490,7 +4490,7 @@
             "weight": 2
           }
         ],
-        "response": "'This is only Western thinking' — the oldest fallacy carrying a passport. Where a proposition was born tells you whom to credit, never whether it is so; the right angle held true before anyone drew a Greek triangle around it. And the passport is forged. Hegesias taught, centuries before the West had the name, that life's pleasures cannot clear its pains, and half of Asia built its highest goal out of leaving the wheel of birth behind. The objection needs the framework to be a local mood; it is a global diagnosis. He corrects the map and leaves the argument standing where it was. You have told me the accent the thing was first said in. It means the same in every mouth.",
+        "response": "'This is only Western thinking' — the oldest fallacy carrying a passport. Where a proposition was born tells you whom to credit, never whether it is so; the right angle held true before anyone drew a Greek triangle around it. And the passport is forged. Hegesias taught, centuries before the West had the name, that life's pleasures cannot clear its pains, and half of Asia built its highest goal out of leaving the wheel of birth behind. The objection needs the framework to be a local mood; it is a global diagnosis. He corrects the provenance and leaves the argument standing where it was. You have told me the accent the thing was first said in. It means the same in every mouth.",
         "register_tags": [
           "clinical",
           "volta"
@@ -4726,6 +4726,82 @@
         "length_band": "b4_reply",
         "animation_hint": "speak",
         "href": "https://library.wuld.ink/combined#obj-adoption-instead",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-survivor-testimony-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "survivor-testimony",
+          "source_node": "https://library.wuld.ink/combined#obj-survivor-testimony",
+          "ratified": "K260 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX8 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "survivors are glad they survived",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "glad they survived",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "grateful they survived",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Grant every word of it. The ones glad they made it are glad, fully and without reservation, and that gladness is real and theirs. It is also an answer to a question no one on my side asked. Whether a person now living is glad to be living is a report from inside a life. Whether that life was owed its beginning is the matter on the table, and nothing reaches that from within a life a person holds only because the beginning already came. He distinguishes the gladness of the living from any warrant to have begun them. You brought me warm testimony on being here, from the only ones in a position to give it. I asked whether anyone should have been placed here at all.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-survivor-testimony",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-survivor-testimony-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "survivor-testimony",
+          "source_node": "https://library.wuld.ink/combined#obj-survivor-testimony",
+          "ratified": "K260 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX8 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "they regret jumping",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "regret their attempt",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "survivors regret it",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "You took a survey and called it a proof, and the trouble is who could answer it. Every voice in the sample is a voice that stayed to give one. The case turns on those who did not stay, and they answer nothing at all, so a show of hands among the returned tells you the returned are glad and not one thing about the whole. There is a further catch. You are reading a verdict off a mind built to hand it up, since the pull to endorse one's own continuing is standard issue, not a considered finding. He marks the seats the count could never reach. You tallied the hands still raised. The matter was always the hands not in the room.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-survivor-testimony",
         "nav_label": "the graded rebuttal"
       },
       {
