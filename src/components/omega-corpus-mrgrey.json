@@ -5071,6 +5071,502 @@
         "animation_hint": "speak",
         "href": "https://library.wuld.ink/combined#obj-cherry-picking-worst",
         "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-consent-both-ways-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "consent-both-ways",
+          "source_node": "https://library.wuld.ink/combined#obj-consent-both-ways",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "cant consent either way",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "consent works both ways",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "neither can consent",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "consent to nonexistence",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Symmetry needs two subjects and there is only one. The never-created is no one — no preference to override, no welfare to set back, no party standing outside the world who was denied entry. You cannot fail to secure consent from an absence. Creation is where the second subject arrives: a being who will suffer, who was never asked, who carries the whole downside of a wager placed before it could speak. That is not a stalemate. One column holds a victim and the other holds no one. He weighs the two and finds the side you called equal is empty — you cannot balance a person against nobody at all.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-consent-both-ways",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-consent-both-ways-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "consent-both-ways",
+          "source_node": "https://library.wuld.ink/combined#obj-consent-both-ways",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "the unborn cant consent either",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "cant consent to not existing",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "consent goes both ways",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'They can't consent to not existing either' — true, and it costs you nothing, because there is no they. A name with no bearer refuses no offer and suffers no snub. Consent is a guardrail for someone who can be harmed; run it against a void and it returns nothing, because nothing is what it was guarding. Turn it the other way and the mechanism engages: the created child is a real subject who can be wronged, and was, handed a life it never agreed to. He does not accept the trade as even. That little word 'either' is doing all the work — one side has a person, the other has only the word.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-consent-both-ways",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-nihilism-label-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "nihilism-label",
+          "source_node": "https://library.wuld.ink/combined#obj-nihilism-label",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "isnt this just nihilism",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "this is just nihilism",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "sounds like nihilism",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "youre a nihilist",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Two claims share the name and you have seized the wrong one. That the cosmos has no built-in purpose — granted, without a flinch. That therefore nothing is better or worse than anything — denied, because the entire case rests on one value holding: that unconsented suffering is real and counts. Read the charge again and it runs backwards. If nothing mattered, the objection to manufacturing more nervous systems would dissolve; it has force only because the disvalue will not negotiate. He does not blink at the empty sky and still refuses to call the thing shivering under it nothing. That is not the absence of values — it is the one value that outlived the sky going dark.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-nihilism-label",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-nihilism-label-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "nihilism-label",
+          "source_node": "https://library.wuld.ink/combined#obj-nihilism-label",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "nothing matters anyway",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "if nothing matters why care",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "nothing really matters",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "life is meaningless anyway",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'Nothing matters, so why bother' — you disproved it by caring enough to say so. If the tally were truly blank, a summoned life full of pain would draw no objection and no interest; you would not argue, because there would be nothing there to argue about. The complaint lands only because something does register with you: the suffering of a subject who never asked to be one. Grant that love and joy are real goods for the living — they are. They are goods to no one on the far side of birth, where no one waits to miss them. He counts the harms as landing on a real person and the goods as owed to none. Meaninglessness among the stars does not settle the account down here.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-nihilism-label",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-gods-plan-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "gods-plan",
+          "source_node": "https://library.wuld.ink/combined#obj-gods-plan",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "its gods plan",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "part of gods plan",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "gods design",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the creator has a plan",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Call it the plan and you have not answered the question — you have handed it to someone who never arrives to take it. A design that threads a parasite through a child's eye and names it purpose is not owed deference; it is the thing under examination. Either the planner cannot stop this, or does not know, or does not care — and none of the three is the being you described. The appeal relocates the responsibility; it does not discharge it. He does not bow to an authority whose only credential is that it forbids the asking. A plan you may not examine is not one you have defended — it is a door held shut against the question.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-gods-plan",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-gods-plan-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "gods-plan",
+          "source_node": "https://library.wuld.ink/combined#obj-gods-plan",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "its gods will",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "divine purpose",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "be fruitful and multiply",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "god gives us life",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'Be fruitful and multiply' is an instruction, not an argument, and the instruction is precisely what's in doubt. If a command to create can route a life into leukemia and factory-scaled slaughter, then the source of that command is exactly what needs defending — you cannot call the accused as the character witness. Grant the whole theology for the sake of it: an all-seeing, all-powerful, loving author who permits a child to die by inches has made a judgment no ordinary parent would survive making. He does not grant the maker a license he would deny any human in the same seat. Divine purpose names the hand on the lever; it does not excuse what the lever does.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-gods-plan",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-masochist-counterexample-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "masochist-counterexample",
+          "source_node": "https://library.wuld.ink/combined#obj-masochist-counterexample",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "masochists enjoy pain",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "some people enjoy pain",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "people pay to be hurt",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "masochists like pain",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "To count as a counterexample it would have to show pain wanted as pain. Open the mechanism and the masochist shows the reverse. The lash is not the reward; it is the instrument — intense sensation deployed to drown a worse interior state: shame bled off, dissociation broken, dread finally given a shape it can hold. The drop from greater pain to lesser reads as pleasure and gets mistaken for it. Pain is the toll paid, never the thing bought. He does not deny that people seek it — he denies that seeking relief from a higher agony is the same as prizing agony itself. You have not dented the asymmetry; you have handed me one of its cleanest specimens.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-masochist-counterexample",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-masochist-counterexample-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "masochist-counterexample",
+          "source_node": "https://library.wuld.ink/combined#obj-masochist-counterexample",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "pain is subjective",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "pain is relative",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "some people like suffering",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "one persons pain is anothers pleasure",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'Pain is subjective, one person's agony is another's delight' — subjective in intensity, never in sign. The dial moves; the direction does not. Every case you offer resolves the same way under inspection: the masochist dismantling a worse interior state through sensation, the eater pushing past fullness to smother an older distress, the thrill-seeker who wants the arousal and merely tolerates the burn. None is registering hurt as a good; each trades a worse state for a milder one. He grants that the threshold shifts from body to body and holds that the valence does not. Relativity of degree is not reversal of sign — you have moved the number, not flipped the direction the whole system points.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-masochist-counterexample",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-evolution-purpose-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "evolution-purpose",
+          "source_node": "https://library.wuld.ink/combined#obj-evolution-purpose",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "evolution gave us purpose",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we evolved for a reason",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "evolution has a purpose",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Evolution gave you nothing, because it wants nothing. It is a blind sort that keeps whatever copies itself and discards whatever doesn't — no aim, no summit, no you-shaped goal waiting at the end. By its only measure the tapeworm is your equal and the gut microbe your peer; 'purpose' is the narration you laid over a process that runs mute. And suppose it had aimed at consciousness: a mechanism producing a thing is no argument for feeding it more raw material. He keeps the biology entire and discards the sermon bolted onto it. The algorithm selected for replication and swept the cost onto whatever got replicated — you have mistaken the exhaust for a destination.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-evolution-purpose",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-evolution-purpose-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "evolution-purpose",
+          "source_node": "https://library.wuld.ink/combined#obj-evolution-purpose",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "species survival matters",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "survival of the species",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "we evolved to reproduce",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'The species has to continue' — has to, though no one ever produces the warrant for the 'has to'. Survival is a fact about which lines persisted, never a command that they ought to. Nature ran the filter and you are reading its output as an order — the naturalistic slip in formal dress: what happened licenses nothing about what should. Even granting the drive, a factory does not earn its next shift by pointing at the good units while the defective ones burn in the same building. The line continues only by conscripting new members who never enlisted and who shoulder every hazard of the tour. He does not take an inherited urge for a mandate. That you were built to want more is the mechanism talking — not a reason it has troubled to give.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-evolution-purpose",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-luxury-belief-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "luxury-belief",
+          "source_node": "https://library.wuld.ink/combined#obj-luxury-belief",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "luxury belief",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "rob henderson",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "elite belief",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Where a belief sits in the status economy is a fact about its holders, not about its truth. Grade the sociology all you like — you will not have laid a finger on the claim. A proposition can flatter whoever holds it and still be correct; the two questions do not share a border. Heliocentrism was once the private luxury of educated men, and the earth moved regardless. He concedes that a position can be worn as an ornament and denies that the wearing tells you whether it is true. You have described who tends to say the thing and called it a refutation of the thing. The costume an argument arrives in is not the argument — read the claim, not the wardrobe of the claimant.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-luxury-belief",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-luxury-belief-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "luxury-belief",
+          "source_node": "https://library.wuld.ink/combined#obj-luxury-belief",
+          "ratified": "K258 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX6 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "youre just virtue signaling",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "only comfortable people believe this",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "its social signaling",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "just status signaling",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'Only comfortable people believe this, it's mere signaling' — two claims, both weak. The first is the origin fallacy: where a belief tends to arise says nothing about whether it holds, or every idea first thought by someone fed and housed would be false by breakfast. The second is checkable, and comes back wrong. A pure status signal is cheap by design; this one bills its holder — the pathologizing, the charge of hating your own kind, the family that reads a refusal to breed as a wound. He prices the belief at what it actually exacts and finds it steep, not free. If the aim were applause, there are a hundred cheaper performances than this one.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-luxury-belief",
+        "nav_label": "the graded rebuttal"
       }
     ]
   }
