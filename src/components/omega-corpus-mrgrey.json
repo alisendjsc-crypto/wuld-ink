@@ -4555,6 +4555,522 @@
           }
         ],
         "note": "V14 override; register dropped by design."
+      },
+      {
+        "id": "pos-most-people-happy-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "most-people-happy",
+          "source_node": "https://library.wuld.ink/combined#obj-most-people-happy",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "most people are happy",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "life satisfaction surveys",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "surveys show people are happy",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "people say they are happy",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Self-reported satisfaction is the output of a system built to report satisfaction. Optimism bias inflates it, the hedonic treadmill re-baselines it to any decline, and social desirability edits the answer before it is spoken. A survey of the currently-coping is not a reading of the conditions they cope with. You are citing the prisoner's contentment as evidence the cell is good, when contentment is precisely what a well-adapted prisoner reports. The instrument was tuned by survival, not by truth, and it cannot step outside its own experience to audit itself. He does not deny that people say they are glad. He denies the saying was ever wired to track whether the gladness was warranted.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-most-people-happy",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-most-people-happy-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "most-people-happy",
+          "source_node": "https://library.wuld.ink/combined#obj-most-people-happy",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "the majority are happy",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "most people are satisfied",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "people are generally content",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "most are content with life",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The dataset is built by the outcome it claims to measure. The people answering are the ones whose circumstances did not kill them, break them, or leave them unable to answer. The ones in chronic agony, the ones who did not survive, the infants who died before an opinion could form, file no response and drop out of the average. What returns is a curve drawn only from those the conditions spared, then read back as the verdict of the conditions. Survivorship is not a footnote to the happiness data. It is the selection that manufactured it. He signed the reading that counts the absent. The comfortable count only the room still standing.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-most-people-happy",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-joy-outweighs-harms-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "joy-outweighs-harms",
+          "source_node": "https://library.wuld.ink/combined#obj-joy-outweighs-harms",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "joy outweighs the harms",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the good outweighs the bad",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "more good than bad",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the pleasure outweighs the suffering",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The good outweighs the bad runs on a sum that does not care whose column holds which entry. Grant that the sum comes out positive. The same arithmetic that nets pleasure over pain across persons is the arithmetic that hands the sadist his warrant, his delight outweighing the victim's agony magnitude for magnitude, making the torture the optimum. Recoil from that, as you do, and you have thrown out agent-neutral aggregation as a thing that can justify. You cannot then pick it back up to license creating a sufferer. What blocks the monster is the separateness of persons, and that same wall forbids drafting a newcomer into guaranteed harm to fund a surplus that was never theirs. The rescue closes the case it was meant to save.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-joy-outweighs-harms",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-joy-outweighs-harms-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "joy-outweighs-harms",
+          "source_node": "https://library.wuld.ink/combined#obj-joy-outweighs-harms",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "im happy so it was worth it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "i enjoy my life so its worth it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "my life is net positive",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "happy people prove life is good",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "I am happy so it was worth it reports one hedonic balance and promotes it to a fact about existence. That is autobiography read as axiology, and it is autobiography written by a survivor, since only a life not currently being dismantled has the slack to file a net-positive review. Grant the balance anyway. It is the actual person's, and it arrives too late to license the act that made them. Before creation there is no one whose foregone joy is a loss, so a happy person declined wrongs nobody. Make them and the joy is real and so is the guaranteed harm bundled with it. He weighs a balance with a creditor in only one column. A tally that needs the subject it was summoned to justify has settled nothing.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-joy-outweighs-harms",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-love-beauty-art-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "love-beauty-art",
+          "source_node": "https://library.wuld.ink/combined#obj-love-beauty-art",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "what about love",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "what about art",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "what about music",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "what about the beauty of experience",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Love, beauty, and art are real goods, the realest on offer, and that they end does not make them counterfeit. Concede all of it. The case does not need the goods to be fake. It needs only that they cannot do the job they are hired for, which is to redeem the making of a person. Redemption would need someone, in advance, whom existence lifts from a worse state to a better one. There is no such someone. Before you make them the alternative is not a person sitting in the dark without sunsets. It is no one, and no one is missing anything. Decline to summon a happy person and you wrong nobody. The goods are real, and they still do not buy the right to enroll a newcomer in the harms in order to reach them.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-love-beauty-art",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-love-beauty-art-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "love-beauty-art",
+          "source_node": "https://library.wuld.ink/combined#obj-love-beauty-art",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "beauty makes life worth it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "love makes it all worth it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "art redeems existence",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the good moments make up for the bad",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Grant the goods their full weight and watch what they arrive attached to. The symphony and the loss come on one ticket. Love ends in grief, beauty fades, the work outlives its maker and then it does not, and at the tail of the same distribution is a child in the oncology ward the symphony never reaches. She rode the ticket everyone at the concert rode. You cannot order the highlight reel without the full footage, because the act that makes the one makes the other in a single stroke. The romantic curates the peaks and calls them the whole. He signed the full footage, the part that keeps rolling after the peaks stop. A finite good is still a good. It is not a license to draft someone into the bundle to get it.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-love-beauty-art",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-suffering-makes-human-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "suffering-makes-human",
+          "source_node": "https://library.wuld.ink/combined#obj-suffering-makes-human",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "suffering is part of being human",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "its what makes us human",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "suffering makes us human",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "pain is part of being human",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The argument is a closed loop wearing the robes of depth. Suffering is good because it makes us human, and being human is good because it contains suffering. The conclusion is loaded into the premise and the circle never opens, because the one contested claim, that being human is worth its price, is the thing quietly assumed in order to prove itself. Name the harm, then define the sufferer by it, and every objection to the harm is recast as an objection to their identity. That is not a justification. It is a definition standing where an argument should be. He does not accept the value on the strength of the circle that assumes it. Strike the assumption and the loop has nothing left to stand on.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-suffering-makes-human",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-suffering-makes-human-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "suffering-makes-human",
+          "source_node": "https://library.wuld.ink/combined#obj-suffering-makes-human",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "embrace the struggle",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "suffering is essential to humanity",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "without suffering we would not be human",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the struggle makes us human",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "This captivity is what makes me who I am is not a defense of the captivity. It is the clearest symptom of adaptation to it. Consciousness narrativizes whatever it cannot escape, and the mind that could not do this left no descendants, so every living mind descends from the ones that could. Your acceptance of the conditions is the trait selection installed to keep you inside them, not a verdict you reasoned your way to. Calling the wound the source of the self dignifies the wound without ever weighing it. He signed the refusal to mistake a survival reflex for a philosophy. The prisoner who loves the cell has told you about the prisoner, not about the cell.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-suffering-makes-human",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-suffering-as-meaning-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "suffering-as-meaning",
+          "source_node": "https://library.wuld.ink/combined#obj-suffering-as-meaning",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "suffering gives life meaning",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "no growth without struggle",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "pain builds character",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "suffering is necessary for depth",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Notice the splice. That meaning is sometimes salvaged from suffering is true and grants the point nothing. That suffering confers meaning is what the point needs and is false. Disaster relief forges real community, and that is no argument for causing disasters. The meaning is the climb made despite the toll, never the toll paying it out. Fuse the two claims and the weaker one borrows a warrant the stronger one never earned. Growth after the wound does not show the wound was worth inflicting on someone who was never asked. He signed the line between what suffering occasions and what it is credited with conferring. Relief wrung from a harm does not reach back and license the harm.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-suffering-as-meaning",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-suffering-as-meaning-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "suffering-as-meaning",
+          "source_node": "https://library.wuld.ink/combined#obj-suffering-as-meaning",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "what doesnt kill you makes you stronger",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you need the lows to appreciate the highs",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "hardship makes you stronger",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "pain is necessary for growth",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "If suffering truly conferred meaning you would act like it, and you never do. You do not prescribe agony to the people you love, you do not ask the surgeon to withhold the anesthetic to enrich the story, and you do not rank the torture victim's life as deeper than the artist's. You treat suffering as a cost to be cut even while you praise its yield, which is the tell that you do not believe the praise. The testimony is filtered besides. The strengthened survive to speak and the broken file no report. And the asymmetry closes it. Where suffering does pay out meaning the payment is contingent and may never come, while the suffering is certain. He signed the refusal to stake a guaranteed harm on a speculative return drawn in a currency that is someone else's to lose.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-suffering-as-meaning",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-cherry-picking-worst-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "cherry-picking-worst",
+          "source_node": "https://library.wuld.ink/combined#obj-cherry-picking-worst",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "youre cherry picking the worst cases",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "cherry picking the worst",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "extremes arent the norm",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "most lives arent that bad",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The accusation misreads the argument. The claim was never that the average life is a horror. It is that making one is a gamble across the whole distribution, from mild disappointment to childhood cancer to schizophrenia to a life born into violence, and the specific child cannot be guaranteed clear of the worst tickets. The extremes are not rhetorical decoration pulled in to bias the picture. They are structural features of the wager, present in every draw. Asking what the typical life looks like answers a question no one posed. The question is whether it is permissible to expose someone who cannot consent to the tail at all. He signed the reading that counts the whole distribution, because the one who draws it has to live in whichever part comes up.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-cherry-picking-worst",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-cherry-picking-worst-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "cherry-picking-worst",
+          "source_node": "https://library.wuld.ink/combined#obj-cherry-picking-worst",
+          "ratified": "K257 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX5 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "most cases arent that bad",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "extreme cases are rare",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the worst cases are outliers",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "most people dont suffer that much",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Most tickets do not lose badly is the exact reasoning risk ethics exists to reject. No insurer waves off catastrophic exposure because the median holder never files a claim. The worst case governs the decision precisely when it is rare and ruinous, and it governs hardest when the person carrying it never agreed to carry it. Here the one who bears the tail signed nothing, because he did not exist to sign. A low probability of the unbearable, imposed on someone who could not consent, is not softened by the many who draw better. He signed the standard that weighs the ruin by what it does to whoever it lands on, not by how seldom it lands. Rarity is a comfort only to the one who is not exposed.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-cherry-picking-worst",
+        "nav_label": "the graded rebuttal"
       }
     ]
   }
