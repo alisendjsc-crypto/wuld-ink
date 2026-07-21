@@ -4425,6 +4425,310 @@
         "nav_label": "the graded rebuttal"
       },
       {
+        "id": "pos-western-philosophy-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "western-philosophy",
+          "source_node": "https://library.wuld.ink/combined#obj-western-philosophy",
+          "ratified": "K259 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX7 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "western philosophy",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "cultural imperialism",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "eurocentric",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Call it Western and you have named where you think it comes from, not whether it is true. The pessimist reading of existence is not local property. Buddhism opens on dukkha and aims its whole path at ending the cycle of rebirth; Jainism's non-harm reaches down to the insect; the Preacher in Ecclesiastes ranks the never-born above the living and the dead alike. Grant the geography anyway and it buys you nothing — where an argument was first spoken has no bearing on whether it holds. A child burning with malaria and a child dying of leukemia suffer on one biology, not two. He locates the tradition on every continent that kept a memory of itself, and the claim itself outside all of them. Origin is a fact about the map. It does not move the ground.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-western-philosophy",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-western-philosophy-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "western-philosophy",
+          "source_node": "https://library.wuld.ink/combined#obj-western-philosophy",
+          "ratified": "K259 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX7 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "other cultures value life",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "thats just western thinking",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "colonial worldview",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'This is only Western thinking' — the oldest fallacy carrying a passport. Where a proposition was born tells you whom to credit, never whether it is so; the right angle held true before anyone drew a Greek triangle around it. And the passport is forged. Hegesias taught, centuries before the West had the name, that life's pleasures cannot clear its pains, and half of Asia built its highest goal out of leaving the wheel of birth behind. The objection needs the framework to be a local mood; it is a global diagnosis. He corrects the map and leaves the argument standing where it was. You have told me the accent the thing was first said in. It means the same in every mouth.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-western-philosophy",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-speak-for-everyone-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "speak-for-everyone",
+          "source_node": "https://library.wuld.ink/combined#obj-speak-for-everyone",
+          "ratified": "K259 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX7 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "you cant speak for everyone",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "speak for everyone",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "my life is great",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "You have answered a claim no one made. 'My life is good' meets 'your life is bad,' and that was never the sentence. The sentence is that no one can be asked before being made, and that every making hands a real subject the whole downside of a wager it could not decline. Your verdict on your own life leaves that wager exactly where it was. A jackpot winner's delight is no defense of a lottery that conscripts its players; it tells you the ticket paid out, not that the draw was fair to enter. He sets your gladness to one side, uncontested, and turns to the one who was entered without a word. Being glad you were born is not the same as its having been permitted to make you.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-speak-for-everyone",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-speak-for-everyone-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "speak-for-everyone",
+          "source_node": "https://library.wuld.ink/combined#obj-speak-for-everyone",
+          "ratified": "K259 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX7 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "not everyone agrees",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "i love my life",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "some are glad to be alive",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'Not everyone agrees, some love being alive' — a true report, and a sample of one, set against a claim about risk. The case was never that all lives run negative; it is that creation loads real odds of ruin — the tumor, the collapse, the slow failure — onto someone who could not weigh them first. One contented life answers that no better than one unhurt gambler clears the table of its losers. And the contentment is a doubtful witness: a nervous system built to keep reporting satisfaction under nearly any conditions is only doing what it was built for when it reports it. He separates the count of happy testimonies from the ethics of the draw that made them. Your yes speaks for your life. It was never a vote on the making of the next one.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-speak-for-everyone",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-playing-god-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "playing-god",
+          "source_node": "https://library.wuld.ink/combined#obj-playing-god",
+          "ratified": "K259 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX7 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "youre playing god",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "playing god",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "thats not your call",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The charge lands on the wrong figure. To make a child is to instantiate a consciousness out of nothing, hand it a genome it did not pick, set it in an era and a body it never chose, and guarantee it pain and an ending — all with no consent, because consent was structurally impossible beforehand. That is the act of unilateral power over another. Declining it exercises no power at all; there is no one present to overrule, no will to override, no life to conscript. He returns the charge to the hand that acts and lifts it off the hand that stays still. The one who summons a being into a world it never asked for is the one playing God. The one who refrains is playing nothing.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-playing-god",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-playing-god-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "playing-god",
+          "source_node": "https://library.wuld.ink/combined#obj-playing-god",
+          "ratified": "K259 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX7 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "who are you to decide",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you dont get to decide that",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "not your decision to make",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "'Who are you to decide' bites only if you have already slipped in that creating is the neutral default and refraining is the thing that needs a warrant. Turn it right side up. The default of the universe is that no one is here; every birth is the deviation, the positive act, the reach into non-existence that has to answer for itself, while non-creation is the ground state left alone. So the demand for authority points the wrong way. It is the maker who drafts a new party to terms it never saw; the one who abstains drafts no one and rules over nothing. He assigns the burden to whoever moves first, and the one who moves first is never the one who declines. That is not humility talking. It is the status quo mistaking itself for gravity.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-playing-god",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-adoption-instead-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "adoption-instead",
+          "source_node": "https://library.wuld.ink/combined#obj-adoption-instead",
+          "ratified": "K259 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX7 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "why not adopt",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "just adopt",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "why not just adopt",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Say it and you have handed our own recommendation back to us as though it were a refutation. Adoption makes no new person; it turns toward one already here, already carrying the life no one asked it to carry. That is precisely the outlet the position endorses — the wish to parent met without a fresh sufferer manufactured to meet it. The objection works only if you believe the argument is against loving and raising a child, and it is not. It is against the single act of creating one. He names the move for what it is — agreement wearing the face of dissent. You meant to close the case against me. You reached for the very thing I have been asking you to reach for.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-adoption-instead",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-adoption-instead-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "adoption-instead",
+          "source_node": "https://library.wuld.ink/combined#obj-adoption-instead",
+          "ratified": "K259 strike-pass (Josiah, 2026-07-20)",
+          "seat_rx": "TX7 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "if you care about kids adopt",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "adoption solves the problem",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "adopt instead",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The wish to be a parent and the wish to make one of your own blood are two wishes, not one — the adoptive mother holds the first without the second, the donor holds the second without the first. Adoption satisfies the wish to parent entire. What the position contests is the second wish alone, and only because the act it ends in is the imposition already named: a new life spun up without its leave. So 'adopt instead' either yields the whole point, since adoption is the endorsed route — or it quietly means 'make a new one rather than tend the one already here,' which is a different claim owed a different defense. He redirects the impulse toward the child already in the world and already in need. Wanting a child of your own is no failing. The act it asks for is the whole of what I set down.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-adoption-instead",
+        "nav_label": "the graded rebuttal"
+      },
+      {
         "id": "c-crisis-01",
         "class": "crisis",
         "tier": "public",
@@ -5315,7 +5619,7 @@
             "weight": 2
           }
         ],
-        "response": "'Be fruitful and multiply' is an instruction, not an argument, and the instruction is precisely what's in doubt. If a command to create can route a life into leukemia and factory-scaled slaughter, then the source of that command is exactly what needs defending — you cannot call the accused as the character witness. Grant the whole theology for the sake of it: an all-seeing, all-powerful, loving author who permits a child to die by inches has made a judgment no ordinary parent would survive making. He does not grant the maker a license he would deny any human in the same seat. Divine purpose names the hand on the lever; it does not excuse what the lever does.",
+        "response": "'Be fruitful and multiply' is an instruction, not an argument, and the instruction is precisely what's in doubt. If a command to create can route a life into leukemia and industrial-scale slaughter, then the source of that command is exactly what needs defending — you cannot call the accused as the character witness. Grant the whole theology for the sake of it: an all-seeing, all-powerful, loving author who permits a child to die by inches has made a judgment no ordinary parent would survive making. He does not grant the maker a license he would deny any human in the same seat. Divine purpose names the hand on the lever; it does not excuse what the lever does.",
         "register_tags": [
           "clinical",
           "volta"
@@ -5401,7 +5705,7 @@
             "weight": 2
           }
         ],
-        "response": "'Pain is subjective, one person's agony is another's delight' — subjective in intensity, never in sign. The dial moves; the direction does not. Every case you offer resolves the same way under inspection: the masochist dismantling a worse interior state through sensation, the eater pushing past fullness to smother an older distress, the thrill-seeker who wants the arousal and merely tolerates the burn. None is registering hurt as a good; each trades a worse state for a milder one. He grants that the threshold shifts from body to body and holds that the valence does not. Relativity of degree is not reversal of sign — you have moved the number, not flipped the direction the whole system points.",
+        "response": "'Pain is subjective, one person's agony is another's delight' — subjective in intensity, never in sign. The dial moves; the direction does not. Every case you offer resolves the same way under inspection: the masochist offloading a harsher inner state through sensation, the eater pushing past fullness to smother an older distress, the thrill-seeker who wants the arousal and merely tolerates the burn. None is registering hurt as a good; each trades a worse state for a milder one. He allows that the threshold shifts from body to body and holds that the valence does not. Relativity of degree is not reversal of sign — you have moved the number, not flipped the direction the whole system points.",
         "register_tags": [
           "clinical",
           "volta"
