@@ -5326,7 +5326,7 @@
             "weight": 2
           }
         ],
-        "response": "Calling this solved asks one word to carry weight the numbers will not bear. A declining rate is still a rate: it mints roughly a hundred and forty million new human lives a year, none of them asked, and it says nothing at all about the tens of billions of animals the same machinery produces on purpose. The trend consoles the person reading it, not the being created under it, who carries the entire imposed risk of a life whether the curve points up or down. He deflates the word to its measurement: a slower production line is still a production line, and naming its output a solution only relabels the problem.",
+        "response": "Calling this solved asks one word to carry weight the numbers will not bear. A declining rate is still a rate: it mints roughly a hundred and forty million new human lives a year, none of them asked, and it says nothing at all about the tens of billions of animals the same machinery produces on purpose. The trend consoles the person reading it, not the being created under it, who carries the entire imposed risk of a life whether the curve points up or down. He deflates the word to its measurement: a slower line changes the throughput, never the product it exists to make.",
         "register_tags": [
           "clinical",
           "volta"
@@ -5638,6 +5638,234 @@
         "length_band": "b4_reply",
         "animation_hint": "speak",
         "href": "https://library.wuld.ink/combined#obj-rights-future-generations",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-violence-as-reductio-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "violence-as-reductio",
+          "source_node": "https://library.wuld.ink/combined#obj-violence-as-reductio",
+          "ratified": "K264 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX11 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "your followers prove your framework",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "look at your extreme adherents",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "your movement has no brakes",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "An argument and the people who carry it are separate things to refute. To bring the case down you meet its premises: that a beginning fixes suffering on someone who could not be asked. To bring an adherent down you meet the adherent. Point to the loudest follower and you have named a follower, not an entailment, since the act took commitments the premises never issued. Watch the dreaded outcome swap from one catastrophe to the next, and you hold a template that found its disaster after the fact. He charges the deed to the hand that did it and lifts it off a sentence a stranger also holds. A frame that fits any catastrophe was never about this one.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-violence-as-reductio",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-violence-as-reductio-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "violence-as-reductio",
+          "source_node": "https://library.wuld.ink/combined#obj-violence-as-reductio",
+          "ratified": "K264 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX11 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "your view leads to violence",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "one logical step from atrocity",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the logical endpoint is catastrophe",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Grant the darkest reading of the conclusion and the charge still points the wrong way. Violence is an act that lands on a body already here, a will already running, someone who can be wronged. The refusal at issue lands on no one, because before a beginning there is no one in its path to be reached. What the case asks is that a life not be started, and a life not started has no bearer to suffer the not starting. One act moves toward a person, the other leaves the place a person would have stood empty. He sifts the act that needs a victim from the act that can never find one. To read a refusal to create as a blow, you have to invent the body it falls on.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-violence-as-reductio",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-slippery-slope-eugenics-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "slippery-slope-eugenics",
+          "source_node": "https://library.wuld.ink/combined#obj-slippery-slope-eugenics",
+          "ratified": "K264 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX11 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "this is a slippery slope to eugenics",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "sounds like eugenics",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "this is eugenics",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Set the two beside each other and they run in opposite directions. The one you name sorts people first: it marks some as fit to reproduce and others as unfit, then presses the first to breed while the rest are stopped. Every move it makes rests on the line drawn between kinds of people. The claim in front of you draws no such line. It reaches the most favored life there is on the same terms as any other, because its objection is to imposing a life at all, not to which sort of life gets imposed. He sorts the program that ranks its subjects from a claim that holds them all alike. Picking out a group is the whole of the one and no part of the other.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-slippery-slope-eugenics",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-slippery-slope-eugenics-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "slippery-slope-eugenics",
+          "source_node": "https://library.wuld.ink/combined#obj-slippery-slope-eugenics",
+          "ratified": "K264 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX11 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "sounds like population control",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "population control",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "this is nazi eugenics",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "A second gap hides under the resemblance, in who the thing is done to. A program of that kind is worked on other bodies: it sterilizes, licenses, forbids, sets the state or the crowd over a person's reproduction and enforces the ruling. The claim here issues no such order. It is addressed to the one weighing the act, about that act, and asks for no registry, no force, no hand laid on anyone who walks away. It moves by reasons put to a chooser, never by power worked on the chosen. He addresses the case to the hand that would create and lays it on no body a program would compel. A reason put to a decision is the far pole from force worked on a population.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-slippery-slope-eugenics",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-ableist-objection-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "ableist-objection",
+          "source_node": "https://library.wuld.ink/combined#obj-ableist-objection",
+          "ratified": "K264 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX11 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "this is ableist",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "your view is ableist",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "that sounds ableist",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The claim never reads a diagnosis. It falls with its whole weight on the child promised ninety-five healthy years exactly as on any other, because what it weighs is the act of setting a life going for someone who could not be asked, never the contents of the life set going. A verdict that lands the same on the most fortunate life there is cannot be a verdict about disability, since to reach the disabled it would have to rank lives by condition, and it ranks none. No life here is named lesser, because no life here is graded at all. He levels one measure across every life and shows it was never a measure of the life. The worth of a life lived is a question it does not open.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-ableist-objection",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-ableist-objection-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "ableist-objection",
+          "source_node": "https://library.wuld.ink/combined#obj-ableist-objection",
+          "ratified": "K264 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX11 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "this devalues disabled people",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "your view devalues the disabled",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you are saying disabled people should not be born",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The objection reads the claim in the wrong tense. Not worth living is a sentence passed on a life underway, a person whose days are being counted and found short. The claim never enters that room. It speaks to the act of beginning a life, before anyone exists to be weighed, before any trait, sound or otherwise, has arrived to count. Whoever is already living, of any health, stands outside its reach. The devaluation it dreads is a verdict on the living, the objection's own, read into a claim that only ever spoke of a beginning. He predates the whole case to before the person, where a judgment on a life lived has nothing to stand on. What is never weighed cannot be found wanting.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-ableist-objection",
         "nav_label": "the graded rebuttal"
       },
       {
