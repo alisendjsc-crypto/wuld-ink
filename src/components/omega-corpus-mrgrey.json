@@ -4805,6 +4805,462 @@
         "nav_label": "the graded rebuttal"
       },
       {
+        "id": "pos-economy-population-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "economy-population",
+          "source_node": "https://library.wuld.ink/combined#obj-economy-population",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "the economy needs growth",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we need population growth",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we need more workers",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Stated plainly, this asks to manufacture new conscious beings, without their consent, so they can service the debts of the ones already here. The economy that needs them was built by reproducing organisms to require exactly this input, so the need is circular: the machine demands fuel because it was designed to demand fuel. Every worker minted to fund the last cohort's pension needs a further cohort minted to fund his own, and each pays the full price of a life to hold up the tier above. He reads it as a confession rather than an argument: a pyramid scheme does not turn ethical because the deposit is a person instead of a dollar.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-economy-population",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-economy-population-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "economy-population",
+          "source_node": "https://library.wuld.ink/combined#obj-economy-population",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "who will care for the elderly",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "who supports the aging population",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "who will pay the pensions",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The question assumes its answer is a person who has not been asked yet. To secure your care you would author a new life, load it with the whole cost of existence, and hand it the task of funding your last decades before it is left to fund its own. That is the proxy gamble said out loud: the price falls entirely on the one who never agreed to be born, the benefit accrues to the one already here. He refuses the invoice on those terms. Aging care is a real problem with real answers — automation, redistribution, honest use of what already exists — none of which need an unconsenting being conscripted to pay for it.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-economy-population",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-ai-fear-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "ai-fear",
+          "source_node": "https://library.wuld.ink/combined#obj-ai-fear",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "ai will destroy humanity",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "ai is dangerous",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "ai will kill us all",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Two questions are being welded together that do not belong together. One is an engineering problem — can a powerful system be built without catastrophe — and it is real, hard, and worth solving. The other is a claim the position never made: that machines should replace people. What the position actually holds is narrower. Suffering, not the material a mind is made of, is what carries moral weight. He splits the two cleanly: the danger of a badly built system is an argument for building it carefully, never a refutation of the point that agony matters wherever it occurs. Fear of the machine is not a defense of the flesh.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-ai-fear",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-ai-fear-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "ai-fear",
+          "source_node": "https://library.wuld.ink/combined#obj-ai-fear",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "your philosophy is reckless about ai",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you want ai to replace humans",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you would let ai wipe us out",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The charge underneath is that preserving biological life needs no defense — that flesh is simply worth more than any other substrate, by default. State that assumption and it stops being obvious. If a form of awareness could exist without the disease, the decay, and the guaranteed death built into this one, the case for keeping the suffering version cannot rest on loyalty to the material alone. It has to name what, beyond the capacity for pain, makes carbon sacred. He strips the claim to its root and finds the survival drive wearing an argument's clothes: we favor biological minds because we are biological minds. Preference is not a proof.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-ai-fear",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-future-solve-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "future-solve",
+          "source_node": "https://library.wuld.ink/combined#obj-future-solve",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "future generations will solve it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "technology will fix everything",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "science will solve suffering",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The beings created today carry the entire cost of today — the disease, the exploitation, the collapse, the death — while the payoff is assigned to someone who does not exist yet and may never. That is not a solution, it is a transfer: the guaranteed suffering is real and present, the relief is hypothetical and deferred. Nobody born into the improvement period agreed to serve as its raw material. He discounts the promise the way an honest accountant discounts a debt that only ever comes due for other people. A cure that always arrives one generation after the patients is not a cure. It is the reason the patients keep being made.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-future-solve",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-future-solve-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "future-solve",
+          "source_node": "https://library.wuld.ink/combined#obj-future-solve",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "the future will be better",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "progress will fix it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "things will get better",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Every generation in recorded history has been told the same thing: endure now, the next round will be better. Each one paid in full and passed the promissory note forward. It is the most durable engine ever built for manufacturing consent to present harm — the carrot is always one lifetime ahead, and the stick is structural and delivered on time. He traces the carrot back and finds it has never once been reached, only relocated. A being made today is not a beneficiary of tomorrow's progress but the fee tomorrow charges for existing at all, collected in advance and in full.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-future-solve",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-extinction-culture-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "extinction-culture",
+          "source_node": "https://library.wuld.ink/combined#obj-extinction-culture",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "what about art and culture",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "who will make art",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "culture will be lost",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Culture cannot be harmed by having no audience. A painting in an empty room feels nothing, a symphony no one hears loses nothing, a library with no readers suffers no grief. The only thing that can be deprived of art is a conscious being — and a being who is never created is deprived of nothing, because there is no one there to do the missing. He inverts the priority the objection quietly assumes: it asks that new minds keep being made, and made to suffer, so that artifacts can go on being admired. That mourns the decor of a hospital while the patients bleed in the beds. The consolation is being defended over the ones it was meant to console.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-extinction-culture",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-extinction-culture-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "extinction-culture",
+          "source_node": "https://library.wuld.ink/combined#obj-extinction-culture",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "human civilization will end",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "all our knowledge will be lost",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "our achievements will vanish",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Take the claim at full weight: the accumulated knowledge, the achievement, the whole human record — and it still reaches no one who is spared existence. There is no ghost in the empty future robbed of Shakespeare. And look at where the record came from. The canon was overwhelmingly built by the traumatized, the alienated, the ill, and the dying, wringing meaning out of conditions no one would choose. He exposes what the demand really is: keep the suffering running so that its byproducts keep being produced. That defends a disease for the beauty of its symptoms. The achievements are real. They are not a reason to conscript more people to bleed for them.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-extinction-culture",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-policy-proposal-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "policy-proposal",
+          "source_node": "https://library.wuld.ink/combined#obj-policy-proposal",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "what is your policy proposal",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "what do you actually propose",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "whats your actual plan",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Whether the argument is sound does not wait on whether a government would ever enact it. A valid proof stays valid in a hostile parliament. That is the category the objection slips. He answers the demand anyway, because the answer is not sinister: universal access to contraception, honest sex education, the removal of tax and social rewards for having children, the normalization of choosing not to, safety nets that break the link between survival and a growing population, and automation that does the same. None of it requires force. All of it reduces harm. That these are politically difficult does not make the reasoning wrong. It shows the landscape hostile to the very consent it claims to prize.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-policy-proposal",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-policy-proposal-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "policy-proposal",
+          "source_node": "https://library.wuld.ink/combined#obj-policy-proposal",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "what do you want to do about it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "how would you implement this",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "what should we actually do",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The demand for a plan is doing quiet work: it wants to convert a question about whether into a question about how, and treat a missing blueprint as a defeated premise. Those are different things. A claim about what should not be done needs no logistics to be true. He measures the gap between them and does not let the harder engineering swallow the plain ethics. Nothing here calls for coercion or a program imposed on anyone. It calls for removing the pressures that already push people toward reproduction they did not freely choose, and for building the supports that make the other choice a real one. The work is voluntary from end to end. Difficulty is not refutation.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-policy-proposal",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-pinker-better-world-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "pinker-better-world",
+          "source_node": "https://library.wuld.ink/combined#obj-pinker-better-world",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "the world is getting better",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "there is less violence than ever",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "life expectancy is rising",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "A falling rate is not a zero. A world with less torture in it is still a world with torture in it, and a longer life expectancy is a longer stretch of guaranteed suffering before a guaranteed death. The graph measures the conditions of the sentence, not whether the sentence should be handed down. He reverses the frame the statistic hides behind: better prisons are a real improvement and no answer at all to the question of imprisonment. The asymmetry does not need the world to be maximally cruel. It needs only that existence guarantees harm and that no one consented to receive it. Both hold at every point on the curve.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-pinker-better-world",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-pinker-better-world-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "pinker-better-world",
+          "source_node": "https://library.wuld.ink/combined#obj-pinker-better-world",
+          "ratified": "K262 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX9 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "steven pinker",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "read enlightenment now",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "pinker proved things got better",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Pinker's numbers can be granted in full and still miss the argument entirely. Aggregates describe populations, but suffering is only ever had by an individual, and the child dying of leukemia this year is not consoled by a falling per-capita rate. One is a statistic, the other is the whole of someone's world ending. He punctures the graph from two sides at once. First, a smaller share of a larger horror is still the horror, felt undiminished by the person inside it. Second, the same progress that trimmed old harms manufactured new ones at scale — industrial animal farming, the bomb, the surveillance state, engineered manipulation, a warming planet. The curve is drawn by leaving those off the axis.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-pinker-better-world",
+        "nav_label": "the graded rebuttal"
+      },
+      {
         "id": "c-crisis-01",
         "class": "crisis",
         "tier": "public",
