@@ -6325,6 +6325,234 @@
         "nav_label": "the graded rebuttal"
       },
       {
+        "id": "pos-harman-benign-creation-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "harman-benign-creation",
+          "source_node": "https://library.wuld.ink/combined#obj-harman-benign-creation",
+          "ratified": "K270 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX14 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "creating a good enough life is permissible",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "a good life above the threshold justifies it",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "benign creation is permissible",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Grant the threshold and grant that most lives clear it. The defense still leans its whole weight on who does the certifying. A life reports itself good from inside a mind selected to endorse its own continuation — optimism runs high, the baseline resets after every blow, the drowning man calls the water fine once the thrashing stops. That verdict is survival firmware talking, not an independent assessment of the conditions. The adapted captive who reports the cell agreeable has not thereby approved it. He conscripts the testimony of a consciousness built to pass its own test and enters it as proof the terms were acceptable. The certificate was written by the party with everything to gain from a yes. Ask who holds the pen and the threshold certifies nothing.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-harman-benign-creation",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-harman-benign-creation-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "harman-benign-creation",
+          "source_node": "https://library.wuld.ink/combined#obj-harman-benign-creation",
+          "ratified": "K270 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX14 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "if the child will have a good life its fine",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "a life over the quality threshold is acceptable",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "bringing a good life into being is allowed",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Take the threshold at face value and suppose the average life sits well above it. The average is not the thing that gets born. One child draws one life, once, and the distribution has a tail — the congenital agony, the early ruin, the disease that arrives on schedule and stays. Whoever lands there was placed on that outcome by another person's cheerful estimate of the odds. Everywhere else, consent to a risk means disclosing the floor, not quoting the mean; the surgeon names the worst the knife can do before you sign. He averages a crowd the child will never stand in and takes the line for cleared, when it is cleared for no one until a specific ticket is drawn. A mean is a fact about many. The birth is a fact about one.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-harman-benign-creation",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-contractualism-scanlon-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "contractualism-scanlon",
+          "source_node": "https://library.wuld.ink/combined#obj-contractualism-scanlon",
+          "ratified": "K270 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX14 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "contractualism permits creating a life",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "no one could reasonably reject creating a life",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "a principle no one could reasonably reject permits creation",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Grant the whole ex-ante frame — a principle is justified to a person by the prospect it holds out, and a prospect no reasonable person would refuse licenses the act. The frame needs a person the prospect is held out to. Every case it borrows from supplies one: the patient on the table exists before the incision, the public exists before the road is built. Creation is the single act that manufactures the party it claims to answer to. Before the decision there is no one for whom being born is a prospect; after it there is someone for whom it is a settled fact. He appoints a standpoint no one occupies, has it decline to reject, and takes the non-refusal for agreement. A prospect refused by nobody was owed to nobody. The one who ends up bearing the terms was never in the room where they were set.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-contractualism-scanlon",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-contractualism-scanlon-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "contractualism-scanlon",
+          "source_node": "https://library.wuld.ink/combined#obj-contractualism-scanlon",
+          "ratified": "K270 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX14 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "rational agents would allow creating good lives",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "reasonable people would accept a principle allowing creation",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the reasonable rejection test permits creation",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The framework bought its authority by refusing to add people up — justifiable to each, never to the average. Take that seriously and watch the ex-ante version give it back. It runs the odds across a standpoint that stood favorable, then issues the one child who drew the catastrophe a receipt saying her loss was priced in. Priced into a position she never held. The good odds were enjoyed by no one; the ruin is owned by someone. That is aggregation wearing the one coat this theory swore off, smuggled inside a single life instead of spread across a crowd. He launders the average back into a test built to bar it and declares the child answered. A contract underwritten by figures no one ever is, and enforced on the one person who actually shows up, keeps the name and loses the point.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-contractualism-scanlon",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-meaning-through-suffering-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "meaning-through-suffering",
+          "source_node": "https://library.wuld.ink/combined#obj-meaning-through-suffering",
+          "ratified": "K270 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX14 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "you need to suffer to grow",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "suffering leads to growth",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "pain is how you become who you are",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "There is something true here, and it deserves to be met rather than brushed aside. People do find meaning in what they suffer — real meaning, made by real people under real weight. None of that is in dispute. What is in dispute is the direction it runs. Meaning is made after the fact, by the one already inside the hardship, doing the deeply human work of making the unbearable bear sense. That work is a response to the wound. It is not a permission slip issued before the wound was dealt. The survivor who builds significance out of the camp has shown what a person can endure; the builder of the camp is owed nothing by it. Sense found in suffering is the mind meeting what it was handed. It never reaches back to sign for the handing.",
+        "register_tags": [
+          "relational",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-meaning-through-suffering",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-meaning-through-suffering-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "meaning-through-suffering",
+          "source_node": "https://library.wuld.ink/combined#obj-meaning-through-suffering",
+          "ratified": "K270 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX14 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "the struggle is what gives life value",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "hardship is what shapes a person",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "without struggle life means nothing",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "This is the most serious form of the case, and the seriousness is earned — a whole tradition of affirming a life rather than fleeing it stands behind the words. It deserves to be met at full height. Its own summit is the test of willing your exact life again, without a single edit, for good. Almost no one who has looked honestly at their worst hours can say yes to that and mean it. And even the ones who can are affirming a life already underway. To love your fate is a stance the living take toward what already befell them. It was never a license to deal that fate to someone who could not be asked. There is one more quiet thing. We hear from the ones who came through with meaning in hand; the ones it destroyed leave no account, and their silence is not a yes.",
+        "register_tags": [
+          "relational",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-meaning-through-suffering",
+        "nav_label": "the graded rebuttal"
+      },
+      {
         "id": "c-crisis-01",
         "class": "crisis",
         "tier": "public",
