@@ -478,7 +478,7 @@
             "weight": 3
           }
         ],
-        "response": "That's a position you're after. A few now exist — signed by the man, one objection at a time, each pinned to its page in the library. State the objection plainly and I'll answer it as he ruled it. The rest stays his to sign, not mine to improvise.",
+        "response": "That's a position you're after. Some now exist — signed by the man, one objection at a time, each pinned to its page in the library. State the objection plainly and I'll answer it as he ruled it. The rest stays his to sign, not mine to improvise.",
         "register_tags": [
           "deflection",
           "clinical"
@@ -6094,6 +6094,234 @@
         "length_band": "b4_reply",
         "animation_hint": "speak",
         "href": "https://library.wuld.ink/combined#obj-non-identity-problem",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-bradley-no-subject-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "bradley-no-subject",
+          "source_node": "https://library.wuld.ink/combined#obj-bradley-no-subject",
+          "ratified": "K268 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX13 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "absence of pain isnt good either",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "no subject to call it good",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "then non existence isnt good",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The critic aims at a claim the position never filed. He needs it to hold that the absence of pain is good in some freestanding way, when it holds only that the absence is not bad, and where no subject stands there is nothing for badness to sit on. Not-bad costs nothing and asserts nothing. The pain in the lived case, by contrast, is bad with someone home to bear it, and that side keeps its weight whatever the empty side is titled. His symmetry works only if the position had staked everything on a positive value glowing in the void, and it never did. He bills the account for a good it never bought, then reads the unpaid line as the flaw. Answer what was actually claimed and the charge lands where no one is standing.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-bradley-no-subject",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-bradley-no-subject-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "bradley-no-subject",
+          "source_node": "https://library.wuld.ink/combined#obj-bradley-no-subject",
+          "ratified": "K268 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX13 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "value is subject relative",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "no subject on either side",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "symmetry cuts both ways",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Grant the whole of it — value is subject-relative, nothing is good or bad except for someone. Then watch where the grant travels. Either the asymmetry survives on its own terms, in which case the objection has missed, or it falls, and the critic must re-explain in person-affecting terms why forcing a doomed life wrongs someone while declining to start a happy one wrongs no one. That re-explanation is the consent spine, reached by his own reasoning: the wrong is a harm that will settle on a determinate person. Subject-relativity does not embarrass the position. It arms it. He hands over the very bearer his objection called missing — not a phantom in the void, but the actual future person who will exist and carry what was imposed. The charge was never about a good belonging to no one. It was always about a harm that will belong to someone.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-bradley-no-subject",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-boonin-critique-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "boonin-critique",
+          "source_node": "https://library.wuld.ink/combined#obj-boonin-critique",
+          "ratified": "K268 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX13 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "defeating the asymmetry isnt enough",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the case has other pillars",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "one pillar of many",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The reconstruction is real work, and it lands real hits — on one member of a structure that never stood on one. Formalize the asymmetry, find its seams, grant every seam: the verdict was settled before the asymmetry was ever spoken. It rests on a convergence — a wager placed with someone else's stake, a hedonics where pleasure offsets a deficit and never clears it, a permission that cannot be had, a spread whose worst outcomes are ruinous and whose best are mere relief. Each reaches the conclusion alone. He fells one support and reports the building down, when the other three were bearing the load the whole time. Defeat the asymmetry outright and the floor does not move.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-boonin-critique",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-boonin-critique-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "boonin-critique",
+          "source_node": "https://library.wuld.ink/combined#obj-boonin-critique",
+          "ratified": "K268 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX13 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "even if the asymmetry fails",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the conclusion is overdetermined",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "refute one premise",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Take the technical win at full value. Say the asymmetry is defeated inside the analytic frame, cleanly, with nothing left to patch. What follows for the conclusion is nothing, because the conclusion was overdetermined. A theorem with four independent proofs does not fall when one proof is faulted — the others were never leaning on it. A whole life's risk imposed without agreement, a value-sum that never rises above zero, a permission that cannot be sought: each carries the verdict by itself. He unseats one premise and stands over it as if the room emptied, while three untouched routes still end where they ended. Concede the node and keep the verdict. The case outgrew the reasoning it is scored against.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-boonin-critique",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-care-ethics-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "care-ethics",
+          "source_node": "https://library.wuld.ink/combined#obj-care-ethics",
+          "ratified": "K268 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX13 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "ethics is care and relationship",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you ignore relationships",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the parent child bond",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "There is something real here, and pretending otherwise would be its own kind of evasion. The bond between parent and child does not reduce to a sum of harms and permissions, and a tradition that insists on this is naming something true about moral life. It is also standing in the wrong place in time. The relationship read as rich exists because the parent made it exist — the child was set into needing care, never asked whether to need it, and holds the whole risk the decision opened. Care appraises the bond once it is already standing. The act that stood it up came first, and answered to no one who was there to answer. A relationship's beauty does not reach backward to sign a consent that had no one to give it. What is loved here was also imposed, and the loving comes after the imposing, not in place of it.",
+        "register_tags": [
+          "relational",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-care-ethics",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-care-ethics-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "care-ethics",
+          "source_node": "https://library.wuld.ink/combined#obj-care-ethics",
+          "ratified": "K268 strike-pass (Josiah, 2026-07-22)",
+          "seat_rx": "TX13 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "care ethics",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "ethics of care",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "dependency creates obligation",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The care tradition is right that dependency carries moral weight, that a being who needs is owed, and that the need itself, not any contract, is what generates the obligation. Take it at full strength. Then the act of creating is the act of manufacturing a total dependency in someone who could not be asked, and by the tradition's own measure that is the heaviest unchosen obligation a person can author into the world. The parent does not answer the charge by pointing at the care that follows. The care that follows is the measure of how much was imposed. A framework built to honor vulnerability cannot become the thing that excuses its deliberate creation. The deepest bond and the gravest imposition are one act seen from two ends, and the tradition that weighs the bond has already weighed the imposition.",
+        "register_tags": [
+          "relational",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-care-ethics",
         "nav_label": "the graded rebuttal"
       },
       {
