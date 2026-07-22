@@ -372,3 +372,22 @@ body.high-contrast .ambient-sliver {
     min-width: 1rem;
   }
 }
+
+/* ============================================================
+   K275 — mobile: disable the ambient bar entirely (≤640).
+   Josiah's call. The fixed bottom bar was the last horizontal-
+   overflow source on a phone. display:none keeps the node in the
+   DOM, so wrong-hour.js still finds .ambient-bar to inject its
+   [fx]/[bed] chips (now invisible) and never throws; the hidden
+   YouTube iframe stays put. Reclaim the body padding the fixed
+   bar reserved (base rule: body{padding-bottom:2.5rem}), and fold
+   in the bottom safe-area inset for notched phones.
+   ============================================================ */
+@media (max-width: 640px) {
+  .ambient-player { display: none; }
+  body,
+  body.ambient-dismissed {
+    padding-bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}

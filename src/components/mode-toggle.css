@@ -168,3 +168,14 @@
   font-variant-numeric: tabular-nums;
   color: var(--c-fg);
 }
+
+/* K275 — mobile touch: reading-chrome controls ≥44px, wrap so they
+   never overlap the reading column. (No prior media block here.) */
+@media (pointer: coarse) {
+  .mode-toggle-btn { min-height: 44px; }
+  .mag-slider-input { min-height: 44px; }
+}
+@media (max-width: 640px) {
+  .mode-toggle { flex-wrap: wrap; }
+  .mag-slider { flex-wrap: wrap; }
+}

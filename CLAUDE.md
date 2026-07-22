@@ -1072,3 +1072,58 @@ Track (Josiah: "revamp the site for mobile ... in a way that doesn't affect the 
 - **PHASE 2 (next mobile session):** the ambient-player bar (the overflow fix + tap sizes), then the other interactive components (wrong-hour / console / void-engine / notes toolbar / gallery controls / mode-toggle). PHASE 3: the long tail. Each its own NO-PIN ship. The desktop-contrast ruling is a separate ask (report is in the K274 proto's REVIEW.md).
 - **verify_before for the next session:** wuld HEAD = operator K274 commit atop `a2cb545`. NEW `src/components/mobile-a11y.css` `cd31104d`/`b03c13d2` (`?v=K274`) -- `nav.css` `23a577f1`/`ced24c39` (`?v=K274`; +Variant B) -- `footer.css` `45ab8d23`/`d5d45341` (`?v=K274`) -- 71 swept HTML (toggle markup + mobile-a11y link `?v=K274` + nav/footer `?v=K274` + skip-links 69 total + `id=main` on archive/black-box) -- CLAUDE.md [recompute]. HELD: base.css / tokens.css BYTE-FROZEN; search-index `564d6a81`-class (harvest-neutral -- toggle/skip are not harvested; no regen); sitemap; the successor/console/yurei/omega stacks byte-frozen; flagship `library.wuld.ink/combined` `e654eabd` (pin v4.0.0; efilist READ-ONLY). Gates: wgate 24/24 + the K274 desktop-inertness (50/50) / mobile / axe results.
 - **Standing hazards (carry, unchanged) + NEW K274:** (1) DESKTOP-INERTNESS is proven by a LAYOUT FINGERPRINT (every element's geom + computed styles), NOT pixel-diff -- pixel-diffing a live site drowns in image/font/lazy-load/scroll timing noise (chased it for several passes: image decode between shots, a footer-element screenshot that scrolled the page, the injected `<style>` counted as a `body *` element); the fingerprint is immune. Compare PRISTINE-vs-SWEPT (two servers) and EXCLUDE the intentionally-added `[hidden]`/off-canvas elements (`.nav-toggle-cb, .nav-toggle, .skip-link`) so element counts match. (2) a zero-JS nav disclosure = an `<input type=checkbox>`+`<label>` hack shipped `[hidden]` (default-hidden via the HTML attribute, NOT a top-level CSS rule -> the static "all rules in @media" audit stays clean) + un-hidden only <=640px; this is desktop-inert AND homepage-zero-JS-safe AND AA (checkbox named by its label). (3) mobile mass-edits ship as a self-gating `python sweep.py` run on the operator clone (asserts exact transform counts + 0 leftover `?v`, exits non-zero on any mismatch) -- more reliable than a PowerShell `.Replace` sweep, and idempotent-guarded (a re-run has counts 0 -> aborts). (4) a "single remaining mobile overflow" can be a FIXED-position component (the ambient bar) whose 100vw overlays then inherit the overflowed width -- diagnose by walking unclipped over-wide elements, and defer a JS-manipulated component rather than shipping a partial flex-wrap.
+
+
+---
+## K275 — mobile overhaul phase 2 (2026-07-22) — SITE-ONLY, NO PIN
+
+Successor to K274. Track A of the K275 kickoff (mobile UI/a11y overhaul). Track B
+(PWA/installable) DEFERRED to K276 at the §6 budget checkpoint — Track A shipped alone
+as the clean, gate-proven unit; the service worker gets its own gate pass next session.
+
+WHAT SHIPPED (all desktop byte-inert; every rule scoped @media ≤640 or pointer:coarse):
+- Ambient bar DISABLED on mobile (≤640) — Josiah's call. ambient-player.css:
+  .ambient-player{display:none}; body padding-bottom reclaimed + env(safe-area-inset-bottom).
+  Kills the last mobile horizontal-overflow source. display:none keeps the node so
+  wrong-hour.js still finds .ambient-bar and boots clean; the [fx]/[bed] dock simply
+  vanishes (fork: drop-the-dock; effects still run at defaults).
+- Component touch/reflow (touch >=44px, containers wrap <=640, no overflow): gallery,
+  gallery-room (+.gallery-star 44px hit-area x27), mode-toggle, site-search, audio-player,
+  console, successor-stage, comment-board, kaomoji(.notes-btn).
+- Fluid type (mobile-a11y clamp() h1/h2/h3 + reading line-height, <=640 only; desktop
+  root 18px byte-frozen; class heroes e.g. .cover-mark keep own sizing by specificity).
+- Safe-area: viewport-fit=cover swept onto all 74 metas; env() insets on .site-header/
+  .nav-toggle (@supports-guarded) + body bottom.
+- void-engine: touch-fixes only (fork) — primary controls >=44 + panels/rows wrap
+  (456->388 residual sub-44; FULL REFLOW DEFERRED to its own session).
+- 2nd pass: .gallery-star, .donations-platform-link, .changelog-link -> 44px floor.
+
+?v BUMPS (K238 per-file, changed-file-only): mobile-a11y K274->K275, ambient-player
+K30->K275, mode-toggle K30->K275, audio-player K30->K275, gallery K30->K275, gallery-room
+K110->K275, site-search K98->K275, successor-stage K241->K275, console K235->K275, kaomoji
+K271->K275, comment-board K46->K275. + viewport-fit=cover x74. Sweep self-gated: counts
+71/67/33/26/10/10/1/1/1/1/1 + 74, zero leftover.
+
+BASE->RESULT blobs (11 CSS): ambient-player 3159ac2b->2f9750e1 · gallery 9c94a197->374b87b2
+· gallery-room 80da11fe->7ecec66f · mode-toggle a7f13fc4->7c11db54 · site-search
+c77d43ce->edb543d9 · audio-player aba7fd81->df3cfdde · console 6503dd34->20faad76 ·
+successor-stage 661b4d6a->5b8bfedb · comment-board e31a20c0->5b78e6bc · kaomoji
+785e0ef9->ce1b4470 · mobile-a11y cd31104d->0f385eb0. 85 files (74 HTML + 11 CSS) + stratum.
+
+GATES (cloud, pristine df8975b vs swept): FP desktop-inertness 50/50 ZERO delta @1280&900
+(pure-append audit: no desktop rule touched). Mobile @390 sub-44: home 6->1, essays 11->1,
+gallery 55->17, donations 9->1, search 7->2, void 456->388(deferred); ZERO horizontal
+overflow every page; ambient=none every page. axe AA swept<=pristine 109->91, ZERO NEW
+serious/critical (color-contrast + base-pre scrollable-region-focusable = known carries).
+wgate 24/24 successor + console. search-index.json BYTE-IDENTICAL. sitemap neutral (swept
+regen == clean regen, 63 urls; committed sitemap pre-stale, ship carries none). U+FFFD 0.
+
+PINS HELD (untouched): flagship library.wuld.ink/combined e654eabd v4.0.0 (efilist READ-ONLY);
+base.css 144b2841 + tokens.css 4654928d BYTE-FROZEN; nav.css 23a577f1 + footer.css 45ab8d23
+@v=K274 untouched; corpus/console-engine/yurei/omega/successor-JS byte-frozen.
+
+DEFERRED -> K276: Track B PWA (manifest + sw.js network-first-HTML / cache-first-?v /
+network-only-api+bare-json / cross-origin-passthrough + icons + register head-defer non-home
+mobile-only + install button [hidden]<=640 FP-excluded + offline.html) — §3 of k275 kickoff
+verbatim; RE-DERIVE base blobs vs the K275 tip; carry PWA hazards 5-11. void-engine FULL
+mobile reflow — own session.

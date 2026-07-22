@@ -69,3 +69,66 @@
     align-items: center;
   }
 }
+
+/* ============================================================
+   K275 — Phase 2 site-wide mobile layer. Every rule is scoped
+   ≤640 (layout) or coarse-pointer (touch); desktop stays byte-
+   inert, proven by the layout-fingerprint gate, not eyeballed.
+   ============================================================ */
+
+/* A3 — fluid type: comfortable phone reading without touching the
+   desktop root (html{font-size} stays frozen). Class-based heroes
+   (e.g. homepage .cover-mark) keep their own sizing by specificity. */
+@media (max-width: 640px) {
+  h1 { font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.12; overflow-wrap: break-word; }
+  h2 { font-size: clamp(1.5rem, 5.5vw, 2rem); line-height: 1.16; overflow-wrap: break-word; }
+  h3 { font-size: clamp(1.25rem, 4.5vw, 1.6rem); line-height: 1.2; overflow-wrap: break-word; }
+  main p, main li, main blockquote { line-height: 1.65; }
+}
+
+/* A4 — safe-area insets for notched phones (viewport-fit=cover is
+   swept onto every viewport meta). Guarded so unsupported browsers
+   ignore it. The body-bottom inset lives in ambient-player.css. */
+@supports (padding: env(safe-area-inset-top)) {
+  @media (max-width: 640px) {
+    .site-header {
+      padding-inline-start: max(var(--s-3, 12px), env(safe-area-inset-left));
+      padding-inline-end: max(var(--s-3, 12px), env(safe-area-inset-right));
+    }
+    .nav-toggle { margin-inline-end: env(safe-area-inset-right); }
+  }
+}
+
+/* A2 — void-engine, touch-fixes-only (session fork): every
+   instrument control ≥44px; the triptych/panels/rows wrap and
+   never overflow. A full instrument reflow is deferred to its own
+   session. Void-unique classes bare; generic .btn/.chip row-scoped. */
+@media (pointer: coarse) {
+  .cat-btn, .mbtn, .tbtn, .pbtn, .nqbtn, .gen-btn, .read-btn,
+  .corp-mode-btn, .stab,
+  .chips-inner .chip, .chips-inner .chip-x,
+  .pre-row .btn, .slider-row .btn, .filter-row .btn,
+  .search-row .btn, .corp-controls .btn { min-height: 44px; }
+  .corp-input, .search-row input { min-height: 44px; }
+}
+@media (max-width: 640px) {
+  .chips-inner, .sub-tabs, .corp-controls, .corp-mode-row,
+  .filter-row, .pre-row, .slider-row, .search-row { flex-wrap: wrap; }
+  .panel, .chips-panel, .corpus-panel, .lib-panel, .gen-panel,
+  .neg-panel, .archive-panel, .ds-panel { max-width: 100%; }
+}
+
+/* A2 — notes editor: keyboard-aware height on phones (dvh tracks
+   the visual viewport as the soft keyboard opens). JS byte-frozen. */
+@supports (height: 100dvh) {
+  @media (max-width: 640px) {
+    #editor { min-height: 50dvh; }
+  }
+}
+
+/* K275 — mobile touch (2nd pass): donation-platform CTAs + the
+   footer changelog link reach the 44px floor. */
+@media (pointer: coarse) {
+  .donations-platform-link { min-height: 44px; }
+  .changelog-link { min-width: 44px; }
+}

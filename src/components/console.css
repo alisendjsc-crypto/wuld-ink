@@ -92,3 +92,12 @@
   .con-reveal { animation: none; }
   .con-term, .con-btn, .con-in { transition: none; }
 }
+
+/* K275 — mobile touch: console takeover control chips ≥44px; the
+   input row wraps. Console engine/scene/fx/sigil byte-frozen. */
+@media (pointer: coarse) {
+  .con-btn { min-height: 44px; min-width: 44px; }
+}
+@media (max-width: 640px) {
+  .con-in-row { flex-wrap: wrap; }
+}

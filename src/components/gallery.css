@@ -376,3 +376,12 @@ body[data-nsfw-revealed] .gallery-plate[data-nsfw="true"]::before {
 body.gallery-lightbox-open {
   overflow: hidden;
 }
+
+/* K275 — mobile touch: lightbox close/next/prev ≥44px and thumb-
+   reachable; NSFW gate tap-sized. gallery-room.js byte-frozen. */
+@media (pointer: coarse) {
+  .gallery-lightbox-close,
+  .gallery-lightbox-next,
+  .gallery-lightbox-prev { min-width: 44px; min-height: 44px; }
+  .gallery-nsfw-toggle { min-height: 44px; }
+}

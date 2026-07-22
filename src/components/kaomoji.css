@@ -223,3 +223,13 @@
   from{ transform: translateY(14px); opacity: 0; }
   to{ transform: translateY(0); opacity: 1; }
 }
+
+/* K275 — mobile touch: notes toolbar buttons + kaomoji controls
+   ≥44px. Notes JS byte-frozen. The kaomoji panel already bottom-
+   sheets ≤640 (K271). */
+@media (pointer: coarse) {
+  .notes-btn,
+  .kaomoji-toggle { min-width: 44px; min-height: 44px; }
+  .kaomoji-chip { min-height: 44px; }
+  .kaomoji-search { min-height: 44px; }
+}

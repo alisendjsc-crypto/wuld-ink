@@ -119,3 +119,9 @@
   text-align: right;
   letter-spacing: var(--ls-normal);
 }
+
+/* K275 — mobile touch: essay audio play/scrub ≥44px. */
+@media (pointer: coarse) {
+  .audio-play { min-width: 44px; min-height: 44px; }
+  .audio-block input[type="range"] { min-height: 44px; }
+}

@@ -191,3 +191,13 @@
   padding: var(--s-4);
   margin-block-end: var(--s-6);
 }
+
+/* K275 — mobile touch: comment form fields + submit ≥44px; rows
+   wrap. */
+@media (pointer: coarse) {
+  .cb-input { min-height: 44px; }
+  .cb-submit { min-height: 44px; }
+}
+@media (max-width: 640px) {
+  .cb-row { flex-wrap: wrap; }
+}

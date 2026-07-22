@@ -113,3 +113,14 @@
 }
 .ss-more { margin: var(--s-3) 0 0 0; }
 .ss-empty { padding: var(--s-4) 0; list-style: none; }
+
+/* K275 — mobile touch: search input + result rows tap-reachable;
+   results never horizontally scroll. */
+@media (pointer: coarse) {
+  .ss-input { min-height: 44px; }
+  .ss-row { min-height: 44px; }
+}
+@media (max-width: 640px) {
+  .ss-results { max-width: 100%; }
+  .ss-row { overflow-wrap: break-word; }
+}

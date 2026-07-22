@@ -405,3 +405,13 @@ body[data-sstage-solo] .persona-switch { display: none; }
   .sstage-overlay.sstage-visible .sstage-panel { transform: none; }
   .sstage-av-video { display: none; }
 }
+
+/* K275 — mobile touch: successor stage head chips + input +
+   disclosure ≥44px. Stage JS byte-frozen — CSS only. */
+@media (pointer: coarse) {
+  .sstage-btn,
+  .sstage-open-btn,
+  .sstage-toggle,
+  .sstage-chip { min-height: 44px; }
+  .sstage-input { min-height: 44px; }
+}

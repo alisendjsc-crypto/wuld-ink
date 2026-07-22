@@ -164,3 +164,31 @@
 .gallery-top-btn:hover { color: var(--c-accent); border-color: var(--c-accent); }
 .gallery-top-btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
 .gallery-top-btn[hidden] { display: none; }
+
+/* K275 — mobile: the controls bar reflows to wrap, every control
+   ≥44px, zero horizontal overflow; consent/theater tap-sized. */
+@media (max-width: 640px) {
+  .gallery-controls { flex-wrap: wrap; row-gap: var(--s-2, 8px); }
+  .gallery-chips { flex-wrap: wrap; }
+  .gallery-search { max-width: 100%; }
+}
+@media (pointer: coarse) {
+  .gallery-chip,
+  .gallery-pager-btn,
+  .gallery-saved-toggle,
+  .gallery-cap-toggle,
+  .gallery-browse-toggle,
+  .gallery-top-btn,
+  .gallery-prints-band-btn,
+  .gallery-lightbox-random,
+  .gallery-lightbox-share,
+  .gallery-consent-btn { min-height: 44px; }
+  .gallery-search input,
+  .gallery-search-tag { min-height: 44px; }
+}
+
+/* K275 — mobile touch (2nd pass): per-thumbnail save star gets a
+   ≥44px hit area (the glyph stays centered). 27 on the grid. */
+@media (pointer: coarse) {
+  .gallery-star { min-width: 44px; min-height: 44px; }
+}
