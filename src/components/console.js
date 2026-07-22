@@ -8,6 +8,7 @@
   "use strict";
 
   var E = (typeof window !== "undefined" && window.ConsoleEngine) ? window.ConsoleEngine : null;
+  var SG = (typeof window !== "undefined" && window.ConsoleSigil) ? window.ConsoleSigil : null;  // K269 seeded descent-sigil (pure; degrades if absent)
   var AUDIO_KEY = "wuld:console:audio";     // own-key namespace: wuld:console:*
   var doc = (typeof document !== "undefined") ? document : null;
   if (!doc) return;
@@ -30,6 +31,7 @@
     "  new [word]                                      a new structure (name the seed)",
     "  seed                                            show this run's seed",
     "  share                                           a link back to this exact descent",
+    "  sigil [ascii|save]                              the mark this seed leaves",
     "  help / ?                                        this list"
   ].join("\n");
 
@@ -152,6 +154,48 @@
     if (copyText(link)) print("— copied.", "con-dim");
     cue("take");
   }
+  // ---- descent-sigil (K269): a deterministic mark from the SAME seed as the world.
+  // ConsoleSigil.svgFor() returns geometry-only markup (no seed text is ever placed
+  // inside it — the seed is drawn purely as numbers), so injecting the trusted string
+  // carries no user input. Static; unchanged under reduced-motion; own no storage.
+  function sigilName(s) { return (String(s == null ? "" : s).toLowerCase().replace(/[^a-z0-9-]+/g, "").slice(0, 48)) || "descent"; }
+  function downloadSigil() {
+    if (!SG || !world) return false;
+    try {
+      var a = doc.createElement("a");
+      a.href = SG.toDataURL(world.seed);
+      a.download = "descent-" + sigilName(world.seed) + ".svg";
+      (doc.body || mount).appendChild(a); a.click();
+      if (a.parentNode) a.parentNode.removeChild(a);
+      return true;
+    } catch (e) { return false; }
+  }
+  function printSigil() {
+    if (!out || !SG || !world) return;
+    var box = el("div", "con-sigil");
+    box.style.margin = "0.5rem 0"; box.style.lineHeight = "0";
+    box.innerHTML = SG.svgFor(world.seed);        // trusted machine-generated geometry
+    out.appendChild(box);
+    var foot = el("div", "con-sigil-foot"); foot.style.margin = "0 0 0.4rem";
+    var save = el("button", "con-btn"); save.type = "button"; save.textContent = "[ save ]";
+    save.addEventListener("click", function () { if (downloadSigil()) print("— mark saved.", "con-dim"); if (input) input.focus(); });
+    foot.appendChild(save); out.appendChild(foot);
+    out.scrollTop = out.scrollHeight;
+  }
+  function sigilReveal() {                          // fires on the descent close only
+    if (!SG || !world) return;
+    print("— its mark —", "con-dim");
+    printSigil();
+  }
+  function sigilOut(arg) {
+    if (!SG || !world) { print("There is no mark to draw yet.", "con-dim"); return; }
+    arg = (arg || "").trim().toLowerCase();
+    if (arg === "ascii" || arg === "text") { print(SG.asciiSigil(world.seed), "con-sigil-ascii"); cue("look"); return; }
+    if (arg === "save") { if (downloadSigil()) print("— mark saved.", "con-dim"); else print("Could not save the mark.", "con-dim"); return; }
+    print("the mark this seed leaves:", "con-sys");
+    printSigil();
+    cue("look");
+  }
   function persist() { if (E && state) E.save(state, safeLS()); }
   function safeLS() {
     return { setItem: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
@@ -185,6 +229,7 @@
   function apply(res) {
     state = res.state; persist();
     print(res.msg);
+    if (res.event === "win") sigilReveal();   // the warded door made visible — the mark is the last thing you see going down
     cue(res.event);
     updateStatus();
   }
@@ -216,6 +261,7 @@
     if (verb === "help" || verb === "?" || verb === "commands") { print(HELP); return; }
     if (verb === "seed") { print("seed: " + (world.seed || "(empty)")); return; }
     if (verb === "share") { shareOut(); return; }
+    if (verb === "sigil" || verb === "mark") { sigilOut(rest); return; }
     if (verb === "new" || verb === "restart") { newGame(rest || undefined); updateStatus(); return; }
     if (verb === "clear" || verb === "cls") { if (out) out.innerHTML = ""; return; }
     print("I don't understand \"" + verb + "\". Type  help  for the commands.", "con-dim");
@@ -247,7 +293,8 @@
     var mapBtn = el("button", "con-btn"); mapBtn.type = "button"; mapBtn.textContent = "[ map ]";
     var newBtn = el("button", "con-btn"); newBtn.type = "button"; newBtn.textContent = "[ new ]";
     var shareBtn = el("button", "con-btn"); shareBtn.type = "button"; shareBtn.textContent = "[ share ]";
-    ctrl.appendChild(soundBtn); ctrl.appendChild(mapBtn); ctrl.appendChild(shareBtn); ctrl.appendChild(helpBtn); ctrl.appendChild(newBtn);
+    var sigilBtn = el("button", "con-btn"); sigilBtn.type = "button"; sigilBtn.textContent = "[ sigil ]";
+    ctrl.appendChild(soundBtn); ctrl.appendChild(mapBtn); ctrl.appendChild(shareBtn); ctrl.appendChild(sigilBtn); ctrl.appendChild(helpBtn); ctrl.appendChild(newBtn);
 
     term.appendChild(head); term.appendChild(out); term.appendChild(inRow); term.appendChild(ctrl);
     host.appendChild(term);
@@ -263,6 +310,7 @@
     mapBtn.addEventListener("click", function () { if (world && state) print(E.renderMap(world, state)); if (input) input.focus(); });
     newBtn.addEventListener("click", function () { newGame(); updateStatus(); if (input) input.focus(); });
     shareBtn.addEventListener("click", function () { shareOut(); if (input) input.focus(); });
+    sigilBtn.addEventListener("click", function () { sigilOut(""); if (input) input.focus(); });
     out.addEventListener("click", function () { if (input) input.focus(); });
 
     renderSound();
@@ -311,7 +359,12 @@
     _normSeed: normalizeSeed, _hashSeed: readHashSeed, _share: shareOut,
     _reduced: function () { return reduced; },
     _audio: function () { return { on: audioOn, ctx: !!ctx }; },
-    _setSound: setSound, _cue: cue, _outText: function () { return out ? out.textContent || (out.children ? Array.prototype.map.call(out.children, function (c) { return c.textContent; }).join("\n") : "") : ""; }
+    _setSound: setSound, _cue: cue, _outText: function () { return out ? out.textContent || (out.children ? Array.prototype.map.call(out.children, function (c) { return c.textContent; }).join("\n") : "") : ""; },
+    _sigilAPI: function () { return SG; },
+    _sigilSVG: function () { return (SG && world) ? SG.svgFor(world.seed) : null; },
+    _sigilSpec: function () { return (SG && world) ? SG.genSigil(world.seed) : null; },
+    _sigilAscii: function () { return (SG && world) ? SG.asciiSigil(world.seed) : null; },
+    _sigilOut: sigilOut, _outHTML: function () { return out ? out.innerHTML : ""; }
   };
 
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", boot);

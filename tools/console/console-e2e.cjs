@@ -23,14 +23,17 @@ const path = require("path");
 const COMP = path.join(__dirname, "..", "..", "src", "components");
 const P = require(path.join(COMP, "console-prng.js"));       // real PRNG
 const E = require(path.join(COMP, "console-engine.js"));     // real engine
+const SG = require(path.join(COMP, "console-sigil.js"));     // real descent-sigil (K269)
 const CONSOLE_SRC = fs.readFileSync(path.join(COMP, "console.js"), "utf8");
 const CONSOLE_CSS = fs.readFileSync(path.join(COMP, "console.css"), "utf8");
 const PRNG_SRC = fs.readFileSync(path.join(COMP, "console-prng.js"), "utf8");
 const ENGINE_SRC = fs.readFileSync(path.join(COMP, "console-engine.js"), "utf8");
+const SIGIL_SRC = fs.readFileSync(path.join(COMP, "console-sigil.js"), "utf8");
 const stripComments = (s) => s.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/[^\n]*/g, "$1");
 const CONSOLE_CODE = stripComments(CONSOLE_SRC);
 const ENGINE_CODE = stripComments(ENGINE_SRC);
 const PRNG_CODE = stripComments(PRNG_SRC);
+const SIGIL_CODE = stripComments(SIGIL_SRC);
 
 // hard golden values (drift catches): PRNG golden recomputed at K235 build time.
 // WORLD_FP DELIBERATELY regenerated at the proto pool-deepening: growing the prose
@@ -202,7 +205,7 @@ function makeWorld(opts) {
     AudioContext: MockCtx, Math: Math, localStorage: global.localStorage,
     location: { hash: opts.hash || "" }
   };
-  win.ConsoleEngine = E; win.ConsolePRNG = P;
+  win.ConsoleEngine = E; win.ConsolePRNG = P; win.ConsoleSigil = SG;
   global.window = win; global.document = doc;
   eval(CONSOLE_SRC);   // IIFE boots -> boot() (readyState complete)
   return { win, doc, body, mount, store, writes, P: win.wuldConsole, audio: function () { return audioCreated; } };
@@ -296,10 +299,12 @@ function makeWorld(opts) {
   ok("fence: engine has no argument-library stance strings", !STANCE.test(ENGINE_CODE), null);
   ok("fence: shell has no argument-library stance strings", !STANCE.test(CONSOLE_CODE), null);
   ok("fence: prng has no argument-library stance strings", !STANCE.test(PRNG_CODE), null);
-  // imports: only console-prng <- engine; console.js & prng import nothing external
+  ok("fence: sigil has no argument-library stance strings", !STANCE.test(SIGIL_CODE), null);
+  // imports: only console-prng <- engine + sigil; console.js & prng import nothing external
   ok("fence: engine imports only console-prng.js", (ENGINE_CODE.match(/require\(([^)]*)\)/g) || []).every(function (r) { return /console-prng\.js/.test(r); }), (ENGINE_CODE.match(/require\(([^)]*)\)/g) || []));
+  ok("fence: sigil imports only console-prng.js", (SIGIL_CODE.match(/require\(([^)]*)\)/g) || []).every(function (r) { return /console-prng\.js/.test(r); }), (SIGIL_CODE.match(/require\(([^)]*)\)/g) || []));
   ok("fence: shell requires nothing", !/require\s*\(/.test(CONSOLE_CODE), null);
-  ok("fence: no import of any library/objection/efilist/persona module", !/(argument|objection|efilist|library-|persona|yurei|omega|combined)[^"']*\.(js|json)/i.test(CONSOLE_CODE + ENGINE_CODE + PRNG_CODE), null);
+  ok("fence: no import of any library/objection/efilist/persona module", !/(argument|objection|efilist|library-|persona|yurei|omega|combined)[^"']*\.(js|json)/i.test(CONSOLE_CODE + ENGINE_CODE + PRNG_CODE + SIGIL_CODE), null);
   // audio is opt-in: AudioContext is only referenced inside an audioOn/reduced-guarded path
   ok("fence: AudioContext only constructed via ensureCtx (guarded)", /audioOn/.test(CONSOLE_CODE) && /ensureCtx/.test(CONSOLE_CODE), null);
   // own-key namespace declared
@@ -432,6 +437,54 @@ function makeWorld(opts) {
 })();
 
 // ---------------------------------------------------------------- report
+// ---------------------------------------------------------------- PASS 12: seeded descent-sigil (K269)
+(function () {
+  const DESC = String.fromCharCode(0x25BC);   // the descent glyph (down-triangle) at the core
+  // -- pure generator: determinism (spec + svg byte-identical), variety
+  ok("sigil: genSigil spec deterministic per seed", JSON.stringify(SG.genSigil("wuld-descent")) === JSON.stringify(SG.genSigil("wuld-descent")), null);
+  ok("sigil: svg byte-identical for a seed", SG.svgFor("wuld-descent") === SG.svgFor("wuld-descent"), null);
+  ok("sigil: standalone svg byte-identical for a seed", SG.svgFor("wuld-descent", { standalone: true }) === SG.svgFor("wuld-descent", { standalone: true }), null);
+  ok("sigil: a different seed yields a different mark", SG.svgFor("wuld-descent") !== SG.svgFor("the-cold-below"), null);
+  ok("sigil: ascii deterministic + carries the descent glyph", SG.asciiSigil("wuld-descent") === SG.asciiSigil("wuld-descent") && SG.asciiSigil("wuld-descent").indexOf(DESC) >= 0, null);
+  ok("sigil: ascii differs by seed", SG.asciiSigil("a") !== SG.asciiSigil("b"), null);
+
+  // -- never throws over a broad + hostile + exotic seed sweep; all distinct
+  let threw = 0; const seen = new Set();
+  const exotic = ["", "   ", "-", "----", "ΩΩ", "12345", "X".repeat(300), "<img src=x onerror=alert(1)>", "'; DROP TABLE--", "wuld:console:save"];
+  for (const s of exotic) { try { SG.svgFor(s); SG.genSigil(s); SG.asciiSigil(s); SG.toDataURL(s); } catch (e) { threw++; } }
+  for (let i = 0; i < 400; i++) { try { seen.add(SG.svgFor("sweep-" + i)); } catch (e) { threw++; } }
+  ok("sigil: never throws over exotic + 400-seed sweep", threw === 0, threw);
+  ok("sigil: 400 seeds -> 400 distinct marks", seen.size === 400, seen.size);
+
+  // -- injection firewall: the seed is drawn as numbers, never emitted as text
+  const hv = SG.svgFor('<img src=x onerror="alert(1)"><script>evil()</script>', { standalone: true });
+  ok("sigil: hostile seed leaves no <script in output", hv.indexOf("<script") < 0, null);
+  ok("sigil: hostile seed leaves no event handler", hv.indexOf("onerror") < 0 && hv.indexOf("onload") < 0, null);
+  ok("sigil: hostile seed text never appears in the mark", hv.indexOf("alert") < 0 && hv.indexOf("evil") < 0 && hv.toLowerCase().indexOf("<img") < 0, null);
+  ok("sigil: output uses only whitelisted svg primitives", (hv.match(/<([a-z]+)/g) || []).every(t => ["<svg", "<circle", "<polygon", "<polyline", "<line", "<rect", "<g"].includes(t)), (hv.match(/<([a-z]+)/g) || []));
+
+  // (the STANCE + console-prng-only import firewall over SIGIL_CODE is asserted in PASS 8)
+
+  // -- reduced-motion contract: the shipped mark is fully static (no animation elements)
+  ok("sigil: shipped svg has no animation elements", SG.svgFor("wuld-descent").indexOf("animate") < 0, null);
+  const rm = makeWorld({ reducedMotion: true });
+  ok("sigil: renders under reduced-motion, still static", typeof rm.P._sigilSVG() === "string" && rm.P._sigilSVG().indexOf("animate") < 0, null);
+
+  // -- data: URL travels with the shared descent
+  ok("sigil: serialises to an svg data URL", SG.toDataURL("wuld-descent").indexOf("data:image/svg+xml;utf8,") === 0, null);
+
+  // -- shell integration: the mark is drawn from the SAME seed as the world; own-key clean
+  const w = makeWorld({}); w.P._new("iso-sigil");
+  const seed = w.P._world().seed;
+  ok("sigil: shell exposes ConsoleSigil (wired)", !!w.P._sigilAPI(), null);
+  ok("sigil: shell mark is drawn from the world's own seed", !!w.P._sigilSpec() && w.P._sigilSpec().seed === seed && w.P._sigilSVG().indexOf("<svg") === 0, null);
+  let ran = true; try { w.P._exec("sigil"); w.P._exec("sigil ascii"); w.P._exec("sigil save"); } catch (e) { ran = false; }
+  ok("sigil: `sigil` / `sigil ascii` / `sigil save` do not throw", ran, null);
+  ok("sigil: `sigil` prints its in-register reveal", w.P._outText().indexOf("the mark this seed leaves:") >= 0, null);
+  ok("sigil: `sigil ascii` prints the text seal", w.P._outText().indexOf(DESC) >= 0, null);
+  ok("sigil: drawing the mark writes nothing outside wuld:console:*", w.writes.every(k => /^wuld:console:/.test(k)), w.writes.filter(k => !/^wuld:console:/.test(k)));
+})();
+
 console.log("console-e2e: " + pass + "/" + (pass + fail) + " passed");
 if (fail) { console.log("FAILURES:"); fails.forEach(function (f) { console.log("  x " + f); }); process.exit(1); }
 process.exit(0);
