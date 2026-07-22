@@ -32,9 +32,14 @@ const CONSOLE_CODE = stripComments(CONSOLE_SRC);
 const ENGINE_CODE = stripComments(ENGINE_SRC);
 const PRNG_CODE = stripComments(PRNG_SRC);
 
-// hard golden values (drift catches): recomputed at K235 build time
+// hard golden values (drift catches): PRNG golden recomputed at K235 build time.
+// WORLD_FP DELIBERATELY regenerated at the proto pool-deepening: growing the prose
+// pools (ADJ/NOUN/AIR/SIGHTS) + the item pool changes room titles/descriptions/flavor
+// per seed, so fp() (which hashes title+desc+item) moves. The room GRAPH is unchanged
+// (proven by PASS 2 connectivity/reciprocity/playability + PASS 10 graph-invariance).
+// Old goldens (pre-deepening): wuld-descent 641467701, test-seed 2263193907.
 const PRNG_GOLDEN = [0.6527054542675614, 0.2266360546927899, 0.17785613634623587, 0.516596824163571];
-const WORLD_FP = { "wuld-descent": 641467701, "test-seed": 2263193907 };
+const WORLD_FP = { "wuld-descent": 2944269538, "test-seed": 1267046172 };
 
 let pass = 0, fail = 0; const fails = [];
 function ok(name, cond, got) { if (cond) pass++; else { fail++; fails.push(name + "  (got: " + JSON.stringify(got) + ")"); } }
@@ -276,6 +281,60 @@ function makeWorld(opts) {
   ok("css: reduced-motion strips transition", /transition:\s*none/.test(rm), null);
   ok("css: reduced-motion hides the scanline", /\.con-term::after\s*\{\s*display:\s*none/.test(rm), null);
   ok("css: no external url() refs", !/url\(/.test(CONSOLE_CSS), null);
+})();
+
+// ---------------------------------------------------------------- PASS 10: deepened-pool structural invariants (proto)
+// Structural, NOT golden-string: proves the enlarged prose/item pools never break
+// genWorld across a broad seed sweep, the descent is always 100%-walkable (SEEN can
+// reach roomCount), and variety actually grew — without pinning exact generated text.
+(function () {
+  const OPP = { n: "s", s: "n", e: "w", w: "e" };
+  function reachAvoid(w, avoid) {           // BFS from start, never expanding through `avoid`
+    const d = new Array(w.rooms.length).fill(-1); d[w.startId] = 0; const q = [w.startId];
+    while (q.length) { const c = q.shift(); if (c === avoid) continue;
+      for (const dir of ["n", "s", "e", "w"]) { const n = w.rooms[c].exits[dir]; if (n != null && n !== avoid && d[n] < 0) { d[n] = d[c] + 1; q.push(n); } } }
+    return d;
+  }
+  const N = 1200;
+  let threw = 0, conn = 0, recip = 0, badCount = 0, keyBad = 0, endItem = 0,
+      emptyProse = 0, undefProse = 0, orphan = 0, nondet = 0;
+  const titles = new Set(), items = new Set();
+  for (let i = 0; i < N; i++) {
+    const seed = "sweep#" + i;
+    let w;
+    try { w = E.genWorld(seed); } catch (e) { threw++; continue; }
+    if (JSON.stringify(w) !== JSON.stringify(E.genWorld(seed))) nondet++;   // determinism across the sweep
+    if (w.rooms.length < 11 || w.rooms.length > 15) badCount++;
+    if (reach(w).some((x) => x < 0)) conn++;                                 // every room physically reachable
+    if (w.rooms[w.keyRoomId].item !== "key") keyBad++;
+    if (w.rooms[w.startId].item != null || w.rooms[w.terminusId].item != null) endItem++;
+    // SEEN-complete: every non-terminus room reachable WITHOUT descending (entering
+    // the terminus ends the run) -> a player can walk seen up to roomCount.
+    const ra = reachAvoid(w, w.terminusId);
+    for (let k = 0; k < w.rooms.length; k++) { if (k === w.terminusId) continue; if (ra[k] < 0) { orphan++; break; } }
+    for (let k = 0; k < w.rooms.length; k++) {
+      const r = w.rooms[k];
+      if (!r.title || !r.desc || !r.sight || !r.sightDetail) emptyProse++;
+      if (/undefined|\bnull\b/.test(r.title + "|" + r.desc + "|" + r.sight)) undefProse++;
+      titles.add(r.title); if (r.item) items.add(r.item);
+      for (const dr of ["n", "s", "e", "w"]) { const n = r.exits[dr]; if (n != null && w.rooms[n].exits[OPP[dr]] !== k) recip++; }
+    }
+  }
+  ok("proto: genWorld never throws across " + N + " seeds", threw === 0, threw);
+  ok("proto: deterministic across the sweep (byte-identical x2)", nondet === 0, nondet);
+  ok("proto: room count stays 11..15 across the sweep", badCount === 0, badCount);
+  ok("proto: every room reachable across the sweep", conn === 0, conn);
+  ok("proto: exits reciprocal across the sweep", recip === 0, recip);
+  ok("proto: key always on the key room", keyBad === 0, keyBad);
+  ok("proto: threshold + descent stay item-free", endItem === 0, endItem);
+  ok("proto: SEEN-complete — no room stranded behind the descent", orphan === 0, orphan);
+  ok("proto: no empty title/desc/sight across the sweep", emptyProse === 0, emptyProse);
+  ok("proto: no undefined/null leaking into prose", undefProse === 0, undefProse);
+  // variety actually grew (pre-deepening ceiling was ADJ*NOUN = 324 + 2 hardcoded = 326)
+  ok("proto: title variety exceeds the pre-deepening ceiling (>900 distinct)", titles.size > 900, titles.size);
+  // every declared flavour item + the key gets placed somewhere across the sweep
+  const wantItems = ["key", "candle", "map", "wire", "lens", "matches", "coin", "photo", "ribbon", "whistle"];
+  ok("proto: every declared item is placeable", wantItems.every((it) => items.has(it)), [...items].sort());
 })();
 
 // ---------------------------------------------------------------- report

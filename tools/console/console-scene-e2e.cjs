@@ -432,8 +432,8 @@ t("enter affordance: hidden static markup, below the lede, inside <main>", (() =
     /<p class="con-enter" data-con-enter hidden>/.test(page) && /con-enter-btn/.test(page);
 })());
 t("no new headings (exactly the one h1)", (page.match(/<h1/g) || []).length === 1 && page.indexOf("<h2") < 0 && page.indexOf("<h3") < 0);
-t("K235 shell trio + css held", ["console.css?v=K235", "console-prng.js?v=K235", "console-engine.js?v=K235", "console.js?v=K235"]
-  .every(s => (page.split(s).length - 1) === 1));
+t("shell trio held (engine K265; prng/console.js/css K235)", ["console.css?v=K235", "console-prng.js?v=K235", "console-engine.js?v=K265", "console.js?v=K235"]
+  .every(s => (page.split(s).length - 1) === 1) && page.indexOf("console-engine.js?v=K235") < 0);
 t("wgate curtain markers held", ["wgate:head:start", "wgate:head:end", "wgate:body:start", "wgate:body:end"]
   .every(m => page.indexOf(m) > 0));
 t("curtain key + open-class held", page.indexOf("wuld:console:unlocked") > 0 && page.indexOf("cgate-open") > 0);

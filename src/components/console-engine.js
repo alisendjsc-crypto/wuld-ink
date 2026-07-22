@@ -22,12 +22,25 @@
   var DNAME = { n: "north", s: "south", e: "east", w: "west" };
 
   // -------- word banks (dark, decaying; deliberately content-empty of any thesis)
+  // K-proto deepening: prose pools grown ~2x. Each rng.pick() is ONE draw regardless
+  // of pool length, so growing ADJ/NOUN/AIR/SIGHTS leaves the room GRAPH (exits,
+  // terminus, key room, tone, item placement) byte-identical per seed — only the
+  // room titles + descriptions change. Register: ashen institutional-industrial decay.
   var ADJ = ["ashen", "flooded", "collapsing", "silent", "fluorescent", "derelict",
     "frost-bitten", "smoke-stained", "waterlogged", "forgotten", "humming",
-    "windowless", "sagging", "overgrown", "cratered", "sunless", "peeling", "cold"];
+    "windowless", "sagging", "overgrown", "cratered", "sunless", "peeling", "cold",
+    "rusted", "mildewed", "lightless", "buckled", "gutted", "echoing", "condemned",
+    "salt-stained", "chalk-white", "tar-dark", "unlit", "weeping", "ash-choked",
+    "brackish", "guttering", "soot-black", "shuttered", "low-ceilinged", "iron-grey",
+    "damp", "storm-grey", "moth-eaten", "subterranean", "disused"];
   var NOUN = ["corridor", "vault", "stairwell", "antechamber", "gallery", "boiler room",
     "ward", "archive", "cistern", "concourse", "dormitory", "furnace", "atrium",
-    "substation", "reading room", "waiting room", "pump house", "sorting hall"];
+    "substation", "reading room", "waiting room", "pump house", "sorting hall",
+    "mortuary", "chapel", "laundry", "refectory", "plant room", "records room",
+    "generator hall", "cold store", "isolation ward", "filtration bay", "turbine hall",
+    "mail room", "dispensary", "stockroom", "switch room", "holding cell", "drying room",
+    "lecture hall", "coal store", "service tunnel", "cloakroom", "ossuary", "columbarium",
+    "boiler flat"];
   var AIR = ["thick with rust and standing water",
     "still, and colder than the last",
     "faintly sweet, like something left too long",
@@ -35,7 +48,17 @@
     "moving, though there is no window",
     "heavy with the smell of wet chalk",
     "so quiet you can hear your own pulse",
-    "grey with a dust that never settles"];
+    "grey with a dust that never settles",
+    "sharp with ozone and old smoke",
+    "warm in a way you distrust",
+    "flat and used, breathed too many times over",
+    "tinged with iron, like a coin held under the tongue",
+    "cold at the ankles, and colder somewhere below",
+    "close, as though the walls have been moved inward",
+    "sour with a damp that has stood for years",
+    "thin, as if the floor above were burning the air",
+    "still as the air inside a sealed jar",
+    "carrying a draught from a place it should not reach"];
   var SIGHTS = [
     { s: "a chair bolted to the floor", d: "The bolts are new. Everything else is not." },
     { s: "a clock with no hands", d: "The glass is warm. You are certain it has moved since you looked away." },
@@ -46,7 +69,19 @@
     { s: "a floor drain breathing cold air", d: "Down, and down, and then a sound like a door far below." },
     { s: "a mirror turned to face the wall", d: "You leave it that way. Some kindnesses are for yourself." },
     { s: "a stopped elevator, doors ajar", d: "The car is not there. The shaft is, and it is very deep." },
-    { s: "a television showing grey static", d: "For a moment the static resolves into a hallway exactly like this one." }
+    { s: "a television showing grey static", d: "For a moment the static resolves into a hallway exactly like this one." },
+    { s: "a stack of chairs turned to face the wall", d: "Set out for a meeting no one came to. The dust on the seats has not been broken." },
+    { s: "a payphone with the receiver left hanging", d: "The cord still sways a little. You decide, firmly, not to lift it." },
+    { s: "a row of numbered lockers, every door ajar", d: "Each one empty, each the same tired grey. You find you have counted them." },
+    { s: "a fire door chained shut from this side", d: "Someone wanted what lies beyond it kept out. Or kept in. The chain is on your side." },
+    { s: "a pool of black water with no source", d: "It does not stir when you pass. Your reflection arrives in it a moment late." },
+    { s: "a noticeboard furred with curling paper", d: "Every notice is for a date long gone, and not one of them mentions a way up." },
+    { s: "a long table laid for a meal", d: "The plates are clean, the chairs pushed in. Nothing here has eaten in a very long time." },
+    { s: "a hole cut cleanly through the ceiling", d: "The edges are too neat for a collapse. Something left this room going upward." },
+    { s: "a heap of shoes against the far wall", d: "Paired, laced, sorted small to large. You do not look for a pair your size." },
+    { s: "a doorway bricked up to shoulder height", d: "The work was done in a hurry. A gap remains at the top, and cold air comes steadily through it." },
+    { s: "a wheelchair left at the head of the stairs", d: "It faces down the flight. The brakes are off, and it has not rolled." },
+    { s: "a bank of dark monitors", d: "One wakes for a moment, showing this room from a corner where you are not standing, then sleeps again." }
   ];
 
   var ITEMS = {
@@ -55,9 +90,13 @@
     map:     { name: "a folded map, water-ruined",    take: "You take the map. Every corridor on it leads to the same unmarked room." },
     wire:    { name: "a coil of copper wire",         take: "You take the copper wire and loop it over your wrist." },
     lens:    { name: "a lens, cracked across",        take: "You take the cracked lens. Through it the room is no clearer." },
-    matches: { name: "a matchbook, three left",       take: "You take the matchbook. Three matches. You will save them." }
+    matches: { name: "a matchbook, three left",       take: "You take the matchbook. Three matches. You will save them." },
+    coin:    { name: "a coin worn to a blank",        take: "You take the smooth coin. Neither side holds a face you can name." },
+    photo:   { name: "a photograph, the faces worn away", take: "You take the photograph. Where the faces should be, the paper is rubbed through." },
+    ribbon:  { name: "a length of black ribbon",      take: "You take the black ribbon. It is the first soft thing you have touched down here." },
+    whistle: { name: "a tin whistle, dented",         take: "You take the dented whistle. If you blew it, you are not certain the sound would leave the room." }
   };
-  var FLAVOR = ["candle", "map", "wire", "lens", "matches"];
+  var FLAVOR = ["candle", "map", "wire", "lens", "matches", "coin", "photo", "ribbon", "whistle"];
 
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
@@ -328,6 +367,10 @@
     if (/wire|copper/.test(t)) return "wire";
     if (/lens/.test(t)) return "lens";
     if (/match/.test(t)) return "matches";
+    if (/coin/.test(t)) return "coin";
+    if (/photo|photograph|picture/.test(t)) return "photo";
+    if (/ribbon/.test(t)) return "ribbon";
+    if (/whistle/.test(t)) return "whistle";
     return null;
   }
   function itemName(id) { return ITEMS[id] ? ITEMS[id].name : id; }
