@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="/components/nav.css?v=K43">
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K43">
+  <link rel="stylesheet" href="/components/kaomoji.css?v=K271">
 
   <style>
     .notes-page{
@@ -206,6 +207,9 @@
           <button type="button" id="btn-del" class="notes-btn">[ delete ]</button>
           <span class="notes-ind count" id="count-ind">0 words</span>
           <span class="notes-ind saved" id="saved-ind">saved</span>
+          <div class="kaomoji-wrap" id="kaomoji-wrap">
+            <button type="button" id="kaomoji-trigger" class="notes-btn kaomoji-trigger" aria-label="Insert kaomoji" title="kaomoji" hidden>[ ◡ ]</button>
+          </div>
         </div>
         <div class="notes-editor-wrap" id="editor-wrap">
           <textarea id="editor" data-wh="none" spellcheck="true" aria-label="Write your thoughts" placeholder="Start writing&hellip;"></textarea>
@@ -413,5 +417,6 @@
     renderList(); counts(); markSaved();
   })();
   </script>
+  <script src="/components/kaomoji.js?v=K271" defer></script>
 </body>
 </html>

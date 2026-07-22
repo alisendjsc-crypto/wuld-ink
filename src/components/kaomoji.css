@@ -1,0 +1,225 @@
+/* ============================================================
+   wuld.ink — kaomoji picker (K271)
+   A discrete insert-at-caret face picker for /notes/.
+   Site-native: design tokens ONLY, IBM Plex Mono chrome, crimson
+   accent, hard corners. Adapts to reader / hc modes through vars.
+   Zalgo containment: opt-in chip, extra render room, never in All.
+   No storage APIs here; behaviour lives in kaomoji.js.
+   ============================================================ */
+
+/* ---- trigger -------------------------------------------------
+   The button already wears .notes-btn from the notes page; this
+   only anchors the panel and lights the open state. */
+.kaomoji-wrap{
+  position: relative;
+  display: inline-flex;
+}
+.kaomoji-trigger[aria-expanded="true"]{
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+/* ---- panel ---------------------------------------------------
+   Dropdown anchored under the trigger, right-aligned. Mirrors
+   .notes-editor-wrap: crimson left stripe on an elevated surface. */
+.kaomoji-panel{
+  position: absolute;
+  top: calc(100% + var(--s-2));
+  right: 0;
+  z-index: 97;                 /* above the ambient bar (z 94) */
+  width: min(22rem, 92vw);
+  max-height: min(60vh, 30rem);
+  flex-direction: column;
+  background: var(--c-bg-elevated, #161616);
+  border: var(--bw-base) solid var(--c-border);
+  border-left: var(--bw-thick) solid var(--c-accent);
+  font-family: var(--font-mono);
+  color: var(--c-fg);
+  box-shadow: 0 12px 34px -8px rgba(0, 0, 0, .66);
+}
+.kaomoji-panel:not([hidden]){ display: flex; }
+
+@media (prefers-reduced-motion: no-preference){
+  .kaomoji-panel:not([hidden]){ animation: kao-in var(--t-base-d, 160ms) var(--ease, ease-out); }
+}
+@keyframes kao-in{
+  from{ opacity: 0; transform: translateY(-4px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+/* ---- head: search + shuffle + close ---- */
+.kaomoji-head{
+  display: flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-3);
+  border-bottom: var(--bw-thin) solid var(--c-border);
+}
+.kaomoji-search{
+  flex: 1 1 auto; min-width: 0;
+  font-family: var(--font-mono); font-size: var(--t-sm);
+  background: var(--c-bg, #0a0a0a);
+  border: var(--bw-base) solid var(--c-border);
+  color: var(--c-fg);
+  padding: var(--s-2) var(--s-3);
+  letter-spacing: var(--ls-wide);
+}
+.kaomoji-search::placeholder{ color: var(--c-fg-dim); }
+.kaomoji-search:focus{ outline: none; border-color: var(--c-accent); }
+
+.kaomoji-mini{
+  flex: 0 0 auto;
+  font-family: var(--font-mono); font-size: var(--t-sm);
+  line-height: 1;
+  background: transparent; border: var(--bw-base) solid var(--c-border);
+  color: var(--c-fg-muted); cursor: pointer;
+  padding: var(--s-2);
+}
+.kaomoji-mini:hover{ border-color: var(--c-accent); color: var(--c-accent); }
+.kaomoji-mini:focus-visible{ outline: none; box-shadow: var(--c-focus-ring); border-color: var(--c-accent); }
+
+/* ---- chips: horizontal scroll row ---- */
+.kaomoji-chips{
+  display: flex; gap: var(--s-2);
+  overflow-x: auto; overflow-y: hidden;
+  padding: var(--s-3);
+  border-bottom: var(--bw-thin) solid var(--c-border);
+  scrollbar-width: thin;
+}
+.kaomoji-chip{
+  flex: 0 0 auto;
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: var(--ls-wide);
+  background: transparent;
+  border: var(--bw-thin) solid var(--c-border);
+  color: var(--c-fg-muted); cursor: pointer;
+  padding: var(--s-1) var(--s-3);
+  white-space: nowrap;
+}
+.kaomoji-chip:hover{ border-color: var(--c-border-strong); color: var(--c-fg); }
+.kaomoji-chip:focus-visible{ outline: none; box-shadow: var(--c-focus-ring); border-color: var(--c-accent); }
+.kaomoji-chip[aria-pressed="true"]{
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+  color: var(--c-selection-fg, #f0ebe5);
+}
+.kaomoji-chip.is-zalgo{ color: var(--c-fg-dim); font-style: italic; }
+.kaomoji-chip.is-zalgo[aria-pressed="true"]{ color: var(--c-selection-fg, #f0ebe5); font-style: normal; }
+
+/* ---- grid: scrollable face cells ---- */
+.kaomoji-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(4.2rem, 1fr));
+  gap: var(--s-2);
+  padding: var(--s-3);
+  overflow-y: auto;
+  align-content: start;
+  flex: 1 1 auto;
+  min-height: 6rem;
+}
+.kaomoji-cell-wrap{
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+.kaomoji-cell{
+  flex: 1 1 auto; min-width: 0;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 2.6rem;
+  padding: var(--s-2) var(--s-1);
+  font-family: var(--font-mono); font-size: var(--t-sm);
+  background: var(--c-bg, #0a0a0a);
+  border: var(--bw-thin) solid var(--c-border);
+  color: var(--c-fg); cursor: pointer;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  line-height: 1.2;
+}
+.kaomoji-cell:hover,
+.kaomoji-cell:focus-visible{
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+  outline: none;
+}
+.kaomoji-cell:focus-visible{ box-shadow: var(--c-focus-ring); }
+
+/* star favourite — corner toggle, revealed on hover/focus or when set */
+.kaomoji-star{
+  position: absolute; top: 0; right: 0;
+  width: 1.15rem; height: 1.15rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  background: transparent; border: 0; cursor: pointer;
+  color: var(--c-fg-dim); padding: 0;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference){
+  .kaomoji-star{ transition: opacity var(--t-fast, 80ms) linear; }
+}
+.kaomoji-cell-wrap:hover .kaomoji-star,
+.kaomoji-cell-wrap:focus-within .kaomoji-star,
+.kaomoji-star[aria-pressed="true"]{ opacity: 1; }
+.kaomoji-star[aria-pressed="true"]{ color: var(--c-accent); }
+.kaomoji-star:focus-visible{ opacity: 1; outline: none; box-shadow: var(--c-focus-ring); }
+
+/* Zalgo containment: extra room so stacked combining marks can't clip */
+.kaomoji-cell-wrap.is-zalgo .kaomoji-cell{
+  min-height: 3.4rem;
+  padding: var(--s-4) var(--s-2);
+  overflow: visible;
+  white-space: normal;
+  line-height: 1.9;
+}
+
+/* ---- foot: hint + copy-mode toggle + toast ---- */
+.kaomoji-foot{
+  display: flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-top: var(--bw-thin) solid var(--c-border);
+  font-size: var(--t-xs); color: var(--c-fg-dim);
+  letter-spacing: var(--ls-wide);
+}
+.kaomoji-hint{
+  flex: 1 1 auto; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.kaomoji-toggle{
+  flex: 0 0 auto;
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  background: transparent; border: var(--bw-thin) solid var(--c-border);
+  color: var(--c-fg-muted); cursor: pointer;
+  padding: 2px var(--s-2); letter-spacing: var(--ls-wide);
+}
+.kaomoji-toggle:hover{ border-color: var(--c-accent); color: var(--c-accent); }
+.kaomoji-toggle:focus-visible{ outline: none; box-shadow: var(--c-focus-ring); border-color: var(--c-accent); }
+.kaomoji-toggle[aria-pressed="true"]{ border-color: var(--c-accent); color: var(--c-accent); }
+.kaomoji-toast{
+  flex: 0 0 auto; color: var(--c-accent);
+  opacity: 0; white-space: nowrap;
+}
+.kaomoji-toast.is-show{ opacity: 1; }
+@media (prefers-reduced-motion: no-preference){
+  .kaomoji-toast{ transition: opacity var(--t-fast, 80ms) linear; }
+}
+
+.kaomoji-empty{
+  padding: var(--s-5) var(--s-3);
+  text-align: center; color: var(--c-fg-dim);
+  font-size: var(--t-sm); line-height: 1.6;
+}
+
+/* ---- mobile: bottom sheet ---- */
+@media (max-width: 640px){
+  .kaomoji-panel{
+    position: fixed;
+    left: 0; right: 0; bottom: 0; top: auto;
+    width: auto; max-height: 72vh;
+    border-left: 0;
+    border-top: var(--bw-thick) solid var(--c-accent);
+    box-shadow: 0 -14px 40px -10px rgba(0, 0, 0, .7);
+  }
+}
+@media (max-width: 640px) and (prefers-reduced-motion: no-preference){
+  .kaomoji-panel:not([hidden]){ animation: kao-sheet var(--t-base-d, 160ms) var(--ease, ease-out); }
+}
+@keyframes kao-sheet{
+  from{ transform: translateY(14px); opacity: 0; }
+  to{ transform: translateY(0); opacity: 1; }
+}
