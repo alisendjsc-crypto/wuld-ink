@@ -29,11 +29,14 @@ const CONSOLE_CSS = fs.readFileSync(path.join(COMP, "console.css"), "utf8");
 const PRNG_SRC = fs.readFileSync(path.join(COMP, "console-prng.js"), "utf8");
 const ENGINE_SRC = fs.readFileSync(path.join(COMP, "console-engine.js"), "utf8");
 const SIGIL_SRC = fs.readFileSync(path.join(COMP, "console-sigil.js"), "utf8");
+const CONSOLE_FX_SRC = fs.readFileSync(path.join(COMP, "console-fx.js"), "utf8");     // K273 text-effects layer
+const CONSOLE_FX_CSS = fs.readFileSync(path.join(COMP, "console-fx.css"), "utf8");
 const stripComments = (s) => s.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/[^\n]*/g, "$1");
 const CONSOLE_CODE = stripComments(CONSOLE_SRC);
 const ENGINE_CODE = stripComments(ENGINE_SRC);
 const PRNG_CODE = stripComments(PRNG_SRC);
 const SIGIL_CODE = stripComments(SIGIL_SRC);
+const CONSOLE_FX_CODE = stripComments(CONSOLE_FX_SRC);
 
 // hard golden values (drift catches): PRNG golden recomputed at K235 build time.
 // WORLD_FP DELIBERATELY regenerated at the proto pool-deepening: growing the prose
@@ -200,15 +203,27 @@ function makeWorld(opts) {
     this.createGain = function () { return { gain: { value: 0, exponentialRampToValueAtTime: function () {} }, connect: function () {} }; };
   }
   const RM = !!opts.reducedMotion;
+  const rafQ = [];
   const win = {
     matchMedia: function (q) { return { matches: RM, media: q, addListener: function () {}, addEventListener: function () {} }; },
     AudioContext: MockCtx, Math: Math, localStorage: global.localStorage,
     location: { hash: opts.hash || "" }
   };
+  if (opts.raf) {   // K273: an injected rAF clock lets the FX pass drive the ANIMATED typeout path
+    let _t = 0;
+    win.requestAnimationFrame = function (cb) { rafQ.push(cb); return rafQ.length; };
+    win.cancelAnimationFrame = function () {};
+    win.performance = { now: function () { _t += 50; return _t; } };
+  }
   win.ConsoleEngine = E; win.ConsolePRNG = P; win.ConsoleSigil = SG;
   global.window = win; global.document = doc;
-  eval(CONSOLE_SRC);   // IIFE boots -> boot() (readyState complete)
-  return { win, doc, body, mount, store, writes, P: win.wuldConsole, audio: function () { return audioCreated; } };
+  eval(CONSOLE_FX_SRC);   // K273: attach window.ConsoleFx BEFORE the shell reads it (mirrors the live load order)
+  eval(CONSOLE_SRC);      // IIFE boots -> boot() (readyState complete)
+  return {
+    win, doc, body, mount, store, writes, P: win.wuldConsole, FX: win.ConsoleFx,
+    audio: function () { return audioCreated; },
+    flush: function (n) { for (let i = 0; i < (n || 1); i++) { const q = rafQ.slice(); rafQ.length = 0; for (let j = 0; j < q.length; j++) { try { q[j](); } catch (e) {} } } }
+  };
 }
 
 // ---------------------------------------------------------------- PASS 4: shell boot + scope + verbs
@@ -300,11 +315,13 @@ function makeWorld(opts) {
   ok("fence: shell has no argument-library stance strings", !STANCE.test(CONSOLE_CODE), null);
   ok("fence: prng has no argument-library stance strings", !STANCE.test(PRNG_CODE), null);
   ok("fence: sigil has no argument-library stance strings", !STANCE.test(SIGIL_CODE), null);
+  ok("fence: fx layer has no argument-library stance strings", !STANCE.test(CONSOLE_FX_CODE), null);
   // imports: only console-prng <- engine + sigil; console.js & prng import nothing external
   ok("fence: engine imports only console-prng.js", (ENGINE_CODE.match(/require\(([^)]*)\)/g) || []).every(function (r) { return /console-prng\.js/.test(r); }), (ENGINE_CODE.match(/require\(([^)]*)\)/g) || []));
   ok("fence: sigil imports only console-prng.js", (SIGIL_CODE.match(/require\(([^)]*)\)/g) || []).every(function (r) { return /console-prng\.js/.test(r); }), (SIGIL_CODE.match(/require\(([^)]*)\)/g) || []));
   ok("fence: shell requires nothing", !/require\s*\(/.test(CONSOLE_CODE), null);
-  ok("fence: no import of any library/objection/efilist/persona module", !/(argument|objection|efilist|library-|persona|yurei|omega|combined)[^"']*\.(js|json)/i.test(CONSOLE_CODE + ENGINE_CODE + PRNG_CODE + SIGIL_CODE), null);
+  ok("fence: fx layer requires nothing", !/require\s*\(/.test(CONSOLE_FX_CODE), null);
+  ok("fence: no import of any library/objection/efilist/persona module", !/(argument|objection|efilist|library-|persona|yurei|omega|combined)[^"']*\.(js|json)/i.test(CONSOLE_CODE + ENGINE_CODE + PRNG_CODE + SIGIL_CODE + CONSOLE_FX_CODE), null);
   // audio is opt-in: AudioContext is only referenced inside an audioOn/reduced-guarded path
   ok("fence: AudioContext only constructed via ensureCtx (guarded)", /audioOn/.test(CONSOLE_CODE) && /ensureCtx/.test(CONSOLE_CODE), null);
   // own-key namespace declared
@@ -483,6 +500,115 @@ function makeWorld(opts) {
   ok("sigil: `sigil` prints its in-register reveal", w.P._outText().indexOf("the mark this seed leaves:") >= 0, null);
   ok("sigil: `sigil ascii` prints the text seal", w.P._outText().indexOf(DESC) >= 0, null);
   ok("sigil: drawing the mark writes nothing outside wuld:console:*", w.writes.every(k => /^wuld:console:/.test(k)), w.writes.filter(k => !/^wuld:console:/.test(k)));
+})();
+
+// ---------------------------------------------------------------- PASS 11: text-effects layer (K273)
+// Drives the REAL console-fx.js (eval'd into the shim before the shell). Proves
+// the load-bearing contract: OPT-IN (nothing applied when off), prefers-reduced-
+// motion forces the static/instant path + silences audio, typeout completes to
+// the full text (and instant-completes), own-key isolation, the source firewall
+// holds over the fx layer, and the world/seed/sigil determinism is unperturbed.
+(function () {
+  // presence + own-key namespace
+  const w = makeWorld({});
+  ok("fx: ConsoleFx present + wired", !!w.FX, !!w.FX);
+  ok("fx: own-key is wuld:console:fx", !!w.FX && w.FX._key() === "wuld:console:fx", w.FX && w.FX._key());
+
+  // default is tasteful-on (low), applied to the .con-term root
+  ok("fx: default level tasteful-on (low)", w.FX.level() === "low" && w.FX.on() === true, w.FX.level());
+  const t0 = byClass(w.body, "con-term")[0];
+  ok("fx: default adds con-fx + con-fx-low", !!t0 && !!t0._cls["con-fx"] && !!t0._cls["con-fx-low"], t0 && t0.className);
+
+  // OPT-IN: level off applies NO fx class at all
+  const off = makeWorld({ store: { "wuld:console:fx": "off" } });
+  const tOff = byClass(off.body, "con-term")[0];
+  ok("fx: level off applies no fx class (opt-in)", !!tOff && !tOff._cls["con-fx"] && !tOff._cls["con-fx-low"] && !tOff._cls["con-fx-full"], tOff && tOff.className);
+  ok("fx: level off -> on()/motion() both false", off.FX.on() === false && off.FX.motion() === false, off.FX.level());
+
+  // cycle off->low->full->off, persisted own-key ONLY
+  const cy = makeWorld({ store: { "wuld:console:fx": "off" } });
+  cy.writes.length = 0;
+  const seq = [cy.FX.cycle(), cy.FX.cycle(), cy.FX.cycle()];
+  ok("fx: cycle is off->low->full->off", JSON.stringify(seq) === JSON.stringify(["low", "full", "off"]), seq);
+  ok("fx: cycle writes only wuld:console:fx", cy.writes.length > 0 && cy.writes.every(function (k) { return k === "wuld:console:fx"; }), cy.writes.slice());
+
+  // reduced-motion: HARD static/instant + audio silent (the non-negotiable gate)
+  const r = makeWorld({ reducedMotion: true });
+  ok("fx: reduced -> motion() false, reduced() true", r.FX.motion() === false && r.FX.reduced() === true, r.FX.motion());
+  const tR = byClass(r.body, "con-term")[0];
+  ok("fx: reduced -> con-fx-static present (static bloom, no anim)", !!tR && !!tR._cls["con-fx-static"], tR && tR.className);
+  ok("fx: reduced -> typeout is instant (nothing left typing)", r.FX.typing() === false, r.FX.typing());
+  r.FX.onEvent("win");
+  ok("fx: reduced -> onEvent(win) adds NO con-fx-descend (guarded)", !tR._cls["con-fx-descend"], tR.className);
+  r.P._setSound(true);
+  ok("fx: reduced -> ambient bed never starts", r.FX._bedOn() === false, r.FX._bedOn());
+  ok("fx: reduced -> NO AudioContext ever created", r.audio() === 0, r.audio());
+
+  // typeout completes to the FULL text (instant path — the base shim has no rAF)
+  const ip = makeWorld({});
+  const ipOut = byClass(ip.body, "con-out")[0];
+  const nBefore = byClass(ip.body, "con-line").length;
+  ip.FX.typeBlock(ipOut, "the cold walls remember\nnothing answers", "con-sys");
+  const ipLines = byClass(ip.body, "con-line").map(function (l) { return l.textContent; });
+  ok("fx: typeout lands the full text (instant path)", ipLines.indexOf("the cold walls remember") >= 0 && ipLines.indexOf("nothing answers") >= 0, ipLines.slice(-2));
+  ok("fx: typeout makes one line per input line", byClass(ip.body, "con-line").length === nBefore + 2, byClass(ip.body, "con-line").length - nBefore);
+  ok("fx: instant path leaves nothing typing", ip.FX.typing() === false, ip.FX.typing());
+
+  // ANIMATED path (injected rAF): progressive reveal, completes, instant-completes
+  const an = makeWorld({ raf: true });
+  an.FX.complete();                                   // settle the boot typeout so the checks below are isolated
+  const anOut = byClass(an.body, "con-out")[0];
+  const word = "descend";
+  const job = an.FX.typeBlock(anOut, word, "con-sys");
+  ok("fx: animated path returns a job (rAF present)", !!job, !!job);
+  const anEl = byClass(an.body, "con-line").slice(-1)[0];
+  an.flush(2);
+  const partial = anEl.textContent;
+  ok("fx: typeout reveals progressively (0 < partial < full)", partial.length > 0 && partial.length < word.length, { partial: partial, full: word });
+  an.flush(1000);
+  ok("fx: typeout completes to the full text", anEl.textContent === word && an.FX.typing() === false, anEl.textContent);
+  an.FX.typeBlock(anOut, "the mark", "con-sys");
+  an.FX.complete();
+  const anEl2 = byClass(an.body, "con-line").slice(-1)[0];
+  ok("fx: complete() instant-finishes an in-flight typeout", anEl2.textContent === "the mark" && an.FX.typing() === false, anEl2.textContent);
+
+  // no-throw across a hostile fx surface
+  let threw = false;
+  try {
+    const h = makeWorld({});
+    h.FX.cycle(); h.FX.cycle(); h.FX.cycle(); h.FX.cycle();
+    ["move", "blocked", "win", "look", "nonsense", undefined, null].forEach(function (k) { h.FX.onEvent(k); });
+    const hOut = byClass(h.body, "con-out")[0];
+    h.FX.typeBlock(hOut, "", "con-sys");
+    h.FX.typeBlock(hOut, "x".repeat(4000), null);
+    h.FX.complete();
+    h.FX.setAudio(true); h.FX.setAudio(false);
+    h.P._exec("look"); h.P._exec("north"); h.P._exec("help");
+  } catch (e) { threw = true; }
+  ok("fx: never throws across cycles / events / typeout / audio / verbs", threw === false, threw);
+
+  // own-key isolation across a full fx + audio + verb session
+  const iso = makeWorld({});
+  iso.writes.length = 0;
+  iso.FX.cycle(); iso.FX.cycle();
+  iso.P._setSound(true); iso.P._setSound(false);
+  iso.P._exec("north"); iso.P._exec("look");
+  ok("fx: a full fx+audio+verb session writes only wuld:console:*", iso.writes.length > 0 && iso.writes.every(function (k) { return k.indexOf("wuld:console:") === 0; }), iso.writes.slice());
+
+  // determinism: the fx layer never perturbs the world or the sigil
+  const dF = makeWorld({ store: { "wuld:console:fx": "full" } });
+  const dO = makeWorld({ store: { "wuld:console:fx": "off" } });
+  dF.P._new("determinism"); dO.P._new("determinism");
+  ok("fx: world byte-identical regardless of fx level", JSON.stringify(dF.P._world()) === JSON.stringify(dO.P._world()), null);
+  ok("fx: sigil identical regardless of fx level", dF.P._sigilSVG() === dO.P._sigilSVG(), null);
+
+  // CSS: the fx stylesheet carries a HARD reduced-motion gate + zero assets
+  ok("fx-css: has a reduced-motion block", CONSOLE_FX_CSS.indexOf("prefers-reduced-motion") >= 0, null);
+  const fxrm = CONSOLE_FX_CSS.slice(CONSOLE_FX_CSS.indexOf("prefers-reduced-motion"));
+  ok("fx-css: reduced-motion kills animation", /animation:\s*none/.test(fxrm), null);
+  ok("fx-css: reduced-motion strips transition", /transition:\s*none/.test(fxrm), null);
+  ok("fx-css: defines the con-fx layer", /\.con-fx\b/.test(CONSOLE_FX_CSS), null);
+  ok("fx-css: no external url() refs (zero assets)", !/url\(/.test(CONSOLE_FX_CSS), null);
 })();
 
 console.log("console-e2e: " + pass + "/" + (pass + fail) + " passed");

@@ -1,0 +1,78 @@
+/* console-fx.css — the text-effects layer for /console/ (K273). Opt-in, applied
+   only when console-fx.js adds .con-fx (+ .con-fx-low | .con-fx-full) to the
+   .con-term root. An AUTHORIZED exception to the game's austerity, THEME-BOUND:
+   the failing bone-CRT of the ashen structure, tuned FAINT — never a synthwave
+   demo. COMPLEMENTS the K235 scanline (.con-term::after) and the K249a scene's
+   own grain/scanline; it does NOT restyle or duplicate them (scene BYTE-HELD).
+
+   Reduced-motion is a HARD gate, doubly enforced: every animation is scoped to
+   .con-fx:not(.con-fx-static) (the JS-set static flag) AND killed by the
+   prefers-reduced-motion media block below. Under reduced-motion the phosphor
+   bloom + text glow remain as a STATIC bloom; nothing moves. No assets, no libs. */
+
+/* intensity knobs — the [ crt ] toggle picks the tier; vars scale every effect */
+.con-fx-low  { --fx-glow: rgba(206, 210, 196, 0.16); --fx-spread: 6px; --fx-bloom: 0.045; --fx-flk: 6.5s; --fx-crt: 9s; }
+.con-fx-full { --fx-glow: rgba(206, 210, 196, 0.30); --fx-spread: 9px; --fx-bloom: 0.085; --fx-flk: 5s;   --fx-crt: 7s; }
+
+/* (a/b) CRT PHOSPHOR — a bone bloom on the text itself. The dark halo rides in
+   the SAME shadow so legibility holds inside the K249a scene takeover (where an
+   #id selector would otherwise win over a bare glow) — complement, never fight. */
+.con-fx .con-line,
+.con-fx .con-in,
+.con-fx .con-prompt,
+.con-fx .con-title {
+  text-shadow: 0 1px 3px rgba(5, 5, 6, 0.92), 0 0 2px rgba(5, 5, 6, 0.85), 0 0 var(--fx-spread) var(--fx-glow);
+}
+
+/* (b) a faint phosphor bloom pooled behind the text — a NEW ::before layer,
+   below content (z-index 1, with the ::after scanline), so it never washes the
+   glyphs. Static by default; the slow flicker is the failing-monitor breath. */
+.con-fx .con-term::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: radial-gradient(125% 90% at 50% 40%, rgba(206, 210, 196, var(--fx-bloom)) 0%, transparent 60%);
+}
+.con-fx:not(.con-fx-static) .con-term::before { animation: con-fx-flicker var(--fx-flk) steps(1) infinite; }
+.con-fx:not(.con-fx-static) .con-term { animation: con-fx-crt var(--fx-crt) ease-in-out infinite; }
+
+@keyframes con-fx-flicker { 0%,100% { opacity: 1; } 47% { opacity: .78; } 48% { opacity: 1; } 73% { opacity: .9; } 74% { opacity: 1; } }
+@keyframes con-fx-crt { 0%,90%,100% { filter: brightness(1); } 93% { filter: brightness(.965); } 96% { filter: brightness(1); } }
+
+/* (d) LIVING CARET — the blink deepens to a breathing block; (settle) new lines
+   micro-fade + drop 1px into place, con-reveal made bodily. */
+.con-fx:not(.con-fx-static) .con-in-row::after {
+  content: "\258B"; color: var(--c-accent); text-shadow: 0 0 6px var(--fx-glow);
+  animation: con-fx-breathe 1.7s ease-in-out infinite;
+}
+@keyframes con-fx-breathe { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+.con-fx:not(.con-fx-static) .con-fx-settle { animation: con-fx-settle .26s ease-out; }
+@keyframes con-fx-settle { from { opacity: .25; transform: translateY(1px); } to { opacity: 1; transform: none; } }
+
+/* (c) ASHEN GLITCH — the one-tick crumble glyph is dimmed; sparse + cold, gone
+   the next reveal. (weight-event jolt) a blocked move gives a brief cold twitch. */
+.con-fx-glitch { color: var(--c-fg-dim); opacity: .82; }
+.con-fx:not(.con-fx-static) .con-fx-jolt { animation: con-fx-jolt .24s steps(2); }
+@keyframes con-fx-jolt { 0%,100% { transform: translateX(0); filter: brightness(1); } 25% { transform: translateX(-1px); filter: brightness(1.12); } 50% { transform: translateX(1px); filter: brightness(.9); } }
+
+/* (e) DESCENT CRESCENDO — the close is the ONE place the effects swell, because
+   the narrative does: the frame dims and sinks as the K269 sigil (printed by
+   console.js) is the last thing lit, then the dark takes it. Reduced-motion:
+   the sigil still reveals (console.js), but there is no swell. */
+.con-fx:not(.con-fx-static) .con-fx-descend { animation: con-fx-descend 2.8s ease-in-out; }
+@keyframes con-fx-descend { 0% { filter: brightness(1); } 32% { filter: brightness(.58) saturate(.85); } 58% { filter: brightness(.5); } 100% { filter: brightness(1); } }
+.con-fx-descend .con-sigil { filter: drop-shadow(0 0 7px rgba(206, 210, 196, .5)); }
+
+/* HARD reduced-motion gate (a11y, NOT austerity — stays even with austerity
+   lifted). Belt to the :not(.con-fx-static) suspenders above: kill every motion,
+   keep the static phosphor bloom + text glow. */
+@media (prefers-reduced-motion: reduce) {
+  .con-fx .con-term,
+  .con-fx .con-term::before,
+  .con-fx .con-in-row::after,
+  .con-fx .con-fx-settle,
+  .con-fx .con-fx-jolt,
+  .con-fx .con-fx-descend {
+    animation: none !important;
+    transition: none !important;
+  }
+}

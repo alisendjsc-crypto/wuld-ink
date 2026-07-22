@@ -9,6 +9,7 @@
 
   var E = (typeof window !== "undefined" && window.ConsoleEngine) ? window.ConsoleEngine : null;
   var SG = (typeof window !== "undefined" && window.ConsoleSigil) ? window.ConsoleSigil : null;  // K269 seeded descent-sigil (pure; degrades if absent)
+  var FX = (typeof window !== "undefined" && window.ConsoleFx) ? window.ConsoleFx : null;         // K273 text-effects layer (opt-in; degrades if absent)
   var AUDIO_KEY = "wuld:console:audio";     // own-key namespace: wuld:console:*
   var doc = (typeof document !== "undefined") ? document : null;
   if (!doc) return;
@@ -17,7 +18,8 @@
   try { reduced = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch (e) {}
 
   // ---- module state
-  var mount = null, out = null, input = null, statusEl = null, soundBtn = null;
+  var mount = null, out = null, input = null, statusEl = null, soundBtn = null, crtBtn = null;
+  var TYPE = { type: true };   // K273: mark a print as a typeout "chosen surface"
   var world = null, state = null, audioOn = false, ctx = null;
   var history = [], hIdx = -1;
   var HELP = [
@@ -38,8 +40,9 @@
   function el(tag, cls) { var e = doc.createElement(tag); if (cls) e.className = cls; return e; }
 
   // ---------------------------------------------------------------- output
-  function print(text, cls) {
+  function print(text, cls, opts) {
     if (!out) return;
+    if (FX && opts && opts.type && FX.on()) { FX.typeBlock(out, text, cls); return; }   // K273: typeout on chosen surfaces
     var lines = String(text == null ? "" : text).split("\n");
     for (var i = 0; i < lines.length; i++) {
       var ln = el("div", "con-line" + (cls ? " " + cls : "") + (reduced ? "" : " con-reveal"));
@@ -91,15 +94,22 @@
     try { localStorage.setItem(AUDIO_KEY, on ? "1" : "0"); } catch (e) {}
   }
   function setSound(on) {
-    if (reduced) { audioOn = false; renderSound(); return; }
+    if (reduced) { audioOn = false; if (FX) FX.setAudio(false); renderSound(); return; }
     audioOn = !!on; saveAudioPref(audioOn);
     if (audioOn) { ensureCtx(); cue("take"); }   // confirm chirp on this gesture
+    if (FX) FX.setAudio(audioOn);                 // K273: start/stop the diegetic ambient bed
     renderSound();
   }
   function renderSound() {
     if (!soundBtn) return;
     if (reduced) { soundBtn.textContent = "[ sound: off ]"; soundBtn.setAttribute("aria-pressed", "false"); soundBtn.disabled = true; soundBtn.title = "muted under reduced-motion"; }
     else { soundBtn.textContent = audioOn ? "[ sound: on ]" : "[ sound: off ]"; soundBtn.setAttribute("aria-pressed", audioOn ? "true" : "false"); soundBtn.disabled = false; }
+  }
+  function renderCrt() {                             // K273: the [ crt ] toggle label (off / low / full)
+    if (!crtBtn) return;
+    crtBtn.textContent = FX ? FX.label() : "[ crt ]";
+    crtBtn.setAttribute("aria-pressed", (FX && FX.on()) ? "true" : "false");
+    if (FX && reduced) crtBtn.title = "reduced-motion — effects shown static";
   }
 
   // ---------------------------------------------------------------- game
@@ -211,7 +221,7 @@
     persist();
     print("");
     print("A new structure closes around you.", "con-sys");
-    print(E.describe(world, state, state.pos));
+    print(E.describe(world, state, state.pos), null, TYPE);
   }
   function resume() {
     if (!E) return false;
@@ -222,15 +232,22 @@
     if (saved.pos < 0 || saved.pos >= world.rooms.length) saved.pos = world.startId;
     state = saved;
     print("You are still here. You never left.", "con-sys");
-    print(E.describe(world, state, state.pos));
+    print(E.describe(world, state, state.pos), null, TYPE);
     return true;
   }
 
   function apply(res) {
     state = res.state; persist();
-    print(res.msg);
-    if (res.event === "win") sigilReveal();   // the warded door made visible — the mark is the last thing you see going down
-    cue(res.event);
+    if (res.event === "win") {
+      print(res.msg);                          // land the terminus immediately, so the mark + swell follow in order in EVERY fx state
+      sigilReveal();                           // the warded door made visible — the mark is the last thing you see going down
+      cue("win");
+      if (FX) FX.onEvent("win");               // K273: the descent crescendo (dim + falling tone) frames the mark
+    } else {
+      print(res.msg, null, TYPE);              // K273: the structure narrates the room — typeout on this chosen surface
+      cue(res.event);
+      if (FX) FX.onEvent(res.event);           // K273: a cold whoosh on a move, a brief jolt on a blocked wall
+    }
     updateStatus();
   }
   function updateStatus() {
@@ -241,6 +258,7 @@
 
   // ---------------------------------------------------------------- parser
   function exec(line) {
+    if (FX && FX.typing()) FX.complete();   // K273: a new command finishes any in-flight typeout
     line = String(line == null ? "" : line).trim();
     if (!line) return;
     if (!E || !world || !state) { print("The console is not ready."); return; }
@@ -258,7 +276,7 @@
     if (verb === "take" || verb === "get" || verb === "grab") { apply(E.take(world, state)); return; }
     if (verb === "i" || verb === "inv" || verb === "inventory") { apply(E.inventory(world, state)); return; }
     if (verb === "m" || verb === "map") { print(E.renderMap(world, state)); cue("look"); return; }
-    if (verb === "help" || verb === "?" || verb === "commands") { print(HELP); return; }
+    if (verb === "help" || verb === "?" || verb === "commands") { print(HELP, null, TYPE); return; }
     if (verb === "seed") { print("seed: " + (world.seed || "(empty)")); return; }
     if (verb === "share") { shareOut(); return; }
     if (verb === "sigil" || verb === "mark") { sigilOut(rest); return; }
@@ -289,23 +307,29 @@
 
     var ctrl = el("div", "con-ctrl");
     soundBtn = el("button", "con-btn"); soundBtn.type = "button";
+    crtBtn = el("button", "con-btn"); crtBtn.type = "button";
     var helpBtn = el("button", "con-btn"); helpBtn.type = "button"; helpBtn.textContent = "[ help ]";
     var mapBtn = el("button", "con-btn"); mapBtn.type = "button"; mapBtn.textContent = "[ map ]";
     var newBtn = el("button", "con-btn"); newBtn.type = "button"; newBtn.textContent = "[ new ]";
     var shareBtn = el("button", "con-btn"); shareBtn.type = "button"; shareBtn.textContent = "[ share ]";
     var sigilBtn = el("button", "con-btn"); sigilBtn.type = "button"; sigilBtn.textContent = "[ sigil ]";
-    ctrl.appendChild(soundBtn); ctrl.appendChild(mapBtn); ctrl.appendChild(shareBtn); ctrl.appendChild(sigilBtn); ctrl.appendChild(helpBtn); ctrl.appendChild(newBtn);
+    ctrl.appendChild(soundBtn); ctrl.appendChild(crtBtn); ctrl.appendChild(mapBtn); ctrl.appendChild(shareBtn); ctrl.appendChild(sigilBtn); ctrl.appendChild(helpBtn); ctrl.appendChild(newBtn);
 
     term.appendChild(head); term.appendChild(out); term.appendChild(inRow); term.appendChild(ctrl);
     host.appendChild(term);
 
+    // K273: bring the effects layer up over this terminal (opt-in; reads the stored fx pref, applies its classes)
+    if (FX) FX.init({ term: term, reduced: reduced, ctx: ensureCtx, sound: function () { return audioOn; } });
+
     // wire
     inRow.addEventListener("submit", function (ev) { ev.preventDefault(); submit(); });
     input.addEventListener("keydown", function (ev) {
+      if (FX && FX.typing()) FX.complete();   // K273: any key completes an in-flight typeout
       if (ev.key === "ArrowUp") { ev.preventDefault(); histStep(-1); }
       else if (ev.key === "ArrowDown") { ev.preventDefault(); histStep(1); }
     });
     soundBtn.addEventListener("click", function () { setSound(!audioOn); if (input) input.focus(); });
+    crtBtn.addEventListener("click", function () { if (FX) { FX.cycle(); renderCrt(); } if (input) input.focus(); });
     helpBtn.addEventListener("click", function () { print(HELP); if (input) input.focus(); });
     mapBtn.addEventListener("click", function () { if (world && state) print(E.renderMap(world, state)); if (input) input.focus(); });
     newBtn.addEventListener("click", function () { newGame(); updateStatus(); if (input) input.focus(); });
@@ -314,6 +338,7 @@
     out.addEventListener("click", function () { if (input) input.focus(); });
 
     renderSound();
+    renderCrt();
   }
   function submit() {
     if (!input) return;
@@ -341,6 +366,7 @@
     renderSound();
     print("wuld://console  —  a descent, generated from a seed.", "con-sys");
     print("Type  help  for commands.  You wake at the threshold; the way back is a wall now.", "con-dim");
+    if (FX && reduced && FX.on()) print("(reduced-motion: the console holds still)", "con-dim");
     var shared = readHashSeed();
     if (shared) { newGame(shared); }               // a shared descent overrides the local resume
     else if (!resume()) { newGame(randSeed()); }
@@ -364,7 +390,8 @@
     _sigilSVG: function () { return (SG && world) ? SG.svgFor(world.seed) : null; },
     _sigilSpec: function () { return (SG && world) ? SG.genSigil(world.seed) : null; },
     _sigilAscii: function () { return (SG && world) ? SG.asciiSigil(world.seed) : null; },
-    _sigilOut: sigilOut, _outHTML: function () { return out ? out.innerHTML : ""; }
+    _sigilOut: sigilOut, _outHTML: function () { return out ? out.innerHTML : ""; },
+    _fx: function () { return FX; }
   };
 
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", boot);
