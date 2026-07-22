@@ -1,0 +1,71 @@
+/* ============================================================
+   wuld.ink — mobile + touch accessibility layer      (Phase 1)
+   ------------------------------------------------------------
+   PURELY ADDITIVE. Every rule lives inside a mobile media query
+   (max-width) or a touch media query (pointer: coarse / hover:
+   none). On a fine-pointer desktop viewport NONE of these rules
+   match — desktop is byte-inert by construction, and the
+   desktop visual-regression gate proves it.
+
+   Loaded site-wide AFTER base.css. base.css / tokens.css are
+   never edited (they carry no ?v; this file self-versions).
+   ============================================================ */
+
+/* ---------- Overflow safety — no horizontal scroll on phones ---------- */
+@media (max-width: 640px) {
+  /* Long unbreakable tokens (URLs, error codes, registry paths, inline
+     code) wrap instead of pushing the page wider than the phone. */
+  p, li, dd, dt, blockquote, figcaption,
+  .entry-body, .essay-body, .page-intro {
+    overflow-wrap: break-word;
+  }
+  code {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  /* Block code + wide tables scroll inside their own box, never the page. */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Media never exceeds the column (base caps most; belt-and-braces). */
+  img, video, canvas, svg, iframe {
+    max-width: 100%;
+  }
+}
+
+/* ---------- Touch targets — form fields + submit + disclosure ----------
+   Only elements that are NEVER inside a dense chrome bar. Component
+   icon-bars (ambient, wrong-hour, console, gallery) are Phase 2. */
+@media (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="range"]),
+  select,
+  textarea {
+    min-height: 44px;
+  }
+  button[type="submit"],
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"] {
+    min-height: 44px;
+    padding-block: var(--s-2);
+  }
+  summary {
+    min-height: 44px;
+    padding-block: var(--s-2);
+  }
+  /* Bordered pill / chip links (glossary "see also", etc.) — enlarge the
+     tap box without disturbing the row's wrap. */
+  .entry-see-also a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}

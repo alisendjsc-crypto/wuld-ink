@@ -227,3 +227,82 @@ body.home .site-banner img {
 .site-nav a[href="/console/"] { opacity: 0.4; }
 .site-nav a[href="/console/"]:hover,
 .site-nav a[href="/console/"]:focus-visible { opacity: 0.72; }
+
+/* ============================================================
+   K-PHASE1 — Mobile nav (Variant B: collapsible disclosure).
+   Zero-JS checkbox disclosure → works with JS off, so the
+   homepage stays JS-free. The toggle elements ship with the
+   HTML [hidden] attribute, so on a fine-pointer desktop
+   viewport they generate no boxes and the nav renders inline
+   exactly as before — desktop is byte-inert (proven by the
+   layout-fingerprint gate). This block only un-hides + styles
+   them ≤640px.
+   Markup (swept into .site-header-inner, before .site-nav):
+     <input type="checkbox" id="nav-toggle-cb" class="nav-toggle-cb" hidden>
+     <label for="nav-toggle-cb" class="nav-toggle" hidden>Menu</label>
+   ============================================================ */
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    width: 100%;
+    min-height: 48px;
+    padding-inline: var(--s-5);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wide);
+    font-size: var(--t-sm);
+    color: var(--c-fg);
+    border-block: var(--bw-thin) solid var(--c-border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .nav-toggle::before {
+    content: "\2261";              /* ≡ */
+    color: var(--c-accent);
+    font-size: 1.5em;
+    line-height: 1;
+  }
+  .nav-toggle-cb:checked ~ .nav-toggle::before { content: "\00D7"; }  /* × */
+
+  /* Checkbox stays operable (keyboard / AT) but visually hidden. */
+  .nav-toggle-cb {
+    display: block;
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0; border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+  }
+  .nav-toggle-cb:focus-visible ~ .nav-toggle {
+    outline: var(--bw-base) solid var(--c-focus);
+    outline-offset: -2px;
+  }
+
+  /* Nav is collapsed; the checkbox reveals it. */
+  .site-nav {
+    display: none;
+    width: 100%;
+    border-top: var(--bw-thin) solid var(--c-border);
+  }
+  .nav-toggle-cb:checked ~ .site-nav {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .site-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding-block: 0;
+    padding-inline: var(--s-5);
+    font-size: var(--t-sm);
+    border-bottom: var(--bw-thin) solid var(--c-border);
+    border-left: 3px solid transparent;
+  }
+  .site-nav a::after { content: ""; margin-inline-start: 0; }
+  .site-nav a[aria-current="page"] { border-left-color: var(--c-accent); color: var(--c-fg); }
+  .site-nav a:hover,
+  .site-nav a:focus-visible { border-left-color: var(--c-accent); }
+}

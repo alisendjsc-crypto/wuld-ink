@@ -130,3 +130,18 @@
   color: var(--c-fg);
   border-bottom-color: var(--c-accent);
 }
+/* ============================================================
+   K-PHASE1 — Footer mobile touch targets. Appended to footer.css.
+   Existing desktop rules byte-held; nothing here applies on a
+   fine-pointer desktop viewport.
+   ============================================================ */
+
+/* Footer links get a 44px tap box on touch without disturbing the
+   wrapping meta row. */
+@media (pointer: coarse) {
+  .page-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
