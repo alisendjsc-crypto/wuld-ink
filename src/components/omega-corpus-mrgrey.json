@@ -5261,6 +5261,386 @@
         "nav_label": "the graded rebuttal"
       },
       {
+        "id": "pos-overpopulation-addressed-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "overpopulation-addressed",
+          "source_node": "https://library.wuld.ink/combined#obj-overpopulation-addressed",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "overpopulation is being solved",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "birth rates are declining",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "demographics will handle it",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Stated plainly, this answers a question the position never asked. The objection was never a complaint that the crowd is too large; it is a claim about a single act, that creating one conscious being who cannot consent, and who is guaranteed to suffer, is impermissible on its own terms. Drop the world to ten thousand people and let one couple reproduce, and the objection lands on that act with undiminished force. A falling birth rate changes how many times the act is performed and nothing about the act itself. He isolates the ethical claim from the population chart: a shorter line of non-consenting lives is a shorter line, not a cleared conscience.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-overpopulation-addressed",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-overpopulation-addressed-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "overpopulation-addressed",
+          "source_node": "https://library.wuld.ink/combined#obj-overpopulation-addressed",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "the population is shrinking",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "fertility rates are falling",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we are below replacement",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Calling this solved asks one word to carry weight the numbers will not bear. A declining rate is still a rate: it mints roughly a hundred and forty million new human lives a year, none of them asked, and it says nothing at all about the tens of billions of animals the same machinery produces on purpose. The trend consoles the person reading it, not the being created under it, who carries the entire imposed risk of a life whether the curve points up or down. He deflates the word to its measurement: a slower production line is still a production line, and naming its output a solution only relabels the problem.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-overpopulation-addressed",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-moral-progress-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "moral-progress",
+          "source_node": "https://library.wuld.ink/combined#obj-moral-progress",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "humanity is becoming more ethical",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we are making moral progress",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "expanding circle of empathy",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Grant the trajectory and the objection still holds, because it sits one level beneath it. A being created today is set down in today's moral landscape, not the improved one it is promised will arrive, and is asked to serve as a step toward a compassion its own life will never reach. That is the proxy gamble moved into moral time: present suffering, certain and unconsented, staked on the guess that later beings will suffer less. He dates the cost precisely, and it falls due now, on the one who will never live in the world the payment is meant to buy.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-moral-progress",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-moral-progress-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "moral-progress",
+          "source_node": "https://library.wuld.ink/combined#obj-moral-progress",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "we are ending factory farming",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "moral progress justifies it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the moral trajectory is upward",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Before the trajectory is granted it should be measured, and the measurement does not cooperate. Roughly eighty billion land animals pass through industrial slaughter every year, a figure that has climbed rather than fallen across the same century that expanded its talk of rights; beside the gentler capacities the age also built new cruelties, engineered addiction and surveillance and manufactured despair. Progress here is not a line rising toward mercy but a widening of the room, more space for kindness and for harm at once. He audits the count before he trusts the story it is told to support: the number climbs exactly where compassion was promised to lower it.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-moral-progress",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-marxist-materialist-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "marxist-materialist",
+          "source_node": "https://library.wuld.ink/combined#obj-marxist-materialist",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "suffering is caused by capitalism",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "fix the system not the species",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "blame capitalism",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "This mistakes an intensifier for the source. The materialist reading is right about its own floor, that class and exploitation and alienated labor manufacture enormous and preventable suffering, but the objection stands on the floor beneath it. Abolish capital entirely and the fully liberated citizen still ages, still sickens, still buries everyone she loves, still dies, and still consented to none of it. That is not a wage relation; it is the condition of being sentient, and no redistribution reaches down to it. He subtracts the economy from the sum and the harm barely moves: the terms of labor end at the factory gate, the terms of existence do not.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-marxist-materialist",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-marxist-materialist-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "marxist-materialist",
+          "source_node": "https://library.wuld.ink/combined#obj-marxist-materialist",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "material conditions are the problem",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "abolish capitalism and suffering ends",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the marxist objection",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The analysis is aimed one level too high rather than simply wrong. Capitalism is a symptom the objection will readily grant, a vicious one, but treating the symptom leaves the disease it belongs to untouched. Strip the profit motive from the world and you have removed a multiplier of suffering, not its ground; the ground is that a sentient thing was brought into being, without being asked, to carry illness and loss and death for a full term it never agreed to serve. Revolution rearranges who suffers and by how much. It does not reach the fact that someone must. He treats capitalism as one symptom among many and keeps the objection aimed at the body underneath.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-marxist-materialist",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-social-contract-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "social-contract",
+          "source_node": "https://library.wuld.ink/combined#obj-social-contract",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "you implicitly consented",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "using the roads means you agreed",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you consented by participating",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Consent of this kind needs a real door marked exit, and there is none. A person born into a society did not pick the society, did not pick birth, and meets homelessness or starvation if he declines to take part; using the roads and hospitals of a world he was placed in without asking is survival, not a signature. The captive who eats what the captor sets down has agreed to nothing, and neither has the prisoner who reads the library the prison provides. He divides coping from endorsement: living inside a condition under threat of ruin is what coercion looks like from the inside, and it ratifies nothing about the act that imposed the condition.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-social-contract",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-social-contract-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "social-contract",
+          "source_node": "https://library.wuld.ink/combined#obj-social-contract",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "the social contract",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you accepted the social contract",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "if you dont like it leave",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Taken at its word this proves far too much. If using what a society provides converts a person into its endorser, then every citizen who has driven a public road while faulting the government has surrendered the standing to complain, which no one believes. The move does not touch the ethics of creating a life at all; it changes the subject to the character of the one raising it, hoping an accusation of hypocrisy will do the work an argument would have to. He unmasks the maneuver for what it is, a gag dressed as a rebuttal, and answers the question it was built to avoid.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-social-contract",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-rights-future-generations-01",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "rights-future-generations",
+          "source_node": "https://library.wuld.ink/combined#obj-rights-future-generations",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "future generations have a right to exist",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the unborn have rights",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the right to be born",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "A right needs someone to hold it, and here there is no one. Before a life is made there is no subject standing behind the claim, no preferences to be thwarted, no welfare to be set back, no one who could be deprived by never arriving. You cannot wrong a party that does not exist by declining to summon it into being, because there is no party there to be wronged. The right to exist is the single claim that can only be held once it has already been granted, which leaves it either redundant or empty. He inspects the claim for its holder and finds the seat empty: an entitlement addressed to no one binds no one.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-rights-future-generations",
+        "nav_label": "the graded rebuttal"
+      },
+      {
+        "id": "pos-rights-future-generations-02",
+        "class": "response",
+        "tier": "public",
+        "position": {
+          "register": "R2",
+          "objection_id": "rights-future-generations",
+          "source_node": "https://library.wuld.ink/combined#obj-rights-future-generations",
+          "ratified": "K263 strike-pass (Josiah, 2026-07-21)",
+          "seat_rx": "TX10 (library-seat review pending)"
+        },
+        "patterns": [
+          {
+            "form": "future generations have rights",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "collective rights of the unborn",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "posterity has a claim",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "The idea earns its keep in one place and is smuggled into another. Say that future generations have a claim on clean water and you are speaking of people who will in fact exist, and who should not inherit a ruined world; that is coherent and worth honoring. Move the same word to the right to exist itself and it breaks, because now it must generate an obligation toward beings whose existence is the very thing in question, conjured only by the act the claim is meant to compel. He voids the borrowed authority: a duty owed to the conditions of future lives says nothing about whether those lives must be started.",
+        "register_tags": [
+          "clinical",
+          "volta"
+        ],
+        "length_band": "b4_reply",
+        "animation_hint": "speak",
+        "href": "https://library.wuld.ink/combined#obj-rights-future-generations",
+        "nav_label": "the graded rebuttal"
+      },
+      {
         "id": "c-crisis-01",
         "class": "crisis",
         "tier": "public",
