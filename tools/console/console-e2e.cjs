@@ -51,6 +51,8 @@ function fp(w) { let s = w.seed + "|" + w.rooms.length + "|" + w.startId + "|" +
 function reach(w) { let d = new Array(w.rooms.length).fill(-1); d[w.startId] = 0; let q = [w.startId]; while (q.length) { let c = q.shift(); for (let dir of ["n", "s", "e", "w"]) { let n = w.rooms[c].exits[dir]; if (n != null && d[n] < 0) { d[n] = d[c] + 1; q.push(n); } } } return d; }
 function pathTo(w, from, to) { let prev = new Array(w.rooms.length).fill(null), pd = new Array(w.rooms.length).fill(-1); pd[from] = 0; let q = [from]; while (q.length) { let c = q.shift(); for (let dir of ["n", "s", "e", "w"]) { let n = w.rooms[c].exits[dir]; if (n != null && pd[n] < 0) { pd[n] = pd[c] + 1; prev[n] = { p: c, dir }; q.push(n); } } } if (pd[to] < 0) return null; let steps = [], cur = to; while (cur !== from) { steps.unshift(prev[cur].dir); cur = prev[cur].p; } return steps; }
 
+function pathToAvoid(w, from, to, avoid) { let prev = new Array(w.rooms.length).fill(null), pd = new Array(w.rooms.length).fill(-1); pd[from] = 0; let q = [from]; while (q.length) { let c = q.shift(); if (c === avoid) continue; for (let dir of ["n", "s", "e", "w"]) { let n = w.rooms[c].exits[dir]; if (n != null && n !== avoid && pd[n] < 0) { pd[n] = pd[c] + 1; prev[n] = { p: c, dir }; q.push(n); } } } if (pd[to] < 0) return null; let steps = [], cur = to; while (cur !== from) { steps.unshift(prev[cur].dir); cur = prev[cur].p; } return steps; }
+
 // ---------------------------------------------------------------- PASS 1: PRNG
 (function () {
   let s = "wuld-descent", rx = refX(s), vx = P.xmur3(s), okx = true;
@@ -115,6 +117,36 @@ function pathTo(w, from, to) { let prev = new Array(w.rooms.length).fill(null), 
   ok("verb: bad direction is a soft error, not a crash", E.move(w, st, "q").event === "error", null);
 })();
 
+// ---------------------------------------------------------------- PASS 3b: Option B — SEEN-complete futility fold (K267)
+// The futility clause folds into the terminus, and ONLY when the descent was the last
+// unseen room. It is a runtime string in winText -> does NOT move genWorld/fp() goldens.
+(function () {
+  const CLAUSE = "It made no difference";
+  const w = E.genWorld("futility-b");
+  // partial: grab key, straight down (not all rooms seen) -> clause ABSENT
+  let sp = E.newState(w);
+  for (const d of pathTo(w, w.startId, w.keyRoomId)) sp = E.move(w, sp, d).state;
+  sp = E.take(w, sp).state;
+  let winPartial = "";
+  for (const d of pathTo(w, w.keyRoomId, w.terminusId)) { const r = E.move(w, sp, d); sp = r.state; if (r.event === "win") winPartial = r.msg; }
+  ok("mechanic B: partial descent does NOT fire the futility clause", sp.visited.length < w.rooms.length && winPartial.indexOf(CLAUSE) < 0, { seen: sp.visited.length, rooms: w.rooms.length });
+  // complete: grab key, walk EVERY non-terminus room, then descend -> clause PRESENT (once)
+  let sc = E.newState(w);
+  for (const d of pathTo(w, w.startId, w.keyRoomId)) sc = E.move(w, sc, d).state;
+  sc = E.take(w, sc).state;
+  for (let target = 0; target < w.rooms.length; target++) {
+    if (target === w.terminusId || sc.visited.indexOf(target) >= 0) continue;
+    const steps = pathToAvoid(w, sc.pos, target, w.terminusId);
+    if (steps) for (const d of steps) sc = E.move(w, sc, d).state;
+  }
+  const seenAllNonTerm = sc.visited.length >= w.rooms.length - 1;
+  let winFull = "";
+  for (const d of pathTo(w, sc.pos, w.terminusId)) { const r = E.move(w, sc, d); sc = r.state; if (r.event === "win") winFull = r.msg; }
+  ok("mechanic B: SEEN-complete descent fires the futility clause once",
+     seenAllNonTerm && sc.visited.length >= w.rooms.length && winFull.indexOf(CLAUSE) >= 0 && (winFull.split(CLAUSE).length - 1) === 1,
+     { seen: sc.visited.length, rooms: w.rooms.length, hasClause: winFull.indexOf(CLAUSE) >= 0 });
+})();
+
 // ---------------------------------------------------------------- DOM / audio shim
 function Elem(tag) {
   this.tagName = tag; this.children = []; this.parentNode = null;
@@ -167,7 +199,8 @@ function makeWorld(opts) {
   const RM = !!opts.reducedMotion;
   const win = {
     matchMedia: function (q) { return { matches: RM, media: q, addListener: function () {}, addEventListener: function () {} }; },
-    AudioContext: MockCtx, Math: Math, localStorage: global.localStorage
+    AudioContext: MockCtx, Math: Math, localStorage: global.localStorage,
+    location: { hash: opts.hash || "" }
   };
   win.ConsoleEngine = E; win.ConsolePRNG = P;
   global.window = win; global.document = doc;
@@ -335,6 +368,67 @@ function makeWorld(opts) {
   // every declared flavour item + the key gets placed somewhere across the sweep
   const wantItems = ["key", "candle", "map", "wire", "lens", "matches", "coin", "photo", "ribbon", "whistle"];
   ok("proto: every declared item is placeable", wantItems.every((it) => items.has(it)), [...items].sort());
+})();
+
+// ---------------------------------------------------------------- PASS 11: seed-share deep-links (K267)
+// Deterministic worlds make a link the world. Structural invariants only:
+// URL-hash -> exact world; share-link round-trip; #seed overrides resume;
+// malformed/hostile hash falls through safely; own-key isolation still holds.
+(function () {
+  const w0 = makeWorld({});
+  const norm = w0.P._normSeed;
+  ok("share: normaliser lowercases + hyphenates whitespace", norm("The Cold Below") === "the-cold-below", norm("The Cold Below"));
+  ok("share: normaliser strips hostile chars (no injection surface)", norm("<script>alert(1)</script>") === "scriptalert1script", norm("<script>alert(1)</script>"));
+  ok("share: normaliser leaves no key/stance punctuation", /[^a-z0-9-]/.test(norm("wuld:console:save")) === false, norm("wuld:console:save"));
+  ok("share: normaliser is idempotent", norm(norm("  A_B--c!! ")) === norm("  A_B--c!! "), norm("  A_B--c!! "));
+  ok("share: normaliser caps length at 48", norm("x".repeat(200)).length === 48, norm("x".repeat(200)).length);
+  ok("share: unicode-only seed normalises to empty", norm("\u03a9\u03a9\u03a9") === "", norm("\u03a9\u03a9\u03a9"));
+
+  // boot from URL hash -> exact world, with NO unlocked flag in the store (curtain-independent)
+  const h = makeWorld({ hash: "#seed=cold-below" });
+  ok("share: boot reads #seed and builds that world", h.P._world().seed === "cold-below", h.P._world().seed);
+  ok("share: hash world == genWorld(seed) byte-for-byte", JSON.stringify(h.P._world()) === JSON.stringify(E.genWorld("cold-below")), null);
+
+  // a saved prior run to override
+  const saved = (function () { const a = makeWorld({}); a.P._new("prior-run"); return Object.assign({}, a.store); })();
+  ok("share: a prior save exists", "wuld:console:save" in saved, Object.keys(saved));
+  const ov = makeWorld({ store: Object.assign({}, saved), hash: "#seed=shared-one" });
+  ok("share: #seed OVERRIDES the local resume", ov.P._world().seed === "shared-one", ov.P._world().seed);
+  const rz = makeWorld({ store: Object.assign({}, saved) });
+  ok("share: no hash -> resume unchanged", rz.P._world().seed === "prior-run", rz.P._world().seed);
+
+  // share-link ROUND-TRIP
+  const s1 = makeWorld({}); s1.P._new("round-trip-seed");
+  const link = s1.P._shareLink();
+  ok("share: link targets the canonical prod page", /^https:\/\/wuld\.ink\/console\/#seed=round-trip-seed$/.test(link), link);
+  const back = norm(/[#&]seed=([^&]*)/.exec(link)[1]);
+  ok("share: round-trip seed regenerates byte-identical world", JSON.stringify(E.genWorld(back)) === JSON.stringify(s1.P._world()), { back });
+  const rt = makeWorld({ hash: link.slice(link.indexOf("#")) });
+  ok("share: booting the emitted link reproduces the world", JSON.stringify(rt.P._world()) === JSON.stringify(s1.P._world()), null);
+
+  // `share` command emits the deep-link into the output (+ the in-register line + control)
+  const sc = makeWorld({}); sc.P._new("emit-seed"); sc.P._exec("share");
+  const outTxt = byClass(sc.body, "con-line").map((l) => l.textContent).join("\n");
+  ok("share: `share` prints the deep-link", outTxt.indexOf("https://wuld.ink/console/#seed=emit-seed") >= 0, null);
+  ok("share: `share` prints the in-register line", /a way back in, for someone else/.test(outTxt), null);
+  ok("share: a [ share ] control is rendered", byClass(sc.body, "con-btn").some((b) => /share/.test(b.textContent)), null);
+
+  // malformed / empty / hostile hash -> safe fall-through, no throw, no injection
+  let threw = false;
+  try {
+    ok("share: empty #seed= -> valid random world", makeWorld({ hash: "#seed=" }).P._world().rooms.length >= 11, null);
+    ok("share: hash without seed param -> valid world", makeWorld({ hash: "#nonsense" }).P._world().rooms.length >= 11, null);
+    ok("share: malformed %-encoding does not throw", makeWorld({ hash: "#seed=%E0%A4%A" }).P._world().rooms.length >= 11, null);
+    const m4 = makeWorld({ hash: "#seed=<img src=x onerror=alert(1)>" });
+    ok("share: hostile hash -> opaque safe seed only", /^[a-z0-9-]*$/.test(m4.P._world().seed), m4.P._world().seed);
+  } catch (e) { threw = true; }
+  ok("share: no hash path ever throws", threw === false, threw);
+
+  // own-key isolation STILL holds across hash-boot + a move + share
+  const iso = makeWorld({ hash: "#seed=iso-share" });
+  const iw = iso.P._world(); for (const d of ["n", "s", "e", "w"]) if (iw.rooms[iw.startId].exits[d] != null) { iso.P._exec(d); break; }
+  iso.P._exec("share");
+  ok("share: hash-boot + share write only wuld:console:*", iso.writes.filter((k) => k.indexOf("wuld:console:") !== 0).length === 0, iso.writes.filter((k) => k.indexOf("wuld:console:") !== 0));
 })();
 
 // ---------------------------------------------------------------- report

@@ -424,7 +424,7 @@ t("no U+FFFD in scene css", css.indexOf("�") < 0);
 const page = fs.readFileSync(PAGE, "utf8");
 t("scene css include at ?v=K249a", (page.match(/console-scene\.css\?v=K249a"/g) || []).length === 1 && page.indexOf('console-scene.css?v=K249"') < 0);
 t("scene js include at ?v=K249a", (page.match(/console-scene\.js\?v=K249a"/g) || []).length === 1 && page.indexOf('console-scene.js?v=K249"') < 0);
-t("scene js loads after the shell trio", page.indexOf("console-scene.js?v=K249") > page.indexOf("console.js?v=K235"));
+t("scene js loads after the shell trio", page.indexOf("console-scene.js?v=K249") > page.indexOf("console.js?v=K267"));
 t("mount present, outside <main> (before it)", page.indexOf("data-con-scene") > 0 && page.indexOf("data-con-scene") < page.indexOf("<main"));
 t("enter affordance: hidden static markup, below the lede, inside <main>", (() => {
   const i = page.indexOf("data-con-enter");
@@ -432,8 +432,8 @@ t("enter affordance: hidden static markup, below the lede, inside <main>", (() =
     /<p class="con-enter" data-con-enter hidden>/.test(page) && /con-enter-btn/.test(page);
 })());
 t("no new headings (exactly the one h1)", (page.match(/<h1/g) || []).length === 1 && page.indexOf("<h2") < 0 && page.indexOf("<h3") < 0);
-t("shell trio held (engine K265; prng/console.js/css K235)", ["console.css?v=K235", "console-prng.js?v=K235", "console-engine.js?v=K265", "console.js?v=K235"]
-  .every(s => (page.split(s).length - 1) === 1) && page.indexOf("console-engine.js?v=K235") < 0);
+t("shell trio held (engine+console K267; prng/css K235)", ["console.css?v=K235", "console-prng.js?v=K235", "console-engine.js?v=K267", "console.js?v=K267"]
+  .every(s => (page.split(s).length - 1) === 1) && page.indexOf("console-engine.js?v=K265") < 0 && page.indexOf("console.js?v=K235") < 0);
 t("wgate curtain markers held", ["wgate:head:start", "wgate:head:end", "wgate:body:start", "wgate:body:end"]
   .every(m => page.indexOf(m) > 0));
 t("curtain key + open-class held", page.indexOf("wuld:console:unlocked") > 0 && page.indexOf("cgate-open") > 0);

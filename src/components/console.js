@@ -29,6 +29,7 @@
     "  map / m                                         what you have walked",
     "  new [word]                                      a new structure (name the seed)",
     "  seed                                            show this run's seed",
+    "  share                                           a link back to this exact descent",
     "  help / ?                                        this list"
   ].join("\n");
 
@@ -105,6 +106,52 @@
     try { s = Math.random().toString(36).slice(2, 8); } catch (e) {}
     return s || "descent";
   }
+  // ---- seed-share (K267): a deterministic world means a link IS the world.
+  // The seed is an opaque, sanitised string — only ever a genWorld() argument;
+  // never a storage key, never evaluated, never a stance token. FICTION ONLY.
+  var SHARE_BASE = "https://wuld.ink/console/";
+  function normalizeSeed(s) {
+    s = String(s == null ? "" : s).toLowerCase();
+    s = s.replace(/[\s_]+/g, "-").replace(/[^a-z0-9-]+/g, "").replace(/-+/g, "-").replace(/^-+|-+$/g, "");
+    return s.length > 48 ? s.slice(0, 48) : s;   // idempotent; safe URL charset
+  }
+  function readHashSeed() {
+    var h = "";
+    try { h = (window.location && window.location.hash) || ""; } catch (e) { h = ""; }
+    var m = /[#&]seed=([^&]*)/i.exec(String(h));
+    if (!m) return null;
+    var raw = m[1];
+    try { raw = decodeURIComponent(raw); } catch (e) {}   // keep raw on a malformed %-escape
+    var s = normalizeSeed(raw);
+    return s || null;                             // empty after sanitise -> fall through
+  }
+  function shareLink() {
+    return SHARE_BASE + "#seed=" + ((world && world.seed) ? world.seed : "");
+  }
+  function copyText(text) {
+    var okc = false;
+    try { if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(String(text)); okc = true; } } catch (e) {}
+    if (!okc) {
+      try {
+        var ta = doc.createElement("textarea");
+        ta.value = String(text); ta.setAttribute("readonly", "");
+        ta.style.position = "absolute"; ta.style.left = "-9999px";
+        (doc.body || mount).appendChild(ta);
+        if (ta.select) ta.select();
+        okc = !!(doc.execCommand && doc.execCommand("copy"));
+        if (ta.parentNode) ta.parentNode.removeChild(ta);
+      } catch (e2) { okc = false; }
+    }
+    return okc;
+  }
+  function shareOut() {
+    if (!world) return;
+    var link = shareLink();
+    print("a way back in, for someone else:", "con-sys");
+    print("  " + link);
+    if (copyText(link)) print("— copied.", "con-dim");
+    cue("take");
+  }
   function persist() { if (E && state) E.save(state, safeLS()); }
   function safeLS() {
     return { setItem: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
@@ -113,7 +160,9 @@
   }
   function newGame(seed) {
     if (!E) return;
-    world = E.genWorld(seed == null ? randSeed() : String(seed));
+    var s = (seed == null) ? randSeed() : normalizeSeed(seed);
+    if (!s) s = randSeed();                       // exotic/empty input -> a real random world
+    world = E.genWorld(s);
     state = E.newState(world);
     persist();
     print("");
@@ -166,6 +215,7 @@
     if (verb === "m" || verb === "map") { print(E.renderMap(world, state)); cue("look"); return; }
     if (verb === "help" || verb === "?" || verb === "commands") { print(HELP); return; }
     if (verb === "seed") { print("seed: " + (world.seed || "(empty)")); return; }
+    if (verb === "share") { shareOut(); return; }
     if (verb === "new" || verb === "restart") { newGame(rest || undefined); updateStatus(); return; }
     if (verb === "clear" || verb === "cls") { if (out) out.innerHTML = ""; return; }
     print("I don't understand \"" + verb + "\". Type  help  for the commands.", "con-dim");
@@ -196,7 +246,8 @@
     var helpBtn = el("button", "con-btn"); helpBtn.type = "button"; helpBtn.textContent = "[ help ]";
     var mapBtn = el("button", "con-btn"); mapBtn.type = "button"; mapBtn.textContent = "[ map ]";
     var newBtn = el("button", "con-btn"); newBtn.type = "button"; newBtn.textContent = "[ new ]";
-    ctrl.appendChild(soundBtn); ctrl.appendChild(mapBtn); ctrl.appendChild(helpBtn); ctrl.appendChild(newBtn);
+    var shareBtn = el("button", "con-btn"); shareBtn.type = "button"; shareBtn.textContent = "[ share ]";
+    ctrl.appendChild(soundBtn); ctrl.appendChild(mapBtn); ctrl.appendChild(shareBtn); ctrl.appendChild(helpBtn); ctrl.appendChild(newBtn);
 
     term.appendChild(head); term.appendChild(out); term.appendChild(inRow); term.appendChild(ctrl);
     host.appendChild(term);
@@ -211,6 +262,7 @@
     helpBtn.addEventListener("click", function () { print(HELP); if (input) input.focus(); });
     mapBtn.addEventListener("click", function () { if (world && state) print(E.renderMap(world, state)); if (input) input.focus(); });
     newBtn.addEventListener("click", function () { newGame(); updateStatus(); if (input) input.focus(); });
+    shareBtn.addEventListener("click", function () { shareOut(); if (input) input.focus(); });
     out.addEventListener("click", function () { if (input) input.focus(); });
 
     renderSound();
@@ -241,8 +293,9 @@
     renderSound();
     print("wuld://console  —  a descent, generated from a seed.", "con-sys");
     print("Type  help  for commands.  You wake at the threshold; the way back is a wall now.", "con-dim");
-    var resumed = resume();
-    if (!resumed) newGame(randSeed());
+    var shared = readHashSeed();
+    if (shared) { newGame(shared); }               // a shared descent overrides the local resume
+    else if (!resume()) { newGame(randSeed()); }
     updateStatus();
     try { if (input) input.focus(); } catch (e) {}
     return true;
@@ -254,6 +307,8 @@
     _boot: boot, _mount: function () { return !!doc.querySelector("[data-console]"); },
     _exec: exec, _state: function () { return state; }, _world: function () { return world; },
     _new: function (s) { newGame(s); updateStatus(); }, _resume: resume,
+    _shareLink: function () { return (world && state) ? shareLink() : null; },
+    _normSeed: normalizeSeed, _hashSeed: readHashSeed, _share: shareOut,
     _reduced: function () { return reduced; },
     _audio: function () { return { on: audioOn, ctx: !!ctx }; },
     _setSound: setSound, _cue: cue, _outText: function () { return out ? out.textContent || (out.children ? Array.prototype.map.call(out.children, function (c) { return c.textContent; }).join("\n") : "") : ""; }

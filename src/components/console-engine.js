@@ -298,14 +298,20 @@
   }
 
   function winText(world, state) {
-    return [
+    // Option B (K267): the SEEN-complete futility clause folds in, and ONLY when the
+    // descent was the last unseen room. A runtime string — does not touch genWorld/fp().
+    var lines = [
       "== The Descent ==",
-      "The warded door opens on nothing you can name — stairs, and past the stairs, the cold that was under every room in this place.",
-      "You go down. You were always going to go down.",
-      "",
-      "— you reached the descent in " + state.turns + " moves —",
-      "Type  new  for another structure, or  new <word>  to name the seed."
-    ].join("\n");
+      "The warded door opens on nothing you can name — stairs, and past the stairs, the cold that was under every room in this place."
+    ];
+    if (state.visited.length >= world.rooms.length) {
+      lines.push("You had walked all of it by then — every room, every one the same. It made no difference.");
+    }
+    lines.push("You go down. You were always going to go down.");
+    lines.push("");
+    lines.push("— you reached the descent in " + state.turns + " moves —");
+    lines.push("Type  new  for another structure, or  new <word>  to name the seed.");
+    return lines.join("\n");
   }
 
   // ---------------------------------------------------------------- map
