@@ -6,7 +6,133 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 13 Jul 2026 08:10:01 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Sep 2026 23:24:30 +0000</lastBuildDate>
+    <item>
+      <title>The apparatus for the film *Illogically Is* is published. The film carries no credits — that is its rule, not an oversight — so its sources, its method and its chronology live here instead: every film quoted with the windows it was quoted in and the reason for each, the score, the type, the timing, the verification record. The document is the film's only credit sequence. It reads as a page and downloads as a PDF.</title>
+      <link>https://wuld.ink/changelog/#2026-09-05-illogically-is-apparatus</link>
+      <guid isPermaLink="false">wuld.ink:2026-09-05-illogically-is-apparatus</guid>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +0000</pubDate>
+      <description>The apparatus for the film *Illogically Is* is published. The film carries no credits — that is its rule, not an oversight — so its sources, its method and its chronology live here instead: every film quoted with the windows it was quoted in and the reason for each, the score, the type, the timing, the verification record. The document is the film's only credit sequence. It reads as a page and downloads as a PDF.</description>
+    </item>
+    <item>
+      <title>On a phone the site can now be installed. Add it to your home screen and it launches on its own, without browser chrome; repeat visits paint from a cached shell instead of waiting on the network; and losing your connection gets you a WULD card rather than the browser's dinosaur. Nothing is sent anywhere to make this work, and desktop is untouched — the whole layer is mobile-only by design.</title>
+      <link>https://wuld.ink/changelog/#2026-07-22-installable-on-a-phone</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-22-installable-on-a-phone</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <description>On a phone the site can now be installed. Add it to your home screen and it launches on its own, without browser chrome; repeat visits paint from a cached shell instead of waiting on the network; and losing your connection gets you a WULD card rather than the browser's dinosaur. Nothing is sent anywhere to make this work, and desktop is untouched — the whole layer is mobile-only by design.</description>
+    </item>
+    <item>
+      <title>The site stops being a desktop site that phones tolerate. Touch targets grow to a size a thumb can actually hit, the navigation collapses into something openable one-handed, type scales fluidly instead of stepping between sizes, the notch and the home bar are accounted for, and the horizontal drift that made pages slide sideways under the finger is gone. Skip links and a sane focus order come with it. Nothing on desktop moved — the layer is inert above phone width.</title>
+      <link>https://wuld.ink/changelog/#2026-07-22-mobile-and-accessibility</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-22-mobile-and-accessibility</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The site stops being a desktop site that phones tolerate. Touch targets grow to a size a thumb can actually hit, the navigation collapses into something openable one-handed, type scales fluidly instead of stepping between sizes, the notch and the home bar are accounted for, and the horizontal drift that made pages slide sideways under the finger is gone. Skip links and a sane focus order come with it. Nothing on desktop moved — the layer is inert above phone width.</description>
+    </item>
+    <item>
+      <title>Optional decay for the console: phosphor bloom, text that types itself, scanlines, the small failures of a real cathode tube. All of it opt-in and off by default — the plain terminal stays plain for anyone who wants it plain.</title>
+      <link>https://wuld.ink/changelog/#2026-07-22-console-text-effects</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-22-console-text-effects</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Optional decay for the console: phosphor bloom, text that types itself, scanlines, the small failures of a real cathode tube. All of it opt-in and off by default — the plain terminal stays plain for anyone who wants it plain. (Sections: /console/)</description>
+    </item>
+    <item>
+      <title>Notes gets a face drawer. A picker you can search, filter by mood and keep favourites in, inserting at the caret so you never leave the line you are on — Alt+K if you would rather not reach for it. It fetches nothing until you open it, and the corrupted ones are walled behind their own gate.</title>
+      <link>https://wuld.ink/changelog/#2026-07-22-kaomoji-drawer</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-22-kaomoji-drawer</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Notes gets a face drawer. A picker you can search, filter by mood and keep favourites in, inserting at the caret so you never leave the line you are on — Alt+K if you would rather not reach for it. It fetches nothing until you open it, and the corrupted ones are walled behind their own gate. (Sections: /notes/)</description>
+    </item>
+    <item>
+      <title>The descent deepens and becomes shareable. The generation pools widen so rooms stop recognising themselves, a seal-and-ward sigil draws itself from the seed alone — no images, just the number — and a run can be handed to someone else as a link. They get your descent, not one like it.</title>
+      <link>https://wuld.ink/changelog/#2026-07-22-console-descent-and-seeds</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-22-console-descent-and-seeds</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The descent deepens and becomes shareable. The generation pools widen so rooms stop recognising themselves, a seal-and-ward sigil draws itself from the seed alone — no images, just the number — and a run can be handed to someone else as a link. They get your descent, not one like it. (Sections: /console/)</description>
+    </item>
+    <item>
+      <title>The position set finishes across three further tiers: the folk objections, the structural ones, and the genuinely philosophical — Benatar's asymmetry under attack, the non-identity problem, contractualism in its strongest ex-ante form, care ethics, Harman on benign creation. Around a hundred positions in all, each graded before it was allowed in, and the delicate ones — violence as reductio, the eugenics slippery slope, the ableism charge — held to a stricter register than the rest.</title>
+      <link>https://wuld.ink/changelog/#2026-07-22-proxy-positions-complete</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-22-proxy-positions-complete</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The position set finishes across three further tiers: the folk objections, the structural ones, and the genuinely philosophical — Benatar's asymmetry under attack, the non-identity problem, contractualism in its strongest ex-ante form, care ethics, Harman on benign creation. Around a hundred positions in all, each graded before it was allowed in, and the delicate ones — violence as reductio, the eugenics slippery slope, the ableism charge — held to a stricter register than the rest. (Sections: /successor/)</description>
+    </item>
+    <item>
+      <title>The largest change to the residents since they arrived: they begin to hold positions. Until now the desk could rebut, redirect and decline — it could not say what it thought. The first tier lands: the objections that come up most and answer most cleanly, each carrying a position on both sides of the seat, each stamped with where it came from, each deep-linking to the argument in the library that carries it.</title>
+      <link>https://wuld.ink/changelog/#2026-07-20-the-proxies-take-positions</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-20-the-proxies-take-positions</guid>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The largest change to the residents since they arrived: they begin to hold positions. Until now the desk could rebut, redirect and decline — it could not say what it thought. The first tier lands: the objections that come up most and answer most cleanly, each carrying a position on both sides of the seat, each stamped with where it came from, each deep-linking to the argument in the library that carries it. (Sections: /successor/)</description>
+    </item>
+    <item>
+      <title>The privacy language gets narrower and more honest in the same pass. What you type is treated as absolute — never stored, never counted, no exceptions — while the fact of a visit is described plainly instead of waved away. The claim now matches the machinery rather than flattering it.</title>
+      <link>https://wuld.ink/changelog/#2026-07-19-privacy-rescope</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-19-privacy-rescope</guid>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The privacy language gets narrower and more honest in the same pass. What you type is treated as absolute — never stored, never counted, no exceptions — while the fact of a visit is described plainly instead of waved away. The claim now matches the machinery rather than flattering it. (Sections: /disclaimers/)</description>
+    </item>
+    <item>
+      <title>Mr. Grey's repertoire goes from fifteen authored replies to seventy-eight. He still holds no positions of his own at this stage — he answers in character and within range, declines what he has no business answering, and hands off to a real crisis line when that is what the moment needs. That floor has not moved and will not.</title>
+      <link>https://wuld.ink/changelog/#2026-07-19-mr-grey-finds-his-range</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-19-mr-grey-finds-his-range</guid>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Mr. Grey's repertoire goes from fifteen authored replies to seventy-eight. He still holds no positions of his own at this stage — he answers in character and within range, declines what he has no business answering, and hands off to a real crisis line when that is what the moment needs. That floor has not moved and will not. (Sections: /successor/)</description>
+    </item>
+    <item>
+      <title>Both residents come up a generation. Yūrei and Mr. Grey get self-contained higher-fidelity clip sets across every role they play — the hero views, the between-states, the glitch and the wrong-hour variants — with every page that shows them repointed in the same pass, so nothing is left quietly running the old frames.</title>
+      <link>https://wuld.ink/changelog/#2026-07-18-avatars-refold</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-18-avatars-refold</guid>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Both residents come up a generation. Yūrei and Mr. Grey get self-contained higher-fidelity clip sets across every role they play — the hero views, the between-states, the glitch and the wrong-hour variants — with every page that shows them repointed in the same pass, so nothing is left quietly running the old frames.</description>
+    </item>
+    <item>
+      <title>A new room off the gallery floor: the Workshop. Sixty-one prop and prototype views from the mascot's construction — the pieces that make a figure rather than the figure itself — collected as their own vitrine.</title>
+      <link>https://wuld.ink/changelog/#2026-07-18-the-workshop</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-18-the-workshop</guid>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate>
+      <description>A new room off the gallery floor: the Workshop. Sixty-one prop and prototype views from the mascot's construction — the pieces that make a figure rather than the figure itself — collected as their own vitrine. (Sections: /gallery/)</description>
+    </item>
+    <item>
+      <title>The console stops being a box on a page and becomes somewhere you are. A procedural scene paints behind the command band — floor, fog, a horizon that re-lights per room — and the terminal goes full-viewport when you enter it, the band turning to glass so the room reads through the text you are typing into.</title>
+      <link>https://wuld.ink/changelog/#2026-07-17-console-becomes-a-room</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-17-console-becomes-a-room</guid>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The console stops being a box on a page and becomes somewhere you are. A procedural scene paints behind the command band — floor, fog, a horizon that re-lights per room — and the terminal goes full-viewport when you enter it, the band turning to glass so the room reads through the text you are typing into. (Sections: /console/)</description>
+    </item>
+    <item>
+      <title>Every link into the argument library now lands on the pinned edition. Forty-two links that pointed at the library's bare root — which can drift — are repointed at the flagship route across ten pages, and the site search index follows them. What you click is what has been graded.</title>
+      <link>https://wuld.ink/changelog/#2026-07-17-library-links-land-pinned</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-17-library-links-land-pinned</guid>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Every link into the argument library now lands on the pinned edition. Forty-two links that pointed at the library's bare root — which can drift — are repointed at the flagship route across ten pages, and the site search index follows them. What you click is what has been graded. (Sections: /argument-library/)</description>
+    </item>
+    <item>
+      <title>Mr. Grey stops being a silhouette. A real reactive avatar — idle, attentive, and the clips between — replaces the placeholder, and the stage rebuilds around it: the figure becomes a full-bleed background and the conversation a glass panel in the lower band, widening to track him rather than crowd him. Switching residents swaps the whole view live, not just the name on the seat.</title>
+      <link>https://wuld.ink/changelog/#2026-07-16-mr-grey-takes-the-stage</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-16-mr-grey-takes-the-stage</guid>
+      <pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Mr. Grey stops being a silhouette. A real reactive avatar — idle, attentive, and the clips between — replaces the placeholder, and the stage rebuilds around it: the figure becomes a full-bleed background and the conversation a glass panel in the lower band, widening to track him rather than crowd him. Switching residents swaps the whole view live, not just the name on the seat. (Sections: /successor/)</description>
+    </item>
+    <item>
+      <title>The coverage note the desk keeps is now yours to switch. What was an operator-side record becomes a visitor control: nothing is logged unless you turn it on, the panel shows you what a stored line actually looks like before you decide, and turning it off ends it. The disclaimers carry the full account, unchanged.</title>
+      <link>https://wuld.ink/changelog/#2026-07-14-gap-log-visitor-toggle</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-14-gap-log-visitor-toggle</guid>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <description>The coverage note the desk keeps is now yours to switch. What was an operator-side record becomes a visitor control: nothing is logged unless you turn it on, the panel shows you what a stored line actually looks like before you decide, and turning it off ends it. The disclaimers carry the full account, unchanged. (Sections: /disclaimers/)</description>
+    </item>
+    <item>
+      <title>A second dark room: the Console. A seeded text crawler that generates its own rooms — no art, no assets, nothing fetched; a synth built in the browser and a map that falls out of the seed. Give it the same seed twice and you get the same descent twice. Like Successor it arrives behind a curtain, greyed in the navigation, and stays out of the site search on purpose.</title>
+      <link>https://wuld.ink/changelog/#2026-07-14-the-console-opens</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-14-the-console-opens</guid>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <description>A second dark room: the Console. A seeded text crawler that generates its own rooms — no art, no assets, nothing fetched; a synth built in the browser and a map that falls out of the seed. Give it the same seed twice and you get the same descent twice. Like Successor it arrives behind a curtain, greyed in the navigation, and stays out of the site search on purpose. (Sections: /console/)</description>
+    </item>
+    <item>
+      <title>A new door in the building: Successor. Behind a soft passphrase — the tab sits greyed until you have one — the umbrella's two residents share a stage instead of a margin. Yūrei and Mr. Grey occupy a single seat you can switch between, the inactive one receding rather than vanishing, and the conversation happens on a proper surface instead of in a corner bubble. The room is dormant by design. It opens when there is something to open it for.</title>
+      <link>https://wuld.ink/changelog/#2026-07-14-successor-opens</link>
+      <guid isPermaLink="false">wuld.ink:2026-07-14-successor-opens</guid>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <description>A new door in the building: Successor. Behind a soft passphrase — the tab sits greyed until you have one — the umbrella's two residents share a stage instead of a margin. Yūrei and Mr. Grey occupy a single seat you can switch between, the inactive one receding rather than vanishing, and the conversation happens on a proper surface instead of in a corner bubble. The room is dormant by design. It opens when there is something to open it for. (Sections: /successor/)</description>
+    </item>
     <item>
       <title>The desk keeps a quieter kind of note now. When Yūrei has no answer for something you ask, the wording of that unanswered question can be recorded — anonymously, stripped of anything that looks personal, and counted by the day — so the gaps in what she knows can be found and filled. Nothing else is kept: not the questions she could answer, and nothing that ties a line to a person. The logging stays dark until it is switched on, asks once before it begins, and can be avoided entirely by not using the desk. The full account is in the disclaimers.</title>
       <link>https://wuld.ink/changelog/#2026-07-13-yurei-coverage-logging</link>
