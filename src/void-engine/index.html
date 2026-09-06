@@ -240,6 +240,12 @@ select:hover{border-color:var(--blood)}
 .ctx-src strong{color:rgba(200,148,10,.7);font-style:normal}
 .ctx-acts{display:flex;gap:6px;flex-wrap:wrap}
 .ctx-hint{font-size:9px;color:var(--mist);margin-top:7px;text-transform:uppercase;letter-spacing:.07em}
+/* K289 - right-click is not an instruction a touch device can follow. The panel
+   itself DOES open on long-press (measured on Josiah's phone 2026-09-06), so the
+   hint is reworded rather than hidden: hiding it would cost a phone user
+   information, not save them scroll. (hover: none) matches the K287 .nadd precedent. */
+.hint-touch{display:none}
+@media (hover: none){.hint-mouse{display:none}.hint-touch{display:inline}}
 /* ── NORMATIVE CARDS ── */
 .card.norm-card{border-color:rgba(200,148,10,.15)}
 .card.norm-card .ctitle{color:rgba(200,148,10,.45)}
@@ -709,7 +715,7 @@ select{font-size:13px}
 <header class="hdr">
   <div class="hdr-brand">
     <h1><span>VOID ENGINE</span> — Sanguinolentum Vestigium</h1>
-    <p>Analog &amp; Nihilist Generative Lexicon v5.0 &mdash; for any modern image / video generator &mdash; right-click any card for plain description &amp; source</p>
+    <p>Analog &amp; Nihilist Generative Lexicon v5.0 &mdash; for any modern image / video generator &mdash; <span class="hint-mouse">right-click any card for plain description &amp; source</span><span class="hint-touch">long-press any card for plain description &amp; source</span></p>
   </div>
   <div class="stat-pills">
     <div class="pill pill-g"><span class="dot"></span>SYSTEM ONLINE</div>
@@ -788,7 +794,7 @@ select{font-size:13px}
     </div>
   </div>
   <div class="neg-body">
-    <p class="neg-hint">Quick-add suppression strings. Or right-click / use NEG button on any card.</p>
+    <p class="neg-hint">Quick-add suppression strings. Or <span class="hint-mouse">right-click</span><span class="hint-touch">long-press</span> / use NEG button on any card.</p>
     <div class="neg-cats" id="nq-btns"></div>
     <div class="neg-out e" id="neg-box" style="margin-top:9px">[No negative modifiers active]</div>
   </div>
@@ -920,7 +926,7 @@ select{font-size:13px}
     <button class="btn br" style="font-size:9px;padding:3px 10px" onclick="ctxNeg()">+ NEGATIVE</button>
     <button class="btn bs" style="font-size:9px;padding:3px 10px" onclick="hideCtx()">CLOSE</button>
   </div>
-  <div class="ctx-hint">right-click any card &mdash; esc to close</div>
+  <div class="ctx-hint"><span class="hint-mouse">right-click any card &mdash; esc to close</span><span class="hint-touch">long-press any card &mdash; tap close</span></div>
 </div>
 
 
