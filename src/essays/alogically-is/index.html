@@ -189,7 +189,7 @@
             .film-facade{position:relative;display:block;border:var(--bw-base) solid var(--c-border);line-height:0;text-decoration:none}
             .film-facade:hover,.film-facade:focus-visible{border-color:var(--c-accent)}
             .film-cover{width:100%;height:auto;display:block}
-            .film-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--c-fg);text-shadow:0 0 1rem var(--c-bg)}
+            .film-play{color:var(--c-accent);margin-inline-end:var(--s-2);font-size:1em}
             .film-facade-label{position:absolute;left:0;right:0;bottom:0;font-family:var(--font-mono);font-size:var(--t-xs);line-height:1.4;color:var(--c-fg-dim);background:var(--c-bg);padding:var(--s-2);border-top:var(--bw-base) solid var(--c-border)}
             .film-frame{position:relative;padding-block-start:56.25%;border:var(--bw-base) solid var(--c-accent)}
             .film-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -199,8 +199,7 @@
           <p class="film-warning" role="note">WARNING &mdash; THIS FILM CONTAINS SUSTAINED STROBOSCOPIC FLASHING AND HIGH-CONTRAST FLICKER. It may affect viewers with photosensitive epilepsy. Look away when you must. A reduced-flash edition will follow as a separate, labelled upload.</p>
           <a class="film-facade" href="https://youtu.be/EAvxK0f3oRo" data-video-id="EAvxK0f3oRo" rel="noopener">
             <img class="film-cover" src="/assets/illogically-is-cover.jpg" alt="Illogically Is &mdash; title card" width="1280" height="720" loading="lazy" decoding="async">
-            <span class="film-play" aria-hidden="true">&#9654;</span>
-            <span class="film-facade-label">Play here &mdash; nothing loads from YouTube until you click</span>
+            <span class="film-facade-label"><span class="film-play" aria-hidden="true">&#9654;</span>Play here &mdash; nothing loads from YouTube until you click</span>
           </a>
           <p class="film-links"><a href="/illogically-is/apparatus/">The Apparatus</a> &middot; <a href="/illogically-is/apparatus/illogically-is-apparatus.pdf">PDF</a> &middot; <a href="https://youtu.be/EAvxK0f3oRo" rel="noopener">Watch on YouTube</a></p>
           <script>
@@ -213,11 +212,11 @@
                 d.className = "film-frame";
                 var f = document.createElement("iframe");
                 f.src = "https://www.youtube-nocookie.com/embed/" + a.getAttribute("data-video-id") +
-                        "?autoplay=1&rel=0&modestbranding=1";
+                        "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
                 f.title = "Illogically Is";
-                f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+                f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
                 f.setAttribute("allowfullscreen", "");
-                f.setAttribute("referrerpolicy", "no-referrer");
+                f.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
                 d.appendChild(f);
                 a.parentNode.replaceChild(d, a);
                 f.focus();
