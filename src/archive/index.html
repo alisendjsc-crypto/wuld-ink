@@ -313,6 +313,39 @@
     }
     .archive-disclaimer-pointer a:hover { color: var(--c-accent); }
 
+    /* ---------- K291 phone folds (disclaimer prose + epigraph) ----------
+       Both folds ship OPEN in the markup. Phones close them via the inline
+       script below the epigraph. No JS => fully expanded, i.e. the K290
+       behaviour. The content warning is NOT folded and never will be. */
+
+    .archive-fold { margin: 0; }
+    .archive-fold > summary {
+      display: block;
+      list-style: none;
+      cursor: pointer;
+      padding-block: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      line-height: var(--lh-relaxed);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+    }
+    .archive-fold > summary::-webkit-details-marker { display: none; }
+    .archive-fold > summary::after { content: " [+]"; color: var(--c-accent); }
+    .archive-fold[open] > summary::after { content: " [\2212]"; }
+    .archive-fold > summary:hover { color: var(--c-accent); }
+    .archive-fold > summary:focus-visible {
+      outline: var(--bw-thick) solid var(--c-accent);
+      outline-offset: 2px;
+    }
+    @media (max-width: 640px) {
+      .archive-fold--epigraph:not([open]) { margin-block: var(--s-5) var(--s-6); }
+    }
+    @media (min-width: 641px) {
+      .archive-fold > summary { display: none; }
+    }
+
     /* ---------- Section heading ---------- */
 
     .archive-section {
@@ -809,21 +842,33 @@
 
     <aside class="archive-disclaimer" aria-labelledby="archive-disclaimer-label">
       <p class="archive-disclaimer-eyebrow" id="archive-disclaimer-label">Archive disclaimer</p>
+      <details class="archive-fold archive-fold--disclaimer" open>
+        <summary>Read the full disclaimer &mdash; the record is preserved unrevised</summary>
       <div class="archive-disclaimer-body">
         <p>The views, statements, and creative output collected here do not necessarily represent my current beliefs. The archive is preserved as it stood; revising by erasure would falsify the record.</p>
         <p class="archive-disclaimer-pointer"><a href="/disclaimers/#revision-and-open-mindedness">On revision and open-mindedness &rarr;</a></p>
         <p>The unlisted videos section in particular contains material I no longer hold to &mdash; sometimes in part, sometimes wholesale. Some of it I would not make today, would not argue today, would not endorse today. Some of it is me at my lowest and most vulnerable &mdash; genuinely not at my best, at times embarrassing, at times humiliating. It is a frank, stark account of how I was, and it should stay in its current form for that reason.</p>
       </div>
+      </details>
       <div class="archive-disclaimer-warning" role="note">
         <p class="archive-disclaimer-warning-label">A note on content</p>
         <p>Much of the material here &mdash; the unlisted strata especially, and older creative work generally &mdash; addresses depression, suicidality, despair, and related subjects in unguarded form. The content may affect mental health negatively. If you are presently struggling, consider whether engaging with this is in your interest right now. If you are in crisis, please reach out to a mental-health professional or a crisis line in your region.</p>
       </div>
     </aside>
 
+    <details class="archive-fold archive-fold--epigraph" open>
+      <summary>Self-frame &mdash; on defiant archiving</summary>
     <blockquote class="archive-epigraph">
       The answer lies in the concept of defiant archiving and metacognitive exploration. Works like <em>Love Void Love: Writings of Things and Other Things</em>, <em>The Point</em>, <em>The Book of Nought</em>, and <em>The Known and the Unknown</em> serve as meticulous records of existential crisis. <em>The Point</em>, specifically, is noted as having been written during a period of intense mental health struggle, encompassing severe panic attacks and non-epileptic-psychogenic-pseudo-seizures during the pandemic (circa 2021). The act of writing, therefore, becomes a crucial mechanism for metacognition&mdash;thinking about how and why we think, and observing the breakdown of the mind from a third-party perspective. It is an attempt to systematically map the boundaries of the void and document the failure of human consciousness.
       <cite>&mdash; Self-frame</cite>
     </blockquote>
+    </details>
+    <script>
+    /* K291 - the two .archive-fold blocks ship OPEN in the markup; phones get
+       them closed. No JS => fully expanded, i.e. the pre-K291 page. Never the
+       reverse: a disclaimer degrades toward MORE prominence, not less. */
+    (function(){try{if(window.matchMedia&&window.matchMedia("(max-width: 640px)").matches){var f=document.querySelectorAll("details.archive-fold");for(var i=0;i<f.length;i++){f[i].removeAttribute("open");}}}catch(e){}})();
+    </script>
 
     <!-- ============================================================
          Section A: Videos
