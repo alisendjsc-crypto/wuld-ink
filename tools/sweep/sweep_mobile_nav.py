@@ -23,11 +23,14 @@ and a re-run is a no-op.
 """
 import pathlib, sys
 
+# The MARKER IS AN IDENTITY, NOT A VERSION. Renaming it makes this script blind to
+# blocks already on disk and it inserts a SECOND one (K282 recovery, 70 pages).
+# Bump the ?v inside BLOCK when the component changes; never touch OPEN/SHUT.
 OPEN, SHUT = "<!-- K281 mobile nav -->", "<!-- /K281 mobile nav -->"
 BLOCK = (
     "  " + OPEN + "\n"
-    '  <link rel="stylesheet" href="/components/mobile-nav.css?v=K281" media="(max-width: 640px)">\n'
-    '  <script defer src="/components/mobile-nav.js?v=K281"></script>\n'
+    '  <link rel="stylesheet" href="/components/mobile-nav.css?v=K282" media="(max-width: 640px)">\n'
+    '  <script defer src="/components/mobile-nav.js?v=K282"></script>\n'
     "  " + SHUT + "\n"
 )
 
@@ -69,8 +72,8 @@ def main():
     css = js = 0
     for f in targets:
         t = f.read_text(encoding="utf-8")
-        css += t.count("mobile-nav.css?v=K281")
-        js += t.count("mobile-nav.js?v=K281")
+        css += t.count("mobile-nav.css?v=K282")
+        js += t.count("mobile-nav.js?v=K282")
     if css != len(targets) or js != len(targets):
         sys.exit("FAIL final-state gate: css=%d js=%d expected=%d" % (css, js, len(targets)))
     stray = [f for f in skipped if OPEN in f.read_text(encoding="utf-8")]

@@ -145,6 +145,16 @@
   });
 
   document.body.appendChild(sheet);
-  document.body.appendChild(trigger);
+
+  // K282: mount into the header bar, not floating over the page.
+  var host = document.querySelector(".site-header-inner") || document.querySelector(".site-header");
+  if (host) {
+    var home = el("a", "mnav-home", "wuld.ink");
+    home.href = "/";
+    host.appendChild(home);
+    host.appendChild(trigger);
+  } else {
+    document.body.appendChild(trigger);
+  }
   document.documentElement.classList.add("mnav-on");
 })();

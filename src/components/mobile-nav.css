@@ -43,28 +43,73 @@
   html.mnav-on .nav-toggle-cb,
   html.mnav-on .site-nav { display: none; }
 
-  /* --- trigger: bottom-centre, in the thumb zone. K275 turned the
-         ambient bar off on mobile, so this space is free. --- */
-  .mnav-trigger {
-    position: fixed;
-    inset-block-end: max(var(--s-3, 12px), env(safe-area-inset-bottom));
-    inset-inline: 0;
-    margin-inline: auto;
-    width: max-content;
-    min-height: 44px;
-    padding: var(--s-2, 8px) var(--s-5, 24px);
+  /* --- K282: the trigger moved OUT of the bottom float and INTO the
+         header, which the sheet had left empty (Josiah: "a little barren
+         at the top"). The header becomes a sticky one-line bar: wordmark
+         left, INDEX right. Sticky so navigation never needs a scroll to
+         the top on a long reading page — the ergonomic reason the trigger
+         was at the bottom is preserved without a floating element.
+         Opaque + translateZ for the same reason the sheet is: it has to
+         sit above the homepage cover <video>'s overlay layer. --- */
+  html.mnav-on .site-header {
+    position: sticky;
+    inset-block-start: 0;
     z-index: 9998;
+    background: var(--c-bg);
+    transform: translateZ(0);
+    border-bottom: var(--bw-base) solid var(--c-border);
+    margin-block-end: 0;
+    /* one line, not a slab: nav.css's desktop header padding would make this
+       a ~120px sticky bar and eat a phone screen. */
+    padding-block: var(--s-1, 4px);
+    padding-inline: max(var(--s-3, 12px), env(safe-area-inset-left));
+  }
+  /* the 9rem banner image is decoration and too tall to stick; the mono
+     wordmark in the bar carries the identity instead. */
+  html.mnav-on .site-banner { display: none; }
+  html.mnav-on .site-header-inner {
+    display: flex;
+    /* the K274 mobile layer stacks this container; force the single row back
+       or the sticky bar doubles in height (wordmark over trigger). */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3, 12px);
+    padding-block: 0;
+  }
+
+  .mnav-home {
     font-family: var(--font-mono);
     font-size: var(--t-xs);
     letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--c-fg-dim);
+    text-decoration: none;
+    padding-block: var(--s-2, 8px);
+  }
+  .mnav-home:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+
+  .mnav-trigger {
+    min-height: 44px;
+    padding: var(--s-2, 8px) var(--s-4, 16px);
+    font-family: var(--font-mono);
+    font-size: .9rem;
+    letter-spacing: var(--ls-mega, .18em);
     text-transform: uppercase;
     color: var(--c-fg);
     background: var(--c-bg);
     border: var(--bw-base) solid var(--c-accent);
     border-radius: 0;
-    transform: translateZ(0);
   }
   .mnav-trigger:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+
+  /* --- the homepage index grid and its INDEX-down link now duplicate the
+         sheet exactly, so they are retired on phones. The search band
+         between them STAYS (Josiah: "Leave the search bar though") — it is
+         a plain GET form to /search/, the one thing the sheet cannot be. --- */
+  html.mnav-on .index-grid,
+  html.mnav-on a[href="#index"] { display: none; }
 
   /* --- the sheet --- */
   .mnav-sheet {
