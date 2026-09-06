@@ -238,6 +238,38 @@
       outline-offset: 3px;
     }
 
+    /* Photosensitivity strip — K286. The film's own rule is binding wherever
+       it plays: nothing autoplays, a click starts it, and the warning is
+       readable BEFORE that click. Scoped to the card that carries it. */
+    .video-warning {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(10, 10, 10, 0.92);
+      border-top: var(--bw-base) solid var(--c-accent);
+      color: var(--c-fg);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      line-height: 1.3;
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: var(--s-2);
+      margin: 0;
+    }
+
+    /* the full sentence sits in the meta block, where it costs no image */
+    .video-note {
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      line-height: 1.45;
+      color: var(--c-fg-dim);
+      margin: 0;
+    }
+
     /* Video duration badge (bottom-right corner of thumb) */
     .video-duration {
       position: absolute;
@@ -251,6 +283,11 @@
       border: var(--bw-thin) solid var(--c-border);
       letter-spacing: var(--ls-wide);
     }
+
+    /* Must come AFTER .video-duration: same specificity, so source order is
+       what wins. A card carrying the warning strip lifts its badge to the top,
+       since both are otherwise bottom-anchored on the same thumb. */
+    .video-duration--lifted { bottom: auto; top: var(--s-2); }
 
     /* Meta block */
     .video-meta {
@@ -477,6 +514,23 @@
     <h2 class="video-grid-heading">Selected uploads</h2>
 
     <div class="video-grid">
+
+      <article class="video-card" data-video-id="EAvxK0f3oRo" tabindex="0">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb"
+            src="https://i.ytimg.com/vi/EAvxK0f3oRo/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/EAvxK0f3oRo/hqdefault.jpg'"
+            alt="" loading="lazy">
+          <span class="video-duration video-duration--lifted">36:12</span>
+          <button class="video-play" type="button" aria-label="Play: Illogically Is">&#9654;</button>
+          <p class="video-warning">WARNING &mdash; stroboscopic flashing</p>
+        </div>
+        <div class="video-meta">
+          <span class="video-date">Sep 2026</span>
+          <h3 class="video-title">Illogically Is</h3>
+          <p class="video-note">Sustained stroboscopic flashing and high-contrast flicker. May affect viewers with photosensitive epilepsy.</p>
+        </div>
+      </article>
 
       <article class="video-card" data-video-id="GSDN0vu18Fo" tabindex="0">
         <div class="video-thumb-wrap">
