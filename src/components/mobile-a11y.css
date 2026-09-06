@@ -132,3 +132,119 @@
   .donations-platform-link { min-height: 44px; }
   .changelog-link { min-width: 44px; }
 }
+
+/* ============================================================
+   K287 — void-engine FULL mobile reflow: the half K275 deferred.
+   Every rule is scoped @media ≤640 / pointer:coarse / hover:none,
+   so desktop is byte-inert by construction (proven: layout
+   fingerprint, 0 deltas at 1280×900 and 900×800).
+
+   TWO THINGS THE NEXT SESSION SHOULD NOT REDISCOVER:
+
+   (1) SPECIFICITY, NOT PLACEMENT. This file is linked BEFORE the
+       void-engine page's own inline <style>, so an equal-
+       specificity rule here LOSES to the engine's (hazard ccl).
+       Every selector below therefore carries a real ancestor or a
+       tag qualifier. No !important, and no html.mnav-on — that
+       class is JS-set, and these rules must hold without JS.
+
+   (2) THE INLINE <style> IS NOT FIXABLE. It is one of the two
+       regions wholesale-substituted from the void-engine-suite's
+       DUAL_ENGINE source on every engine sync (see CLAUDE.md's
+       src/void-engine/index.html row). Anything patched there dies
+       at the next paste-relay. Engine mobile rules live HERE.
+
+   Void-unique classes are used bare where they are genuinely
+   unique site-wide (grep-verified: .nadd .cfoot .pb .ctrl .tl
+   .tcb .neg-hdr .corp-hdr .arch-hdr .chips-hdr .filter-clear
+   appear in src/void-engine/index.html and nowhere else).
+   ============================================================ */
+
+/* B1 — the sticky engine toggle was the page's ONLY horizontal
+   overflow: three tabs measure 406px inside a 390px strip, and
+   html{overflow-x:hidden} CLIPS rather than scrolls it, so
+   "Transmission" was unreachable, not merely off-screen. The tab
+   labels also wrapped to two lines, giving the strip a 90px sticky
+   height on every scroll. Equalise the three tabs and tighten the
+   strip's own padding/tracking: 406→390 at 390px, 90px→45px tall,
+   one line, all three reachable. Not flex-wrap as the primary fix
+   — a second row would cost 45px of every scroll on a 103,000px
+   page — but kept as the safety net below ~340px. */
+@media (max-width: 640px) {
+  body #engine-toggle { flex-wrap: wrap; }
+  body #engine-toggle button {
+    min-height: 44px;
+    padding: 12px 8px;
+    font-size: 10px;
+    letter-spacing: .06em;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+/* B2 — THE REAL VOID-ENGINE MOBILE DEFECT, and it was never a
+   sizing problem. `.nadd` (the per-card NEG control, one per
+   lexicon entry, 397 of them) is `opacity:0` until `.card:hover`.
+   A phone cannot hover — so on touch the negation set was not a
+   small target, it was UNREACHABLE. 370 of K275's 388 residual
+   "sub-44 targets" were this invisible button; sizing them without
+   revealing them would have produced 370 invisible 44px tap zones,
+   which is worse than the bug. Reveal where hover cannot happen,
+   then give the 44px box. The negative block margin spends the
+   card's own 18px padding instead of growing .cfoot, so the
+   397-card list does not get taller — measured document height at
+   390px actually FELL, 103,002 → 102,852. */
+@media (hover: none) {
+  .cfoot .nadd { opacity: 1; }
+}
+@media (pointer: coarse) {
+  .cfoot .nadd {
+    min-height: 44px;
+    margin-block: -8px;
+    padding-inline: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* B3 — the instrument's button family. K275's A2 reached only the
+   row-scoped .btn (.pre-row .slider-row .filter-row .search-row
+   .corp-controls); the panel-body and control-strip buttons and
+   the clickable panel headers (div[onclick], so no A2 selector saw
+   them) were missed. */
+@media (pointer: coarse) {
+  .pb .btn, .ctrl .btn,
+  .neg-hdr .btn, .corp-hdr .btn, .arch-hdr .btn, .chips-hdr .btn,
+  .filter-clear,
+  .neg-hdr, .corp-hdr, .arch-hdr { min-height: 44px; }
+}
+
+/* B4 — checkbox rows: the 13px box is the wrong thing to grow. The
+   LABEL is the target (it wraps the input, so a tap anywhere on it
+   toggles), and it gets the 44px box; the box itself goes 13→22px,
+   as far as the mono register tolerates. The two .tcb inputs stay
+   the accepted residual — a 44px checkbox would be a different
+   design, not an accessible one. */
+@media (pointer: coarse) {
+  label.tl {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  label.tl .tcb { width: 22px; height: 22px; }
+}
+
+/* B5 — the Transmission canvas' drifting ghost words are absolutely
+   positioned, white-space:nowrap and JS-placed: on a 390px pane a
+   long word reaches ~508px. Nothing scrolls today only because
+   html{overflow-x:hidden} catches it, which is exactly the guard
+   that is unreliable on iOS Safari. Clip at the layer — it sits
+   inset:0 on a full-width pane, so this is visually identical to
+   the clipping already happening, but structural rather than
+   incidental. (This one is intermittent: the words are animated,
+   so a single render can miss it.) */
+@media (max-width: 640px) {
+  #trans-engine-wrap #t-text-layer { overflow: hidden; }
+}

@@ -13,7 +13,7 @@
  */
 'use strict';
 
-var CACHE = 'wuld-sw-K276';
+var CACHE = 'wuld-sw-K287';
 
 /* App-shell precache. Only assets that always exist and are needed to paint the chrome +
  * the offline page. No fonts (the site's @font-face chain is local()-first; no woff2 ships).
@@ -22,7 +22,7 @@ var SHELL = [
   '/offline.html',
   '/tokens.css',
   '/base.css',
-  '/components/mobile-a11y.css?v=K275',
+  '/components/mobile-a11y.css?v=K287',
   '/components/nav.css?v=K274',
   '/components/footer.css?v=K274',
   '/manifest.webmanifest',

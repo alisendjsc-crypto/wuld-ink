@@ -391,3 +391,49 @@ body.high-contrast .ambient-sliver {
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 }
+
+/* ============================================================
+   K287 — the bar can never widen the page, and its controls stop
+   falling off the right edge below ~1088px.
+
+   WHAT THE BUG ACTUALLY IS (the K275 note and the K287 kickoff
+   both describe it as "the last horizontal-scroll source"; it is
+   not, and the correction is worth keeping). `.ambient-player` is
+   position:fixed, and a fixed element's overflow does not extend
+   the document scroll width in any current browser — measured on
+   an isolation harness with no html{overflow-x:hidden} mask: the
+   document never scrolled horizontally at any width, before or
+   after. What DOES happen is worse in a quieter way. The bar is
+   display:flex with eleven flex-shrink:0 children and exactly one
+   shrinkable child (.ambient-track); wrong-hour.js docks two more
+   ([synth bed], [fx]) at runtime, which is why the symptom looked
+   intermittent and JS-state-dependent. Composed minimum ≈1088px.
+   Below that the track name collapses to ZERO width and the
+   right-hand controls — including the [v] dismiss, the bar's only
+   escape hatch — render off the right edge with no way to reach
+   them, because .ambient-bar had no overflow rule at all. K275 hid
+   the bar ≤640, so the live bite was 641px–1088px: tablets, split
+   screens, and half-width desktop windows. (Which also makes the
+   @media (max-width: 480px) block above DEAD CODE — 480 sits
+   inside the 640 hide. Left in place, not deleted: it is the
+   composition to restore if the bar ever returns to phones.)
+
+   THE FIX is three declarations, and it removes nothing. Clamp the
+   strip structurally so no future injected chip can ever escape
+   it, let it scroll itself so every control stays reachable, and
+   floor the track so the name survives. Desktop is inert where it
+   matters: at 1280 and 1440 the fingerprint shows two computed-
+   style deltas and ZERO geometry change — overflow-x visible→auto
+   on a strip whose content already fits (no scrollbar, and the
+   scrollbar is suppressed anyway), and a min-width on .ambient-
+   track that is not binding there (193px and 353px actual). At
+   900 the deltas are the fix itself: track 0px → 119px.
+   ============================================================ */
+.ambient-bar {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.ambient-bar::-webkit-scrollbar { width: 0; height: 0; display: none; }
+.ambient-track { min-width: 7rem; }
