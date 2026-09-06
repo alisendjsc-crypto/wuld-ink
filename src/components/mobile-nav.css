@@ -1,0 +1,162 @@
+/* ============================================================
+   mobile-nav.css (K281) — the mobile navigation sheet.
+
+   Replaces the top-right dropdown disclosure on phones with a
+   full-viewport opaque sheet built from the site's own
+   .destination card language (eyebrow / title / tag), grouped
+   into five clusters, opened from a thumb-reachable trigger at
+   the bottom of the screen.
+
+   THREE THINGS THIS FIXES
+   1. A flat 19-item list is not scannable on a phone. Five headed
+      clusters are.
+   2. The room names (Void, Frame, Successor) tell a stranger
+      nothing. Every row now carries the site's own descriptor.
+   3. The homepage cover mark is a <video>; hardware-composited
+      video on mobile Chromium is promoted to an overlay layer
+      that IGNORES z-index, which is why the old dropdown was
+      painted over by the W.U.L.D. figure. An opaque position:fixed
+      sheet with its own compositing layer (translateZ) sits above
+      it reliably. A z-index bump alone does not fix that class of
+      bug.
+
+   DESKTOP-INERT BY CONSTRUCTION, doubly gated: the <link> carries
+   media="(max-width: 640px)" AND every rule below sits inside the
+   same query. Nothing here can reach a desktop viewport.
+
+   CURTAINED ROOMS: /successor/ and /console/ are hidden on mobile
+   (K281 ruling — mobile is the utilitarian surface). They stay in
+   the desktop nav, greyed, where the tease is the point.
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+  /* --- the curtained rooms leave the phone entirely (also covers
+         the no-JS path, where the legacy nav is still the nav) --- */
+  .site-nav a[href="/successor/"],
+  .site-nav a[href="/console/"] { display: none; }
+
+  /* --- with JS on, the sheet is the nav: retire the legacy
+         disclosure. Without JS, .mnav-on is never set and the
+         legacy nav behaves exactly as it does today. --- */
+  html.mnav-on .nav-toggle,
+  html.mnav-on .nav-toggle-cb,
+  html.mnav-on .site-nav { display: none; }
+
+  /* --- trigger: bottom-centre, in the thumb zone. K275 turned the
+         ambient bar off on mobile, so this space is free. --- */
+  .mnav-trigger {
+    position: fixed;
+    inset-block-end: max(var(--s-3, 12px), env(safe-area-inset-bottom));
+    inset-inline: 0;
+    margin-inline: auto;
+    width: max-content;
+    min-height: 44px;
+    padding: var(--s-2, 8px) var(--s-5, 24px);
+    z-index: 9998;
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--c-fg);
+    background: var(--c-bg);
+    border: var(--bw-base) solid var(--c-accent);
+    border-radius: 0;
+    transform: translateZ(0);
+  }
+  .mnav-trigger:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+
+  /* --- the sheet --- */
+  .mnav-sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--c-bg);          /* fully opaque: no video bleed-through */
+    transform: translateZ(0);          /* own compositing layer: beats the video overlay */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: max(var(--s-4, 16px), env(safe-area-inset-top))
+             max(var(--s-4, 16px), env(safe-area-inset-right))
+             calc(72px + env(safe-area-inset-bottom))
+             max(var(--s-4, 16px), env(safe-area-inset-left));
+  }
+  html.mnav-locked, html.mnav-locked body { overflow: hidden; }
+
+  .mnav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3, 12px);
+    padding-block-end: var(--s-3, 12px);
+    margin-block-end: var(--s-4, 16px);
+    border-bottom: var(--bw-base) solid var(--c-border);
+  }
+  .mnav-wordmark {
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--c-fg-dim);
+  }
+  .mnav-close {
+    min-height: 44px; min-width: 44px;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--c-accent);
+    background: none;
+    border: var(--bw-base) solid var(--c-border);
+  }
+  .mnav-close:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+
+  .mnav-group { margin-block-end: var(--s-5, 24px); }
+  .mnav-group-label {
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    letter-spacing: var(--ls-mega, .18em);
+    text-transform: uppercase;
+    color: var(--c-accent);
+    margin: 0 0 var(--s-2, 8px);
+  }
+
+  /* --- the row, in the .destination card language --- */
+  .mnav-item {
+    display: block;
+    min-height: 44px;
+    padding: var(--s-3, 12px) 0;
+    border-bottom: var(--bw-thin, 1px) solid var(--c-border);
+    text-decoration: none;
+  }
+  .mnav-item:last-child { border-bottom: none; }
+  .mnav-item:focus-visible { outline: 2px solid var(--c-focus); outline-offset: -2px; }
+  .mnav-item[aria-current="page"] .mnav-title { color: var(--c-accent); }
+
+  .mnav-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--c-fg-dim);
+  }
+  .mnav-title {
+    display: block;
+    font-family: var(--font-headline, var(--font-body));
+    font-size: 1.25rem;
+    line-height: var(--lh-snug, 1.2);
+    color: var(--c-fg);
+    margin-block: 2px;
+  }
+  .mnav-tag {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    line-height: 1.45;
+    color: var(--c-fg-muted, var(--c-fg-dim));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .mnav-sheet { animation: mnav-in 140ms var(--ease, ease-out); }
+    @keyframes mnav-in { from { opacity: 0 } to { opacity: 1 } }
+  }
+}
