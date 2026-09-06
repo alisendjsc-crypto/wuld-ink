@@ -31,54 +31,6 @@
   <link rel="stylesheet" href="/components/footer.css?v=K274">
   <link rel="stylesheet" href="/components/comment-board.css?v=K275">
 
-  <!-- ============================================================
-       OPERATOR SETUP NOTES &mdash; Libera.chat channel registration
-       ------------------------------------------------------------
-       Single libera webchat CTA (K30; Kiwi alternate scrapped after
-       it showed the same failure pattern as the K28-retired iframe)
-       routes visitors to #wuld-ink on irc.libera.chat. The channel
-       ITSELF still needs to be registered so you own founder rights
-       (topic, modes, moderation). One-time operator-side task; do
-       it once via the libera webchat link below (or any IRC client).
-
-       STEP 1 &mdash; Register a NickServ account (one-time)
-         a. Open this page (/chat/) once deployed; click the libera
-            webchat CTA. The libera connect prompt loads in a new tab.
-         b. Enter your nickname (suggest: WULD or AnomicIndividual87
-            or evilis &mdash; pick whichever you want as the channel
-            founder nick). Click Start.
-         c. Once connected, type in the message bar:
-              /msg NickServ REGISTER <password> <email>
-            Replace <password> with a strong password (write it
-            down) and <email> with woeinvsdnl@protonmail.com.
-         d. NickServ sends a verification token to that email.
-            Open the email, copy the token, then:
-              /msg NickServ VERIFY REGISTER <yournick> <token>
-
-       STEP 2 &mdash; Register the channel (one-time, requires nick)
-         a. Still connected as your registered nick, type:
-              /join #wuld-ink
-            (You will be the only member.)
-         b. Once in the channel:
-              /msg ChanServ REGISTER #wuld-ink
-            This makes you the channel founder. ChanServ confirms.
-         c. Set the topic:
-              /topic #wuld-ink wuld.ink :: open discussion :: be civil or be elsewhere
-         d. (Optional) Set modes:
-              /mode #wuld-ink +nt
-            (+n = no external messages, +t = only ops set topic)
-
-       STEP 3 &mdash; Verify the embed
-         a. Either CTA on /chat/ should land you in #wuld-ink.
-         b. If newcomers join without registering a nick, they get
-            assigned a Guest_NNNNN handle; that is libera.chat
-            default behaviour and is fine for casual readers.
-
-       Cost: $0 forever. Libera.chat is community-funded.
-       Maintenance: ~0 hours. ChanServ keeps the channel alive
-       whether anyone is in it or not.
-       ============================================================ -->
-
   <style>
     .chat-page {
       max-width: var(--w-max);

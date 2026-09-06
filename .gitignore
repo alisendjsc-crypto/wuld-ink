@@ -65,3 +65,8 @@ __pycache__/
 
 # Wrangler CLI cache (created by `wrangler r2 object put` / dev at repo root)
 .wrangler/
+# Staging bay for strays awaiting operator deletion. device_bash cannot
+# rm on a mounted path, so a session moves dead files here and Josiah
+# empties it. Ignored so the bay itself never becomes the untracked noise
+# it exists to clear (K288).
+_to_delete/

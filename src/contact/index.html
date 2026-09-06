@@ -29,46 +29,6 @@
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K274">
 
-  <!-- ============================================================
-       OPERATOR SETUP NOTES &mdash; Contact form delivery path
-       ------------------------------------------------------------
-       The form below uses Formspree (free tier: 50 submissions per
-       month, no infrastructure to maintain). It will NOT actually
-       deliver mail until you do the two setup steps below.
-
-       STEP 1 &mdash; Formspree endpoint
-         a. Go to https://formspree.io and sign up with the
-            destination email (woeinvsdnl@protonmail.com).
-         b. Verify the email when Formspree sends the confirmation.
-         c. Click "New form", name it "wuld.ink contact", set the
-            destination to your protonmail address.
-         d. Copy the endpoint URL Formspree gives you. It looks like
-            https://formspree.io/f/xXXXXXXX  (8-char form ID).
-         e. Paste it over REPLACE_ME_FORMSPREE_ENDPOINT in the
-            <form action="..."> attribute below.
-
-       STEP 2 &mdash; Cloudflare Email Routing alias (optional but
-       recommended &mdash; lets people email you directly without the form)
-         a. dash.cloudflare.com  ->  wuld.ink  ->  Email  ->  Email
-            Routing  ->  Enable Email Routing.
-         b. Cloudflare adds MX + TXT records automatically; approve.
-         c. Under "Custom addresses", click "Create address".
-         d. Custom address:    contact@wuld.ink
-            Destination:       woeinvsdnl@protonmail.com
-                               (NOT alisendjsc@gmail.com &mdash; the
-                                public-facing contact intentionally
-                                routes to the privacy address.)
-         e. Cloudflare sends a verification email to the protonmail
-            destination; click the link to confirm.
-         f. Update the email alias displayed in the "Direct email"
-            block below from REPLACE_ME_DIRECT_ALIAS to
-            contact@wuld.ink once verified.
-
-       Both steps are free + reversible. The form layout works without
-       either step landed; until then, submissions go nowhere and the
-       direct-email block shows REPLACE_ME_DIRECT_ALIAS.
-       ============================================================ -->
-
   <style>
     .contact-page {
       max-width: var(--w-text);

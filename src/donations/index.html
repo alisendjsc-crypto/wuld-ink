@@ -30,35 +30,6 @@
   <link rel="alternate" type="application/rss+xml" title="wuld.ink changelog" href="/feed.xml">
   <link rel="stylesheet" href="/components/footer.css?v=K274">
 
-  <!-- ============================================================
-       OPERATOR SETUP NOTES &mdash; PayPal Donate button (K27 modern)
-       ------------------------------------------------------------
-       K26 attempted to ship 4 classic-subscriptions hosted buttons
-       (weekly/bi-weekly/monthly/annually). PayPal&rsquo;s legacy
-       Subscriptions button maker (paypal.com/buttons/create) is
-       presumed deprecated &mdash; the path is gone in modern UI.
-       K27 pivots to PayPal&rsquo;s current Donations product: one
-       hosted button; donor picks amount + optional monthly toggle
-       at PayPal&rsquo;s checkout. Smaller engineering, modern product,
-       clears the architectural blocker.
-
-       Setup (one-time, ~10 minutes):
-         1. Log into paypal.com (your business account on woeinvsdnl@protonmail.com — NOT evilisanihilis@live.com, which is the personal account that holds R2 hosting). The business account was created K26 close to enable subscription/donation buttons; linked to bank for payout routing.
-         2. Go to:  paypal.com/donate/buttons/manage
-            (Alternate path:  Pay &amp; Get Paid  ->  Donate buttons.)
-         3. Click "Create donate button" (or "Add new").
-         4. Suggested-amount tiles: leave blank OR pre-fill
-            $3 / $5 / $10 / $100 (donor can override at checkout).
-         5. Enable "Let donors give monthly" toggle.
-         6. Save the button. Click "Email" tab to get the
-            hosted_button_id  (string after "hosted_button_id=").
-         7. Paste it over REPLACE_ME_DONATE_BUTTON_ID below.
-
-       Until the placeholder is filled, the button click shows a
-       PayPal error page. One-time tiers (PayPal.me + CashApp +
-       Venmo) work immediately and are not blocked by this setup.
-       ============================================================ -->
-
   <style>
     .donations-page {
       max-width: var(--w-text);
@@ -321,9 +292,6 @@
          Replaces K26 4-button classic subscriptions row. Single
          PayPal Donate button via the Donations product; donor picks
          amount + optional monthly toggle at PayPal's own checkout.
-         REPLACE_ME_DONATE_BUTTON_ID gets the hosted_button_id from
-         paypal.com/donate/buttons/manage. See HTML comment in
-         <head> for the operator-side setup procedure.
          ==================================================== -->
     <section class="donations-section">
       <p class="donations-section-eyebrow">01 &middot; Recurring or one-time</p>
