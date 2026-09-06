@@ -51,32 +51,40 @@
          was at the bottom is preserved without a floating element.
          Opaque + translateZ for the same reason the sheet is: it has to
          sit above the homepage cover <video>'s overlay layer. --- */
+  /* K283: the banner is BACK on phones (Josiah: it fills the top above the
+     mascot and carries the identity). It cannot stick — it is far too tall —
+     so the sticky bar is now a SIBLING inserted after the header: the banner
+     scrolls away, the bar stays. body.home's absolute header is forced static
+     here so the banner sits above the cover instead of over it. */
   html.mnav-on .site-header {
+    position: static;
+    z-index: auto;
+    transform: none;
+    background: var(--c-bg);
+    margin-block-end: 0;
+    padding-block: 0;
+    border-bottom: none;
+  }
+  html.mnav-on .site-banner { display: block; }
+  html.mnav-on .site-banner img { height: 5rem; }
+  html.mnav-on .site-header-inner { display: none; }
+
+  .mnav-bar {
     position: sticky;
     inset-block-start: 0;
     z-index: 9998;
-    background: var(--c-bg);
-    transform: translateZ(0);
-    border-bottom: var(--bw-base) solid var(--c-border);
-    margin-block-end: 0;
-    /* one line, not a slab: nav.css's desktop header padding would make this
-       a ~120px sticky bar and eat a phone screen. */
-    padding-block: var(--s-1, 4px);
-    padding-inline: max(var(--s-3, 12px), env(safe-area-inset-left));
-  }
-  /* the 9rem banner image is decoration and too tall to stick; the mono
-     wordmark in the bar carries the identity instead. */
-  html.mnav-on .site-banner { display: none; }
-  html.mnav-on .site-header-inner {
     display: flex;
-    /* the K274 mobile layer stacks this container; force the single row back
-       or the sticky bar doubles in height (wordmark over trigger). */
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     gap: var(--s-3, 12px);
-    padding-block: 0;
+    padding: var(--s-1, 4px) max(var(--s-3, 12px), env(safe-area-inset-left));
+    background: var(--c-bg);
+    /* own compositing layer: the homepage cover <video> is promoted to an
+       overlay that ignores z-index (ccxlv). */
+    transform: translateZ(0);
+    border-block: var(--bw-base) solid var(--c-border);
   }
 
   .mnav-home {
@@ -108,7 +116,7 @@
          sheet exactly, so they are retired on phones. The search band
          between them STAYS (Josiah: "Leave the search bar though") — it is
          a plain GET form to /search/, the one thing the sheet cannot be. --- */
-  html.mnav-on .index-grid,
+  html.mnav-on .index,
   html.mnav-on a[href="#index"] { display: none; }
 
   /* --- the sheet --- */

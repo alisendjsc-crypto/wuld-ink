@@ -146,15 +146,19 @@
 
   document.body.appendChild(sheet);
 
-  // K282: mount into the header bar, not floating over the page.
-  var host = document.querySelector(".site-header-inner") || document.querySelector(".site-header");
-  if (host) {
-    var home = el("a", "mnav-home", "wuld.ink");
-    home.href = "/";
-    host.appendChild(home);
-    host.appendChild(trigger);
+  // K283: the bar is a SIBLING after the header, so the (tall) banner scrolls
+  // away while the bar stays stuck. Mounting it INSIDE the header would stick
+  // the banner too and eat a third of the screen.
+  var bar = el("div", "mnav-bar");
+  var home = el("a", "mnav-home", "wuld.ink");
+  home.href = "/";
+  bar.appendChild(home);
+  bar.appendChild(trigger);
+  var hdr = document.querySelector(".site-header");
+  if (hdr && hdr.parentNode) {
+    hdr.parentNode.insertBefore(bar, hdr.nextSibling);
   } else {
-    document.body.appendChild(trigger);
+    document.body.insertBefore(bar, document.body.firstChild);
   }
   document.documentElement.classList.add("mnav-on");
 })();
