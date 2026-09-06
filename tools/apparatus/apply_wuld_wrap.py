@@ -58,10 +58,8 @@ a:hover,a:focus-visible{{border-bottom-color:var(--red)}}
 
 LINKS = """
 <!-- wuld:links -->
-<p class="wuld-line"><a href="illogically-is-apparatus.pdf">PDF</a></p>
-<!-- film links: uncomment and fill when the URLs exist (handoff 3.2). Nothing else changes.
-<p class="wuld-line">The film: <a href="">YouTube</a> &middot; <a href="">Vimeo</a> &middot; <a href="">Internet Archive</a></p>
--->
+<p class="wuld-line">The film: <a href="https://youtu.be/EAvxK0f3oRo" rel="noopener">YouTube</a> &middot; this document as <a href="illogically-is-apparatus.pdf">PDF</a></p>
+<!-- Vimeo and the Internet Archive join the line above when those URLs exist (handoff 3.2). Nothing else changes. -->
 <!-- /wuld:links -->"""
 
 COLOPHON = """

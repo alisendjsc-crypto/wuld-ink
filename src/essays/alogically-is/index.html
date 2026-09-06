@@ -174,6 +174,58 @@
           </div>
         </div>
 
+        <!-- wuld:film K279 - the film of this reading. The warning comes FIRST and nothing
+             is fetched from youtube-nocookie.com until a deliberate click (the film's own
+             photosensitivity rule + the site's no-autoplay/no-surveillance posture). With JS
+             off the poster is simply a link out to YouTube. Self-contained - markup, styles
+             and the one handler live in this block - so it can be grafted onto a future
+             /illogically-is/ page without hunting for pieces. -->
+        <div class="film-band">
+          <style>
+            .film-band{margin-block-end:var(--s-7);padding-block-end:var(--s-5);border-bottom:var(--bw-base) solid var(--c-border)}
+            .film-band-note{font-family:var(--font-mono);font-size:var(--t-xs);color:var(--c-fg-dim);text-transform:uppercase;letter-spacing:var(--ls-wide);margin-block-end:var(--s-3)}
+            .film-band-note strong{color:var(--c-accent);font-weight:500}
+            .film-warning{font-family:var(--font-mono);font-size:var(--t-xs);line-height:var(--lh-default);color:var(--c-fg);border:var(--bw-base) solid var(--c-accent);padding:var(--s-3);margin-block-end:var(--s-4)}
+            .film-facade{position:relative;display:block;border:var(--bw-base) solid var(--c-border);line-height:0;text-decoration:none}
+            .film-facade:hover,.film-facade:focus-visible{border-color:var(--c-accent)}
+            .film-cover{width:100%;height:auto;display:block}
+            .film-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--c-fg);text-shadow:0 0 1rem var(--c-bg)}
+            .film-facade-label{position:absolute;left:0;right:0;bottom:0;font-family:var(--font-mono);font-size:var(--t-xs);line-height:1.4;color:var(--c-fg-dim);background:var(--c-bg);padding:var(--s-2);border-top:var(--bw-base) solid var(--c-border)}
+            .film-frame{position:relative;padding-block-start:56.25%;border:var(--bw-base) solid var(--c-accent)}
+            .film-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+            .film-links{font-family:var(--font-mono);font-size:var(--t-xs);letter-spacing:var(--ls-wide);color:var(--c-fg-dim);margin-block-start:var(--s-3)}
+          </style>
+          <p class="film-band-note"><strong>The film</strong> &middot; Illogically Is &middot; 36:12 &middot; the same reading, with picture</p>
+          <p class="film-warning" role="note">WARNING &mdash; THIS FILM CONTAINS SUSTAINED STROBOSCOPIC FLASHING AND HIGH-CONTRAST FLICKER. It may affect viewers with photosensitive epilepsy. Look away when you must. A reduced-flash edition will follow as a separate, labelled upload.</p>
+          <a class="film-facade" href="https://youtu.be/EAvxK0f3oRo" data-video-id="EAvxK0f3oRo" rel="noopener">
+            <img class="film-cover" src="/assets/illogically-is-cover.jpg" alt="Illogically Is &mdash; title card" width="1280" height="720" loading="lazy" decoding="async">
+            <span class="film-play" aria-hidden="true">&#9654;</span>
+            <span class="film-facade-label">Play here &mdash; nothing loads from YouTube until you click</span>
+          </a>
+          <p class="film-links"><a href="/illogically-is/apparatus/">The Apparatus</a> &middot; <a href="/illogically-is/apparatus/illogically-is-apparatus.pdf">PDF</a> &middot; <a href="https://youtu.be/EAvxK0f3oRo" rel="noopener">Watch on YouTube</a></p>
+          <script>
+            (function () {
+              var a = document.querySelector(".film-facade");
+              if (!a) return;
+              a.addEventListener("click", function (ev) {
+                ev.preventDefault();
+                var d = document.createElement("div");
+                d.className = "film-frame";
+                var f = document.createElement("iframe");
+                f.src = "https://www.youtube-nocookie.com/embed/" + a.getAttribute("data-video-id") +
+                        "?autoplay=1&rel=0&modestbranding=1";
+                f.title = "Illogically Is";
+                f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+                f.setAttribute("allowfullscreen", "");
+                f.setAttribute("referrerpolicy", "no-referrer");
+                d.appendChild(f);
+                a.parentNode.replaceChild(d, a);
+                f.focus();
+              });
+            })();
+          </script>
+        </div>
+
         <section class="essay-section essay-prefatory">
           <p class="essay-section-eyebrow">Prefatory note</p>
           <h2>Why This Is Different</h2>
