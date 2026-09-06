@@ -29,8 +29,8 @@ import pathlib, sys
 OPEN, SHUT = "<!-- K281 mobile nav -->", "<!-- /K281 mobile nav -->"
 BLOCK = (
     "  " + OPEN + "\n"
-    '  <link rel="stylesheet" href="/components/mobile-nav.css?v=K283" media="(max-width: 640px)">\n'
-    '  <script defer src="/components/mobile-nav.js?v=K283"></script>\n'
+    '  <link rel="stylesheet" href="/components/mobile-nav.css?v=K284" media="(max-width: 640px)">\n'
+    '  <script defer src="/components/mobile-nav.js?v=K284"></script>\n'
     "  " + SHUT + "\n"
 )
 
@@ -72,8 +72,8 @@ def main():
     css = js = 0
     for f in targets:
         t = f.read_text(encoding="utf-8")
-        css += t.count("mobile-nav.css?v=K283")
-        js += t.count("mobile-nav.js?v=K283")
+        css += t.count("mobile-nav.css?v=K284")
+        js += t.count("mobile-nav.js?v=K284")
     if css != len(targets) or js != len(targets):
         sys.exit("FAIL final-state gate: css=%d js=%d expected=%d" % (css, js, len(targets)))
     stray = [f for f in skipped if OPEN in f.read_text(encoding="utf-8")]
