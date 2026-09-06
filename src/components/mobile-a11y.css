@@ -248,3 +248,57 @@
 @media (max-width: 640px) {
   #trans-engine-wrap #t-text-layer { overflow: hidden; }
 }
+
+/* ============================================================
+   K287b — void-engine MOBILE REACH. Josiah, on his own phone,
+   after K287: "I have to scroll almost all the way down to
+   finally get to the selections."
+
+   MEASURED, and he was right: at 390px the first lexicon card
+   sat at y=3,965 — **4.7 phone screens of chrome before the
+   content**. The stack: header 397 · stats 168 · compiler panel
+   776 · negative filter 393 · presets 554 · chips 76 · the
+   sidebar's 26-category list 1,147.
+
+   THE ORDER IS NOT THE BUG, so it is not reordered. Compiler,
+   negative filter and presets are all legitimately before-you-
+   browse tools, and moving them below a 98,690px card list would
+   strand COPY POSITIVE and the presets somewhere no thumb will
+   ever reach. The bug is HEIGHT: four blocks that are the right
+   size for a desktop column are absurd stacked on a phone.
+
+   So each one scrolls inside itself instead of pushing the
+   lexicon down, and two desktop-shaped stacks become rows.
+   Nothing is hidden, nothing is reordered, every control stays
+   exactly where it was. First card 3,965 → 2,162 (4.7 → 2.6
+   screens). `overscroll-behavior: contain` keeps a capped box
+   from chaining its scroll into the page at the boundary.
+
+   The remaining floor is the header (397) plus the stats — both
+   content, not padding. Getting below ~2 screens means either
+   hiding the lede (which advertises "RIGHT-CLICK ANY CARD", an
+   affordance a phone does not have) or capping the card grid
+   itself into a ~500px porthole. Both are Josiah's calls, not
+   build calls; recorded in the priorities file, not done here.
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Two stacks that are desktop-column shapes: the status pills are
+     an align-items:flex-end right rail, and the sidebar/perm stat
+     lines are set at line-height 2.1-2.4 for a wide column. */
+  .hdr .stat-pills            { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 6px; }
+  #void-engine-wrap .perm-bar { gap: 4px 14px; line-height: 1.5; }
+  #void-engine-wrap .sb-stat  { line-height: 1.7; }
+
+  /* The four tall control blocks. Each is a single element on this
+     page (verified: 1 match apiece), so the caps cannot leak into
+     another surface even though mobile-a11y.css is site-wide. */
+  .panel .pb           { max-height: 38vh; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .app > .pre-row      { max-height: 22vh; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; align-content: flex-start; }
+  /* the ONE rule here that needs an id to win: the engine's own
+     `.neg-panel.exp{max-height:600px}` is the SAME specificity (0,2,0)
+     and sits later in source order, so a bare `.neg-panel.exp` here
+     silently loses — hazard cclii, caught by the real-bytes gate after
+     the injected-CSS probe had passed. Measure what you ship. */
+  #void-engine-wrap .neg-panel.exp { max-height: 30vh; }
+  .sidebar .cat-scroll { max-height: 36vh; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+}
