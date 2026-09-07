@@ -385,3 +385,14 @@ body.gallery-lightbox-open {
   .gallery-lightbox-prev { min-width: 44px; min-height: 44px; }
   .gallery-nsfw-toggle { min-height: 44px; }
 }
+
+/* ── K298 · phone type scale ─────────────────────────────────
+   `.gallery-page .page-hero-title` (0,2,0) beats mobile-a11y's bare `h1`
+   phone clamp (0,0,1), so the nine room pages render their h1 at 54px —
+   1.58x the phone scale, wrapping to two lines. Same clamp as the site's
+   own phone h1, at the escaping selector's specificity, phone-scoped;
+   desktop is inert. (The lobby carries an identical page-local rule from
+   K297 — a harmless duplicate at the same value, left in place.) */
+@media (max-width: 640px) {
+  .gallery-page .page-hero-title { font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.12; overflow-wrap: break-word; }
+}

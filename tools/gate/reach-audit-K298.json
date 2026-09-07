@@ -1,0 +1,7566 @@
+[
+ {
+  "page": "/404.html",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 206,
+   "sel": "main#main > div.not-found > p.not-found-line",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 414,
+   "sel": "main#main > div.not-found > p.not-found-return > a"
+  },
+  "groups": 0,
+  "diag": [],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1028,
+  "docW": 390,
+  "nodes": 194,
+  "hasMain": true
+ },
+ {
+  "page": "/archive/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 224,
+   "sel": "body > main.archive-page > header.archive-page-hero > p.archive-page-eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 1282,
+   "sel": "body > main.archive-page > section.archive-section",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 11689,
+   "sel": "section.archive-section > article.archive-book > div.archive-ku-gallery > div.ku-ill-grid > figure.ku-ill-fig",
+   "n": 21
+  },
+  "interact": {
+   "y": 632,
+   "sel": "main.archive-page > aside.archive-disclaimer > details.archive-fold.archive-fold--disclaimer > summary"
+  },
+  "groups": 6,
+  "diag": [
+   {
+    "sig": "figure.ku-ill-fig",
+    "n": 21,
+    "why": "OK",
+    "parent": "section.archive-section > article.archive-book > div.archive-ku-gallery > div.ku-ill-grid"
+   },
+   {
+    "sig": "article.archive-video-card",
+    "n": 8,
+    "why": "OK",
+    "parent": "body > main.archive-page > section.archive-section > div.archive-videos"
+   },
+   {
+    "sig": "p",
+    "n": 6,
+    "why": "textflow-tag",
+    "parent": "main.archive-page > section.archive-section > article.archive-book > blockquote.archive-excerpt"
+   },
+   {
+    "sig": "em",
+    "n": 5,
+    "why": "textflow-tag",
+    "parent": "body > main.archive-page > details.archive-fold.archive-fold--epigraph > blockquote.archive-epigraph"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 17039,
+  "docW": 390,
+  "nodes": 625,
+  "hasMain": true
+ },
+ {
+  "page": "/argument-library/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 1405,
+   "sel": "section.library-entry > p > strong > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > section.library-entry"
+   },
+   {
+    "sig": "a",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > section.library-entry > p"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2577,
+  "docW": 390,
+  "nodes": 277,
+  "hasMain": true
+ },
+ {
+  "page": "/blog/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 349,
+   "sel": "main#main > article.page > div.post-list > a.post-card"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "a.post-card",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > div.post-list"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1551,
+  "docW": 390,
+  "nodes": 272,
+  "hasMain": true
+ },
+ {
+  "page": "/blog/load-bearing/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.post > header.post-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 1918,
+   "sel": "article.post > div.post-body > p > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 6,
+    "why": "textflow-tag",
+    "parent": "main#main > article.post > div.post-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.post > header.post-header > div.post-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2876,
+  "docW": 390,
+  "nodes": 279,
+  "hasMain": true
+ },
+ {
+  "page": "/blog/the-easiest-case/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.post > header.post-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 2725,
+   "sel": "main#main > article.post > p.post-back > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 7,
+    "why": "textflow-tag",
+    "parent": "main#main > article.post > div.post-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.post > header.post-header > div.post-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3280,
+  "docW": 390,
+  "nodes": 279,
+  "hasMain": true
+ },
+ {
+  "page": "/book/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1462,
+   "sel": "main#main > article.page > section.book-section",
+   "n": 5
+  },
+  "mainGroup": {
+   "y": 1462,
+   "sel": "main#main > article.page > section.book-section",
+   "n": 5
+  },
+  "interact": {
+   "y": 1295,
+   "sel": "main#main > article.page > div.purchase-block > a.purchase-link"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.book-section",
+    "n": 5,
+    "why": "OK",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > section.book-section > p"
+   },
+   {
+    "sig": "article.memento",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.page > section.book-section"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "article.page > section.book-section > article.memento > div.memento-body"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 6740,
+  "docW": 390,
+  "nodes": 348,
+  "hasMain": true
+ },
+ {
+  "page": "/book/nothingist/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 11445,
+   "sel": "main#main > article.page > p.nothingist-return > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p.script-line",
+    "n": 106,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.nothingist-body"
+   },
+   {
+    "sig": "p.script-direction",
+    "n": 7,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.nothingist-body"
+   },
+   {
+    "sig": "h3.script-marker",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > div.nothingist-body"
+   },
+   {
+    "sig": "em",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > div.nothingist-body > p.script-line"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 11995,
+  "docW": 390,
+  "nodes": 515,
+  "hasMain": true
+ },
+ {
+  "page": "/changelog/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1058,
+   "sel": "ol#changelog-list > li.changelog-entry",
+   "n": 86
+  },
+  "mainGroup": {
+   "y": 1058,
+   "sel": "ol#changelog-list > li.changelog-entry",
+   "n": 86
+  },
+  "interact": {
+   "y": 537,
+   "sel": "article.page > aside.changelog-subscribe > p > a"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "li.changelog-entry",
+    "n": 86,
+    "why": "OK",
+    "parent": "ol#changelog-list"
+   },
+   {
+    "sig": "a.changelog-chip",
+    "n": 5,
+    "why": "OK",
+    "parent": "li#2026-05-17-gallery-recs-tabs > p.changelog-sections"
+   },
+   {
+    "sig": "a.changelog-chip",
+    "n": 4,
+    "why": "OK",
+    "parent": "li#2026-05-11-launch > p.changelog-sections"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > aside.changelog-subscribe"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 40356,
+  "docW": 390,
+  "nodes": 698,
+  "hasMain": true
+ },
+ {
+  "page": "/chat/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 1117,
+   "sel": "input#cb-name"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > header.page-hero > div.chat-intro > div.chat-rules"
+   },
+   {
+    "sig": "div.cb-field",
+    "n": 2,
+    "why": "n<3",
+    "parent": "section#comment-board > form.cb-form > div.cb-row"
+   },
+   {
+    "sig": "strong",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > aside.chat-fallback > p.chat-fallback-handle"
+   }
+  ],
+  "offscreenRejects": 2,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3555,
+  "docW": 390,
+  "nodes": 317,
+  "hasMain": true
+ },
+ {
+  "page": "/coda/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 438,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 438,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 438,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "a",
+    "n": 4,
+    "why": "short(<24px)",
+    "parent": "article.essay > div.essay-body > section.essay-section > p"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > header.essay-header > div.essay-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.essay > header.essay-header > div.mode-toggle"
+   },
+   {
+    "sig": "section.essay-section",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.essay > div.essay-body"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1827,
+  "docW": 390,
+  "nodes": 257,
+  "hasMain": true
+ },
+ {
+  "page": "/console/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1050,
+   "sel": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-ctrl > button.con-btn",
+   "n": 7
+  },
+  "mainGroup": {
+   "y": 1050,
+   "sel": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-ctrl > button.con-btn",
+   "n": 7
+  },
+  "interact": {
+   "y": 500,
+   "sel": "main#main > p.con-enter > button.con-btn.con-enter-btn"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "button.con-btn",
+    "n": 7,
+    "why": "OK",
+    "parent": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-ctrl"
+   },
+   {
+    "sig": "code",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > header.page-hero > p.page-intro"
+   },
+   {
+    "sig": "div.con-line.con-reveal.con-sys",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-out"
+   },
+   {
+    "sig": "div.con-line",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-out"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2025,
+  "docW": 390,
+  "nodes": 322,
+  "hasMain": true
+ },
+ {
+  "page": "/contact/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 554,
+   "sel": "main#main > section.contact-section",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 841,
+   "sel": "main#main > section.contact-section > form.contact-form > div.contact-field",
+   "n": 4
+  },
+  "interact": {
+   "y": 867,
+   "sel": "input#contact-name"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "div.contact-field",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > section.contact-section > form.contact-form"
+   },
+   {
+    "sig": "section.contact-section",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 2,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3576,
+  "docW": 390,
+  "nodes": 261,
+  "hasMain": true
+ },
+ {
+  "page": "/disclaimers/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.page-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 459,
+   "sel": "main#main > article.page > div.disclaimer-body > section.disclaimer-section",
+   "n": 9
+  },
+  "mainGroup": {
+   "y": 459,
+   "sel": "main#main > article.page > div.disclaimer-body > section.disclaimer-section",
+   "n": 9
+  },
+  "interact": {
+   "y": 5854,
+   "sel": "div.disclaimer-body > section.disclaimer-section > p > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "section.disclaimer-section",
+    "n": 9,
+    "why": "OK",
+    "parent": "main#main > article.page > div.disclaimer-body"
+   },
+   {
+    "sig": "em",
+    "n": 5,
+    "why": "textflow-tag",
+    "parent": "article.page > div.disclaimer-body > section.disclaimer-section > p"
+   },
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.disclaimer-body > section.disclaimer-section"
+   },
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.disclaimer-body > section.disclaimer-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 10502,
+  "docW": 390,
+  "nodes": 340,
+  "hasMain": true
+ },
+ {
+  "page": "/donations/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1350,
+   "sel": "main#main > section.donations-section > div.donations-platforms > article.donations-platform",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1350,
+   "sel": "main#main > section.donations-section > div.donations-platforms > article.donations-platform",
+   "n": 3
+  },
+  "interact": {
+   "y": 797,
+   "sel": "main#main > section.donations-section > form.donations-paypal-form > button.donations-paypal-button"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.donations-platform",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > section.donations-section > div.donations-platforms"
+   },
+   {
+    "sig": "section.donations-section",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3730,
+  "docW": 390,
+  "nodes": 297,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/a-life-inside/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 425,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1923,
+   "sel": "main#main > article.essay > div.essay-body > section.essay-section",
+   "n": 5
+  },
+  "interact": {
+   "y": 425,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 16,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section"
+   },
+   {
+    "sig": "p",
+    "n": 14,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section.essay-section > div.essay-verse"
+   },
+   {
+    "sig": "p",
+    "n": 10,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section.essay-section > div.essay-verse"
+   },
+   {
+    "sig": "p",
+    "n": 9,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section.essay-section > div.essay-verse"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 14669,
+  "docW": 390,
+  "nodes": 488,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/alogically-is/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 468,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 468,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 468,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 31,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 28,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 22,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 6,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-prefatory"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 18489,
+  "docW": 390,
+  "nodes": 485,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/architecture-of-moral-disaster/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 405,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 893,
+   "sel": "main#main > article.essay > div.essay-body > section.essay-section",
+   "n": 7
+  },
+  "interact": {
+   "y": 405,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 8,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section"
+   },
+   {
+    "sig": "section.essay-section",
+    "n": 7,
+    "why": "OK",
+    "parent": "main#main > article.essay > div.essay-body"
+   },
+   {
+    "sig": "p",
+    "n": 7,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section"
+   },
+   {
+    "sig": "p",
+    "n": 6,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 12337,
+  "docW": 390,
+  "nodes": 375,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 349,
+   "sel": "main#main > article.page > ul.essay-list > li.essay-list-item",
+   "n": 4
+  },
+  "mainGroup": {
+   "y": 349,
+   "sel": "main#main > article.page > ul.essay-list > li.essay-list-item",
+   "n": 4
+  },
+  "interact": {
+   "y": 376,
+   "sel": "article.page > ul.essay-list > li.essay-list-item > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "li.essay-list-item",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.page > ul.essay-list"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1871,
+  "docW": 390,
+  "nodes": 280,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/sanguinolentum-vestigium/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 431,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 431,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 431,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 24,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 22,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 15,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 9,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section.essay-section > div.essay-litany"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 16438,
+  "docW": 390,
+  "nodes": 450,
+  "hasMain": true
+ },
+ {
+  "page": "/frame/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 864,
+   "sel": "main#main > article.page > section.frame-section",
+   "n": 4
+  },
+  "mainGroup": {
+   "y": 864,
+   "sel": "main#main > article.page > section.frame-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 577,
+   "sel": "main#main > article.page > p.lede > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "section.frame-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "strong",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "article.page > section.frame-composition > details.frame-fold > p"
+   },
+   {
+    "sig": "a",
+    "n": 3,
+    "why": "short(<24px)",
+    "parent": "main#main > article.page > div.frame-onward > p"
+   },
+   {
+    "sig": "p",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > section.frame-composition > details.frame-fold"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 4678,
+  "docW": 390,
+  "nodes": 310,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/gap-dweller/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 2,
+    "why": "n<3",
+    "parent": "section#gallery-grid"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1967,
+  "docW": 390,
+  "nodes": 312,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/gore/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 1010,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1010,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 3
+  },
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 3,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-mediachips"
+   },
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-videos-grid"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2722,
+  "docW": 390,
+  "nodes": 337,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 188,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 495,
+   "sel": "div#gallery-cat-grid > a.gallery-cat-card",
+   "n": 9
+  },
+  "mainGroup": {
+   "y": 2318,
+   "sel": "section#gallery-grid > article.gallery-plate",
+   "n": 27
+  },
+  "interact": {
+   "y": 495,
+   "sel": "div#gallery-cat-grid > a.gallery-cat-card"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "article.gallery-plate",
+    "n": 27,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "a.gallery-cat-card",
+    "n": 9,
+    "why": "OK",
+    "parent": "div#gallery-cat-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-mediachips"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 11652,
+  "docW": 390,
+  "nodes": 697,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/main-character/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 920,
+   "sel": "div#gallery-chips > button.gallery-chip",
+   "n": 18
+  },
+  "mainGroup": {
+   "y": 1917,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 60
+  },
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 60,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 18,
+    "why": "OK",
+    "parent": "div#gallery-chips"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-mediachips"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 15358,
+  "docW": 390,
+  "nodes": 679,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/mascot-yurei/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 957,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 5
+  },
+  "mainGroup": {
+   "y": 957,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 5
+  },
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 5,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2605,
+  "docW": 390,
+  "nodes": 327,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/original-character/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 1074,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 16
+  },
+  "mainGroup": {
+   "y": 1074,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 16
+  },
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 16,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 5060,
+  "docW": 390,
+  "nodes": 385,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/other/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 957,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 5
+  },
+  "mainGroup": {
+   "y": 957,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 5
+  },
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 5,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2605,
+  "docW": 390,
+  "nodes": 327,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/the-tall-one/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 2,
+    "why": "n<3",
+    "parent": "section#gallery-grid"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1967,
+  "docW": 390,
+  "nodes": 312,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/the-wrong-thing/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 1010,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1010,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 3
+  },
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 3,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-mediachips"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2510,
+  "docW": 390,
+  "nodes": 332,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/workshop/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 948,
+   "sel": "div#gallery-chips > button.gallery-chip",
+   "n": 8
+  },
+  "mainGroup": {
+   "y": 1574,
+   "sel": "section#gallery-grid > article.gallery-plate",
+   "n": 60
+  },
+  "interact": {
+   "y": 155,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "article.gallery-plate",
+    "n": 60,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 8,
+    "why": "OK",
+    "parent": "div#gallery-chips"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-pager-btn",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-pager-top"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 16809,
+  "docW": 390,
+  "nodes": 873,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/_template.html",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 398,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 656,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 398,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "li",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1746,
+  "docW": 390,
+  "nodes": 230,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/alogical-isness/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 376,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 634,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 376,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "li",
+    "n": 3,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2990,
+  "docW": 390,
+  "nodes": 311,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/anfractuous-aporia/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 376,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 634,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 376,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-register-notes"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2946,
+  "docW": 390,
+  "nodes": 318,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/cascade-math-safeguard/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 365,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 623,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 365,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3089,
+  "docW": 390,
+  "nodes": 312,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/censorship-reversal-trap-door/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 365,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 623,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 365,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3000,
+  "docW": 390,
+  "nodes": 311,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/contextus-claudit/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 434,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 692,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 434,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3080,
+  "docW": 390,
+  "nodes": 324,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/empirical-asymmetry-argument/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 436,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 694,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 436,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "li",
+    "n": 3,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2933,
+  "docW": 390,
+  "nodes": 307,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/foundational-fork/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 349,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 607,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 349,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "li",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1977,
+  "docW": 390,
+  "nodes": 299,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/framework-vs-actor-distinction/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 365,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 623,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 365,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "a",
+    "n": 4,
+    "why": "OK",
+    "parent": "div.entry-body > section.entry-section > ul.entry-see-also > li"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2791,
+  "docW": 390,
+  "nodes": 314,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 734,
+   "sel": "main#main > article.page > ul.glossary-list",
+   "n": 13
+  },
+  "mainGroup": {
+   "y": 734,
+   "sel": "main#main > article.page > ul.glossary-list",
+   "n": 13
+  },
+  "interact": {
+   "y": 527,
+   "sel": "article.page > aside.frame-pointer > p > a"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "p.glossary-letter",
+    "n": 13,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "ul.glossary-list",
+    "n": 13,
+    "why": "OK",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "li",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.page > ul.glossary-list"
+   },
+   {
+    "sig": "li",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.page > ul.glossary-list"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 4604,
+  "docW": 390,
+  "nodes": 379,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/labor-sine-fructu/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 326,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1968,
+   "sel": "div.entry-body > section.entry-section > ul.entry-see-also > li > a",
+   "n": 6
+  },
+  "interact": {
+   "y": 326,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "a",
+    "n": 6,
+    "why": "OK",
+    "parent": "div.entry-body > section.entry-section > ul.entry-see-also > li"
+   },
+   {
+    "sig": "em",
+    "n": 5,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2897,
+  "docW": 390,
+  "nodes": 323,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/modal-architectural-pessimism/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 365,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1806,
+   "sel": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also > li",
+   "n": 6
+  },
+  "interact": {
+   "y": 365,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "li",
+    "n": 6,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3243,
+  "docW": 390,
+  "nodes": 317,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/ne-hoc-fiat/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 376,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 634,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 376,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2901,
+  "docW": 390,
+  "nodes": 315,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/no-essential-protection-from-destruction/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 387,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1769,
+   "sel": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also > li",
+   "n": 5
+  },
+  "interact": {
+   "y": 387,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "li",
+    "n": 5,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3037,
+  "docW": 390,
+  "nodes": 309,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/nothingist/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 349,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 349,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 349,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "li",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1792,
+  "docW": 390,
+  "nodes": 302,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/protecting-class-absence/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 326,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 584,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 326,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3059,
+  "docW": 390,
+  "nodes": 315,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/proxy-gamble/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 326,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 584,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 326,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "code",
+    "n": 9,
+    "why": "textflow-tag",
+    "parent": "div.entry-body > section.entry-section > ul.entry-see-also > li"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2959,
+  "docW": 390,
+  "nodes": 320,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/signal/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 326,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 584,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 326,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2733,
+  "docW": 390,
+  "nodes": 302,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/synapse-syntax-lapse/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 398,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 656,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 398,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "em",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "article.entry > header.entry-header > div.entry-meta > span"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2264,
+  "docW": 390,
+  "nodes": 306,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/transmission/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 326,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 584,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 326,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2763,
+  "docW": 390,
+  "nodes": 303,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/two-layer-architecture/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 326,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 584,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 326,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3146,
+  "docW": 390,
+  "nodes": 319,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/void-engine/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 326,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 584,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 326,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2733,
+  "docW": 390,
+  "nodes": 303,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/w-holes/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 398,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 656,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 398,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "em",
+    "n": 5,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-register-notes"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2977,
+  "docW": 390,
+  "nodes": 315,
+  "hasMain": true
+ },
+ {
+  "page": "/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 264,
+   "sel": "section.cover > div.cover-mark-block > h1.cover-mark.cover-mark--video > video.cover-mark-video",
+   "tag": "video",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 600,
+   "sel": "section.cover > p.cover-descent > span.cover-preface-pointer > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "a.destination",
+    "n": 6,
+    "why": "invisible(0/6)",
+    "parent": "section#index > div.index-grid"
+   },
+   {
+    "sig": "span.sep",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "body.home > section.cover > div.cover-mark-block > p.cover-subhead"
+   },
+   {
+    "sig": "source",
+    "n": 2,
+    "why": "n<3",
+    "parent": "section.cover > div.cover-mark-block > h1.cover-mark.cover-mark--video > video.cover-mark-video"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1194,
+  "docW": 390,
+  "nodes": 306,
+  "hasMain": false
+ },
+ {
+  "page": "/library-about/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 179,
+   "sel": "main#main > article.lib-page > header.lib-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 457,
+   "sel": "main#main > article.lib-page > header.lib-hero > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1085,
+   "sel": "main#main > article.lib-page > section.lib-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 457,
+   "sel": "article.lib-page > header.lib-hero > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "div.lib-stat-cell",
+    "n": 7,
+    "why": "not-rich(1/7)",
+    "parent": "main#main > article.lib-page > div.lib-stat-grid"
+   },
+   {
+    "sig": "section.lib-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.lib-page"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.lib-page > header.lib-hero > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.lib-page > section.lib-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 4152,
+  "docW": 390,
+  "nodes": 287,
+  "hasMain": true
+ },
+ {
+  "page": "/music/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 206,
+   "sel": "main#main > section.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1249,
+   "sel": "article.music-card > div.music-meta > details.music-tracklist > ol > li",
+   "n": 8
+  },
+  "mainGroup": {
+   "y": 1249,
+   "sel": "article.music-card > div.music-meta > details.music-tracklist > ol > li",
+   "n": 8
+  },
+  "interact": {
+   "y": 552,
+   "sel": "main#main > div.bandcamp-cta > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "li",
+    "n": 8,
+    "why": "OK",
+    "parent": "article.music-card > div.music-meta > details.music-tracklist > ol"
+   },
+   {
+    "sig": "span.music-stat",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "div.music-grid > article.music-card > div.music-meta > div.music-stats"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2073,
+  "docW": 390,
+  "nodes": 319,
+  "hasMain": true
+ },
+ {
+  "page": "/ne-hoc-fiat/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 716,
+   "sel": "main#main > article.page > section.project-section",
+   "n": 4
+  },
+  "mainGroup": {
+   "y": 716,
+   "sel": "main#main > article.page > section.project-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 1970,
+   "sel": "article.page > section.project-section > p > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "em",
+    "n": 7,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > section.project-section > p"
+   },
+   {
+    "sig": "section.project-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "a",
+    "n": 3,
+    "why": "short(<24px)",
+    "parent": "main#main > article.page > section.project-section > p"
+   },
+   {
+    "sig": "em",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > p.lede"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3051,
+  "docW": 390,
+  "nodes": 305,
+  "hasMain": true
+ },
+ {
+  "page": "/notes/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 685,
+   "sel": "main#main > div.notes-app > section.notes-main > div.notes-toolbar > button.notes-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 685,
+   "sel": "main#main > div.notes-app > section.notes-main > div.notes-toolbar > button.notes-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 512,
+   "sel": "button#btn-new"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "button.notes-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > div.notes-app > section.notes-main > div.notes-toolbar"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2118,
+  "docW": 390,
+  "nodes": 288,
+  "hasMain": true
+ },
+ {
+  "page": "/preface/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": null,
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.preface-body"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1867,
+  "docW": 390,
+  "nodes": 267,
+  "hasMain": true
+ },
+ {
+  "page": "/recommendations/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1509,
+   "sel": "main#main > section.rec-section",
+   "n": 7
+  },
+  "mainGroup": {
+   "y": 2363,
+   "sel": "section#media > div.rec-cards > article.rec-card",
+   "n": 14
+  },
+  "interact": {
+   "y": 888,
+   "sel": "main#main > aside.rec-page-disclaimer > p.rec-disclaimer-body > a"
+  },
+  "groups": 7,
+  "diag": [
+   {
+    "sig": "article.rec-card",
+    "n": 14,
+    "why": "OK",
+    "parent": "section#media > div.rec-cards"
+   },
+   {
+    "sig": "article.rec-card",
+    "n": 11,
+    "why": "OK",
+    "parent": "section#art > div.rec-cards"
+   },
+   {
+    "sig": "article.rec-card",
+    "n": 8,
+    "why": "OK",
+    "parent": "section#groups > div.rec-cards"
+   },
+   {
+    "sig": "section.rec-section",
+    "n": 7,
+    "why": "OK",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 21467,
+  "docW": 390,
+  "nodes": 633,
+  "hasMain": true
+ },
+ {
+  "page": "/search/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 559,
+   "sel": "input#site-search-input"
+  },
+  "groups": 0,
+  "diag": [],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1209,
+  "docW": 390,
+  "nodes": 268,
+  "hasMain": true
+ },
+ {
+  "page": "/successor/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 405,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1425,
+   "sel": "div.essay-body > section.essay-section > details.successor-about > div.successor-about-body > section.essay-section",
+   "n": 7
+  },
+  "interact": {
+   "y": 405,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.essay-section",
+    "n": 7,
+    "why": "OK",
+    "parent": "div.essay-body > section.essay-section > details.successor-about > div.successor-about-body"
+   },
+   {
+    "sig": "div.agent-fx-ctl",
+    "n": 7,
+    "why": "invisible(0/7)",
+    "parent": "div#agent-fx-body > section.agent-fx-grp"
+   },
+   {
+    "sig": "div.agent-fx-ctl",
+    "n": 6,
+    "why": "invisible(0/6)",
+    "parent": "div#agent-fx-body > section.agent-fx-grp"
+   },
+   {
+    "sig": "section.agent-fx-grp",
+    "n": 4,
+    "why": "invisible(0/4)",
+    "parent": "div#agent-fx-body"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1903,
+  "docW": 390,
+  "nodes": 470,
+  "hasMain": true
+ },
+ {
+  "page": "/templates/essay.html",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 427,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 676,
+   "sel": "main#main > article.essay > div.essay-body > section",
+   "n": 4
+  },
+  "interact": {
+   "y": 427,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.essay > div.essay-body"
+   },
+   {
+    "sig": "code",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section > p"
+   },
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > header.essay-header > div.essay-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 3916,
+  "docW": 390,
+  "nodes": 266,
+  "hasMain": true
+ },
+ {
+  "page": "/troubleshooting/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 165,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 613,
+   "sel": "main#main > section.ts-section",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 613,
+   "sel": "main#main > section.ts-section",
+   "n": 3
+  },
+  "interact": {
+   "y": 3452,
+   "sel": "main#main > div.ts-close > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > section.ts-section"
+   },
+   {
+    "sig": "section.ts-section",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main"
+   },
+   {
+    "sig": "p.ts-subhead",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > section.ts-section"
+   },
+   {
+    "sig": "pre.ts-pre",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > section.ts-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 4150,
+  "docW": 390,
+  "nodes": 312,
+  "hasMain": true
+ },
+ {
+  "page": "/violence-as-reductio/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 636,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 636,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 636,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > header.essay-header > div.essay-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.essay > header.essay-header > div.mode-toggle"
+   },
+   {
+    "sig": "a",
+    "n": 3,
+    "why": "short(<24px)",
+    "parent": "article.essay > div.essay-body > section.essay-section > p"
+   },
+   {
+    "sig": "code",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.essay > header.essay-header > div.essay-meta > span"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2310,
+  "docW": 390,
+  "nodes": 260,
+  "hasMain": true
+ },
+ {
+  "page": "/void-engine/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 201,
+   "sel": "div.app > header.hdr > div.hdr-brand > h1",
+   "tag": "h1",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1031,
+   "sel": "div.app > div.panel > div.pb.col > div.ctrl > select",
+   "n": 5
+  },
+  "mainGroup": {
+   "y": 2162,
+   "sel": "div#grid > div.card",
+   "n": 298
+  },
+  "interact": {
+   "y": 498,
+   "sel": "button#read-btn"
+  },
+  "groups": 9,
+  "diag": [
+   {
+    "sig": "div.card",
+    "n": 298,
+    "why": "OK",
+    "parent": "div#grid"
+   },
+   {
+    "sig": "div.trow",
+    "n": 250,
+    "why": "invisible(0/250)",
+    "parent": "div#tlist"
+   },
+   {
+    "sig": "div.card.is-new",
+    "n": 87,
+    "why": "OK",
+    "parent": "div#grid"
+   },
+   {
+    "sig": "div",
+    "n": 24,
+    "why": "invisible(0/24)",
+    "parent": "div#chaos-scope-list"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 85,
+  "stickyBottom": 1772,
+  "opacityRejects": 0,
+  "docH": 101098,
+  "docW": 390,
+  "nodes": 5951,
+  "hasMain": true
+ },
+ {
+  "page": "/watch/_donor/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.media-page > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 834,
+   "sel": "main#main > article.media-page > p.media-back > a"
+  },
+  "groups": 0,
+  "diag": [],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 1352,
+  "docW": 390,
+  "nodes": 263,
+  "hasMain": true
+ },
+ {
+  "page": "/watch/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 224,
+   "sel": "main#main > section.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 802,
+   "sel": "main#main > div.video-grid > article.video-card",
+   "n": 9
+  },
+  "mainGroup": {
+   "y": 802,
+   "sel": "main#main > div.video-grid > article.video-card",
+   "n": 9
+  },
+  "interact": {
+   "y": 605,
+   "sel": "main#main > div.channel-cta > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.video-card",
+    "n": 9,
+    "why": "OK",
+    "parent": "main#main > div.video-grid"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 4901,
+  "docW": 390,
+  "nodes": 341,
+  "hasMain": true
+ },
+ {
+  "page": "/why-not-suicide/",
+  "vp": "phone",
+  "vh": 844,
+  "content": {
+   "y": 152,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 599,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 599,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 599,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > header.essay-header > div.essay-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.essay > header.essay-header > div.mode-toggle"
+   },
+   {
+    "sig": "a",
+    "n": 3,
+    "why": "short(<24px)",
+    "parent": "article.essay > div.essay-body > section.essay-section > p"
+   },
+   {
+    "sig": "code",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.essay > header.essay-header > div.essay-meta > span"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 90,
+  "stickyBottom": 152,
+  "opacityRejects": 0,
+  "docH": 2184,
+  "docW": 390,
+  "nodes": 260,
+  "hasMain": true
+ },
+ {
+  "page": "/404.html",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 322,
+   "sel": "main#main > div.not-found > p.not-found-line",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 530,
+   "sel": "main#main > div.not-found > p.not-found-return > a"
+  },
+  "groups": 0,
+  "diag": [],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1035,
+  "docW": 1280,
+  "nodes": 107,
+  "hasMain": true
+ },
+ {
+  "page": "/archive/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 340,
+   "sel": "body > main.archive-page > header.archive-page-hero > p.archive-page-eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 1639,
+   "sel": "body > main.archive-page > section.archive-section",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 7748,
+   "sel": "section.archive-section > article.archive-book > div.archive-ku-gallery > div.ku-ill-grid > figure.ku-ill-fig",
+   "n": 21
+  },
+  "interact": {
+   "y": 787,
+   "sel": "details.archive-fold.archive-fold--disclaimer > div.archive-disclaimer-body > p.archive-disclaimer-pointer > a"
+  },
+  "groups": 6,
+  "diag": [
+   {
+    "sig": "figure.ku-ill-fig",
+    "n": 21,
+    "why": "OK",
+    "parent": "section.archive-section > article.archive-book > div.archive-ku-gallery > div.ku-ill-grid"
+   },
+   {
+    "sig": "article.archive-video-card",
+    "n": 8,
+    "why": "OK",
+    "parent": "body > main.archive-page > section.archive-section > div.archive-videos"
+   },
+   {
+    "sig": "p",
+    "n": 6,
+    "why": "textflow-tag",
+    "parent": "main.archive-page > section.archive-section > article.archive-book > blockquote.archive-excerpt"
+   },
+   {
+    "sig": "em",
+    "n": 5,
+    "why": "textflow-tag",
+    "parent": "body > main.archive-page > details.archive-fold.archive-fold--epigraph > blockquote.archive-epigraph"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 11702,
+  "docW": 1280,
+  "nodes": 538,
+  "hasMain": true
+ },
+ {
+  "page": "/argument-library/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 1214,
+   "sel": "section.library-entry > p > strong > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > section.library-entry"
+   },
+   {
+    "sig": "a",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > section.library-entry > p"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2108,
+  "docW": 1280,
+  "nodes": 190,
+  "hasMain": true
+ },
+ {
+  "page": "/blog/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 491,
+   "sel": "main#main > article.page > div.post-list > a.post-card"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "a.post-card",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > div.post-list"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1446,
+  "docW": 1280,
+  "nodes": 185,
+  "hasMain": true
+ },
+ {
+  "page": "/blog/load-bearing/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.post > header.post-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 1679,
+   "sel": "article.post > div.post-body > p > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 6,
+    "why": "textflow-tag",
+    "parent": "main#main > article.post > div.post-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.post > header.post-header > div.post-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2449,
+  "docW": 1280,
+  "nodes": 192,
+  "hasMain": true
+ },
+ {
+  "page": "/blog/the-easiest-case/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.post > header.post-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 2342,
+   "sel": "main#main > article.post > p.post-back > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 7,
+    "why": "textflow-tag",
+    "parent": "main#main > article.post > div.post-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.post > header.post-header > div.post-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2798,
+  "docW": 1280,
+  "nodes": 192,
+  "hasMain": true
+ },
+ {
+  "page": "/book/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1608,
+   "sel": "main#main > article.page > section.book-section",
+   "n": 5
+  },
+  "mainGroup": {
+   "y": 1608,
+   "sel": "main#main > article.page > section.book-section",
+   "n": 5
+  },
+  "interact": {
+   "y": 1441,
+   "sel": "main#main > article.page > div.purchase-block > a.purchase-link"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.book-section",
+    "n": 5,
+    "why": "OK",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > section.book-section > p"
+   },
+   {
+    "sig": "article.memento",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.page > section.book-section"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "article.page > section.book-section > article.memento > div.memento-body"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 5504,
+  "docW": 1280,
+  "nodes": 261,
+  "hasMain": true
+ },
+ {
+  "page": "/book/nothingist/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 9037,
+   "sel": "main#main > article.page > p.nothingist-return > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p.script-line",
+    "n": 106,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.nothingist-body"
+   },
+   {
+    "sig": "p.script-direction",
+    "n": 7,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.nothingist-body"
+   },
+   {
+    "sig": "h3.script-marker",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > div.nothingist-body"
+   },
+   {
+    "sig": "em",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > div.nothingist-body > p.script-line"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 9489,
+  "docW": 1280,
+  "nodes": 428,
+  "hasMain": true
+ },
+ {
+  "page": "/changelog/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 963,
+   "sel": "ol#changelog-list > li.changelog-entry",
+   "n": 86
+  },
+  "mainGroup": {
+   "y": 963,
+   "sel": "ol#changelog-list > li.changelog-entry",
+   "n": 86
+  },
+  "interact": {
+   "y": 620,
+   "sel": "article.page > aside.changelog-subscribe > p > a"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "li.changelog-entry",
+    "n": 86,
+    "why": "OK",
+    "parent": "ol#changelog-list"
+   },
+   {
+    "sig": "a.changelog-chip",
+    "n": 5,
+    "why": "OK",
+    "parent": "li#2026-05-17-gallery-recs-tabs > p.changelog-sections"
+   },
+   {
+    "sig": "a.changelog-chip",
+    "n": 4,
+    "why": "OK",
+    "parent": "li#2026-05-11-launch > p.changelog-sections"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > aside.changelog-subscribe"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 27939,
+  "docW": 1280,
+  "nodes": 611,
+  "hasMain": true
+ },
+ {
+  "page": "/chat/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 1018,
+   "sel": "input#cb-name"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > header.page-hero > div.chat-intro > div.chat-rules"
+   },
+   {
+    "sig": "div.cb-field",
+    "n": 2,
+    "why": "n<3",
+    "parent": "section#comment-board > form.cb-form > div.cb-row"
+   },
+   {
+    "sig": "strong",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > aside.chat-fallback > p.chat-fallback-handle"
+   }
+  ],
+  "offscreenRejects": 2,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2887,
+  "docW": 1280,
+  "nodes": 230,
+  "hasMain": true
+ },
+ {
+  "page": "/coda/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 460,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 460,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 460,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "a",
+    "n": 4,
+    "why": "short(<24px)",
+    "parent": "article.essay > div.essay-body > section.essay-section > p"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > header.essay-header > div.essay-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.essay > header.essay-header > div.mode-toggle"
+   },
+   {
+    "sig": "section.essay-section",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.essay > div.essay-body"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1555,
+  "docW": 1280,
+  "nodes": 170,
+  "hasMain": true
+ },
+ {
+  "page": "/console/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1090,
+   "sel": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-ctrl > button.con-btn",
+   "n": 7
+  },
+  "mainGroup": {
+   "y": 1090,
+   "sel": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-ctrl > button.con-btn",
+   "n": 7
+  },
+  "interact": {
+   "y": 553,
+   "sel": "main#main > p.con-enter > button.con-btn.con-enter-btn"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "button.con-btn",
+    "n": 7,
+    "why": "OK",
+    "parent": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-ctrl"
+   },
+   {
+    "sig": "code",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > header.page-hero > p.page-intro"
+   },
+   {
+    "sig": "div.con-line.con-reveal.con-sys",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#console-app > div.con-term.con-fx.con-fx-low > div.con-out"
+   },
+   {
+    "sig": "code",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > p.con-page-foot"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1714,
+  "docW": 1280,
+  "nodes": 235,
+  "hasMain": true
+ },
+ {
+  "page": "/contact/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 607,
+   "sel": "main#main > section.contact-section",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 835,
+   "sel": "main#main > section.contact-section > form.contact-form > div.contact-field",
+   "n": 4
+  },
+  "interact": {
+   "y": 862,
+   "sel": "input#contact-name"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "div.contact-field",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > section.contact-section > form.contact-form"
+   },
+   {
+    "sig": "section.contact-section",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 2,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 3106,
+  "docW": 1280,
+  "nodes": 174,
+  "hasMain": true
+ },
+ {
+  "page": "/disclaimers/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.page-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 536,
+   "sel": "main#main > article.page > div.disclaimer-body > section.disclaimer-section",
+   "n": 9
+  },
+  "mainGroup": {
+   "y": 536,
+   "sel": "main#main > article.page > div.disclaimer-body > section.disclaimer-section",
+   "n": 9
+  },
+  "interact": {
+   "y": 4345,
+   "sel": "div.disclaimer-body > section.disclaimer-section > p > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "section.disclaimer-section",
+    "n": 9,
+    "why": "OK",
+    "parent": "main#main > article.page > div.disclaimer-body"
+   },
+   {
+    "sig": "em",
+    "n": 5,
+    "why": "textflow-tag",
+    "parent": "article.page > div.disclaimer-body > section.disclaimer-section > p"
+   },
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.disclaimer-body > section.disclaimer-section"
+   },
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.disclaimer-body > section.disclaimer-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 7452,
+  "docW": 1280,
+  "nodes": 253,
+  "hasMain": true
+ },
+ {
+  "page": "/donations/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1465,
+   "sel": "main#main > section.donations-section > div.donations-platforms > article.donations-platform",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1465,
+   "sel": "main#main > section.donations-section > div.donations-platforms > article.donations-platform",
+   "n": 3
+  },
+  "interact": {
+   "y": 894,
+   "sel": "main#main > section.donations-section > form.donations-paypal-form > button.donations-paypal-button"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.donations-platform",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > section.donations-section > div.donations-platforms"
+   },
+   {
+    "sig": "section.donations-section",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2893,
+  "docW": 1280,
+  "nodes": 210,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/a-life-inside/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 518,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1705,
+   "sel": "main#main > article.essay > div.essay-body > section.essay-section",
+   "n": 5
+  },
+  "interact": {
+   "y": 518,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 16,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section"
+   },
+   {
+    "sig": "p",
+    "n": 14,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section.essay-section > div.essay-verse"
+   },
+   {
+    "sig": "p",
+    "n": 10,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section.essay-section > div.essay-verse"
+   },
+   {
+    "sig": "p",
+    "n": 9,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section.essay-section > div.essay-verse"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 13361,
+  "docW": 1280,
+  "nodes": 401,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/alogically-is/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 561,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 561,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 561,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 31,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 28,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 22,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 6,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-prefatory"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 14461,
+  "docW": 1280,
+  "nodes": 398,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/architecture-of-moral-disaster/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 460,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 834,
+   "sel": "main#main > article.essay > div.essay-body > section.essay-section",
+   "n": 7
+  },
+  "interact": {
+   "y": 460,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 8,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section"
+   },
+   {
+    "sig": "section.essay-section",
+    "n": 7,
+    "why": "OK",
+    "parent": "main#main > article.essay > div.essay-body"
+   },
+   {
+    "sig": "p",
+    "n": 7,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section"
+   },
+   {
+    "sig": "p",
+    "n": 6,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 9366,
+  "docW": 1280,
+  "nodes": 288,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 491,
+   "sel": "main#main > article.page > ul.essay-list > li.essay-list-item",
+   "n": 4
+  },
+  "mainGroup": {
+   "y": 491,
+   "sel": "main#main > article.page > ul.essay-list > li.essay-list-item",
+   "n": 4
+  },
+  "interact": {
+   "y": 518,
+   "sel": "article.page > ul.essay-list > li.essay-list-item > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "li.essay-list-item",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.page > ul.essay-list"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1819,
+  "docW": 1280,
+  "nodes": 193,
+  "hasMain": true
+ },
+ {
+  "page": "/essays/sanguinolentum-vestigium/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 524,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 524,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 524,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 24,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 22,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 15,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section.essay-section.essay-movement"
+   },
+   {
+    "sig": "p",
+    "n": 9,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section.essay-section > div.essay-litany"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 12485,
+  "docW": 1280,
+  "nodes": 363,
+  "hasMain": true
+ },
+ {
+  "page": "/frame/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1413,
+   "sel": "main#main > article.page > section.frame-section",
+   "n": 4
+  },
+  "mainGroup": {
+   "y": 1413,
+   "sel": "main#main > article.page > section.frame-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 630,
+   "sel": "main#main > article.page > p.lede > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "section.frame-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "strong",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "article.page > section.frame-composition > details.frame-fold > p"
+   },
+   {
+    "sig": "a",
+    "n": 3,
+    "why": "short(<24px)",
+    "parent": "main#main > article.page > div.frame-onward > p"
+   },
+   {
+    "sig": "p",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > section.frame-composition > details.frame-fold"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 4219,
+  "docW": 1280,
+  "nodes": 223,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/gap-dweller/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 2,
+    "why": "n<3",
+    "parent": "section#gallery-grid"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1613,
+  "docW": 1280,
+  "nodes": 225,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/gore/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 992,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 992,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 3
+  },
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 3,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-mediachips"
+   },
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-videos-grid"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1924,
+  "docW": 1280,
+  "nodes": 250,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 340,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 807,
+   "sel": "div#gallery-cat-grid > a.gallery-cat-card",
+   "n": 9
+  },
+  "mainGroup": {
+   "y": 1722,
+   "sel": "section#gallery-grid > article.gallery-plate",
+   "n": 27
+  },
+  "interact": {
+   "y": 807,
+   "sel": "div#gallery-cat-grid > a.gallery-cat-card"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "article.gallery-plate",
+    "n": 27,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "a.gallery-cat-card",
+    "n": 9,
+    "why": "OK",
+    "parent": "div#gallery-cat-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-mediachips"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 6041,
+  "docW": 1280,
+  "nodes": 610,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/main-character/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 873,
+   "sel": "div#gallery-chips > button.gallery-chip",
+   "n": 18
+  },
+  "mainGroup": {
+   "y": 1266,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 60
+  },
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 60,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 18,
+    "why": "OK",
+    "parent": "div#gallery-chips"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-mediachips"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 5601,
+  "docW": 1280,
+  "nodes": 592,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/mascot-yurei/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 936,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 5
+  },
+  "mainGroup": {
+   "y": 936,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 5
+  },
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 5,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1804,
+  "docW": 1280,
+  "nodes": 240,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/original-character/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 1010,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 16
+  },
+  "mainGroup": {
+   "y": 1010,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 16
+  },
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 16,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2638,
+  "docW": 1280,
+  "nodes": 298,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/other/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 936,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 5
+  },
+  "mainGroup": {
+   "y": 936,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 5
+  },
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 5,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1804,
+  "docW": 1280,
+  "nodes": 240,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/the-tall-one/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 2,
+    "why": "n<3",
+    "parent": "section#gallery-grid"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1613,
+  "docW": 1280,
+  "nodes": 225,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/the-wrong-thing/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 992,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 992,
+   "sel": "section#gallery-grid > article.gallery-plate.gallery-plate-withheld",
+   "n": 3
+  },
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.gallery-plate.gallery-plate-withheld",
+    "n": 3,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-mediachips"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1924,
+  "docW": 1280,
+  "nodes": 245,
+  "hasMain": true
+ },
+ {
+  "page": "/gallery/workshop/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a",
+   "tag": "a",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 884,
+   "sel": "div#gallery-chips > button.gallery-chip",
+   "n": 8
+  },
+  "mainGroup": {
+   "y": 1226,
+   "sel": "section#gallery-grid > article.gallery-plate",
+   "n": 60
+  },
+  "interact": {
+   "y": 271,
+   "sel": "main#main > p.gallery-room-back > a"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "article.gallery-plate",
+    "n": 60,
+    "why": "OK",
+    "parent": "section#gallery-grid"
+   },
+   {
+    "sig": "button.gallery-chip",
+    "n": 8,
+    "why": "OK",
+    "parent": "div#gallery-chips"
+   },
+   {
+    "sig": "div.gallery-pager",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main"
+   },
+   {
+    "sig": "button.gallery-pager-btn",
+    "n": 2,
+    "why": "n<3",
+    "parent": "div#gallery-pager-top"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 8244,
+  "docW": 1280,
+  "nodes": 786,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/_template.html",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 468,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 621,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 468,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "li",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1509,
+  "docW": 1280,
+  "nodes": 143,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/alogical-isness/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "li",
+    "n": 3,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2229,
+  "docW": 1280,
+  "nodes": 224,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/anfractuous-aporia/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-register-notes"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2200,
+  "docW": 1280,
+  "nodes": 231,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/cascade-math-safeguard/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2250,
+  "docW": 1280,
+  "nodes": 225,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/censorship-reversal-trap-door/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2191,
+  "docW": 1280,
+  "nodes": 224,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/contextus-claudit/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 504,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 657,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 504,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2362,
+  "docW": 1280,
+  "nodes": 237,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/empirical-asymmetry-argument/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 468,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 621,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 468,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "li",
+    "n": 3,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2176,
+  "docW": 1280,
+  "nodes": 220,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/foundational-fork/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "li",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1666,
+  "docW": 1280,
+  "nodes": 212,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/framework-vs-actor-distinction/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "a",
+    "n": 4,
+    "why": "OK",
+    "parent": "div.entry-body > section.entry-section > ul.entry-see-also > li"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2113,
+  "docW": 1280,
+  "nodes": 227,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 798,
+   "sel": "main#main > article.page > ul.glossary-list",
+   "n": 13
+  },
+  "mainGroup": {
+   "y": 798,
+   "sel": "main#main > article.page > ul.glossary-list",
+   "n": 13
+  },
+  "interact": {
+   "y": 591,
+   "sel": "article.page > aside.frame-pointer > p > a"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "p.glossary-letter",
+    "n": 13,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "ul.glossary-list",
+    "n": 13,
+    "why": "OK",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "li",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.page > ul.glossary-list"
+   },
+   {
+    "sig": "li",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.page > ul.glossary-list"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 4170,
+  "docW": 1280,
+  "nodes": 292,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/labor-sine-fructu/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1522,
+   "sel": "div.entry-body > section.entry-section > ul.entry-see-also > li > a",
+   "n": 6
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "a",
+    "n": 6,
+    "why": "OK",
+    "parent": "div.entry-body > section.entry-section > ul.entry-see-also > li"
+   },
+   {
+    "sig": "em",
+    "n": 5,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2186,
+  "docW": 1280,
+  "nodes": 236,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/modal-architectural-pessimism/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1369,
+   "sel": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also > li",
+   "n": 6
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "li",
+    "n": 6,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2346,
+  "docW": 1280,
+  "nodes": 230,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/ne-hoc-fiat/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 468,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 621,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 468,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2219,
+  "docW": 1280,
+  "nodes": 228,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/no-essential-protection-from-destruction/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 483,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1403,
+   "sel": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also > li",
+   "n": 5
+  },
+  "interact": {
+   "y": 483,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "li",
+    "n": 5,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2307,
+  "docW": 1280,
+  "nodes": 222,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/nothingist/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "li",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1453,
+  "docW": 1280,
+  "nodes": 215,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/protecting-class-absence/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2319,
+  "docW": 1280,
+  "nodes": 228,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/proxy-gamble/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "code",
+    "n": 9,
+    "why": "textflow-tag",
+    "parent": "div.entry-body > section.entry-section > ul.entry-see-also > li"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2275,
+  "docW": 1280,
+  "nodes": 233,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/signal/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2118,
+  "docW": 1280,
+  "nodes": 215,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/synapse-syntax-lapse/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 468,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 621,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 468,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "em",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "em",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "article.entry > header.entry-header > div.entry-meta > span"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1805,
+  "docW": 1280,
+  "nodes": 219,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/transmission/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2148,
+  "docW": 1280,
+  "nodes": 216,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/two-layer-architecture/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-see-also"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2334,
+  "docW": 1280,
+  "nodes": 232,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/void-engine/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 419,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 571,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 419,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.entry > header.entry-header > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > div.entry-body > section.entry-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2088,
+  "docW": 1280,
+  "nodes": 216,
+  "hasMain": true
+ },
+ {
+  "page": "/glossary/w-holes/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.entry > header.entry-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 468,
+   "sel": "main#main > article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 621,
+   "sel": "main#main > article.entry > div.entry-body > section.entry-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 468,
+   "sel": "article.entry > header.entry-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "em",
+    "n": 5,
+    "why": "textflow-tag",
+    "parent": "article.entry > div.entry-body > section.entry-section > p"
+   },
+   {
+    "sig": "section.entry-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.entry > div.entry-body"
+   },
+   {
+    "sig": "li",
+    "n": 4,
+    "why": "OK",
+    "parent": "article.entry > div.entry-body > section.entry-section > ul.entry-register-notes"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.entry > header.entry-header > div.entry-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2236,
+  "docW": 1280,
+  "nodes": 228,
+  "hasMain": true
+ },
+ {
+  "page": "/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 140,
+   "sel": "section.cover > div.cover-mark-block > h1.cover-mark.cover-mark--video > video.cover-mark-video",
+   "tag": "video",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1230,
+   "sel": "section#index > div.index-grid > a.destination",
+   "n": 6
+  },
+  "mainGroup": {
+   "y": 1230,
+   "sel": "section#index > div.index-grid > a.destination",
+   "n": 6
+  },
+  "interact": {
+   "y": 771,
+   "sel": "body.home > section.cover > p.cover-descent > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "a.destination",
+    "n": 6,
+    "why": "OK",
+    "parent": "section#index > div.index-grid"
+   },
+   {
+    "sig": "span.sep",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "body.home > section.cover > div.cover-mark-block > p.cover-subhead"
+   },
+   {
+    "sig": "source",
+    "n": 2,
+    "why": "n<3",
+    "parent": "section.cover > div.cover-mark-block > h1.cover-mark.cover-mark--video > video.cover-mark-video"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 133,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2158,
+  "docW": 1280,
+  "nodes": 221,
+  "hasMain": false
+ },
+ {
+  "page": "/library-about/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 295,
+   "sel": "main#main > article.lib-page > header.lib-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 501,
+   "sel": "main#main > article.lib-page > header.lib-hero > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 862,
+   "sel": "main#main > article.lib-page > section.lib-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 501,
+   "sel": "article.lib-page > header.lib-hero > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 3,
+  "diag": [
+   {
+    "sig": "div.lib-stat-cell",
+    "n": 7,
+    "why": "not-rich(1/7)",
+    "parent": "main#main > article.lib-page > div.lib-stat-grid"
+   },
+   {
+    "sig": "section.lib-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.lib-page"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.lib-page > header.lib-hero > div.mode-toggle"
+   },
+   {
+    "sig": "p",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.lib-page > section.lib-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 3024,
+  "docW": 1280,
+  "nodes": 200,
+  "hasMain": true
+ },
+ {
+  "page": "/music/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 322,
+   "sel": "main#main > section.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 2098,
+   "sel": "article.music-card > div.music-meta > details.music-tracklist > ol > li",
+   "n": 8
+  },
+  "mainGroup": {
+   "y": 2098,
+   "sel": "article.music-card > div.music-meta > details.music-tracklist > ol > li",
+   "n": 8
+  },
+  "interact": {
+   "y": 603,
+   "sel": "main#main > div.bandcamp-cta > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "li",
+    "n": 8,
+    "why": "OK",
+    "parent": "article.music-card > div.music-meta > details.music-tracklist > ol"
+   },
+   {
+    "sig": "span.music-stat",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "div.music-grid > article.music-card > div.music-meta > div.music-stats"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2789,
+  "docW": 1280,
+  "nodes": 232,
+  "hasMain": true
+ },
+ {
+  "page": "/ne-hoc-fiat/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 723,
+   "sel": "main#main > article.page > section.project-section",
+   "n": 4
+  },
+  "mainGroup": {
+   "y": 723,
+   "sel": "main#main > article.page > section.project-section",
+   "n": 4
+  },
+  "interact": {
+   "y": 1682,
+   "sel": "article.page > section.project-section > p > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "em",
+    "n": 7,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > section.project-section > p"
+   },
+   {
+    "sig": "section.project-section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.page"
+   },
+   {
+    "sig": "a",
+    "n": 3,
+    "why": "short(<24px)",
+    "parent": "main#main > article.page > section.project-section > p"
+   },
+   {
+    "sig": "em",
+    "n": 2,
+    "why": "n<3",
+    "parent": "main#main > article.page > p.lede"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2546,
+  "docW": 1280,
+  "nodes": 218,
+  "hasMain": true
+ },
+ {
+  "page": "/notes/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 572,
+   "sel": "main#main > div.notes-app > section.notes-main > div.notes-toolbar > button.notes-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 572,
+   "sel": "main#main > div.notes-app > section.notes-main > div.notes-toolbar > button.notes-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 572,
+   "sel": "button#btn-new"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "button.notes-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > div.notes-app > section.notes-main > div.notes-toolbar"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1739,
+  "docW": 1280,
+  "nodes": 201,
+  "hasMain": true
+ },
+ {
+  "page": "/preface/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": null,
+  "groups": 0,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.page > div.preface-body"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1584,
+  "docW": 1280,
+  "nodes": 180,
+  "hasMain": true
+ },
+ {
+  "page": "/recommendations/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 1197,
+   "sel": "main#main > section.rec-section",
+   "n": 7
+  },
+  "mainGroup": {
+   "y": 2130,
+   "sel": "section#media > div.rec-cards > article.rec-card",
+   "n": 14
+  },
+  "interact": {
+   "y": 778,
+   "sel": "main#main > aside.rec-page-disclaimer > p.rec-disclaimer-body > a"
+  },
+  "groups": 7,
+  "diag": [
+   {
+    "sig": "article.rec-card",
+    "n": 14,
+    "why": "OK",
+    "parent": "section#media > div.rec-cards"
+   },
+   {
+    "sig": "article.rec-card",
+    "n": 11,
+    "why": "OK",
+    "parent": "section#art > div.rec-cards"
+   },
+   {
+    "sig": "article.rec-card",
+    "n": 8,
+    "why": "OK",
+    "parent": "section#groups > div.rec-cards"
+   },
+   {
+    "sig": "section.rec-section",
+    "n": 7,
+    "why": "OK",
+    "parent": "main#main"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 11343,
+  "docW": 1280,
+  "nodes": 546,
+  "hasMain": true
+ },
+ {
+  "page": "/search/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.page > header.page-hero > p.eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 641,
+   "sel": "input#site-search-input"
+  },
+  "groups": 0,
+  "diag": [],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1172,
+  "docW": 1280,
+  "nodes": 181,
+  "hasMain": true
+ },
+ {
+  "page": "/successor/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 460,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1229,
+   "sel": "div.essay-body > section.essay-section > details.successor-about > div.successor-about-body > section.essay-section",
+   "n": 7
+  },
+  "interact": {
+   "y": 460,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 4,
+  "diag": [
+   {
+    "sig": "section.essay-section",
+    "n": 7,
+    "why": "OK",
+    "parent": "div.essay-body > section.essay-section > details.successor-about > div.successor-about-body"
+   },
+   {
+    "sig": "div.agent-fx-ctl",
+    "n": 7,
+    "why": "invisible(0/7)",
+    "parent": "div#agent-fx-body > section.agent-fx-grp"
+   },
+   {
+    "sig": "div.agent-fx-ctl",
+    "n": 6,
+    "why": "invisible(0/6)",
+    "parent": "div#agent-fx-body > section.agent-fx-grp"
+   },
+   {
+    "sig": "section.agent-fx-grp",
+    "n": 4,
+    "why": "invisible(0/4)",
+    "parent": "div#agent-fx-body"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1609,
+  "docW": 1280,
+  "nodes": 383,
+  "hasMain": true
+ },
+ {
+  "page": "/templates/essay.html",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 460,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 603,
+   "sel": "main#main > article.essay > div.essay-body > section",
+   "n": 4
+  },
+  "interact": {
+   "y": 460,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 2,
+  "diag": [
+   {
+    "sig": "section",
+    "n": 4,
+    "why": "OK",
+    "parent": "main#main > article.essay > div.essay-body"
+   },
+   {
+    "sig": "code",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "article.essay > div.essay-body > section > p"
+   },
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > div.essay-body > section"
+   },
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > header.essay-header > div.essay-meta"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 3125,
+  "docW": 1280,
+  "nodes": 179,
+  "hasMain": true
+ },
+ {
+  "page": "/troubleshooting/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 598,
+   "sel": "main#main > section.ts-section",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 598,
+   "sel": "main#main > section.ts-section",
+   "n": 3
+  },
+  "interact": {
+   "y": 2633,
+   "sel": "main#main > div.ts-close > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "p",
+    "n": 4,
+    "why": "textflow-tag",
+    "parent": "main#main > section.ts-section"
+   },
+   {
+    "sig": "section.ts-section",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main"
+   },
+   {
+    "sig": "p.ts-subhead",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > section.ts-section"
+   },
+   {
+    "sig": "pre.ts-pre",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > section.ts-section"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 3160,
+  "docW": 1280,
+  "nodes": 225,
+  "hasMain": true
+ },
+ {
+  "page": "/violence-as-reductio/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 561,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 561,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 561,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > header.essay-header > div.essay-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.essay > header.essay-header > div.mode-toggle"
+   },
+   {
+    "sig": "a",
+    "n": 3,
+    "why": "short(<24px)",
+    "parent": "article.essay > div.essay-body > section.essay-section > p"
+   },
+   {
+    "sig": "code",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.essay > header.essay-header > div.essay-meta > span"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1823,
+  "docW": 1280,
+  "nodes": 173,
+  "hasMain": true
+ },
+ {
+  "page": "/void-engine/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 325,
+   "sel": "div.app > header.hdr > div.hdr-brand > h1",
+   "tag": "h1",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 531,
+   "sel": "div#perm-bar > div",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 1408,
+   "sel": "div#grid > div.card",
+   "n": 298
+  },
+  "interact": {
+   "y": 395,
+   "sel": "button#read-btn"
+  },
+  "groups": 8,
+  "diag": [
+   {
+    "sig": "div.card",
+    "n": 298,
+    "why": "OK",
+    "parent": "div#grid"
+   },
+   {
+    "sig": "div.trow",
+    "n": 250,
+    "why": "invisible(0/250)",
+    "parent": "div#tlist"
+   },
+   {
+    "sig": "div.card.is-new",
+    "n": 87,
+    "why": "OK",
+    "parent": "div#grid"
+   },
+   {
+    "sig": "div",
+    "n": 24,
+    "why": "invisible(0/24)",
+    "parent": "div#chaos-scope-list"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 242,
+  "stickyBottom": 2272,
+  "opacityRejects": 794,
+  "docH": 35055,
+  "docW": 1280,
+  "nodes": 5864,
+  "hasMain": true
+ },
+ {
+  "page": "/watch/_donor/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.media-page > header.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": null,
+  "mainGroup": null,
+  "interact": {
+   "y": 1203,
+   "sel": "main#main > article.media-page > p.media-back > a"
+  },
+  "groups": 0,
+  "diag": [],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1623,
+  "docW": 1280,
+  "nodes": 176,
+  "hasMain": true
+ },
+ {
+  "page": "/watch/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 340,
+   "sel": "main#main > section.page-hero > p.page-hero-eyebrow",
+   "tag": "p",
+   "inHero": true
+  },
+  "repeat": {
+   "y": 802,
+   "sel": "main#main > div.video-grid > article.video-card",
+   "n": 9
+  },
+  "mainGroup": {
+   "y": 802,
+   "sel": "main#main > div.video-grid > article.video-card",
+   "n": 9
+  },
+  "interact": {
+   "y": 630,
+   "sel": "main#main > div.channel-cta > a"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "article.video-card",
+    "n": 9,
+    "why": "OK",
+    "parent": "main#main > div.video-grid"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 2468,
+  "docW": 1280,
+  "nodes": 254,
+  "hasMain": true
+ },
+ {
+  "page": "/why-not-suicide/",
+  "vp": "desktop",
+  "vh": 900,
+  "content": {
+   "y": 268,
+   "sel": "main#main > article.essay > header.essay-header > p.eyebrow",
+   "tag": "p",
+   "inHero": false
+  },
+  "repeat": {
+   "y": 561,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "mainGroup": {
+   "y": 561,
+   "sel": "main#main > article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn",
+   "n": 3
+  },
+  "interact": {
+   "y": 561,
+   "sel": "article.essay > header.essay-header > div.mode-toggle > button.mode-toggle-btn"
+  },
+  "groups": 1,
+  "diag": [
+   {
+    "sig": "span",
+    "n": 3,
+    "why": "textflow-tag",
+    "parent": "main#main > article.essay > header.essay-header > div.essay-meta"
+   },
+   {
+    "sig": "button.mode-toggle-btn",
+    "n": 3,
+    "why": "OK",
+    "parent": "main#main > article.essay > header.essay-header > div.mode-toggle"
+   },
+   {
+    "sig": "a",
+    "n": 3,
+    "why": "short(<24px)",
+    "parent": "article.essay > div.essay-body > section.essay-section > p"
+   },
+   {
+    "sig": "code",
+    "n": 2,
+    "why": "n<3",
+    "parent": "article.essay > header.essay-header > div.essay-meta > span"
+   }
+  ],
+  "offscreenRejects": 0,
+  "hdrBottom": 250,
+  "stickyBottom": 0,
+  "opacityRejects": 0,
+  "docH": 1793,
+  "docW": 1280,
+  "nodes": 173,
+  "hasMain": true
+ }
+]

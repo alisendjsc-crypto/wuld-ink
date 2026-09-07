@@ -236,6 +236,32 @@
       color: var(--c-fg-muted);
       margin-block-end: var(--s-2);
     }
+
+    /* ── K298 · phone rhythm + type scale ─────────────────────────────
+       Every rule below is (max-width: 640px)-scoped; desktop is inert.
+       Two defects this closes. (1) The section h2 ESCAPES the K275
+       phone type scale by specificity — .donations-section-heading
+       (0,1,0) beats mobile-a11y's bare h2 clamp (0,0,1) — so a phone
+       h2 renders LARGER (40.5px) than its own h1 (34.2px). (2) The
+       page carries a desktop column's vertical rhythm, which puts the
+       Donate button — the page's purpose — below the phone fold.
+       Selectors sit at >= the escaping rules' specificity and later in
+       source. The intro paragraph is UNTOUCHED: the "nothing here is
+       paywalled" frame belongs above the button (K297 ruling). */
+    @media (max-width: 640px) {
+      .page-hero-eyebrow { margin-block-end: var(--s-2); }   /* 18 -> 9  */
+      .page-hero-title   { margin-block-end: var(--s-4); }   /* 36 -> 18 */
+
+      .donations-section { margin-block: var(--s-6); }       /* 72 -> 36 */
+
+      .donations-section-heading {
+        font-size: clamp(1.5rem, 5.5vw, 2rem);  /* 40.5 -> 27 = the site's own phone h2 scale */
+        margin-block-start: 0;                  /* base.css h2 mt 54; the eyebrow's own margin carries the gap */
+      }
+
+      .donations-section-lede { margin-block-end: var(--s-4); } /* 27 -> 18 */
+      .donations-paypal-form  { margin-block: var(--s-4); }     /* 27 -> 18 */
+    }
   </style>
 <!-- K276 PWA -->
 <link rel="manifest" href="/manifest.webmanifest">

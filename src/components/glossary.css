@@ -200,3 +200,14 @@
   color: var(--c-accent);
   font-weight: 500;
 }
+
+/* ── K298 · phone type scale ─────────────────────────────────
+   `.entry-term` (0,1,0) beats mobile-a11y's bare `h1` phone clamp
+   (0,0,1), so every glossary entry renders its headword at 54px — 1.58x
+   the phone scale, wrapping to four lines / 255px at worst. Same clamp
+   as the site's own phone h1, at the escaping selector's specificity,
+   phone-scoped; desktop is inert. The italic headline face and the
+   term's own margin are untouched. */
+@media (max-width: 640px) {
+  .entry-term { font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.12; overflow-wrap: break-word; }
+}
