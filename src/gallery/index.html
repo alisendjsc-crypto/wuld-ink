@@ -101,6 +101,54 @@
   <link rel="stylesheet" href="/components/mobile-nav.css?v=K284" media="(max-width: 640px)">
   <script defer src="/components/mobile-nav.js?v=K284"></script>
   <!-- /K281 mobile nav -->
+  <!-- K297 -- phone reach for the lobby (page-local, no component touched,
+       no ?v). Rhythm + type are phone-scoped; the handout fold is the
+       K291/K296 mechanism; the rooms-index reorder below is the one change
+       that is visible on desktop too (rooms before the plate-grid controls). -->
+  <style>
+    /* K297 -- the lobby h1 escaped the K275 phone type scale by specificity
+       (.gallery-page .page-hero-title beats mobile-a11y's bare `h1`); it
+       rejoins the site scale here. Hero / rooms-index / controls / gate
+       rhythm tightened on phones only. Every rule sits under (max-width: 640px). */
+    @media (max-width: 640px) {
+      .gallery-page .page-hero { padding-block: var(--s-6) var(--s-5); margin-block-end: var(--s-5); }
+      .gallery-page .page-hero-title { font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.12; overflow-wrap: break-word; }
+      .gallery-page .page-intro { margin-block-end: var(--s-4); }
+      .gallery-page .gallery-category-index { margin: var(--s-5) 0; }
+      .gallery-page .gallery-category-index-aside { margin-block-end: var(--s-3); }
+      .gallery-page .gallery-controls { margin-block-end: var(--s-4); padding-block-end: var(--s-2); }
+      .gallery-page .gallery-nsfw-bar { margin-block-end: var(--s-5); }
+    }
+    /* K297 -- the exhibition handout folds on phones behind a one-line
+       summary; the rooms index is the next thing on the screen. Ships OPEN
+       in the markup; a parse-time script closes it at <=640px. No JS =>
+       fully expanded, i.e. the desktop page. Summary hidden >=641px, so
+       desktop is untouched. Framing degrades toward MORE, never less. */
+    .gallery-fold { margin: 0; }
+    .gallery-fold > summary {
+      display: block;
+      list-style: none;
+      cursor: pointer;
+      padding-block: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      line-height: var(--lh-relaxed);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+    }
+    .gallery-fold > summary::-webkit-details-marker { display: none; }
+    .gallery-fold > summary::after { content: " [+]"; color: var(--c-accent); }
+    .gallery-fold[open] > summary::after { content: " [\2212]"; }
+    .gallery-fold > summary:hover { color: var(--c-accent); }
+    .gallery-fold > summary:focus-visible {
+      outline: var(--bw-thick) solid var(--c-accent);
+      outline-offset: 2px;
+    }
+    @media (min-width: 641px) {
+      .gallery-fold > summary { display: none; }
+    }
+  </style>
 </head>
 <body data-mode="dark" data-gallery-category="editorial">
 
@@ -139,8 +187,29 @@
     <header class="page-hero">
       <p class="page-hero-eyebrow">12 &middot; Gallery</p>
       <h1 class="page-hero-title">The Void Engine &mdash; Gallery</h1>
+      <details class="gallery-fold" open>
+      <summary>Exhibition handout</summary>
       <p class="page-intro">Exhibition handout in the form of a wall. Black-and-white and monochrome output; analog-decay register. No invitation to contemplate, no biography, no consolation. The images were not made to be understood. They were made to be looked at until looking becomes uncomfortable, and then a little longer. <span id="gallery-current">Currently: every plate, across every room.</span></p>
+      </details>
     </header>
+    <script>
+    /* K297 - the exhibition handout ships OPEN in the markup; phones get it
+       closed behind its summary. No JS => fully expanded, i.e. the desktop
+       page. Never the reverse: framing degrades toward MORE, not less. */
+    (function(){try{if(window.matchMedia&&window.matchMedia("(max-width: 640px)").matches){var f=document.querySelectorAll("details.gallery-fold");for(var i=0;i<f.length;i++){f[i].removeAttribute("open");}}}catch(e){}})();
+    </script>
+
+    <!-- K297: the rooms index sits ABOVE the gate and the JS-inserted controls
+         (gallery-room.js inserts the controls bar before the gate), so the
+         rooms are the first thing after the handout on every viewport; the
+         controls filter the plate grid below them. -->
+    <!-- K87 category index: rooms light up when the manifest holds
+         >=1 plate in that category (dormant until the K88 ingest). -->
+    <section class="gallery-category-index" id="gallery-category-index" aria-label="Gallery rooms" hidden>
+      <h2 class="gallery-category-index-heading">Rooms</h2>
+      <p class="gallery-category-index-aside">Flagged rooms gate through the same consent interstitial.</p>
+      <div class="gallery-cat-grid" id="gallery-cat-grid"></div>
+    </section>
 
     <!-- K83 consent gate: reveal of [data-nsfw] plates now runs through a
          consent interstitial (18+ / AI-generated / no real persons). Until
@@ -156,14 +225,6 @@
       </button>
       <span class="gallery-nsfw-status" id="gallery-nsfw-status">Flagged plates are withheld until revealed.</span>
     </div>
-
-    <!-- K87 category index: rooms light up when the manifest holds
-         >=1 plate in that category (dormant until the K88 ingest). -->
-    <section class="gallery-category-index" id="gallery-category-index" aria-label="Gallery rooms" hidden>
-      <h2 class="gallery-category-index-heading">Rooms</h2>
-      <p class="gallery-category-index-aside">Flagged rooms gate through the same consent interstitial.</p>
-      <div class="gallery-cat-grid" id="gallery-cat-grid"></div>
-    </section>
 
     <section class="gallery-grid" id="gallery-grid" aria-label="Plates">
       <noscript><p class="gallery-empty">This gallery renders from /gallery/manifest.json and needs JavaScript. The plates exist; the script is the curator.</p></noscript>
