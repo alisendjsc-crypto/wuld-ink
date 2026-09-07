@@ -25,49 +25,84 @@ Usage:
 """
 import argparse, re, sys
 
-DESC = ("Sources, method and chronology of the essay film Illogically Is. "
-        "The film carries no credits by rule; this document is its only credit sequence.")
-TITLE = "Illogically Is &mdash; The Apparatus"
-URL = "https://wuld.ink/illogically-is/apparatus/"
-OG = "https://wuld.ink/assets/og-default.png"
+VARIANTS = {
+    # The film. These values are byte-frozen: a change here rewrites the shipped
+    # /illogically-is/apparatus/ page, so any edit must be re-gated against it.
+    "film": dict(
+        desc=("Sources, method and chronology of the essay film Illogically Is. "
+              "The film carries no credits by rule; this document is its only credit sequence."),
+        title="Illogically Is &mdash; The Apparatus",
+        url="https://wuld.ink/illogically-is/apparatus/",
+        og="https://wuld.ink/assets/og-default.png",
+        acc="--red", line="--rule", mut="--dim",
+        # The film artifact defines no a{} of its own, so the wrap supplies one.
+        astyle=("a{{color:var({acc});text-decoration:none;border-bottom:1px solid var({line})}}\n"
+                "a:hover,a:focus-visible{{border-bottom-color:var({acc})}}\n"),
+        links=('<p class="wuld-line">The film: <a href="https://youtu.be/EAvxK0f3oRo" rel="noopener">YouTube</a>'
+               ' &middot; this document as <a href="illogically-is-apparatus.pdf">PDF</a></p>\n'
+               '<!-- Vimeo and the Internet Archive join the line above when those URLs exist (handoff 3.2). Nothing else changes. -->'),
+    ),
+    # The companion short. Its artifact declares its OWN custom properties
+    # (--acc / --line / --mut, not the film's --red / --rule / --dim), so the
+    # injected styles have to name those or every link ships unstyled.
+    # NO VIDEO LINK YET, deliberately: the upload is Unlisted under the binding
+    # order in docs/wuld_ink_handoff_dot.md section 4, and linking it from a
+    # public page would defeat that. The line goes in when the short is Public.
+    "dot": dict(
+        desc=("Sources, method and verification of the companion short to the essay film Illogically Is. "
+              "The short carries no credits by rule; this document is its only credit sequence."),
+        title="&ldquo;.&rdquo; &mdash; The Apparatus",
+        url="https://wuld.ink/illogically-is/dot/apparatus/",
+        og="https://wuld.ink/assets/og-default.png",
+        acc="--acc", line="--line", mut="--mut",
+        # NO a{} here. The dot artifact styles its own links deliberately --
+        # a{color:inherit;text-decoration:underline;text-decoration-color:var(--acc)}
+        # -- and it sits AFTER this block in source order, so an injected a{}
+        # rule loses the cascade and ships as dead CSS. Restyling the content is
+        # also what handoff-dot section 3.1 forbids. Only the two wrap classes.
+        astyle="",
+        links=('<p class="wuld-line">The film: <a href="/illogically-is/">Illogically Is</a>'
+               ' &middot; this document as <a href="dot-apparatus.md">Markdown</a></p>\n'
+               '<!-- The short\'s own YouTube / Vimeo / Internet Archive links join the line above once it is PUBLIC. -->\n'
+               '<!-- It is Unlisted until the binding order completes (handoff-dot section 4); do not link it here before then. -->'),
+    ),
+}
 
-HEAD = f"""
+
+def blocks(v):
+    head = f"""
 <!-- wuld:head -->
-<meta name="description" content="{DESC}">
-<link rel="canonical" href="{URL}">
+<meta name="description" content="{v['desc']}">
+<link rel="canonical" href="{v['url']}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta property="og:title" content="{TITLE}">
-<meta property="og:description" content="{DESC}">
+<meta property="og:title" content="{v['title']}">
+<meta property="og:description" content="{v['desc']}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="{URL}">
-<meta property="og:image" content="{OG}">
+<meta property="og:url" content="{v['url']}">
+<meta property="og:image" content="{v['og']}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="wuld.ink">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{TITLE}">
-<meta name="twitter:description" content="{DESC}">
-<meta name="twitter:image" content="{OG}">
+<meta name="twitter:title" content="{v['title']}">
+<meta name="twitter:description" content="{v['desc']}">
+<meta name="twitter:image" content="{v['og']}">
 <style>
-a{{color:var(--red);text-decoration:none;border-bottom:1px solid var(--rule)}}
-a:hover,a:focus-visible{{border-bottom-color:var(--red)}}
-.wuld-line{{font:.8rem/1.6 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.04em;color:var(--dim);margin:-.4rem 0 1.8rem}}
-.wuld-colophon{{font:.8rem/1.6 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.04em;color:var(--dim);margin:3.5rem 0 0;padding-top:1.2rem;border-top:1px solid var(--rule)}}
+{v['astyle'].format(acc=v['acc'], line=v['line'])}.wuld-line{{font:.8rem/1.6 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.04em;color:var({v['mut']});margin:-.4rem 0 1.8rem}}
+.wuld-colophon{{font:.8rem/1.6 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.04em;color:var({v['mut']});margin:3.5rem 0 0;padding-top:1.2rem;border-top:1px solid var({v['line']})}}
 </style>
 <!-- /wuld:head -->"""
-
-LINKS = """
-<!-- wuld:links -->
-<p class="wuld-line">The film: <a href="https://youtu.be/EAvxK0f3oRo" rel="noopener">YouTube</a> &middot; this document as <a href="illogically-is-apparatus.pdf">PDF</a></p>
-<!-- Vimeo and the Internet Archive join the line above when those URLs exist (handoff 3.2). Nothing else changes. -->
-<!-- /wuld:links -->"""
-
-COLOPHON = """
+    links = "\n<!-- wuld:links -->\n" + v['links'] + "\n<!-- /wuld:links -->"
+    colophon = """
 <!-- wuld:colophon -->
 <p class="wuld-colophon">W.U.L.D.: Incorporated &middot; <a href="/">wuld.ink</a></p>
 <!-- /wuld:colophon -->"""
+    return head, links, colophon
 
-INSERTS = [("</title>", HEAD, "after"), ("</h1>", LINKS, "after"), ("</main>", COLOPHON, "before")]
+
+def inserts(v):
+    head, links, colophon = blocks(v)
+    return [("</title>", head, "after"), ("</h1>", links, "after"), ("</main>", colophon, "before")]
 
 
 def main():
@@ -75,8 +110,10 @@ def main():
     ap.add_argument("--in", dest="src", required=True)
     ap.add_argument("--out", dest="out")
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--variant", choices=sorted(VARIANTS), default="film")
     a = ap.parse_args()
     t = open(a.src, encoding="utf-8").read()
+    INSERTS = inserts(VARIANTS[a.variant])
 
     if "wuld:head" in t:
         sys.exit("FAIL: input already carries wuld regions - vendor the clean artifact")
