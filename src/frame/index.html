@@ -177,6 +177,49 @@
       font-family: var(--font-body);
       color: var(--c-fg);
     }
+    /* K296 -- phone rhythm. The --s-7 / --s-9 air between hero, lede, the
+       composition block and the four positions was authored for a 900px
+       viewport; on a 390px phone it put the first position 1.95 screens
+       down. Phone-scoped; every desktop value is untouched. */
+    @media (max-width: 640px) {
+      .page-hero { padding-block-end: var(--s-4); margin-block-end: var(--s-5); }
+      .lede { margin-block-end: var(--s-5); }
+      .frame-composition { padding-block: var(--s-4); margin-block-end: var(--s-7); }
+      .frame-composition-label { margin-block-start: 0; }
+      .frame-section { margin-block-end: var(--s-8); }
+      .frame-onward { margin-block-start: var(--s-8); }
+    }
+
+    /* K296 -- the composition block folds on phones behind a summary that
+       carries its orientation (two layers, not four co-equal positions);
+       the body is one tap away. Ships OPEN in the markup; a parse-time
+       script closes it at <=640px. No JS => fully expanded, i.e. the
+       desktop page. Summary hidden >=641px, so desktop is untouched. */
+    .frame-fold { margin: 0; }
+    .frame-fold > summary {
+      display: block;
+      list-style: none;
+      cursor: pointer;
+      padding-block: var(--s-3);
+      font-family: var(--font-mono);
+      font-size: var(--t-xs);
+      line-height: var(--lh-relaxed);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--c-fg-muted);
+    }
+    .frame-fold > summary::-webkit-details-marker { display: none; }
+    .frame-fold > summary::after { content: " [+]"; color: var(--c-accent); }
+    .frame-fold[open] > summary::after { content: " [\2212]"; }
+    .frame-fold > summary:hover { color: var(--c-accent); }
+    .frame-fold > summary:focus-visible {
+      outline: var(--bw-thick) solid var(--c-accent);
+      outline-offset: 2px;
+    }
+    @media (min-width: 641px) {
+      .frame-fold > summary { display: none; }
+    }
+
   </style>
 <!-- K276 PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
@@ -244,6 +287,8 @@
            framing closed by this block.
            ============================================================ -->
       <section class="frame-composition" aria-labelledby="frame-composition">
+        <details class="frame-fold" open>
+        <summary>How these compose &mdash; two layers, not four co-equal positions</summary>
         <h2 id="frame-composition" class="frame-composition-label">How these compose</h2>
         <p>
           The four positions below are not flat-and-co-equal. This body of work is architecturally two-layered: <strong>(1) a structural antinatalist argument</strong> grounded on consent-impossibility, asymmetry, and suffering-as-deterrence, and <strong>(2) a downstream eliminationist / negative-utilitarian superstructure</strong> that licenses urgency, duty, and red-button-style advocacy. The two layers are derivationally distinct.
@@ -251,7 +296,14 @@
         <p>
           The load-bearing consequence: concessions to the diagnostic layer do not entail commitment to the prescriptive layer. Many critiques target Layer 2 and treat the success of that attack as a refutation of Layer 1; this conflates two arguments that share a diagnostic premise but diverge on what the diagnosis licenses. Read the four positions below with the composition pre-loaded &mdash; <strong>Structural Antinatalism is Layer 1</strong>; <strong>Negative Utilitarianism</strong> and <strong>Voluntary Human Extinction</strong> sit at Layer 2.
         </p>
+        </details>
       </section>
+      <script>
+      /* K296 - the composition block ships OPEN in the markup; phones get it
+         closed behind its summary. No JS => fully expanded, i.e. the desktop
+         page. Never the reverse: framing degrades toward MORE, not less. */
+      (function(){try{if(window.matchMedia&&window.matchMedia("(max-width: 640px)").matches){var f=document.querySelectorAll("details.frame-fold");for(var i=0;i<f.length;i++){f[i].removeAttribute("open");}}}catch(e){}})();
+      </script>
 
       <!-- ============================================================
            FRAME SECTIONS — one per general-philosophy term.
