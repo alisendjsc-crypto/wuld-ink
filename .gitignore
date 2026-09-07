@@ -70,3 +70,14 @@ __pycache__/
 # empties it. Ignored so the bay itself never becomes the untracked noise
 # it exists to clear (K288).
 _to_delete/
+
+# Inbox for handoffs from the Video Editing project (docs/wuld_ink_handoff_dot.md
+# names it). That project regenerates and re-syncs this folder on its own schedule
+# -- three times in ninety minutes on the day it landed -- and every session here
+# gates verify-at-open on a clean `git status`, so a folder a DIFFERENT project
+# rewrites makes that gate unreliable: a session opens, sees dirt, and has to work
+# out whose it is. Same reasoning as _to_delete/ above. The HANDOUT stays tracked
+# because it is static; the buffer does not because it is live. Nothing is lost --
+# the canonical copies live in the Video Editing project and Downloads\dot_release\,
+# and whatever the site PUBLISHES lands in src/ under version control (K293e).
+docs/dot-handoff/
