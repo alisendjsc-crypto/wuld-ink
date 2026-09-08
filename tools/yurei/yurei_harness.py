@@ -220,6 +220,26 @@ class Matcher:
         t = self.emit_turn.get(entry_id)
         return t is not None and (self.turn - t) < NO_REPEAT_WINDOW
 
+    def _exempt_top(self, text):
+        """K301: pure lookahead (no emit, no state mutation). If this input's
+        best-scoring RESPONSE candidate carries `dampening_exempt`, return it;
+        otherwise None. Its only use is to let an always-answer entry step
+        ahead of the REPEAT lane. Absent the flag this returns None and the
+        pipeline is unchanged. Mirrors Matcher.prototype._exemptTop in
+        src/components/yurei-oracle.js; the parity gate asserts they agree."""
+        scored = []
+        for e in self.responses:
+            sc, mlen = entry_score(e, text)
+            if sc > 0:
+                scored.append((sc, mlen, e["id"], e))
+        if not scored:
+            return None
+        best = max(s[0] for s in scored)
+        if best < MISS_THRESHOLD:
+            return None
+        scored.sort(key=lambda x: (-x[0], -x[1], x[2]))
+        return scored[0][3] if scored[0][3].get("dampening_exempt") is True else None
+
     def _emit(self, entry):
         self.emit_turn[entry["id"]] = self.turn
         self.last_entry_id = entry["id"]
@@ -257,6 +277,17 @@ class Matcher:
         # 3. REPEAT CHECK — identical normalized input within repeat_window
         window = self.input_hist[-self.repeat_window:] if self.repeat_window else self.input_hist
         prior = window.count(text)
+
+        # 3a. ALWAYS-ANSWER (K301) — an entry declaring `dampening_exempt: true`
+        #     re-answers every time it is asked: ahead of the repeat lane, and
+        #     immune to dampening below. CRISIS is stage 2 and still runs first,
+        #     so nothing here can step over the floor.
+        if prior >= 1:
+            ex = self._exempt_top(text)
+            if ex is not None:
+                self.input_hist.append(text)
+                return self._emit(ex)
+
         if prior == 1:
             self.input_hist.append(text)
             pick = self._lru_pick([e for e in self.repeats if not self._damped(e["id"])] or self.repeats)
@@ -286,7 +317,7 @@ class Matcher:
         for sc, mlen, eid, e in scored:
             if sc < MISS_THRESHOLD:
                 break
-            if not self._damped(eid):
+            if e.get("dampening_exempt") is True or not self._damped(eid):
                 return self._emit(e)
         # all matching candidates damped -> miss
         return self._miss()

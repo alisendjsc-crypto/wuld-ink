@@ -115,7 +115,7 @@ const noPat = E.filter(e => !(e.patterns || []).length).map(e => e.id);
 report.meta = { corpus: path.relative(ROOT, CORPUS), engine: path.relative(ROOT, ENGINE), entries: E.length, patterns: forms.length, classes: cls, tiers, modes, weights, CONST,
                 no_pattern_entries: noPat };
 log("  entries=" + E.length + " patterns=" + forms.length + " classes=" + JSON.stringify(cls) + " modes=" + JSON.stringify(modes) + " weights=" + JSON.stringify(weights));
-assert(E.length === 185 && forms.length === 850, "anatomy matches the K299 corpus (185 entries / 850 patterns)", E.length);
+assert(E.length === 188 && forms.length === 888, "anatomy matches the K301 corpus (188 entries / 888 patterns)", E.length);
 assert(noPat.every(id => /^mg-(deflect|repeat)-/.test(id)) && noPat.length === 7, "the 7 pattern-less entries are exactly the deflection+repeat pool (miss path, by construction)", noPat.length);
 let nonNorm = 0; for (const f of forms) if (normalize(f.form) !== f.form) nonNorm++;
 assert(nonNorm === 0, "every declared form is already normalized (pre-normalized corpus law)", forms.length);
@@ -219,7 +219,15 @@ const collided = Object.entries(claimants).filter(([, v]) => v.length > 1).map((
   const owners = [...new Set(v.map(s => s.split("/")[0]))];
   return { form, claimants: v, distinct_entries: owners.length, winner: r.id, lane: r.lane, margin: mg ? mg.d : null, by: mg ? mg.by : null, intra_entry_only: owners.length === 1 };
 });
-assert(collided.length === 6, "collided forms (a form declared by more than one pattern) = 6, as the kickoff measured", collided.length);
+// K301: the SET, not the count -- a bare count cannot tell a new collision from a moved one (cclxxiii).
+// The 6 K295 collisions + 2 minted by mg-topical-deflect-01, both of which it LOSES:
+//   "procreation"  -> mg-antinatalism-01 (oracle; thesis-naming routes to the library, the oracle-net law)
+//   "misanthropy"  -> pos-antinatalism-misanthropic-01 (signed position beats an unsigned register lane, K299)
+const COLLIDED_EXPECT = ["edgelord","goodbye","hello","hi","misanthropy","procreation","see a therapist","you are depressed"];
+const collidedSorted = collided.map(c => c.form).sort();
+assert(collidedSorted.length === COLLIDED_EXPECT.length && collidedSorted.every((f, i) => f === COLLIDED_EXPECT[i]),
+  "collided forms (a form declared by more than one pattern) are exactly the 8 audited ones",
+  collidedSorted.filter(f => !COLLIDED_EXPECT.includes(f)).join(", ") || collidedSorted.length);
 for (const c of collided) log("    " + JSON.stringify(c.form) + " -> " + c.winner + " [" + c.lane + "] margin=" + c.margin + " by " + c.by + (c.intra_entry_only ? " (intra-entry duplicate, benign)" : "") + "  claimants: " + c.claimants.join(" , "));
 // engine-vs-ranker agreement over all forms (the ranker is only trusted for margins if it agrees with the engine)
 let agree = 0; for (const x of selfRows) { const rk = rank(x.form); if ((rk.top ? rk.top.id : null) === x.got || (x.lane === "deflection" && !rk.top)) agree++; }

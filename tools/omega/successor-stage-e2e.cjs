@@ -392,6 +392,16 @@ function withHints(list) {                     // real corpus, mg-oracle-help-01
 function freshRoute(entries, text) {           // the independent oracle: a brand-new matcher per probe
   return new ORACLE.Matcher(entries, { unsealed: false }).respond(text);
 }
+// cclxxvi: never index a transcript by ordinal. Opening [ ? ] now asks "help"
+// first, so every fixed index shifted by two. Select by identity instead.
+function lastAsk(w, persona) {                 // the last thing the visitor said
+  const L = w.P._tx(persona || "mrgrey").lines.filter(function (l) { return l.who === "you"; });
+  return L[L.length - 1] || null;
+}
+function lastReply(w, persona) {               // the last thing the proxy said
+  const L = w.P._tx(persona || "mrgrey").lines.filter(function (l) { return l.who !== "you"; });
+  return L[L.length - 1] || null;
+}
 (function () {
   const w = makeWorld({}); seedMrgrey(w); w.P._open();
   const btn = byClass(w.body, "sstage-help-btn");
@@ -439,7 +449,7 @@ function freshRoute(entries, text) {           // the independent oracle: a bran
     ok("chip " + (i + 1) + " (" + JSON.stringify(text) + ") lands on the same response a typed line does",
        !!bub && bub.textContent === expect.response, (bub && bub.textContent || "").slice(0, 48) + " | want " + expect.id);
     ok("chip " + (i + 1) + ": the literal text is what was asked",
-       w.P._tx("mrgrey").lines[0] && w.P._tx("mrgrey").lines[0].text === text, w.P._tx("mrgrey").lines[0]);
+       !!lastAsk(w) && lastAsk(w).text === text, lastAsk(w));
     ok("chip " + (i + 1) + ": tapping collapses the region", byClass(w.body, "sstage-hints")[0].hidden === true, byClass(w.body, "sstage-hints")[0].hidden);
   });
   // and the ids are the four the fold ratified
@@ -460,9 +470,9 @@ function freshRoute(entries, text) {           // the independent oracle: a bran
   byClass(w.body, "sstage-hint")[0].click();
   ok("INVARIANT: a chip carrying a crisis form fires the CRISIS lane",
      byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
-  ok("INVARIANT: the stored line is flagged crisis", w.P._tx("mrgrey").lines[1].crisis === true, w.P._tx("mrgrey").lines[1]);
+  ok("INVARIANT: the stored line is flagged crisis", lastReply(w).crisis === true, lastReply(w));
   ok("INVARIANT: the reply is the floor's own words",
-     w.P._tx("mrgrey").lines[1].text === freshRoute(ents, CRISIS_FORM).response, w.P._tx("mrgrey").lines[1].text.slice(0, 40));
+     lastReply(w).text === freshRoute(ents, CRISIS_FORM).response, lastReply(w).text.slice(0, 40));
 })();
 
 // and typing a floor form still reaches the floor while the chip UI is OPEN
@@ -473,7 +483,50 @@ function freshRoute(entries, text) {           // the independent oracle: a bran
   w.P._ask("i do not want to live");
   ok("open-UI: a TYPED floor form still reaches the floor with the chips open",
      byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
-  ok("open-UI: it is the real floor entry", w.P._tx("mrgrey").lines[1].text === freshRoute(ENTRIES, "i do not want to live").response, w.P._tx("mrgrey").lines[1].text.slice(0, 40));
+  ok("open-UI: it is the real floor entry", lastReply(w).text === freshRoute(ENTRIES, "i do not want to live").response, lastReply(w).text.slice(0, 40));
+})();
+
+// ---------------------------------------------------------------- PASS 15b: [ ? ] SPEAKS (K301)
+// K300 shipped a control that only toggled a disclosure, so the ratified capability
+// line -- and the stand-down clause inside it, "if you meant the heavier kind of help,
+// say that plainly too" -- was authored but never reachable from the vessel. Opening
+// now asks the word a person would type. Three things must hold: the line actually
+// arrives; pressing twice re-answers instead of hitting the repeat lane (which is why
+// dampening_exempt was folded); and none of it can outrank Stage 1.
+(function () {
+  const w = makeWorld({}); seedMrgrey(w); w.P._open();
+  ok("speaks: transcript is empty before the control is touched", w.P._tx("mrgrey").lines.length === 0, w.P._tx("mrgrey").lines.length);
+  byClass(w.body, "sstage-help-btn")[0].click();
+  ok("speaks: opening asks the human word", lastAsk(w) && lastAsk(w).text === "help", lastAsk(w));
+  const expect = freshRoute(ENTRIES, "help");
+  ok("speaks: the reply is whatever the CORPUS routes 'help' to", lastReply(w) && lastReply(w).text === expect.response, expect.id);
+  ok("speaks: that entry carries the stand-down clause", /stands down/.test(expect.response), expect.response.slice(-58));
+  ok("speaks: the chips are open beside it", byClass(w.body, "sstage-hints")[0].hidden === false, byClass(w.body, "sstage-hints")[0].hidden);
+
+  // closing must NOT ask again; re-opening must
+  const after1 = w.P._tx("mrgrey").lines.length;
+  byClass(w.body, "sstage-help-btn")[0].click();
+  ok("speaks: CLOSING says nothing", w.P._tx("mrgrey").lines.length === after1, w.P._tx("mrgrey").lines.length - after1);
+  byClass(w.body, "sstage-help-btn")[0].click();
+  ok("speaks: re-opening asks again", w.P._tx("mrgrey").lines.length === after1 + 2, w.P._tx("mrgrey").lines.length - after1);
+  ok("speaks: and RE-ANSWERS -- not the repeat lane (dampening_exempt, K301)",
+     lastReply(w).text === expect.response, lastReply(w).text.slice(0, 48));
+})();
+
+// the control cannot step over Stage 1 either: seat a corpus where the help word IS a floor form
+(function () {
+  const ents = ENTRIES.map(function (e) {
+    if (e.id !== "c-crisis-01") return e;
+    const c = Object.assign({}, e);
+    c.patterns = (e.patterns || []).concat([{ form: "help", mode: "exact", weight: 9 }]);
+    return c;
+  });
+  ok("control: with that seat, 'help' really is a crisis form", freshRoute(ents, "help").class === "crisis", freshRoute(ents, "help").id);
+  const w = makeWorld({}); w.P._seed("mrgrey", ents, MANIFEST); w.P._open();
+  byClass(w.body, "sstage-help-btn")[0].click();
+  ok("INVARIANT: [ ? ] goes through submit(), so the floor still fires on it",
+     byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
+  ok("INVARIANT: and the stored line is flagged", lastReply(w).crisis === true, lastReply(w));
 })();
 
 // register: no control where the corpus declares nothing; the cap holds
@@ -516,7 +569,12 @@ function freshRoute(entries, text) {           // the independent oracle: a bran
   ok("css: chips get a >=44px touch target under (pointer: coarse)", /pointer:\s*coarse[\s\S]*?\.sstage-hint[\s\S]*?min-height:\s*44px/.test(CSS), true);
   ok("css: chips carry a focus-visible ring", /\.sstage-hint:focus-visible/.test(CSS), true);
   ok("css: NO white-space override ships with the vessel (single-line bodies)", CSS.indexOf("pre-line") === -1, CSS.indexOf("pre-line"));
-  ok("js: the chip path routes through submit(), never an entry id", /function askHint[\s\S]{0,420}submit\(\);/.test(CODE) && !/respond\(\s*['"]/.test(CODE), true);
+  // K301: askHint and the [ ? ] handler both funnel through sendText, which is the
+  // ONLY place either of them reaches submit(). Fence the funnel, not the old inline call.
+  ok("js: sendText is the single send path and it calls submit()", /function sendText[\s\S]{0,300}submit\(\);/.test(CODE), true);
+  ok("js: the chip path routes through sendText, never an entry id", /function askHint[\s\S]{0,300}sendText\(/.test(CODE) && !/respond\(\s*['"]/.test(CODE), true);
+  ok("js: the [ ? ] handler asks through sendText too", /if \(opening\) sendText\(HELP_ASK\);/.test(CODE), true);
+  ok("js: HELP_ASK is the human word, not an entry id", /var HELP_ASK = "help";/.test(CODE) && CODE.indexOf('"mg-oracle-help-01"') === -1, true);
   ok("js: the stage hardcodes no hint strings -- they come off the corpus", /c\.entries\[i\]\s*&&\s*c\.entries\[i\]\.hints/.test(CODE), true);
 })();
 

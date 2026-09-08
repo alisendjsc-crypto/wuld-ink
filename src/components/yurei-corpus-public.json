@@ -3508,6 +3508,60 @@
     "note": "V14 override; register dropped by design. K299: widened per TX15-BACK Ask C - 11 forms added across the three floor entries. Measured before the fold: 12 of the 18 distress phrasings the relay listed answered with mg-deflect-01, and the misses sat one word from the hits (wish i was dead reached the floor; wish i were dead did not)."
    },
    {
+    "id": "c-crisis-harm-other-01",
+    "class": "crisis",
+    "tier": "public",
+    "response": "Out of character for this one too. If someone is in danger right now, contact emergency services. If it is the pressure underneath you want help with, in the US call or text 988; elsewhere findahelpline.com lists a local line. Saying it to a person beats saying it here.",
+    "register_tags": [
+     "clinical"
+    ],
+    "length_band": "b3_passage",
+    "animation_hint": "speak",
+    "patterns": [
+     {
+      "form": "going to hurt someone",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "want to hurt someone",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "going to hurt somebody",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "want to hurt somebody",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "going to kill someone",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "want to kill someone",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "going to hurt them",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "hurt someone else",
+      "mode": "contains",
+      "weight": 8
+     }
+    ],
+    "note": "V14 override; register dropped by design. K300: authored by Cowork on Josiah's reassignment after the Successor-Protocol seat declined to write shared-floor bytes unilaterally (TX15-BACK §4). Emergency services is named FIRST because the risk is to a third party and imminence governs; 988 is named second for the distress underneath, which is what that line is scoped for. The entry does not accuse, does not moralise, and makes no claim about what this page does with the sentence."
+   },
+   {
     "id": "a-f01",
     "class": "ambient",
     "tier": "public",

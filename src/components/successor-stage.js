@@ -251,6 +251,7 @@
   // (mg-how-many-01: counted, not published; the set stays useful by being met,
   // not mapped, so the vessel must never become walkable as an inventory).
   var HINT_CAP = 4;
+  var HELP_ASK = "help";                                   // the word a person types; the corpus decides who answers it
   function hintsFor(persona) {
     var c = cache[persona], out = [];
     if (!c || !c.entries) return out;
@@ -270,12 +271,17 @@
     hintsBtn.setAttribute("aria-expanded", on ? "true" : "false");
     if (on) hintsBtn.classList.add("sstage-btn-on"); else hintsBtn.classList.remove("sstage-btn-on");
   }
-  function askHint(text) {
-    if (!inputEl) return;
+  function sendText(text) {
+    if (!inputEl) return false;
     inputEl.value = String(text == null ? "" : text);
-    setHintsOpen(false);                                   // an affordance, not a standing menu
     wake();
     submit();                                              // the SAME path a typed line takes -- crisis floor first
+    return true;
+  }
+  function askHint(text) {
+    if (!inputEl) return;
+    setHintsOpen(false);                                   // an affordance, not a standing menu
+    sendText(text);
     if (inputEl.focus) { try { inputEl.focus(); } catch (e) {} }
   }
   function renderHints(persona) {
@@ -362,7 +368,15 @@
     hintsBtn.setAttribute("aria-expanded", "false");
     hintsBtn.setAttribute("aria-controls", "sstage-hints");
     hintsBtn.hidden = true;                                // revealed only when the staged corpus declares hints
-    hintsBtn.addEventListener("click", function () { setHintsOpen(hintsWrap ? !!hintsWrap.hidden : false); wake(); });
+    hintsBtn.addEventListener("click", function () {
+      var opening = hintsWrap ? !!hintsWrap.hidden : false;
+      setHintsOpen(opening); wake();
+      // Opening asks the word a person would type -- so the ratified capability line, and the
+      // stand-down clause inside it, actually reaches the visitor. HELP_ASK is the HUMAN word,
+      // never an entry id: if the corpus re-homes it, the visitor still gets whatever now answers.
+      // No focus() here -- on a phone the keyboard would rise straight over the chips.
+      if (opening) sendText(HELP_ASK);
+    });
     var dl = el("button", "sstage-btn", "[ download ]"); dl.setAttribute("type", "button"); dl.addEventListener("click", downloadTx);
     var clr = el("button", "sstage-btn", "[ clear ]"); clr.setAttribute("type", "button"); clr.addEventListener("click", clearTx);
     foot.appendChild(hintsBtn); foot.appendChild(dl); foot.appendChild(clr); foot.appendChild(el("span", "sstage-note", "Saved in this browser only."));

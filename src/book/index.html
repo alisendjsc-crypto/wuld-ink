@@ -90,13 +90,25 @@
     /* Book cover — Josiah's full-bleed adaptation, 2026 (portrait variant).
        Single dissolved face in red/black, distressed paper texture. Palette
        aligns with umbrella tokens (--c-accent + --c-bg). 3:4 portrait
-       aspect = canonical book-cover ratio. Capped at ~24rem so the cover
-       anchors the page-hero without pushing title-block + lede below the
-       fold on desktop. Hairline border preserves brutalist hard-edge
-       discipline. PNG with alpha (RGBA 8-bit). */
+       aspect = canonical book-cover ratio. Hairline border preserves
+       brutalist hard-edge discipline. PNG with alpha (RGBA 8-bit).
+
+       K301 (option D, Josiah-ruled): 24rem -> 18rem, and 14rem on a phone.
+       The K3 cap was set to keep the title-block above the desktop fold and
+       had stopped doing it -- the site header grew to 250px since, and the
+       title-block had drifted to y=910 on a 900px viewport. 18rem restores
+       the stated intent (766) and lifts the desktop purchase link 1441 ->
+       1297. The phone rule is separate because at 390px the column is only
+       ~336px wide, so a cap above that is already overridden and cannot move
+       anything -- only a cap BELOW it does (purchase link 1295 -> 1183,
+       1.53 -> 1.40 screens). Cost, stated: the cover renders 575 -> 431 on
+       desktop and 447 -> 335 on a phone. */
     .book-cover {
-      max-width: 24rem;
+      max-width: 18rem;
       margin-block-end: var(--s-6);
+    }
+    @media (max-width: 640px) {
+      .book-cover { max-width: 14rem; }
     }
     .book-cover img {
       display: block;

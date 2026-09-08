@@ -15,7 +15,8 @@
      2. ORACLE lane  — a DIRECT site question (best oracle score >= ORACLE_MIN)
                        routes to the oracle FAQ; ambiguous falls through.
      3. CONTINUATION — exact low-signal answer to an entry with followups.
-     4. REPEAT       — identical normalized input within repeat_window.
+     4a.ALWAYS-ANSWER — an entry declaring dampening_exempt re-answers (K301).
+     4b.REPEAT        — identical normalized input within repeat_window.
      5. SCORE        — persona responses; threshold + dampening.
      6. MISS         — deflection pool (LRU, dampened).
 
@@ -213,6 +214,25 @@
     return t != null && (this.turn - t) < NO_REPEAT_WINDOW;
   };
 
+  // K301: pure lookahead (no emit, no state mutation). If this input's
+  // best-scoring RESPONSE candidate carries `dampening_exempt`, return it;
+  // otherwise null. Its only use is to let an always-answer entry step ahead
+  // of the REPEAT lane. Absent the flag -- the default for all 187 entries
+  // that do not declare it -- this returns null and the pipeline is unchanged.
+  Matcher.prototype._exemptTop = function (text) {
+    var scored = [];
+    for (var i = 0; i < this.responses.length; i++) {
+      var r = entryScore(this.responses[i], text);
+      if (r[0] > 0) scored.push({ sc: r[0], mlen: r[1], id: this.responses[i].id, e: this.responses[i] });
+    }
+    if (!scored.length) return null;
+    var best = 0;
+    for (var j = 0; j < scored.length; j++) if (scored[j].sc > best) best = scored[j].sc;
+    if (best < MISS_THRESHOLD) return null;
+    scored.sort(cmpCandidate);
+    return (scored[0].e.dampening_exempt === true) ? scored[0].e : null;
+  };
+
   Matcher.prototype._emit = function (entry, lane) {
     this.emit_turn[entry.id] = this.turn;
     this.last_entry_id = entry.id;
@@ -236,7 +256,7 @@
     scored.sort(cmpCandidate);
     for (var k = 0; k < scored.length; k++) {
       if (scored[k].sc < floor) break;
-      if (!damp || !this._damped(scored[k].id)) return { best: best, id: this._emit(scored[k].e, lane) };
+      if (!damp || scored[k].e.dampening_exempt === true || !this._damped(scored[k].id)) return { best: best, id: this._emit(scored[k].e, lane) };
     }
     return { best: best, id: null, allDamped: true };
   };
@@ -297,6 +317,17 @@
     var window = this.repeat_window ? this.input_hist.slice(-this.repeat_window) : this.input_hist;
     var prior = 0;
     for (var w = 0; w < window.length; w++) if (window[w] === text) prior++;
+    // 4a. ALWAYS-ANSWER (K301) — an entry declaring `dampening_exempt: true`
+    //     re-answers every time it is asked: ahead of the repeat lane, and
+    //     immune to dampening below. A help command that goes quiet on the
+    //     second ask is worse than no help command, because the first ask
+    //     taught the visitor to expect one. CRISIS is stage 1 and still runs
+    //     first, so nothing here can step over the floor.
+    if (prior >= 1) {
+      var exEntry = this._exemptTop(text);
+      if (exEntry) { this.input_hist.push(text); return this._emit(exEntry, "response"); }
+    }
+
     if (prior === 1) {
       this.input_hist.push(text);
       var rpool = this.repeats.filter(function (e) { return !this._damped(e.id); }, this);
