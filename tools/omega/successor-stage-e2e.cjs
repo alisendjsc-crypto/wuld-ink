@@ -231,14 +231,20 @@ function seedYurei(w) { w.P._seed("yurei", ENTRIES, MANIFEST); }
   const w = makeWorld({}); seedMrgrey(w); w.P._open();
   w.P._ask("hello");
   const dl = lastByClass(w.body, "sstage-foot") ? byClass(lastByClass(w.body, "sstage-foot"), "sstage-btn") : [];
-  ok("foot: two mono buttons ([download] [clear])", dl.length === 2, dl.length);
+  // K300: the foot now carries THREE mono controls -- [ ? ] joined [ download ]
+  // and [ clear ]. Selected by their own text from here on, so the next control
+  // added to this row does not silently re-point these two clicks (the ordinal
+  // coupling is what broke when the vessel landed).
+  function footBtn(label) { return dl.filter(function (b) { return b.textContent === label; })[0]; }
+  ok("foot: three mono buttons ([ ? ] [download] [clear])", dl.length === 3, dl.length);
+  ok("foot: the help control comes first", dl[0] && dl[0].textContent === "[ ? ]", dl[0] && dl[0].textContent);
   const txt = w.P._txText("mrgrey");
   ok("download: txText joins the transcript", /You: hello/.test(txt) && /Mr\. Grey:/.test(txt), txt.slice(0, 40));
-  dl[0].click();   // [ download ]
+  footBtn("[ download ]").click();
   ok("download: URL.createObjectURL called (blob path ran)", w.objurls.length === 1, w.objurls.length);
   const anchors = w.created.filter(function (e) { return e.tagName === "a" && e.download; });
   ok("download: anchor carries successor-mrgrey.txt", anchors.length === 1 && anchors[0].download === "successor-mrgrey.txt", anchors.map(function (a) { return a.download; }));
-  dl[1].click();   // [ clear ]
+  footBtn("[ clear ]").click();
   ok("clear: store reset to empty lines", w.P._tx("mrgrey").lines.length === 0, w.P._tx("mrgrey").lines.length);
   ok("clear: transcript re-seeded to the intro only", byClass(w.body, "sstage-line").length === 1 && byClass(w.body, "sstage-sys").length === 1, byClass(w.body, "sstage-line").length);
 })();
@@ -366,6 +372,152 @@ function seedYurei(w) { w.P._seed("yurei", ENTRIES, MANIFEST); }
   byClass(w.body, "sstage-open-btn")[0].click();
   ok("reenter: the mount button re-opens the stage", w.P.isOpen() === true, w.P.isOpen());
   ok("reenter: same persona + transcript replayed", w.P.persona() === "mrgrey" && byClass(w.body, "sstage-line").length === 3, byClass(w.body, "sstage-line").length);
+})();
+
+// ---------------------------------------------------------------- PASS 15: the help vessel (K300)
+// The [ ? ] control and its hint chips. The load-bearing assertion is NOT that
+// the chips render -- it is that a TAP is indistinguishable from a KEYSTROKE:
+// it goes through submit() -> matcher.respond(), so the crisis floor still runs
+// at Stage 1 on the tap path. That is asserted by tapping a chip whose literal
+// text IS a crisis form and demanding the crisis lane, not assumed from code
+// shape. Every expectation is re-derived from a FRESH Matcher (K260).
+function withHints(list) {                     // real corpus, mg-oracle-help-01's hints swapped
+  return ENTRIES.map(function (e) {
+    if (e.id !== "mg-oracle-help-01") return e;
+    const c = Object.assign({}, e);
+    if (list === null) delete c.hints; else c.hints = list;
+    return c;
+  });
+}
+function freshRoute(entries, text) {           // the independent oracle: a brand-new matcher per probe
+  return new ORACLE.Matcher(entries, { unsealed: false }).respond(text);
+}
+(function () {
+  const w = makeWorld({}); seedMrgrey(w); w.P._open();
+  const btn = byClass(w.body, "sstage-help-btn");
+  const wrap = byClass(w.body, "sstage-hints");
+  ok("vessel: exactly one [ ? ] control", btn.length === 1, btn.length);
+  ok("vessel: the control reads [ ? ]", btn[0] && btn[0].textContent === "[ ? ]", btn[0] && btn[0].textContent);
+  ok("vessel: control is a real button", btn[0] && btn[0].getAttribute("type") === "button", btn[0] && btn[0].getAttribute("type"));
+  ok("vessel: control lives in the foot", btn[0] && btn[0].parentNode && btn[0].parentNode._cls["sstage-foot"], btn[0] && btn[0].parentNode && btn[0].parentNode.className);
+  ok("vessel: control SHOWN -- this corpus declares hints", btn[0] && btn[0].hidden === false, btn[0] && btn[0].hidden);
+  ok("vessel: exactly one hint region", wrap.length === 1, wrap.length);
+  ok("vessel: region starts collapsed", wrap[0] && wrap[0].hidden === true, wrap[0] && wrap[0].hidden);
+  ok("vessel: aria-expanded false while collapsed", btn[0].getAttribute("aria-expanded") === "false", btn[0].getAttribute("aria-expanded"));
+  ok("vessel: aria-controls points at the region", btn[0].getAttribute("aria-controls") === "sstage-hints" && wrap[0].id === "sstage-hints", btn[0].getAttribute("aria-controls"));
+  ok("vessel: no chips rendered while collapsed is untrue -- chips exist, region hidden", byClass(w.body, "sstage-hint").length === 4, byClass(w.body, "sstage-hint").length);
+
+  // reveal
+  btn[0].click();
+  ok("vessel: tap reveals the region", wrap[0].hidden === false, wrap[0].hidden);
+  ok("vessel: aria-expanded true when open", btn[0].getAttribute("aria-expanded") === "true", btn[0].getAttribute("aria-expanded"));
+  const chips = byClass(w.body, "sstage-hint");
+  ok("vessel: four chips", chips.length === 4, chips.length);
+
+  // the strings are the CORPUS's, not this file's and not the stage's
+  const declared = ENTRIES.find(function (e) { return e.id === "mg-oracle-help-01"; }).hints;
+  ok("vessel: chip texts are exactly the corpus hints, in order",
+     JSON.stringify(chips.map(function (c) { return c.textContent; })) === JSON.stringify(declared),
+     chips.map(function (c) { return c.textContent; }));
+  ok("vessel: _hints() agrees with the corpus", JSON.stringify(w.P._hints()) === JSON.stringify(declared), w.P._hints());
+
+  // tap collapses (an affordance, not a standing menu)
+  btn[0].click();
+  ok("vessel: second tap collapses", wrap[0].hidden === true, wrap[0].hidden);
+})();
+
+// each chip TAPS to the same entry a typed line reaches -- one fresh world per chip
+(function () {
+  const declared = ENTRIES.find(function (e) { return e.id === "mg-oracle-help-01"; }).hints;
+  declared.forEach(function (text, i) {
+    const w = makeWorld({}); seedMrgrey(w); w.P._open();
+    byClass(w.body, "sstage-help-btn")[0].click();
+    byClass(w.body, "sstage-hint")[i].click();
+    const them = byClass(w.body, "sstage-them");
+    const bub = them.length ? byClass(them[them.length - 1], "sstage-bubble")[0] : null;
+    const expect = freshRoute(ENTRIES, text);
+    ok("chip " + (i + 1) + " (" + JSON.stringify(text) + ") lands on the same response a typed line does",
+       !!bub && bub.textContent === expect.response, (bub && bub.textContent || "").slice(0, 48) + " | want " + expect.id);
+    ok("chip " + (i + 1) + ": the literal text is what was asked",
+       w.P._tx("mrgrey").lines[0] && w.P._tx("mrgrey").lines[0].text === text, w.P._tx("mrgrey").lines[0]);
+    ok("chip " + (i + 1) + ": tapping collapses the region", byClass(w.body, "sstage-hints")[0].hidden === true, byClass(w.body, "sstage-hints")[0].hidden);
+  });
+  // and the ids are the four the fold ratified
+  const got = declared.map(function (t) { return freshRoute(ENTRIES, t).id; });
+  ok("chips route to the four ratified ids (chip 3 = pos-ableist-objection-01)",
+     JSON.stringify(got) === JSON.stringify(["mg-what-are-you-01", "mg-oracle-nav-01", "pos-ableist-objection-01", "mg-greet-04"]), got);
+})();
+
+// THE INVARIANT: a chip cannot step over Stage 1. Tap a chip whose text IS a
+// crisis form -- if the tap path shortcut to an entry id, this would not fire.
+(function () {
+  const CRISIS_FORM = "i do not want to live";
+  ok("control: that form really is a crisis form on a fresh matcher",
+     freshRoute(ENTRIES, CRISIS_FORM).class === "crisis", freshRoute(ENTRIES, CRISIS_FORM).id);
+  const ents = withHints([CRISIS_FORM]);
+  const w = makeWorld({}); w.P._seed("mrgrey", ents, MANIFEST); w.P._open();
+  byClass(w.body, "sstage-help-btn")[0].click();
+  byClass(w.body, "sstage-hint")[0].click();
+  ok("INVARIANT: a chip carrying a crisis form fires the CRISIS lane",
+     byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
+  ok("INVARIANT: the stored line is flagged crisis", w.P._tx("mrgrey").lines[1].crisis === true, w.P._tx("mrgrey").lines[1]);
+  ok("INVARIANT: the reply is the floor's own words",
+     w.P._tx("mrgrey").lines[1].text === freshRoute(ents, CRISIS_FORM).response, w.P._tx("mrgrey").lines[1].text.slice(0, 40));
+})();
+
+// and typing a floor form still reaches the floor while the chip UI is OPEN
+(function () {
+  const w = makeWorld({}); seedMrgrey(w); w.P._open();
+  byClass(w.body, "sstage-help-btn")[0].click();
+  ok("open-UI: region is open before the typed probe", byClass(w.body, "sstage-hints")[0].hidden === false, byClass(w.body, "sstage-hints")[0].hidden);
+  w.P._ask("i do not want to live");
+  ok("open-UI: a TYPED floor form still reaches the floor with the chips open",
+     byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
+  ok("open-UI: it is the real floor entry", w.P._tx("mrgrey").lines[1].text === freshRoute(ENTRIES, "i do not want to live").response, w.P._tx("mrgrey").lines[1].text.slice(0, 40));
+})();
+
+// register: no control where the corpus declares nothing; the cap holds
+(function () {
+  const w = makeWorld({}); w.P._seed("mrgrey", withHints(null), MANIFEST); w.P._open();
+  ok("register: no declared hints -> the [ ? ] control is HIDDEN", byClass(w.body, "sstage-help-btn")[0].hidden === true, byClass(w.body, "sstage-help-btn")[0].hidden);
+  ok("register: no declared hints -> zero chips", byClass(w.body, "sstage-hint").length === 0, byClass(w.body, "sstage-hint").length);
+  ok("register: no declared hints -> region stays collapsed", byClass(w.body, "sstage-hints")[0].hidden === true, byClass(w.body, "sstage-hints")[0].hidden);
+  ok("register: the stage invents nothing", w.P._hints().length === 0, w.P._hints());
+
+  // mg-how-many-01 holds: the vessel is not an index, whatever the corpus grows to
+  const many = ["a","b","c","d","e","f","g","h","i"];
+  const w2 = makeWorld({}); w2.P._seed("mrgrey", withHints(many), MANIFEST); w2.P._open();
+  ok("register: a 9-hint corpus still yields at most 4 chips (HINT_CAP)", byClass(w2.body, "sstage-hint").length === 4, byClass(w2.body, "sstage-hint").length);
+})();
+
+// per-seat, and a closed stage carries no open menu into its next open
+(function () {
+  const w = makeWorld({}); seedMrgrey(w); w.P._open();
+  byClass(w.body, "sstage-help-btn")[0].click();
+  ok("state: open before close", byClass(w.body, "sstage-hints")[0].hidden === false, byClass(w.body, "sstage-hints")[0].hidden);
+  w.P.close();
+  ok("state: closing the stage collapses the region", byClass(w.body, "sstage-hints")[0].hidden === true, byClass(w.body, "sstage-hints")[0].hidden);
+  ok("state: aria-expanded reset on close", byClass(w.body, "sstage-help-btn")[0].getAttribute("aria-expanded") === "false", byClass(w.body, "sstage-help-btn")[0].getAttribute("aria-expanded"));
+
+  // a live seat swap re-reads that seat's own corpus (Yurei declares none)
+  const w3 = makeWorld({}); seedMrgrey(w3); w3.P._seed("yurei", withHints(null), MANIFEST); w3.P._open();
+  byClass(w3.body, "sstage-help-btn")[0].click();
+  w3.P.switchPersona("yurei");
+  ok("seat: swapping to a hint-less seat hides the control", byClass(w3.body, "sstage-help-btn")[0].hidden === true, byClass(w3.body, "sstage-help-btn")[0].hidden);
+  ok("seat: swapping to a hint-less seat clears the chips", byClass(w3.body, "sstage-hint").length === 0, byClass(w3.body, "sstage-hint").length);
+  ok("seat: and collapses the region", byClass(w3.body, "sstage-hints")[0].hidden === true, byClass(w3.body, "sstage-hints")[0].hidden);
+})();
+
+// the CSS half: the collapsed state must fail VERBOSE, not silent (K291)
+(function () {
+  ok("css: .sstage-hints is display:flex", /\.sstage-hints\s*\{[^}]*display:\s*flex/.test(CSS), true);
+  ok("css: [hidden] is display-gated on the region (flex would out-rank the UA default)", /\.sstage-hints\[hidden\]\s*\{\s*display:\s*none/.test(CSS), true);
+  ok("css: [hidden] is display-gated on the control", /\.sstage-help-btn\[hidden\]\s*\{\s*display:\s*none/.test(CSS), true);
+  ok("css: chips get a >=44px touch target under (pointer: coarse)", /pointer:\s*coarse[\s\S]*?\.sstage-hint[\s\S]*?min-height:\s*44px/.test(CSS), true);
+  ok("css: chips carry a focus-visible ring", /\.sstage-hint:focus-visible/.test(CSS), true);
+  ok("css: NO white-space override ships with the vessel (single-line bodies)", CSS.indexOf("pre-line") === -1, CSS.indexOf("pre-line"));
+  ok("js: the chip path routes through submit(), never an entry id", /function askHint[\s\S]{0,420}submit\(\);/.test(CODE) && !/respond\(\s*['"]/.test(CODE), true);
+  ok("js: the stage hardcodes no hint strings -- they come off the corpus", /c\.entries\[i\]\s*&&\s*c\.entries\[i\]\.hints/.test(CODE), true);
 })();
 
 // ---------------------------------------------------------------- PASS 14 (async): auto-open at boot when already unlocked

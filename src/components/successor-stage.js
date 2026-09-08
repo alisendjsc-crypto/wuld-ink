@@ -74,7 +74,8 @@
   // ---- module state ------------------------------------------------------
   var mountBtn = null;
   var overlay = null, panel = null, avatarWrap = null, avatarImg = null, avatarVideo = null,
-      transcriptEl = null, inputEl = null, labelEl = null, chipEls = null;
+      transcriptEl = null, inputEl = null, labelEl = null, chipEls = null,
+      hintsWrap = null, hintsBtn = null;
   var built = false, viewOpen = false;
   var current = null;                 // persona currently staged
   var cache = {};                     // persona -> { matcher, assetByRole, manifest, base }
@@ -99,7 +100,8 @@
     var base = cfg.manifest.slice(0, cfg.manifest.lastIndexOf("/") + 1);
     cache[persona] = {
       matcher: new window.YureiOracle.Matcher(entries, { unsealed: false }),   // full pipeline; crisis floor rides inside
-      assetByRole: abr, manifest: manifest, base: base
+      assetByRole: abr, manifest: manifest, base: base,
+      entries: entries                                   // K300: the vessel reads `hints` off the SAME entries
     };
   }
   function ensurePersona(persona, then) {
@@ -236,6 +238,61 @@
     showSprite(r.animation_hint || "speak", { then: "idle" });
   }
 
+  // ---- the help vessel (K300): the [ ? ] control and its hint chips -------
+  // Affordances, not an index. The strings come from the STAGED PERSONA'S OWN
+  // corpus -- the additive, engine-ignored `hints` array folded at K299 onto
+  // mg-oracle-help-01 -- never from this file, so the words stay the seat's and
+  // Josiah's. A tap submits the literal string through submit(), the ONE ask
+  // path, so CRISIS -> ORACLE -> CONTINUATION -> REPEAT -> SCORE -> MISS runs
+  // on a chip exactly as it runs on a keystroke; nothing here routes to an
+  // entry id and nothing here can step over Stage 1. A corpus that declares no
+  // hints gets NO control -- this file never invents an affordance -- and the
+  // cap holds the surface to a handful whatever the corpus grows to
+  // (mg-how-many-01: counted, not published; the set stays useful by being met,
+  // not mapped, so the vessel must never become walkable as an inventory).
+  var HINT_CAP = 4;
+  function hintsFor(persona) {
+    var c = cache[persona], out = [];
+    if (!c || !c.entries) return out;
+    for (var i = 0; i < c.entries.length && out.length < HINT_CAP; i++) {
+      var h = c.entries[i] && c.entries[i].hints;
+      if (!h || !h.length) continue;
+      for (var j = 0; j < h.length && out.length < HINT_CAP; j++) {
+        var t = (h[j] == null ? "" : String(h[j])).trim();
+        if (t) out.push(t);
+      }
+    }
+    return out;
+  }
+  function setHintsOpen(on) {
+    if (!hintsWrap || !hintsBtn) return;
+    hintsWrap.hidden = !on;
+    hintsBtn.setAttribute("aria-expanded", on ? "true" : "false");
+    if (on) hintsBtn.classList.add("sstage-btn-on"); else hintsBtn.classList.remove("sstage-btn-on");
+  }
+  function askHint(text) {
+    if (!inputEl) return;
+    inputEl.value = String(text == null ? "" : text);
+    setHintsOpen(false);                                   // an affordance, not a standing menu
+    wake();
+    submit();                                              // the SAME path a typed line takes -- crisis floor first
+    if (inputEl.focus) { try { inputEl.focus(); } catch (e) {} }
+  }
+  function renderHints(persona) {
+    if (!hintsWrap || !hintsBtn) return;
+    hintsWrap.innerHTML = "";
+    var list = hintsFor(persona);
+    hintsBtn.hidden = !list.length;                        // no declared hints -> no control at all
+    if (!list.length) { setHintsOpen(false); return; }
+    list.forEach(function (t) {
+      var b = el("button", "sstage-hint", t);
+      b.setAttribute("type", "button");
+      b.addEventListener("click", function () { askHint(t); });
+      hintsWrap.appendChild(b);
+    });
+    setHintsOpen(false);                                   // every open, and every seat swap, starts collapsed
+  }
+
   // ---- overlay ------------------------------------------------------------
   function onKey(ev) { if (!viewOpen) return; wake(); if (ev && (ev.key === "Escape" || ev.keyCode === 27)) closeStage(); }
   function buildOverlay() {
@@ -299,13 +356,26 @@
     form.appendChild(inputEl); form.appendChild(send);
 
     var foot = el("div", "sstage-foot");
+    hintsBtn = el("button", "sstage-btn sstage-help-btn", "[ ? ]");
+    hintsBtn.setAttribute("type", "button");
+    hintsBtn.setAttribute("aria-label", "Suggested things to say");
+    hintsBtn.setAttribute("aria-expanded", "false");
+    hintsBtn.setAttribute("aria-controls", "sstage-hints");
+    hintsBtn.hidden = true;                                // revealed only when the staged corpus declares hints
+    hintsBtn.addEventListener("click", function () { setHintsOpen(hintsWrap ? !!hintsWrap.hidden : false); wake(); });
     var dl = el("button", "sstage-btn", "[ download ]"); dl.setAttribute("type", "button"); dl.addEventListener("click", downloadTx);
     var clr = el("button", "sstage-btn", "[ clear ]"); clr.setAttribute("type", "button"); clr.addEventListener("click", clearTx);
-    foot.appendChild(dl); foot.appendChild(clr); foot.appendChild(el("span", "sstage-note", "Saved in this browser only."));
+    foot.appendChild(hintsBtn); foot.appendChild(dl); foot.appendChild(clr); foot.appendChild(el("span", "sstage-note", "Saved in this browser only."));
 
     // foreground glass cluster: the conversation floats in the lower band over the avatar
+    hintsWrap = el("div", "sstage-hints");
+    hintsWrap.id = "sstage-hints";
+    hintsWrap.setAttribute("role", "group");
+    hintsWrap.setAttribute("aria-label", "Suggested things to say");
+    hintsWrap.hidden = true;
+
     var fg = el("div", "sstage-fg");
-    fg.appendChild(transcriptEl); fg.appendChild(form); fg.appendChild(foot);
+    fg.appendChild(transcriptEl); fg.appendChild(hintsWrap); fg.appendChild(form); fg.appendChild(foot);
 
     panel.appendChild(avatarWrap); panel.appendChild(head); panel.appendChild(fg);
     overlay.appendChild(panel);
@@ -324,6 +394,7 @@
   function closeStage() {
     if (overlay) { overlay.hidden = true; overlay.classList.remove("sstage-visible"); }
     clearTimeout(peekTimer); if (panel) panel.classList.remove("sstage-peeked");
+    setHintsOpen(false);
     viewOpen = false; setStageOpen(false);
     toIdle();
   }
@@ -350,6 +421,7 @@
       current = persona;
       if (labelEl) labelEl.textContent = PERSONAS[persona].label;
       markChips(persona);
+      renderHints(persona);                                  // K300: per-seat, from that corpus only
       if (swap || !viewOpen) seedTranscript(persona);        // per-persona transcript re-seeds; overlay never closes
       var api = PERSONAS[persona].api();                     // one surface at a time — close the corner bubble
       if (api && api.close) { try { api.close(); } catch (e) {} }
@@ -447,6 +519,7 @@
     _open: function () { openStage(); },
     _ask: function (t) { if (inputEl) inputEl.value = String(t == null ? "" : t); submit(); },
     _lines: function () { return transcriptEl ? transcriptEl.children.length : 0; },
+    _hints: function (p) { return hintsFor(p || current); },
     _tx: function (p) { return loadTx(p || current); },
     _txText: function (p) { return txText(p || current); }
   };

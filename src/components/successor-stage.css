@@ -309,6 +309,45 @@
 .sstage-send:hover { border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
 .sstage-send:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
 
+/* ---------- the help vessel (K300): hint chips ----------
+   A collapsed region between the log and the input, revealed by the foot's
+   [ ? ]. The chips carry things a visitor might SAY, so they speak in the
+   panel's own voice rather than the mono chrome of the controls around them.
+   Both the region and its control are display-gated on [hidden] explicitly:
+   a flex container would otherwise out-rank the UA default and the collapsed
+   state would fail SILENT (K291 -- ship the verbose failure). No white-space
+   override lives here: every hint is a single line and no corpus entry
+   contains a newline. ------------------------------------------------------ */
+.sstage-hints {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 12px 8px;
+}
+.sstage-hints[hidden] { display: none; }
+.sstage-help-btn[hidden] { display: none; }
+.sstage-hint {
+  cursor: pointer;
+  max-width: 100%;
+  text-align: left;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c-bg-overlay, #202127) 74%, transparent);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  color: var(--c-fg-dim, #a6a29a);
+  border: 1px solid var(--c-border, #2a2b30);
+  font: inherit;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.sstage-hint:hover { color: var(--c-fg, #e9e6df); border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
+.sstage-hint:focus-visible { outline: 2px solid var(--c-focus, var(--c-accent, #c41e3a)); outline-offset: 2px; }
+.sstage-btn.sstage-btn-on { color: var(--c-fg, #e9e6df); border-color: var(--c-border-accent, var(--c-accent, #c41e3a)); }
+.sstage-panel.sstage-peeked .sstage-hints { opacity: 0.12; }
+
 /* ---------- foot ---------- */
 .sstage-foot {
   flex: 0 0 auto;
@@ -400,6 +439,8 @@ body[data-sstage-solo] .persona-switch { display: none; }
   .sstage-chip,
   .sstage-transcript,
   .sstage-form,
+  .sstage-hint,
+  .sstage-hints,
   .sstage-foot { transition: none; }
   .sstage-panel { transform: none; }
   .sstage-overlay.sstage-visible .sstage-panel { transform: none; }
@@ -412,6 +453,7 @@ body[data-sstage-solo] .persona-switch { display: none; }
   .sstage-btn,
   .sstage-open-btn,
   .sstage-toggle,
+  .sstage-hint,
   .sstage-chip { min-height: 44px; }
   .sstage-input { min-height: 44px; }
 }
