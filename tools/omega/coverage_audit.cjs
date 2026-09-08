@@ -115,7 +115,7 @@ const noPat = E.filter(e => !(e.patterns || []).length).map(e => e.id);
 report.meta = { corpus: path.relative(ROOT, CORPUS), engine: path.relative(ROOT, ENGINE), entries: E.length, patterns: forms.length, classes: cls, tiers, modes, weights, CONST,
                 no_pattern_entries: noPat };
 log("  entries=" + E.length + " patterns=" + forms.length + " classes=" + JSON.stringify(cls) + " modes=" + JSON.stringify(modes) + " weights=" + JSON.stringify(weights));
-assert(E.length === 188 && forms.length === 888, "anatomy matches the K301 corpus (188 entries / 888 patterns)", E.length);
+assert(E.length === 188 && forms.length === 891, "anatomy matches the K303 corpus (188 entries / 891 patterns)", E.length);
 assert(noPat.every(id => /^mg-(deflect|repeat)-/.test(id)) && noPat.length === 7, "the 7 pattern-less entries are exactly the deflection+repeat pool (miss path, by construction)", noPat.length);
 let nonNorm = 0; for (const f of forms) if (normalize(f.form) !== f.form) nonNorm++;
 assert(nonNorm === 0, "every declared form is already normalized (pre-normalized corpus law)", forms.length);
@@ -327,18 +327,73 @@ const SI = JSON.parse(fs.readFileSync(SINDEX, "utf8")).entries;
 const V = JSON.parse(fs.readFileSync(VENDOR, "utf8")).objections;
 const signed = {}; for (const e of E) if (e.position) (signed[e.position.objection_id] = signed[e.position.objection_id] || []).push(e.id);
 const probes = []; const seen = new Set();
-function addProbe(type, text, meta) { const n = normalize(text); if (n.length < 2 || seen.has(type + "|" + n)) return; seen.add(type + "|" + n); probes.push({ type, text: n, ...meta }); }
+function addProbe(type, text, meta) { const n = normalize(text); if (n.length < 2 || seen.has(type + "|" + n)) return; seen.add(type + "|" + n); probes.push({ type, text: n, raw: String(text), ...meta }); }
 for (const s of SI) {
   if (s.type === "page" || s.type === "glossary" || s.type === "heading" || s.type === "void") addProbe(s.type, s.title, { route: s.route });
   else if (s.type === "library-objection") { const oid = s.route.split("#obj-")[1]; for (const alt of s.title.split(" / ")) addProbe("library-title", alt, { oid, signed: !!signed[oid] }); }
   else if (/-objection$/.test(s.type)) { const oid = s.route.split("#obj-")[1]; addProbe("aux-wing-id", oid.replace(/-/g, " "), { wing: s.type, oid }); }
 }
 for (const o of V) for (const k of (o.keywords || [])) addProbe("library-keyword", k, { oid: o.id, signed: !!signed[o.id] });
+// K303 (TX17-BACK section 1): a GAP is not one thing. Three distinct miss classes were
+// being reported as one deflection, and misfiling one as another sends the work to the
+// wrong seat -- which is exactly what happened to `cherry picking` in TX17.
+//   class1 form-absent      the objection IS signed; no declared form matches. BUILD WORK.
+//   class2 normalizer-eaten a form exists and the input path destroyed it. K299 closed
+//                           this class; the audit now proves it stays closed rather than
+//                           assuming it. Detected mechanically: the RAW probe contains a
+//                           declared form of the signed objection, the NORMALIZED one does not.
+//   class3 objection-absent no signed position exists. Commissioning question for the
+//                           library seat, and a position only Josiah can sign.
+// Only class 3 is the library seat's to fill. 1 and 2 are ours.
+const formsByObj = {};
+for (const e of E) if (e.position) for (const q of (e.patterns || []))
+  (formsByObj[e.position.objection_id] = formsByObj[e.position.objection_id] || []).push(q.form);
+// K303b (TX18-BACK section 4): computed from the OBJECTION SPACE, never from the
+// landing entry.  The seat asked which it was, and the bad branch was the true one:
+// mg-topical-deflect-01 is class "response", so a probe it catches stopped being a
+// GAP and silently left the class-1 count.  MEASURED: adding one token (`happy`) to
+// the net moved class1 415 -> 412 while ZERO positions became reachable.  A floor
+// that hides the gap it caught makes the counter mean less every time it grows.
+// The test is now landing-independent: does ANY entry of this objection score > 0
+// against this probe?  Scored with the engine's own entryScore, so it cannot drift
+// from the matcher, and it is unaffected by whatever else the corpus grows.
+const entriesByObj = {};
+for (const e of E) if (e.position) (entriesByObj[e.position.objection_id] = entriesByObj[e.position.objection_id] || []).push(e);
+function ownFormMatches(p) {
+  return (entriesByObj[p.oid] || []).some(e => entryScore(e, p.text)[0] > 0);
+}
+function missClass(p) {
+  if (!p.oid) return "n/a";                       // page/glossary/heading/void probes have no objection
+  if (!signed[p.oid]) return "class3-objection-absent";
+  if (ownFormMatches(p)) return null;             // reachable by its own objection: not a miss at all
+  // class 2 means the NORMALIZER destroyed a match that was there before it ran.
+  // Test it with the engine on both sides -- a naive substring test on the raw string
+  // is not the same predicate and false-positives on plurals (it flagged the library's
+  // own title "first world problems" against the declared singular "first world
+  // problem", which is whole-token-distinct and therefore a class-1 form gap).
+  const rawLower = String(p.raw == null ? p.text : p.raw).toLowerCase();
+  if (rawLower !== p.text && (entriesByObj[p.oid] || []).some(e => entryScore(e, rawLower)[0] > 0))
+    return "class2-normalizer-eaten";
+  return "class1-form-absent";
+}
 const subj = probes.map(p => { const r = route(p.text); const pos = r.id && byId[r.id].position ? byId[r.id].position.objection_id : null;
   let verdict; if (r.lane === "deflection") verdict = "GAP"; else if (r.lane === "crisis") verdict = "crisis"; else if (r.lane === "oracle") verdict = "oracle"; else if (pos && p.oid && pos === p.oid) verdict = "own-position"; else if (pos && p.oid) verdict = "OTHER-position"; else verdict = "response";
-  return { ...p, id: r.id, lane: r.lane, verdict }; });
+  return { ...p, id: r.id, lane: r.lane, verdict, miss_class: missClass(p) }; });
 const byType = {}; for (const s of subj) { const t = (byType[s.type] = byType[s.type] || { type: s.type, n: 0, GAP: 0, oracle: 0, response: 0, "own-position": 0, "OTHER-position": 0, crisis: 0 }); t.n++; t[s.verdict]++; }
 for (const t of Object.values(byType)) log("  " + t.type.padEnd(16) + " n=" + String(t.n).padStart(4) + "  GAP=" + String(t.GAP).padStart(4) + "  oracle=" + String(t.oracle).padStart(3) + "  response=" + String(t.response).padStart(3) + "  own-pos=" + String(t["own-position"]).padStart(3) + "  OTHER-pos=" + t["OTHER-position"] + "  crisis=" + t.crisis);
+// K303: the GAP column, split by whose work it is
+const mc = {}; for (const s2 of subj) if (s2.miss_class) mc[s2.miss_class] = (mc[s2.miss_class] || 0) + 1;
+log("  -- GAP by miss class (K303): " + Object.keys(mc).sort().map(k => k + "=" + mc[k]).join("  ") || "  (no gaps)");
+log("     class1 form-absent = signed, no form matches -> OURS.  class2 normalizer-eaten -> OURS (K299 closed it; a nonzero count is a REGRESSION).  class3 objection-absent -> library seat + Josiah.");
+const c1 = subj.filter(s2 => s2.miss_class === "class1-form-absent");
+const c1obj = {}; for (const s2 of c1) (c1obj[s2.oid] = c1obj[s2.oid] || []).push(s2.raw || s2.text);
+log("     class1 spans " + Object.keys(c1obj).length + " signed objection(s); the phrasings are the K302 fold's own input list.");
+const masked = c1.filter(s2 => s2.lane !== "deflection");
+const maskedBy = {}; for (const s2 of masked) maskedBy[s2.id] = (maskedBy[s2.id] || 0) + 1;
+log("     of those, " + masked.length + " are MASKED -- caught by a floor or another entry, so they no longer look like gaps: " + (Object.keys(maskedBy).sort((a, b) => maskedBy[b] - maskedBy[a]).slice(0, 4).map(k => k + "=" + maskedBy[k]).join(" ") || "none"));
+log("     (this count is landing-INDEPENDENT by construction: growing a floor can no longer shrink it.)");
+assert((mc["class2-normalizer-eaten"] || 0) === 0, "class2 (normalizer-eaten) is EMPTY -- K299 stays closed", mc["class2-normalizer-eaten"] || 0);
+report.sections.miss_classes = { counts: mc, class1_by_objection: c1obj };
 // per-objection table: the library's own phrasing of each objection, where does it land?
 const perObj = {};
 for (const s of subj.filter(s => s.type === "library-title" || s.type === "library-keyword")) {

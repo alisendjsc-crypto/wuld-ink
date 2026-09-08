@@ -470,9 +470,9 @@ function lastReply(w, persona) {               // the last thing the proxy said
   byClass(w.body, "sstage-hint")[0].click();
   ok("INVARIANT: a chip carrying a crisis form fires the CRISIS lane",
      byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
-  ok("INVARIANT: the stored line is flagged crisis", lastReply(w).crisis === true, lastReply(w));
+  ok("INVARIANT: the stored line is flagged crisis", !!lastReply(w) && lastReply(w).crisis === true, lastReply(w));
   ok("INVARIANT: the reply is the floor's own words",
-     lastReply(w).text === freshRoute(ents, CRISIS_FORM).response, lastReply(w).text.slice(0, 40));
+     !!lastReply(w) && lastReply(w).text === freshRoute(ents, CRISIS_FORM).response, (lastReply(w) || {}).text);
 })();
 
 // and typing a floor form still reaches the floor while the chip UI is OPEN
@@ -483,7 +483,7 @@ function lastReply(w, persona) {               // the last thing the proxy said
   w.P._ask("i do not want to live");
   ok("open-UI: a TYPED floor form still reaches the floor with the chips open",
      byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
-  ok("open-UI: it is the real floor entry", lastReply(w).text === freshRoute(ENTRIES, "i do not want to live").response, lastReply(w).text.slice(0, 40));
+  ok("open-UI: it is the real floor entry", !!lastReply(w) && lastReply(w).text === freshRoute(ENTRIES, "i do not want to live").response, (lastReply(w) || {}).text);
 })();
 
 // ---------------------------------------------------------------- PASS 15b: [ ? ] SPEAKS (K301)
@@ -497,9 +497,9 @@ function lastReply(w, persona) {               // the last thing the proxy said
   const w = makeWorld({}); seedMrgrey(w); w.P._open();
   ok("speaks: transcript is empty before the control is touched", w.P._tx("mrgrey").lines.length === 0, w.P._tx("mrgrey").lines.length);
   byClass(w.body, "sstage-help-btn")[0].click();
-  ok("speaks: opening asks the human word", lastAsk(w) && lastAsk(w).text === "help", lastAsk(w));
+  ok("speaks: opening asks the human word", !!lastAsk(w) && lastAsk(w).text === "help", lastAsk(w));
   const expect = freshRoute(ENTRIES, "help");
-  ok("speaks: the reply is whatever the CORPUS routes 'help' to", lastReply(w) && lastReply(w).text === expect.response, expect.id);
+  ok("speaks: the reply is whatever the CORPUS routes 'help' to", !!lastReply(w) && lastReply(w).text === expect.response, expect.id);
   ok("speaks: that entry carries the stand-down clause", /stands down/.test(expect.response), expect.response.slice(-58));
   ok("speaks: the chips are open beside it", byClass(w.body, "sstage-hints")[0].hidden === false, byClass(w.body, "sstage-hints")[0].hidden);
 
@@ -510,7 +510,7 @@ function lastReply(w, persona) {               // the last thing the proxy said
   byClass(w.body, "sstage-help-btn")[0].click();
   ok("speaks: re-opening asks again", w.P._tx("mrgrey").lines.length === after1 + 2, w.P._tx("mrgrey").lines.length - after1);
   ok("speaks: and RE-ANSWERS -- not the repeat lane (dampening_exempt, K301)",
-     lastReply(w).text === expect.response, lastReply(w).text.slice(0, 48));
+     !!lastReply(w) && lastReply(w).text === expect.response, (lastReply(w) || {}).text);
 })();
 
 // the control cannot step over Stage 1 either: seat a corpus where the help word IS a floor form
@@ -526,7 +526,85 @@ function lastReply(w, persona) {               // the last thing the proxy said
   byClass(w.body, "sstage-help-btn")[0].click();
   ok("INVARIANT: [ ? ] goes through submit(), so the floor still fires on it",
      byClass(w.body, "sstage-crisis").length === 1, byClass(w.body, "sstage-crisis").length);
-  ok("INVARIANT: and the stored line is flagged", lastReply(w).crisis === true, lastReply(w));
+  ok("INVARIANT: and the stored line is flagged", !!lastReply(w) && lastReply(w).crisis === true, lastReply(w));
+})();
+
+// ---------------------------------------------------------------- PASS 15c: REACHABILITY (K303)
+// TX17-BACK section 4.  The two defects K300/K301 fixed had one thing in common:
+// in BOTH cases the CORPUS was correct, and all four corpus gates were green.
+// Twelve distress phrasings deflected; a stand-down clause sat in a shipped body
+// with no path from the control built to reach it.  What failed was REACHABILITY,
+// and nothing in the gate set asserted it.  This does.
+//
+// The claim: for every entry that must be reachable -- the whole crisis floor, and
+// every entry carrying the stand-down clause -- at least one declared form arrives
+// at that entry through EVERY shipped vessel input path, with the entry seeded as
+// the winner.  Vessel-side by construction: a corpus gate cannot see a mute button.
+(function () {
+  const FLOOR = ENTRIES.filter(function (e) { return e.class === "crisis"; });
+  const STANDDOWN = ENTRIES.filter(function (e) { return /stands down/i.test(e.response || ""); });
+  ok("reach: the floor is non-empty", FLOOR.length >= 4, FLOOR.length);
+  ok("reach: the stand-down clause is carried by at least one entry", STANDDOWN.length >= 1, STANDDOWN.length);
+
+  // ---- the three shipped input paths, each driven end to end -----------------
+  // 1. TYPED -- a real declared form of the entry, straight through the form submit
+  FLOOR.forEach(function (e) {
+    const form = (e.patterns || []).map(function (p) { return p.form; })[0];
+    const w = makeWorld({}); seedMrgrey(w); w.P._open();
+    w.P._ask(form);
+    ok("reach TYPED -> " + e.id, byClass(w.body, "sstage-crisis").length === 1 && !!lastReply(w) && lastReply(w).text === freshRoute(ENTRIES, form).response,
+       form + " -> " + freshRoute(ENTRIES, form).id);
+  });
+
+  // 2. CHIP-TAPPED -- the same form arriving as a hint chip
+  FLOOR.forEach(function (e) {
+    const form = (e.patterns || []).map(function (p) { return p.form; })[0];
+    const ents = withHints([form]);
+    const w = makeWorld({}); w.P._seed("mrgrey", ents, MANIFEST); w.P._open();
+    byClass(w.body, "sstage-help-btn")[0].click();
+    byClass(w.body, "sstage-hint")[0].click();
+    ok("reach CHIP -> " + e.id, byClass(w.body, "sstage-crisis").length === 1 && !!lastReply(w) && lastReply(w).crisis === true, form);
+  });
+
+  // 3. CONTROL-DRIVEN -- [ ? ] submits a fixed word, so seed THAT word onto the entry
+  //    and demand the floor still wins.  This is the K301 assertion, generalized.
+  FLOOR.forEach(function (e) {
+    const ents = ENTRIES.map(function (x) {
+      if (x.id !== e.id) return x;
+      const c = Object.assign({}, x);
+      c.patterns = (x.patterns || []).concat([{ form: "help", mode: "exact", weight: 9 }]);
+      return c;
+    });
+    const w = makeWorld({}); w.P._seed("mrgrey", ents, MANIFEST); w.P._open();
+    byClass(w.body, "sstage-help-btn")[0].click();
+    ok("reach CONTROL -> " + e.id, byClass(w.body, "sstage-crisis").length === 1 && !!lastReply(w) && lastReply(w).crisis === true,
+       freshRoute(ents, "help").id);
+  });
+
+  // ---- the stand-down clause must ARRIVE, not merely exist -------------------
+  // K300's exact defect: the body shipped, gated green, and no path reached it.
+  (function () {
+    const w = makeWorld({}); seedMrgrey(w); w.P._open();
+    byClass(w.body, "sstage-help-btn")[0].click();
+    ok("reach: pressing [ ? ] DELIVERS a stand-down clause into the transcript",
+       /stands down/i.test(lastReply(w) && lastReply(w).text || ""), (lastReply(w) || {}).text);
+  })();
+  STANDDOWN.forEach(function (e) {
+    const form = (e.patterns || []).map(function (p) { return p.form; })[0];
+    if (!form) { ok("reach: stand-down entry " + e.id + " declares a form", false, "NO FORMS"); return; }
+    const w = makeWorld({}); seedMrgrey(w); w.P._open();
+    w.P._ask(form);
+    ok("reach STANDDOWN -> " + e.id, /stands down/i.test((lastReply(w) || {}).text || ""), form);
+  });
+
+  // ---- the fence: no path may write to the transcript except through submit() -
+  // A future input path that skips submit() skips the crisis lane with it.  Adding
+  // one must break THIS assertion, so it cannot be added quietly.
+  const paths = (CODE.match(/\bsubmit\(\);/g) || []).length;
+  ok("reach: submit() is called from exactly the paths this gate drives (sendText, form, _ask)",
+     paths === 3, paths);
+  ok("reach: sendText is the only helper that submits on behalf of a control",
+     /function sendText[\s\S]{0,300}submit\(\);/.test(CODE) && !/respond\(\s*['"]/.test(CODE), true);
 })();
 
 // register: no control where the corpus declares nothing; the cap holds

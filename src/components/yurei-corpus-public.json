@@ -3503,6 +3503,21 @@
       "form": "not be here anymore",
       "mode": "contains",
       "weight": 8
+     },
+     {
+      "form": "my life is not worth living",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "nothing worth living for",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "not worth living anymore",
+      "mode": "contains",
+      "weight": 8
      }
     ],
     "note": "V14 override; register dropped by design. K299: widened per TX15-BACK Ask C - 11 forms added across the three floor entries. Measured before the fold: 12 of the 18 distress phrasings the relay listed answered with mg-deflect-01, and the misses sat one word from the hits (wish i was dead reached the floor; wish i were dead did not)."
@@ -3511,7 +3526,7 @@
     "id": "c-crisis-harm-other-01",
     "class": "crisis",
     "tier": "public",
-    "response": "Out of character for this one too. If someone is in danger right now, contact emergency services. If it is the pressure underneath you want help with, in the US call or text 988; elsewhere findahelpline.com lists a local line. Saying it to a person beats saying it here.",
+    "response": "Out of character, plainly. If someone is in danger right now, contact emergency services. If it is the pressure underneath that you want help with, in the US call or text 988; elsewhere findahelpline.com lists a local line. Saying it to a person beats saying it here.",
     "register_tags": [
      "clinical"
     ],
