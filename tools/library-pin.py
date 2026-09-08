@@ -30,6 +30,39 @@ SRC   = os.path.join(ROOT, 'src')
 STATE = os.path.join(HERE, 'library-pin-state.json')
 DEFAULT_URL = 'https://library.wuld.ink/combined'
 
+# --- version mentions a pin move must NOT rewrite -------------------------------------
+# These name the tag an extract was TAKEN AT, or record a dated event. They are provenance,
+# not a live claim about the current substrate. v4.0.1 changed no content, so the extracts
+# are still accurate -- but they were never re-derived, and relabelling them would assert a
+# re-derivation that did not happen. That is the same error the library's own sweep order
+# guards at combined.html L1722 ("the original 81 objections"), and the one that kept the
+# .jsx provenance line unstamped. Formatted with the OLD version at scan time.
+# A phrase here is exempt from BOTH the replacement and the residual check.
+HOLD_VERSION = [
+    "Library substrate (<code>{v}</code>)",     # byline provenance: coda, the two objection pages
+    "objection corpus ({v}, Tier",              # violence-as-reductio meta: what the slice came from
+    "F+ slice from library substrate {v}.",     # why-not-suicide meta: same
+    "at the {v} stable tag",                    # "a moment-in-time reading of the canonical entry at ..."
+    "{v} substrate locked",                     # glossary/labor-sine-fructu: a dated K24d record
+]
+SENTINEL = "\x00WULDHOLD%d\x00"
+
+
+def protect(s, holds):
+    """Swap held phrases for sentinels so a blanket replace cannot reach them."""
+    n = 0
+    for i, h in enumerate(holds):
+        c = s.count(h)
+        if c:
+            s = s.replace(h, SENTINEL % i); n += c
+    return s, n
+
+
+def restore(s, holds):
+    for i, h in enumerate(holds):
+        s = s.replace(SENTINEL % i, h)
+    return s
+
 def die(msg):
     print("\n  ABORT: " + msg + "\n", file=sys.stderr); sys.exit(1)
 
@@ -135,11 +168,22 @@ def main():
             "State file may be stale -- reconcile before pinning." % (old_md5, old_md5_man))
 
     # --- locus scan (read-only; always safe to show) ---
-    files = sorted(glob.glob(os.path.join(SRC, '**', '*.html'), recursive=True))
+    # ccxciii: a live version claim is not always in HTML. src/components/mobile-nav.js
+    # carried "EFIList v4.0.0" into 70 pages' mobile nav and survived the v4.0.1 sweep
+    # silently, because this glob only ever saw *.html. Scope is html + js; a held phrase
+    # is still held, and cache-busters (?v=K284) cannot collide with a vX.Y.Z version.
+    files = sorted(glob.glob(os.path.join(SRC, '**', '*.html'), recursive=True)
+                   + glob.glob(os.path.join(SRC, '**', '*.js'), recursive=True))
     repls = [(old_md5, new_md5, 'md5'), (old_version, new_version, 'version')]
     byte_swap = bool(new_bytes and new_bytes != old_bytes)
     if byte_swap:
         repls.append((commafmt(old_bytes), commafmt(new_bytes), 'bytes'))
+
+    holds = [h.format(v=old_version) for h in HOLD_VERSION]
+    held_total = 0
+    for f in files:
+        _, n = protect(open(f, encoding='utf-8').read(), holds)
+        held_total += n
 
     total = {tag: 0 for _, _, tag in repls}
     touched = []
@@ -153,11 +197,12 @@ def main():
         if cnt:
             touched.append((f, cnt))
 
-    print("\n  loci (src/**/*.html):")
+    print("\n  loci (src/**/*.{html,js}):")
     for f, cnt in touched:
         print("    %-46s %s" % (os.path.relpath(f, ROOT),
                                 ", ".join("%s x%d" % (t, c) for t, c in cnt.items())))
     print("  totals: " + ", ".join("%s=%d" % (t, total[t]) for t in total))
+    print("  HELD (provenance / dated, not swept): %d version mention(s)" % held_total)
     if not byte_swap:
         print("  bytecount unchanged (%s) -- byte-identical release; no byte swap." % commafmt(old_bytes))
 
@@ -197,8 +242,10 @@ def main():
     for f, cnt in touched:
         b = open(f, 'rb').read()
         s = b.decode('utf-8')
+        s, _held = protect(s, holds)
         for old, new, tag in repls:
             s = s.replace(old, new)
+        s = restore(s, holds)
         nb = s.encode('utf-8')
         with open(f, 'wb') as out:
             out.write(nb)
@@ -211,12 +258,13 @@ def main():
         s = open(f, encoding='utf-8').read()
         # cciv (K64a): scrub NEW values first -- when old is a substring of new
         # (v3.9.1 inside v3.9.1r) a correct write false-positives the scan.
-        scrub = s.replace(new_md5, '').replace(new_version, '')
+        scrub, _ = protect(s, holds)          # a held phrase is not a residual
+        scrub = scrub.replace(new_md5, '').replace(new_version, '')
         if old_md5 in scrub or old_version in scrub:
             resid += 1; print("    RESIDUAL: %s" % os.path.relpath(f, ROOT))
     if resid:
         die("%d files still contain old md5/version after apply." % resid)
-    print("\n  0 residual old md5/version across %d src HTML files." % len(files))
+    print("\n  0 residual old md5/version across %d src HTML+JS files." % len(files))
 
     update_releases(new_version, old_version, pin_date)
 

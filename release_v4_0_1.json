@@ -1,0 +1,28 @@
+{
+  "release": "v4.0.1",
+  "canon": {
+    "version": "38.1",
+    "bump": "MINOR",
+    "invariant_block_changed": false,
+    "note": "v4.0.1 display-string sweep + re-pin. NO CONTENT CHANGE: corpus, grading ledger and both graph literals byte-unchanged in substance. Seven display loci in combined.html (line-indexed, per-line anchor asserted): masthead 81->82 objections and 140->142 connections (L1727), catalogs 81->82 ways (L2469), close reading of all 81->82 entries in all three methodology panels (L1650/L1783/L1873), DEP_GRAPH_DATA drift note 245 vs 254->255 (L10536), and the robustness line (L1652) recomputed from the ledger to 'the sole weakest axis on 31 of 82 nodes and tying for weakest on 34 more'. L1722 'original 81 objections' HELD as history and flagged do-not-touch; <span>35</span> MECHANISMS HELD. Ships as v4.0.1 rather than a re-pinned v4.0.0 so one version maps to one hash."
+  },
+  "git": {
+    "baseline": "efilist e253f23 atop 579cfbd",
+    "branches": ["main"],
+    "parity_required": false,
+    "note": "combined.html e654eabd/2,963,752 -> 9d13359e/2,963,789 (+37). EXACTLY seven lines differ - 1650, 1652, 1727, 1783, 1873, 2469, 10536 - verified by line diff against the pre-sweep pin, and the entire +37 bytes is L1652 alone; every other edit is byte-neutral. Graph literals re-attested by strict JSON decode: 117 nodes/142 links and 95 nodes/255 links at 167 strong/88 weak, identical to the video seat's Gate 0. Line count unchanged at 12,212; mega-literals L10529/L10532/L10594 byte-identical."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "9d13359e305c6caa3ae64759f3dcc0e6",
+      "size_bytes": 2963789,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "e654eabd32fa95e5969d49e6eb15aa87",
+    "new": "9d13359e305c6caa3ae64759f3dcc0e6",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "v4.0.1 pin move (e654eabd->9d13359e; display-string sweep + re-pin, no content change; objections-index re-vendor verified a no-op)"
+}

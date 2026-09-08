@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 05 Sep 2026 23:58:10 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2026 22:16:53 +0000</lastBuildDate>
+    <item>
+      <title>The library's pinned edition is now v4.0.1. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed are display strings that had gone stale against the v4.0.0 cut: the masthead's counts, three methodology panels still saying eighty-one, and one line that went stale whenever a single entry was regraded. It ships as a new version rather than a re-pinned v4.0.0 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.</title>
+      <link>https://wuld.ink/changelog/#2026-09-08-library-v4-0-1</link>
+      <guid isPermaLink="false">wuld.ink:2026-09-08-library-v4-0-1</guid>
+      <pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate>
+      <description>The library's pinned edition is now v4.0.1. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed are display strings that had gone stale against the v4.0.0 cut: the masthead's counts, three methodology panels still saying eighty-one, and one line that went stale whenever a single entry was regraded. It ships as a new version rather than a re-pinned v4.0.0 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one. (Sections: /argument-library/, /library-about/)</description>
+    </item>
     <item>
       <title>The apparatus for the essay film Illogically Is is published. The film carries no credits — that is its rule, not an oversight — so its sources, its method and its chronology live here instead: every film quoted with the windows it was quoted in and the reason for each, the score, the type, the timing, the verification record. The document is the film's only credit sequence. It reads as a page and downloads as a PDF, and the film itself is now on YouTube.</title>
       <link>https://wuld.ink/changelog/#2026-09-05-illogically-is-apparatus</link>
