@@ -528,7 +528,7 @@
         <div class="video-meta">
           <span class="video-date">Sep 2026</span>
           <h3 class="video-title">Illogically Is</h3>
-          <p class="video-note">Sustained stroboscopic flashing and high-contrast flicker. May affect viewers with photosensitive epilepsy.</p>
+          <p class="video-note">Sustained stroboscopic flashing and high-contrast flicker. May affect viewers with photosensitive epilepsy. A <a href="https://youtu.be/A-S3MF5rCtg" rel="noopener">reduced-flash edition</a> is a separate upload.</p>
         </div>
       </article>
 
@@ -744,6 +744,11 @@
 
       document.addEventListener('click', function (e) {
         var card = e.target.closest('.video-card');
+        /* A link inside a card is a link, not a play click. Without this the card
+           swallows it and plays the card's own video — which, for the reduced-flash
+           link in the film's note, would hand a photosensitive viewer the strobing
+           edition they were trying to avoid. */
+        if (card && e.target.closest('a')) card = null;
         if (card) {
           var active = getActive();
           if (active && active !== card) deactivate(active);
