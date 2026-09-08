@@ -1,0 +1,123 @@
+{
+ "_what": "Forms deliberately REMOVED or REFUSED. Any path that re-declares one is a regression, whatever produced it. The inflection generator has no memory of a pull: run to fixpoint at K307 it re-proposed all three K305/K307 grief-and-distress pulls and seven seat DROPs. rejection-fence.cjs asserts none of these is declared in the shipped corpus.",
+ "_rule": "Never delete a row. A form that should come back is a seat RULING that flips its verdict, recorded here.",
+ "rejected": [
+  {
+   "form": "my life was great",
+   "kind": "harm-pull",
+   "by": "library seat TX21 s2",
+   "session": "K307",
+   "was_on": "pos-speak-for-everyone-01",
+   "twin_kept": "my life is great",
+   "why": "first-person past self-report; someone writing about a life that changed gets rebutted with 'you cannot speak for everyone'. Sloppy-tense duplicate as an objection. Asymmetric -> pull."
+  },
+  {
+   "form": "life was meaningless anyway",
+   "kind": "harm-pull",
+   "by": "library seat TX21 s2",
+   "session": "K307",
+   "was_on": "pos-nihilism-label-02",
+   "twin_kept": "life is meaningless anyway",
+   "why": "distress-adjacent, not grief-adjacent. 'anyway' is a resignation marker. NOT a floor form by the start/stop cut; pulling lets it reach the topical net, which is the right destination."
+  },
+  {
+   "form": "life was beautiful",
+   "kind": "harm-pull",
+   "by": "Cowork on the seat's stated criterion, ratified TX21 s1",
+   "session": "K305",
+   "was_on": "pos-life-gift-01",
+   "twin_kept": "life is beautiful",
+   "why": "grief reading: written after a death, answered with a rebuttal of the claim that life is a gift"
+  },
+  {
+   "form": "life was a gift",
+   "kind": "harm-pull",
+   "by": "Cowork on the seat's stated criterion, ratified TX21 s1",
+   "session": "K305",
+   "was_on": "pos-life-gift-01",
+   "twin_kept": "life is a gift",
+   "why": "same"
+  },
+  {
+   "form": "life was a blessing",
+   "kind": "harm-pull",
+   "by": "Cowork on the seat's stated criterion, ratified TX21 s1",
+   "session": "K305",
+   "was_on": "pos-life-gift-01",
+   "twin_kept": "life is a blessing",
+   "why": "same"
+  },
+  {
+   "form": "why were you still here",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "why-not-suicide",
+   "why": "present-tense challenge; the past tense asks about a past location, not a past tense of the same question"
+  },
+  {
+   "form": "yet here you were",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "why-not-suicide",
+   "why": "the gotcha is the present tense; past tense removes the thing being pointed at"
+  },
+  {
+   "form": "this was a slippery slope to eugenics",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "slippery-slope-eugenics",
+   "why": "referent shifts from the argument to a historical program"
+  },
+  {
+   "form": "this was eugenics",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "slippery-slope-eugenics",
+   "why": "same; `this was eugenics` reads as a statement about history, not an accusation aimed here"
+  },
+  {
+   "form": "this was nazi eugenics",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "slippery-slope-eugenics",
+   "why": "same, and the misread has the worst optics of the three"
+  },
+  {
+   "form": "got therapy",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "just-depressed",
+   "why": "imperative; the past form is a statement about the speaker, not an input"
+  },
+  {
+   "form": "pain was subjective",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "masochist-counterexample",
+   "why": "timeless proposition; nobody types the past tense of a general claim"
+  },
+  {
+   "form": "pain was relative",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "masochist-counterexample",
+   "why": "same"
+  },
+  {
+   "form": "one persons pain was anothers pleasure",
+   "kind": "seat-drop",
+   "by": "library seat review_batch_pass_v1",
+   "session": "K305",
+   "objection": "masochist-counterexample",
+   "why": "same"
+  }
+ ]
+}

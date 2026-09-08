@@ -31,7 +31,7 @@ const SRC = fs.readFileSync(path.join(COMP, "successor-stage.js"), "utf8");
 const CSS = fs.readFileSync(path.join(COMP, "successor-stage.css"), "utf8");
 const CODE = SRC.replace(/\/\*[\s\S]*?\*\//g, "");   // fences test executable code, not the header prose
 const ORACLE = require(path.join(COMP, "yurei-oracle.js"));           // the REAL engine
-const MRGREY = require(path.join(COMP, "omega-corpus-mrgrey.json"));  // the REAL corpus (3 inherited crisis)
+const MRGREY = require(path.join(COMP, "omega-corpus-mrgrey.json"));  // the REAL corpus (crisis count is fenced in anatomy-fence.cjs, not asserted here)
 const ENTRIES = MRGREY.yurei_corpus.entries;
 
 // a minimal manifest exercising the ported avatar resolver (still + loop + clip + fallback)

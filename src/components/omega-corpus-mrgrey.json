@@ -4977,11 +4977,6 @@
             "weight": 2
           },
           {
-            "form": "my life was great",
-            "mode": "contains",
-            "weight": 2
-          },
-          {
             "form": "some people love their lives",
             "mode": "contains",
             "weight": 2
@@ -6496,6 +6491,11 @@
             "form": "this is eugenics",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "sounded like eugenics",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Set the two beside each other and they run in opposite directions. The one you name sorts people first: it marks some as fit to reproduce and others as unfit, then presses the first to breed while the rest are stopped. Every move it makes rests on the line drawn between kinds of people. The claim in front of you draws no such line. It reaches the most favored life there is on the same terms as any other, because its objection is to imposing a life at all, not to which sort of life gets imposed. He sorts the program that ranks its subjects from a claim that holds them all alike. Picking out a group is the whole of the one and no part of the other.",
@@ -8756,11 +8756,6 @@
           },
           {
             "form": "nothing really mattered",
-            "mode": "contains",
-            "weight": 2
-          },
-          {
-            "form": "life was meaningless anyway",
             "mode": "contains",
             "weight": 2
           },

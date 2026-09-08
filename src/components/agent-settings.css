@@ -75,9 +75,12 @@
 .successor-curio[open] > summary { border-bottom: var(--bw-thin, 1px) solid var(--c-border, #2a2a2a); }
 .successor-curio-body { padding: var(--s-3, 0.75rem) 0 var(--s-2, 0.5rem); }
 .successor-counts { margin: var(--s-3, 0.75rem) 0; padding: 0; display: grid; gap: var(--s-1, 0.35rem); }
-.successor-counts > div { display: flex; justify-content: space-between; gap: var(--s-3, 1rem); border-bottom: var(--bw-thin, 1px) solid var(--c-border, #2a2a2a); padding-bottom: var(--s-1, 0.35rem); }
+.successor-counts > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3, 1rem); border-bottom: var(--bw-thin, 1px) solid var(--c-border, #2a2a2a); padding-bottom: var(--s-1, 0.35rem); }
 .successor-counts dt { margin: 0; color: var(--c-fg, #f0ebe5); }
-.successor-counts dd { margin: 0; font-family: var(--font-mono, ui-monospace, monospace); color: var(--c-fg-dim, #8a847b); white-space: nowrap; }
+/* K307: the value was white-space:nowrap in a space-between row, so a long value could not
+   shrink and crushed the LABEL to a three-line column instead (visible on "189 entries -- 185
+   authored, 4 inherited crisis"). Wrap the row, never the label. */
+.successor-counts dd { margin: 0; font-family: var(--font-mono, ui-monospace, monospace); color: var(--c-fg-dim, #8a847b); margin-left: auto; text-align: right; }
 .successor-toggle-name { font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.92em; color: var(--c-fg-dim, #8a847b); white-space: nowrap; }
 .agent-fx-note { color: var(--c-fg-muted, #5a554f); font-size: var(--t-xs, 0.8rem); }
 

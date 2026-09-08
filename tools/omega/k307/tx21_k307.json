@@ -1,0 +1,15 @@
+{"_source":"TX21-BACK sections 1-3, library seat (Successor Protocol), K306. Read, never retyped (cclxxxii).",
+ "pull":[
+  {"entry":"pos-speak-for-everyone-01","form":"my life was great","mode":"contains",
+   "twin":"my life is great","why":"first-person past self-report; someone writing about a life that changed gets rebutted with 'you cannot speak for everyone'. Sloppy-tense duplicate as an objection. Asymmetric -> pull."},
+  {"entry":"pos-nihilism-label-02","form":"life was meaningless anyway","mode":"contains",
+   "twin":"life is meaningless anyway","why":"distress-adjacent, not grief-adjacent. 'anyway' is a resignation marker. NOT a floor form by the start/stop cut; pulling lets it reach the topical net, which is the right destination."}
+ ],
+ "fold":[
+  {"entry":"pos-slippery-slope-eugenics-01","form":"sounded like eugenics","mode":"contains","weight":3,
+   "why":"no referent shift; same shape as 'this was ableist'. Matches its twin 'sounds like eugenics' at w3."}
+ ],
+ "keep":[
+  {"entry":"pos-life-gift-02","form":"grateful you were born",
+   "why":"original declared form from the entry's signing, sitting beside 'be grateful' and 'count your blessings'. In that company it IS the objection. Recorded as a call, not a non-finding."}
+ ]}

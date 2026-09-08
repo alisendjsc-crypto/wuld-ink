@@ -1,0 +1,44 @@
+pass,entry,objection,source_form,variant,shift,lands_now,multiverb,VERDICT,note
+1,pos-life-gift-01,life-gift,life is a gift,life was a gift,is->was,mg-deflect-01,,BLOCKED-HARM-PULL,"pulled on harm grounds (K305, Cowork on the seat's stated criterion, ratified TX21 s1); rejection-fence.cjs blocks re-declaring it"
+1,pos-life-gift-01,life-gift,life is a blessing,life was a blessing,is->was,mg-deflect-01,,BLOCKED-HARM-PULL,"pulled on harm grounds (K305, Cowork on the seat's stated criterion, ratified TX21 s1); rejection-fence.cjs blocks re-declaring it"
+1,pos-just-depressed-01,just-depressed,get therapy,got therapy,get->got,mg-deflect-01,,BLOCKED-SEAT-DROP,"seat ruled DROP at K305: imperative; the past form is a statement about the speaker, not an input"
+1,pos-just-depressed-01,just-depressed,you are just depressed,you were just depressed,are->were,mg-deflect-01,,,
+1,pos-just-edgy-02,just-edgy,grow up,grew up,grow->grew,mg-deflect-01,,,
+1,pos-change-your-mind-01,change-your-mind,wait until you are older,wait until you were older,are->were,mg-deflect-01,,,
+1,pos-change-your-mind-01,change-your-mind,when you are older you will,when you were older you will,are->were,mg-deflect-01,,,
+1,pos-why-not-suicide-01,why-not-suicide,why are you still here,why were you still here,are->were,mg-deflect-01,,BLOCKED-SEAT-DROP,"seat ruled DROP at K305: present-tense challenge; the past tense asks about a past location, not a past tense of the same question"
+1,pos-why-not-suicide-02,why-not-suicide,if life is so bad why are you here,if life is so bad why were you here,are->were,mg-deflect-01,Y,,
+1,pos-why-not-suicide-02,why-not-suicide,yet here you are,yet here you were,are->were,mg-deflect-01,,BLOCKED-SEAT-DROP,seat ruled DROP at K305: the gotcha is the present tense; past tense removes the thing being pointed at
+1,pos-why-not-suicide-02,why-not-suicide,if life was so bad why are you here,if life was so bad why were you here,are->were,mg-deflect-01,,,
+1,pos-economy-population-01,economy-population,the economy needs population growth,the economy needed population growth,needs->needed,mg-deflect-01,,,
+1,pos-policy-proposal-02,policy-proposal,what do you want to do about it,what do you wanted to do about it,want->wanted,mg-deflect-01,Y,DROP-GRAMMAR,aux do/does/did already carries the tense; the lexical verb must stay bare. excluded() catches 'do not get' but not 'do you want'.
+1,pos-policy-proposal-02,policy-proposal,what did you want to do about it,what did you wanted to do about it,want->wanted,mg-deflect-01,Y,DROP-GRAMMAR,aux do/does/did already carries the tense; the lexical verb must stay bare. excluded() catches 'do not get' but not 'do you want'.
+1,pos-slippery-slope-eugenics-01,slippery-slope-eugenics,this is a slippery slope to eugenics,this was a slippery slope to eugenics,is->was,mg-deflect-01,,BLOCKED-SEAT-DROP,seat ruled DROP at K305: referent shifts from the argument to a historical program
+1,pos-slippery-slope-eugenics-01,slippery-slope-eugenics,this is eugenics,this was eugenics,is->was,mg-deflect-01,,BLOCKED-SEAT-DROP,"seat ruled DROP at K305: same; `this was eugenics` reads as a statement about history, not an accusation aimed here"
+1,pos-slippery-slope-eugenics-02,slippery-slope-eugenics,this is nazi eugenics,this was nazi eugenics,is->was,mg-deflect-01,,BLOCKED-SEAT-DROP,"seat ruled DROP at K305: same, and the misread has the worst optics of the three"
+1,pos-boonin-critique-01,boonin-critique,formal reconstruction shows errors,formal reconstruction showed errors,shows->showed,mg-deflect-01,,,
+1,pos-harman-benign-creation-01,harman-benign-creation,a good life justifies creation,a good life justified creation,justifies->justified,mg-deflect-01,,,
+1,pos-meaning-through-suffering-01,meaning-through-suffering,pain is how you become who you are,pain was how you become who you are,is->was,mg-deflect-01,Y,,
+1,pos-meaning-through-suffering-01,meaning-through-suffering,pain is how you become who you are,pain is how you became who you are,become->became,mg-deflect-01,Y,,
+1,pos-meaning-through-suffering-02,meaning-through-suffering,the struggle is what gives life value,the struggle was what gives life value,is->was,mg-deflect-01,Y,,
+1,pos-meaning-through-suffering-02,meaning-through-suffering,the struggle is what gives life value,the struggle is what gave life value,gives->gave,mg-deflect-01,Y,,
+1,pos-meaning-through-suffering-02,meaning-through-suffering,hardship is what shapes a person,hardship was what shapes a person,is->was,mg-deflect-01,Y,,
+1,pos-meaning-through-suffering-02,meaning-through-suffering,hardship is what shapes a person,hardship is what shaped a person,shapes->shaped,mg-deflect-01,Y,,
+1,pos-meaning-through-suffering-02,meaning-through-suffering,the struggle was what gave life value,the struggle was what gave life valued,value->valued,mg-deflect-01,,,
+1,pos-joy-outweighs-harms-01,joy-outweighs-harms,i am happy so life is worth it,i was happy so life is worth it,am->was,mg-deflect-01,Y,,
+1,pos-joy-outweighs-harms-01,joy-outweighs-harms,i am happy so life is worth it,i am happy so life was worth it,is->was,mg-deflect-01,Y,,
+1,pos-suffering-as-meaning-01,suffering-as-meaning,hardship is what makes us who we are,hardship was what makes us who we are,is->was,mg-deflect-01,Y,,
+1,pos-suffering-as-meaning-01,suffering-as-meaning,hardship is what makes us who we are,hardship is what made us who we are,makes->made,mg-deflect-01,Y,,
+1,pos-suffering-as-meaning-02,suffering-as-meaning,what does not kill you makes you stronger,what does not kill you made you stronger,makes->made,mg-deflect-01,Y,,
+1,pos-nihilism-label-01,nihilism-label,nothing matters so why care,nothing mattered so why care,matters->mattered,mg-deflect-01,,,
+1,pos-nihilism-label-02,nihilism-label,life is meaningless anyway,life was meaningless anyway,is->was,mg-deflect-01,,BLOCKED-HARM-PULL,"pulled on harm grounds (K307, library seat TX21 s2); rejection-fence.cjs blocks re-declaring it"
+1,pos-masochist-counterexample-01,masochist-counterexample,whats painful for one is pleasurable for another,whats painful for one was pleasurable for another,is->was,mg-deflect-01,,,
+1,pos-masochist-counterexample-01,masochist-counterexample,pain and pleasure are relative,pain and pleasure were relative,are->were,mg-deflect-01,,,
+1,pos-masochist-counterexample-02,masochist-counterexample,one persons pain is anothers pleasure,one persons pain was anothers pleasure,is->was,mg-deflect-01,,BLOCKED-SEAT-DROP,seat ruled DROP at K305: same
+2,pos-meaning-through-suffering-01,meaning-through-suffering,pain was how you become who you are,pain was how you became who you are,become->became,mg-deflect-01,Y,,
+2,pos-meaning-through-suffering-01,meaning-through-suffering,pain was how you become who you are,pain was how you become who you were,are->were,mg-deflect-01,Y,,
+2,pos-meaning-through-suffering-02,meaning-through-suffering,the struggle was what gives life value,the struggle was what gives life valued,value->valued,mg-deflect-01,Y,,
+2,pos-joy-outweighs-harms-01,joy-outweighs-harms,i was happy so life is worth it,i was happy so life was worth it,is->was,mg-deflect-01,,,
+2,pos-suffering-as-meaning-01,suffering-as-meaning,hardship was what makes us who we are,hardship was what made us who we are,makes->made,mg-deflect-01,Y,,
+2,pos-suffering-as-meaning-01,suffering-as-meaning,hardship was what makes us who we are,hardship was what makes us who we were,are->were,mg-deflect-01,Y,,
+3,pos-suffering-as-meaning-01,suffering-as-meaning,hardship was what made us who we are,hardship was what made us who we were,are->were,mg-deflect-01,,,

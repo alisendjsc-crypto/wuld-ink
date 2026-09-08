@@ -1,0 +1,471 @@
+{
+ "passes": [
+  [
+   1,
+   36,
+   14,
+   5,
+   173,
+   42
+  ],
+  [
+   2,
+   9,
+   7,
+   5,
+   216,
+   47
+  ],
+  [
+   3,
+   2,
+   0,
+   5,
+   228,
+   47
+  ],
+  [
+   4,
+   0,
+   0,
+   5,
+   230,
+   47
+  ]
+ ],
+ "cap": 12,
+ "converged_at": 4,
+ "distinct_forms": 43,
+ "rows": [
+  {
+   "id": "pos-life-gift-01",
+   "obj": "life-gift",
+   "form": "life is a gift",
+   "variant": "life was a gift",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-life-gift-01",
+   "obj": "life-gift",
+   "form": "life is a blessing",
+   "variant": "life was a blessing",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-just-depressed-01",
+   "obj": "just-depressed",
+   "form": "get therapy",
+   "variant": "got therapy",
+   "lands": "mg-deflect-01",
+   "shift": "get->got",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-just-depressed-01",
+   "obj": "just-depressed",
+   "form": "you are just depressed",
+   "variant": "you were just depressed",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-just-edgy-02",
+   "obj": "just-edgy",
+   "form": "grow up",
+   "variant": "grew up",
+   "lands": "mg-deflect-01",
+   "shift": "grow->grew",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-change-your-mind-01",
+   "obj": "change-your-mind",
+   "form": "wait until you are older",
+   "variant": "wait until you were older",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-change-your-mind-01",
+   "obj": "change-your-mind",
+   "form": "when you are older you will",
+   "variant": "when you were older you will",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-why-not-suicide-01",
+   "obj": "why-not-suicide",
+   "form": "why are you still here",
+   "variant": "why were you still here",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-why-not-suicide-02",
+   "obj": "why-not-suicide",
+   "form": "if life is so bad why are you here",
+   "variant": "if life is so bad why were you here",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-why-not-suicide-02",
+   "obj": "why-not-suicide",
+   "form": "yet here you are",
+   "variant": "yet here you were",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-why-not-suicide-02",
+   "obj": "why-not-suicide",
+   "form": "if life was so bad why are you here",
+   "variant": "if life was so bad why were you here",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-economy-population-01",
+   "obj": "economy-population",
+   "form": "the economy needs population growth",
+   "variant": "the economy needed population growth",
+   "lands": "mg-deflect-01",
+   "shift": "needs->needed",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-policy-proposal-02",
+   "obj": "policy-proposal",
+   "form": "what do you want to do about it",
+   "variant": "what do you wanted to do about it",
+   "lands": "mg-deflect-01",
+   "shift": "want->wanted",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-policy-proposal-02",
+   "obj": "policy-proposal",
+   "form": "what did you want to do about it",
+   "variant": "what did you wanted to do about it",
+   "lands": "mg-deflect-01",
+   "shift": "want->wanted",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-slippery-slope-eugenics-01",
+   "obj": "slippery-slope-eugenics",
+   "form": "this is a slippery slope to eugenics",
+   "variant": "this was a slippery slope to eugenics",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-slippery-slope-eugenics-01",
+   "obj": "slippery-slope-eugenics",
+   "form": "this is eugenics",
+   "variant": "this was eugenics",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-slippery-slope-eugenics-02",
+   "obj": "slippery-slope-eugenics",
+   "form": "this is nazi eugenics",
+   "variant": "this was nazi eugenics",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-boonin-critique-01",
+   "obj": "boonin-critique",
+   "form": "formal reconstruction shows errors",
+   "variant": "formal reconstruction showed errors",
+   "lands": "mg-deflect-01",
+   "shift": "shows->showed",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-harman-benign-creation-01",
+   "obj": "harman-benign-creation",
+   "form": "a good life justifies creation",
+   "variant": "a good life justified creation",
+   "lands": "mg-deflect-01",
+   "shift": "justifies->justified",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "obj": "meaning-through-suffering",
+   "form": "pain is how you become who you are",
+   "variant": "pain was how you become who you are",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "obj": "meaning-through-suffering",
+   "form": "pain is how you become who you are",
+   "variant": "pain is how you became who you are",
+   "lands": "mg-deflect-01",
+   "shift": "become->became",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "the struggle is what gives life value",
+   "variant": "the struggle was what gives life value",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "the struggle is what gives life value",
+   "variant": "the struggle is what gave life value",
+   "lands": "mg-deflect-01",
+   "shift": "gives->gave",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "hardship is what shapes a person",
+   "variant": "hardship was what shapes a person",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "hardship is what shapes a person",
+   "variant": "hardship is what shaped a person",
+   "lands": "mg-deflect-01",
+   "shift": "shapes->shaped",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "the struggle was what gave life value",
+   "variant": "the struggle was what gave life valued",
+   "lands": "mg-deflect-01",
+   "shift": "value->valued",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-joy-outweighs-harms-01",
+   "obj": "joy-outweighs-harms",
+   "form": "i am happy so life is worth it",
+   "variant": "i was happy so life is worth it",
+   "lands": "mg-deflect-01",
+   "shift": "am->was",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-joy-outweighs-harms-01",
+   "obj": "joy-outweighs-harms",
+   "form": "i am happy so life is worth it",
+   "variant": "i am happy so life was worth it",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-suffering-as-meaning-01",
+   "obj": "suffering-as-meaning",
+   "form": "hardship is what makes us who we are",
+   "variant": "hardship was what makes us who we are",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-suffering-as-meaning-01",
+   "obj": "suffering-as-meaning",
+   "form": "hardship is what makes us who we are",
+   "variant": "hardship is what made us who we are",
+   "lands": "mg-deflect-01",
+   "shift": "makes->made",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-suffering-as-meaning-02",
+   "obj": "suffering-as-meaning",
+   "form": "what does not kill you makes you stronger",
+   "variant": "what does not kill you made you stronger",
+   "lands": "mg-deflect-01",
+   "shift": "makes->made",
+   "multiverb": true,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-nihilism-label-01",
+   "obj": "nihilism-label",
+   "form": "nothing matters so why care",
+   "variant": "nothing mattered so why care",
+   "lands": "mg-deflect-01",
+   "shift": "matters->mattered",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-nihilism-label-02",
+   "obj": "nihilism-label",
+   "form": "life is meaningless anyway",
+   "variant": "life was meaningless anyway",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-masochist-counterexample-01",
+   "obj": "masochist-counterexample",
+   "form": "whats painful for one is pleasurable for another",
+   "variant": "whats painful for one was pleasurable for another",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-masochist-counterexample-01",
+   "obj": "masochist-counterexample",
+   "form": "pain and pleasure are relative",
+   "variant": "pain and pleasure were relative",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-masochist-counterexample-02",
+   "obj": "masochist-counterexample",
+   "form": "one persons pain is anothers pleasure",
+   "variant": "one persons pain was anothers pleasure",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 1
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "obj": "meaning-through-suffering",
+   "form": "pain was how you become who you are",
+   "variant": "pain was how you became who you are",
+   "lands": "mg-deflect-01",
+   "shift": "become->became",
+   "multiverb": true,
+   "pass_no": 2
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "obj": "meaning-through-suffering",
+   "form": "pain was how you become who you are",
+   "variant": "pain was how you become who you were",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": true,
+   "pass_no": 2
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "the struggle was what gives life value",
+   "variant": "the struggle was what gives life valued",
+   "lands": "mg-deflect-01",
+   "shift": "value->valued",
+   "multiverb": true,
+   "pass_no": 2
+  },
+  {
+   "id": "pos-joy-outweighs-harms-01",
+   "obj": "joy-outweighs-harms",
+   "form": "i was happy so life is worth it",
+   "variant": "i was happy so life was worth it",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false,
+   "pass_no": 2
+  },
+  {
+   "id": "pos-suffering-as-meaning-01",
+   "obj": "suffering-as-meaning",
+   "form": "hardship was what makes us who we are",
+   "variant": "hardship was what made us who we are",
+   "lands": "mg-deflect-01",
+   "shift": "makes->made",
+   "multiverb": true,
+   "pass_no": 2
+  },
+  {
+   "id": "pos-suffering-as-meaning-01",
+   "obj": "suffering-as-meaning",
+   "form": "hardship was what makes us who we are",
+   "variant": "hardship was what makes us who we were",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": true,
+   "pass_no": 2
+  },
+  {
+   "id": "pos-suffering-as-meaning-01",
+   "obj": "suffering-as-meaning",
+   "form": "hardship was what made us who we are",
+   "variant": "hardship was what made us who we were",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false,
+   "pass_no": 3
+  }
+ ]
+}
