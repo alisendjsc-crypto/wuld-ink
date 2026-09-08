@@ -115,7 +115,7 @@ const noPat = E.filter(e => !(e.patterns || []).length).map(e => e.id);
 report.meta = { corpus: path.relative(ROOT, CORPUS), engine: path.relative(ROOT, ENGINE), entries: E.length, patterns: forms.length, classes: cls, tiers, modes, weights, CONST,
                 no_pattern_entries: noPat };
 log("  entries=" + E.length + " patterns=" + forms.length + " classes=" + JSON.stringify(cls) + " modes=" + JSON.stringify(modes) + " weights=" + JSON.stringify(weights));
-assert(E.length === 189 && forms.length === 1014, "anatomy matches the K304 corpus (189 entries / 1014 patterns)", E.length);
+assert(E.length === 189 && forms.length === 1076, "anatomy matches the K304 corpus (189 entries / 1076 patterns)", E.length);
 assert(noPat.every(id => /^mg-(deflect|repeat)-/.test(id)) && noPat.length === 7, "the 7 pattern-less entries are exactly the deflection+repeat pool (miss path, by construction)", noPat.length);
 let nonNorm = 0; for (const f of forms) if (normalize(f.form) !== f.form) nonNorm++;
 assert(nonNorm === 0, "every declared form is already normalized (pre-normalized corpus law)", forms.length);

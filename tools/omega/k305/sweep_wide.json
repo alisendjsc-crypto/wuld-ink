@@ -1,0 +1,1575 @@
+{
+ "new_miss": [
+  {
+   "id": "pos-just-depressed-01",
+   "obj": "just-depressed",
+   "form": "you are depressed",
+   "variant": "you were depressed",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-just-depressed-01",
+   "obj": "just-depressed",
+   "form": "you need therapy",
+   "variant": "you needed therapy",
+   "lands": "mg-deflect-01",
+   "shift": "need->needed",
+   "multiverb": false
+  },
+  {
+   "id": "pos-just-depressed-01",
+   "obj": "just-depressed",
+   "form": "get therapy",
+   "variant": "got therapy",
+   "lands": "mg-deflect-01",
+   "shift": "get->got",
+   "multiverb": false
+  },
+  {
+   "id": "pos-just-depressed-02",
+   "obj": "just-depressed",
+   "form": "you are mentally ill",
+   "variant": "you were mentally ill",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-just-depressed-02",
+   "obj": "just-depressed",
+   "form": "you are sick in the head",
+   "variant": "you were sick in the head",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-just-edgy-01",
+   "obj": "just-edgy",
+   "form": "you are being edgy",
+   "variant": "you were being edgy",
+   "lands": "mg-hostile-02",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-just-edgy-01",
+   "obj": "just-edgy",
+   "form": "you are edgy",
+   "variant": "you were edgy",
+   "lands": "mg-hostile-02",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-just-edgy-02",
+   "obj": "just-edgy",
+   "form": "grow up",
+   "variant": "grew up",
+   "lands": "mg-deflect-01",
+   "shift": "grow->grew",
+   "multiverb": false
+  },
+  {
+   "id": "pos-just-edgy-02",
+   "obj": "just-edgy",
+   "form": "you are immature",
+   "variant": "you were immature",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-antinatalism-misanthropic-02",
+   "obj": "antinatalism-misanthropic",
+   "form": "you have no empathy",
+   "variant": "you had no empathy",
+   "lands": "mg-deflect-01",
+   "shift": "have->had",
+   "multiverb": false
+  },
+  {
+   "id": "pos-next-person-cure-cancer-01",
+   "obj": "next-person-cure-cancer",
+   "form": "cures cancer",
+   "variant": "cured cancer",
+   "lands": "mg-deflect-01",
+   "shift": "cures->cured",
+   "multiverb": false
+  },
+  {
+   "id": "pos-next-person-cure-cancer-02",
+   "obj": "next-person-cure-cancer",
+   "form": "do great things",
+   "variant": "did great things",
+   "lands": "mg-deflect-01",
+   "shift": "do->did",
+   "multiverb": false
+  },
+  {
+   "id": "pos-selfish-lazy-01",
+   "obj": "selfish-lazy",
+   "form": "you are selfish",
+   "variant": "you were selfish",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-selfish-lazy-02",
+   "obj": "selfish-lazy",
+   "form": "you are a coward",
+   "variant": "you were a coward",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-change-your-mind-01",
+   "obj": "change-your-mind",
+   "form": "wait until you are older",
+   "variant": "wait until you were older",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-change-your-mind-01",
+   "obj": "change-your-mind",
+   "form": "when you are older you will",
+   "variant": "when you were older you will",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-privileged-first-world-01",
+   "obj": "privileged-first-world",
+   "form": "you are just privileged",
+   "variant": "you were just privileged",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-privileged-first-world-02",
+   "obj": "privileged-first-world",
+   "form": "you are spoiled",
+   "variant": "you were spoiled",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-bitter-childhood-01",
+   "obj": "bitter-childhood",
+   "form": "you are just bitter",
+   "variant": "you were just bitter",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-bitter-childhood-02",
+   "obj": "bitter-childhood",
+   "form": "you are traumatized",
+   "variant": "you were traumatized",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-animals-reproduce-01",
+   "obj": "animals-reproduce",
+   "form": "every species reproduces",
+   "variant": "every species reproduced",
+   "lands": "mg-deflect-01",
+   "shift": "reproduces->reproduced",
+   "multiverb": false
+  },
+  {
+   "id": "pos-happiness-is-choice-01",
+   "obj": "happiness-is-choice",
+   "form": "just choose to be happy",
+   "variant": "just chose to be happy",
+   "lands": "mg-deflect-01",
+   "shift": "choose->chose",
+   "multiverb": false
+  },
+  {
+   "id": "pos-happiness-is-choice-01",
+   "obj": "happiness-is-choice",
+   "form": "choose to be positive",
+   "variant": "chose to be positive",
+   "lands": "mg-deflect-01",
+   "shift": "choose->chose",
+   "multiverb": false
+  },
+  {
+   "id": "pos-why-not-suicide-01",
+   "obj": "why-not-suicide",
+   "form": "why are you still here",
+   "variant": "why were you still here",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-why-not-suicide-02",
+   "obj": "why-not-suicide",
+   "form": "if life is so bad why are you here",
+   "variant": "if life was so bad why are you here",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true
+  },
+  {
+   "id": "pos-why-not-suicide-02",
+   "obj": "why-not-suicide",
+   "form": "if life is so bad why are you here",
+   "variant": "if life is so bad why were you here",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": true
+  },
+  {
+   "id": "pos-why-not-suicide-02",
+   "obj": "why-not-suicide",
+   "form": "yet here you are",
+   "variant": "yet here you were",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-why-not-suicide-02",
+   "obj": "why-not-suicide",
+   "form": "you still choose to live",
+   "variant": "you still chose to live",
+   "lands": "mg-deflect-01",
+   "shift": "choose->chose",
+   "multiverb": true
+  },
+  {
+   "id": "pos-western-philosophy-02",
+   "obj": "western-philosophy",
+   "form": "other cultures value life",
+   "variant": "other cultures valued life",
+   "lands": "mg-deflect-01",
+   "shift": "value->valued",
+   "multiverb": false
+  },
+  {
+   "id": "pos-western-philosophy-02",
+   "obj": "western-philosophy",
+   "form": "that is just western thinking",
+   "variant": "that was just western thinking",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-speak-for-everyone-02",
+   "obj": "speak-for-everyone",
+   "form": "not everyone agrees",
+   "variant": "not everyone agreed",
+   "lands": "mg-deflect-01",
+   "shift": "agrees->agreed",
+   "multiverb": false
+  },
+  {
+   "id": "pos-playing-god-01",
+   "obj": "playing-god",
+   "form": "that is not your call",
+   "variant": "that was not your call",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-survivor-testimony-02",
+   "obj": "survivor-testimony",
+   "form": "they regret jumping",
+   "variant": "they regretted jumping",
+   "lands": "mg-deflect-01",
+   "shift": "regret->regretted",
+   "multiverb": false
+  },
+  {
+   "id": "pos-survivor-testimony-02",
+   "obj": "survivor-testimony",
+   "form": "regret their attempt",
+   "variant": "regretted their attempt",
+   "lands": "mg-deflect-01",
+   "shift": "regret->regretted",
+   "multiverb": false
+  },
+  {
+   "id": "pos-survivor-testimony-02",
+   "obj": "survivor-testimony",
+   "form": "survivors regret it",
+   "variant": "survivors regretted it",
+   "lands": "mg-deflect-01",
+   "shift": "regret->regretted",
+   "multiverb": false
+  },
+  {
+   "id": "pos-economy-population-02",
+   "obj": "economy-population",
+   "form": "who supports the aging population",
+   "variant": "who supported the aging population",
+   "lands": "mg-deflect-01",
+   "shift": "supports->supported",
+   "multiverb": false
+  },
+  {
+   "id": "pos-ai-fear-02",
+   "obj": "ai-fear",
+   "form": "you want ai to replace humans",
+   "variant": "you wanted ai to replace humans",
+   "lands": "mg-deflect-01",
+   "shift": "want->wanted",
+   "multiverb": false
+  },
+  {
+   "id": "pos-policy-proposal-01",
+   "obj": "policy-proposal",
+   "form": "what is your actual plan",
+   "variant": "what was your actual plan",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-policy-proposal-02",
+   "obj": "policy-proposal",
+   "form": "what do you want to do about it",
+   "variant": "what do you wanted to do about it",
+   "lands": "mg-deflect-01",
+   "shift": "want->wanted",
+   "multiverb": true
+  },
+  {
+   "id": "pos-policy-proposal-02",
+   "obj": "policy-proposal",
+   "form": "what did you want to do about it",
+   "variant": "what did you wanted to do about it",
+   "lands": "mg-deflect-01",
+   "shift": "want->wanted",
+   "multiverb": true
+  },
+  {
+   "id": "pos-moral-progress-02",
+   "obj": "moral-progress",
+   "form": "moral progress justifies it",
+   "variant": "moral progress justified it",
+   "lands": "mg-deflect-01",
+   "shift": "justifies->justified",
+   "multiverb": false
+  },
+  {
+   "id": "pos-social-contract-01",
+   "obj": "social-contract",
+   "form": "using the roads means you agreed",
+   "variant": "using the roads meant you agreed",
+   "lands": "mg-deflect-01",
+   "shift": "means->meant",
+   "multiverb": false
+  },
+  {
+   "id": "pos-social-contract-02",
+   "obj": "social-contract",
+   "form": "if you do not like it leave",
+   "variant": "if you did not like it leave",
+   "lands": "mg-deflect-01",
+   "shift": "do->did",
+   "multiverb": false
+  },
+  {
+   "id": "pos-violence-as-reductio-01",
+   "obj": "violence-as-reductio",
+   "form": "your followers prove your framework",
+   "variant": "your followers proved your framework",
+   "lands": "mg-deflect-01",
+   "shift": "prove->proved",
+   "multiverb": false
+  },
+  {
+   "id": "pos-violence-as-reductio-01",
+   "obj": "violence-as-reductio",
+   "form": "your movement has no brakes",
+   "variant": "your movement had no brakes",
+   "lands": "mg-deflect-01",
+   "shift": "has->had",
+   "multiverb": false
+  },
+  {
+   "id": "pos-violence-as-reductio-02",
+   "obj": "violence-as-reductio",
+   "form": "your view leads to violence",
+   "variant": "your view led to violence",
+   "lands": "mg-stance-bait-01",
+   "shift": "leads->led",
+   "multiverb": false
+  },
+  {
+   "id": "pos-violence-as-reductio-02",
+   "obj": "violence-as-reductio",
+   "form": "the logical endpoint is catastrophe",
+   "variant": "the logical endpoint was catastrophe",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-slippery-slope-eugenics-01",
+   "obj": "slippery-slope-eugenics",
+   "form": "this is a slippery slope to eugenics",
+   "variant": "this was a slippery slope to eugenics",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-slippery-slope-eugenics-01",
+   "obj": "slippery-slope-eugenics",
+   "form": "sounds like eugenics",
+   "variant": "sounded like eugenics",
+   "lands": "mg-deflect-01",
+   "shift": "sounds->sounded",
+   "multiverb": false
+  },
+  {
+   "id": "pos-slippery-slope-eugenics-01",
+   "obj": "slippery-slope-eugenics",
+   "form": "this is eugenics",
+   "variant": "this was eugenics",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-slippery-slope-eugenics-02",
+   "obj": "slippery-slope-eugenics",
+   "form": "this is nazi eugenics",
+   "variant": "this was nazi eugenics",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-ableist-objection-01",
+   "obj": "ableist-objection",
+   "form": "this is ableist",
+   "variant": "this was ableist",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-ableist-objection-01",
+   "obj": "ableist-objection",
+   "form": "your view is ableist",
+   "variant": "your view was ableist",
+   "lands": "mg-stance-bait-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-ableist-objection-01",
+   "obj": "ableist-objection",
+   "form": "that sounds ableist",
+   "variant": "that sounded ableist",
+   "lands": "mg-deflect-01",
+   "shift": "sounds->sounded",
+   "multiverb": false
+  },
+  {
+   "id": "pos-ableist-objection-02",
+   "obj": "ableist-objection",
+   "form": "this devalues disabled people",
+   "variant": "this devalued disabled people",
+   "lands": "mg-deflect-01",
+   "shift": "devalues->devalued",
+   "multiverb": false
+  },
+  {
+   "id": "pos-ableist-objection-02",
+   "obj": "ableist-objection",
+   "form": "your view devalues the disabled",
+   "variant": "your view devalued the disabled",
+   "lands": "mg-stance-bait-01",
+   "shift": "devalues->devalued",
+   "multiverb": false
+  },
+  {
+   "id": "pos-ableist-objection-02",
+   "obj": "ableist-objection",
+   "form": "you are saying disabled people should not be born",
+   "variant": "you were saying disabled people should not be born",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-benatar-asymmetry-attack-02",
+   "obj": "benatar-asymmetry-attack",
+   "form": "the asymmetry breaks down",
+   "variant": "the asymmetry broke down",
+   "lands": "mg-topical-deflect-01",
+   "shift": "breaks->broke",
+   "multiverb": false
+  },
+  {
+   "id": "pos-boonin-critique-02",
+   "obj": "boonin-critique",
+   "form": "even if the asymmetry fails",
+   "variant": "even if the asymmetry failed",
+   "lands": "mg-topical-deflect-01",
+   "shift": "fails->failed",
+   "multiverb": false
+  },
+  {
+   "id": "pos-care-ethics-01",
+   "obj": "care-ethics",
+   "form": "you ignore relationships",
+   "variant": "you ignored relationships",
+   "lands": "mg-deflect-01",
+   "shift": "ignore->ignored",
+   "multiverb": false
+  },
+  {
+   "id": "pos-harman-benign-creation-01",
+   "obj": "harman-benign-creation",
+   "form": "a good life above the threshold justifies it",
+   "variant": "a good life above the threshold justified it",
+   "lands": "mg-deflect-01",
+   "shift": "justifies->justified",
+   "multiverb": false
+  },
+  {
+   "id": "pos-contractualism-scanlon-01",
+   "obj": "contractualism-scanlon",
+   "form": "contractualism permits creating a life",
+   "variant": "contractualism permitted creating a life",
+   "lands": "mg-deflect-01",
+   "shift": "permits->permitted",
+   "multiverb": false
+  },
+  {
+   "id": "pos-contractualism-scanlon-02",
+   "obj": "contractualism-scanlon",
+   "form": "the reasonable rejection test permits creation",
+   "variant": "the reasonable rejection test permitted creation",
+   "lands": "mg-deflect-01",
+   "shift": "permits->permitted",
+   "multiverb": false
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "obj": "meaning-through-suffering",
+   "form": "you need to suffer to grow",
+   "variant": "you needed to suffer to grow",
+   "lands": "mg-deflect-01",
+   "shift": "need->needed",
+   "multiverb": true
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "obj": "meaning-through-suffering",
+   "form": "suffering leads to growth",
+   "variant": "suffering led to growth",
+   "lands": "mg-topical-deflect-01",
+   "shift": "leads->led",
+   "multiverb": false
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "obj": "meaning-through-suffering",
+   "form": "pain is how you become who you are",
+   "variant": "pain was how you become who you are",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "obj": "meaning-through-suffering",
+   "form": "pain is how you become who you are",
+   "variant": "pain is how you became who you are",
+   "lands": "mg-deflect-01",
+   "shift": "become->became",
+   "multiverb": true
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "the struggle is what gives life value",
+   "variant": "the struggle was what gives life value",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "the struggle is what gives life value",
+   "variant": "the struggle is what gave life value",
+   "lands": "mg-deflect-01",
+   "shift": "gives->gave",
+   "multiverb": true
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "hardship is what shapes a person",
+   "variant": "hardship was what shapes a person",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": true
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "hardship is what shapes a person",
+   "variant": "hardship is what shaped a person",
+   "lands": "mg-deflect-01",
+   "shift": "shapes->shaped",
+   "multiverb": true
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "obj": "meaning-through-suffering",
+   "form": "the struggle was what gave life value",
+   "variant": "the struggle was what gave life valued",
+   "lands": "mg-deflect-01",
+   "shift": "value->valued",
+   "multiverb": false
+  },
+  {
+   "id": "pos-most-people-happy-01",
+   "obj": "most-people-happy",
+   "form": "surveys show people are happy",
+   "variant": "surveys showed people are happy",
+   "lands": "mg-deflect-01",
+   "shift": "show->showed",
+   "multiverb": true
+  },
+  {
+   "id": "pos-most-people-happy-01",
+   "obj": "most-people-happy",
+   "form": "people say they are happy",
+   "variant": "people say they were happy",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": true
+  },
+  {
+   "id": "pos-most-people-happy-01",
+   "obj": "most-people-happy",
+   "form": "surveys show people were happy",
+   "variant": "surveys showed people were happy",
+   "lands": "mg-deflect-01",
+   "shift": "show->showed",
+   "multiverb": false
+  },
+  {
+   "id": "pos-most-people-happy-01",
+   "obj": "most-people-happy",
+   "form": "people said they are happy",
+   "variant": "people said they were happy",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-joy-outweighs-harms-02",
+   "obj": "joy-outweighs-harms",
+   "form": "i am happy so it was worth it",
+   "variant": "i was happy so it was worth it",
+   "lands": "mg-deflect-01",
+   "shift": "am->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-joy-outweighs-harms-02",
+   "obj": "joy-outweighs-harms",
+   "form": "happy people prove life is good",
+   "variant": "happy people proved life is good",
+   "lands": "mg-deflect-01",
+   "shift": "prove->proved",
+   "multiverb": true
+  },
+  {
+   "id": "pos-joy-outweighs-harms-02",
+   "obj": "joy-outweighs-harms",
+   "form": "happy people prove life was good",
+   "variant": "happy people proved life was good",
+   "lands": "mg-deflect-01",
+   "shift": "prove->proved",
+   "multiverb": false
+  },
+  {
+   "id": "pos-suffering-as-meaning-02",
+   "obj": "suffering-as-meaning",
+   "form": "what does not kill you makes you stronger",
+   "variant": "what does not kill you made you stronger",
+   "lands": "mg-deflect-01",
+   "shift": "makes->made",
+   "multiverb": true
+  },
+  {
+   "id": "pos-suffering-as-meaning-02",
+   "obj": "suffering-as-meaning",
+   "form": "what did not kill you makes you stronger",
+   "variant": "what did not kill you made you stronger",
+   "lands": "mg-deflect-01",
+   "shift": "makes->made",
+   "multiverb": false
+  },
+  {
+   "id": "pos-cherry-picking-worst-01",
+   "obj": "cherry-picking-worst",
+   "form": "most lives are not that bad",
+   "variant": "most lives were not that bad",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-nihilism-label-01",
+   "obj": "nihilism-label",
+   "form": "sounds like nihilism",
+   "variant": "sounded like nihilism",
+   "lands": "mg-topical-deflect-01",
+   "shift": "sounds->sounded",
+   "multiverb": false
+  },
+  {
+   "id": "pos-nihilism-label-01",
+   "obj": "nihilism-label",
+   "form": "you are a nihilist",
+   "variant": "you were a nihilist",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  },
+  {
+   "id": "pos-nihilism-label-02",
+   "obj": "nihilism-label",
+   "form": "if nothing matters why care",
+   "variant": "if nothing mattered why care",
+   "lands": "mg-deflect-01",
+   "shift": "matters->mattered",
+   "multiverb": false
+  },
+  {
+   "id": "pos-masochist-counterexample-02",
+   "obj": "masochist-counterexample",
+   "form": "one persons pain is anothers pleasure",
+   "variant": "one persons pain was anothers pleasure",
+   "lands": "mg-deflect-01",
+   "shift": "is->was",
+   "multiverb": false
+  },
+  {
+   "id": "pos-luxury-belief-02",
+   "obj": "luxury-belief",
+   "form": "you are just virtue signaling",
+   "variant": "you were just virtue signaling",
+   "lands": "mg-deflect-01",
+   "shift": "are->were",
+   "multiverb": false
+  }
+ ],
+ "excluded": [
+  {
+   "id": "pos-life-gift-01",
+   "form": "life is beautiful",
+   "variant": "life was beautiful",
+   "why": "TIMELESS proposition"
+  },
+  {
+   "id": "pos-natural-reproduce-01",
+   "form": "natural to have kids",
+   "variant": "natural to had kids",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-natural-reproduce-01",
+   "form": "natural to have children",
+   "variant": "natural to had children",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-natural-reproduce-02",
+   "form": "meant to have children",
+   "variant": "meant to had children",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-selfish-lazy-02",
+   "form": "too lazy to have kids",
+   "variant": "too lazy to had kids",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-change-your-mind-01",
+   "form": "you will want kids",
+   "variant": "you will wanted kids",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-change-your-mind-02",
+   "form": "you will grow out of it",
+   "variant": "you will grew out of it",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-privileged-first-world-02",
+   "form": "easy for you to say",
+   "variant": "easy for you to said",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-why-not-suicide-02",
+   "form": "you still choose to live",
+   "variant": "you still choose to lived",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-speak-for-everyone-01",
+   "form": "my life is great",
+   "variant": "my life was great",
+   "why": "TIMELESS proposition"
+  },
+  {
+   "id": "pos-playing-god-02",
+   "form": "you do not get to decide that",
+   "variant": "you do not got to decide that",
+   "why": "negated aux + past"
+  },
+  {
+   "id": "pos-playing-god-02",
+   "form": "you did not get to decide that",
+   "variant": "you did not got to decide that",
+   "why": "negated aux + past"
+  },
+  {
+   "id": "pos-future-solve-01",
+   "form": "future generations will solve it",
+   "variant": "future generations will solved it",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-future-solve-01",
+   "form": "science will solve suffering",
+   "variant": "science will solved suffering",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-future-solve-02",
+   "form": "things will get better",
+   "variant": "things will got better",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-extinction-culture-02",
+   "form": "human civilization will end",
+   "variant": "human civilization will ended",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-policy-proposal-02",
+   "form": "what do you want to do about it",
+   "variant": "what do you want to did about it",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-policy-proposal-02",
+   "form": "what should we actually do",
+   "variant": "what should we actually did",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-policy-proposal-02",
+   "form": "what did you want to do about it",
+   "variant": "what did you want to did about it",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-marxist-materialist-02",
+   "form": "abolish capitalism and suffering ends",
+   "variant": "abolish capitalism and suffering ended",
+   "why": "imperative"
+  },
+  {
+   "id": "pos-rights-future-generations-01",
+   "form": "future generations have a right to exist",
+   "variant": "future generations have a right to existed",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-rights-future-generations-01",
+   "form": "future generations had a right to exist",
+   "variant": "future generations had a right to existed",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-consent-incoherent-01",
+   "form": "you can not get consent from the nonexistent",
+   "variant": "you can not got consent from the nonexistent",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-non-identity-problem-01",
+   "form": "you can not harm someone who would not exist",
+   "variant": "you can not harm someone who would not existed",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-non-identity-problem-02",
+   "form": "the child would not exist otherwise",
+   "variant": "the child would not existed otherwise",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-bradley-no-subject-02",
+   "form": "value is subject relative",
+   "variant": "valued is subject relative",
+   "why": "subject, not verb"
+  },
+  {
+   "id": "pos-bradley-no-subject-02",
+   "form": "value was subject relative",
+   "variant": "valued was subject relative",
+   "why": "subject, not verb"
+  },
+  {
+   "id": "pos-harman-benign-creation-01",
+   "form": "creating a good enough life is permissible",
+   "variant": "creating a good enough life was permissible",
+   "why": "TIMELESS proposition"
+  },
+  {
+   "id": "pos-harman-benign-creation-02",
+   "form": "if the child will have a good life its fine",
+   "variant": "if the child will had a good life its fine",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-contractualism-scanlon-01",
+   "form": "a principle no one could reasonably reject permits creation",
+   "variant": "a principle no one could reasonably reject permitted creation",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-contractualism-scanlon-02",
+   "form": "rational agents would allow creating good lives",
+   "variant": "rational agents would allowed creating good lives",
+   "why": "modal/future + past"
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "form": "you need to suffer to grow",
+   "variant": "you need to suffer to grew",
+   "why": "infinitive after 'to'"
+  },
+  {
+   "id": "pos-meaning-through-suffering-01",
+   "form": "pain is how you become who you are",
+   "variant": "pain is how you become who you were",
+   "why": "predicate noun"
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "form": "the struggle is what gives life value",
+   "variant": "the struggle is what gives life valued",
+   "why": "predicate noun"
+  },
+  {
+   "id": "pos-joy-outweighs-harms-02",
+   "form": "happy people prove life is good",
+   "variant": "happy people prove life was good",
+   "why": "TIMELESS proposition"
+  },
+  {
+   "id": "pos-masochist-counterexample-02",
+   "form": "pain is subjective",
+   "variant": "pain was subjective",
+   "why": "TIMELESS proposition"
+  },
+  {
+   "id": "pos-masochist-counterexample-02",
+   "form": "pain is relative",
+   "variant": "pain was relative",
+   "why": "TIMELESS proposition"
+  }
+ ],
+ "already": [
+  {
+   "id": "pos-life-gift-01",
+   "form": "life is a gift",
+   "variant": "life was a gift"
+  },
+  {
+   "id": "pos-life-gift-01",
+   "form": "life is a blessing",
+   "variant": "life was a blessing"
+  },
+  {
+   "id": "pos-natural-reproduce-01",
+   "form": "reproduction is natural",
+   "variant": "reproduction was natural"
+  },
+  {
+   "id": "pos-just-edgy-02",
+   "form": "this is immature",
+   "variant": "this was immature"
+  },
+  {
+   "id": "pos-selfish-lazy-01",
+   "form": "this is selfishness",
+   "variant": "this was selfishness"
+  },
+  {
+   "id": "pos-change-your-mind-02",
+   "form": "this is a phase",
+   "variant": "this was a phase"
+  },
+  {
+   "id": "pos-privileged-first-world-02",
+   "form": "you have it easy",
+   "variant": "you had it easy"
+  },
+  {
+   "id": "pos-animals-reproduce-01",
+   "form": "animals have babies",
+   "variant": "animals had babies"
+  },
+  {
+   "id": "pos-animals-reproduce-02",
+   "form": "just what living things do",
+   "variant": "just what living things did"
+  },
+  {
+   "id": "pos-animals-reproduce-02",
+   "form": "its what nature does",
+   "variant": "its what nature did"
+  },
+  {
+   "id": "pos-happiness-is-choice-01",
+   "form": "happiness is a choice",
+   "variant": "happiness was a choice"
+  },
+  {
+   "id": "pos-happiness-is-choice-02",
+   "form": "life is what you make it",
+   "variant": "life was what you make it"
+  },
+  {
+   "id": "pos-speak-for-everyone-02",
+   "form": "some are glad to be alive",
+   "variant": "some were glad to be alive"
+  },
+  {
+   "id": "pos-playing-god-02",
+   "form": "who are you to decide",
+   "variant": "who were you to decide"
+  },
+  {
+   "id": "pos-playing-god-02",
+   "form": "you do not get to decide that",
+   "variant": "you did not get to decide that"
+  },
+  {
+   "id": "pos-adoption-instead-02",
+   "form": "adoption solves the problem",
+   "variant": "adoption solved the problem"
+  },
+  {
+   "id": "pos-economy-population-01",
+   "form": "the economy needs growth",
+   "variant": "the economy needed growth"
+  },
+  {
+   "id": "pos-economy-population-01",
+   "form": "we need population growth",
+   "variant": "we needed population growth"
+  },
+  {
+   "id": "pos-economy-population-01",
+   "form": "we need more workers",
+   "variant": "we needed more workers"
+  },
+  {
+   "id": "pos-ai-fear-01",
+   "form": "ai is dangerous",
+   "variant": "ai was dangerous"
+  },
+  {
+   "id": "pos-ai-fear-02",
+   "form": "your philosophy is reckless about ai",
+   "variant": "your philosophy was reckless about ai"
+  },
+  {
+   "id": "pos-policy-proposal-01",
+   "form": "what is your policy proposal",
+   "variant": "what was your policy proposal"
+  },
+  {
+   "id": "pos-policy-proposal-01",
+   "form": "what do you actually propose",
+   "variant": "what did you actually propose"
+  },
+  {
+   "id": "pos-policy-proposal-02",
+   "form": "what do you want to do about it",
+   "variant": "what did you want to do about it"
+  },
+  {
+   "id": "pos-pinker-better-world-01",
+   "form": "the world is getting better",
+   "variant": "the world was getting better"
+  },
+  {
+   "id": "pos-pinker-better-world-01",
+   "form": "there is less violence than ever",
+   "variant": "there was less violence than ever"
+  },
+  {
+   "id": "pos-pinker-better-world-01",
+   "form": "life expectancy is rising",
+   "variant": "life expectancy was rising"
+  },
+  {
+   "id": "pos-overpopulation-addressed-01",
+   "form": "overpopulation is being solved",
+   "variant": "overpopulation was being solved"
+  },
+  {
+   "id": "pos-overpopulation-addressed-01",
+   "form": "birth rates are declining",
+   "variant": "birth rates were declining"
+  },
+  {
+   "id": "pos-overpopulation-addressed-02",
+   "form": "the population is shrinking",
+   "variant": "the population was shrinking"
+  },
+  {
+   "id": "pos-overpopulation-addressed-02",
+   "form": "fertility rates are falling",
+   "variant": "fertility rates were falling"
+  },
+  {
+   "id": "pos-overpopulation-addressed-02",
+   "form": "we are below replacement",
+   "variant": "we were below replacement"
+  },
+  {
+   "id": "pos-moral-progress-01",
+   "form": "humanity is becoming more ethical",
+   "variant": "humanity was becoming more ethical"
+  },
+  {
+   "id": "pos-moral-progress-01",
+   "form": "we are making moral progress",
+   "variant": "we were making moral progress"
+  },
+  {
+   "id": "pos-moral-progress-02",
+   "form": "we are ending factory farming",
+   "variant": "we were ending factory farming"
+  },
+  {
+   "id": "pos-moral-progress-02",
+   "form": "the moral trajectory is upward",
+   "variant": "the moral trajectory was upward"
+  },
+  {
+   "id": "pos-marxist-materialist-01",
+   "form": "suffering is caused by capitalism",
+   "variant": "suffering was caused by capitalism"
+  },
+  {
+   "id": "pos-marxist-materialist-02",
+   "form": "material conditions are the problem",
+   "variant": "material conditions were the problem"
+  },
+  {
+   "id": "pos-rights-future-generations-01",
+   "form": "future generations have a right to exist",
+   "variant": "future generations had a right to exist"
+  },
+  {
+   "id": "pos-rights-future-generations-01",
+   "form": "the unborn have rights",
+   "variant": "the unborn had rights"
+  },
+  {
+   "id": "pos-rights-future-generations-02",
+   "form": "future generations have rights",
+   "variant": "future generations had rights"
+  },
+  {
+   "id": "pos-rights-future-generations-02",
+   "form": "posterity has a claim",
+   "variant": "posterity had a claim"
+  },
+  {
+   "id": "pos-benatar-asymmetry-attack-01",
+   "form": "the asymmetry does not hold",
+   "variant": "the asymmetry did not hold"
+  },
+  {
+   "id": "pos-benatar-asymmetry-attack-01",
+   "form": "the asymmetry is flawed",
+   "variant": "the asymmetry was flawed"
+  },
+  {
+   "id": "pos-benatar-asymmetry-attack-01",
+   "form": "absence of pleasure is bad",
+   "variant": "absence of pleasure was bad"
+  },
+  {
+   "id": "pos-benatar-asymmetry-attack-02",
+   "form": "the asymmetry is arbitrary",
+   "variant": "the asymmetry was arbitrary"
+  },
+  {
+   "id": "pos-benatar-asymmetry-attack-02",
+   "form": "absence of pleasure is also bad",
+   "variant": "absence of pleasure was also bad"
+  },
+  {
+   "id": "pos-consent-incoherent-01",
+   "form": "the consent premise is incoherent",
+   "variant": "the consent premise was incoherent"
+  },
+  {
+   "id": "pos-consent-incoherent-01",
+   "form": "consent requires a subject",
+   "variant": "consent required a subject"
+  },
+  {
+   "id": "pos-consent-incoherent-02",
+   "form": "consent is a category error here",
+   "variant": "consent was a category error here"
+  },
+  {
+   "id": "pos-consent-incoherent-02",
+   "form": "there is no subject to consent",
+   "variant": "there was no subject to consent"
+  },
+  {
+   "id": "pos-non-identity-problem-02",
+   "form": "no one is harmed by being born",
+   "variant": "no one was harmed by being born"
+  },
+  {
+   "id": "pos-non-identity-problem-02",
+   "form": "there is no victim to point to",
+   "variant": "there was no victim to point to"
+  },
+  {
+   "id": "pos-bradley-no-subject-01",
+   "form": "absence of pain is not good either",
+   "variant": "absence of pain was not good either"
+  },
+  {
+   "id": "pos-bradley-no-subject-01",
+   "form": "then non existence is not good",
+   "variant": "then non existence was not good"
+  },
+  {
+   "id": "pos-bradley-no-subject-02",
+   "form": "value is subject relative",
+   "variant": "value was subject relative"
+  },
+  {
+   "id": "pos-boonin-critique-01",
+   "form": "defeating the asymmetry is not enough",
+   "variant": "defeating the asymmetry was not enough"
+  },
+  {
+   "id": "pos-boonin-critique-01",
+   "form": "the case has other pillars",
+   "variant": "the case had other pillars"
+  },
+  {
+   "id": "pos-boonin-critique-02",
+   "form": "the conclusion is overdetermined",
+   "variant": "the conclusion was overdetermined"
+  },
+  {
+   "id": "pos-care-ethics-01",
+   "form": "ethics is care and relationship",
+   "variant": "ethics was care and relationship"
+  },
+  {
+   "id": "pos-care-ethics-02",
+   "form": "dependency creates obligation",
+   "variant": "dependency created obligation"
+  },
+  {
+   "id": "pos-harman-benign-creation-01",
+   "form": "benign creation is permissible",
+   "variant": "benign creation was permissible"
+  },
+  {
+   "id": "pos-harman-benign-creation-02",
+   "form": "a life over the quality threshold is acceptable",
+   "variant": "a life over the quality threshold was acceptable"
+  },
+  {
+   "id": "pos-harman-benign-creation-02",
+   "form": "bringing a good life into being is allowed",
+   "variant": "bringing a good life into being was allowed"
+  },
+  {
+   "id": "pos-meaning-through-suffering-02",
+   "form": "without struggle life means nothing",
+   "variant": "without struggle life meant nothing"
+  },
+  {
+   "id": "pos-most-people-happy-01",
+   "form": "most people are happy",
+   "variant": "most people were happy"
+  },
+  {
+   "id": "pos-most-people-happy-01",
+   "form": "surveys show people are happy",
+   "variant": "surveys show people were happy"
+  },
+  {
+   "id": "pos-most-people-happy-01",
+   "form": "people say they are happy",
+   "variant": "people said they are happy"
+  },
+  {
+   "id": "pos-most-people-happy-02",
+   "form": "the majority are happy",
+   "variant": "the majority were happy"
+  },
+  {
+   "id": "pos-most-people-happy-02",
+   "form": "most people are satisfied",
+   "variant": "most people were satisfied"
+  },
+  {
+   "id": "pos-most-people-happy-02",
+   "form": "people are generally content",
+   "variant": "people were generally content"
+  },
+  {
+   "id": "pos-most-people-happy-02",
+   "form": "most are content with life",
+   "variant": "most were content with life"
+  },
+  {
+   "id": "pos-joy-outweighs-harms-01",
+   "form": "joy outweighs the harms",
+   "variant": "joy outweighed the harms"
+  },
+  {
+   "id": "pos-joy-outweighs-harms-01",
+   "form": "the good outweighs the bad",
+   "variant": "the good outweighed the bad"
+  },
+  {
+   "id": "pos-joy-outweighs-harms-01",
+   "form": "the pleasure outweighs the suffering",
+   "variant": "the pleasure outweighed the suffering"
+  },
+  {
+   "id": "pos-joy-outweighs-harms-02",
+   "form": "my life is net positive",
+   "variant": "my life was net positive"
+  },
+  {
+   "id": "pos-love-beauty-art-02",
+   "form": "beauty makes life worth it",
+   "variant": "beauty made life worth it"
+  },
+  {
+   "id": "pos-love-beauty-art-02",
+   "form": "love makes it all worth it",
+   "variant": "love made it all worth it"
+  },
+  {
+   "id": "pos-love-beauty-art-02",
+   "form": "art redeems existence",
+   "variant": "art redeemed existence"
+  },
+  {
+   "id": "pos-suffering-makes-human-01",
+   "form": "suffering is part of being human",
+   "variant": "suffering was part of being human"
+  },
+  {
+   "id": "pos-suffering-makes-human-01",
+   "form": "its what makes us human",
+   "variant": "its what made us human"
+  },
+  {
+   "id": "pos-suffering-makes-human-01",
+   "form": "suffering makes us human",
+   "variant": "suffering made us human"
+  },
+  {
+   "id": "pos-suffering-makes-human-01",
+   "form": "pain is part of being human",
+   "variant": "pain was part of being human"
+  },
+  {
+   "id": "pos-suffering-makes-human-02",
+   "form": "suffering is essential to humanity",
+   "variant": "suffering was essential to humanity"
+  },
+  {
+   "id": "pos-suffering-makes-human-02",
+   "form": "the struggle makes us human",
+   "variant": "the struggle made us human"
+  },
+  {
+   "id": "pos-suffering-as-meaning-01",
+   "form": "suffering gives life meaning",
+   "variant": "suffering gave life meaning"
+  },
+  {
+   "id": "pos-suffering-as-meaning-01",
+   "form": "pain builds character",
+   "variant": "pain built character"
+  },
+  {
+   "id": "pos-suffering-as-meaning-01",
+   "form": "suffering is necessary for depth",
+   "variant": "suffering was necessary for depth"
+  },
+  {
+   "id": "pos-suffering-as-meaning-02",
+   "form": "what does not kill you makes you stronger",
+   "variant": "what did not kill you makes you stronger"
+  },
+  {
+   "id": "pos-suffering-as-meaning-02",
+   "form": "you need the lows to appreciate the highs",
+   "variant": "you needed the lows to appreciate the highs"
+  },
+  {
+   "id": "pos-suffering-as-meaning-02",
+   "form": "hardship makes you stronger",
+   "variant": "hardship made you stronger"
+  },
+  {
+   "id": "pos-suffering-as-meaning-02",
+   "form": "pain is necessary for growth",
+   "variant": "pain was necessary for growth"
+  },
+  {
+   "id": "pos-cherry-picking-worst-01",
+   "form": "extremes are not the norm",
+   "variant": "extremes were not the norm"
+  },
+  {
+   "id": "pos-cherry-picking-worst-02",
+   "form": "most cases are not that bad",
+   "variant": "most cases were not that bad"
+  },
+  {
+   "id": "pos-cherry-picking-worst-02",
+   "form": "extreme cases are rare",
+   "variant": "extreme cases were rare"
+  },
+  {
+   "id": "pos-cherry-picking-worst-02",
+   "form": "the worst cases are outliers",
+   "variant": "the worst cases were outliers"
+  },
+  {
+   "id": "pos-cherry-picking-worst-02",
+   "form": "most people do not suffer that much",
+   "variant": "most people did not suffer that much"
+  },
+  {
+   "id": "pos-consent-both-ways-01",
+   "form": "consent works both ways",
+   "variant": "consent worked both ways"
+  },
+  {
+   "id": "pos-consent-both-ways-02",
+   "form": "consent goes both ways",
+   "variant": "consent went both ways"
+  },
+  {
+   "id": "pos-nihilism-label-01",
+   "form": "is not this just nihilism",
+   "variant": "was not this just nihilism"
+  },
+  {
+   "id": "pos-nihilism-label-01",
+   "form": "this is just nihilism",
+   "variant": "this was just nihilism"
+  },
+  {
+   "id": "pos-nihilism-label-02",
+   "form": "nothing matters anyway",
+   "variant": "nothing mattered anyway"
+  },
+  {
+   "id": "pos-nihilism-label-02",
+   "form": "nothing really matters",
+   "variant": "nothing really mattered"
+  },
+  {
+   "id": "pos-nihilism-label-02",
+   "form": "life is meaningless anyway",
+   "variant": "life was meaningless anyway"
+  },
+  {
+   "id": "pos-gods-plan-01",
+   "form": "the creator has a plan",
+   "variant": "the creator had a plan"
+  },
+  {
+   "id": "pos-gods-plan-02",
+   "form": "god gives us life",
+   "variant": "god gave us life"
+  },
+  {
+   "id": "pos-evolution-purpose-01",
+   "form": "evolution has a purpose",
+   "variant": "evolution had a purpose"
+  },
+  {
+   "id": "pos-evolution-purpose-02",
+   "form": "species survival matters",
+   "variant": "species survival mattered"
+  }
+ ],
+ "hits": [
+  {
+   "id": "pos-antinatalism-misanthropic-02",
+   "variant": "you were a sociopath"
+  },
+  {
+   "id": "pos-playing-god-01",
+   "variant": "you were playing god"
+  },
+  {
+   "id": "pos-survivor-testimony-01",
+   "variant": "survivors were glad they survived"
+  },
+  {
+   "id": "pos-slippery-slope-eugenics-02",
+   "variant": "sounded like population control"
+  },
+  {
+   "id": "pos-cherry-picking-worst-01",
+   "variant": "you were cherry picking the worst cases"
+  }
+ ]
+}

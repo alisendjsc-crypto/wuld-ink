@@ -1,0 +1,28 @@
+objection,declared_form,variant,verdict,reason
+why-not-suicide,why are you still here,why were you still here,DROP,"present-tense challenge; the past tense asks about a past location, not a past tense of the same question"
+why-not-suicide,if life is so bad why are you here,if life was so bad why are you here,CORRECT,shift the first clause only - `why were you here` breaks the same way row 1 does
+why-not-suicide,yet here you are,yet here you were,DROP,the gotcha is the present tense; past tense removes the thing being pointed at
+why-not-suicide,you still choose to live,you still chose to live,CORRECT,"generated as `chose to lived`, a double shift; corrected form is plausible and grammatical"
+survivor-testimony,they regret jumping,they regretted jumping,FOLD,"the exact miss TX15 3 named; third-person testimony framing, not first-person"
+survivor-testimony,regret their attempt,regretted their attempt,FOLD,objection framing in reported tense; floor is first-person and unaffected
+survivor-testimony,survivors regret it,survivors regretted it,FOLD,clean; the natural tense for testimony after the fact
+violence-as-reductio,your movement has no brakes,your movement had no brakes,FOLD,"same accusation, same addressee"
+violence-as-reductio,your view leads to violence,your view led to violence,FOLD,more natural than the declared present form - the accusation is usually made after an event
+violence-as-reductio,the logical endpoint is catastrophe,the logical endpoint was catastrophe,FOLD,"grammatical, plausible, addressee unchanged"
+slippery-slope-eugenics,this is a slippery slope to eugenics,this was a slippery slope to eugenics,DROP,referent shifts from the argument to a historical program
+slippery-slope-eugenics,this is eugenics,this was eugenics,DROP,"same; `this was eugenics` reads as a statement about history, not an accusation aimed here"
+slippery-slope-eugenics,this is nazi eugenics,this was nazi eugenics,DROP,"same, and the misread has the worst optics of the three"
+ableist-objection,this is ableist,this was ableist,FOLD,"in chat, `this was ableist` still points at what was just said"
+ableist-objection,your view is ableist,your view was ableist,FOLD-REROUTE,"currently lands mg-stance-bait-01; this is an objection, not stance bait - the batch's only re-route"
+ableist-objection,you are saying disabled people should not be born,you were saying disabled people should not be born,FOLD,standard reported-speech accusation framing
+just-depressed,you need therapy,you needed therapy,FOLD,"marginal but plausible - `you needed therapy, not a philosophy`"
+just-depressed,you are depressed,you were depressed,FOLD,plausible - `you were depressed when you wrote this`
+just-depressed,get therapy,got therapy,DROP,"imperative; the past form is a statement about the speaker, not an input"
+just-depressed,you are mentally ill,you were mentally ill,FOLD,"plausible, addressee unchanged"
+just-depressed,you are sick in the head,you were sick in the head,FOLD,"plausible, hostile register, addressee unchanged"
+antinatalism-misanthropic,you have no empathy,you had no empathy,FOLD,clean
+bitter-childhood,you are just bitter,you were just bitter,FOLD,clean
+bitter-childhood,you are traumatized,you were traumatized,FOLD,"marginal - closest of the batch to a sympathetic report rather than an accusation, but still second person"
+masochist-counterexample,pain is subjective,pain was subjective,DROP,timeless proposition; nobody types the past tense of a general claim
+masochist-counterexample,pain is relative,pain was relative,DROP,same
+masochist-counterexample,one persons pain is anothers pleasure,one persons pain was anothers pleasure,DROP,same
