@@ -44,13 +44,62 @@
   //   ASCII so routing is identical, and the differential battery checks Unicode
   //   inputs converge (benign: both sides miss -> same deflection).
   var STRIP_RE = /[^\p{L}\p{N}\s]/gu;
+  var HYPHEN_RE = /[-\u2010-\u2015]/g;            // K299: hyphens become SPACE, not nothing
+  var K299_CONTRACTIONS = {
+    "arent": "are not",
+    "cannot": "can not",
+    "cant": "can not",
+    "couldnt": "could not",
+    "couldve": "could have",
+    "didnt": "did not",
+    "doesnt": "does not",
+    "dont": "do not",
+    "hadnt": "had not",
+    "hasnt": "has not",
+    "havent": "have not",
+    "im": "i am",
+    "isnt": "is not",
+    "ive": "i have",
+    "shouldnt": "should not",
+    "shouldve": "should have",
+    "thats": "that is",
+    "theres": "there is",
+    "theyre": "they are",
+    "wasnt": "was not",
+    "werent": "were not",
+    "wont": "will not",
+    "wouldnt": "would not",
+    "wouldve": "would have",
+    "youd": "you would",
+    "youll": "you will",
+    "youre": "you are",
+    "youve": "you have"
+  };
   var WS_RE = /\s+/g;
   function normalize(s) {
     if (s == null) s = "";
     s = String(s).normalize("NFKC").toLowerCase();
+    s = s.replace(HYPHEN_RE, " ");     // K299 - substitute, do not delete: wrong-hour -> wrong hour
     s = s.replace(STRIP_RE, "");
     s = s.replace(WS_RE, " ");
-    return s.trim();
+    s = s.trim();
+    if (s === "") return s;
+    var parts = s.split(" ");          // K299 - expand contractions AFTER stripping
+    for (var i = 0; i < parts.length; i++) {
+      var rep = K299_CONTRACTIONS[parts[i]];
+      if (rep) parts[i] = rep;
+    }
+    return parts.join(" ");
+  }
+
+  /* K299 - forms are authored in source spelling and compared against NORMALIZED text, so
+     they must pass through the same function or the amendment transforms one side only.
+     Memoized: normalize() is otherwise re-run per form per input. */
+  var _formCache = Object.create(null);
+  function normForm(f) {
+    var v = _formCache[f];
+    if (v === undefined) { v = normalize(f); _formCache[f] = v; }
+    return v;
   }
 
   function tokens(form) {
@@ -76,7 +125,7 @@
   }
 
   function patternMatch(pat, text) {
-    var form = pat.form, mode = pat.mode;
+    var form = normForm(pat.form), mode = pat.mode;
     if (mode === "exact") return text === form;
     if (mode === "contains") return wordBoundaryContains(form, text);
     if (mode === "tokens_all") {

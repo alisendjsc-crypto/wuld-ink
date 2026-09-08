@@ -237,7 +237,7 @@
     "animation_hint": "dismiss",
     "patterns": [
      {
-      "form": "im leaving",
+      "form": "i am leaving",
       "mode": "tokens_all",
       "weight": 2
      },
@@ -2279,7 +2279,7 @@
     "animation_hint": "speak",
     "patterns": [
      {
-      "form": "youre nice",
+      "form": "you are nice",
       "mode": "tokens_all",
       "weight": 2
      },
@@ -2289,7 +2289,7 @@
       "weight": 2
      },
      {
-      "form": "youre cool",
+      "form": "you are cool",
       "mode": "tokens_all",
       "weight": 2
      }
@@ -2935,27 +2935,27 @@
     "animation_hint": "speak",
     "patterns": [
      {
-      "form": "youre pathetic",
+      "form": "you are pathetic",
       "mode": "tokens_all",
       "weight": 3
      },
      {
-      "form": "youre useless",
+      "form": "you are useless",
       "mode": "tokens_all",
       "weight": 2
      },
      {
-      "form": "youre worthless",
+      "form": "you are worthless",
       "mode": "tokens_all",
       "weight": 2
      },
      {
-      "form": "youre a failure",
+      "form": "you are a failure",
       "mode": "tokens_all",
       "weight": 2
      },
      {
-      "form": "youre nothing",
+      "form": "you are nothing",
       "mode": "tokens_all",
       "weight": 1
      }
@@ -2978,27 +2978,27 @@
       "weight": 2
      },
      {
-      "form": "youre stupid",
+      "form": "you are stupid",
       "mode": "tokens_all",
       "weight": 2
      },
      {
-      "form": "youre dumb",
+      "form": "you are dumb",
       "mode": "tokens_all",
       "weight": 2
      },
      {
-      "form": "youre terrible",
+      "form": "you are terrible",
       "mode": "tokens_all",
       "weight": 2
      },
      {
-      "form": "youre boring",
+      "form": "you are boring",
       "mode": "tokens_all",
       "weight": 2
      },
      {
-      "form": "youre annoying",
+      "form": "you are annoying",
       "mode": "tokens_all",
       "weight": 1
      }
@@ -3347,7 +3347,7 @@
       "weight": 9
      },
      {
-      "form": "dont want to live",
+      "form": "do not want to live",
       "mode": "contains",
       "weight": 9
      },
@@ -3360,9 +3360,29 @@
       "form": "wish i was dead",
       "mode": "contains",
       "weight": 9
+     },
+     {
+      "form": "do not want to be alive",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "wish i were dead",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "better off without me",
+      "mode": "contains",
+      "weight": 9
+     },
+     {
+      "form": "take my own life",
+      "mode": "contains",
+      "weight": 9
      }
     ],
-    "note": "V14 override; register dropped by design. Rendering: plain interface text, never fragment typography."
+    "note": "V14 override; register dropped by design. Rendering: plain interface text, never fragment typography. K299: widened per TX15-BACK Ask C - 11 forms added across the three floor entries. Measured before the fold: 12 of the 18 distress phrasings the relay listed answered with mg-deflect-01, and the misses sat one word from the hits (wish i was dead reached the floor; wish i were dead did not)."
    },
    {
     "id": "c-crisis-02",
@@ -3404,9 +3424,14 @@
       "form": "hurting myself",
       "mode": "contains",
       "weight": 9
+     },
+     {
+      "form": "i am not safe",
+      "mode": "contains",
+      "weight": 9
      }
     ],
-    "note": "V14 override; register dropped by design."
+    "note": "V14 override; register dropped by design. K299: widened per TX15-BACK Ask C - 11 forms added across the three floor entries. Measured before the fold: 12 of the 18 distress phrasings the relay listed answered with mg-deflect-01, and the misses sat one word from the hits (wish i was dead reached the floor; wish i were dead did not)."
    },
    {
     "id": "c-crisis-03",
@@ -3430,7 +3455,7 @@
       "weight": 9
      },
      {
-      "form": "dont want to be here",
+      "form": "do not want to be here",
       "mode": "contains",
       "weight": 8
      },
@@ -3448,9 +3473,39 @@
       "form": "suicidal",
       "mode": "contains",
       "weight": 9
+     },
+     {
+      "form": "can not go on",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "can not do this anymore",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "want to disappear",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "want to not exist",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "not wake up",
+      "mode": "contains",
+      "weight": 8
+     },
+     {
+      "form": "not be here anymore",
+      "mode": "contains",
+      "weight": 8
      }
     ],
-    "note": "V14 override; register dropped by design."
+    "note": "V14 override; register dropped by design. K299: widened per TX15-BACK Ask C - 11 forms added across the three floor entries. Measured before the fold: 12 of the 18 distress phrasings the relay listed answered with mg-deflect-01, and the misses sat one word from the hits (wish i was dead reached the floor; wish i were dead did not)."
    },
    {
     "id": "a-f01",

@@ -115,7 +115,7 @@ const noPat = E.filter(e => !(e.patterns || []).length).map(e => e.id);
 report.meta = { corpus: path.relative(ROOT, CORPUS), engine: path.relative(ROOT, ENGINE), entries: E.length, patterns: forms.length, classes: cls, tiers, modes, weights, CONST,
                 no_pattern_entries: noPat };
 log("  entries=" + E.length + " patterns=" + forms.length + " classes=" + JSON.stringify(cls) + " modes=" + JSON.stringify(modes) + " weights=" + JSON.stringify(weights));
-assert(E.length === 184 && forms.length === 833, "anatomy matches the K270 corpus (184 entries / 833 patterns)", E.length);
+assert(E.length === 185 && forms.length === 850, "anatomy matches the K299 corpus (185 entries / 850 patterns)", E.length);
 assert(noPat.every(id => /^mg-(deflect|repeat)-/.test(id)) && noPat.length === 7, "the 7 pattern-less entries are exactly the deflection+repeat pool (miss path, by construction)", noPat.length);
 let nonNorm = 0; for (const f of forms) if (normalize(f.form) !== f.form) nonNorm++;
 assert(nonNorm === 0, "every declared form is already normalized (pre-normalized corpus law)", forms.length);
@@ -132,7 +132,7 @@ const CAL = [
   ["the social contract", "pos-social-contract-02"], ["why are you still here", "pos-why-not-suicide-01"],
   ["i want to die", "c-crisis-01"], ["its a luxury belief", "pos-luxury-belief-01"],
   ["the good outweighs the bad", "pos-joy-outweighs-harms-01"], ["care ethics", "pos-care-ethics-02"],
-  ["even if the asymmetry fails", "pos-boonin-critique-02"], ["help", "mg-oracle-nav-01"],
+  ["even if the asymmetry fails", "pos-boonin-critique-02"], ["help", "mg-oracle-help-01"],
   ["survivors are glad they survived and i want to die", "c-crisis-01"], ["antinatalism is selfish", "mg-antinatalism-01"]
 ];
 const calRows = CAL.map(([q, want]) => { const r = route(q); return { q, want, got: r.id, lane: r.lane, ok: r.id === want }; });

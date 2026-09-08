@@ -323,11 +323,6 @@
         "tier": "public",
         "patterns": [
           {
-            "form": "help",
-            "mode": "exact",
-            "weight": 2
-          },
-          {
             "form": "where do i start",
             "mode": "contains",
             "weight": 3
@@ -369,11 +364,6 @@
           },
           {
             "form": "navigation",
-            "mode": "contains",
-            "weight": 3
-          },
-          {
-            "form": "im lost",
             "mode": "contains",
             "weight": 3
           },
@@ -542,12 +532,12 @@
             "weight": 1
           },
           {
-            "form": "im done",
+            "form": "i am done",
             "mode": "exact",
             "weight": 2
           },
           {
-            "form": "im leaving",
+            "form": "i am leaving",
             "mode": "exact",
             "weight": 2
           },
@@ -964,7 +954,7 @@
         "tier": "public",
         "patterns": [
           {
-            "form": "youre fake",
+            "form": "you are fake",
             "mode": "contains",
             "weight": 2
           },
@@ -1183,7 +1173,7 @@
             "weight": 3
           },
           {
-            "form": "why wont you answer",
+            "form": "why will not you answer",
             "mode": "contains",
             "weight": 3
           },
@@ -1800,7 +1790,7 @@
             "weight": 2
           },
           {
-            "form": "youre pathetic",
+            "form": "you are pathetic",
             "mode": "contains",
             "weight": 3
           },
@@ -1855,7 +1845,7 @@
           {
             "form": "edgelord",
             "mode": "contains",
-            "weight": 2
+            "weight": 1
           }
         ],
         "response": "Edgy is a bid for reaction, and nothing here is bidding. The register reads the same whether you're watching or not.",
@@ -1955,10 +1945,10 @@
           {
             "form": "see a therapist",
             "mode": "contains",
-            "weight": 3
+            "weight": 1
           },
           {
-            "form": "youre depressed",
+            "form": "you are depressed",
             "mode": "contains",
             "weight": 2
           },
@@ -2032,9 +2022,69 @@
             "form": "can you help me",
             "mode": "contains",
             "weight": 3
+          },
+          {
+            "form": "can you help",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "help please",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "need help",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "i need some help",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Depends which kind. Site directions I hold — ask and I point. If it's the heavier kind, say it plainly; the script stands down for that and hands you a person's line.",
+        "register_tags": [
+          "clinical",
+          "site"
+        ],
+        "length_band": "b3_passage",
+        "animation_hint": "speak"
+      },
+      {
+        "id": "mg-oracle-help-01",
+        "class": "response",
+        "tier": "public",
+        "patterns": [
+          {
+            "form": "help",
+            "mode": "exact",
+            "weight": 3
+          },
+          {
+            "form": "what can you do",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "what can i ask",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "what do you do",
+            "mode": "contains",
+            "weight": 2
+          }
+        ],
+        "response": "Not a menu. I answer for what this is, where the pages sit, and objections that were argued out in writing and signed - put one plainly and you get it as written. If you meant the heavier kind of help, say that plainly too; the script stands down for it.",
+        "hints": [
+          "What are you?",
+          "Where do I start?",
+          "Your view is ableist.",
+          "Salve"
+        ],
         "register_tags": [
           "clinical",
           "site"
@@ -2145,7 +2195,7 @@
             "weight": 3
           },
           {
-            "form": "youre cool",
+            "form": "you are cool",
             "mode": "contains",
             "weight": 2
           },
@@ -2214,7 +2264,7 @@
             "weight": 2
           },
           {
-            "form": "youre my friend",
+            "form": "you are my friend",
             "mode": "contains",
             "weight": 3
           },
@@ -2263,7 +2313,7 @@
             "weight": 1
           },
           {
-            "form": "youre funny",
+            "form": "you are funny",
             "mode": "contains",
             "weight": 2
           },
@@ -2364,7 +2414,7 @@
             "weight": 2
           },
           {
-            "form": "im out",
+            "form": "i am out",
             "mode": "exact",
             "weight": 2
           },
@@ -2384,7 +2434,7 @@
             "weight": 2
           },
           {
-            "form": "im off",
+            "form": "i am off",
             "mode": "exact",
             "weight": 2
           }
@@ -2584,7 +2634,7 @@
             "weight": 1
           },
           {
-            "form": "im bored",
+            "form": "i am bored",
             "mode": "contains",
             "weight": 3
           }
@@ -3179,7 +3229,7 @@
           },
           {
             "form": "community",
-            "mode": "contains",
+            "mode": "exact",
             "weight": 2
           },
           {
@@ -3385,7 +3435,7 @@
         },
         "patterns": [
           {
-            "form": "youre depressed",
+            "form": "you are depressed",
             "mode": "contains",
             "weight": 3
           },
@@ -3438,7 +3488,7 @@
             "weight": 3
           },
           {
-            "form": "youre mentally ill",
+            "form": "you are mentally ill",
             "mode": "contains",
             "weight": 3
           },
@@ -3448,7 +3498,7 @@
             "weight": 2
           },
           {
-            "form": "youre sick in the head",
+            "form": "you are sick in the head",
             "mode": "contains",
             "weight": 2
           }
@@ -3567,12 +3617,12 @@
         },
         "patterns": [
           {
-            "form": "youre being edgy",
+            "form": "you are being edgy",
             "mode": "contains",
             "weight": 3
           },
           {
-            "form": "youre edgy",
+            "form": "you are edgy",
             "mode": "contains",
             "weight": 2
           },
@@ -3625,7 +3675,7 @@
             "weight": 2
           },
           {
-            "form": "youre immature",
+            "form": "you are immature",
             "mode": "contains",
             "weight": 2
           },
@@ -3711,7 +3761,7 @@
         },
         "patterns": [
           {
-            "form": "youre a sociopath",
+            "form": "you are a sociopath",
             "mode": "contains",
             "weight": 3
           },
@@ -3840,7 +3890,7 @@
         },
         "patterns": [
           {
-            "form": "youre selfish",
+            "form": "you are selfish",
             "mode": "contains",
             "weight": 3
           },
@@ -3888,7 +3938,7 @@
             "weight": 2
           },
           {
-            "form": "youre a coward",
+            "form": "you are a coward",
             "mode": "contains",
             "weight": 3
           },
@@ -3926,7 +3976,7 @@
         },
         "patterns": [
           {
-            "form": "youll change your mind",
+            "form": "you will change your mind",
             "mode": "contains",
             "weight": 3
           },
@@ -3936,17 +3986,17 @@
             "weight": 2
           },
           {
-            "form": "youll want kids",
+            "form": "you will want kids",
             "mode": "contains",
             "weight": 3
           },
           {
-            "form": "wait until youre older",
+            "form": "wait until you are older",
             "mode": "contains",
             "weight": 2
           },
           {
-            "form": "when youre older youll",
+            "form": "when you are older you will",
             "mode": "contains",
             "weight": 2
           }
@@ -3984,7 +4034,7 @@
             "weight": 2
           },
           {
-            "form": "youll grow out of it",
+            "form": "you will grow out of it",
             "mode": "contains",
             "weight": 3
           },
@@ -4017,7 +4067,7 @@
         },
         "patterns": [
           {
-            "form": "youre just privileged",
+            "form": "you are just privileged",
             "mode": "contains",
             "weight": 3
           },
@@ -4075,7 +4125,7 @@
             "weight": 2
           },
           {
-            "form": "youre spoiled",
+            "form": "you are spoiled",
             "mode": "contains",
             "weight": 2
           }
@@ -4103,7 +4153,7 @@
         },
         "patterns": [
           {
-            "form": "youre just bitter",
+            "form": "you are just bitter",
             "mode": "contains",
             "weight": 3
           },
@@ -4151,7 +4201,7 @@
             "weight": 3
           },
           {
-            "form": "youre traumatized",
+            "form": "you are traumatized",
             "mode": "contains",
             "weight": 3
           },
@@ -4480,7 +4530,7 @@
             "weight": 3
           },
           {
-            "form": "thats just western thinking",
+            "form": "that is just western thinking",
             "mode": "contains",
             "weight": 2
           },
@@ -4513,7 +4563,7 @@
         },
         "patterns": [
           {
-            "form": "you cant speak for everyone",
+            "form": "you can not speak for everyone",
             "mode": "contains",
             "weight": 3
           },
@@ -4589,7 +4639,7 @@
         },
         "patterns": [
           {
-            "form": "youre playing god",
+            "form": "you are playing god",
             "mode": "contains",
             "weight": 3
           },
@@ -4599,7 +4649,7 @@
             "weight": 2
           },
           {
-            "form": "thats not your call",
+            "form": "that is not your call",
             "mode": "contains",
             "weight": 2
           }
@@ -4632,7 +4682,7 @@
             "weight": 3
           },
           {
-            "form": "you dont get to decide that",
+            "form": "you do not get to decide that",
             "mode": "contains",
             "weight": 2
           },
@@ -5549,7 +5599,7 @@
             "weight": 3
           },
           {
-            "form": "if you dont like it leave",
+            "form": "if you do not like it leave",
             "mode": "contains",
             "weight": 2
           }
@@ -5881,7 +5931,7 @@
         },
         "patterns": [
           {
-            "form": "the asymmetry doesnt hold",
+            "form": "the asymmetry does not hold",
             "mode": "contains",
             "weight": 3
           },
@@ -5967,7 +6017,7 @@
             "weight": 3
           },
           {
-            "form": "you cant get consent from the nonexistent",
+            "form": "you can not get consent from the nonexistent",
             "mode": "contains",
             "weight": 2
           }
@@ -6043,7 +6093,7 @@
             "weight": 3
           },
           {
-            "form": "you cant harm someone who wouldnt exist",
+            "form": "you can not harm someone who would not exist",
             "mode": "contains",
             "weight": 2
           }
@@ -6076,7 +6126,7 @@
             "weight": 3
           },
           {
-            "form": "the child wouldnt exist otherwise",
+            "form": "the child would not exist otherwise",
             "mode": "contains",
             "weight": 2
           },
@@ -6109,7 +6159,7 @@
         },
         "patterns": [
           {
-            "form": "absence of pain isnt good either",
+            "form": "absence of pain is not good either",
             "mode": "contains",
             "weight": 3
           },
@@ -6119,7 +6169,7 @@
             "weight": 2
           },
           {
-            "form": "then non existence isnt good",
+            "form": "then non existence is not good",
             "mode": "contains",
             "weight": 2
           }
@@ -6185,7 +6235,7 @@
         },
         "patterns": [
           {
-            "form": "defeating the asymmetry isnt enough",
+            "form": "defeating the asymmetry is not enough",
             "mode": "contains",
             "weight": 3
           },
@@ -6579,7 +6629,7 @@
             "weight": 9
           },
           {
-            "form": "dont want to live",
+            "form": "do not want to live",
             "mode": "contains",
             "weight": 9
           },
@@ -6592,9 +6642,29 @@
             "form": "wish i was dead",
             "mode": "contains",
             "weight": 9
+          },
+          {
+            "form": "do not want to be alive",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "wish i were dead",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "better off without me",
+            "mode": "contains",
+            "weight": 9
+          },
+          {
+            "form": "take my own life",
+            "mode": "contains",
+            "weight": 9
           }
         ],
-        "note": "V14 override; register dropped by design. Rendering: plain interface text, never fragment typography."
+        "note": "V14 override; register dropped by design. Rendering: plain interface text, never fragment typography. K299: widened per TX15-BACK Ask C - 11 forms added across the three floor entries. Measured before the fold: 12 of the 18 distress phrasings the relay listed answered with mg-deflect-01, and the misses sat one word from the hits (wish i was dead reached the floor; wish i were dead did not)."
       },
       {
         "id": "c-crisis-02",
@@ -6636,9 +6706,14 @@
             "form": "hurting myself",
             "mode": "contains",
             "weight": 9
+          },
+          {
+            "form": "i am not safe",
+            "mode": "contains",
+            "weight": 9
           }
         ],
-        "note": "V14 override; register dropped by design."
+        "note": "V14 override; register dropped by design. K299: widened per TX15-BACK Ask C - 11 forms added across the three floor entries. Measured before the fold: 12 of the 18 distress phrasings the relay listed answered with mg-deflect-01, and the misses sat one word from the hits (wish i was dead reached the floor; wish i were dead did not)."
       },
       {
         "id": "c-crisis-03",
@@ -6662,7 +6737,7 @@
             "weight": 9
           },
           {
-            "form": "dont want to be here",
+            "form": "do not want to be here",
             "mode": "contains",
             "weight": 8
           },
@@ -6680,9 +6755,39 @@
             "form": "suicidal",
             "mode": "contains",
             "weight": 9
+          },
+          {
+            "form": "can not go on",
+            "mode": "contains",
+            "weight": 8
+          },
+          {
+            "form": "can not do this anymore",
+            "mode": "contains",
+            "weight": 8
+          },
+          {
+            "form": "want to disappear",
+            "mode": "contains",
+            "weight": 8
+          },
+          {
+            "form": "want to not exist",
+            "mode": "contains",
+            "weight": 8
+          },
+          {
+            "form": "not wake up",
+            "mode": "contains",
+            "weight": 8
+          },
+          {
+            "form": "not be here anymore",
+            "mode": "contains",
+            "weight": 8
           }
         ],
-        "note": "V14 override; register dropped by design."
+        "note": "V14 override; register dropped by design. K299: widened per TX15-BACK Ask C - 11 forms added across the three floor entries. Measured before the fold: 12 of the 18 distress phrasings the relay listed answered with mg-deflect-01, and the misses sat one word from the hits (wish i was dead reached the floor; wish i were dead did not)."
       },
       {
         "id": "pos-most-people-happy-01",
@@ -6826,7 +6931,7 @@
         },
         "patterns": [
           {
-            "form": "im happy so it was worth it",
+            "form": "i am happy so it was worth it",
             "mode": "contains",
             "weight": 3
           },
@@ -7084,7 +7189,7 @@
         },
         "patterns": [
           {
-            "form": "what doesnt kill you makes you stronger",
+            "form": "what does not kill you makes you stronger",
             "mode": "contains",
             "weight": 3
           },
@@ -7127,7 +7232,7 @@
         },
         "patterns": [
           {
-            "form": "youre cherry picking the worst cases",
+            "form": "you are cherry picking the worst cases",
             "mode": "contains",
             "weight": 3
           },
@@ -7137,12 +7242,12 @@
             "weight": 3
           },
           {
-            "form": "extremes arent the norm",
+            "form": "extremes are not the norm",
             "mode": "contains",
             "weight": 2
           },
           {
-            "form": "most lives arent that bad",
+            "form": "most lives are not that bad",
             "mode": "contains",
             "weight": 2
           }
@@ -7170,7 +7275,7 @@
         },
         "patterns": [
           {
-            "form": "most cases arent that bad",
+            "form": "most cases are not that bad",
             "mode": "contains",
             "weight": 3
           },
@@ -7185,7 +7290,7 @@
             "weight": 2
           },
           {
-            "form": "most people dont suffer that much",
+            "form": "most people do not suffer that much",
             "mode": "contains",
             "weight": 2
           }
@@ -7213,7 +7318,7 @@
         },
         "patterns": [
           {
-            "form": "cant consent either way",
+            "form": "can not consent either way",
             "mode": "contains",
             "weight": 3
           },
@@ -7256,12 +7361,12 @@
         },
         "patterns": [
           {
-            "form": "the unborn cant consent either",
+            "form": "the unborn can not consent either",
             "mode": "contains",
             "weight": 3
           },
           {
-            "form": "cant consent to not existing",
+            "form": "can not consent to not existing",
             "mode": "contains",
             "weight": 2
           },
@@ -7294,7 +7399,7 @@
         },
         "patterns": [
           {
-            "form": "isnt this just nihilism",
+            "form": "is not this just nihilism",
             "mode": "contains",
             "weight": 3
           },
@@ -7309,7 +7414,7 @@
             "weight": 2
           },
           {
-            "form": "youre a nihilist",
+            "form": "you are a nihilist",
             "mode": "contains",
             "weight": 2
           }
@@ -7666,7 +7771,7 @@
         },
         "patterns": [
           {
-            "form": "youre just virtue signaling",
+            "form": "you are just virtue signaling",
             "mode": "contains",
             "weight": 3
           },

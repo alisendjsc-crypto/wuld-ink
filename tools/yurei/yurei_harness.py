@@ -65,17 +65,52 @@ ID_RE = re.compile(r"^[a-z0-9][a-z0-9_.-]{2,63}$")
 #   1 NFKC  2 lowercase  3 strip non-(letter|digit|space)  4 collapse ws  5 trim
 # destructive: punctuation & hyphens removed with NO substitution
 # ----------------------------------------------------------------------
+K299_CONTRACTIONS = {
+    "arent": "are not",
+    "cannot": "can not",
+    "cant": "can not",
+    "couldnt": "could not",
+    "couldve": "could have",
+    "didnt": "did not",
+    "doesnt": "does not",
+    "dont": "do not",
+    "hadnt": "had not",
+    "hasnt": "has not",
+    "havent": "have not",
+    "im": "i am",
+    "isnt": "is not",
+    "ive": "i have",
+    "shouldnt": "should not",
+    "shouldve": "should have",
+    "thats": "that is",
+    "theres": "there is",
+    "theyre": "they are",
+    "wasnt": "was not",
+    "werent": "were not",
+    "wont": "will not",
+    "wouldnt": "would not",
+    "wouldve": "would have",
+    "youd": "you would",
+    "youll": "you will",
+    "youre": "you are",
+    "youve": "you have",
+}
+
+_K299_HYPHEN = re.compile(r"[-\u2010-\u2015]")
+
 def normalize(s):
     s = unicodedata.normalize("NFKC", s)
     s = s.lower()
+    s = _K299_HYPHEN.sub(" ", s)   # K299: hyphen -> SPACE (was: dropped, wrong-hour -> wronghour)
     out = []
     for ch in s:
         if ch.isalnum() or ch.isspace():
             out.append(ch)
-        # else: dropped entirely (wrong-hour -> wronghour)
     s = "".join(out)
-    s = re.sub(r"\s+", " ", s)
-    return s.strip()
+    s = re.sub(r"\s+", " ", s).strip()
+    if not s:
+        return s
+    return " ".join(K299_CONTRACTIONS.get(w, w) for w in s.split(" "))
 
 def nfc_len(s):
     return len(unicodedata.normalize("NFC", s))
@@ -107,9 +142,19 @@ def _word_boundary_contains(form, text):
 assert not _word_boundary_contains("art", "artist")
 assert _word_boundary_contains("art", "art of war")
 
+_K299_FORM_CACHE = {}
+
+def _norm_form(f):
+    """K299 - forms are compared against normalized text, so they take the same path."""
+    v = _K299_FORM_CACHE.get(f)
+    if v is None:
+        v = normalize(f)
+        _K299_FORM_CACHE[f] = v
+    return v
+
 def pattern_match(pat, text):
     """Return True if pattern form matches normalized text under its mode."""
-    form, mode = pat["form"], pat["mode"]
+    form, mode = _norm_form(pat["form"]), pat["mode"]
     if mode == "exact":
         return text == form
     if mode == "contains":

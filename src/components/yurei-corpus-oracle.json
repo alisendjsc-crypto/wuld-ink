@@ -1715,11 +1715,6 @@
     "tier": "public",
     "patterns": [
      {
-      "form": "im lost",
-      "mode": "exact",
-      "weight": 4
-     },
-     {
       "form": "i am lost",
       "mode": "exact",
       "weight": 4
