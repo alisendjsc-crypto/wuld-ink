@@ -29,14 +29,17 @@
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
   var COMP = "/components/";
-  var VER = "K255";                                 // cache-bust for corpus + manifest fetch (parity w/ omega-assistant)
+  var VER = "K306";                                 // cache-bust for corpus + ENGINE + manifest (parity w/ omega-assistant).
+  //   BUMP ON EVERY CORPUS OR ENGINE SHIP. /components/*.js and *.css serve max-age=14400 (4h)
+  //   whatever _headers says (K306 measurement); only a changed ?v lands a change sooner than that.
   var STAGE_KEY = "wuld:successor:stage";          // { open:bool } — last stage view state (informational)
   var TX_PREFIX = "wuld:successor:transcript:";     // + persona -> { v:1, lines:[{who,text,crisis}], updated }
   var ACTIVE_KEY = "wuld:persona-active";           // the SHARED persona key — read at open; WRITTEN only by the in-stage toggle (K241)
   var UNLOCK_KEY = "wuld:successor:unlocked";       // sgate's key (K233) — read-only here; gates the K241 auto-open
   var DEFAULT_PERSONA = "mrgrey";
   var PEEK_MS = 4000;                                // idle-peek: ease the chat back after this idle span to reveal the clip
-  var ORACLE_SRC = COMP + "yurei-oracle.js";        // the SAME engine the widgets inject; not new matcher bytes
+  var ORACLE_SRC = COMP + "yurei-oracle.js?v=" + VER;  // the SAME engine the widgets inject; not new matcher bytes.
+  //   K306: was a BARE url, so an engine change could never be busted here at all.
 
   // Per-persona binding: the corpus files (same the corner widget loads), the
   // avatar manifest, a display label, and a handle to the persona's PUBLIC api.

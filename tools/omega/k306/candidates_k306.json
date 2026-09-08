@@ -1,0 +1,275 @@
+{
+ "_note": "K306 §3 candidates. Derived from coverage_audit §7a′ (signed_title_gaps) + the K306 kickoff's four named extras. mode/weight per TX18-BACK: exact for a single ordinary word, contains@w2 for a distinctive multi-word phrase.",
+ "fold": [
+  {
+   "oid": "ai-fear",
+   "entry": "pos-ai-fear-01",
+   "form": "we must control ai",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "antinatalism-misanthropic",
+   "entry": "pos-antinatalism-misanthropic-01",
+   "form": "you just hate people",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "boonin-critique",
+   "entry": "pos-boonin-critique-01",
+   "form": "formal reconstruction shows errors",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "care-ethics",
+   "entry": "pos-care-ethics-01",
+   "form": "relational ethics",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "contractualism-scanlon",
+   "entry": "pos-contractualism-scanlon-01",
+   "form": "what principles could no one reasonably reject",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "economy-population",
+   "entry": "pos-economy-population-01",
+   "form": "the economy needs population growth",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "future-solve",
+   "entry": "pos-future-solve-01",
+   "form": "future generations will solve our problems",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "harman-benign-creation",
+   "entry": "pos-harman-benign-creation-01",
+   "form": "a good life justifies creation",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "joy-outweighs-harms",
+   "entry": "pos-joy-outweighs-harms-01",
+   "form": "i am happy so life is worth it",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "joy-outweighs-harms",
+   "entry": "pos-joy-outweighs-harms-01",
+   "form": "net positive",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "just-depressed",
+   "entry": "pos-just-depressed-01",
+   "form": "you are just depressed",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "love-beauty-art",
+   "entry": "pos-love-beauty-art-01",
+   "form": "the beauty of human experience",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "marxist-materialist",
+   "entry": "pos-marxist-materialist-01",
+   "form": "marxist objection",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "masochist-counterexample",
+   "entry": "pos-masochist-counterexample-01",
+   "form": "whats painful for one is pleasurable for another",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "masochist-counterexample",
+   "entry": "pos-masochist-counterexample-01",
+   "form": "some people enjoy eating past full",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "masochist-counterexample",
+   "entry": "pos-masochist-counterexample-01",
+   "form": "pain and pleasure are relative",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "moral-progress",
+   "entry": "pos-moral-progress-01",
+   "form": "what about moral progress",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "moral-progress",
+   "entry": "pos-moral-progress-01",
+   "form": "were ending factory farming",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "nihilism-label",
+   "entry": "pos-nihilism-label-01",
+   "form": "nothing matters so why care",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "non-identity-problem",
+   "entry": "pos-non-identity-problem-01",
+   "form": "the non identity problem",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "pinker-better-world",
+   "entry": "pos-pinker-better-world-01",
+   "form": "less violence than ever",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "pinker-better-world",
+   "entry": "pos-pinker-better-world-01",
+   "form": "enlightenment now",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "policy-proposal",
+   "entry": "pos-policy-proposal-01",
+   "form": "whats your actual policy proposal",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "social-contract",
+   "entry": "pos-social-contract-01",
+   "form": "if you use roads and hospitals",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "speak-for-everyone",
+   "entry": "pos-speak-for-everyone-01",
+   "form": "some people love their lives",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "suffering-as-meaning",
+   "entry": "pos-suffering-as-meaning-01",
+   "form": "hardship is what makes us who we are",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a'"
+  },
+  {
+   "oid": "extinction-culture",
+   "entry": "pos-extinction-culture-01",
+   "form": "knowledge",
+   "mode": "exact",
+   "weight": 2,
+   "src": "7a' bare-term"
+  },
+  {
+   "oid": "extinction-culture",
+   "entry": "pos-extinction-culture-01",
+   "form": "civilization",
+   "mode": "exact",
+   "weight": 2,
+   "src": "7a' bare-term"
+  },
+  {
+   "oid": "love-beauty-art",
+   "entry": "pos-love-beauty-art-01",
+   "form": "music",
+   "mode": "exact",
+   "weight": 2,
+   "src": "7a' bare-term"
+  },
+  {
+   "oid": "social-contract",
+   "entry": "pos-social-contract-01",
+   "form": "social contract",
+   "mode": "contains",
+   "weight": 2,
+   "src": "7a' bare-term"
+  },
+  {
+   "oid": "cherry-picking-worst",
+   "entry": "pos-cherry-picking-worst-01",
+   "form": "cherry picking",
+   "mode": "contains",
+   "weight": 2,
+   "src": "kickoff short-form"
+  },
+  {
+   "oid": "most-people-happy",
+   "entry": "pos-most-people-happy-01",
+   "form": "what about happy people",
+   "mode": "contains",
+   "weight": 2,
+   "src": "kickoff class-1"
+  },
+  {
+   "oid": "non-identity-problem",
+   "entry": "pos-non-identity-problem-01",
+   "form": "parfits non identity problem",
+   "mode": "contains",
+   "weight": 2,
+   "src": "kickoff"
+  }
+ ],
+ "_dropped": [
+  {
+   "form": "first world problems",
+   "reason": "ALREADY DECLARED on pos-privileged-first-world-01 (contains w3, folded K305). The K306 kickoff listed it as a gap; re-measurement says otherwise. Folding it again would add a duplicate pattern."
+  }
+ ]
+}

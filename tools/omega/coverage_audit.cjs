@@ -34,8 +34,10 @@
 
    Run:  node tools/omega/coverage_audit.cjs [corpus.json] [search-index.json]
                                               [objections-index.json] [out.json]
-         e.g. node tools/omega/coverage_audit.cjs "" "" "" tools/omega/coverage-audit-K295.json
-         (an empty arg falls to the default; out.json defaults to the OS temp dir)
+         e.g. node tools/omega/coverage_audit.cjs            (all defaults; out -> OS temp dir)
+         NEVER pass "" to hold a positional slot: PowerShell DROPS empty-string args to a
+         native command, so the tool reads argv[0] as the corpus and tries to READ its own
+         output path (cclxxv, K299 ship abort). Pass every positional, or pass none.
    Writes out.json (all rows) + out.md (the ranked summary beside it).
    Exit 1 also flags a corpus whose anatomy or calibration differs from the K270
    corpus this was cut against — re-pin those two assertions deliberately when
@@ -115,7 +117,7 @@ const noPat = E.filter(e => !(e.patterns || []).length).map(e => e.id);
 report.meta = { corpus: path.relative(ROOT, CORPUS), engine: path.relative(ROOT, ENGINE), entries: E.length, patterns: forms.length, classes: cls, tiers, modes, weights, CONST,
                 no_pattern_entries: noPat };
 log("  entries=" + E.length + " patterns=" + forms.length + " classes=" + JSON.stringify(cls) + " modes=" + JSON.stringify(modes) + " weights=" + JSON.stringify(weights));
-assert(E.length === 189 && forms.length === 1076, "anatomy matches the K304 corpus (189 entries / 1076 patterns)", E.length);
+assert(E.length === 189 && forms.length === 1109, "anatomy matches the K306 corpus (189 entries / 1109 patterns)", E.length);
 assert(noPat.every(id => /^mg-(deflect|repeat)-/.test(id)) && noPat.length === 7, "the 7 pattern-less entries are exactly the deflection+repeat pool (miss path, by construction)", noPat.length);
 let nonNorm = 0; for (const f of forms) if (normalize(f.form) !== f.form) nonNorm++;
 assert(nonNorm === 0, "every declared form is already normalized (pre-normalized corpus law)", forms.length);
