@@ -1,0 +1,136 @@
+batch,objection,entry_id,declared_form,proposed_variant,shift
+BULK,life-gift,pos-life-gift-01,life is a gift,life was a gift,is->was
+BULK,life-gift,pos-life-gift-01,life is beautiful,life was beautiful,is->was
+BULK,life-gift,pos-life-gift-01,life is a blessing,life was a blessing,is->was
+BULK,natural-reproduce,pos-natural-reproduce-01,reproduction is natural,reproduction was natural,is->was
+BULK,natural-reproduce,pos-natural-reproduce-01,natural to have kids,natural to had kids,have->had
+BULK,natural-reproduce,pos-natural-reproduce-01,natural to have children,natural to had children,have->had
+BULK,natural-reproduce,pos-natural-reproduce-02,meant to have children,meant to had children,have->had
+BULK,just-edgy,pos-just-edgy-02,this is immature,this was immature,is->was
+BULK,selfish-lazy,pos-selfish-lazy-01,this is selfishness,this was selfishness,is->was
+BULK,selfish-lazy,pos-selfish-lazy-02,too lazy to have kids,too lazy to had kids,have->had
+BULK,change-your-mind,pos-change-your-mind-02,this is a phase,this was a phase,is->was
+BULK,privileged-first-world,pos-privileged-first-world-02,easy for you to say,easy for you to said,say->said
+BULK,privileged-first-world,pos-privileged-first-world-02,you have it easy,you had it easy,have->had
+BULK,animals-reproduce,pos-animals-reproduce-01,animals have babies,animals had babies,have->had
+BULK,animals-reproduce,pos-animals-reproduce-02,just what living things do,just what living things did,do->did
+BULK,animals-reproduce,pos-animals-reproduce-02,its what nature does,its what nature did,does->did
+BULK,happiness-is-choice,pos-happiness-is-choice-01,happiness is a choice,happiness was a choice,is->was
+BULK,happiness-is-choice,pos-happiness-is-choice-02,life is what you make it,life was what you make it,is->was
+BULK,speak-for-everyone,pos-speak-for-everyone-01,my life is great,my life was great,is->was
+BULK,speak-for-everyone,pos-speak-for-everyone-02,some are glad to be alive,some were glad to be alive,are->were
+BULK,playing-god,pos-playing-god-02,who are you to decide,who were you to decide,are->were
+BULK,playing-god,pos-playing-god-02,you dont get to decide that,you didnt get to decide that,dont->didnt
+BULK,adoption-instead,pos-adoption-instead-02,adoption solves the problem,adoption solved the problem,solves->solved
+BULK,economy-population,pos-economy-population-01,the economy needs growth,the economy needed growth,needs->needed
+BULK,economy-population,pos-economy-population-01,we need population growth,we needed population growth,need->needed
+BULK,economy-population,pos-economy-population-01,we need more workers,we needed more workers,need->needed
+BULK,ai-fear,pos-ai-fear-01,ai is dangerous,ai was dangerous,is->was
+BULK,ai-fear,pos-ai-fear-02,your philosophy is reckless about ai,your philosophy was reckless about ai,is->was
+BULK,policy-proposal,pos-policy-proposal-01,what is your policy proposal,what was your policy proposal,is->was
+BULK,policy-proposal,pos-policy-proposal-01,what do you actually propose,what did you actually propose,do->did
+BULK,policy-proposal,pos-policy-proposal-02,what do you want to do about it,what did you want to do about it,do->did
+BULK,policy-proposal,pos-policy-proposal-02,what should we actually do,what should we actually did,do->did
+BULK,pinker-better-world,pos-pinker-better-world-01,the world is getting better,the world was getting better,is->was
+BULK,pinker-better-world,pos-pinker-better-world-01,there is less violence than ever,there was less violence than ever,is->was
+BULK,pinker-better-world,pos-pinker-better-world-01,life expectancy is rising,life expectancy was rising,is->was
+BULK,overpopulation-addressed,pos-overpopulation-addressed-01,overpopulation is being solved,overpopulation was being solved,is->was
+BULK,overpopulation-addressed,pos-overpopulation-addressed-01,birth rates are declining,birth rates were declining,are->were
+BULK,overpopulation-addressed,pos-overpopulation-addressed-02,the population is shrinking,the population was shrinking,is->was
+BULK,overpopulation-addressed,pos-overpopulation-addressed-02,fertility rates are falling,fertility rates were falling,are->were
+BULK,overpopulation-addressed,pos-overpopulation-addressed-02,we are below replacement,we were below replacement,are->were
+BULK,moral-progress,pos-moral-progress-01,humanity is becoming more ethical,humanity was becoming more ethical,is->was
+BULK,moral-progress,pos-moral-progress-01,we are making moral progress,we were making moral progress,are->were
+BULK,moral-progress,pos-moral-progress-02,we are ending factory farming,we were ending factory farming,are->were
+BULK,moral-progress,pos-moral-progress-02,the moral trajectory is upward,the moral trajectory was upward,is->was
+BULK,marxist-materialist,pos-marxist-materialist-01,suffering is caused by capitalism,suffering was caused by capitalism,is->was
+BULK,marxist-materialist,pos-marxist-materialist-02,material conditions are the problem,material conditions were the problem,are->were
+BULK,marxist-materialist,pos-marxist-materialist-02,abolish capitalism and suffering ends,abolish capitalism and suffering ended,ends->ended
+BULK,rights-future-generations,pos-rights-future-generations-01,future generations have a right to exist,future generations had a right to exist,have->had
+BULK,rights-future-generations,pos-rights-future-generations-01,the unborn have rights,the unborn had rights,have->had
+BULK,rights-future-generations,pos-rights-future-generations-02,future generations have rights,future generations had rights,have->had
+BULK,rights-future-generations,pos-rights-future-generations-02,posterity has a claim,posterity had a claim,has->had
+BULK,benatar-asymmetry-attack,pos-benatar-asymmetry-attack-01,the asymmetry doesnt hold,the asymmetry didnt hold,doesnt->didnt
+BULK,benatar-asymmetry-attack,pos-benatar-asymmetry-attack-01,the asymmetry is flawed,the asymmetry was flawed,is->was
+BULK,benatar-asymmetry-attack,pos-benatar-asymmetry-attack-01,absence of pleasure is bad,absence of pleasure was bad,is->was
+BULK,benatar-asymmetry-attack,pos-benatar-asymmetry-attack-02,the asymmetry is arbitrary,the asymmetry was arbitrary,is->was
+BULK,benatar-asymmetry-attack,pos-benatar-asymmetry-attack-02,absence of pleasure is also bad,absence of pleasure was also bad,is->was
+BULK,consent-incoherent,pos-consent-incoherent-01,the consent premise is incoherent,the consent premise was incoherent,is->was
+BULK,consent-incoherent,pos-consent-incoherent-01,consent requires a subject,consent required a subject,requires->required
+BULK,consent-incoherent,pos-consent-incoherent-02,consent is a category error here,consent was a category error here,is->was
+BULK,consent-incoherent,pos-consent-incoherent-02,there is no subject to consent,there was no subject to consent,is->was
+BULK,non-identity-problem,pos-non-identity-problem-02,no one is harmed by being born,no one was harmed by being born,is->was
+BULK,non-identity-problem,pos-non-identity-problem-02,there is no victim to point to,there was no victim to point to,is->was
+BULK,most-people-happy,pos-most-people-happy-01,most people are happy,most people were happy,are->were
+BULK,most-people-happy,pos-most-people-happy-01,surveys show people are happy,surveys show people were happy,are->were
+BULK,most-people-happy,pos-most-people-happy-01,people say they are happy,people said they are happy,say->said
+BULK,most-people-happy,pos-most-people-happy-02,the majority are happy,the majority were happy,are->were
+BULK,most-people-happy,pos-most-people-happy-02,most people are satisfied,most people were satisfied,are->were
+BULK,most-people-happy,pos-most-people-happy-02,people are generally content,people were generally content,are->were
+BULK,most-people-happy,pos-most-people-happy-02,most are content with life,most were content with life,are->were
+BULK,joy-outweighs-harms,pos-joy-outweighs-harms-01,joy outweighs the harms,joy outweighed the harms,outweighs->outweighed
+BULK,joy-outweighs-harms,pos-joy-outweighs-harms-01,the good outweighs the bad,the good outweighed the bad,outweighs->outweighed
+BULK,joy-outweighs-harms,pos-joy-outweighs-harms-01,the pleasure outweighs the suffering,the pleasure outweighed the suffering,outweighs->outweighed
+BULK,joy-outweighs-harms,pos-joy-outweighs-harms-02,my life is net positive,my life was net positive,is->was
+BULK,joy-outweighs-harms,pos-joy-outweighs-harms-02,happy people prove life is good,happy people prove life was good,is->was
+BULK,love-beauty-art,pos-love-beauty-art-02,beauty makes life worth it,beauty made life worth it,makes->made
+BULK,love-beauty-art,pos-love-beauty-art-02,love makes it all worth it,love made it all worth it,makes->made
+BULK,love-beauty-art,pos-love-beauty-art-02,art redeems existence,art redeemed existence,redeems->redeemed
+BULK,suffering-makes-human,pos-suffering-makes-human-01,suffering is part of being human,suffering was part of being human,is->was
+BULK,suffering-makes-human,pos-suffering-makes-human-01,its what makes us human,its what made us human,makes->made
+BULK,suffering-makes-human,pos-suffering-makes-human-01,suffering makes us human,suffering made us human,makes->made
+BULK,suffering-makes-human,pos-suffering-makes-human-01,pain is part of being human,pain was part of being human,is->was
+BULK,suffering-makes-human,pos-suffering-makes-human-02,suffering is essential to humanity,suffering was essential to humanity,is->was
+BULK,suffering-makes-human,pos-suffering-makes-human-02,the struggle makes us human,the struggle made us human,makes->made
+BULK,suffering-as-meaning,pos-suffering-as-meaning-01,suffering gives life meaning,suffering gave life meaning,gives->gave
+BULK,suffering-as-meaning,pos-suffering-as-meaning-01,pain builds character,pain built character,builds->built
+BULK,suffering-as-meaning,pos-suffering-as-meaning-01,suffering is necessary for depth,suffering was necessary for depth,is->was
+BULK,suffering-as-meaning,pos-suffering-as-meaning-02,what doesnt kill you makes you stronger,what didnt kill you makes you stronger,doesnt->didnt
+BULK,suffering-as-meaning,pos-suffering-as-meaning-02,you need the lows to appreciate the highs,you needed the lows to appreciate the highs,need->needed
+BULK,suffering-as-meaning,pos-suffering-as-meaning-02,hardship makes you stronger,hardship made you stronger,makes->made
+BULK,suffering-as-meaning,pos-suffering-as-meaning-02,pain is necessary for growth,pain was necessary for growth,is->was
+BULK,cherry-picking-worst,pos-cherry-picking-worst-01,extremes arent the norm,extremes werent the norm,arent->werent
+BULK,cherry-picking-worst,pos-cherry-picking-worst-01,most lives arent that bad,most lived arent that bad,lives->lived
+BULK,cherry-picking-worst,pos-cherry-picking-worst-02,most cases arent that bad,most cases werent that bad,arent->werent
+BULK,cherry-picking-worst,pos-cherry-picking-worst-02,extreme cases are rare,extreme cases were rare,are->were
+BULK,cherry-picking-worst,pos-cherry-picking-worst-02,the worst cases are outliers,the worst cases were outliers,are->were
+BULK,cherry-picking-worst,pos-cherry-picking-worst-02,most people dont suffer that much,most people didnt suffer that much,dont->didnt
+BULK,consent-both-ways,pos-consent-both-ways-01,consent works both ways,consent worked both ways,works->worked
+BULK,consent-both-ways,pos-consent-both-ways-02,consent goes both ways,consent went both ways,goes->went
+BULK,nihilism-label,pos-nihilism-label-01,isnt this just nihilism,wasnt this just nihilism,isnt->wasnt
+BULK,nihilism-label,pos-nihilism-label-01,this is just nihilism,this was just nihilism,is->was
+BULK,nihilism-label,pos-nihilism-label-02,nothing matters anyway,nothing mattered anyway,matters->mattered
+BULK,nihilism-label,pos-nihilism-label-02,nothing really matters,nothing really mattered,matters->mattered
+BULK,nihilism-label,pos-nihilism-label-02,life is meaningless anyway,life was meaningless anyway,is->was
+BULK,gods-plan,pos-gods-plan-01,the creator has a plan,the creator had a plan,has->had
+BULK,gods-plan,pos-gods-plan-02,god gives us life,god gave us life,gives->gave
+BULK,evolution-purpose,pos-evolution-purpose-01,evolution has a purpose,evolution had a purpose,has->had
+BULK,evolution-purpose,pos-evolution-purpose-02,species survival matters,species survival mattered,matters->mattered
+REVIEW,just-depressed,pos-just-depressed-01,you need therapy,you needed therapy,need->needed
+REVIEW,antinatalism-misanthropic,pos-antinatalism-misanthropic-02,you have no empathy,you had no empathy,have->had
+REVIEW,why-not-suicide,pos-why-not-suicide-01,why are you still here,why were you still here,are->were
+REVIEW,why-not-suicide,pos-why-not-suicide-02,yet here you are,yet here you were,are->were
+REVIEW,survivor-testimony,pos-survivor-testimony-02,they regret jumping,they regretted jumping,regret->regretted
+REVIEW,survivor-testimony,pos-survivor-testimony-02,regret their attempt,regretted their attempt,regret->regretted
+REVIEW,survivor-testimony,pos-survivor-testimony-02,survivors regret it,survivors regretted it,regret->regretted
+REVIEW,violence-as-reductio,pos-violence-as-reductio-01,your movement has no brakes,your movement had no brakes,has->had
+REVIEW,violence-as-reductio,pos-violence-as-reductio-02,your view leads to violence,your view led to violence,leads->led
+REVIEW,violence-as-reductio,pos-violence-as-reductio-02,the logical endpoint is catastrophe,the logical endpoint was catastrophe,is->was
+REVIEW,slippery-slope-eugenics,pos-slippery-slope-eugenics-01,this is a slippery slope to eugenics,this was a slippery slope to eugenics,is->was
+REVIEW,slippery-slope-eugenics,pos-slippery-slope-eugenics-01,this is eugenics,this was eugenics,is->was
+REVIEW,slippery-slope-eugenics,pos-slippery-slope-eugenics-02,this is nazi eugenics,this was nazi eugenics,is->was
+REVIEW,ableist-objection,pos-ableist-objection-01,this is ableist,this was ableist,is->was
+REVIEW,ableist-objection,pos-ableist-objection-01,your view is ableist,your view was ableist,is->was
+REVIEW,ableist-objection,pos-ableist-objection-02,you are saying disabled people should not be born,you were saying disabled people should not be born,are->were
+REVIEW,masochist-counterexample,pos-masochist-counterexample-02,pain is subjective,pain was subjective,is->was
+REVIEW,masochist-counterexample,pos-masochist-counterexample-02,pain is relative,pain was relative,is->was
+REVIEW,masochist-counterexample,pos-masochist-counterexample-02,one persons pain is anothers pleasure,one persons pain was anothers pleasure,is->was
+PLURAL,life-gift,pos-life-gift-01,gift of life,gift of lives,life->lives
+PLURAL,privileged-first-world,pos-privileged-first-world-01,first world problem,first world problems,problem->problems
+PLURAL,animals-reproduce,pos-animals-reproduce-02,circle of life,circle of lives,life->lives
+PLURAL,western-philosophy,pos-western-philosophy-02,other cultures value life,other cultures value lives,life->lives
+PLURAL,speak-for-everyone,pos-speak-for-everyone-02,i love my life,i love my lives,life->lives
+PLURAL,non-identity-problem,pos-non-identity-problem-01,the nonidentity problem,the nonidentity problems,problem->problems
+PLURAL,evolution-purpose,pos-evolution-purpose-01,we evolved for a reason,we evolved for a reasons,reason->reasons
+PLURAL,luxury-belief,pos-luxury-belief-01,luxury belief,luxury beliefs,belief->beliefs
+PLURAL,luxury-belief,pos-luxury-belief-01,elite belief,elite beliefs,belief->beliefs

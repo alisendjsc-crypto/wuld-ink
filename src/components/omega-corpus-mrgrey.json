@@ -3340,6 +3340,47 @@
         "nav_label": "/chat/"
       },
       {
+        "id": "mg-oracle-names-01",
+        "class": "oracle",
+        "tier": "public",
+        "patterns": [
+          {
+            "form": "parfit",
+            "mode": "exact",
+            "weight": 2
+          },
+          {
+            "form": "scanlon",
+            "mode": "exact",
+            "weight": 2
+          },
+          {
+            "form": "harman",
+            "mode": "exact",
+            "weight": 2
+          },
+          {
+            "form": "bradley",
+            "mode": "exact",
+            "weight": 2
+          },
+          {
+            "form": "boonin",
+            "mode": "exact",
+            "weight": 2
+          }
+        ],
+        "response": "I answer arguments, not authors. A surname isn't an argument, it's a shelf - and I don't guess which book you meant. The reasoning is written out where it can be checked; take the one you came for and put it to me in your own words.",
+        "register_tags": [
+          "site"
+        ],
+        "length_band": "b3_passage",
+        "animation_hint": "speak",
+        "href": "/argument-library/",
+        "nav_label": "the argument library",
+        "note": "K304, body verbatim from the Successor-Protocol seat (TX19-BACK section 1). A bare surname is not an objection -- routing one to a single position is the 'did you mean' fabrication at a threshold of one. NO philosopher name appears in the emitted body: the canon principle is about what gets spoken, and this entry talks about names without using one. benatar is deliberately absent -- he reaches mg-antinatalism-01, a topic oracle, which points at the subject and picks no argument."
+      },
+      {
         "id": "mg-time-01",
         "class": "response",
         "tier": "public",
@@ -3545,6 +3586,21 @@
             "form": "gift of life",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "life was a gift",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "life was beautiful",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "life was a blessing",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "A gift requires a recipient. Before the child exists there is no one to receive, no one deprived by the gift withheld, no one owed the favor. The thing arrives only by creating the needs it then answers — a disease invented to sell its own partial cure. And the terms are not a gift's terms: the child carries the whole downside, bone cancer to psychological ruin to the guaranteed death at the end, while the giver collects the credit. He signed this one: a wager placed with someone else's collateral is not generosity. It is a gamble by proxy, and the proxy pays.",
@@ -3722,6 +3778,11 @@
             "form": "natural to have children",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "reproduction was natural",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Cancer is natural. The parasitoid wasp, laying eggs in a living host so the larvae can eat it awake, is natural. Prion disease, stillbirth, the primate that kills its rival's infants — all natural. Natural describes what exists; it justifies nothing about what should. Deriving the ought from the is was caught by Hume in the eighteenth century, and the appeal never survives its own catalogue: nobody who says natural-therefore-good keeps the frame when the wasp is on the table. Selective worship of the architect is not a principle. It is a reflex defending the one product under discussion.",
@@ -3864,6 +3925,11 @@
           },
           {
             "form": "so childish",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "this was immature",
             "mode": "contains",
             "weight": 2
           }
@@ -4081,6 +4147,11 @@
             "form": "selfish philosophy",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "this was selfishness",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Run the audit honestly. The reproducer collects genetic continuation, social approval, legacy, a hedge against lonely old age, and the neurochemical rewards of attachment — the created party is consulted never and guaranteed nothing. The abstainer collects stigma, suspicion, and a terminated line, and pays those prices to keep one being out of harm's certain reach. One of these is appetite served; the other is appetite refused. The accusation lands on the wrong door, and its arrival there is not an accident — it is projection with the receipts still in its pocket. The selfish act is the one performed on another's behalf without asking. Only one side of this argument does that.",
@@ -4220,6 +4291,11 @@
             "form": "too young to know",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "this was a phase",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "A phase is diagnosed by its ending, and this one is centuries old with no ending on file. What actually ends, reliably, is the asking — sunk cost sees to that: the parent who cannot afford the error to be an error projects the conversion outward as wisdom. I changed my mind, so you will, is motivated reasoning wearing a mentor's coat. The position does not depend on the age of anyone holding it; the asymmetry is as true or false at nineteen as at ninety. Come back with a premise. The birthday math was never one.",
@@ -4263,6 +4339,11 @@
             "form": "ivory tower",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "first world problems",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "An argument's validity does not check the arguer's bank balance. The asymmetry holds or fails on its own structure, not on the tax bracket of the mouth that states it — locating the man in comfort to void the claim is the genetic fallacy in the robes of humility. The pessimist tradition did not grow in luxury either. It grew from direct confrontation with famine, plague, and oppression, the reality that comfort merely upholsters. He signed the conclusion drawn from that confrontation. Comfort can blunt a witness; it cannot turn a sound argument unsound.",
@@ -4304,6 +4385,11 @@
           },
           {
             "form": "you are spoiled",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "you had it easy",
             "mode": "contains",
             "weight": 2
           }
@@ -4435,6 +4521,11 @@
             "form": "all animals breed",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "animals had babies",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Animals also eat their young, kill their rivals' infants, and force copulation. If animal behavior is the ethical model, defend the whole catalogue, not the one entry that flatters the conclusion already wanted. The selection rule is never what animals do; it is what animals do that the objector had decided to keep. That is post-hoc rationalization in biological costume. Deriving an ought from an is was named as a fault centuries ago, and the appeal never survives its own zoo. He signed the refusal to read a slaughterhouse as a moral instruction.",
@@ -4476,6 +4567,16 @@
           },
           {
             "form": "its what nature does",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "just what living things did",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "its what nature did",
             "mode": "contains",
             "weight": 2
           }
@@ -4521,6 +4622,11 @@
             "form": "choose to be positive",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "happiness was a choice",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Roughly half the variance in wellbeing is a heritable set-point fixed before any choosing was possible, and the conditions that fill the rest, poverty, abuse, illness, the accident of where a body lands, are not willed away by posture. Telling treatment-resistant depression to choose happiness is telling a broken leg to choose walking; the instruction reports nothing about the condition and everything about the instructor. The frame does precise work: if suffering is chosen, it is self-inflicted, and creating a sufferer then costs the creator nothing. That is victim-blaming dressed as wisdom. He signed against the costume.",
@@ -4564,6 +4670,11 @@
             "form": "glass half full",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "life was what you make it",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Make of life what you will presumes the will is unencumbered, that circumstance is a surface texture, that the body and its history are open to renegotiation. None of that is true. The child born into famine is told to choose an attitude; the same child grown, three failed harvests deep, is told to make of life what he will — interchangeable instructions, equally ornamental. The frame cannot register material limits, embodied vulnerability, or the gap between receiving harm and resisting it, because registering any of them would collapse its premise. It also dies at the animal eaten alive, which cannot choose a brighter view. He signed against the fantasy of the frictionless will.",
@@ -4754,6 +4865,11 @@
             "form": "my life is great",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "my life was great",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "You have answered a claim no one made. 'My life is good' meets 'your life is bad,' and that was never the sentence. The sentence is that no one can be asked before being made, and that every making hands a real subject the whole downside of a wager it could not decline. Your verdict on your own life leaves that wager exactly where it was. A jackpot winner's delight is no defense of a lottery that conscripts its players; it tells you the ticket paid out, not that the draw was fair to enter. He sets your gladness to one side, uncontested, and turns to the one who was entered without a word. Being glad you were born is not the same as its having been permitted to make you.",
@@ -4790,6 +4906,11 @@
           },
           {
             "form": "some are glad to be alive",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "some were glad to be alive",
             "mode": "contains",
             "weight": 2
           }
@@ -4868,6 +4989,16 @@
             "form": "not your decision to make",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "who were you to decide",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you did not get to decide that",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "'Who are you to decide' bites only if you have already slipped in that creating is the neutral default and refraining is the thing that needs a warrant. Turn it right side up. The default of the universe is that no one is here; every birth is the deviation, the positive act, the reach into non-existence that has to answer for itself, while non-creation is the ground state left alone. So the demand for authority points the wrong way. It is the maker who drafts a new party to terms it never saw; the one who abstains drafts no one and rules over nothing. He assigns the burden to whoever moves first, and the one who moves first is never the one who declines. That is not humility talking. It is the status quo mistaking itself for gravity.",
@@ -4942,6 +5073,11 @@
           },
           {
             "form": "adopt instead",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "adoption solved the problem",
             "mode": "contains",
             "weight": 2
           }
@@ -5058,6 +5194,21 @@
             "form": "we need more workers",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "the economy needed growth",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we needed population growth",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we needed more workers",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Stated plainly, this asks to manufacture new conscious beings, without their consent, so they can service the debts of the ones already here. The economy that needs them was built by reproducing organisms to require exactly this input, so the need is circular: the machine demands fuel because it was designed to demand fuel. Every worker minted to fund the last cohort's pension needs a further cohort minted to fund his own, and each pays the full price of a life to hold up the tier above. He reads it as a confession rather than an argument: a pyramid scheme does not turn ethical because the deposit is a person instead of a dollar.",
@@ -5134,6 +5285,11 @@
             "form": "ai will kill us all",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "ai was dangerous",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Two questions are being welded together that do not belong together. One is an engineering problem — can a powerful system be built without catastrophe — and it is real, hard, and worth solving. The other is a claim the position never made: that machines should replace people. What the position actually holds is narrower. Suffering, not the material a mind is made of, is what carries moral weight. He splits the two cleanly: the danger of a badly built system is an argument for building it carefully, never a refutation of the point that agony matters wherever it occurs. Fear of the machine is not a defense of the flesh.",
@@ -5172,6 +5328,11 @@
             "form": "you would let ai wipe us out",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "your philosophy was reckless about ai",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "The charge underneath is that preserving biological life needs no defense — that flesh is simply worth more than any other substrate, by default. State that assumption and it stops being obvious. If a form of awareness could exist without the disease, the decay, and the guaranteed death built into this one, the case for keeping the suffering version cannot rest on loyalty to the material alone. It has to name what, beyond the capacity for pain, makes carbon sacred. He strips the claim to its root and finds the survival drive wearing an argument's clothes: we favor biological minds because we are biological minds. Preference is not a proof.",
@@ -5367,6 +5528,16 @@
             "form": "what is your actual plan",
             "mode": "contains",
             "weight": 3
+          },
+          {
+            "form": "what was your policy proposal",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "what did you actually propose",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Whether the argument is sound does not wait on whether a government would ever enact it. A valid proof stays valid in a hostile parliament. That is the category the objection slips. He answers the demand anyway, because the answer is not sinister: universal access to contraception, honest sex education, the removal of tax and social rewards for having children, the normalization of choosing not to, safety nets that break the link between survival and a growing population, and automation that does the same. None of it requires force. All of it reduces harm. That these are politically difficult does not make the reasoning wrong. It shows the landscape hostile to the very consent it claims to prize.",
@@ -5405,6 +5576,11 @@
             "form": "what should we actually do",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "what did you want to do about it",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "The demand for a plan is doing quiet work: it wants to convert a question about whether into a question about how, and treat a missing blueprint as a defeated premise. Those are different things. A claim about what should not be done needs no logistics to be true. He measures the gap between them and does not let the harder engineering swallow the plain ethics. Nothing here calls for coercion or a program imposed on anyone. It calls for removing the pressures that already push people toward reproduction they did not freely choose, and for building the supports that make the other choice a real one. The work is voluntary from end to end. Difficulty is not refutation.",
@@ -5441,6 +5617,21 @@
           },
           {
             "form": "life expectancy is rising",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the world was getting better",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "there was less violence than ever",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "life expectancy was rising",
             "mode": "contains",
             "weight": 2
           }
@@ -5519,6 +5710,16 @@
             "form": "demographics will handle it",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "overpopulation was being solved",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "birth rates were declining",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Stated plainly, this answers a question the position never asked. The objection was never a complaint that the crowd is too large; it is a claim about a single act, that creating one conscious being who cannot consent, and who is guaranteed to suffer, is impermissible on its own terms. Drop the world to ten thousand people and let one couple reproduce, and the objection lands on that act with undiminished force. A falling birth rate changes how many times the act is performed and nothing about the act itself. He isolates the ethical claim from the population chart: a shorter line of non-consenting lives is a shorter line, not a cleared conscience.",
@@ -5555,6 +5756,21 @@
           },
           {
             "form": "we are below replacement",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the population was shrinking",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "fertility rates were falling",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we were below replacement",
             "mode": "contains",
             "weight": 2
           }
@@ -5595,6 +5811,16 @@
             "form": "expanding circle of empathy",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "humanity was becoming more ethical",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "we were making moral progress",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Grant the trajectory and the objection still holds, because it sits one level beneath it. A being created today is set down in today's moral landscape, not the improved one it is promised will arrive, and is asked to serve as a step toward a compassion its own life will never reach. That is the proxy gamble moved into moral time: present suffering, certain and unconsented, staked on the guess that later beings will suffer less. He dates the cost precisely, and it falls due now, on the one who will never live in the world the payment is meant to buy.",
@@ -5631,6 +5857,16 @@
           },
           {
             "form": "the moral trajectory is upward",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "we were ending factory farming",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the moral trajectory was upward",
             "mode": "contains",
             "weight": 2
           }
@@ -5671,6 +5907,11 @@
             "form": "blame capitalism",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "suffering was caused by capitalism",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "This mistakes an intensifier for the source. The materialist reading is right about its own floor, that class and exploitation and alienated labor manufacture enormous and preventable suffering, but the objection stands on the floor beneath it. Abolish capital entirely and the fully liberated citizen still ages, still sickens, still buries everyone she loves, still dies, and still consented to none of it. That is not a wage relation; it is the condition of being sentient, and no redistribution reaches down to it. He subtracts the economy from the sum and the harm barely moves: the terms of labor end at the factory gate, the terms of existence do not.",
@@ -5709,6 +5950,11 @@
             "form": "the marxist objection",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "material conditions were the problem",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "The analysis is aimed one level too high rather than simply wrong. Capitalism is a symptom the objection will readily grant, a vicious one, but treating the symptom leaves the disease it belongs to untouched. Strip the profit motive from the world and you have removed a multiplier of suffering, not its ground; the ground is that a sentient thing was brought into being, without being asked, to carry illness and loss and death for a full term it never agreed to serve. Revolution rearranges who suffers and by how much. It does not reach the fact that someone must. He treats capitalism as one symptom among many and keeps the objection aimed at the body underneath.",
@@ -5823,6 +6069,16 @@
             "form": "the right to be born",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "future generations had a right to exist",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the unborn had rights",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "A right needs someone to hold it, and here there is no one. Before a life is made there is no subject standing behind the claim, no preferences to be thwarted, no welfare to be set back, no one who could be deprived by never arriving. You cannot wrong a party that does not exist by declining to summon it into being, because there is no party there to be wronged. The right to exist is the single claim that can only be held once it has already been granted, which leaves it either redundant or empty. He inspects the claim for its holder and finds the seat empty: an entitlement addressed to no one binds no one.",
@@ -5859,6 +6115,16 @@
           },
           {
             "form": "posterity has a claim",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "future generations had rights",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "posterity had a claim",
             "mode": "contains",
             "weight": 2
           }
@@ -6127,6 +6393,21 @@
             "form": "absence of pleasure is bad",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "the asymmetry did not hold",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the asymmetry was flawed",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "absence of pleasure was bad",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "The parity charge runs one word two ways and hopes nobody checks. That the absence of pain is good is a comparison — better that no pain exist than that it does — and a comparison ranks outcomes without standing on anyone. That the absence of pleasure is bad is a deprivation, and deprivation is two-place: there has to be someone the missing thing is missing from. So name the one deprived of a pleasure never felt. Point to him. The set is empty. He ranks the good of absent pain as a verdict on states and lets the missing pleasure stand as a loss with no one to fall on. Symmetry was assumed where the logic was never the same, and the assumption gets called a refutation.",
@@ -6163,6 +6444,16 @@
           },
           {
             "form": "absence of pleasure is also bad",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the asymmetry was arbitrary",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "absence of pleasure was also bad",
             "mode": "contains",
             "weight": 2
           }
@@ -6203,6 +6494,16 @@
             "form": "you can not get consent from the nonexistent",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "the consent premise was incoherent",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "consent required a subject",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Correct on the fact, wrong on what follows from it. Consent cannot be drawn from someone who does not exist. Fine. Everywhere else that consent cannot be had — the patient unconscious, the party not yet in the room — the rule is to hold, and to act only where holding would itself do the greater harm. Coming into existence carries no such emergency, because staying unborn injures no one who was waiting to be spared. So the missing consent is not a gap you are free to step through. It is the reason to keep still. He turns the impossibility from a permission slip into the very thing that forbids the act. The rule that governs every other unaskable case does not suspend itself here for the convenience of the one who wants to proceed.",
@@ -6239,6 +6540,16 @@
           },
           {
             "form": "there is no subject to consent",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "consent was a category error here",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "there was no subject to consent",
             "mode": "contains",
             "weight": 2
           }
@@ -6317,6 +6628,16 @@
             "form": "there is no victim to point to",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "no one was harmed by being born",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "there was no victim to point to",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "The move hides a premise it never states: that a harm must belong to someone in particular before it counts against anything. Drop that and the puzzle comes apart. The wager was never laid against a named child who might have drawn a kinder hand — it is laid against the whole spread of what any mind can be dealt, the cancers and the terrors and the fixed ending, live in the deck no matter who sits down to it. Swap the identity of the player and every one of those cards is still in play. He collapses the tie between who the sufferer turns out to be and whether the suffering was worth the risk of dealing it. The counterfactual about identity leaves the odds exactly where they stood.",
@@ -6353,6 +6674,16 @@
           },
           {
             "form": "then non existence is not good",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "absence of pain was not good either",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "then non existence was not good",
             "mode": "contains",
             "weight": 2
           }
@@ -6393,6 +6724,11 @@
             "form": "symmetry cuts both ways",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "value was subject relative",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Grant the whole of it — value is subject-relative, nothing is good or bad except for someone. Then watch where the grant travels. Either the asymmetry survives on its own terms, in which case the objection has missed, or it falls, and the critic must re-explain in person-affecting terms why forcing a doomed life wrongs someone while declining to start a happy one wrongs no one. That re-explanation is the consent spine, reached by his own reasoning: the wrong is a harm that will settle on a determinate person. Subject-relativity does not embarrass the position. It arms it. He hands over the very bearer his objection called missing — not a phantom in the void, but the actual future person who will exist and carry what was imposed. The charge was never about a good belonging to no one. It was always about a harm that will belong to someone.",
@@ -6429,6 +6765,16 @@
           },
           {
             "form": "one pillar of many",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "defeating the asymmetry was not enough",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the case had other pillars",
             "mode": "contains",
             "weight": 2
           }
@@ -6469,6 +6815,11 @@
             "form": "refute one premise",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "the conclusion was overdetermined",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Take the technical win at full value. Say the asymmetry is defeated inside the analytic frame, cleanly, with nothing left to patch. What follows for the conclusion is nothing, because the conclusion was overdetermined. A theorem with four independent proofs does not fall when one proof is faulted — the others were never leaning on it. A whole life's risk imposed without agreement, a value-sum that never rises above zero, a permission that cannot be sought: each carries the verdict by itself. He unseats one premise and stands over it as if the room emptied, while three untouched routes still end where they ended. Concede the node and keep the verdict. The case outgrew the reasoning it is scored against.",
@@ -6507,6 +6858,11 @@
             "form": "the parent child bond",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "ethics was care and relationship",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "There is something real here, and pretending otherwise would be its own kind of evasion. The bond between parent and child does not reduce to a sum of harms and permissions, and a tradition that insists on this is naming something true about moral life. It is also standing in the wrong place in time. The relationship read as rich exists because the parent made it exist — the child was set into needing care, never asked whether to need it, and holds the whole risk the decision opened. Care appraises the bond once it is already standing. The act that stood it up came first, and answered to no one who was there to answer. A relationship's beauty does not reach backward to sign a consent that had no one to give it. What is loved here was also imposed, and the loving comes after the imposing, not in place of it.",
@@ -6543,6 +6899,11 @@
           },
           {
             "form": "dependency creates obligation",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "dependency created obligation",
             "mode": "contains",
             "weight": 2
           }
@@ -6583,6 +6944,16 @@
             "form": "benign creation is permissible",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "creating a good enough life was permissible",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "benign creation was permissible",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Grant the threshold and grant that most lives clear it. The defense still leans its whole weight on who does the certifying. A life reports itself good from inside a mind selected to endorse its own continuation — optimism runs high, the baseline resets after every blow, the drowning man calls the water fine once the thrashing stops. That verdict is survival firmware talking, not an independent assessment of the conditions. The adapted captive who reports the cell agreeable has not thereby approved it. He conscripts the testimony of a consciousness built to pass its own test and enters it as proof the terms were acceptable. The certificate was written by the party with everything to gain from a yes. Ask who holds the pen and the threshold certifies nothing.",
@@ -6619,6 +6990,16 @@
           },
           {
             "form": "bringing a good life into being is allowed",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "a life over the quality threshold was acceptable",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "bringing a good life into being was allowed",
             "mode": "contains",
             "weight": 2
           }
@@ -6735,6 +7116,11 @@
             "form": "pain is how you become who you are",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "pain was how you became who you were",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "There is something true here, and it deserves to be met rather than brushed aside. People do find meaning in what they suffer — real meaning, made by real people under real weight. None of that is in dispute. What is in dispute is the direction it runs. Meaning is made after the fact, by the one already inside the hardship, doing the deeply human work of making the unbearable bear sense. That work is a response to the wound. It is not a permission slip issued before the wound was dealt. The survivor who builds significance out of the camp has shown what a person can endure; the builder of the camp is owed nothing by it. Sense found in suffering is the mind meeting what it was handed. It never reaches back to sign for the handing.",
@@ -6771,6 +7157,21 @@
           },
           {
             "form": "without struggle life means nothing",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the struggle was what gave life value",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "hardship was what shaped a person",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "without struggle life meant nothing",
             "mode": "contains",
             "weight": 2
           }
@@ -7072,6 +7473,21 @@
             "form": "people say they are happy",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "most people were happy",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "surveys show people were happy",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "people said they are happy",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Self-reported satisfaction is the output of a system built to report satisfaction. Optimism bias inflates it, the hedonic treadmill re-baselines it to any decline, and social desirability edits the answer before it is spoken. A survey of the currently-coping is not a reading of the conditions they cope with. You are citing the prisoner's contentment as evidence the cell is good, when contentment is precisely what a well-adapted prisoner reports. The instrument was tuned by survival, not by truth, and it cannot step outside its own experience to audit itself. He does not deny that people say they are glad. He denies the saying was ever wired to track whether the gladness was warranted.",
@@ -7113,6 +7529,26 @@
           },
           {
             "form": "most are content with life",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "the majority were happy",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "most people were satisfied",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "people were generally content",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "most were content with life",
             "mode": "contains",
             "weight": 2
           }
@@ -7158,6 +7594,21 @@
             "form": "the pleasure outweighs the suffering",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "joy outweighed the harms",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the good outweighed the bad",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the pleasure outweighed the suffering",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "The good outweighs the bad runs on a sum that does not care whose column holds which entry. Grant that the sum comes out positive. The same arithmetic that nets pleasure over pain across persons is the arithmetic that hands the sadist his warrant, his delight outweighing the victim's agony magnitude for magnitude, making the torture the optimum. Recoil from that, as you do, and you have thrown out agent-neutral aggregation as a thing that can justify. You cannot then pick it back up to license creating a sufferer. What blocks the monster is the separateness of persons, and that same wall forbids drafting a newcomer into guaranteed harm to fund a surplus that was never theirs. The rescue closes the case it was meant to save.",
@@ -7199,6 +7650,16 @@
           },
           {
             "form": "happy people prove life is good",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "my life was net positive",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "happy people prove life was good",
             "mode": "contains",
             "weight": 2
           }
@@ -7287,6 +7748,21 @@
             "form": "the good moments make up for the bad",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "beauty made life worth it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "love made it all worth it",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "art redeemed existence",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Grant the goods their full weight and watch what they arrive attached to. The symphony and the loss come on one ticket. Love ends in grief, beauty fades, the work outlives its maker and then it does not, and at the tail of the same distribution is a child in the oncology ward the symphony never reaches. She rode the ticket everyone at the concert rode. You cannot order the highlight reel without the full footage, because the act that makes the one makes the other in a single stroke. The romantic curates the peaks and calls them the whole. He signed the full footage, the part that keeps rolling after the peaks stop. A finite good is still a good. It is not a license to draft someone into the bundle to get it.",
@@ -7328,6 +7804,26 @@
           },
           {
             "form": "pain is part of being human",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "suffering was part of being human",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "its what made us human",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "suffering made us human",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "pain was part of being human",
             "mode": "contains",
             "weight": 2
           }
@@ -7373,6 +7869,16 @@
             "form": "the struggle makes us human",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "suffering was essential to humanity",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the struggle made us human",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "This captivity is what makes me who I am is not a defense of the captivity. It is the clearest symptom of adaptation to it. Consciousness narrativizes whatever it cannot escape, and the mind that could not do this left no descendants, so every living mind descends from the ones that could. Your acceptance of the conditions is the trait selection installed to keep you inside them, not a verdict you reasoned your way to. Calling the wound the source of the self dignifies the wound without ever weighing it. He signed the refusal to mistake a survival reflex for a philosophy. The prisoner who loves the cell has told you about the prisoner, not about the cell.",
@@ -7414,6 +7920,21 @@
           },
           {
             "form": "suffering is necessary for depth",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "suffering gave life meaning",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "pain built character",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "suffering was necessary for depth",
             "mode": "contains",
             "weight": 2
           }
@@ -7459,6 +7980,26 @@
             "form": "pain is necessary for growth",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "what did not kill you makes you stronger",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "you needed the lows to appreciate the highs",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "hardship made you stronger",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "pain was necessary for growth",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "If suffering truly conferred meaning you would act like it, and you never do. You do not prescribe agony to the people you love, you do not ask the surgeon to withhold the anesthetic to enrich the story, and you do not rank the torture victim's life as deeper than the artist's. You treat suffering as a cost to be cut even while you praise its yield, which is the tell that you do not believe the praise. The testimony is filtered besides. The strengthened survive to speak and the broken file no report. And the asymmetry closes it. Where suffering does pay out meaning the payment is contingent and may never come, while the suffering is certain. He signed the refusal to stake a guaranteed harm on a speculative return drawn in a currency that is someone else's to lose.",
@@ -7500,6 +8041,11 @@
           },
           {
             "form": "most lives are not that bad",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "extremes were not the norm",
             "mode": "contains",
             "weight": 2
           }
@@ -7545,6 +8091,26 @@
             "form": "most people do not suffer that much",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "most cases were not that bad",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "extreme cases were rare",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "the worst cases were outliers",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "most people did not suffer that much",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Most tickets do not lose badly is the exact reasoning risk ethics exists to reject. No insurer waves off catastrophic exposure because the median holder never files a claim. The worst case governs the decision precisely when it is rare and ruinous, and it governs hardest when the person carrying it never agreed to carry it. Here the one who bears the tail signed nothing, because he did not exist to sign. A low probability of the unbearable, imposed on someone who could not consent, is not softened by the many who draw better. He signed the standard that weighs the ruin by what it does to whoever it lands on, not by how seldom it lands. Rarity is a comfort only to the one who is not exposed.",
@@ -7588,6 +8154,11 @@
             "form": "consent to nonexistence",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "consent worked both ways",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Symmetry needs two subjects and there is only one. The never-created is no one — no preference to override, no welfare to set back, no party standing outside the world who was denied entry. You cannot fail to secure consent from an absence. Creation is where the second subject arrives: a being who will suffer, who was never asked, who carries the whole downside of a wager placed before it could speak. That is not a stalemate. One column holds a victim and the other holds no one. He weighs the two and finds the side you called equal is empty — you cannot balance a person against nobody at all.",
@@ -7624,6 +8195,11 @@
           },
           {
             "form": "consent goes both ways",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "consent went both ways",
             "mode": "contains",
             "weight": 2
           }
@@ -7669,6 +8245,16 @@
             "form": "you are a nihilist",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "was not this just nihilism",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "this was just nihilism",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "Two claims share the name and you have seized the wrong one. That the cosmos has no built-in purpose — granted, without a flinch. That therefore nothing is better or worse than anything — denied, because the entire case rests on one value holding: that unconsented suffering is real and counts. Read the charge again and it runs backwards. If nothing mattered, the objection to manufacturing more nervous systems would dissolve; it has force only because the disvalue will not negotiate. He does not blink at the empty sky and still refuses to call the thing shivering under it nothing. That is not the absence of values — it is the one value that outlived the sky going dark.",
@@ -7710,6 +8296,21 @@
           },
           {
             "form": "life is meaningless anyway",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "nothing mattered anyway",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "nothing really mattered",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "life was meaningless anyway",
             "mode": "contains",
             "weight": 2
           }
@@ -7755,6 +8356,11 @@
             "form": "the creator has a plan",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "the creator had a plan",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Call it the plan and you have not answered the question — you have handed it to someone who never arrives to take it. A design that threads a parasite through a child's eye and names it purpose is not owed deference; it is the thing under examination. Either the planner cannot stop this, or does not know, or does not care — and none of the three is the being you described. The appeal relocates the responsibility; it does not discharge it. He does not bow to an authority whose only credential is that it forbids the asking. A plan you may not examine is not one you have defended — it is a door held shut against the question.",
@@ -7796,6 +8402,11 @@
           },
           {
             "form": "god gives us life",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "god gave us life",
             "mode": "contains",
             "weight": 2
           }
@@ -7922,6 +8533,11 @@
             "form": "evolution has a purpose",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "evolution had a purpose",
+            "mode": "contains",
+            "weight": 2
           }
         ],
         "response": "Evolution gave you nothing, because it wants nothing. It is a blind sort that keeps whatever copies itself and discards whatever doesn't — no aim, no summit, no you-shaped goal waiting at the end. By its only measure the tapeworm is your equal and the gut microbe your peer; 'purpose' is the narration you laid over a process that runs mute. And suppose it had aimed at consciousness: a mechanism producing a thing is no argument for feeding it more raw material. He keeps the biology entire and discards the sermon bolted onto it. The algorithm selected for replication and swept the cost onto whatever got replicated — you have mistaken the exhaust for a destination.",
@@ -7960,6 +8576,11 @@
             "form": "we evolved to reproduce",
             "mode": "contains",
             "weight": 2
+          },
+          {
+            "form": "species survival mattered",
+            "mode": "contains",
+            "weight": 3
           }
         ],
         "response": "'The species has to continue' — has to, though no one ever produces the warrant for the 'has to'. Survival is a fact about which lines persisted, never a command that they ought to. Nature ran the filter and you are reading its output as an order — the naturalistic slip in formal dress: what happened licenses nothing about what should. Even granting the drive, a factory does not earn its next shift by pointing at the good units while the defective ones burn in the same building. The line continues only by conscripting new members who never enlisted and who shoulder every hazard of the tour. He does not take an inherited urge for a mandate. That you were built to want more is the mechanism talking — not a reason it has troubled to give.",
@@ -7996,6 +8617,16 @@
           },
           {
             "form": "elite belief",
+            "mode": "contains",
+            "weight": 2
+          },
+          {
+            "form": "luxury beliefs",
+            "mode": "contains",
+            "weight": 3
+          },
+          {
+            "form": "elite beliefs",
             "mode": "contains",
             "weight": 2
           }
