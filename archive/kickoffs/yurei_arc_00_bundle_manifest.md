@@ -1,0 +1,17 @@
+# Orientation bundle — wuld.ink seat → K223 (Yurei arc phase 1)
+
+Source: git objects at wuld-ink HEAD **`b4f3149`** (`b4f314942eb8d3ea40ba7702e4dbc1eab290dc25`, the K220 landing commit — the requested files are byte-identical to the K219 state; K220 touched none of them). Extraction = `git show` from a fresh-fetched clone, never mount reads. All "verbatim" claims are byte-exact from the object; cuts are labeled with 1-based line ranges.
+
+| file | md5 (12) | bytes | provenance |
+|---|---|---|---|
+| `01_successor-protocol_index.html` | `37ea4c3e179b` | 65,982 | `src/_/successor-protocol/index.html` — FULL, verbatim. Register source; fenced (derive, never edit). |
+| `02_yurei-harness_index.html` | `c0ce545a08bb` | 16,351 | `src/_/yurei-harness/index.html` — FULL, verbatim. NOTE: the harness READS `wuld:yurei` but never writes it — see 07. |
+| `03_wrong-hour_head+contract.txt` | `7b040328cbef` | 7,781 | `src/components/wrong-hour.js` L1–101 verbatim (head law + MOODS incl. breeze + prefs/save) + appendix: storage keys (`wuld:wrongHour`, `.booted`, `.sess`, `wuld:visited` cap-60 law) + the `data-wh="none"` element opt-out contract + mood API lines. No CustomEvents — the component is self-contained; other surfaces integrate via the `data-wh` attribute and shared localStorage, not events. |
+| `04_ambient-player_head+surface.txt` | `6d3ecef46744` | 4,860 | `src/components/ambient-player.js` L1–100 verbatim + the `window.WuldAmbient` public surface block verbatim + `STORAGE_KEY = "wuld:ambient"`. Breeze machinery lives in wrong-hour's MOODS (file 03), not here. |
+| `05_void-engine_chrome+matcher.txt` | `e1c5e93eddf7` | 4,276 | `src/void-engine/index.html` cuts: umbrella-chrome comment L642–648 · lexicon entry shape L1093–1096 (`id:{d,s}`) · `function generate()` L4482–end verbatim (the transmission composer — the canned-corpus matcher precedent) · start/stopTransmission L5142–5160. |
+| `06_gallery-room_head+consent.js` | `daee1deba7f9` | 11,354 | `src/components/gallery-room.js` L1–210 verbatim (full head contract + the consent-gate class: `wuld:gallery-consent` / `wuld:gallery-saved` / `wuld:gallery-reveal`, K105 consent-primacy composition). |
+| `07_yurei-suite_supplement.txt` | `29c9198960c2` | 44,404 | **Item 7, expanded beyond the one-liner on purpose** — the live yurei apparatus is a component SUITE item 2 does not cover: `yurei-summon.js` FULL (1,377 B — the only writer of the RESERVED `wuld:yurei` blob = the unlock trigger), `yurei.css` FULL, `yurei.js` FULL (30,845 B — apparition triggers, fragment law `wuld:yurei.fragmentPool`, session sibling `wuld:yurei.s`, kill-switch `wuld:yurei.off`, reduced-motion canon — the current-body behavior reference your mapping table replaces), `assets/yurei/manifest_v2.json` FULL (the sprite/asset manifest the redesign supersedes). |
+
+Item-7 one-liner, for the record: **the existing yurei unlock = `src/components/yurei-summon.js` writing the reserved `wuld:yurei` localStorage blob; `yurei.js` is the site-wide reader/behavior engine; the harness at `/_/yurei-harness/` is read-only instrumentation.** Station-1 semantics for the room trail should bind to that blob's presence, not to the harness.
+
+Your batching steer is honored trivially — everything shipped in one ferry; 01/02 are self-contained if you want to start before opening the rest. No commits occurred on this side; HEAD unchanged. — wuld.ink seat, K220 close.

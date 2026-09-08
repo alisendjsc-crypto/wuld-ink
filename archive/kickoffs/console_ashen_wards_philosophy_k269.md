@@ -1,0 +1,13 @@
+# Ashen Wards — an algorithmic philosophy (K269 design lab)
+
+*The design language behind the seeded descent-sigil. p5.js is the lab; the ship is dependency-free vanilla SVG.*
+
+**The movement.** A structure generated from a seed is already a hidden figure — a graph of rooms no one has drawn. *Ashen Wards* is the discipline of drawing that figure as a single austere mark: a ward, a seal, a floor-plan of a place that does not exist until the seed conjures it. The seed is not decoration fed to an aesthetic; the seed *is* the aesthetic. The same word that builds the descent draws its ward, so the mark is not illustration but signature — the structure's own hand.
+
+**Constraint as the whole craft.** There is exactly one ink (bone) on exactly one ground (the console's near-black). No colour, no gradient, no fill — colour would argue, and this place does not argue. Every decision the algorithm makes is therefore structural: how many rings, how many spokes, where the teeth bite, how deep the core points down. Beauty has nowhere to hide but in proportion. A meticulously tuned generator earns its authority the way a struck seal does — by looking inevitable, as though the seed could have produced no other mark.
+
+**Emergence under law.** Each mark is a short deterministic walk through one seeded stream: radii and angles drawn in a fixed order, so the same seed yields byte-identical geometry on any machine, forever, while a neighbouring seed yields something unmistakably other. Order is imposed (concentric rings, even radial division, a downward core that always names the descent); disorder is admitted only within strict bounds (which spokes grow teeth, whether chords cross, how the floors ring). The tension between the imposed skeleton and the admitted variation is the entire expressive range — controlled chaos refined until every seed lands.
+
+**Three dialects, one grammar.** The ward/seal reads the seed as a sigil struck into metal. The floor-plan reads it as a blueprint — the descent seen from above, orthogonal and cold. The ashen-mesh reads it as a web of ash, points strung on faint rings. All three obey the same law: monochrome, static, seed-pure, pointing down. The lab exists to let a human choose the dialect; the grammar does not change with the choice.
+
+**Provenance.** A late-night, top-of-craft generative study for wuld.ink/console — the mark a shared descent link leaves behind. The reference is quiet: those who have walked the structure will feel the ward is *theirs*; everyone else sees a spare, well-made seal. That is the point of a ward — it means nothing to those it was not cut for.

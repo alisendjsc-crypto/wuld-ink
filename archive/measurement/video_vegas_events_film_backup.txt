@@ -1,0 +1,33 @@
+# vegas_events v1	project=C:\Users\y_m_a\Documents\Pruritus Inexplebilis.veg
+# fps=23.976023976023978	length_ms=2664864
+# track_index	track_name	type	event_start_ms	event_length_ms	take_offset_ms	play_rate	muted	media_path
+3	undefined	A	0	217916.6667	392375	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+3	undefined	A	217916.6667	225708.3333	610291.6667000001	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+3	undefined	A	443625	175333.3333	836000	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+3	undefined	A	618958.3333	276958.3334	1011333.3333	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+3	undefined	A	895916.6667000001	226791.6666	1288291.6667000002	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+3	undefined	A	1122708.3333	255625	1515083.3333	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+3	undefined	A	1378333.3333	383145.6349	1770708.3333	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+3	undefined	A	1777664.8309000002	152083.3333	0	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+3	undefined	A	1938564.7807	240291.6667	152083.3333	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\TTS\ElevenLabs_Alogical_Isness.wav
+4	undefined	A	0	178583.3333	0	1	0	C:\Users\y_m_a\Downloads\Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3
+4	undefined	A	166390.288	178583.3333	3222456.6667	1	0	Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3 - subclip 1 (reversed)
+4	undefined	A	333484.21650000004	178583.3333	0	1	0	C:\Users\y_m_a\Downloads\Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3
+4	undefined	A	499874.50450000004	178583.3333	3222456.6667	1	0	Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3 - subclip 1 (reversed)
+4	undefined	A	991750	653923.2653000001	0	1	0	C:\Users\y_m_a\Music\Alex Taylor — Descent w score.mp3
+5	undefined	A	762333.3333	451076.6439	0	1	0	C:\Users\y_m_a\Desktop\Select\Never_Again.wav
+5	undefined	A	1458875	178583.3333	0	1	0	C:\Users\y_m_a\Downloads\Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3
+5	undefined	A	1625265.2880000002	178583.3333	3222456.6667	1	0	Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3 - subclip 1 (reversed)
+5	undefined	A	1792359.2165	178583.3333	0	1	0	C:\Users\y_m_a\Downloads\Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3
+5	undefined	A	1958749.5045	178583.3333	3222456.6667	1	0	Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3 - subclip 1 (reversed)
+6	undefined	A	166390.288	178583.3333	0	1	0	C:\Users\y_m_a\Downloads\Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3
+6	undefined	A	333484.21650000004	178583.3333	3222456.6667	1	0	Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3 - subclip 1 (reversed)
+6	undefined	A	499874.50450000004	178583.3333	0	1	0	C:\Users\y_m_a\Downloads\Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3
+6	undefined	A	930281.064	1087104	0	1	0	C:\Users\y_m_a\Downloads\Maryanne Amacher - Music for Sound Joined Rooms.mp3
+7	undefined	A	57500	798936	0	1	0	C:\Users\y_m_a\Downloads\Nine Magnetic Places.mp3
+7	undefined	A	1213416.6666	201768	0	1	0	C:\Users\y_m_a\Downloads\La Nuit De L'Arène.mp3
+7	undefined	A	1625265.2880000002	178583.3333	0	1	0	C:\Users\y_m_a\Downloads\Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3
+7	undefined	A	1792359.2165	178583.3333	3222456.6667	1	0	Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3 - subclip 1 (reversed)
+7	undefined	A	1958749.5045	178583.3333	0	1	0	C:\Users\y_m_a\Downloads\Alva noto + Ryuichi Sakamoto  - Summvs [Full Album, 2011].mp3
+8	undefined	A	0	2220600	0	1	0	C:\Users\y_m_a\Downloads\Alva Noto & Ryuichi Sakamoto - Glass.mp3
+9	undefined	A	0	2664864	0	1	0	C:\Users\y_m_a\Desktop\Select\Illogically Is\Music\Eliane Radigue - Jetsun Mila (1) DtB3bFQ0u_0.mp3
