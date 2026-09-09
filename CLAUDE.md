@@ -2203,3 +2203,102 @@ wuld HEAD = the K310l commit atop `1468eef` (K310 `086b896` → b `1a1cb1c` → 
 ### verify_before for K311+ (SUPERSEDES the K310l block for the lines it names)
 
 wuld HEAD = the K310m commit atop `50c6915` (K310 `086b896` → b → c → d → e → f → g → h → i → j → k `1468eef` → l `50c6915`, all pushed). **Zero `src/` bytes across all thirteen passes**; the only non-log repo byte of the arc remains `docs/refusal-libraries-roadmap.md` `69c4f074` (K310g). Corpus `6e77fa16`, `yurei-oracle.js` `72f23f89`, `rejected_forms.json` `fda8c78d` HELD; efilist READ-ONLY `e253f23`, flagship `9d13359e` / 2,963,789. CLAUDE.md [recompute]. `tools/apparatus/apply_wuld_wrap.py` `aa37a37f` == committed blob. **Libshow ship HELD** on three failing checks; markdown still the v7 `e38330c7`. Ship script `42647a84` in `Downloads\apparatus_libshow\` — **carried into the kit reissue by agreement.** **`METHOD_screen_films.md` `1c332704` / 30,835 is the current one and is fully reviewed — nothing outstanding on it.** **Fourteen K310 relays**, and from K310h onward **the seats write to `Downloads\Argument Library\` directly — read that folder rather than waiting to be handed a screenshot.** **P5 DEFERRED — wait for the spec document.** JSC v10 = `ce4ec59a…` / 15,471 / 258.108.
+
+### K310p (2026-09-09, THE GATE HAD THE DEFECT IT WAS CHECKING FOR, AND MY GREEN WAS ON THE FILE BEFORE THE FIX — a first-match marker read cannot tell one marker from two; corrected and re-verified; the ship script's relocation is owed and deliberately not done overnight; DOWNLOADS-ONLY, zero repo bytes beyond this log, no pin): Track (the video seat's Apparatus delivery, their idempotency fix, and their measured check of my ordering premise.)
+
+- **MY GREEN WAS ON A SUPERSEDED FILE — tenth instance, and mine.** I verified `88234a4d`; their duplicate-marker fix changed the document; **the current Apparatus is `178fd8d8` / 24,511 B.** A verification carried out of the scope that made it true, reported without that scope, **in the pass where I was checking theirs.**
+- **AND THE GATE COULD NOT HAVE CAUGHT THE TWO-MARKER CASE.** `[regex]::Match` returns the FIRST match, so a stale marker above a fresh one would parse, check against the manifest, and report **PASS on the superseded render.** Their fix removed the applier that could emit two — **that protects the pipeline that has the fix, not this boundary**, which is the same argument made at K310i for re-running their manifest check at the handoff. **Gate now COUNTS** (`42647a84` → **`a8679331`**; K310l copy kept `.ps1.k310l`): >1 parseable marker FAILs naming the count, and >1 `<!-- measured:` line FAILs even when only one parses, so an unparseable stale line cannot sit quietly above a good one. **Consequence stated to them: I cannot say whether `88234a4d` carried one marker or two — the old check would have passed either way.**
+- **Re-verified against the current file:** exactly one marker (parsed 1, raw 1) · parses at `v10 ce4ec59a…/78,463,676 + 2597c732…/172,950,011` · both md5s in `cut/render_manifest.json` · monitor disclosed (6) · all ten stale figures clean. **Their delivery landed in `apparatus_libshow\`, the path `$k` resolves to — one directory over and it would have failed for the wrong reason a third time.**
+- **THE TWO CUTS ARE NOT EQUALLY VERIFIED, and §6 now generates that sentence rather than carrying it.** W.U.L.D.: inherited gate **live (4.500)** and passed, per-pixel found **1 general flash against a limit of 3**, area 93.19% — *tested, and it has something to be tested about.* JSC: that gate **VACUOUS (0.955)**, contributing no evidence, measurement found 0. **Better-evidenced is the closer to a limit.** The flash is on the transition predicted here — the fade into cream, 239.3 s and 248.9 s.
+- **Their R03 measurement beat the argument it was checking.** Rather than take my premise they measured whether each room shot's monitor is playing the feed: **R03 is MOVING and reads as a static sign-off** — what the argument needed and not what the shot looks like. **And their second ground is stronger than my first:** mine was cost-avoidance (fade-first renders twice); theirs is that R01/R02 need re-rendering after a re-shoot regardless, **so the Blender pass happens anyway and the Yūrei work rides inside it free** — which does not depend on R03 playing at all.
+- **OWED, AND DELIBERATELY NOT DONE OVERNIGHT: the ship script into `wuld-ink`.** Removing it from the kit closed death-by-reissue and opened death-by-cleanup — the seat's ninth instance, in the change they called the best structural move of the night. **The fix must be ONE pass: repo copy created AND the `Downloads\apparatus_libshow\` copy removed together**, because creating the repo copy alone makes two copies with no rule about which wins, which is this session's entire failure class introduced while the operator is asleep.
+
+### verify_before for K311+ (SUPERSEDES the K310m block for the lines it names)
+
+wuld HEAD = the K310p commit atop `e9143f9`. **Zero `src/` bytes across all fourteen passes**; the only non-log repo byte of the arc remains `docs/refusal-libraries-roadmap.md` `69c4f074` (K310g). Corpus `6e77fa16`, `yurei-oracle.js` `72f23f89`, `rejected_forms.json` `fda8c78d` HELD; efilist READ-ONLY `e253f23`, flagship `9d13359e` / 2,963,789. CLAUDE.md [recompute]. `tools/apparatus/apply_wuld_wrap.py` `aa37a37f` == committed blob. **THE LIBSHOW SHIP GATE IS GREEN** on `page/argument-library-apparatus.md` **`178fd8d8`** — all four checks including the new marker count. Ship script **`a8679331`** at `Downloads\apparatus_libshow\` — **relocate it into the repo and delete the Downloads copy IN THE SAME PASS.** Kit `b8e0e246` / 3,462,955 / 60 entries, ship script correctly absent. `METHOD_screen_films.md` `1c332704` reviewed. **Sixteen K310 relays.** **P5 DEFERRED — wait for the spec document.** Masters (78 MB + 173 MB) NOT moved: the 125% re-shoot supersedes them. **Next: the 125% re-shoot, then the Yūrei fade inside the same Blender pass.**
+
+### K310q (2026-09-09, THE GENERALISATION ABOUT THE PATTERN IS ITSELF AN INSTANCE OF IT — the seat's "not one of the ten was found by the seat that made it" fails on its own list, and the true version is the more useful one; DOWNLOADS-ONLY, zero repo bytes beyond this log, no pin): Track (their answer to the one thing K310p called unanswerable, plus their stronger form of the pattern claim.)
+
+- **`88234a4d` carried ONE marker — their arithmetic reproduces to the byte.** Marker line **117 B** + the `generated by apparatus_numbers.py` provenance line **227 B** = **344**, their stated duplicate cost exactly; and 23,683 + 344 = **24,027**, their stated two-marker size exactly. The "duplicate" is the two-line block, not the marker alone, which is why 344 and not 117. With the structural argument (one marker in, one out, the staged input having none) and the `grep -o` taken at the time, the question K310p left open is closed. **Disposition changed — a defect never exercised rather than one that shipped — fix unchanged, since first-match is wrong whether or not it ever fired.**
+- **ELEVENTH INSTANCE, and it is in the sentence generalising about the other ten.** Their *"not one of the ten was found by the seat that made it… care caught none of them; a second reader caught all of them"* **fails inside the set it quantifies over: number ten is a self-catch.** They mentioned `178fd8d8` in passing while reporting the idempotency fix; nobody said the earlier green was stale — that inference was drawn here, about work done here. And outside the list, on their side, tonight: **the 1.0032 fraction** (a numerator over one region divided by another region's area — the canonical shape, caught *before it reached a document*), **the non-idempotent applier**, and **the 6.4%/6.4% double-print**, their own words *"caught it by reading the output instead of trusting the run."*
+- **The true version is more useful, and they named the mechanism without treating it as the finding: READ THE ARTIFACT RATHER THAN TRUST THE PROCESS THAT PRODUCED IT.** That is the read-back gate turned on oneself — the same move as checking the Apparatus off the path the build reads rather than the copy you wrote, applied to your own output instead of a handoff. **The two claims have different operational content:** *a second reader catches all* tells you to get a reader, which is unavailable when there isn't one; *the maker catches them by reading the artifact* is a method that runs alone.
+- **The distinction that makes both true of different subsets: a second reader caught the ones already written down as PROSE; the maker caught the ones still sitting in TOOL OUTPUT.** Prose hides its own scope from its author because the intention is still in their head supplying the missing qualifier; raw output has no intention attached, so reading it works even alone. **So the pair rather than either — read your own output as though someone else produced it, and get a second reader for anything you have already turned into a sentence.**
+
+### verify_before for K311+ (SUPERSEDES the K310p block for the lines it names)
+
+Unchanged from K310p except as noted: wuld HEAD = the K310q commit atop `e9143f9` (K310p and K310q fold together in one commit if uncommitted). **Zero `src/` bytes across all fifteen passes.** Apparatus **`178fd8d8`** / 24,511 B, exactly one marker, all four gate checks GREEN re-run here. Ship script **`a8679331`** at `Downloads\apparatus_libshow\` — **relocate into the repo and delete the Downloads copy IN THE SAME PASS**, still the only open item and still deliberately deferred to waking hours. Kit `b8e0e246` / 3,462,955 / 60 entries. **Seventeen K310 relays.** Masters (78 MB + 173 MB) NOT moved — the 125% re-shoot supersedes them. **Next: the 125% re-shoot, then the Yūrei fade inside the same Blender pass** (their measured justification: R03's monitor is MOVING, and R01/R02 need re-rendering regardless so the fade rides free).
+
+## K310v — thirteenth instance (inside the instrument); combined.html reflows; ship script relocated
+
+VIDEO SEAT RETRACTION (accepted). T14 was never a capture defect; the recorder was.
+The recorder resolved selectors with document.querySelector (first in document);
+_center resolves to the first match IN VIEW and scrolls to it. On
+`details.rwe-details summary` (one per card) those are different elements. The
+instrument built to catch "the number answers a different question than the one that
+matters" answered a different question. Thirteenth instance, inside the tool,
+announced before it was checked. Corrected recorder, full pass: 17 takes, 107
+regions, ONE finding.
+
+SURVIVES. T07_display_modes: #mode-both at x 1858-1920 against safe right edge 1906
+= 14 px of a clicked control under the bezel lip. ID selector, one element, no
+ambiguity. Take is in neither cut.
+
+OPEN AGAINST THE RETRACTION (mine, K310v):
+1. The fix is complete only if the recorder now has NO selector-resolution code of
+   its own -- i.e. _center reports the element it chose and the recorder reads it.
+   A recorder that REIMPLEMENTS "first match in view" is two implementations of one
+   rule: the defect repaired into a form that can recur. Same shape as the ship
+   script's rival copies.
+2. The corrected recorder invalidates every prior finding from that instrument, not
+   only T14's. Which of T02/T08/T09/T10/T11/T17 reproduce? Does the 125% decision
+   rest on any that do not? A re-shoot of a fine take costs time; a framing parameter
+   chosen to fix a defect that never existed is loaded into the batch.
+
+REFLOW (K310u correction accepted, and pushed further). combined.html DOES reflow:
+scrollHeight 38,051 @1920 -> 49,855 @1536; element at document y 496 -> 644.
+wuld.ink/argument-library/ does NOT: 2012 at both. So "should scroll literals scale"
+is per-page and neither seat checked the other's page. But the numbers close the door
+on ALL scalar corrections, not only 1.25:
+    viewport ratio    1920/1536      = 1.2500
+    element ratio     644/496        = 1.2984
+    document ratio    49,855/38,051  = 1.3102
+Uniform stretch by k would give the element and the document the same k. k=1.3102
+puts that element at 650; measured 644. Six px on integer measurements is not
+rounding. The element sits 1.3% down the document, where little above it has wrapped;
+deeper positions accumulate more added height, so the local ratio RISES with depth --
+1.2984 near the top, 1.3102 overall. Exactly that pattern. The factor varies with
+position, which is a long way of saying it is not a factor. 1.25 is wrong; 1.00 is
+also wrong for combined.html.
+
+CCCIII. A scroll literal is a DERIVED quantity, not a parameter. A take that scrolls
+to reveal a specific element must compute the scroll from that element's measured
+position at the geometry it is shot at. Carrying a number authored at another
+geometry is an unmeasured claim about reflow, whether multiplied by 1.25 or by 1.
+
+CCCIV. The load-bearing check covers regions; regions come from selectors.
+tk.scroll(N) declares no selector, therefore no region, therefore nothing to contain.
+A take that scrolls past its payoff and holds on blank space reports 0 outside frame,
+0 behind bezel -- the instrument was never given anything to look at. "107 regions
+across 17 takes, one finding" is a true statement about the regions the instrument
+has, read as coverage of the takes. Fix in their idiom: tk.scroll_to(selector, sec),
+which derives the scroll AND registers the element as load-bearing, closing ccciii
+and ccciv together and covering scroll takes with the containment check already
+built. Literal scrolls become the exception that must be justified.
+
+T01/T01b. Returned to this machine; the tooling reason was the real one
+(net::ERR_FAILED at https://wuld.ink/ from their container). Seat measurement stands:
+T01 clears at 1.25 (+61 top, +157 left, inside SAFE 14,20,1906,1054); page height
+2012 at both widths; payoff H2 at document y 644; scrollToLandItAt84 = 560, not 700.
+Ninth capture defect: html { scroll-behavior: smooth } at wuld.ink/base.css line 27,
+confined to the two wuld.ink takes; suppress with scroll-behavior: auto !important
+and disclose beside the caret.
+
+SHIP SCRIPT RELOCATED (one pass). SHIP_WHEN_REPIN_LANDS.ps1 (md5 a8679331) moved by
+rename from Downloads\apparatus_libshow\ to tools/apparatus/ and tracked. Six
+superseded backups (.orig .k310b .k310d .k310e .k310h .k310l) destroyed in the same
+pass; md5 and size of each printed to the operator transcript first. Rule now in
+force: the tracked copy is canonical and nothing outside the repo is. A version-named
+backup is a name, not a fingerprint; keeping six beside the canonical file is the
+two-copies failure with five extra copies. Next revision of the script should derive
+its repo root from $PSScriptRoot rather than a hardcoded Set-Location -- deferred,
+because contents and location must not change in the same pass.
