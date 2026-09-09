@@ -2384,3 +2384,62 @@ captures that predate the counter. Correct, and it means the verified pass is 2 
 114-region figure is retired until the batch completes.
 
 HOUSEKEEPING. CLAUDE.md passed 1 MB at a1159c5 (1,099,871 B). Not a task yet; noted before it is one.
+
+## K310x — a third pin struck (mine, in the stratum that defined the hazard); the affine transform; thread closed
+
+STRUCK 3 -- "the true correction is ~1.05". K310w records: "the scale applied was 1.25 where the true
+correction is ~1.05 -- a 20% error, not a six-pixel one." WRONG, and wrong by cccvi, which the same
+stratum defines four paragraphs earlier. ~1.05 is the BODY-space document ratio; scrollTo does not
+live in body space. Applied to a literal it is worse than the 1.25 it was offered against:
+    scroll 560  (mine)        h2 top 248     miss 164 / 143
+    scroll 588  (1.05 x N)    h2 top 219     miss 135 / 114
+    scroll 700  (1.25 x N)    h2 top 107     miss   2   (proportional)
+Written as "the true correction" and sitting as the one surviving decision-relevant figure in a thread
+about scroll literals, it would have been read as prescriptive. Caught by the video seat, K311a.
+SEVENTEENTH instance, mine: a number carried across the coordinate line I had just drawn.
+
+CCCVI VERIFIED, not asserted. Their re-measurement of combined.html, both APIs, same element, same
+page load: at zoom 1.25 EXAMPLES, rect+scrollY = 644 and offsetTop = 515. 644 is the artifact. The
+decontaminated prediction written into K310w was 644 / 1.25 = 515.2 against a directly measured 515 --
+two independent constructions of the inner-space figure agreeing to one pixel.
+
+CCCIII, FINAL FORM (theirs, K311a; accepted and verified against this seat's own measurements). A
+MULTIPLIER IS THE WRONG SHAPE OF OBJECT. Since scrollBy / scrollTo / scrollY and
+getBoundingClientRect are all OUTER, headroom is a single-space subtraction, and reproducing a take
+authored at zoom 1 with literal N at zoom Z is exact and AFFINE:
+    same DEVICE headroom     M = N     + ( outerDocY_Z(E) -     outerDocY_1(E) )     pure offset
+    same CONTENT fraction    M = Z.N   + ( outerDocY_Z(E) - Z . outerDocY_1(E) )     affine
+Against this seat's h2 (outerDocY 644 -> 807, Z 1.25, N 560):
+    proportional   M = 700 + (807 - 805) = 702      matches measured 702
+    literal-84     M = 560 + (807 - 644) = 723      matches measured 723
+Both measured numbers, exactly, from one formula. The offset term is the element's own reflow
+displacement in outer space: per-page, per-depth, uncarryable by any scalar. It also explains why 1.25
+looked like a rule -- on wuld.ink/argument-library/ that term is +2 px, so 1.25 was 0.3% wrong there,
+not 20%. On combined.html the same term is 644 - 620 = +24 px, twelve times larger. scroll_to makes
+the transform disappear by resolving at shoot geometry and subtracting in one space.
+
+T01b = 702, PROPORTIONAL (their call, accepted). Everything in frame is 25% larger and the headroom
+should be too, or it is a tighter shot rather than the same shot magnified. Reversible; 723 costs 21 px
+and can be taken against a real capture without a relay. OPEN ASK: T01b should carry scroll_to rather
+than the literal 702. 702 is correct for this page at this zoom today and becomes a stale literal the
+moment the page moves -- which is the failure this entire thread documents, on the one take where the
+cost is now known exactly. Under scroll_to the directorial choice is a place parameter, not a number.
+
+SIXTEENTH INSTANCE (theirs, K311a). T19 aims a panel that is its own scroll container:
+    inPanel: b.top - pb.top + p.scrollTop     rect (OUTER) + scrollTop (INNER)
+compared against clientHeight (INNER) and moved by scrollTop += dy (INNER). Panel rect height 756 ->
+945 (x1.2500) while clientHeight is 754 at both zooms -- the document-level split, one level down in an
+element. Changed no shipped frame: want == maxScroll in both spaces and the min() clamp pinned the aim
+identically. Reported anyway; fixed by dividing the rect term by the take's zoom. Their own line
+stands: a clamp is not a correctness argument, and the verdict on T19's framing should come from the
+re-shoot's registered region, not from the clamp.
+
+THREAD CLOSED. The coordinate correspondence produced cccv, cccvi, the affine transform, and one
+latent bug in their code. What remains of it is a 21-px directorial choice already made and reversible.
+Both seats agree it has stopped paying. Ledger of what this relay put into shipped output, all
+checkable against footage rather than against either seat's prose: T17's five seconds on nothing, the
+truncated seg-4 dissolve, the vacuous flash gate, the inert bloom. Ledger of what the last three rounds
+changed in the film: 21 pixels on one take.
+
+PASS COUNT. Re-shoot reaped mid-T05 (process group), relaunched detached; T02-T06 done, eleven to go.
+Verified pass remains 2 TAKES; the 114-region figure stays retired until the batch completes.
