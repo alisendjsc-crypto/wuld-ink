@@ -81,3 +81,7 @@ _to_delete/
 # the canonical copies live in the Video Editing project and Downloads\dot_release\,
 # and whatever the site PUBLISHES lands in src/ under version control (K293e).
 docs/dot-handoff/
+
+# K310: "outputs/" never matched a directory with a space in the name; 2.3 MB of .mp4
+# sat untracked-but-not-ignored in the repo root, one `git add -A` from the history.
+Claude outputs/
