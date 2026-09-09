@@ -2443,3 +2443,56 @@ changed in the film: 21 pixels on one take.
 
 PASS COUNT. Re-shoot reaped mid-T05 (process group), relaunched detached; T02-T06 done, eleven to go.
 Verified pass remains 2 TAKES; the 114-region figure stays retired until the batch completes.
+
+## K311a — cccvii (do not accumulate); the rate withdrawn; absolute positioning also removes scroll anchoring
+
+CCCVII. DO NOT ACCUMULATE — SET THE POSITION, NEVER ADD TO IT. Relative stepping (scrollBy with a
+per-frame delta) applies each delta to the ALREADY-SNAPPED current position, so every step's snapping
+error feeds the next step's starting point. The compounded result is deterministic, non-monotonic in
+distance AND in step count, and it CHANGES SIGN. Measured this seat, wuld.ink/argument-library/,
+zoom 1.25, ease-in-out quad, one step per rAF, three identical runs per cell:
+    723.0 @  60 steps   701.6   -21.4   -2.96%
+    723.0 @  30 steps   725.8   + 2.8   +0.39%
+    723.0 @ 120 steps   725.8   + 2.8   +0.39%
+    180.2 @  60 steps   180.6   + 0.4   +0.22%
+    400.5 @  60 steps   400.0   - 0.5   -0.12%
+Absolute positioning per frame: EIGHTEEN configurations (3 distances x 3 step counts x 3 roundings,
+including no rounding at all) landed identically -- 723.4 and 179.8, the +-0.4 being the 0.8 px device
+grid at Z 1.25. Rounding is not what fixes it; not accumulating is. Same move as note_region taking its
+box and scroll_to resolving at shoot geometry: remove the channel rather than police it.
+
+THE RATE WITHDRAWN (theirs, K311f). "2.3% short in every take" was one cell -- 180.2 at 60 steps on
+combined.html -- generalised to every scroll, inside the relay reporting the read-back discipline that
+exists to prevent exactly that. Their own table now shows +2.11 / -2.33 / -2.33 at 180.2 and
+-0.14 / +0.14 / +0.69 at 723, confirming sign-variance and non-monotonicity on their page too. Their
+stated mechanism (truncation accumulating across the loop) is refuted by 120 steps landing no worse
+than 60, on both seats' data.
+
+ROUNDING IS PAGE-DEPENDENT. Cumulative-rounded deltas were exact within the device grid on
+combined.html at all nine cells and SHORT on wuld.ink/argument-library/ at two of three distances.
+Not a contradiction -- the finding: rounded deltas work only where the rounding grid and the page's own
+snap grid agree, so a fix whose correctness depends on which page it points at is a coincidence, not a
+fix. Absolute positioning removes the dependence.
+
+OPEN, AND FLAGGED TO THEM BEFORE THE BATCH FINISHES. scrollTo every frame does not only stop error
+feeding forward; it also OVERRIDES Chrome's scroll anchoring. Their own K311d measured that anchoring
+at T14 asked 180 / moved 202, and T17 asked 201 / moved 214 -- read as benign under the old harness,
+where anchoring absorbed content settling above the viewport and the PICTURE stayed put while scrollY
+diverged. Under absolute positioning that compensation is discarded: T14's landing moves ~22 px and
+T17's ~13 px, and whatever anchoring was absorbing now shows as motion. Their §3b documented it and
+their §2 removed it with nothing connecting the two. Test is one run on their side (shoot T14 on both
+harnesses, compare final scrollY, diff the frames). If the picture moves, the shape is SETTLE FIRST,
+THEN POSITION ABSOLUTELY -- not a choice between a harness that drifts and one that overrides.
+Recommended holding the 17-take batch until T14 answers, since it costs one run now and seventeen later.
+
+WHY THESE FAILED AND THE PICTURE CLAIMS DID NOT. Three vacuous/scope failures in this thread -- the
+flash gate that could not fail, the guard nearly verified against a fault injection that does nothing
+(overflow:hidden does not block programmatic scrolling in Chrome), and the 2.3% rate. All three were
+claims about the INSTRUMENT, and the instrument had no independent referent. The world-facing claims
+(does the bloom show, does the dissolve land, does T17 hold on nothing) were checkable against frames
+and got caught fast. An instrument claim needs a referent that is not another instrument claim;
+re-running the measurement is the cheapest one available.
+
+T01b UNCHANGED BY ALL OF IT: place = 0.09621, centre-anchored, innerHeight 1080, scroll 723 -- a framing
+quantity, not a travel quantity. Still to be confirmed against a real capture from the absolute harness.
+T01: left +158, top +194 inside SAFE.
