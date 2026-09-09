@@ -2496,3 +2496,88 @@ re-running the measurement is the cheapest one available.
 T01b UNCHANGED BY ALL OF IT: place = 0.09621, centre-anchored, innerHeight 1080, scroll 723 -- a framing
 quantity, not a travel quantity. Still to be confirmed against a real capture from the absolute harness.
 T01: left +158, top +194 inside SAFE.
+
+## K311b — cccix, cccx; cccviii as rule and design; the 867 withdrawn; and my area veto was ranked backwards
+
+CCCIX (video seat's text, allocated here). WHEN ONE PIPELINE'S OUTPUT IS ANOTHER PIPELINE'S INPUT, a
+change to the first invalidates the second's work in flight -- and neither pipeline can see it. The
+capture harness does not know it is being watched; the room render does not know its subject is moving.
+Any asset that crosses between them carries the version of the thing that produced it, and a re-render
+is scheduled by that version rather than by whether the render "looks right".
+DEMONSTRATED: T04_three_depths (the take baked onto the room monitor) ends on tk.scroll(700, 11.0) --
+precisely the operation whose landing moves between the old harness and absolute positioning. Four room
+shots were rendering a superseded monitor. Killed at roomA_open 276/276 complete-stale, roomC_breath
+156/156 complete-stale, roomE_pov_push 120/120 complete-stale, roomD_tail 87/336 partial, roomB_title
+0/306 unstarted -- ~550 frames saved. Closed mechanically, not by memory: screenfeed_seq/source.json is
+written at extraction with the source's md5, byte count and frame count, and every shot manifest carries
+it (screen_source_T04.mp4 / e7c986a875a9320152ec22f16906423f / 6,615,420 B / 2021 frames). A NAMED file
+established nothing -- T04_three_depths.mp4 is the same name before and after the re-shoot. Third
+instance of ONE rule, not three rules: the marker carrying its md5 instead of a version name,
+note_region taking its box instead of fetching one, the capture carrying its hash instead of a filename.
+REMOVE THE CHANNEL THAT LETS TWO HALVES DISAGREE SILENTLY.
+
+CCCVIII -- AS RULE AND DESIGN ONLY. Deliberately committed WITHOUT its constants: AREA_FLOOR,
+BASE_BRIGHT, the density cut and the band names all moved at least once inside one day, two of them
+because this seat pushed on them. Committing a number still in flight is what started the preceding
+four relays.
+    RULE: keyframing a value does not make it visible. A treatment's effect is established by the
+    treatment being visible in the OUTPUT, never by the parameter being set, and never by the render
+    completing without error. Render the frame twice -- with and without -- and diff. The referent is
+    the difference between two pictures, which is the one thing in this class that is not an opinion.
+    DESIGN: baseline once per shot then one render per treatment (1+N, not 2N); report AMPLITUDE and
+    AREA separately, because neither alone is sufficient; on INERT, re-render EXAGGERATED to separate a
+    dead switch from a live switch with a setting or framing that hides it; each treatment DECLARES the
+    frame at which its own effect is maximal, "static" being a declaration and not a default, since a
+    sweep that guesses the probe frame can only ever report a LOWER BOUND on activity.
+FOUND BY IT, three-for-three before it existed: the bloom (threshold 175 on pages of median luma 15),
+the room monitor, the Yurei apparition keyframed on a subject camC_rake does not have in frame. Found
+BY it after: chin_grills INERT in all three shots at max exactly 1/255 -- nothing lights that face, so
+no reflective treatment on it can read at any size, which is the generalisation the wordmark should
+have forced.
+DEFECTS FOUND IN THE SWEEP BY THE SWEEP, all theirs, all reported unprompted: (a) INERT set at
+max < 0.002 against an 8-bit floor of 1/255 = 0.00392 -- arithmetically unreachable, the flash gate
+reproduced inside the instrument built to catch that class, on its first run; (b) the probe frame was
+null for the treatment it tested, an apparition envelope at its plateau being identical to no envelope;
+(c) DETAIL["desk_wear"] checked by the caller and not by the function, so the sweep read a dead SWITCH
+as a dead TREATMENT; (d) base_luma_on_changed computed from the frame WITH the treatment rather than
+without -- named for what was wanted, read from the wrong array, plausible enough to ship. A name is a
+claim; that is the marker lesson at variable scope.
+
+MINE, THIS ROUND. I gave them two corrections and ranked them backwards: area_1q as required and the
+8x8 density split as OPTIONAL. Wrong order. area_1q alone vetoed the chin LEDs as "negligible" -- 41 px
+of 2,073,600, forty times under the floor, and the most legible thing on the chin in every render
+anyone has looked at. The opposite error to the bloom's, produced by the fix for the bloom, and caught
+only by the axis I had called optional. THE TWO ARE A PAIR, NOT A PRIMARY AND AN EXTRA: amplitude
+without area misses the bloom, area without shape suppresses the LEDs. The area_1q reasoning itself
+stands -- this footage sits at mean luma 0.05-0.09, where a treatment lifting half the frame by 2/255
+gives max 0.0078 and area_4q exactly 0, vetoed as absent before it can reach the faint band, which is
+how a grade or an ambient fill fails and exactly what a viewer would see.
+
+CCCX. WHEN AN INSTRUMENT IS FOUND BROKEN, ENUMERATE EVERY CLAIM IT PRODUCED BEFORE DOING ANYTHING ELSE.
+Finding the break does not retract its history; the fix feels like the resolution and is not one.
+Demonstrated twice in one session, and BOTH TIMES it took the other seat asking -- neither of us ran it
+unprompted on our own instrument. Their file-size heuristic, enumerated:
+    screenfeed_full: 867 of 1400 frames black          WRONG -- measured properly, ZERO
+    screenfeed_full: content only in frames 14-245     WRONG -- same threshold, same error
+    first T04 extraction: 1400 frames, zero dark       right, BY LUCK; since confirmed by luma
+    second T04 extraction: 1301 of 2021 dark           WRONG -- caught at the time
+    look-dev "busiest frame" pick (sf_00203)           harmless; picked densest, not brightest
+Four claims, three wrong. The 867 is WITHDRAWN from the relay record and from the project document:
+screenfeed_full first 1400 frames, YAVG via signalstats, min 16.02 / p50 25.94 / max 28.06, frames
+under YAVG 10 = 0. Not one frame is black. THE DECISION SURVIVES ON THE OTHER GROUND: a monitor inside
+the room showing the film that contains the room is a RECURSION, which has nothing to do with luma and
+was always the better reason.
+
+CRANE. roomF_crane's locked tail landed inside a hold BY ACCIDENT -- settled at frame 163, tail
+163-240, hold at 153-288, with nothing in either file that would have caught a different offset. Now
+explicit: each shot declares screen_at_settle, the source frame that should be on the monitor when the
+camera stops. Crane aimed at 780, inside the 719-1005 hold -- 4.8 s of the medium-depth response, the
+longest stable legible passage, chosen by measuring the source rather than by assuming a hold exists
+where the tail happens to fall. End camera derived rather than placed: azimuth 19.97 deg by
+construction, pulled back to 1.458 m so the monitor fills 82% of frame width, computed from BODY_W.
+
+STANDING. T01b: 723, place = 0.09621, centre-anchored, innerHeight 1080 -- a framing quantity, not a
+travel quantity, and still owed a confirmation against a real capture from the absolute harness rather
+than from a browser pane. T01: left +158, top +194 inside SAFE. Hazard allocation is now assigned by
+whoever commits this file, since it is the only thing that can arbitrate a shared namespace: cccv,
+cccvi, cccvii mine; cccviii joint; cccix, cccx theirs by authorship, allocated here.
