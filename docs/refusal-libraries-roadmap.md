@@ -59,9 +59,17 @@
 - **4c. Educational card game.** A flashcard drill over the existing card set with the **argument-flow system as the train-track**: the player is shown a premise/argument and must choose (or compose) the best rebuttal accurately + consistently; tiered difficulty laymen->elite (mapped to 4a's tiers). The BUILDABLE-NOW core = a choose-the-best-rebuttal drill over existing data + the argument-flow track (no new backend). The STRETCH = a live read of free-text user rebuttals — AI-API-gated; scope only if an API path exists, else keep the robust card set. Goal is EDUCATION (teach flow + critical thinking), not entertainment — every mechanic justifies itself pedagogically or it is cut.
 **Deps:** 4a unlocks 4b/4c; P2 enriches the game (steelman/response plies = harder rounds). **Effort/risk:** high/medium-high. **Recommendation:** 4a first (keystone), then 4b (low-tech, high-value), then 4c core, then 4c live-input only if API-feasible.
 
-### P5 — The library's "alive" mode: the showcase film's aesthetic, toggled  [Josiah 2026-09-09; DEFERRED, gated on the film]
+### P5 — The library's "alive" mode: the showcase film's aesthetic, toggled  [Josiah 2026-09-09; DEFERRED — spec RECEIVED 2026-09-10, film not yet settled]
 **Goal (Josiah):** *"adopt the style, because I actually really like how alive it feels in the video, with the bezel, with the simulated PC, with Grey / Yūrei appearing occasionally in and out, the text bloom, monitor CRT / LED glow effect, sfx"* — as a MODE on the argument library, **separate from the main site's ambiance and rot vfx**, toggle-ready so readers who prefer unadorned artifice can have it. Not every element need be adopted.
-**Not started, deliberately.** Sequenced after the showcase film's aesthetic settles; the video seat supplies the spec as a document when the current work concludes. Do not improvise it from watching the film.
+**Not started, deliberately.** Sequenced after the showcase film's aesthetic settles. Do not improvise it from watching the film.
+
+**SPEC RECEIVED 2026-09-10** — `HANDOFF_wuldink_cosmetic_layer.md`, from the video seat: bezel ratios as fractions of the content opening, LED states as sRGB with relative brightness, peripheral-mask parameters, bloom constants with the median-luma trap, the mascot envelope, the frame-sequence inventory, and an inertness test to build FIRST. **One of P5's two gates is now satisfied; the other is not** — constants in that document moved twice on the day it was written, so its MEASUREMENTS and TRAPS are durable and its CONSTANTS are not yet.
+
+**Three corrections to that document (K311m), to be applied before anything is built from it:**
+
+- **Its §5 amplitude advice is inverted.** It says a 10%-of-peak-white swing is "a very small number in absolute terms" on a dark palette. Relative luminance is normalised with 1.0 = peak white, and gamma compresses the dark end: from a `#0E0E10` ground (L ~ 0.004) a legal 0.10 swing reaches sRGB ~`#5B5B5B`. A dark page has MORE perceptual room under the criterion than a light one, not less. Use a fraction of it; do not assume it is imperceptible.
+- **Two of the four flash gates are automatic here, not one.** §5 correctly says a page-wide effect satisfies the 25% AREA condition by construction. The criterion also requires the darker state below relative luminance 0.80, which every state on this palette is. Only amplitude and rate remain between the effect and a photosensitive reader.
+- **Its §10 gates the mascot's fade on `prefers-reduced-motion`.** Wrong switch: that preference targets vestibular triggers (parallax, zoom, translation), and a slow cross-fade is what the guidance recommends SUBSTITUTING for motion. Gating opacity on it makes first paint a static bezel — less alive than the film Josiah asked to adopt. The line falls between vestibular and opacity: bezel / LEDs / glow / the mascot's FADE on by default; parallax / flicker / pulsing / any translation off until asked and hard-off under reduced-motion; audio off always until explicitly enabled.
 
 Three things to write the spec AGAINST rather than retrofit:
 
@@ -70,7 +78,7 @@ Three things to write the spec AGAINST rather than retrofit:
 - **`prefers-reduced-motion` decides, not the toggle alone.** Josiah's framing is that the adorned mode is default and serious readers opt out; that holds for the ornament. But a reader who needs motion and glow off has usually already told their operating system and should never have to find a control. **Recommendation: honour `prefers-reduced-motion: reduce` automatically, and otherwise ship adorned-by-default with a visible toggle.** That keeps the experience Josiah asked for and makes the safe path the one requiring no discovery.
 
 **Integration, so the spec does not duplicate what exists:** the site already carries an audio bus (`WuldWrongHour.voiceBus()` — shared context/room, bed duck), reader modes (dark / reader / hc), and the Yūrei + Mr Grey avatar/FX stack. `sfx` and any Grey/Yūrei presence ride those rather than introducing a second of each. Browsers block un-gestured audio regardless, so sound is toggle-gated by construction.
-**Deps:** the film's aesthetic settling + the video seat's spec document. **Effort/risk:** medium / HIGH (a pin move plus a safety-claim surface). **Ratification:** the toggle default and any flash-bearing effect are Josiah's call, not a Cowork build call.
+**Deps:** the film's aesthetic settling (OPEN). Spec document RECEIVED 2026-09-10, with three corrections logged above. **Effort/risk:** medium / HIGH (a pin move plus a safety-claim surface). **Ratification:** the toggle default and any flash-bearing effect are Josiah's call, not a Cowork build call.
 
 ---
 
@@ -108,7 +116,7 @@ Three things to write the spec AGAINST rather than retrofit:
 - Other UI improvements to bolster the library -> **P0 / cross-cutting**.
 - Game-like card flashgame (premise -> best rebuttal; argument-flow = train-track; educational; tiered laymen->elite; live-input = AI-API stretch) -> **P4c**.
 - Laymen tiers <-> game difficulty tiers -> **P4a + P4c link**.
-- Library "alive" mode implementing the showcase film's aesthetic (bezel, simulated PC, Grey/Yūrei in and out, text bloom, CRT/LED glow, sfx), toggle-ready, separate from the main site's ambiance/rot vfx -> **P5** (deferred; gated on the film + the video seat's spec document).
+- Library "alive" mode implementing the showcase film's aesthetic (bezel, simulated PC, Grey/Yūrei in and out, text bloom, CRT/LED glow, sfx), toggle-ready, separate from the main site's ambiance/rot vfx -> **P5** (deferred; spec document received 2026-09-10, still gated on the film settling).
 
 ---
 
