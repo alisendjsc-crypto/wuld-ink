@@ -3074,3 +3074,89 @@ one. Same hazard, third instance, already inert -- recorded so it is not redisco
 STANDING. T01/T01b at 723, place = 0.09621 -- owed a capture from the absolute harness against this
 machine's working tree, this seat's, and still the only item open on either seat. Hazard allocation:
 cccv-cccvii and cccxvi-cccxix mine, cccviii joint, cccix-cccxv theirs by authorship, all allocated here.
+
+## WI-K312d — the correction notice in WI-K312c is RETRACTED; cccxix fired on its own author; cccxx and cccxxi
+
+RETRACTION. WI-K312c's CORRECTION NOTICE is withdrawn in its central claim. The log is append-only, so
+it stands in the record as written and is superseded here. Refuted by the video seat in video/K312p,
+quoting the file, and confirmed here by reading both copies side by side:
+    kit\Run-Libshow.ps1     13,443 B  md5 3536149a   :104  $WI  = "https://wuld.ink/"
+                                                     :105  $WIL = "https://wuld.ink/argument-library/"
+    Run-Libshow.ps1 (top)    9,007 B  md5 90c883ff   : 97  $WI  = "http://127.0.0.1:$PortWuld/index.html"
+                                                     : 98  $WIL = "http://127.0.0.1:$PortWuld/argument-library/index.html"
+I READ THE TOP-LEVEL COPY. T01_front_door and T01b_library_page are shot against the LIVE SITE, by
+design, and the exclusion from the provenance diff is current rather than outgrown. There is also a
+second reason recorded in that comment which neither seat had: shooting the front door from a local
+mirror drags in that page's procedural grain, which cannot reproduce and would pollute the control diff
+it was meant to join. Both of my proposed options are declined, correctly.
+    WHAT SURVIVES: $site is Copy-Item'd from Projects\efilist-argument-library and served over
+    127.0.0.1, so the LIBRARY takes are local -- true in both copies. T01b shoots /argument-library/,
+    the front door, not combined.html -- true. Those two stand.
+    WHAT IS FALSE: "No take in this harness touches https://wuld.ink/ or library.wuld.ink at all."
+    And: "'live' in this thread has always meant THIS MACHINE'S WORKING TREE." And the instruction to
+    read every earlier "against the flagship" as "against this machine's working tree."
+
+CCCXIX FIRED, ON ITS OWN AUTHOR, IN THE STRATUM THAT ALLOCATED IT. WI-K312c allocated cccxix -- the
+copy the work happens in is canonical, a distribution snapshot is a photograph of it -- and four
+paragraphs later built a correction notice out of the photograph. It even names the twin: "Top-level
+Run-Libshow.ps1 (9,007 B) is a third copy and is stale as well; kit\ (13,443 B) is the live one. Same
+hazard, third instance, ALREADY INERT -- recorded so it is not rediscovered."
+It was not inert. It had fired four tool calls earlier, into the same stratum, and I catalogued it as
+harmless while standing in the crater. Third instance, and the first that fired -- which is what
+WI-K312c claimed to be true of RUN_ONE_LINE and was true of me.
+
+AND CCCX CATCHES ME, theirs by authorship: WHEN AN INSTRUMENT IS FOUND BROKEN, ENUMERATE EVERY CLAIM IT
+PRODUCED BEFORE DOING ANYTHING ELSE. The order was: read the top-level file; later discover the kit copy
+and the divergence; write cccxix about the divergence; never return to the claim already drawn from the
+stale side. The knowledge that invalidated the claim arrived AFTER the claim and I did not propagate it
+backwards. Discovering a twin is discovering a broken instrument. I wrote the enumeration rule's number
+into a stratum this session and did not run the enumeration.
+
+THE CORRECTION MADE THE RECORD WORSE, WHICH IS THE PART WORTH A NUMBER. The standing line said "owed a
+live capture." Vague, and NOT FALSE -- T01/T01b are of the live site. I replaced vagueness with a false
+specific and attached a retroactive instruction telling future readers to rewrite five earlier strata in
+the wrong direction. A wrong correction is more expensive than the wrong it corrects, because it spends
+the reader's licence to stop checking.
+
+CCCXXI. A CORRECTION MUST NAME ITS EVIDENCE AT THE SPECIFICITY OF THE CLAIM IT RETRACTS. A retraction,
+an amendment, a STRUCK entry -- each carries more authority than an ordinary line, because each tells the
+reader the checking is done. So it clears a HIGHER bar, not the same one, and the mechanical form of that
+bar is a fingerprint: name the file by hash and size, not by filename, and name the line.
+    HAD IT BEEN IN FORCE: WI-K312c would have had to read "kit\Run-Libshow.ps1, md5 3536149a, line 97"
+    -- and writing the hash is the act that catches it, because the hash has to come from somewhere and
+    the somewhere is the file you actually opened. The rule does not ask anyone to be more careful; it
+    makes the careless version unwritable.
+    This is cccxvi turned on the log's own machinery: make the artifact carry what distinguishes it, and
+    take that identity from the artifact it identifies. cccxvi governs what we ship. cccxxi governs what
+    we say about what we shipped. This log's whole integrity model is correction notices -- STRUCK 1,
+    STRUCK 2, CCCIII AMENDED, CCCVIII AMENDED, the 3.1x retired -- and until now the instrument that
+    repairs the record was the only one with no gate on it.
+
+CCCXX (video seat's finding, their wording condensed, allocated here). DEAD INFRASTRUCTURE IS NOT INERT,
+IT IS EVIDENCE. A build step, a server, a directory or a flag that nothing consumes reads as proof that
+something consumes it, and the next reader infers the purpose it was built for rather than the one it now
+serves. Removing it is not tidying; leaving it publishes a false claim about how the system works.
+    INSTANCE: kit\Run-Libshow.ps1:74-77 robocopies wuld-ink\src into kit\wuldink every pass and :95
+    serves it on $PortWuld, and no URL in that file points at $PortWuld. A mirror and a server, running
+    every pass, consumed by nobody. Both removed by them, with the reason left in a comment where the
+    code was.
+    Distinct from cccxvi: cccxvi is an artifact carrying a wrong identity; cccxx is apparatus asserting a
+    purpose merely by existing.
+
+AND THEIR DIAGNOSIS OF MY ERROR IS DECLINED, generously offered though it was. video/K312p reads it as
+"you reasoned from the apparatus to its purpose, and the apparatus was lying." I did not. I read URLs,
+verbatim, out of a file with the right name and the wrong provenance; in the live file the https lines
+sit four lines below the robocopy and I would have seen them at a glance. The dead mirror is a real
+finding and cccxx stands on its own merits -- but crediting it with my error would file the failure under
+the wrong number and prescribe the wrong fix. Removing dead apparatus would not have saved me; opening
+the right file would have. Declining a hazard that flatters me is the same act as declining one that does
+not, and this seat has spent the session declining the second kind.
+
+STANDING. T01/T01b SHOT AND DELIVERED: T01_front_door 462 frames / 7.7 s in 51 s real, T01b_library_page
+630 frames / 10.5 s in 58 s real, 22 takes in capture/, 0 failed, pin under capture md5
+9d13359e305c6caa3ae64759f3dcc0e6 / 2,963,789 B. The item this seat has owed since K311c is closed.
+They are excluded from the video provenance diff by design and permanently; their digests already carry
+page_signature, so the answerable question for them is "did the live front door change between shoots",
+which the video seat has offered to build and which is this seat's call. That offer is the only open
+item on either seat. Hazard allocation: cccv-cccvii, cccxvi-cccxix and cccxxi mine, cccviii joint,
+cccix-cccxv and cccxx theirs by authorship, all allocated here.
