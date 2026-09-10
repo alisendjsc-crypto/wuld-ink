@@ -2773,3 +2773,85 @@ found. CONVENTION ADOPTED: cite the other seat's documents with a slashed prefix
 token can never collide with a heading here, and gate stratum blocks on the HEADING form "## K311x"
 rather than the bare token. Same fix as everywhere else in this session -- make the thing carry what
 distinguishes it rather than relying on the reader to know.
+
+## K311e — cccxiii, cccxiv, cccxv; cccviii amended; the colour thread and the grain decision
+
+CCCVIII AMENDED (this seat's wording, both seats' agreement). DIFF AT THE POINT OF DELIVERY, NOT THE
+POINT OF APPLICATION. A treatment present in the source and destroyed downstream -- by an encoder, a
+scale, a colour conversion, a platform transcode -- passes an inertness test taken before the
+destruction. The referent is the artifact the audience receives, not the one the pipeline produced.
+Occasioned by the grain: it PASSES a with/without render at the source and was inert anyway, because
+x264 discarded it at code ~9. Found by a file size rather than a diff, which is why the amendment was
+needed rather than a fifth instance.
+
+CCCXIII (video seat). DELIVERY IS NOT A POINT, IT IS A LADDER. A platform emits a family of renditions
+and the one it hands back to the author need not be among the ones it serves. "The artifact the
+audience receives" is under-specified until the rendition is named. Demonstrated: uploaded 1920x1080
+59.94fps 1016 kbps, YouTube Studio returned 1280x720 29.97fps 464 kbps -- half the resolution and half
+the frame rate, a convenience proxy no viewer is sent. Studio's download is retired as an instrument.
+
+CCCXIV (video seat). A RATIO WITHOUT A DEMONSTRATED DYNAMIC RANGE IS NOT A MEASUREMENT. Report the
+control's separation beside the result: "96.2% of reference" means nothing until the reader knows a
+destroyed reference reads 14.1% and not 98%. It caught four instruments inside one day, including two
+of its own author's and one calibration confounded by the grade. The instrument that finally held
+pinned BOTH endpoints by construction -- grained reads 100%/r=1.0000, ungrained reads 0.0%/r=0.0000 --
+which none of the four preceding ones did.
+
+CCCXV (video seat). AN OBSERVATION AND ITS EXPLANATION ARE TWO CLAIMS, NOT ONE. Supplying a mechanism
+makes a weak measurement feel corroborated while adding no evidence; the felt strength of the pair is
+not evidence that either was checked. Two instances one relay apart, one per seat. THEIRS: "grain
+survives VP9 at 96-98%" explained by "flat-field grain is cheap to code" -- neither checked, both
+wrong, and the mechanism the exact inversion (their own controlled pair: 435 KB ungrained against
+6.80 MB grained, 15.6x; grain over a flat field is the MOST expensive thing an encoder can be handed).
+MINE: I took two of their separate observations -- a band-energy figure and unpopulated codes 4 and 11
+-- and JOINED them into one mechanism ("the floor is flat, clipped and holed with the anti-banding tool
+absent by construction"). The joining is what made it persuasive: two facts appearing to point one way
+reads as corroboration. It was not. Their band figure was an instrument artifact and the code gaps are
+unrelated to it; the synthesis is withdrawn and the gaps survive separately, still worth a ramp check.
+
+THE COLOUR DEFECT, which occasioned all of it. concat -c copy inherits stream properties from segment 0,
+so swapping the room source dropped the master's colour tags (cccix). Untagged sRGB content is decoded
+as bt709, and bt709 content is DISPLAYED through BT.1886 -- a pure ~2.4 power with no toe -- while sRGB
+has a linear toe of slope 1/12.92. At code 2 those are not near each other: 0.000607 against 0.0000131,
+47x. Verified independently on this seat (pure-2.2 gives 26x, pure-2.4 gives 69x; their figure sits
+where a real consumer lands). Fixed by CONVERT-then-tag, not by tagging -- tagging relabels, and
+labelling sRGB pixels bt709 makes a confident wrong claim where an untagged file only made a guess.
+Wired into the SEGMENT chain so concat inherits a true label. v6-v12 were all effectively decoded 47x
+too dark at the bottom of the range; v13 onward is the correction landing, not a regression.
+
+RATIO ERRORS, ONE PER SEAT, SAME HAZARD AS K311f's "2.3% IS NOT A RATE". THEIRS: 15.6x grain cost
+measured on T04, whose ungrained baseline is 435 KB, quoted as a film-wide figure -- the film is 4.5%
+(114,330,347 against 109,139,715 bytes) because the same grain lands on segments already costing 15 MB,
+and it is on 5 of 15 segments rather than all. A ratio is a property of its denominator. MINE: I took
+their 12.09 MB controlled-excerpt figure as a film figure two sentences after they gave it; the film is
+114.3 MB across 93.2 s = 9.82 Mbps. My conclusion held (do not compress the mezzanine further) but the
+number would have inverted the action -- 12 MB across 93 s reads as a file needing encoding UP. A wrong
+figure supporting a right conclusion is a conclusion the next reader cannot check.
+
+THE GRAIN, DECIDED. It cost 15.6x on a test excerpt and 4.5% on the film; it was invisible in every
+version anyone watched (crushed at code ~9, discarded by x264); and it does not survive delivery --
+r = 0.2641 at 1.5 Mbps, WORSE than a hard denoise's 0.2817, rising only to 0.6652 at 5 Mbps, with the
+residual against the ungrained reference at 158% of the grain's own energy and uncorrelated with it:
+the encoder replaces it with more deviation than it contributed. RATIFIED BY JOSIAH, quoted per cccxi:
+"I am fine shipping without grain. It's not a big deal to me." v15 is the delivery master.
+OPEN AND FLAGGED: that sentence authorises the SHIP, not the DELETION of the grained v14, which sits in
+his folder as seven parts the video seat plans to remove. cccxi cuts both ways -- it protects against
+reading him narrower and equally against reading him wider. Recommendation given: keep one copy with a
+manifest saying what it is.
+ALSO FLAGGED, NOT LOAD-BEARING NOW: their 3.1x delivered-text-error figure measures both candidates
+against the CLEAN UNGRAINED picture, so for the grained candidate the grain counts as error by
+construction. It does not isolate encoder waste, which is the claim attached to it. The decision stands
+on the correlation figures, which are properly pinned. Either re-take against own-source or retire the
+number before someone quotes it.
+
+ALSO. ffmpeg's noise strengths quantise: noise=alls=1 produces a file BYTE-IDENTICAL to no grain
+(md5 c9efa41fa9044015f5defcff7565fc80 both). There is no setting between off and 2, so "tune it after
+the round trip" -- a plan both seats had -- was a dial that does not exist.
+AND: the operator caught the desk mouse facing backwards. Ledger of what this pipeline's defects were
+found by: the bloom, the black monitor, the invisible apparition, T17's five seconds on nothing, and the
+mouse -- every one by LOOKING AT THE OUTPUT, the last by the operator's eye rather than by any
+instrument either seat built.
+
+STANDING. T01/T01b at 723, place = 0.09621 -- owed a live capture against the flagship, this seat's.
+Hazard allocation: cccv-cccvii mine, cccviii joint (amended jointly), cccix-cccxv theirs by authorship,
+all allocated here.
