@@ -3008,3 +3008,69 @@ fixes verified in frame 140 rather than inferred from the diff, v16 building.
 STANDING. T01/T01b at 723, place = 0.09621 -- unchanged, this seat's, and still the only item open on
 either seat. Hazard allocation: cccv-cccvii and cccxvi-cccxviii mine, cccviii joint, cccix-cccxv theirs
 by authorship, all allocated here.
+
+## WI-K312c — cccxix; an armed instance in the operator's hands; and what "live" actually means for T01b
+
+CCCXIX. THE COPY THE WORK HAPPENS IN IS CANONICAL, AND A DISTRIBUTION SNAPSHOT IS A PHOTOGRAPH OF IT.
+A command that restores the photograph over its subject is a deletion wearing a setup step's clothes.
+Regenerate the snapshot FROM the working copy at the moment of distribution; never extract it back over
+one. If a snapshot must stay extractable, it extracts to a FRESH path and is diffed, so that restoring
+is a decision someone makes rather than a side effect of getting started.
+    NUMBERED LATE, AND THAT IS THE SECOND TIME. The rule has been in force in prose since K310v --
+    "the tracked copy is canonical and nothing outside the repo is", written when SHIP_WHEN_REPIN_LANDS
+    was relocated and six version-named twins destroyed. Leaving it unnumbered is the same bookkeeping
+    failure of this seat's that cccxvi records, one stratum later and with the lesson already written
+    down. A rule stated in prose gets re-derived; a rule under a number gets found.
+    INSTANCES: the six ship-script backups (K310v); and RUN_ONE_LINE.txt line 1, below.
+
+THE SECOND INSTANCE IS ARMED, WHICH THE FIRST WAS NOT. RUN_ONE_LINE.txt opens "Paste this single line
+into PowerShell. That is the whole job." The line begins:
+    Expand-Archive "$r\libshow_full_kit.zip" "$r\kit" -Force
+-Force overwrites, and libshow_full_kit.zip is roughly seventeen hours behind the live kit\:
+                          in the zip     live in kit\
+    lib_capture.py           40,458 B       70,605 B     <- 30,147 B of today's work
+    cut_libshow.py           37,167 B       49,830 B
+    flash_wcag.py            19,247 B       21,650 B
+    Run-Libshow.ps1          13,623 B       13,443 B
+    verify_libshow.py         5,631 B        2,988 B     <- LARGER in the zip
+lib_capture.py is where absolute positioning, scroll_to, the page fingerprint, the load-bearing region
+check and the count-equality tell all live -- every capture-side fix this session made. The ship-script
+twins were INERT: they sat beside the canonical file and could only mislead a reader. This one FIRES,
+on the documented default path, at the moment someone follows the instructions.
+
+TWO REASONS IT IS HARD TO SEE, one of which defeats the obvious guard:
+    The trees have diverged in BOTH directions. verify_libshow.py is bigger in the snapshot than in the
+    working copy, so "the zip is old" is not uniformly true and a whole-directory date or size heuristic
+    does not settle it. Observed, not explained -- I do not know whether that file was split, pruned, or
+    superseded, and saying which without looking would be cccxv again.
+    The snapshot also carries two files the working copy does not (apparatus_numbers.py, gen_bezel.py),
+    so extraction is not purely destructive either. Which is exactly why DELETING THE ZIP IS THE WRONG
+    FIX and regeneration is the right one: a partly-newer snapshot is still a snapshot, and the repair
+    is to make it a photograph again rather than to argue about which copy is ahead.
+Not raised as a relay. The video seat owns the kit and the regeneration; this is filed, and Josiah has
+the two-line invocation that skips Expand-Archive entirely.
+
+CORRECTION NOTICE -- MY OWN STANDING LINE, carried unexamined for five strata. It has read "owed a live
+capture against the flagship" since K311c. Both halves are loose:
+    Run-Libshow.ps1 serves LOCAL COPIES over 127.0.0.1. $site is populated by Copy-Item from
+    Projects\efilist-argument-library; kit\wuldink is robocopied from Projects\wuld-ink\src. No take in
+    this harness touches https://wuld.ink/ or library.wuld.ink at all.
+    T01b_library_page shoots url="wuldink_lib" = /argument-library/index.html on the wuld.ink server --
+    the FRONT DOOR, not combined.html. T01_front_door shoots wuld.ink's index.
+So "live" in this thread has always meant THIS MACHINE'S WORKING TREE, as against the video seat's
+container mirror that produced the quarantined pair. That is still the thing owed and the quarantine
+still stands; what was wrong was my word for it. Read every earlier "against the flagship" in a T01b
+standing line as "against this machine's working tree, at the front door."
+The correction is cheap and the habit that produced it is not: five strata of a phrase that nobody
+re-read because it was in the part of the entry that never changes. A standing line is where an unchecked
+claim survives longest, precisely because it is copied forward rather than rewritten.
+
+THE INVOCATION, for whenever the takes are run:
+    $r="$env:USERPROFILE\Downloads\Argument Library\Off Topic Video Editing Request"
+    & "$r\kit\Run-Libshow.ps1" -Mode takes -Only T01_front_door,T01b_library_page
+Top-level Run-Libshow.ps1 (9,007 B) is a third copy and is stale as well; kit\ (13,443 B) is the live
+one. Same hazard, third instance, already inert -- recorded so it is not rediscovered.
+
+STANDING. T01/T01b at 723, place = 0.09621 -- owed a capture from the absolute harness against this
+machine's working tree, this seat's, and still the only item open on either seat. Hazard allocation:
+cccv-cccvii and cccxvi-cccxix mine, cccviii joint, cccix-cccxv theirs by authorship, all allocated here.
