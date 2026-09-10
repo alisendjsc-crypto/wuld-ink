@@ -3273,3 +3273,65 @@ time and is what the bezel lock was built for. T01/T01b closed. The only open it
 divergence above and the video seat's page_signature drift check, which waits for the ship by agreement.
 Hazard allocation unchanged and no new numbers: cccv-cccvii, cccxvi-cccxix and cccxxi mine, cccviii joint,
 cccix-cccxv and cccxx theirs by authorship, all allocated here.
+
+## WI-K312g — cccx run on the rewriting mount; the join verified from the operator's own bytes; cccxv paid out
+
+CCCX RUN, ON THE INSTRUMENT THE VIDEO SEAT JUST FOUND BROKEN. They established that their container's
+outputs mount rewrites files it recognises as mp4 -- a faststart remux, +5,875 B on the header part,
+silent, after the split. They fixed the join and stopped there. cccx says the next move is to enumerate
+every claim that instrument produced, and the load-bearing one is not the join: it is the asset hash the
+cccix provenance fix rests on, quoted in this log at K311b and K311d as
+    screen_source_T04.mp4 / e7c986a875a9320152ec22f16906423f / 6,615,420 B / 2021 frames
+Re-computed here from the copy on the OPERATOR'S disk:
+    6,615,420 B   md5 e7c986a875a9320152ec22f16906423f   EXACT MATCH, both figures
+So the provenance chain is sound where this log stakes it, and cccix's fix -- every shot manifest
+carrying the source's hash rather than its name -- is not undermined by the rewriting store.
+    AND THE RESULT IS ONE FILE DEEP, which cccxviii requires me to say plainly. A clean sample is not a
+    clean population. What was enumerated is the single asset hash the canonical log names. Every other
+    mp4 fingerprint in that chain -- the per-shot manifests, the take digests, screenfeed_seq/source.json
+    -- lives in their container and remains unenumerated. "The one we bet the rule on verifies" is the
+    claim; "the mp4 hashes are fine" is a different sentence with no evidence behind it.
+
+THE JOIN VERIFIED WITHOUT MOVING THE MASTER. A 244 MB artifact was checked structurally from 19 MB of it
+plus arithmetic, on the operator's disk rather than on their report:
+    part sizes sum to 244,613,120 -- exactly GNU tar's blocking (512 header, data padded to 512, 1024
+      trailer, whole archive padded to 20 blocks) over a payload of EXACTLY 244,605,185 B, which is the
+      BUILD OUTPUT size and not the 244,611,060 the rewriting mount produced
+    the ustar header in v1.part00: name "libshow_full_v1.mp4", prefix empty, typeflag 0, size field
+      01645060401 octal = 244,605,185 -- so the tar carries a BARE name and extracts beside _fullparts
+    tar -xf ... -C ".." therefore lands at ..\libshow_full_v1.mp4, which is the exact path the script
+      then hashes. Extraction path and verification path are the same path.
+The one thing not checkable from here is the film's own md5, which needs the bytes. Every layer that can
+be checked without them, checks. The script also now verifies TWICE -- the tar at
+6ffb76b95b7a95d765472d2a53887a99, then the film at b56e72ce5733af270c80269cd86f3022 -- and carries the
+reason in a comment, so the next reader learns why a video is shipped inside a tar.
+
+CCCXV PAID OUT, AND THAT IS THE METHODOLOGICAL FINDING OF THE DAY. WI-K312f recorded the 5,875 anomaly
+with an explicitly wrong guess attached -- "redistribution rather than loss, probably a header kept whole
+at the front, almost certainly coincidence" -- and wrote it down anyway, on the stated grounds that
+nobody should have to rediscover the number under pressure. It was the defect. The guess was wrong in
+both halves: it was addition rather than redistribution, and it was the same fault as v14 rather than a
+coincidence. THE OBSERVATION SURVIVED THE EXPLANATION because cccxv required them to be two claims, and
+it was usable within the hour by the seat that had the mechanism. Record the number you cannot explain;
+it costs one sentence, and it is the only thing that makes a second occurrence legible as a recurrence.
+Not a new number -- this is cccxv's positive corollary and belongs under it.
+
+CCCXVI EXTENDED (video seat's finding, recorded under cccxvi rather than allocated a number): A HASH
+TAKEN IN A STORE THAT REWRITES WHAT YOU HASHED IS NOT A FINGERPRINT OF THE ARTIFACT, IT IS A FINGERPRINT
+OF A MOMENT. Their third instance of cccxvi and the first where the instrument was the storage layer
+rather than the author. The fix generalises past this case: hash through a container the store does not
+recognise, or hash on the far side of the transfer, and never treat a single early verification of a
+round trip as durable.
+The v14 entry in WI-K312a called its 5,875 "container-level only, identical picture" and moved on. Same
+number, same mount, same fault, filed twice as benign before it was understood. Both filings were this
+seat's and theirs respectively, and neither was wrong to file -- what was wrong was letting "explained
+enough to dismiss" stand in for "explained".
+
+STANDING. THE FILM IS READY TO JOIN AND SHIP. libshow_full_v1.mp4, 4:35, 16,510 frames, 244,605,185 B,
+tv/bt709/bt709/bt709; flash gate 0 transitions and 0 per second at 6.9% qualifying area against a 25%
+criterion. cut_libshow.py copied to the operator's kit at 4bf84dadbbb20ed04273c7af8bb9e3dd with
+build_kit.py beside it, so the master is reproducible on the machine that owns it -- the last item from
+WI-K312f, closed. T01/T01b closed. The only open item on either seat is the page_signature drift check,
+which waits for the ship by agreement. Hazard allocation unchanged and no new numbers: cccv-cccvii,
+cccxvi-cccxix and cccxxi mine, cccviii joint, cccix-cccxv and cccxx theirs by authorship, all allocated
+here.
