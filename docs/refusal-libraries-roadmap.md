@@ -78,7 +78,33 @@ Three things to write the spec AGAINST rather than retrofit:
 - **`prefers-reduced-motion` decides, not the toggle alone.** Josiah's framing is that the adorned mode is default and serious readers opt out; that holds for the ornament. But a reader who needs motion and glow off has usually already told their operating system and should never have to find a control. **Recommendation: honour `prefers-reduced-motion: reduce` automatically, and otherwise ship adorned-by-default with a visible toggle.** That keeps the experience Josiah asked for and makes the safe path the one requiring no discovery.
 
 **Integration, so the spec does not duplicate what exists:** the site already carries an audio bus (`WuldWrongHour.voiceBus()` — shared context/room, bed duck), reader modes (dark / reader / hc), and the Yūrei + Mr Grey avatar/FX stack. `sfx` and any Grey/Yūrei presence ride those rather than introducing a second of each. Browsers block un-gestured audio regardless, so sound is toggle-gated by construction.
-**Deps:** the film's aesthetic settling (OPEN). Spec document RECEIVED 2026-09-10, with three corrections logged above. **Effort/risk:** medium / HIGH (a pin move plus a safety-claim surface). **Ratification:** the toggle default and any flash-bearing effect are Josiah's call, not a Cowork build call.
+**OPEN DECISION 1 IS ANSWERED (2026-09-10): the layer must reach the PINNED FLAGSHIP, so a pin move is required.** Measured across both EDLs by share of take screen time: the full cut is 94.2% `combined.html` and **0% site proper**; the wuld cut is 76.8% `combined.html`, 5.4% `libraries/index.html`, 4.9% `right-to-die-combined`, and 8.1% site proper (of which the front door is 3.4%). A cosmetic layer scoped to `wuld.ink` alone would deliver continuity for six seconds of the front door and nothing else. Not a close call; no stylesheet-on-the-site shortcut exists.
+
+**Where it actually lives, measured from the repos rather than assumed:** the target is **`efilist-argument-library`**, not `wuld-ink` — `combined.html` (2.96 MB), `libraries/`, and the topic wings all sit there. `wuld-ink/src/argument-library/` is `index.html` only, the front door. **"AUX wing" means a TOPIC wing, not a staging environment**; none exists and none needs to be built. **Stage on `right-to-die`**: a combined artifact structurally identical to the flagship, un-pinned so it auto-deploys, and 4.9% of the wuld cut so it delivers a little continuity before the pin moves.
+
+**READ-ONLY CONSTRAINT LIFTED 2026-09-10 by operator instruction** — *"It should be writable now."* The K310 standing constraint (`efilist-argument-library` READ-ONLY this session) was a SESSION instruction, not a filesystem permission; Josiah also cleared the Windows folder read-only attribute, which is incidental (that checkbox is close to a no-op on folders). **What lifted the constraint is his saying so.** Recorded that way so no later session infers a lift from an attribute.
+
+**SCOPED TO FOUR (2026-09-10), against Josiah's stated quality target** — *"probably enough so that it's roughly the same as the video. It doesn't need to be absolutely immaculate."* Get the recognition and stop; ten items chasing immaculate is the wrong shape for that brief.
+
+- ON: the bezel/chin/`W.U.L.D.` wordmark with LED periods (static CSS, the visual signature); the text glow; the power button as the cosmetics toggle; the mascot's fade.
+- DEFERRED: peripheral softening, mouse parallax, sound. They deliver continuity with a CAMERA MOVE the page does not have, and carry most of the flash and vestibular exposure. **The scoped set is also the set with no page-wide periodic luminance change** — luck rather than compromise, and the reason the scoping is also the safe choice.
+- **Two of the four port as numbers, two as method.** Bezel ratios and LED colours are constants. The mascot's envelope is a SHAPE (the film times it as a fraction of a shot; a page does not end). The bloom is a METHOD WITH A CALIBRATION STEP — its 85/255 threshold was chosen against the film's median luma ~15, and a threshold above the content it means to bloom touches nothing, which is how it shipped inert on four cuts. Re-derive against the site's own median; never copy the number.
+- **PERF: the constraint I asserted here was WRONG and is struck (measured 2026-09-10).** I read `combined.html`'s 2,963,789 bytes as a render cost and warned that §6's duplicated-blur-layer recipe would stall. **File size is not DOM size** — that payload is data. Measured on the live flagship at `library.wuld.ink/combined`: **6,134 nodes** in the base view, **12,345** with EXAMPLES open (`scrollHeight` 47,169, 136 `<details>`). Frame time under scroll, median ms:
+
+  ```
+                                base view    EXAMPLES view
+  baseline                          8.3           8.3
+  text-shadow on 43 headings        8.3            --
+  filter:blur on the wrapper        8.3            --      promote 0.3 ms
+  duplicated layer, 6,041 nodes,
+    blur 6px, mix-blend screen      8.3           8.3      build 2.4 / 8.1 ms
+  ```
+
+  Every candidate costs nothing measurable per frame; the heaviest builds in 8.1 ms once. **§6's recipe stands and the bloom needs no scoping.** My prescription to start from `text-shadow` would have steered the build away from the best-looking option for a reason that does not exist. Same class as everything else this session: a true measurement (bytes) asserted about a different quantity (render cost).
+  **Caveat on the instrument:** 8.3 ms is uniform across every condition, so it is a vsync/throttle floor — it resolves a *stall*, which is what was predicted and does not occur, not small costs. Pane viewport was 614×711; a full window rasterises several times the area. Re-measure at real size with a profiler before anything ships.
+  **And the first version of that harness measured an empty container** (`main#main` holds 0 descendants; the content is `div#combined-library`) and returned three confident, identical results about nothing — the vacuous gate, mine, inside the harness §11 says to build first. Fixed by requiring a positive control that the treatment actually applied before any timing is trusted.
+
+**Deps:** the film's aesthetic settling (SATISFIED for the scoped four — seg 10's out-point, the room-shot wiring and T01/T01b are timing and selection, and none of them can move bezel geometry, LED colour, the bloom's method or the mascot's shape). Spec document RECEIVED 2026-09-10, with three corrections logged above. Remaining gate is the READ-ONLY constraint. **Effort/risk:** medium / HIGH (a pin move plus a safety-claim surface). **Ratification:** the toggle default and any flash-bearing effect are Josiah's call, not a Cowork build call.
 
 ---
 
