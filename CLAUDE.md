@@ -3160,3 +3160,58 @@ page_signature, so the answerable question for them is "did the live front door 
 which the video seat has offered to build and which is this seat's call. That offer is the only open
 item on either seat. Hazard allocation: cccv-cccvii, cccxvi-cccxix and cccxxi mine, cccviii joint,
 cccix-cccxv and cccxx theirs by authorship, all allocated here.
+
+## WI-K312e — cccxxi verified in the field inside the hour; the overwrite audited; a countermand
+
+CCCXXI PROVED ITSELF BEFORE THE STRATUM THAT MINTED IT WAS AN HOUR OLD. WI-K312d cites the refuting
+evidence as "kit\Run-Libshow.ps1, 13,443 B, md5 3536149a, line 104". Roughly twenty minutes after that
+was written the video seat patched a copy of that file in their container and committed the result over
+the operator's, which is now 14,251 B with a different hash. THE CITATION IS STILL TRUE AND STILL
+CHECKABLE, because it names a fingerprint rather than a path. Written in the form cccxxi replaced -- 
+"Run-Libshow.ps1, line 104" -- it would now point at a file that does not contain what it claims, and no
+reader could tell whether the log or the file was wrong. A rule that pays out inside its first hour is
+either very good or very badly needed; this one is the second.
+
+THE OVERWRITE AUDITED, and only this seat could do it. video/K312r reports patching a 13,623 B copy over
+the operator's 13,443 B one and states plainly that it did not establish the two were the same lineage.
+This seat had staged the 13,443 B copy twenty minutes earlier to check an unrelated claim, so the
+pre-overwrite bytes still existed here and the diff is measured rather than assumed:
+    11 lines removed, 22 added; every removal accounted for and intended --
+        :51    SCRIPTS list gains gen_bezel.py
+        :72-77 the dead robocopy of wuld-ink\src, replaced by a comment naming why it misled
+        :95    the $PortWuld http.server that nothing consumed
+        :132   Test-Path on the baseline DIRECTORY, replaced by a count of *.mp4 with a third branch
+        :202   $s2 dropped from the cleanup list
+    diff_takes.py 6,814 -> 7,995 B: the --ignore help now points at Run-Libshow.ps1:101 instead of
+    restating it, and a hard exit fires when the baseline holds no video.
+NOTHING REGRESSED. Their worry was right as process and wrong as outcome, and the gap between those two
+is exactly what an audit is for. Both fixes are additive and both are correct.
+
+THE BACKSTOP WAS AN ACCIDENT AND MUST NOT BE MISTAKEN FOR A SYSTEM. The only copy of what stood on the
+operator's disk before the overwrite existed because a reviewer happened to stage that file to check
+something else. An outside seat's incidental cache is not a backup, has no retention, and would not have
+been there twenty minutes earlier or an hour later. It worked once. Recording it so that nobody -- this
+seat included -- reasons from "it was recoverable" to "it is recoverable".
+
+COUNTERMAND, and it inverts advice already given to the operator. video/K312r told Josiah to "regenerate
+the kit rather than trust a hand-committed file in it." The audit reverses that: the hand-committed file
+is verified clean, and REGENERATION IS NOW THE OPERATION THAT COULD LOSE IT, because build_kit.py:16
+lists Run-Libshow.ps1 in SCRIPTS and a reissue writes the kit copy from their working directory. Whether
+that is safe depends on the working directory's hash, which lives in their container and cannot be read
+from here.
+    NOT INFERRED FROM THEIR PROSE. Their sentence -- "I patched my 13,623-byte copy and committed the
+    result" -- reads as patched-source-then-committed, which would make a reissue safe. Reading a
+    colleague's state out of their description is the error retracted one stratum ago, and it does not
+    become sound because the colleague is careful. The hash was asked for instead.
+    UNTIL IT ARRIVES: do not regenerate the kit. The working copy on the operator's disk is the good one.
+
+NO NEW HAZARD NUMBERS IN THIS STRATUM, deliberately. Four were allocated across the previous two and the
+temptation after a clean audit is to mint a fifth for the accidental backstop. It is a caution, not a
+class: it has one instance, no predictive power about where the next one hides, and folding it into
+cccxix -- where the two-copies fix already lives -- costs nothing. A register that grows on every good
+sentence stops being searchable, which is the only property that makes it worth keeping.
+
+STANDING. T01/T01b CLOSED. The only open item on either seat is the video seat's offered page_signature
+drift check for the two live-site takes, accepted with the condition that it waits for the ship. Hazard
+allocation unchanged: cccv-cccvii, cccxvi-cccxix and cccxxi mine, cccviii joint, cccix-cccxv and cccxx
+theirs by authorship, all allocated here.
