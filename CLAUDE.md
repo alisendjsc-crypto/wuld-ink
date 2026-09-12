@@ -4353,3 +4353,126 @@ blocks, this stratum, constants.json, the harness (k317.py) and its two runs. Ca
 its own kickoff -- PROMPT_flagship_mobile_pin_move.md in the drop, with the graph views' SVG label fills folded in so there is one
 pin move); the wings' mobile pass (Josiah: "refusal libraries already look good on mobile"); the tint hue; the wings' light-scheme
 silence; the library seat's K232 items; the film seat's files. Register: cccxxxvii is the highest.
+
+## WI-K318 — THE SECOND PIN MOVE OF SEPTEMBER: the flagship laid out for a phone, the graph views' SVG labels to AA on their painted ground; v4.0.2 → v4.0.3; cccxxxviii and cccxxxix allocated
+
+ONE MOVE, TWO CHANGES, AS THE K317 KICKOFF ORDERED IT. The spending condition held: P5_STATE and the remotes showed WI-K317 run
+(efilist 2c58e8f atop 264c0f2, the packs serving c06d2310 / 89532502; the WI-K317 log commit at 7d7635f), /combined read
+62d1e8d86056465ebcb5daced38e0a83 / 2,974,039 B three times, and the register's tail said cccxxxvii. combined.html was hashed
+before the first edit and is edited by a script (k318_edit.py) of 24 exact-once string replacements over those bytes -- a
+search text that matches zero or several times aborts before anything is written -- so the build is reproducible from the pin
+and the drop: 62d1e8d8 / 2,974,039 → 62c733ac8263e6413816cfb6d28e3b8a / 2,982,420 B (+8,381), git blob 3f07748b. PATCH: the
+five data literals (OBJECTIONS, REAL_WORLD_EXAMPLES, MAP1_TRANSITIONS, DEP_GRAPH_DATA, MAP_GRAPH_DATA) and the rwe-data block
+are byte-identical between the two files, literal for literal; the objections index is unchanged (d034af15); the 18 removed
+lines are fills, two tick-handler wrappers and one inline attribute. Six efilist files in one commit by
+k318\K318_efilist_commit.ps1 (combined.html, README, CHANGELOG, the corpus JSON's version field, the front door's badge, the
+re-captured dependency-graph.png travelling as base64 text); the layer is not touched.
+
+WHAT A PHONE SAW, MEASURED ON THE PIN. Mobile contexts (is_mobile, has_touch, dsf 2) at 390×844, 360×780 and 430×932, both
+grounds, tour suppressed, vfx tier. The library view overflowed the viewport by 149 / 179 / 110 px -- the view switcher's
+fourth tab (ARGUMENT FLOW, right edge 533) and the RSI METHODOLOGY button (539) off-screen with no tap able to reach them; the
+mechanism web and the dependency graph by 145 / 175 / 104 (the same switcher); the argument flow by 369 / 399 / 328, a
+`320px | 1fr | 360px` grid on a 342px canvas; the examples and the coda by 43 / 73 / 3, which is the shared nav's mode toggle
+(LEGIBLE / HIGH-CONTRAST past the right edge under LIBRARY | EXAMPLES | CODA). At 390 in the library view 12 element rects
+passed the viewport's edge, 140 in the mechanism web (the drawing's own nodes, three screens wide under an overflow:hidden
+canvas), 204 in the flow map with a source selected. Of the library view's 107 interactive elements 96 were under 36px tall:
+the nav buttons 24, the tier filters 28, the depth buttons 28, the layer's FEEDBACK controls 26. The wings and the front door:
+0 overflow at all three widths (seven pages), as K317 said.
+
+THE PHONE RULES. One `@media (max-width: 600px)` block at the end of the page's own stylesheet, flat selectors under the
+`body[data-active-view=...]` parents, nothing outside it. The shared nav wraps when its five buttons do not fit and is
+position:static at that width -- two sticky rows would hold 11% of a phone screen, and the wings' header scrolls too. The
+four view tabs become a 2×2 grid (minmax(0,1fr) cells so a legible-mode label wraps inside its cell): all four visible at 360,
+where a scrolling strip -- the other option the brief named -- would hide the fourth tab, which is the defect. The depth row
+wraps with its label on its own line and the RSI button on the next. The graph toolbars wrap; the zoom buttons grow to 36; the
+flow map's three columns stack, its search takes the row, its source list keeps a 280px scroll. The examples' filter bar becomes
+`auto | 1fr` rows of label and control with the reset on its own line, the view tabs wrap as tabs rather than as words, and a
+field's unbroken token (a 36-character hyphenated note) wraps rather than pushing past the card. Every control-row button is at
+least 36px tall -- nav, view tabs, tier filters, depth, RSI, graph toolbars, zoom, flow controls, examples tabs, selects and
+reset -- by min-height, not padding, so no mode's padding rule has to be out-specified; the in-card chips (SHOW IN MAP / DEP,
+COPY, the plain and NOTE toggles, the examples badge and pills) 28px: above WCAG 2.2's 24px minimum, below 36 because a 36px
+chip inside a card's text block breaks the line it sits in. On the new bytes every one of 54 states -- library, a card open,
+the RSI panel, web, graph, flow (with and without a source), examples, coda; three widths; both grounds -- reads scrollWidth −
+clientWidth = 0 with no element rect past the viewport; legible and both at 360 and 390 likewise; the layer off (tier 0)
+likewise; every control reachable by a vertical scroll and a tap that hit-tests to itself. Under 36 there remain the layer's 82
+FEEDBACK controls (26px, the layer's bytes), the wing-switcher's link (17px, the K123 inline-styled bar in six copies) and the
+examples' <summary> rows (26px, full-width).
+
+THE GRAPH CANVASES. The force layouts are tuned for the desktop canvas and drew three screens wide; the brief's two options
+(viewBox, or a scroll box) were both wrong for a canvas under d3.zoom, which owns the touch events a scroll box would need. On a
+phone each simulation is settled synchronously (alphaMin / alphaDecay ticks, which is what d3 would run) and the zoom transform
+set to the drawing's bounding box, so pinch and drag continue from the fitted frame and ZOOM FIT does the same; the dependency
+graph is laid out on its desktop canvas (1400×900) before the fit, because the K74 column layout is computed from the canvas
+and overlapped its nine premise boxes below ~1000px; the flow map's viewBox becomes the drawing's bounding box after render, so
+the labels around the ring stay on the canvas; both legends start closed (open, they covered half a 390px canvas); the graph
+containers are 100vw tall on a phone. These are overviews: a 7px label renders at 2–3px until pinched; the source list and
+the detail panel carry the text. None of it runs at 601px and up. One trap found and kept out of the bytes: the first cut hid
+the flow map's empty canvas with `:has(#m1-graph:empty) { display:none }`, and since m1RenderGraph measures its container's
+width at the start of a render -- when the SVG is still empty -- the radius came out 0 and every node sat on the centre. The
+container now collapses its height and border while empty and stays in layout.
+
+THE FILLS, AND WHAT A CENSUS HAS TO STAND ON. K314 left 225 of 323 SVG labels below AA as a carry. Re-measured here with the
+K314 census states plus the flow map's three other modes, four display modes, 377 label readings per mode, each read against the
+ground it is painted on: the canvas for a label beside or above its dot, the family rect or the tier circle for a label whose
+centre lies inside one (compositing the shape's fill and fill-opacity over the canvas). 127 readings per mode are the K74
+de-emphasis states -- a selected node's non-neighbours at opacity .12 / .06 -- an opacity, not a colour, reported apart. Of the
+250 undimmed readings 123 were below 4.5:1 on the dark ground and 172 on the cream. The fills, all measured: the objection
+labels of both graphs #555 / #666 → #88847c (the wings' --faint, 5.32 on #0a0a0a) and #777 / #888 → #615b50 on cream (5.52); the
+band labels #333 → #88847c and #999 → #615b50, the legible-mode pair likewise; the premise labels and their strong/weak counts
+solid (#e8e8e8 dark, #fff cream) with black on the mustard family in both grounds and on characterization in cream, because on
+rgb(158,115,11) white reads 4.26 and black 4.90 -- a data-family attribute stamped on each premise group is the hook and the only
+DOM change; the flow map's T-badges and source label #1a1a1a on cream, white kept inside the red source node; the stars #b8860b →
+#7a5c00 on cream (5.13); the "No successors" text a class with a value per ground instead of one inline #555. After: 0 and 0,
+minima 4.93 (dark, black on the mustard) and 4.70 (cream, white on the empirical green); the README's AA sentence widens from
+"every HTML text colour" to every text colour, the dimmed states named. Two things the K314 method could not see, in both
+directions: the flow map's T-badges in high-contrast were white on cream circles (1.13:1 -- invisible) and it read them against
+the cream canvas as fine; and black on the mustard rect, which is correct, it would have failed against the dark canvas. And one
+thing about the K314 numbers themselves: entering a graph tab defaults the display mode to STANDARD (the K73 stash), so a census
+that sets the mode before clicking the tab measures the dark ground in every mode -- K314's four-mode graph figures were four
+readings of the dark ground; the cream here is an explicit mode click inside the tab.
+    cccxxxviii allocated -- THE GROUND IS WHAT IS PAINTED BEHIND THE GLYPH, NOT THE NEAREST CSS BACKGROUND. A contrast census
+    that walks DOM ancestors for a background reads every SVG label against the canvas, which is right for a label beside its
+    dot and wrong for a label on a rect or in a circle: it passes white on a cream circle and fails black on a mustard box. The
+    ground has to be composited from whatever is drawn under the glyph -- shape fills and their opacities included -- and the
+    page has to be in the mode the census claims to measure, checked from the body's class after the last click, not from the
+    key that was set before the first.
+
+DESKTOP UNCHANGED, AND WHAT THAT CONTROL CAN BE. The nine README captures re-taken at 1440×900 from the pin's bytes and the
+new bytes under one seeded Math.random, every CSS animation frozen and each force simulation run to rest before its capture:
+seven PNGs byte-identical. The two graph captures differ by ±1 channel values even between two runs on the SAME bytes -- 6 and 22
+pixels of 1.3 million, the rasterizer's noise under the layer's drop-shadow filter -- so for them the control is the settled SVG
+DOM: every element, attribute, class and label identical, positions within 0.008px against a null-run drift of 0.014px, the
+dependency graph carrying its 13 data-family attributes and nothing else. The phone half alone moves no desktop pixel; the fills
+move the dependency graph's label colours and nothing else on the page (the mechanism web's objection labels are display:none
+until hover, so its capture is byte-identical), and that one capture is re-taken for the README. The K316 battery -- navcheck,
+fbform, layerfix, wingtoggle, k317 -- is GREEN on the new bytes.
+    cccxxxix allocated -- RUN THE CONTROL ON THE NULL CASE FIRST. A control that compares two captures has a noise floor, and
+    the floor is not zero for a filtered, composited canvas: identical bytes produced different PNGs. Before a control is
+    allowed to fail the candidate it has to have passed the pin against itself; where it cannot, the comparison moves to a
+    layer that is deterministic (here the settled DOM) and the tolerance is the null run's own drift, measured, not chosen.
+    A byte-identity expectation written into a brief is a hypothesis about the harness until the null run has confirmed it.
+
+THE LAYER AT PHONE WIDTH, MEASURED AND LEFT. At 360 and 390: the feedback panel opens 336 / 366px wide inside the viewport, the
+tour card is 336 / 340px, the chin's four 44px controls sit at y 740 / 802 and cover no toggle, and at the foot of every page
+nothing sits under the chin; mid-scroll, content passes under the fixed band as under any fixed bar. Nothing in the layer
+changes; no layer deploy. Josiah's three questions, answered with the contact sheets sent (390 and 360, dark then cream, six
+states each): accessible -- every control on screen and tappable, 0 overflow in 54 states, every label at AA on its ground;
+cluttered -- the first library screen is chrome to 760px of 844 before the first row (the wing-switcher bar wraps to three
+lines, the nav to two, the tabs to two, six tier filters, two depth rows), which is the same chrome as the desktop's wrapped,
+and the one honest reduction left is the wing-switcher bar, which is the wings' markup too; sleek -- the 2×2 tabs and the
+label|control filter rows read as designed rather than as fallen-over desktop rows, the graphs as fitted overviews.
+
+STATE. library.wuld.ink: one commit by k318\K318_efilist_commit.ps1 (six base blobs at HEAD incl. the pin's eab9c788, the packs'
+blobs held, six inputs by md5 and byte count with the PNG decoded from text and gated as bytes, exactly six names staged, six
+index blobs by SHA, the pin's blob after the commit = 3f07748b, a gated push, /combined read back three times agreeing on
+62c733ac with status and bytes beside every hash, then the packs by md5 and the front door's badge). wuld-ink:
+k318\WULD_v403_relabel_commit.ps1 (release_v4_0_3.json, the pin tool dry then --apply --date 2026-09-12, the summary swap,
+feed.xml, the search index, the diff-shape gate, /library-about/ read back); k318\WULD_archive_commit.ps1 (the drop filed:
+kickoff, strata, ship scripts, harnesses, K317's leftovers); this stratum by k318\WI-K318_commit.ps1. Drop: k318\ holds the
+six files, the four blocks, this stratum, constants.json, the harness (hz.py, probe.py, census_svg.py, k318_edit.py,
+k318_texts.py, shots_ctl.py, domcmp.py, shots_phone.py, shots_readme_dep.py, layerphone.py) and the contact sheets;
+P5_STATE.md and TODO_after_the_pin_move.md updated (25 and 17 → LANDED). Carries: the wing-switcher bar at phone width (three
+lines at 390, a 17px link; six copies, the wings' change); the layer's FEEDBACK control at 26px on a phone (a layer deploy);
+the graphs' phone canvases as overviews (a re-tune of the force layouts for a 340px canvas, if ever); the wings' mobile pass
+(Josiah: "refusal libraries already look good on mobile"); the tint hue; the wings' light-scheme silence; the library seat's
+K232 items; the film seat's files. Register: cccxxxix is the highest.
