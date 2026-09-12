@@ -3730,3 +3730,79 @@ block is gated on HEAD's subject in each repo and refuses if origin is ahead. Th
 carries the stage-wrapper hazard, the precis insertion, the flagship feedback shape, the pre-existing
 top-nav error, and a note that the apparatus quotes the pin the move will supersede. Hazard
 allocation: cccxxix and cccxxx mine; cccxxx is the one to reread before the next handoff.
+
+## WI-K313e — everything landed, read back off the remotes rather than carried; the parity gate reclassified under cccxxiii; two names with one fingerprint in the render manifest
+
+LANDED, AND VERIFIED FROM THE REFLOGS, NOT FROM THE LAST STRATUM (cccxxx, applied to itself). Every
+status line below was read off the two repositories' own `.git` after the fact -- the remote-tracking
+reflogs, the index, and the log's bytes -- because the previous stratum's STATE paragraph was written
+before the blocks ran and a compaction sat between then and now.
+    library.wuld.ink (efilist-argument-library): deploy 8 landed as 23fbbed, "library: quality-check
+    pass -- nine fixes". The push moved origin/main e253f23 -> 23fbbed, eight commits (9077927 ..
+    23fbbed), recorded as "update by push" at 17:32:29 -0700 on the 11th. Cloudflare Pages deploys on
+    push, so the P5 layer -- palette, type, bezel, glow, magnifier, sound, feedback, tutorials -- is
+    now the served build on the five wings, the umbrella and /troubleshooting/. The deploy this seat
+    cannot fetch (egress policy); the push it can read, and has. The flagship is pinned and untouched:
+    combined.html was in no staged set, and every deploy block printed "flagship untouched".
+    wuld.ink: WI-K313d landed as 72a80ab and was pushed at 17:32:33. The apparatus then landed as
+    d60ec13 (five files: the page, its Markdown, and the three tools as they ran) and 552b4dc (sitemap
+    66 -> 67 locs, search index), pushed 72a80ab -> 552b4dc at 17:42:26. CLAUDE.md read back at
+    1,219,391 bytes, md5 f0bc08c0e04f45dd3dc7d5a0f32f2f71 -- the exact value the K313d block predicted.
+    The page, fetched from this side: https://wuld.ink/argument-library/apparatus/, title "The Argument
+    Library -- the Apparatus", marker "measured: v4", db01fb9d4331039148fdb51b7649e022, 279,809,463
+    bytes, quoting the current pin 9d13359e305c6caa3ae64759f3dcc0e6, and the pre-sweep e654eabd nowhere
+    on it.
+
+THE PARITY GATE, RECLASSIFIED. The backlog filed its removal as "same family as cccxxix". Wrong family.
+cccxxix is a denylist that PASSES what it was not told to fear. The parity gate FAILED a valid input:
+it required the manifest to record exactly as many renders as the marker names cuts, a count standing
+proxy for "same version", when the presence check beside it already measured identity directly by
+md5. A count is a name for a shape. That is cccxxiii -- a gate keyed to a proxy -- in the other
+direction, and it broke a rule this seat had written into K310c two days earlier: a check that can
+cry wolf must not be able to block. The film seat's manifest arrived as a fifteen-entry superset with
+both v10 entries preserved byte for byte, which is the more honest record, and parity refused it
+(15 against 1) with nothing written. The presence check, alone, is the gate now.
+    The script that actually produced d60ec13 -- SHIP_WHEN_REPIN_LANDS.ps1 v4.1, md5
+    6226a355daa9b64276f643870a9b84d1, 11,999 bytes -- is committed in the commit immediately before
+    this stratum. Until that commit the repository's ship script was the v10 blob (10,667 bytes),
+    whose marker regex requires a `wuld:` group the v4 document has retired: as committed, the repo
+    could not have shipped the page the repo serves. One stale line remains in v4.1 and is left as it
+    ran: the served-page read-back greps "RESULT OK", a v10 phrase; v4 says "result | OK -- 5 of 5" in
+    a table, so RESULT=0 is the correct reading and the "(want >=1 1 0)" annotation is wrong. Fix it
+    in the same edit that adds the film link, which the next ship needs anyway.
+
+THE FILM SEAT'S MANIFEST, READ ON THIS SIDE. The v4 entry carries the marker's md5 and byte count.
+duration_s 275.442 against frames 16,510: 16,510 x 1001/60000 = 275.4418, so the document's claim that
+the render step now takes duration from the decoded frame count is checked here rather than quoted.
+edl_clock_s 275.472 sits beside it, and v1 through v3 record 275.472 as duration_s for the same
+16,510 frames -- the 30 ms disagreement the new field was added to make visible, visible.
+    One observation for them, no allocation. Two pairs of entries share one fingerprint:
+    libshow_proof_v15_nograin.mp4 and libshow_proof_v16.mp4 (9205aed440e905b36553eefa5f9e050d,
+    109,139,715 bytes); s5_grain.mp4 and s5_nograin.mp4 (407ebf9c6e41a2f3fed94d3bb41f2b1d, 239,202
+    bytes). By the project's own rule a name is a claim and a hash is a fingerprint, so the manifest
+    says v16 IS v15_nograin and s5's grain IS its nograin. If either pair was ever put side by side,
+    the comparison was of a file with itself (the cccviii shape). If they are renames, or a segment
+    the grain never touched, one line in the manifest saying so costs less than the next reader
+    running that comparison. Relayed as an observation, not a finding.
+
+CCCXXX FIRED AGAIN, ON THE DOCUMENT WRITTEN TO PREVENT IT. The pin-move prompt carried, as a standing
+constraint, "apply_wuld_wrap.py at blob aa37a37f is supposed to differ from the kit copy". The ship's
+first phase copies the kit over it and commits the result by design, and did: HEAD's blob is now the
+kit copy (deb966ab, 9,991 bytes), and the guard that protects it is self-updating (working copy against
+committed blob), so the constraint as written named a blob that is no longer anyone's. Rewritten to
+state the guard, not the hash. Two more lines in the same prompt had gone stale the same way: it listed
+four build files where the wings load two packed ones, /wuld-layer.css and /wuld-layer.js, which the
+flagship must link rather than copy; and it put the register at cccxxiv. Caught by reading the index
+and the served markup, not the prompt. A handoff document is a status carried across a boundary, and
+it does not re-verify itself either.
+
+STATE. library.wuld.ink: origin/main 23fbbed, layer deployed, flagship pinned at v4.0.1 and untouched.
+wuld.ink: origin/main 552b4dc; the ship-script commit and this stratum follow it, then a gated push.
+Next is the pin move, in its own session, opened from PROMPT_flagship_pin_move.md; it carries the
+stage-shim verification, the precis insertion (48 clauses, 21 lines, 0 unsourced), the feedback control
+on the flagship's own markup, the pre-existing top-nav decision, and the new pin's md5 and byte count
+for the film seat, whose apparatus quotes the pin it will supersede. The library seat holds: the
+dependency panel's LOAD-BEARING table stale at 222 edges against 255 live, Convergent Architecture 13
+-> 17 and Benatar 33 -> 36 in the same panel's prose, the mechanism-web panel's missing
+explaining-is-not-refuting limit, and RSI-4 optional. Register: cccxxx remains the highest; nothing
+allocated here, and one misfiled family corrected.
