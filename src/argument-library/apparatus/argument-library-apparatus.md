@@ -113,8 +113,9 @@ the source outright* (0.282). Both figures were wrong and the comparison was inv
 VP9 retains two-thirds more of the grain than hqdn3d does. The defect was in the instrument's
 inputs rather than its arithmetic: two of the three VP9 candidates had been encoded from a different
 mezzanine than the one their residual was measured against — visible only in their file
-timestamps, which predated the reference pair by forty seconds — and the denoise control was
-averaged over eight sampled frames against the others' forty. The instrument now encodes its own
+timestamps, which are **56 and 18 seconds earlier than the grained mezzanine they were supposedly
+transcoded from**, so neither could have been — and the denoise control was averaged over eight
+sampled frames against the others' forty. The instrument now encodes its own
 candidates from its own source in a single run and prints the commands it used, so a candidate
 cannot predate its reference. This correction changes no figure that describes the film.
 
