@@ -4162,3 +4162,100 @@ bytes. Drop: layerfix\ holds the four deploying files, the two blocks, this stra
 reproduce; P5_STATE.md and TODO_after_the_pin_move.md updated. Carries: the rest of the TODO -- the
 v4.0.2 relabel and the loci sweep, the README captures, the relay archive, the wings' two toggles,
 the light-scheme policy. Register: cccxxxiv is the highest.
+
+## WI-K316 — THE REST OF THE LIST: v4.0.2 relabelled on both sites, the feedback control becomes a form, the wings' two toggles, the README recaptured, the drop filed into archive/; NO PIN; cccxxxv allocated
+
+FIVE BLOCKS, NO PIN, IN ORDER. (1) efilist, twenty files, one commit: the layer packs (wuld-layer.css ff36237021ef307a1b612a9da9e81f68 /
+63,976 B, wuld-layer.js a0c46518eeb88c4bc151ab1797e7eb6a / 69,958 B), the five wings and libraries/index.html, README.md, CHANGELOG.md,
+the corpus JSON's version field, nine captures. (2) wuld-ink: the site's own pin tool run against release_v4_0_2.json, the changelog
+entry, feed.xml, the search index. (3) wuld-ink: the drop filed into archive/. (4) the deletion of the filed originals, gated on
+origin/main holding every blob. (5) this stratum. combined.html is gated by blob before and after the efilist commit; the pin stays
+62d1e8d86056465ebcb5daced38e0a83 / 2,974,039 B, and from this evening it is called v4.0.2.
+
+THE FEEDBACK CONTROL IS A FORM NOW, WITH THE MAIL DRAFT KEPT AS THE SECOND DOOR. Josiah's ask, in his words: a drop-down form, a
+message without needing an address, the alias still reachable. wuld.ink/contact already posts to a hosted relay (Formspree, form
+xpqnzqlr); the control now posts there too, as JSON, from the page -- probed first from the container with the library's origin: the
+CORS preflight allows it and a honeypot-filled post answers 200 {ok:true}, which is the relay discarding it, so nothing was mailed by
+the probe. The panel is a fixed element on <body>, anchored under the control that opened it and following it through scroll, resize,
+the camera pan and the stage's transition -- outside the stage because the flagship's toggleObjection() rebuilds the whole #results
+list on every click, and a panel inside a row would die with the row. It carries the card's own context (library, objection, its
+colloquial names, classification, id, link) as hidden fields, a message, an optional address that becomes the reply-to, a honeypot,
+a Send, the mail-draft link, and three states: sending, sent (closes itself after 1.8 s, focus back on the control), error (the
+relay's own message if it gave one, and the mail link beside it). A stray click outside closes it like any popover, but the draft is
+kept for that card and comes back when the same control is opened again; a different card starts empty. Measured with the relay
+routed locally (no mail ever sent): on both card shapes the control hit-tests and a real click opens the panel under it without
+opening the card; an empty Send posts nothing; a message posts the eight fields with `email` present only when given; {ok:true}
+lands 'sent' and the panel closes; a 422 with an errors[] message and a network failure both land 'error' with the mail link there;
+the honeypot filled posts nothing and reads 'sent'; Escape and an outside click close; a row clicked while the panel is open closes
+the panel and opens the row (the click is not swallowed); 82 controls are re-injected after the re-render. On the K315 bytes the
+harness fails at its first panel check and can go no further, which is the control it can have. The tour's feedback step says what
+the control now does; tourcopy_gate still 15 claims, 0 unsourced.
+
+THE PAN'S 6 PX, CLIPPED. K314 measured the camera pan adding --wz-pan of scrollable width with the pointer at the left edge -- on
+Windows a horizontal scrollbar that appears and disappears with the pointer. Clipped on the root (`overflow-x:clip`, which the viewport
+reads as hidden while overflow-y stays as it was) only under a fine pointer and only while unzoomed, because the magnifier's growth is
+right-and-down from origin 0 0 and NEEDS the horizontal overflow; html.wz-zoomed releases it. Measured: pointer at x=2, --wz-px 5.98px,
+a horizontal wheel moves the page 0 px (6 on the K315 bytes); zoomed to 1.12, overflow-x back to visible.
+
+THE WINGS' TWO TOGGLES. The K156 bootstrap on the five wings and the umbrella index is one script in six copies; wing_collapse.py
+edits the six exactly-once (markup, sync(), setMode(); the IDS table dropped) and refuses if any file differs in shape. The mode strings,
+the storage key wuld:libmode, data-mode and every [data-mode] rule are as before; LEGIBLE and HIGH-CONTRAST are pressed when their
+axis is on and the four modes are their four combinations. Measured on all six pages: legible → both → high-contrast → standard,
+aria-pressed and storage in step at every click, a reload keeps the choice; the pristine files fail all six (RED ×6). The front-door
+badge reads pinned v4.0.2 in the same edit.
+
+V4.0.2 ON BOTH SITES. efilist: the README's pin table, the CHANGELOG entry (PATCH by the file's own definitions -- invariants
+byte-identical, no content change; v4.0.1 called the same condition MINOR, and the entry says so rather than pretend the precedent
+was the rule), the corpus JSON's version field (the filename frozen, per convention), the front-door badge. The canon is untouched at
+38.1: it names neither 9d13359e nor v4.0.1 -- the pin lives in the manifests, the README and wuld.ink, not in the canon's
+attestation, and the README's sentence to that effect is corrected. wuld.ink: release_v4_0_2.json in the shape of v4.0.1's, then
+tools/library-pin.py -- dry run must print GATE: GREEN (it live-fetches /combined three times and refuses unless all three are
+62d1e8d8), then --apply --date 2026-09-11, operator-local, not the sandbox's 12th (K47 cxc; the CHANGELOG entry first carried the 12th
+and was corrected before shipping). The tool sweeps md5, version and byte count across src/**/*.html|js with its held provenance
+phrases untouched, prepends a releases.json entry cloned from v4.0.1's, regenerates feed.xml and rewrites its state. The block then
+replaces the cloned summary with the v4.0.2 prose exactly once, regenerates the feed again and the search index, and before staging
+anything walks every changed file: each added line must carry the new md5, version or byte count and each removed line the old, or
+nothing is staged. The read-back is /library-about/ saying v4.0.2 and 62d1e8d8 and no longer naming 9d13359e.
+
+THE README, RECAPTURED. Nine screenshots from the deploy bytes at 1440×900, sRGB, tours suppressed, the hint quieted: the library
+rows, the argument flow with a source selected (the first capture had none -- the list items are .m1-source-item, and the caption
+promised a prediction the picture did not show), the dependency graph, the mechanism web, the examples table, high contrast, a wing
+with its two toggles, the feedback panel open with a sentence typed, the magnifier at 1.97×. Palette-quantised with dithering, 3.6 MB
+→ 1.64 MB, the glow surviving the quantisation (checked on a crop). The README reordered: what it is → open it → what it looks like →
+the presentation layer → the deliverable and the pin → the suite → status → structure; the offline note now says what does not travel
+with the file; the first draft's "every text colour to AA" was cut to "every HTML text colour" because the graph views' SVG labels are
+a carry, not a claim.
+
+THE DROP, FILED. 215 files into wuld-ink/archive/{relays,kickoffs,ship-scripts,measurement} with an INDEX.md (file, date, first line)
+and a relays/ row in the archive README: 112 relays and rulings, 21 strata (K310w through K315 plus this one), the ship scripts
+(K313b–K316, the P5 deploys, the ship script v4.1 and v4.2), the P5 documents and specs, the pin-move and layer-fix harnesses, the
+K310–K313 apparatus instruments, wuld_live_test.js retired under that name. Text only, 200 KB cap, credential-shaped strings scanned
+(0), CRLF normalised to LF. Left in the drop on purpose and said so in the INDEX: P5_STATE.md and the TODO (still being written), the
+film seat's own working files (theirs to file when that seat closes), payload copies and screenshots (the convention excludes them),
+and the May–July efilist session material (the efilist repo's archive, its own pass). The staging agent had put the two pack copies
+in; they came out. The delete block runs only after the push and verifies, per file, that origin/main holds the archived blob and
+that the drop copy still hashes to what was filed.
+
+FOUND AND LEFT, WITH THE NUMBERS. (1) Josiah, on the live flagship: under the magnifier the LIBRARY | EXAMPLES | CODA bar floats
+mid-panel in one section of the methodology text and nowhere else tested -- a sticky element whose scrollport arithmetic is done in
+unscaled space while the stage is scaled; the candidate fix is one layer rule, `html.wz-zoomed .top-nav{position:static}` or its
+equivalent, unbuilt because he asked for it later. (2) Josiah, same evening: the camera pan should be stronger when zoomed -- enough
+to read a magnified paragraph from word to word by moving the pointer, bounded so the stage never leaves the page. Today the pan is a
+constant --wz-pan at any zoom (composed outside the scale by design). A pan proportional to (zoom − 1) times the viewport, clamped to
+the stage's overflow, is the shape of it; unbuilt. Both are in the TODO. (3) The search index regenerates on wuld.ink under the
+relabel block, not here: this container cannot run the site's tooling, so the block runs it and gates the diff shape.
+    cccxxxv allocated -- A PROBE THAT CANNOT REACH ITS TARGET REPORTS THE PREVIOUS STATE. Twice tonight a harness clicked a control
+    whose box lay outside the viewport: the click landed on nothing, no error was raised, and the reading that followed was the
+    reading from before -- the draft text still in the hidden textarea, a wing's third control "opening" with the second's message.
+    Playwright's mouse.click at viewport coordinates has no notion of a miss. Every harness that positions by rect must first assert
+    the rect is inside the viewport (or scroll it there and re-read), or its verdicts on off-screen controls are the last verdict
+    repeated.
+
+STATE. library.wuld.ink: one commit atop the K315 landing, twenty files, by K316_efilist_commit.ps1 (base blobs at HEAD for the
+eleven replaced files, absence for the nine new, twenty inputs by md5, twenty index blobs by SHA, the pin's blob before and after, a
+gated push, the served packs, the veganism wing and the index read back by md5, /combined re-read as 62d1e8d8). wuld.ink: three
+commits by three blocks -- the relabel, the archive, this stratum -- each gating the clone against origin/main first. Drop: k316\
+holds the twenty efilist files, the manifest, the summary swap, the five blocks, this stratum, constants.json; archive_staging\ is the
+filed tree with MANIFEST.tsv; the root's parts and packs are the K316 build. Carries: the two new TODO items above; the graph views'
+SVG label fills (a pin move); the flagship's phone layout (a pin move); the tint hue; the wings' light-scheme silence (policy); the
+library seat's K232 items; the film seat's files. Register: cccxxxv is the highest.
