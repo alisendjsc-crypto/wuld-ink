@@ -47,6 +47,19 @@ HOLD_VERSION = [
 ]
 SENTINEL = "\x00WULDHOLD%d\x00"
 
+# --- files a pin move must NOT touch at all -----------------------------------------------------
+# A dated record names the pin it was made against, not the pin that is current. The film's
+# apparatus page says its takes were rendered against combined.html "md5 ..., byte-identical to the
+# published pin at the time of capture": that sentence is history and stays true only if the hash
+# in it stays the OLD one. The v4.0.2 relabel (WI-K316, 2026-09-11) swept it -- md5 x3, bytes x3 --
+# because HOLD_VERSION holds version phrases and nothing held md5 or byte-count phrases; the diff
+# gate around the tool saw a relabel-shaped change and could not see a date. Restored the same
+# night (WI-K316b). Files listed here, relative to src/, are skipped by the sweep AND by the
+# residual scan -- what they say about a pin is provenance, and a later pin does not change it.
+EXEMPT_FILES = [
+    "argument-library/apparatus/index.html",     # the film's verification record (K310-K313f)
+]
+
 
 def protect(s, holds):
     """Swap held phrases for sentinels so a blanket replace cannot reach them."""
@@ -174,6 +187,11 @@ def main():
     # is still held, and cache-busters (?v=K284) cannot collide with a vX.Y.Z version.
     files = sorted(glob.glob(os.path.join(SRC, '**', '*.html'), recursive=True)
                    + glob.glob(os.path.join(SRC, '**', '*.js'), recursive=True))
+    exempt = {os.path.normpath(os.path.join(SRC, e)) for e in EXEMPT_FILES}
+    skipped = [f for f in files if os.path.normpath(f) in exempt]
+    files = [f for f in files if os.path.normpath(f) not in exempt]
+    for f in skipped:
+        print("  EXEMPT (dated record, not swept): %s" % os.path.relpath(f, ROOT))
     repls = [(old_md5, new_md5, 'md5'), (old_version, new_version, 'version')]
     byte_swap = bool(new_bytes and new_bytes != old_bytes)
     if byte_swap:
