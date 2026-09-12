@@ -48,22 +48,36 @@
   # from two, so a stale marker sitting above a fresh one would certify the superseded render and
   # the gate would report PASS. The video seat fixed the applier that could emit two; this asserts
   # it at the boundary, because an upstream fix protects the pipeline that has it, not this one.
-  $mkAll = [regex]::Matches($ap, '(?im)^\s*<!--\s*measured:\s*(v[0-9]+)\s+jsc:([0-9a-f]{32})/([0-9]+)\s+wuld:([0-9a-f]{32})/([0-9]+)\s*-->\s*$')
+  # v4 (2026-09-10) is ONE cut. The film's second paragraph retires the two-cut design, and the
+  # measured marker retires the wuld: group with it. The regex accepts either form; the manifest
+  # check below verifies exactly the cuts the marker names, one or two, and no longer assumes two.
+  $mkAll = [regex]::Matches($ap, '(?im)^\s*<!--\s*measured:\s*(v[0-9]+)\s+jsc:([0-9a-f]{32})/([0-9]+)(?:\s+wuld:([0-9a-f]{32})/([0-9]+))?\s*-->\s*$')
   $rawCount = ([regex]::Matches($ap, '(?im)^\s*<!--\s*measured:')).Count
   if ($mkAll.Count -gt 1) { Write-Host ("FAIL apparatus carries " + $mkAll.Count + " measured markers - a stale one can outrank the fresh one; the document must carry exactly one"); return }
   if ($rawCount -gt 1) { Write-Host ("FAIL apparatus carries " + $rawCount + " measured-marker lines, only " + $mkAll.Count + " of them parseable - the unparseable ones must go"); return }
   $mk = if ($mkAll.Count -eq 1) { $mkAll[0] } else { $null }
-  if ($null -eq $mk -or -not $mk.Success) { $seen = ($ap -split "`n" | Where-Object { $_ -match "measured:" } | Select-Object -First 1); if ($seen) { Write-Host ("FAIL measured-marker present but unparseable: " + $seen.Trim()) } else { Write-Host "FAIL apparatus carries no <!-- measured: vN jsc:<md5>/<bytes> wuld:<md5>/<bytes> --> marker - it was not re-measured, or the reissue never reached this path" }; return }
-  $ver = $mk.Groups[1].Value; $jsc = $mk.Groups[2].Value.ToLower(); $wul = $mk.Groups[4].Value.ToLower()
+  if ($null -eq $mk -or -not $mk.Success) { $seen = ($ap -split "`n" | Where-Object { $_ -match "measured:" } | Select-Object -First 1); if ($seen) { Write-Host ("FAIL measured-marker present but unparseable: " + $seen.Trim()) } else { Write-Host "FAIL apparatus carries no <!-- measured: vN jsc:<md5>/<bytes> [wuld:<md5>/<bytes>] --> marker - it was not re-measured, or the reissue never reached this path" }; return }
+  $ver = $mk.Groups[1].Value; $jsc = $mk.Groups[2].Value.ToLower()
+  $wul = if ($mk.Groups[4].Success) { $mk.Groups[4].Value.ToLower() } else { $null }
   $man = $null
   foreach ($cand in @((Join-Path $k "cut\render_manifest.json"), (Join-Path $k "render_manifest.json"))) { if (Test-Path $cand) { $man = $cand; break } }
   if (-not $man) { Write-Host "FAIL no render_manifest.json in the kit - the marker cannot be checked against the step that produced the file"; return }
   $hashes = @([regex]::Matches((Get-Content -LiteralPath $man -Raw), '[0-9a-f]{32}') | ForEach-Object { $_.Value.ToLower() })
   if ($hashes -notcontains $jsc) { Write-Host ("FAIL JSC md5 in the marker (" + $jsc + ") is absent from " + $man + " - the document was measured off a render this kit did not produce"); return }
-  if ($hashes -notcontains $wul) { Write-Host ("FAIL W.U.L.D. md5 in the marker (" + $wul + ") is absent from " + $man + " - the document was measured off a render this kit did not produce"); return }
+  if ($wul -and ($hashes -notcontains $wul)) { Write-Host ("FAIL W.U.L.D. md5 in the marker (" + $wul + ") is absent from " + $man + " - the document was measured off a render this kit did not produce"); return }
+  # NO PARITY CHECK, and the reason is recorded because one was here for six hours. On 2026-09-12
+  # this seat added "the manifest must record exactly as many renders as the marker names cuts",
+  # to catch a v4 document paired with a v10 manifest. The PRESENCE check above already catches
+  # that pairing -- v4's md5 was absent from v10's manifest, which is what FAIL'd -- and the
+  # parity check was wrong for the case that actually arrived: the video seat shipped the
+  # manifest as a SUPERSET, fifteen renders with both v10 entries preserved byte for byte, which
+  # is the more honest record and which parity would have refused (15 against 1). Presence is the
+  # right question: was the document measured off a render this kit produced? Nothing else.
+  $nCuts = if ($wul) { 2 } else { 1 }
   if ($ap -notmatch "(?i)\bmonitor\b") { Write-Host "FAIL apparatus does not disclose the drawn monitor - the bezel is on every head-on shot and the page must say so"; return }
-  Write-Host ("OK  marker " + $ver + " agrees with the render manifest on both cuts; monitor disclosed")
-  Write-Host ("    jsc " + $jsc + "/" + $mk.Groups[3].Value + "   wuld " + $wul + "/" + $mk.Groups[5].Value)
+  Write-Host ("OK  marker " + $ver + " names " + $nCuts + " cut(s), each present in the render manifest (" + (($hashes | Measure-Object).Count) + " renders recorded); monitor disclosed")
+  if ($wul) { Write-Host ("    jsc " + $jsc + "/" + $mk.Groups[3].Value + "   wuld " + $wul + "/" + $mk.Groups[5].Value) }
+  else      { Write-Host ("    one cut " + $jsc + "/" + $mk.Groups[3].Value) }
   foreach ($stale in @("227 of 255", "14,348", "16,400")) { if ($ap -match [regex]::Escape($stale)) { Write-Host ("WARN a known v7 figure survives in a doc marked " + $ver + ": " + $stale + " - advisory only, verify it was re-measured rather than carried") } }
 
   New-Item -ItemType Directory -Force -Path "src\argument-library\apparatus" | Out-Null
