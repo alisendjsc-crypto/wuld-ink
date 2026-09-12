@@ -1,0 +1,114 @@
+
+## WI-K313c — sound, feedback and five tutorials shipped; cccxxv, a wrapper that broke a page by adding an element; cccxxvi, a feature that turned every pixel harness into a measurement of itself; cccxxvii, an assertion that could not fail; cccxxviii, a delay that delayed the clock measuring it
+
+FOUR COMMITS LANDED, none pushed: 8b4537d the sound layer, 4782766 the per-card feedback control,
+d5b8b58 the first-visit walkthrough, e61c91a the per-view tutorials and the stage shim. Cloudflare
+deploys on push, so library.wuld.ink is still the old build by the operator's choice. The pinned
+flagship was not touched; every gate in every deploy block aborts if combined.html reaches the index.
+
+CCCXXV. A WRAPPER INSERTED BETWEEN AN ELEMENT AND ITS PARENT BREAKS EVERY SELECTOR THAT DEPENDED ON
+THAT ANCESTRY, AND THE PAGE READS AS BUSIER RATHER THAN BROKEN. The layer's `.wz-stage` exists to
+carry the camera transform and must therefore be a real element between <body> and the content. The
+flagship switches its three top-level sections with direct-child selectors on body:
+        body > #combined-library, body > #combined-rwe, body > #combined-coda { display: none; }
+        body[data-active-view="rwe"] > #combined-rwe { display: block; }
+    The moment the wrapper exists NEITHER RULE MATCHES ANYTHING. The hide stops hiding and the show
+    stops showing, so every section renders at once — library, examples and coda stacked, all four
+    graph views visible together — and the page's own script throws setting textContent on an
+    element it no longer expects. Measured on the same page before and after the wrap:
+        #combined-rwe        before: display:none, 0 rects     after: display:block, 1 rect
+        #map-view (nav'd)    before: display:none, 0 rects     after: display:block, 1 rect
+    THREE PROPERTIES MAKE THIS WORSE THAN AN ORDINARY REGRESSION.
+    (a) IT IS ADDITIVE. Nothing disappears; more appears. A page showing five views at once looks
+        like a page with a lot on it, not like a page whose navigation has been switched off.
+    (b) THE OBVIOUS INVESTIGATION EXONERATES THE CULPRIT. The layer's own CSS was searched for any
+        rule setting `display` on those ids: there are none, and a walk of every stylesheet for
+        rules matching #combined-rwe with a display property returns an empty list. The rule that
+        broke is the PAGE'S, and it broke by not matching, which no search for a conflicting
+        declaration will ever surface.
+    (c) IT IS INVISIBLE ON THE SURFACES ALREADY TESTED. Six wings and an index were swept for weeks
+        and none of them uses `body >` for anything. The hazard was reachable only from the one
+        surface the discipline forbids touching, and was found only because the per-view tutorials
+        had to be tested there.
+    THE FIX IS MECHANICAL, NOT HAND-WRITTEN. mirrorBodyChildRules() walks the page's own rules,
+    finds every selector with a `body ... >` combinator, and injects a mirrored copy with .wz-stage
+    spliced in — body > #x becomes body .wz-stage > #x. It recurses into @media, edits nothing, and
+    every mirrored rule gains exactly one class of specificity so their order relative to each other
+    is preserved while the originals match nothing at all. On the flagship it mirrors 4 rules in
+    0.2ms across 169 rules in 7 stylesheets; on all three wing surfaces it injects no stylesheet.
+    THE GENERAL RULE. Before inserting a wrapper into a document you did not write, enumerate what
+    depends on the ancestry you are about to change — `body >`, `:first-child`, `parentNode ===`,
+    sibling combinators — and measure the page before and after the insertion. A wrapper is not a
+    no-op just because it is invisible.
+
+CCCXXVI. A FEATURE THAT PAINTS OVER THE PAGE TURNS EVERY PIXEL-SAMPLING HARNESS INTO A MEASUREMENT
+OF THE FEATURE, AND THE NUMBERS IT RETURNS LOOK LIKE A REGRESSION. The tutorial covers the viewport
+with four panels at 74% black, and Playwright gives every context an empty localStorage, so the
+once-ever tour fired on every page every harness opened. fbcontrast.py, which screenshots the
+element and samples pixels, moved in a single run with no CSS change whatsoever:
+        mode / tier          before the tutorial existed      after
+        standard  vfx                    7.52 : 1            1.43 : 1
+        legible   vfx                    5.37 : 1            1.00 : 1
+        high-con  vfx                   13.89 : 1            1.74 : 1
+        both      vfx                   12.63 : 1            1.00 : 1
+    Eight cells, all suddenly failing a 3:1 floor. That is exactly the shape of a real contrast
+    regression, and the tempting next move — "fix the contrast" — would have chased a defect that
+    did not exist and quite possibly shipped a louder control to compensate for an overlay.
+    THE TELL IS A RATIO OF EXACTLY 1.00. Glyph and ground identical to the byte is not a contrast
+    measurement; it is an occlusion. A measurement that lands on a degenerate value should be read
+    as the instrument reporting its own state, not the subject's.
+    Distinct from cccviii, which is about a harness that measures NOTHING. This one measures
+    something real, with full fidelity, and it is the wrong thing. 26 harnesses now set the flag
+    that suppresses the tutorial; wzharness.py records why in the one place a future seat will look,
+    and tourtest.py is deliberately exempt because there the tutorial is the subject.
+
+CCCXXVII. AN ASSERTION WHOSE NEEDLE CAN OCCUR OUTSIDE THE THING UNDER TEST IS NOT AN ASSERTION. A
+patch replaced the feedback control's glyph with a word and guarded itself with
+        assert 'feedback' in j
+    which passed — because the file's header comment begins "wuld-fb.js -- per-card feedback". The
+    replacement had silently matched nothing, the build shipped the old glyph, and the only reason
+    it was caught is that the next step was a rendered screenshot. A string replacement that no-ops
+    is indistinguishable from one that applied unless the assertion can tell them apart.
+    THE RULE: assert on the post-state that ONLY the successful mutation can produce, and pair it
+    with `s != before`. The needle must be impossible in the surrounding prose — here,
+    `a.textContent = 'feedback'`, not `feedback`.
+
+CCCXXVIII. WHEN THE HARNESS AND THE SYSTEM SHARE A SCHEDULER, A DELAY THE HARNESS INJECTS DELAYS THE
+HARNESS TOO, AND THE ORDERING IT WAS TESTING SILENTLY NEVER HAPPENS. To test whether sounds that
+arrive after the first gesture are ever decoded, a Playwright route handler slept 3s on every /sfx/
+request; the test then waited 1.2s and clicked. Playwright's sync route handlers run on the
+dispatcher, so the sleep blocked the test's own clock: the timeline shows the seven files arriving
+at 3.2s, 6.2s, 9.2s … 21.2s and THE GESTURE AT 21.219s — after every file had landed. The intended
+condition never existed; the fast case was measured twice and reported as a before/after pair.
+    Replaced with a threaded fixture server that delays /sfx/ server-side, at which point the real
+    result appeared: before the fix, silent forever; after it, audible.
+    THE RULE: a delay is only a delay if it is injected somewhere the instrument does not have to
+    wait on. When an instrument can be blocked by the thing it is instrumenting, verify the ordering
+    you intended actually occurred — log the timestamps rather than assuming the sleeps composed.
+
+CCCXXIV, AGAIN, ON THIS SEAT'S OWN POSITIVE CONTROL. The sound layer's gate opened with a control
+asserting that a click produces at least two sounds. It failed, and the ten silence rows beneath it
+were correctly treated as provisional. The control was clicking the point (700,450), which on that
+page is an <h2> with no clickable ancestor — so nothing ever requested a sound and "0 sounds" was
+the correct behaviour, misread as a product failure. The control was drawn from the same frame as
+the claim: it assumed "a click" meant "a click that should make a sound" and never checked what was
+under the cursor. The gate now finds its target in the page and carries a NEGATIVE control beside
+the positive one — a click on body prose must stay silent — so the two cases can never be confused
+again. Two real defects were sitting behind that bad control and were found once it was fixed: the
+first click a reader ever made was silent (decode is scheduled in the same tick as the context is
+created, measured at 45ms), and any sound that had not downloaded by the first gesture was NEVER
+decoded at all — silent for the remainder of the session, not merely for that click.
+
+STATE. Sound: seven synthesized cues plus a seamless ambience, gated to the vfx tier on a dark
+ground with reduced-motion and a persisted mute both honoured; 14 silence gates with four live
+positive controls; 16.70ms median scroll with the ambience running and hover traffic firing, which
+is the first time the sound layer has been measured while switched ON — perf.py scrolls without ever
+making a gesture, so it had been measuring an AudioContext that was never created. Feedback: a
+per-card mailto carrying the library, headline, the card's own chips, its classification, id and
+deep link, read at click time and degraded longest-first against an 1800-character budget; longest
+of 50 across five wings is 1295. Tutorials: five, one per view, each with its own once-ever key,
+fired on view activation; a ? button fourth in the chin runs the one for the view in front of you.
+Four 44x44 chin buttons with 6px gaps still fit at 320px, which is why the wordmark hides below 420.
+Regression unmoved throughout: 25 contrast cells 0 below AA, CLS 0.000, no horizontal overflow at
+four widths, print suppressed, 16.70ms median at every tier. Hazard allocation: cccxxv, cccxxvi,
+cccxxvii and cccxxviii mine, all four on this seat's own work or its own instruments.

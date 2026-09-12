@@ -1,0 +1,6 @@
+
+# WI-K313f (2026-09-12): the showcase film's public description links /library-apparatus/,
+# a path the wuld.ink seat mis-stated for two days and the video seat inherited (cccxxx,
+# WI-K313d). The page lives at /argument-library/apparatus/. Permanent, both spellings.
+/library-apparatus/ /argument-library/apparatus/ 301
+/library-apparatus  /argument-library/apparatus/ 301

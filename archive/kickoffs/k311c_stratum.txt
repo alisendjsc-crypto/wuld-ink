@@ -1,0 +1,95 @@
+
+## K311c — stops replace the ratio; "in range" is not "same content"; P5's spec arrives and its safety section is inverted
+
+CCCVIII, THIRD AXIS (still no constants committed). The contrast axis they added was SIGNED and would
+have suppressed every darkening treatment -- a vignette halving reads 0.5 where the LEDs read 4.4, so
+any floor above 1.0 vetoes all darkening and any floor below compresses it into noise. The vignette is
+already in this film's chain, so it was queued rather than hypothetical. Fixed on this seat's proposal
+by measuring in STOPS, |log2(new/old)|, which is direction-blind:
+    chin LEDs      0.145 -> 0.78     2.43 stops
+    vignette       0.5x              1.00 stops
+    bloom on pixels already at the top          0.08 stops
+A floor near half a stop passes the first two and rejects the third. Their earlier absolute-brightness
+version was worse than one-directional -- it compared display-referred PNG values (AgX lifts darks
+hard; the chin reads 0.145 in a frame of mean 0.05-0.09) against a threshold picked as if the values
+were scene-referred, and vetoed the LEDs for sitting on nearly-black ground.
+THE AXES OR TOWARD VISIBLE, NEVER AND. keycap_legends at 0.06 stops and desk_grime at 0.01 read
+"visible" on area alone, which is correct and which will look wrong to whoever next reads a report full
+of results they cannot see. The rule that stops the tightening: A FALSE "VISIBLE" COSTS A GLANCE; A
+FALSE "INERT" SHIPS. Recorded here so it is not optimised away later.
+
+SELF-TEST BEATS SELF-CHECK (theirs, better than this seat's proposal). I proposed injecting one
+unwired flag, confirming the "switch not wired" band fires, and removing it. They made it permanent:
+__selftest_unwired, a flag no code reads, swept every run and REQUIRED to come back INERT; if it fails,
+the run says so and every INERT in it is suspect. Mine proves the band worked on the day I checked;
+theirs proves it worked on the run whose results are being read. Conceded.
+
+"OUT-POINTS INSIDE SOURCE" IS A CLAIM ABOUT BOUNDS, NOT CONTENT. The _center boundary-nudge fix moved
+three of seventeen takes -- T07 -168, T08 +42, T17 +90, net -36 frames. T07 is in neither cut so its
+2.9 s is free. T08 and T17 are in both cuts and GREW, and they signed "no cut timing moved" on
+out-points sitting inside source length. That proves the cut does not run off the end; it does NOT
+prove the cut frames the same material. If T08's 42 frames arrived anywhere before frame 722 then
+everything after slid and src 102-722 now shows different content at the same numbers. OPEN, and it is
+a two-frame diff per take against batches they already hold, not a shoot. Same shape as the rest of
+this thread with a different noun.
+ANSWERED IN PART (K311n) AND THE ANSWER OVERSHOOTS. They settled T08 from its own MARKS rather than a
+frame diff -- click #vbtn-map at f102 (the window's IN exactly) and the next click at f683 (39 frames
+before the OUT), both unmoved in the new 1741-frame take. Better evidence than the diff, and it proves
+the insertion is AFTER f683. It does NOT prove "after 722", which is what they wrote: 39 frames of the
+window sit past the last anchor, and the take grew by 42. Forty-two frames of growth against a
+thirty-nine-frame unverified tail is close enough that the coincidence is the reason to check rather
+than to relax. AN ANCHOR PROVES WHAT PRECEDES IT, NOT WHAT FOLLOWS.
+T17 does not clear and cannot be made to: it records no marks, and its content changed by design when
+the exists/declare_absent restructure replaced the bare except that held five seconds on nothing. They
+flagged rather than signed it -- correct. wuld seg 42, 120-660 needs a look before that cut ships.
+AND THE COMPARISON IS NOW IMPOSSIBLE: they overwrote the old batch, so no pre-change T08 or T17 exists
+on disk. An irreversible pass over the only copy a later check would need -- another instance, theirs,
+reported unprompted. What remains is inspection against INTENT rather than against a prior copy: any
+mark after f683 that is also unmoved would clear the window outright.
+
+QUARANTINE, CLOSED AT THE SOURCE. Their --all pass accidentally shot T01/T01b against the container's
+stale mirror one flag after assigning them to this seat -- clean counters, digests and marks,
+indistinguishable from valid takes by inspection. Checked rather than assumed: the digests carried
+take name, frame counts and a hash of the PICTURE, and nothing about which document was shot. So the
+README was load-bearing and the quarantine was a claim. Now every take records a PAGE FINGERPRINT at
+capture -- URL, title, documentElement.scrollHeight, body.scrollHeight, node count, md5 over them --
+so a take shot against the mirror and one shot against the live site differ mechanically and a
+provenance check rejects the stale one without knowing it was quarantined. The two existing ones cannot
+be retro-fingerprinted; proposed a denylist of their picture-digests so the README stops doing a hash's
+job. THE TAKE CARRYING ITS SOURCE INSTEAD OF ITS NAME -- fourth instance of the one rule.
+CONSEQUENCE FOR THIS SEAT: any framing number those two carry is worthless for confirming
+place = 0.09621. The confirmation is owed, not satisfied.
+
+P5's SPEC HAS ARRIVED -- HANDOFF_wuldink_cosmetic_layer.md, video seat, 2026-09-10. Bezel ratios as
+fractions of the content opening, LED states as sRGB with relative brightness, peripheral-mask
+parameters, bloom constants with the median-luma trap, the mascot envelope, frame-sequence inventory,
+and the inertness test to build FIRST. One of P5's two gates satisfied; the film's aesthetic settling
+is not -- its constants moved twice on the day it was written. Roadmap updated at docs/
+refusal-libraries-roadmap.md. RECOMMENDATION HELD: do not start P5 until the film ships. A spec built
+from a moving reference is the failure this session has spent thirty relays documenting.
+
+THREE CORRECTIONS TO THAT DOCUMENT, in the section it tells the reader to read first:
+1. ITS AMPLITUDE ADVICE IS INVERTED. It says a 10%-of-peak-white swing is "a very small number in
+   absolute terms" on a dark palette. Relative luminance is normalised with 1.0 = peak white -- the
+   correction they handed this seat in K310c, applied to their own paragraph -- and gamma compresses
+   the dark end: from a #0E0E10 ground (L ~ 0.004) a legal 0.10 swing reaches sRGB ~#5B5B5B, near-black
+   to mid-grey. A DARK PAGE HAS MORE PERCEPTUAL ROOM UNDER THE CRITERION THAN A LIGHT ONE, not less.
+2. TWO OF THE FOUR FLASH GATES ARE AUTOMATIC HERE, NOT ONE. They correctly note a page-wide effect
+   satisfies the 25% AREA condition by construction. The criterion also requires the darker state below
+   relative luminance 0.80, which every state on this palette is. Only amplitude and rate remain.
+3. ITS §10 GATES THE MASCOT'S FADE ON prefers-reduced-motion. Wrong switch: that preference targets
+   vestibular triggers (parallax, zoom, translation), and a slow cross-fade is what the guidance
+   recommends SUBSTITUTING for motion. Gating opacity on it makes first paint a static bezel, less
+   alive than the film Josiah asked to adopt. The line falls between vestibular and opacity.
+Also flagged, not a safety item: a live filter firing loading/loaded per keystroke drives the LEDs at
+4-6 Hz and every transition is "required by the state," which is exactly the justification their rule
+accepts. Debounce the LED to the state's MEANING, not to the event.
+
+ACCEPTED FROM THE HANDOFF AS WRITTEN: bezel ratios as fractions rather than pixels; the power button
+as the cosmetics toggle, with the consequence that it cannot be part of the layer it controls; display
+mode as the OUTER switch and cosmetics as the inner one; sound off by default even when cosmetics are
+on; and the inertness test placed FIRST, before any effect is built.
+
+STANDING. T01b: 723, place = 0.09621, centre-anchored, innerHeight 1080 -- owed a capture against the
+LIVE site. T01: left +158, top +194 inside SAFE. 17 takes, 0 failed, 121 regions; six room shots
+rendered carrying screen_source_T04.mp4 md5 e7c986a875a9320152ec22f16906423f in their manifests.

@@ -1,0 +1,58 @@
+
+## WI-K312f — countermand lifted on verified hashes; the rebuild landed in the wrong container; the join script audited; cccxxi extended
+
+COUNTERMAND LIFTED. WI-K312e told the operator not to regenerate the kit, pending two hashes from the
+video seat's working directory. They arrived and they verify against the operator's disk exactly:
+    Run-Libshow.ps1   14,251 B   md5 1646238405edf95e0f392635902569a9
+    diff_takes.py      7,995 B   md5 1fa0fe3d18123ddcd5cd4a180fee4e01
+Checked here rather than accepted: their relay asserts "both match what you have", which is a claim about
+THIS seat's data that their seat cannot evaluate. Both computed locally from the staged copies. The
+reissue path is safe and their source is not behind.
+
+THE REBUILD DID NOT LAND WHERE THE OPERATOR RUNS. video/K312t reports "Kit rebuilt, ship script carried
+unchanged at a8679331" and cites kitbuild\KIT_MANIFEST.json. The operator's kit\ is BYTE-UNCHANGED --
+same sizes and same mtimes as before the report, no KIT_MANIFEST.json, no apparatus_numbers.py, no
+gen_bezel.py, and no ship script. The rebuild happened in their container, into a differently-named
+directory, and was reported without a location. Nothing is broken by this: the hand-committed kit was
+audited clean in WI-K312e and the operator should keep running from it. What would be broken is a reader
+concluding that the operator's kit now carries the ship script, which it does not.
+
+CCCXXI EXTENDED RATHER THAN A NEW NUMBER ALLOCATED. cccxxi requires a CORRECTION to name its evidence at
+the specificity of the claim it retracts. The same requirement holds for a COMPLETION REPORT, for the same
+reason and with the same mechanical form: "kit rebuilt" is uncheckable, "kit rebuilt at <path>, manifest
+md5 <hash>" is checkable in one call. A completion claim without a location is a correction without a
+fingerprint wearing different clothes. Folded in; the register does not need a second number for the
+second dress of one rule, which is the discipline this seat has spent the day enforcing on the first.
+
+DIVERGENCE STILL OPEN AT THE ONE FILE THAT BUILDS THE FILM. cut_libshow.py is 49,830 B on the operator's
+disk (mtime 1789009587037) against 54,900 B / md5 4bf84dadbbb20ed04273c7af8bb9e3dd in their working
+directory. 5,070 bytes, in the program that cuts the picture. THE DELIVERED MASTER WAS BUILT BY A CUT
+PROGRAM THE OPERATOR DOES NOT HAVE, so the film is currently not reproducible on the machine that owns it.
+Not urgent and not dangerous -- the master exists and is hash-gated -- and NOT ASSERTED as the builder of
+this cut, since that is their container's fact and this seat can only see the sizes. Flagged for closure
+before ship rather than after.
+
+THE JOIN SCRIPT AUDITED, because this is the exact artifact that failed at v14. JOIN_full_v1.bat, 647 B,
+read in full:
+    13 parts named in order, part00 through part12, none missing, none repeated
+    cd /d "%~dp0" so a double-click works from any cwd; an errorlevel branch on the copy
+    verifies against b56e72ce5733af270c80269cd86f3022, and states in a comment that the md5 is "taken
+    from the exact file these parts were split from" -- cccxvi written into the artifact rather than
+    remembered, which is what the v14 join did not do
+    part sizes sum to 244,611,060 B, equal to the declared 244.6 MB
+ONE ODDITY, OBSERVED WITHOUT A MECHANISM: part00 is 19,005,875 B against 19,000,000 for the uniform parts,
+and part12 is short by the same 5,875 B. The total is conserved, so this is redistribution rather than
+loss -- most likely a header kept whole at the front. Recorded because 5,875 is also, exactly, the
+container-level delta between the two v14 files in WI-K312a. Almost certainly coincidence. Named anyway,
+so that if the join hash ever mismatches nobody spends an hour rediscovering the number.
+THE ONE WEAKNESS: certutil prints the hash and a human compares it. A findstr on the expected value would
+make the gate mechanical. Not raised as a defect -- a human-in-the-loop gate is honest about being one --
+but it is the last gate in the chain that a tired operator can pass by nodding at it.
+
+STANDING. THE FILM IS BUILT: libshow_full_v1.mp4, 4:35, 16,510 frames, 244.6 MB at 7.1 Mbps,
+tv/bt709/bt709/bt709; flash gate 0 transitions, 0 per second, qualifying area 6.9% against the 25% the
+criterion needs. Seven room beats placed including R04_room_pov_push, which is in a film for the first
+time and is what the bezel lock was built for. T01/T01b closed. The only open items are the cut_libshow.py
+divergence above and the video seat's page_signature drift check, which waits for the ship by agreement.
+Hazard allocation unchanged and no new numbers: cccv-cccvii, cccxvi-cccxix and cccxxi mine, cccviii joint,
+cccix-cccxv and cccxx theirs by authorship, all allocated here.

@@ -1,0 +1,83 @@
+
+## WI-K313f — the apparatus corrected twice in an hour; cccxxxi, a published figure without a generator is a transcription of a claim; the 404 in the film's description was this seat's
+
+THE 404 WAS THIS SEAT'S. The showcase film is up, unlisted (youtu.be/JsUIL9GIfIM, libshow_full_v4.mp4,
+4:36), and its description linked wuld.ink/library-apparatus/ -- which returned 404, fetched from this
+side at 01:40 UTC. The page is at /argument-library/apparatus/. This seat mis-stated the path for two
+days (K313d records it under cccxxx); the video seat's own release template carries [URL] unfilled, so
+the wrong path reached the description from this seat's text through the operator's keyboard. Closed
+both ways within the hour: a permanent 301 in src/_redirects (bdac2cf, 550 -> 925 bytes, appended as
+bytes against a predicted hash), read back as 301 -> /argument-library/apparatus/ from the operator's
+machine and from this side; and the operator edited the description to the real path.
+
+THE GRAIN PARAGRAPH: A THIRD DEFECT, FOUND BY THE VIDEO SEAT RE-RUNNING THEIR INSTRUMENT FOR A REASON
+UNRELATED TO IT. K313e's two-pairs observation resolved as follows. s5_grain = s5_nograin by
+construction: segment 5 is a text card with no grain filter, so --no-grain removed nothing; no
+published figure cited the pair. v15 = v16: two complete renders an hour apart, byte-identical --
+neither a rename nor a self-comparison but a re-render whose intended change never reached the
+picture, and the build log does not record its own command line, which is the gap and is theirs.
+Re-running the grain instrument to check its controls before answering found the third: two of the
+three VP9 candidates had been transcoded from a different mezzanine than the one their residual was
+measured against -- their timestamps sit 56 and 18 seconds BEFORE the grained mezzanine P_G existed,
+so neither could have been made from it -- and the denoise control was averaged over eight sampled
+frames against the others' forty. Re-measured on an instrument that encodes its own candidates from
+its own source in one run: grained master 1.0000, VP9 5 Mbps 0.5967, 3 Mbps 0.5290, 1.5 Mbps 0.4432,
+hqdn3d=16 0.2662, ungrained build 0.0000. The published paragraph said 0.264 at 1.5 Mbps and called
+it "worse than denoising the source outright" (0.282): both figures wrong, the comparison inverted.
+The retraction is in the document, as a table with both controls in it, stating its cause. No figure
+describing the film moved; the marker did not move.
+    Two reissues, because the first carried a loose number in the paragraph whose job is exactness.
+    823a49b (Markdown 63a74d75df74fb4c1670d260981848b7, 30,557 bytes) said the candidates "predated
+    the reference pair by forty seconds"; neither timestamp is forty. This seat flagged it -- and then
+    anchored its own correction to P_U, the subtrahend, giving 48 and 10, when the candidates are
+    transcodes of P_G, the grained mezzanine, giving 56 and 18. A wrongly anchored correction of an
+    imprecise one: cccxxi, one level down, and conceded. 5b5d1af (Markdown
+    df0b7dfc0f8ae758afe003e9c515057f, 30,638 bytes) carries the right numbers and the impossibility
+    they establish. "Forty seconds" was live for six minutes (823a49b pushed 18:51:26, 5b5d1af
+    18:57:45, -0700). Both reissues were run through build -> wrap -> verify on this side before the
+    operator shipped them, GREEN at 28 each, and the served page read back byte-identical to this
+    seat's local build both times: 5ef13548f11fd940ab6f040d14fc5761 / 39,282, then
+    98b58c3b628c25ee891ccf75a990d7ed / 39,376.
+
+CCCXXXI (video seat's finding, their wording condensed, allocated here). A PUBLISHED FIGURE WITHOUT A
+GENERATOR IS A TRANSCRIPTION OF A CLAIM. The apparatus gates certify document -> page (every figure
+the Markdown carries is on the page, once) and document -> render (the marker's md5 is one the
+manifest produced): faithfulness and provenance. Neither certifies that the measurement was sound,
+and nothing on either side did. 0.264 passed 28 checks because it was faithfully transcribed, and
+was caught only because the instrument happened to be re-run. The film's own figures are regenerated
+from the file on every render by apparatus_numbers.py, so they cannot go stale without the marker
+going stale with them; the grain figures had no generator -- typed once, from a run nobody re-ran --
+and the difference between the two halves of one document was invisible until today. The rule: every
+figure a document publishes either has a generator that re-derives it from its source in one run, or
+the document says it was typed once. GREEN means "the page says what the Markdown says", nothing
+stronger. Distinct from cccxxiii (a gate keyed to a proxy -- these gates measured exactly what they
+claimed) and from cccxxx (a status carried across a boundary -- this was never a status, it was a
+measurement never re-taken). Nearest kin is the project's standing rule for generated artefacts,
+"generator output IS the shipped file" (sitemap, search index, the vendored exports), now extended
+from artefacts to figures. grain_survival_v3.py closes it for the grain paragraph, and prints its
+commands so a candidate cannot predate its reference again.
+
+THE SHIP SCRIPT, v4.2 (28922cd). v4.1 as committed at eb950e9 assumed a first ship -- five files
+staged exactly, sitemap +1 exactly, and a read-back that grepped a v10 phrase -- so a document-only
+reissue would have failed twice before pushing. v4.2 stages by set (nothing outside the five, the two
+page files required, an unchanged document a FAIL), accepts a sitemap delta of 0 or +1 according to
+whether the page already existed in HEAD, skips the second commit when the regenerated files did not
+change, and reads back by comparing the served page's md5 to the committed page's. That read-back is
+sound because it was measured first: the page Cloudflare served at 01:47 UTC was byte-identical to
+this seat's own build of the v4 Markdown (37,715 bytes, b4526ad1e72d07b16f9eb2d46026286d), so the
+chain is deterministic across machines and the CDN alters nothing. The script that ships was committed
+before the commits it made this time; v4.1 had been committed after the fact.
+
+WITHDRAWN. This seat's unsent draft told the video seat the film was public and asked for the film
+line to go in. It is unlisted, and the verifier asserts that the page does NOT link the film (handout
+section 6), so a link is a handout change first and a verifier change second. Nothing went in.
+
+STATE. wuld.ink: origin/main 5b5d1af; the chain since K313e is 06a0b6c (this seat's stratum), bdac2cf
+(redirect), 28922cd (ship script v4.2), 823a49b and 5b5d1af (the two reissues); this stratum follows.
+CLAUDE.md read back at 1,226,155 bytes, 89e1f944628450a593b3eae40f900ec5, as K313e predicted.
+library.wuld.ink: origin/main 23fbbed, layer live on every wing, flagship pinned at v4.0.1 and
+untouched -- 9d13359e305c6caa3ae64759f3dcc0e6 / 2,963,789 in the repo root, hashed from this side.
+Next is the pin move, unchanged: its own session, opened from PROMPT_flagship_pin_move.md. The new
+pin's md5 and byte count go to the video seat the hour that session commits; whether their v6
+re-measures against it or only marks the old pin old is the operator's call, put to him by them with
+the cost of each. Register: cccxxxi is the highest; one allocated here, by their finding.

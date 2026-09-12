@@ -1,0 +1,107 @@
+
+## WI-K313b — the wings swept; cccxxiii, three gates all keyed to a proxy; cccxxiv, a control that could not refute its own claim
+
+THE SWEEP IS DONE and it produced two hazards, the second of which is the more valuable and was
+found by the operator rather than by this seat. All five remaining library pages — abortion,
+veganism, transgenderism, anthropocentrism and /troubleshooting/ — were censused in STANDARD before
+anything was applied, then had the P5 layer applied and measured. Four were structurally identical
+to right-to-die and needed nothing. The fifth broke the accessibility gate. Repairing that break
+produced a gate that passed twenty controls and was still wrong about the only thing it was for.
+
+CCCXXIII. A GATE KEYED TO A NAME IS KEYED TO A PROXY. Where the rule can measure the property it
+actually cares about, the name is worse than the measurement at every strength, and the failure is
+SILENT, because a rule whose whole job is to suppress produces nothing to notice when it suppresses
+wrongly. Three versions of one gate, each keyed to a name, each wrong differently:
+    v1  `html.wz-vfx[data-mode="legible"]` — an attribute the flagship never sets. VACUOUS: the
+        glow ran in exactly the two modes the brief excludes.
+    v2  `body.legible` + `[data-mode]:not([data-mode="standard"])` — correct on both of the site's
+        two conventions, and still wrong. /troubleshooting/ ships <html data-mode="dark"> where the
+        attribute is DECORATION: one occurrence, zero rules on the page selecting on it, no mode
+        switcher at all (53 nodes, zero buttons). The gate read "dark != standard" as a reader
+        asking for reduced visual noise and silenced the whole tier. Measured at tier 2: .wz-stage p
+        and .wz-stage h1 both computed text-shadow:none. The comment beside it claimed it "covers
+        any mode added later" — true of VALUES, false of PAGES.
+    v3  detect whether [data-mode] is wired to any stylesheet rule, exempt the page when it is not.
+        This repaired v2 exactly, survived every control, and left the actual defect untouched.
+    THE ACTUAL DEFECT, WHICH THE OPERATOR FOUND BY LOOKING AT HIS OWN SITE: THE MODE NAME DOES NOT
+    PREDICT THE BACKGROUND, and the background is the only thing the rule was ever about. Measured,
+    8 pages x 4 modes, background luma of <body> at 1440x900:
+        surface                STANDARD   LEGIBLE   HIGH-CONTRAST   BOTH
+        flagship /combined        10.0      10.0        240.5       240.5
+        libraries + all 5 wings   11.1     239.6          0.0       255.0
+        /troubleshooting/         10.0  (no switcher)
+    THE TWO FAMILIES ARE INVERTED. The flagship is DARK in legible and CREAM in high-contrast; every
+    wing is CREAM in legible and PURE BLACK — luma 0.0, the highest-contrast ground on the site — in
+    high-contrast. One vocabulary, two opposite meanings. No gate keyed to those four words can be
+    right on both families, which is why all three versions failed and why the third failed while
+    passing.
+    THE FIX MEASURES. wuld-vfx.js reads the computed background of <body>, falls through to <html>
+    when it is see-through, takes its Rec.709 luma, and sets html.wz-lightbg above --wz-dark-max
+    (90; the site's two populations sit at 0–17 and 239–255, so the threshold is not delicate). A
+    MutationObserver re-grades on every toggle, so the layer drives off the ground without knowing a
+    single mode name, and an unreadable ground grades as light and stays silent — failure direction
+    unchanged. 29 rows, glow present iff luma <= 90, zero failures. The stylesheet-walking detector
+    from v3 was DELETED rather than kept: it existed only to save a gate that no longer exists, and
+    dead code carrying a comment about a hazard that no longer applies is worse than no code.
+    THE ACCESSIBILITY FLOOR MOVED TO WHERE IT BELONGS. Suppressing on a mode literally named
+    "high-contrast" was always a proxy too. prefers-contrast and forced-colors are the real signals:
+    they come from the OS rather than from one site's vocabulary, they are what a low-vision reader
+    actually sets, and they now outrank a dark ground.
+    ONE RESERVATION, STATED, OVERRULED, AND THEN PARTLY REINSTATED BY A LATER DECISION. A halo fills
+    the luminance step at the glyph edge, so on a dark high-contrast ground the effect does spend
+    some of the contrast that mode exists to provide. It was overruled on the ground that the tier is
+    opt-in behind a power button defaulting to OFF, so a reader who switched it on had asked for it.
+    That premise expired the same session: the ladder was reversed to descend (vfx -> cosmetic ->
+    off) and to START at vfx, on the operator's call. Default-on is a defensible aesthetic decision
+    and the tier now persists per reader so a step-down is not re-imposed on the next page -- but the
+    argument that retired the reservation is gone with it, because nobody opts in to a default. What
+    carries the accessibility case now is entirely the OS-level floor (prefers-contrast,
+    forced-colors) plus prefers-reduced-motion for the pan. Recorded so that the reservation is not
+    remembered as settled when only its justification was.
+
+CCCXXIV. A CONTROL DRAWN FROM THE SAME FRAME AS THE CLAIM TESTS THE IMPLEMENTATION, NOT THE CLAIM.
+It can only report whether the mechanism does what you meant; it is structurally unable to report
+that you meant the wrong thing.
+    THE INSTANCE. v3 shipped behind a control set this seat was pleased with: twenty negative rows
+    (5 wings x 4 modes) confirming the glow appears in STANDARD only and the vignette is display:none
+    in the other three; a flagship regression proving the body-class convention still gated and the
+    bezel still survived; and — the part that felt rigorous — a POSITIVE control on the detector
+    itself, injecting one inert `html[data-mode="dark"] .wrap{outline:0}` rule into /troubleshooting/
+    and watching wz-freemode flip true -> false. Zero failures, and the whole set was worthless for
+    the question that mattered. Every row asked "does the gate fire in the modes I named?" Not one
+    could ask "are those the right modes?", because the mode names were the assumption under test and
+    also the axis the controls were built on. A passing control set is evidence about a mechanism and
+    silence about its premise.
+    THE TELL WAS AVAILABLE AND NOT READ. census5.py had already printed bodyBG for every page —
+    rgb(11,11,12) in STANDARD — and the earlier wing census had recorded the flagship at median 16.1
+    against the wings' cream at 239.6. Both numbers were in this seat's own output. Neither was ever
+    crossed against the mode name, because the gate's frame did not have a column for the ground.
+    DISTINCT FROM CCCVIII, which is about a measurement that moved nothing. Here every measurement
+    moved, correctly, in a frame that could not contain the error. Vacuity is a null result; this is
+    a confident non-null one about the wrong variable.
+    THE COUNTER-DISCIPLINE is cheap: when a rule suppresses something, state in one line the
+    PROPERTY it is protecting — here, "text is legible on this ground" — and check whether the gate
+    reads that property or a stand-in for it. If a stand-in, at least one control must vary the
+    property while holding the stand-in fixed. Flagship LEGIBLE and wing LEGIBLE would have done it:
+    same name, opposite ground, and the disagreement is visible in a single row.
+
+THE WARM CAST, ON THE OPERATOR'S BRIEF: "give all of the text a subtle orangish tint, like the chin's
+LED panels have." Two mechanisms, because neither does it alone. The HALO mixes toward --wz-tint
+(default #FF9A78, between the LEDs' spec #FF8195 and amber), warming the emitted light where the
+bloom lives. The WASH is a fixed soft-light overlay between the peripheral blur and the vignette, so
+the vignette darkens an already-warmed picture — the bezel shadowing the emission rather than the
+reverse. soft-light warms highlights and leaves black at black, which is what a phosphor does.
+    A TRAP AVOIDED IN DESIGN RATHER THAN IN CODE, recorded because it would have been invisible:
+    the obvious mechanism is `.wz-stage * { color: color-mix(in srgb, currentColor 88%, tint) }`, and
+    it destroys the palette. Inside the `color` property `currentColor` resolves to the INHERITED
+    colour, not the element's own, so every tier badge and every red accent would be replaced by a
+    value derived from its parent. The page would still render, in the wrong colours, with no error.
+
+STATE. Layer verified on the flagship, the libraries umbrella, all six wings and /troubleshooting/,
+across every mode each page offers. The snippet is packed by pack.py and proved byte-identical to
+build/ by pack_verify.py, which pastes it into a real page and reads the injected <style> nodes back
+out. The camera pan and the resting angle run in every mode by the operator's confirmation and are
+not gated on the ground, only on prefers-reduced-motion. The power ladder descends from vfx and the
+tier persists in localStorage, every touch of which is wrapped -- a private window or blocked site
+data costs the memory, not the layer. Hazard allocation: cccxxiii and cccxxiv mine, cccxxiv on this
+seat's own control set.

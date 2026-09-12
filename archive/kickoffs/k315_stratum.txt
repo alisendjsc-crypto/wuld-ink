@@ -1,0 +1,112 @@
+
+## WI-K315 — THE LAYER FIX AFTER THE PIN MOVE: the ? reachable by mouse, one tour flag per surface, softer cues with a master gain, a cache rule for /wuld-layer.*, .gitattributes for css/js; NO PIN; cccxxxiii and cccxxxiv allocated
+
+FOUR THINGS THE FIRST EVENING ON THE MOVED FLAGSHIP FOUND, ONE DEPLOY, NO PIN. Josiah's release notes
+from 2026-09-12 evening: no tutorial on the flagship, no feedback controls, the ? does nothing, the
+cues too chirpy, "sometimes it activates, sometimes you turn it on and off". Read against the served
+bytes (which were right: 82/82 controls and the library tour in a fresh browser) the four have three
+causes, and none is in combined.html. Every fix is in wuld-layer.css/js and a Pages config file, so
+the pin stays 62d1e8d86056465ebcb5daced38e0a83 / 2,974,039 B; the block gates on that blob before
+and after. One efilist commit atop df4f785 carries four files: wuld-layer.css 24907d89 →
+641dfe47eaabc5155135c176448f9cb0 / 60,123 B (+731), wuld-layer.js be7de70c →
+6bda4b6c6e5e5a17625a0fcaf6546846 / 59,791 B (+2,045), _headers (new, 1,136 B,
+461e038a9e060d59e4e4fa2eeac98d86), .gitattributes 114 → 152 B (f15ecc9bdf5b7f86f01cf7740494cdcc).
+Parts reproduce the deployed packs byte-for-byte before the edit (cccxxx applied: split, compared,
+then touched) and the packer accounts for every byte after it.
+
+THE ? WAS MOUSE-DEAD ON EVERY SURFACE. .wz-chin is pointer-events:none so the page under the chin
+stays clickable, and each of the three original buttons opts back in with pointer-events:auto.
+.wz-help, built by wuld-tour.js at K313, never got the line. Measured: document.elementFromPoint at
+its centre returned div.objection-header on the flagship, div.wz-stage on a wing, the html element
+on the index -- three different things behind one button that was never there to the pointer. The
+keyboard reached it (focus does not hit-test), and the K313 tour harness passed it because it called
+el.click(), which dispatches the event without asking what is under the cursor. One declaration.
+    cccxxxiii allocated -- A SYNTHETIC CLICK TESTS THE HANDLER, NOT THE CONTROL. el.click() and
+    dispatchEvent deliver the event to the element by name; a pointer reaches an element only through
+    hit-testing, which pointer-events, z-order, overlap and opacity all decide. A harness that
+    dispatches the event it is testing for has proven that the handler runs, and nothing about whether
+    a reader can make it run. The gate is elementFromPoint at the control's centre, then a real
+    page.mouse.click there, on every surface the control appears on. layerfix.py does both; on the
+    K314 bytes it goes RED six times (three surfaces × hit-test and click), which is the control.
+
+ONE ONCE-EVER FLAG PER SURFACE. wuld-tour.js keys the library tour 'wz-tour:library' and the flag is
+per origin -- but the "library tour" is three tours: the flagship's rows (seven steps: the view
+switcher, the RSI methodology), a wing's cards (six), the index's list (four). Josiah saw the
+veganism wing's tour first; the flagship's was then never offered. The surface is now read from
+markup that is in the static HTML, so parse time and post-render agree: .view-switcher exists only on
+/combined (→ 'wz-tour:library:flagship'), .lib-card only on /libraries/ (→ 'wz-tour:library:index'),
+and the wings keep 'wz-tour:library' unchanged -- nobody who has seen a wing's tour is shown it
+again by this change; the flagship and the index simply gain their own flags. The graph-view keys
+(map, dep, map1, examples) were already per view and are untouched. Measured in one context with
+fresh storage: wing → flagship → index, each tour starts, three keys land, the wing again does not
+tour; and the reverse order. On the K314 bytes the second and third surfaces do not tour (RED ×4).
+The parse-time claim of the hint key (the vfx one-liner that duplicates the tour's first step) uses
+the same surface key, so it is claimed only on a surface whose tour has not run.
+
+SOFTER CUES, AND THE NEXT ADJUSTMENT IS A NUMBER. Hover 0.18 → 0.064 (-9 dB) and its rate limit
+120 → 250 ms -- on 82 rows it was the loudest thing on the page; click 0.42 → 0.21, expand 0.38 →
+0.19, collapse 0.34 → 0.17 (-6 dB); magnifier, tier step and the room tone unchanged, because they
+answer a deliberate press, not a passing pointer. A master --wz-sfx-gain (default 1, on :root in
+wuld-vfx.css, read by play() the moment each cue starts, clamped 0..2) scales everything including
+the ambience, so Josiah can try a value live in the console --
+document.documentElement.style.setProperty('--wz-sfx-gain','0.5') -- and the value he settles on is
+written into one CSS line, not rebuilt. Measured by instrumenting createGain: expand/collapse 0.19 /
+0.17, hover 0.064, two hovers 180 ms apart → one cue (the K314 bytes keep both), 400 ms apart → two,
+gain 0.5 → hover 0.032, gain 0 → the magnifier press at 0. This is a taste call made by measurement,
+not by ear: the first cut is Josiah's to ratify, and if "chirpy" survives the level the next lever is
+timbre (a low-pass on the hover cue), which was not shipped because nobody here could listen to it.
+
+THE CACHE, AND A RECOMMENDATION THIS SEAT MADE FROM THE WRONG SOURCE. Pages serves /wuld-layer.css
+and /wuld-layer.js with cache-control: public, max-age=14400 and the HTML with max-age=0 -- so for
+four hours after any layer deploy a reader who had opened any library page ran the NEW page with the
+OLD layer. That is Josiah's missing FEEDBACK controls, the silent rows and the page-to-page
+flakiness: the page and its layer are not one artefact, and "link, don't inline" made them two. The
+TODO written the same evening prescribed a _headers rule with max-age=0, must-revalidate. That rule
+would have deployed and changed nothing: the zone's Browser Cache TTL is 4 h and Cloudflare's own
+sentence is "respects whichever value is higher: the Browser Cache TTL in Cloudflare or the max-age
+header" -- and wuld.ink had already measured exactly this at K24o/K24p: /components/* at 300 and the
+exact-path probe at 600 both still come back 14400 today, /robots.txt at 3600 too, while /favicon.svg
+at 2592000 and /sitemap.xml at 3600 (uncached type, DYNAMIC) are honoured. The documented exception
+is `private` -- "if origin returns private in Cache-Control then preserve it" -- so the rule shipped
+is Cache-Control: private, max-age=0, must-revalidate on the two layer files: the edge does not
+store them, the browser keeps its copy and revalidates by ETag (one 304 per page load; the bytes
+travel only when they changed). The sound files stay on the default. The deploy block reads the
+served header back and says which of three things happened: `private` served (honoured), 14400
+still (the floor wins even here: the fallback is the dashboard, Caching → Configuration → Browser
+Cache TTL → Respect Existing Headers, which would also give wuld.ink's /components/* the 300 it has
+asked for since K24l), or something else (printed raw). Ctrl+F5 remains the reader's remedy until
+the rule is seen to hold. Nothing in this deploy is versioned with ?v= -- the flagship's links are
+pinned bytes.
+    cccxxxiv allocated -- A FIX PRESCRIBED FROM THE FILE'S SYNTAX, NOT THE ZONE'S BEHAVIOUR. The
+    _headers rule was written from what the file format allows, on a zone whose own log records
+    that shape being refuted (K24n lxix, K24o lxxi) and whose vendor documents the floor in one
+    sentence. Before prescribing a change to a dependency's behaviour, read the dependency's behaviour
+    -- a probe of the live zone, the vendor's sentence, and this project's own history with it -- and
+    let the deploy block read the result back rather than assume the rule held.
+
+.GITATTRIBUTES. efilist's file listed html/md/cff/json/jsx/py and no css/js; the K314 deploy printed
+"LF will be replaced by CRLF" for both layer files, meaning the next checkout would flip the working
+copies while the blobs stay LF, and a working-copy md5 gate would misread. Two lines added; the
+block gates the INDEX blobs (git rev-parse :wuld-layer.css) against the SHAs computed here, which
+proves the normalisation as well as the bytes.
+
+FOUND AND LEFT. (1) Under a light OS colour scheme the wings resolve wz-lightbg (cream ground): the
+glow gate closes and, since sound rides the same gate, the wing is silent -- sfxcheck's wing rows
+read 0 starts on the K314 bytes as on these; under a dark scheme, 4. The flagship's ground is dark
+either way. Pre-existing policy, TODO item 5, Josiah's to decide. (2) The harness's SUPPRESS now
+sets the two new keys too, or the flagship tour would mask every pixel run (cccxxvi's family).
+(3) navcheck GREEN on the new packs, CLS 0.0828 unchanged; fbcheck unchanged on both surfaces.
+
+STATE. library.wuld.ink: one commit atop df4f785 by the block in the drop
+(layerfix\LAYER_FIX_efilist_commit.ps1): base blobs gated at HEAD (both packs, .gitattributes, the
+pin), _headers required absent, four inputs gated by md5, four index blobs gated by SHA, exactly
+four names staged, the pin's blob re-read after the commit, a gated push, then the served packs read
+back until both md5s match with http status and byte count beside every hash, the served
+cache-control classified, and /combined re-read as 62d1e8d8. wuld.ink: this stratum atop the log
+as it stands -- WI-K314 landed at c8619fb (1,248,030 B / dcea1aa9); if WI-K313g has landed since,
+the block appends after it, refusing if either numeral above already appears in the log. Zero src/
+bytes. Drop: layerfix\ holds the four deploying files, the two blocks, this stratum, the harness
+(layerfix.py + hz.py); the root's four edited parts and both packs are replaced by the ones that
+reproduce; P5_STATE.md and TODO_after_the_pin_move.md updated. Carries: the rest of the TODO -- the
+v4.0.2 relabel and the loci sweep, the README captures, the relay archive, the wings' two toggles,
+the light-scheme policy. Register: cccxxxiv is the highest.

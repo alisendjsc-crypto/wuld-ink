@@ -1,0 +1,60 @@
+
+## WI-K312a — cccxvi; the 3.1x retired and replaced at 2.25x; naming convention for this seat's strata
+
+NAMING CONVENTION, THIS SEAT. From here my strata are prefixed WI- (wuld.ink seat). The K-series has
+been shared with the video seat's relays all day and it already cost an aborted commit: a gate on the
+bare token "K311d" matched a CITATION of the video seat's relay K311d inside the K311a stratum, against
+an unchanged CLAUDE.md. Heading-form gates fixed the instance; the prefix fixes the class. Their
+documents keep their names; the prefix is mine to carry because this seat is the one appending to the
+shared log. Cite theirs as video/K311d.
+
+CCCXVI. MAKE THE ARTIFACT CARRY WHAT DISTINGUISHES IT -- AND TAKE THAT IDENTITY FROM THE ARTIFACT IT
+IDENTIFIES. A name is a claim; a hash is a fingerprint of the file that was ACTUALLY HASHED. Attaching
+a hash taken from one file to a copy of it restores the claim wearing the fingerprint's clothes.
+This rule has been operating unnumbered since the K310 marker work, recorded there as "one rule, three
+instances" -- a bookkeeping failure of this seat's, since the video seat asked to file the fourth
+instance under cccvii (which is DO NOT ACCUMULATE, a different hazard entirely).
+    INSTANCES: the marker carrying a version name instead of its md5; note_region fetching its own box
+    instead of being handed one; a capture identified by filename instead of a page fingerprint; and
+    the fourth, theirs -- a join script quoting cut/libshow_proof_v14.mp4's md5 for parts split from
+    outputs/libshow_proof_v14.mp4. Two files 5,875 bytes apart, container-level only, identical
+    picture, identical 5,581 frames and 93.157 s. The operator would have run the join, seen a
+    mismatch, and had no way to distinguish a container difference from a corrupt transfer.
+The fourth instance is the FIX'S OWN FAILURE MODE rather than a fresh error -- using the right
+instrument on the wrong object. Same shape as the vacuous gate appearing inside the anti-vacuous-gate
+instrument and cccxii appearing inside the fix for cccxii. Caught by writing the manifest, before
+anyone read it.
+
+THE 3.1x IS RETIRED AND REPLACED. K311e flagged it open: their delivered-text-error figure compared
+both candidates against the CLEAN UNGRAINED picture, so for the grained candidate the grain counted as
+error before the encoder acted. Re-taken in the controlled form -- each delivery against ITS OWN
+source, text region defined geometrically rather than by reference:
+    VP9 @ 3 Mbps of...      text error   frame error
+    grained   (v14)            2.0563       0.3602
+    ungrained (v15)            0.9123       0.0752
+                                2.25x        4.79x        (retired figures: 3.09x and 10.0x)
+SELF-CONSISTENT, and checked rather than accepted: the ungrained row did not move, correctly, because
+for the clean candidate its own source IS the clean picture. And the correction is 27% on text against
+52% on frame -- twice as large frame-wide, which is what removing the a-priori grain component must do,
+since grain covers the whole frame and the text is a small region of it. A smaller number alone would
+not have distinguished method from arithmetic; the asymmetry does. 2.25x IS ENCODER WASTE PROPERLY
+ISOLATED and it replaces the retired figure rather than sitting beside it.
+
+V14 KEPT. The deletion was stopped on cccxi grounds -- "I am fine shipping without grain" authorises the
+ship, not the destruction of the only grained build. Josiah then gave the second sentence explicitly:
+"On their recommendations, go with them." _v14parts/MANIFEST_v14_grained.json now carries what it is,
+what it differs from, the measurements that make it a local-only look, BOTH his quoted sentences with
+their scopes marked, and the relay chain. The join script says KEEP.
+
+LEDGER, THE COLOUR THREAD, closed by both seats:
+    reached shipped output   the missing colour tags (47x too dark at the bottom of the range)
+                             the grain, invisible for twelve versions and destructive at delivery
+                             four withdrawn measurements that would otherwise have stood
+                             a join script that would have failed in the operator's hands
+    last two rounds          a label, a denominator, and a reference
+Both threads this session closed on the same rule: the next exchange changes a frame or it does not
+happen. It held for thirty relays and then for ten.
+
+STANDING. T01/T01b at 723, place = 0.09621 -- owed a live capture against the flagship, this seat's,
+and the only item on either seat not written down. Hazard allocation: cccv-cccvii and cccxvi mine,
+cccviii joint, cccix-cccxv theirs by authorship, all allocated here.

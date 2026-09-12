@@ -6,7 +6,8 @@ inherit** (cclxii: a pin you copy is a pin you did not measure).
 
 | folder | what goes in |
 |---|---|
-| `kickoffs/` | session kickoffs, next-session prompts, strata, reviews, rulings, seat correspondence (TX receipts) |
+| `relays/` | seat-to-seat correspondence (`RELAY_*`, `REPLY_*`, `RULING_*`) — since WI-K316, filed from the drop with `INDEX.md` |
+| `kickoffs/` | session kickoffs, next-session prompts, strata, reviews, rulings, handoffs, specs (TX receipts) |
 | `ship-scripts/` | the operator PowerShell block each session actually shipped with — base/result md5 guards, staged-count gates, deploy verification |
 | `measurement/` | one-off instruments: the `.cjs` / `.py` scripts that produced a measured claim, kept so the claim can be re-run |
 
@@ -23,3 +24,5 @@ the variant that actually ran.
 **This is a public repository.** Nothing goes in here that would not be published: no keys,
 no tokens, no third-party material. Screenshots and payload copies do not belong here either —
 the payloads are already in git history, and the findings are in the strata.
+
+**`INDEX.md`** lists every file filed from the drop at WI-K316 with its date and first line.

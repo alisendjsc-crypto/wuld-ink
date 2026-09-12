@@ -1,0 +1,161 @@
+
+## WI-K314 — THE FLAGSHIP PIN MOVE: the layer integrated into /combined, the AA remap at source, two mode toggles, the précis landed; pin 9d13359e → 62d1e8d8; cccxxxii allocated
+
+THE PIN MOVES, ONCE. library.wuld.ink/combined leaves 9d13359e305c6caa3ae64759f3dcc0e6 / 2,963,789 B
+for 62d1e8d86056465ebcb5daced38e0a83 / 2,974,039 B, version string held at v4.0.1 (integration is
+not a content change; no re-pin). One efilist commit atop 23fbbed carries the three deploying files:
+combined.html as above, wuld-layer.css 089dff05 → 24907d8919b6f14d99cfbcef1d2b534f / 59,392 B
+(+716), wuld-layer.js 85665e34 → be7de70c3d6505b6de3d53355c874e3c / 57,746 B (+2,161). The build is
+reproducible from the pinned file: rebuild.sh in the drop's pinmove\ folder replays integration →
+descendant rules → insert_precis.py → aa_remap.py → mode_collapse.py → navfix.py and lands on the
+same md5 every run. Opened from PROMPT_flagship_pin_move.md; §0's condition held (P1 done, library at
+23fbbed, wuld-ink at 06a0b6c with K313e landed, read off both .git directories, not the state file).
+By close the other seat had moved wuld-ink to 5b5d1af (the redirect, ship script v4.2, two
+apparatus reissues) and appended WI-K313f -- allocating cccxxxi -- and the number this stratum first
+carried was cccxxxi too: the register read at open was stale by the time it was spent. cccxxx,
+applied to this seat; re-derived from the log as it stands at close, this allocation is cccxxxii.
+    The device shell could not mount the connected folders this session (the Windows-update fault);
+    every byte was staged into the container, worked there, and committed back to the drop. Nothing
+    was fetched from library.wuld.ink or cdnjs (egress policy); d3 7.8.5 and IBM Plex Mono were
+    served locally from npm tarballs so the bytes under test were the bytes that ship.
+
+WHAT WENT IN (the 4 lines) AND WHAT THE 4 LINES BROKE. The flagship links /wuld-layer.css and
+/wuld-layer.js exactly as the wings do and ships <div class="wz-stage"> in its markup (+122 B). The
+3.1a hazard is real and it is worse than the prompt had it: the four `body >` rules that switch the
+three top-level sections stop matching the moment the wrapper exists, and the layer's runtime shim
+only lands when the DEFERRED script runs -- on a 2.9 MB document that is ~100 ms after parse. Measured
+with a layout-shift observer: CLS 0.611 with #combined-rwe in the shift sources, i.e. all three
+sections rendered stacked and then collapsed; and with scripts off the stack is the whole page.
+    Fixed at source, not by the shim: the four rules now use the descendant combinator (`body
+    #combined-rwe`), same specificity, matching with or without the wrapper. CLS back to the pristine
+    page's own 0.082 (its card render moving the footer), the shim has nothing to mirror (0 rules, as
+    on the wings), and navigation was walked by getClientRects().length -- three sections and four
+    views, exactly one rendered in every state. The shim's capability was proven on a control copy
+    that kept the child-combinator rules: with the shim it mirrors 4 rules and the walk is GREEN;
+    with the shim element pulled out after boot the walk is RED (all three sections at once). Two
+    earlier versions of that control were inert -- a shadowed window.wzStageShim that wzInit never
+    reads, then an observer attached before documentElement existed -- cccxxiv, twice, before the
+    third version could fail. The prompt's own check ("#wz-stage-shim must exist") keyed on the
+    mechanism and would have read a correct build as broken: cccxxiii, and the reason the
+    rendered-ness walk is the gate.
+
+THE PRÉCIS. insert_precis.py on the working copy: four START HERE blocks after the first <h4> of
+each methodology panel, +4,024 B exactly as K313d predicted, no ids, the panel stays the target.
+
+THE AA REMAP, AND WHY IT IS AT SOURCE. The prompt counted 85+ failing elements from a closed-card,
+one-mode census. The sweep here drives eleven states (closed; one card per tier open; the RSI panel
+and an RSI detail; each graph view, then its methodology and info panels; the examples and coda
+sections) in all four modes and reads every visible text element against its PAINTED ground, SVG
+labels by fill. Pristine flagship: 352 failing rows across the standard-mode states (262 HTML text elements,
+90 SVG labels) and more in high-contrast, from ~130 rules -- a grey ladder #444/#555/#666/#777 that is illegible in its
+entirety on the dark ground (1.9-4.4:1), #8b0000 used as TEXT in fifteen rules (1.9-2.0:1: the
+masthead, the active view button, the keyword chips), the five tier colours and four RSI grades
+painted inline onto cream in high-contrast (2.0-3.3:1, 82 badges), and forty inline-coloured <strong>
+keys in the methodology panels (1.5-3.4:1 on the dark panel; #ccc x24 at 1.61:1 on the white one).
+    The shared stylesheet was the prompt's preferred home "so the fix propagates to wings that adopt
+    the flagship's tokens". The flagship has no tokens: its sheet is literal colours in named rules,
+    the wings already declare nine variables and are fixed, and an override list in wuld-type.css
+    would reach only the names on it, need !important against the page's inline styles, and be a
+    second place the flagship's palette is defined. So aa_remap.py edits combined.html itself: 76
+    rule edits, each addressed by its selector and declaration and required to match exactly once,
+    plus the template hooks. Values, all measured on their real ground: the dark greys → #88847c (the
+    wings' --faint: 5.32 page, 5.07 card, 4.77 on the #181818 controls), hovers that were #666 →
+    #a6a096 so hover still brightens; #8b0000-as-text → #ef3a58, the library's one crimson (5.11 page,
+    5.19 on the #1a0000 chips) with the dark red kept everywhere it is a border, a fill, ::selection,
+    or text on cream (8.8:1) -- the masthead is the one visible design change on the dark ground and
+    it is deliberate; .psych-mechanism #996633 → #b1763b and TIERS[5] #9966cc → #a273d0, hue held; the
+    cream-ground greys → #615b50 (5.0 on the darkest cream panel); the tier and RSI badges stamp
+    data-tier / data-grade and high-contrast darkens each hue with hue and saturation held, computed
+    to ≥5.0 over the badge's own tint, !important because inline outranks any sheet rule; the
+    methodology keys become one class per key (mpk-*) with a value per ground. Two pre-existing
+    high-contrast defects fell inside the same sweep and were fixed with it: the white RSI panel's
+    #ccc labels, and the dep info panel's premise items painted in the family colour.
+    Result on the deploy bytes, four modes x eleven states, 5,680 HTML text elements per mode: 0
+    below 4.5:1, except the chin's aria-hidden wordmark (3.72, identical on every wing) and the
+    first-visit hint caught mid-fade by one sample (12.72 settled, wing and flagship alike). Left,
+    deliberately, and measured: the graph views' d3 label fills -- 82 objection labels at 7px #555
+    and 8 band labels #333 on the dependency graph, the mechanism web's dimmed non-neighbours after a
+    selection, 225 of 323 SVG labels below AA -- are the K74 legibility spec's declutter states and
+    are not a stylesheet colour; re-adjudicating them is that spec's session, not this one.
+    A type-fingerprint diff (1,534 matched text elements, three modes, eleven metrics) says
+    integration is metric-neutral on the flagship: the only change the shared sheet makes is
+    span.rsi-badge radius 2px → 0, the hard edge that is the flagship's own identity.
+
+TWO TOGGLES, NOT FOUR BUTTONS. LEGIBLE and HIGH-CONTRAST as aria-pressed toggles; STANDARD and BOTH
+buttons gone. The mode string, the arglib-mode key and the mode-change event are unchanged, so the
+graph views' mode stash, the saved-mode boot and the layer's tour keep working; a reader saved on
+`both` lands on both with both toggles pressed. The contrast toggle is NOT droppable on the evidence:
+on the flagship it is the only route to the light polarity, which is a reader need, not a contrast
+number. The wings keep their four buttons this session (§6); the tour's one sentence about the
+modes now reads true on both shapes and dropped the claim that LEGIBLE lightens the page -- on the
+flagship it never did (tourcopy_gate.py: 15 claims, 0 failures).
+
+THE TWO FLAGSHIP GAPS (3.1b), CLOSED. The feedback control learned the row shape:
+div.objection-header is the expander, so the injector reads the trigger line as the heading, the
+badge strip as the classification, the sibling .detail-panel's .keyword chips as the colloquial
+names, and stopPropagation on the link so a report does not open the card. Positioned top-right of
+the row, left of the [+] glyph, level with the badge strip: 82/82 rows, 7.27:1 dark / 5.51:1 cream,
+no overlap with glyph or label, keyboard-reachable, draft 806 chars, document and every row height
+identical with and without the control at 1440/768/390/320. The flagship declares the four palette
+variables the control reads (--fg --dim --faint --accent, per ground) -- it declared none, and the
+shared sheet's dark-ground --dim would have been 2.1:1 on the cream row. The sound layer learned
+the same row: hover and expand/collapse fire on the flagship's rows now (positive and negative
+controls, sources counted at AudioBufferSourceNode.start; the wing row-for-row identical under the
+deployed and the new JS). The top-nav examples/coda error is one null guard: render() ended by
+writing to a #counts element that never came across from the standalone rwe.html, throwing on every
+examples navigation and skipping applyHash's focus tail; the deep link still landed because the
+view filters to the focused instance, so the visible gain is a clean log. In scope because it is a
+flagship script edit and this is the session that may make one.
+
+THE GATE MATRIX. Four modes x three tiers: html.wz-lightbg iff background luma > 90 (10.0 dark,
+240.5 cream), glow on text iff vfx AND luma ≤ 90, bezel ::before shadow and LED glow present at vfx
+and cosmetic in every mode, LEDs at .55/.55/.18 by tier, horizontal overflow 0 at pointer rest in
+all twelve cells; reduced-motion: no pan, no tour; print: none of the layer's boxes render and the
+stage padding is 0. One lip finding fixed at source: the bezel's top border is --wz-lip-y (12.4px at
+900 tall) at every tier and the layer insets the stage on the sides only; the wings' first row starts
+26px down by design, the flagship's wing-switcher row started 7px down, inline-styled, and lost the
+top half of its glyphs. Its inline padding now adds the variable (declared on :root by the sheet, so
+no script timing, CLS unchanged).
+
+FOUND AND LEFT, WITH THE NUMBERS. (1) With the pointer at the left edge the camera pan translates the
+stage +5.96px and the document gains 6px of scrollable width -- wing and flagship identically, 0 at
+rest; a layer property with magnifier interplay, its own job. (2) The flagship overflows 147/217px at
+390/320 on the PRISTINE page (its view-switcher and depth buttons do not wrap; it has no mobile
+layout); 149/219 integrated, the 2px being the lip. (3) The wing's meta-strip lane costs +17/+106px
+of document at 390/320 under the deployed JS as much as the new -- a property of the deployed lane.
+(4) cccxxx, again: the drop's wuld-type.css (9,478 B) was not the part the deployed pack was built
+from (13,339 B: the /troubleshooting/ crimson, tap targets, warm cast); the pack did not reproduce
+(-3,861 B) until the true part was split back out of the deployed file. The drop copy is replaced.
+
+CCCXXXII ALLOCATED — AN INLINE COLOUR IS A SINGLE-GROUND COLOUR. No colour clears 4.5:1 on both
+#0a0a0a and #ffffff: the crossover luminance is 0.186, where both sides read 4.45 (against pure
+black the crossover is 4.58, so this is a property of the ground PAIR, and every library ground --
+#0a0a0a, #0b0b0c, #0c0c0c -- is on the failing side of it). So on a page with a dark mode and a
+light mode, every `style="color:…"` on text is a failure in one of the two modes by arithmetic,
+before any measurement, and only !important or a class can restate it per ground. The
+flagship carried 65 inline colour literals, 43 on text, and every one of the 82 tier badges and the
+methodology keys was among them; the wings' 17 inline .rsi-badge colours (Part A) were the same
+fault. The test for a new rule is not "does it pass" but "which ground does it name".
+
+THE PIN'S DEPENDANTS. Objection re-vendor: efilist objections-index.json and wuld-ink
+src/library-objections.json are both d034af153aafa08c6f57884a9e7426a1 / 41,800 B -- the corpus did
+not change, the re-vendor is a no-op by identity. Search-index regen: its inputs are wuld-ink src/
+and that file; zero wuld-ink src/ bytes move this session, so the regen is a no-op by construction.
+The apparatus page (second reissue, 5b5d1af) quotes the superseded pin as "byte-identical at the
+time of capture" -- true as history; the film seat holds the new md5 and byte count
+(RELAY_pin_moved_for_the_film_seat.md) and whether to re-measure is theirs. A third reissue re-ships
+through ship script v4.2 (28922cd), which reads served-md5 == committed-md5 and has lost the stale
+RESULT OK grep; the film link stays out until the film is public. Not run here.
+
+STATE. library.wuld.ink: one commit atop 23fbbed, pushed by the block in the drop
+(pinmove\PIN_MOVE_efilist_commit.ps1), which gates the three inputs on the pin's md5s, the three
+outputs on the md5s above, stages exactly those three names, and reads the served /combined back
+until its md5 is 62d1e8d8 -- pin==live by bytes, never by version string. wuld.ink: this stratum atop
+5b5d1af after WI-K313f -- which at the time of writing was appended to the working copy and not yet
+committed (reflog silent after 5b5d1af); the block commits it under its own subject first if that is
+still so, then this one -- zero src/ bytes either way. Drop: pinmove\ holds the deploy inputs, the harness (hz.py and the
+nine checks), the build scripts, two screenshots; the drop root's layer parts and packs are
+replaced by the ones that reproduce. Carries: the wings' four mode buttons → two toggles (same
+mechanism, their own session, NO-PIN); the graph-view label fills against the K74 spec; the pan
+overflow at the left edge (layer); a CHANGELOG entry for the integration if wanted (NO-PIN
+sidecar). Register: cccxxxii is the highest.

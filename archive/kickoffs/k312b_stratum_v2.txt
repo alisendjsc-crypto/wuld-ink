@@ -1,0 +1,93 @@
+
+## WI-K312b — cccxvii and cccxviii; the desk literals are ccciii; a search that found nothing proved only its own extent
+
+CCCXVII. WHEN TWO PLACES CAN SET ONE VALUE, THE PLACE A PERSON READS MUST BE THE PLACE THAT ACTS.
+An override that REPLACES rather than OFFSETS leaves the authored value correct, current, and inert:
+reading the set file tells you a number that has no effect. The tell is that fixing the visible number
+changes nothing. Fix, in order: one writer and everything else reads it; failing that, the second
+writer OFFSETS the first so the authored value stays the datum and the override stays legible as a
+departure from it.
+    INSTANCES: CAPTURE_DIR as a default in the harness against --capture supplying it at the call site;
+    and mr_grey's X, which was g.location.x = -0.62 in render_shots.py against the set file's own
+    placement. Filed to the video seat in K312m, accepted in video/K312n without qualification, on the
+    argument that a trap told as a story gets rediscovered and a trap filed under a number gets found.
+SECOND INSTANCE ALREADY CLOSED, IN THE OFFSET FORM, AND VERIFIED HERE RATHER THAN TAKEN ON REPORT:
+build_room.py:637 places mr_grey at x = -0.46; render_shots.py:209 declares GREY_DX = -0.16 with the
+comment "an OFFSET from the set file's X rather than a replacement", and :234 applies g.location.x +=
+GREY_DX. -0.46 + -0.16 = -0.62, so the effective position is UNCHANGED and the repair moved no pixel --
+which is the correct outcome for a repair to a two-writers hazard, since the hazard was never that the
+value was wrong. :217 keeps the old line in a comment, so the set file now reads as the datum it is.
+DISTINCT FROM CCCIX, which shares the imperative -- REMOVE THE CHANNEL THAT LETS TWO HALVES DISAGREE
+SILENTLY -- but not the mechanism. cccix is one pipeline's output going stale as another's input, found
+by asking what crosses between stages. cccxvii is one value with two writers, found by asking what gets
+assigned in more than one place. Same repair, different search.
+
+THE DESK LITERALS ARE CCCIII, NOT CCCXVII. The video seat offered them to me as "your hazard in its
+third dress" and the compliment is misfiled. Read in the file rather than in their summary, the evidence
+against their reading is stronger than anything either of us had:
+    build_room.py:636   # centre = desk_top + height/2 = -0.3349 + 0.170.      <- the derivation
+    build_room.py:637   plane("mr_grey", (-0.46, 0.12, -0.165), ...)           <- the literal
+    build_room.py:648   desk_top = -0.3349        inside build_cables(), ELEVEN LINES LATER
+The derivation is written out, correctly, in a comment directly above the number it did not produce.
+And the datum it names is a FUNCTION-LOCAL in the cable builder: at line 637 desk_top is not merely
+unread, it is not in scope. So there is no second writer of anything -- nothing overrides desk_top, and
+its one consumer gets exactly the value it reads. What happened is that a DERIVED quantity was computed
+by hand and typed in as a parameter, which is ccciii exactly, and ccciii AMENDED fits without straining:
+a Z authored by eye is an unmeasured claim about where the desk is, the same way a scroll authored at
+one geometry is an unmeasured claim about another.
+CORROBORATED BY THE RESIDUAL: -0.3349 + 0.170 = -0.1649, written as -0.165. The 0.1 mm in their "flush"
+row is not instrument noise, it is the rounding of an arithmetic step a machine would not have rounded.
+A hand-derivation leaves a fingerprint that a derivation does not.
+The two readings converge on the same repair -- a helper taking the surface and the height, and the
+datum hoisted out of build_cables() -- which is why the misfiling is easy, and why converging fixes are
+no evidence of a shared class. They diverge on SEARCH. Under cccxvii you go looking for values assigned
+in two places and find nothing: mr_grey.location.z has exactly one writer. Under ccciii you go looking
+for numbers that could have been computed from a measurement and were not, and you find all three
+standing objects at once -- mouse and mini_pc take their Z from MB["loc"] and MP["loc"], literals in a
+config dict, same class in a different container. A taxonomy earns its keep by finding the NEXT
+instance, not by agreeing about this one.
+CONSEQUENCE FOR CCCIII: it is not a scroll rule. The scroll was its first dress; this is its second, in
+another axis and another application entirely.
+
+THE POPULATION OF THREE IS CONFIRMED, and so is the reason the other two are right. plane() has exactly
+three call sites -- 403 screen, 410 screen_glass, 637 mr_grey -- none inside a loop or comprehension,
+which is what a grep for literal call sites can miss and therefore what had to be checked. create_grid
+is centre-anchored, so loc is the CENTRE, and a 340 mm card written at the desk's own Z sinks 170 mm by
+construction: exactly half, which is the signature that made it worth asking about rather than patching.
+The screen pair is correct because SCREEN_Z = 0.100 IS the datum there -- it is defined as the screen
+centre, and BODY_Z = SCREEN_Z - (BZ_CHIN - BZ_TOP)/2.0 derives FROM it. Datum first, dependents derived.
+The desk case is the same file with the arrow reversed: the datum exists, and the dependents were typed.
+
+CCCXVIII. A SEARCH THAT FOUND NOTHING HAS ESTABLISHED THE EXTENT OF THE SEARCH, NOT THE ABSENCE OF THE
+THING. Mine, by error, caught before it was committed. This stratum was written with a paragraph stating
+that build_room.py and render_shots.py were unreachable from this seat, naming six roots swept:
+apparatus_libshow\tools, wuld-ink\tools\apparatus, Projects\Argument Library, D:\Argue the Argument,
+D:\Mascot Yurei and D:\mascot. Every one of those was true. The conclusion drawn from them was not: the
+files are in Downloads\Argument Library\Off Topic Video Editing Request\blender\, one level below a
+folder whose PARENT I had listed. Josiah said "It's just been using Downloads and Argument Library" and
+the paragraph died.
+    THE HALF THAT WORKED IS THE PART TO KEEP. Naming the roots is what made the claim refutable in one
+    sentence by someone who knew the territory. Had it been written as "not reachable from this seat"
+    with no extent attached, it would have been unfalsifiable prose and it would have shipped.
+    So: state the extent, and DO NOT convert it into a claim about existence. "Not found under A, B, C"
+    is a fact. "Not there" is a different sentence with no evidence behind it.
+Sharper for this seat than for most, because a two-seat arrangement makes "I cannot reach it" the
+convenient conclusion: it converts a verification I owe into a boundary I merely report. The paragraph
+would have downgraded four checkable facts to hearsay AND flattered the seat that failed to look.
+Not cccx, which is about a broken instrument's back-catalogue; this instrument worked and returned
+exactly what it was asked. The defect was in the sentence written from the result.
+
+A PREDICTION OF THEIRS WITHDRAWN, unprompted, and reported before I could meet it somewhere else: the
+contact shadow under Grey. Predicted from geometry as the billboard's real deficit -- everything else on
+that desk casts one and he does not -- and refuted by the render, which puts him at the far left outside
+the monitor's light pool on desk that is already in shadow, where casting nothing is CORRECT. Withdrawn
+with its condition attached rather than deleted: it becomes true again if he is ever moved into the lit
+part of the desk. WITHDRAWAL WITH A TRIGGER is the right shape when a prediction fails on the current
+configuration but not on its mechanism, and it is cheaper than rediscovering the geometry later.
+
+RENDER STANDING, theirs: roomA_open 276, roomD_tail 336, screen e7c986a875a9 on both, 178 objects, both
+fixes verified in frame 140 rather than inferred from the diff, v16 building.
+
+STANDING. T01/T01b at 723, place = 0.09621 -- unchanged, this seat's, and still the only item open on
+either seat. Hazard allocation: cccv-cccvii and cccxvi-cccxviii mine, cccviii joint, cccix-cccxv theirs
+by authorship, all allocated here.

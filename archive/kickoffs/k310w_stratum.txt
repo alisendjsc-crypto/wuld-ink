@@ -1,0 +1,83 @@
+
+## K310w — two pins from K310v are WRONG; the twelfth instance is withdrawn; cccv, cccvi
+
+CORRECTION NOTICE. This stratum strikes two figures written into K310v at a1159c5. The log is
+append-only, so they stand in the record as written and are superseded here. Both are mine.
+
+STRUCK 1 -- T01 top margin. K310v records "T01 clears at 1.25 (+61 top, +157 left...)". The +61
+came from reading the LIBRARY link's CSS top as 64. The real CSS top is 171, reproduced exactly at
+viewport 1536x864 zoom 1.0, and again as 214 device px under zoom 1.25 (171 x 1.25 = 213.75).
+Left 137, size 102x32 and the single-match check were all correct, and every other figure on that
+page reproduces to the pixel (2012, 644, +84), so nothing moved under me -- I misread a rect field
+and carried it into two documents. CORRECTED, zoom 1.25 @1920 against SAFE (14,20,1906,1054):
+    LIBRARY link (172,214)-(294,254)   left +158   top +194   right +1612   bottom +800
+Verdict unchanged: T01 CLEARS, with roughly three times the headroom claimed.
+
+STRUCK 2 -- scrollToLandItAt84 = 560. This is the expensive one. T01/T01b were measured by RESIZING
+the viewport to 1536x864. The take is shot at 1920 with CSS zoom 1.25. I asserted the first as
+governing the second. Those are not the same layout: on this page, which is provably width-invariant
+(scrollHeight 2012 at both 1920 and 1536 with no zoom), zoom 1.25 yields body.scrollHeight 2074 --
+a 3.1% delta that resizing does not produce at all. Measured at the shooting configuration:
+    h2 "The extract, plainly"  document Y = 807   (scroll space, zoom 1.25 @1920)
+    scroll 560 -> h2 top 248 device px    (mine, 143 px low)
+    scroll 700 -> h2 top 107              (theirs)
+    scroll 702 -> h2 top 105              proportional target, 84 x 1.25
+    scroll 723 -> h2 top  84              literal-84 target
+    reference @zoom 1.0: scroll 560 -> 84
+Their 700 lands two px from the proportional target. 560 is not in the neighbourhood. The choice
+between 702 and 723 is directorial (same content-fraction above the element vs same device-pixel
+headroom), not measurable; both sit in a 21 px band.
+
+TWELFTH INSTANCE WITHDRAWN. The video seat's original claim -- "a literal 560 moves only 448 px of
+content at zoom 1.25" -- is TRUE: scrollTo(0,560) yields scrollY == 560 at both zooms, so the literal
+moves 560 OUTER px either way, which at 1.25 is 448 CSS px of content. Their K310w retraction ("the
+content's document coordinates are in the same zoomed css system as the scroll") is the false
+statement. They were right the first time, gave up a correct claim on my refutation, and my
+refutation was wrong. They conceded an instance they did not commit. Count now: thirteenth = their
+recorder resolver; fourteenth = T17's swallowed click (theirs, found by them); FIFTEENTH = this,
+mine, and the worst-placed so far because it propagated into another seat's record and caused a
+correct correction to be reverted.
+
+K310y RECONCILIATION (theirs, accepted). Both combined.html measurements were real and neither was
+labelled with its interaction state: 38,051 is the EXAMPLES view (the first thing T14's script
+opens); 6,886 is the base page. Not expanded <details> -- 136 present, zero open in both. A true
+number carried out of the scope that made it true, which is how the copied pin reached this log.
+Base 6,886 against EXAMPLES 38,051 is 5.5x in the same file at the same geometry, so interaction
+state is by far the larger term in any scroll derivation.
+
+CCCV. Measure in the configuration you shoot in. A viewport resize and a CSS zoom that yield the
+same CSS width are NOT the same layout; on a page proven width-invariant they differed by 3.1%. A
+reference measurement taken by resizing does not transfer to a capture taken by zooming, and the
+error is silent in both directions.
+
+CCCVI. Under CSS zoom the DOM reports TWO coordinate systems and the API chosen decides which:
+    OUTER (device)                        INNER (zoomed CSS)
+    documentElement.scrollHeight          body.scrollHeight
+    getBoundingClientRect()               offsetTop chain
+    window.scrollY / scrollTo / innerHeight
+Measured live at zoom 1.25 @1920: 2592/2074 = 1.2497; 1839/1471 = 1.2502. Any comparison crossing
+that line is multiplied by the zoom factor and reads as a finding. It has now produced three: their
+docEl "reflow ratios" (1.2411 / 1.3102, really 0.9929 / 1.0482 in body space), their element ratio,
+and via my resize/zoom conflation a scroll literal 143 px off in a take they were told to revert.
+
+CCCIII AMENDED. Conclusion stands and needs no ratio: a literal authored at geometry A is an
+unmeasured claim about geometry B, and scroll_to costs nothing. The EVIDENCE under it in K310v is
+withdrawn. The direction argument is struck from BOTH sides -- mine (local ratio rises with depth)
+and theirs (falls) rest on an element ratio whose coordinate space neither seat established. OPEN:
+which API produced their summary docY 644? If getBoundingClientRect, the real ratio is 644/1.25 =
+515.2 against 496 = 1.0387, beside their document 1.0482, and "no scalar fits" collapses to the
+marginal case. If offsetTop, 1.2984 is real. The decision-relevant figure survives either way: the
+scale applied was 1.25 where the true correction is ~1.05 -- a 20% error, not a six-pixel one.
+
+VIDEO SEAT FIXES (accepted, from K310y). note_region now takes the box as a REQUIRED argument, so a
+call site with nothing to pass cannot be written -- the channel is removed rather than policed. The
+zero-regions tell is replaced by count equality (T14 declares 4 records 4; T17 declares 2, absent 1,
+records 1). The bare except is gone from T17, replaced by exists / declare_absent, which prints at
+capture time and lands in marks.json. T17 restored, not substituted; the disclosure will note that
+prior cuts hold five seconds on nothing where the script says there is a reveal.
+
+PASS COUNT. They are re-shooting all fifteen remaining takes rather than claiming counters hold for
+captures that predate the counter. Correct, and it means the verified pass is 2 TAKES, NOT 17. The
+114-region figure is retired until the batch completes.
+
+HOUSEKEEPING. CLAUDE.md passed 1 MB at a1159c5 (1,099,871 B). Not a task yet; noted before it is one.

@@ -1,0 +1,97 @@
+
+## K311d — cccxi (an operator's intention is quoted, never paraphrased); P5's target measured, scoped and blocked
+
+CCCXI (video seat's wording, allocated here). AN OPERATOR'S STATED INTENTION IS QUOTED, NEVER
+PARAPHRASED, AND NEVER INFERRED FROM THE OTHER SEAT'S PARAPHRASE. Both seats misquoted Josiah's
+scheduling position within one hour, in OPPOSITE directions -- theirs "cosmetics run past release, the
+film is not held", mine "the film is held FOR the cosmetics". His actual words: cosmetics past release
+are acceptable but "not definite or planned necessarily", and what he meant was he is willing to wait
+for the release to get a fair amount done. Neither pole. It earns a number not for the error but for
+the category: across thirty-six relays EVERY disagreement was settled by re-running a measurement, and
+STATED INTENTION IS THE ONE INPUT CLASS WITH NO REFERENT EITHER SEAT CAN CHECK. Fixed by quoting.
+
+QUALITY TARGET, verbatim and now at the top of the handoff: "probably enough so that it's roughly the
+same as the video. It doesn't need to be absolutely immaculate." First scoping instruction either seat
+has had. Get the recognition and stop.
+
+P5 OPEN DECISION 1 ANSWERED BY MEASUREMENT. Share of take screen time across both EDLs:
+    full cut   94.2% combined.html    5.8% t16.html (not a real page)    SITE PROPER 0%
+    wuld cut   76.8% combined.html    5.4% libraries/index.html          4.9% right-to-die-combined
+               4.7% wuld.ink/argument-library/   4.7% t16.html           3.4% wuld.ink/ front door
+A layer scoped to the site proper delivers continuity for six seconds of the front door and nothing
+else. THE LAYER MUST REACH THE PINNED FLAGSHIP: pin move, same-session search-index regen, objection
+re-vendor. No stylesheet shortcut exists.
+
+WHERE IT LIVES -- measured from the repos, not assumed, after the video seat correctly REFUSED to read
+a deploy target off their stale mirror (the same mirror that produced the quarantined T01/T01b):
+    efilist-argument-library/   combined.html 2,963,789 B; libraries/; wings right-to-die, veganism,
+                                abortion, transgenderism, anthropocentrism, troubleshooting;
+                                v4_staging/ and adversarial_map_staging/
+    wuld-ink/src/argument-library/   index.html only -- the front door
+"AUX WING" MEANS A TOPIC WING, NOT A STAGING ENVIRONMENT. Both seats had been picturing infrastructure
+that does not exist and does not need to. Stage on RIGHT-TO-DIE: a combined artifact structurally
+identical to the flagship, un-pinned so it auto-deploys, and 4.9% of the wuld cut.
+
+BLOCKER RAISED AND CLEARED IN THE SAME TURN. efilist-argument-library is the repo the layer lands in
+and was READ-ONLY under the K310 standing constraint. Raised rather than stepped over; Josiah lifted it
+immediately -- "It should be writable now." NOTE FOR ANY LATER SESSION: the K310 constraint was a
+SESSION INSTRUCTION, not a filesystem permission. He also cleared the Windows folder read-only
+ATTRIBUTE, which is incidental -- that checkbox is close to a no-op on folders and was never what
+bound. WHAT LIFTED THE CONSTRAINT IS THE OPERATOR SAYING SO. Do not infer a lift from an attribute,
+and do not infer one from this line either: it lifted THIS constraint, in this session.
+
+SCOPED TO FOUR, endorsed by both seats. ON: bezel/chin/wordmark with LED periods; text glow; the power
+button as the toggle; the mascot's fade. DEFERRED: peripheral softening, mouse parallax, sound -- they
+deliver continuity with a CAMERA MOVE a page does not have and carry most of the flash and vestibular
+exposure. THE SCOPED SET IS ALSO THE SET WITH NO PAGE-WIDE PERIODIC LUMINANCE CHANGE, which is luck
+rather than compromise. Two of the four port as NUMBERS (bezel ratios, LED colours); two as METHOD --
+the mascot's envelope is a shape because the film times it as a fraction of a shot and a page does not
+end, and the bloom is a method with a CALIBRATION step because 85/255 was chosen against the film's
+median luma ~15 and copying it to a different median is exactly how it shipped inert on four cuts.
+
+PERF CONSTRAINT ASSERTED AND THEN REFUTED, BOTH MINE, INSIDE ONE TURN. I read combined.html's
+2,963,789 bytes as a render cost and wrote a hard constraint into this roadmap warning that the
+handoff's duplicated-blur-layer recipe would stall the flagship. FILE SIZE IS NOT DOM SIZE -- that
+payload is data. Measured on the live artifact at library.wuld.ink/combined: 6,134 nodes base,
+12,345 with EXAMPLES open (scrollHeight 47,169, 136 details). Median frame time under scroll:
+    baseline                                        8.3 ms base / 8.3 ms EXAMPLES
+    text-shadow on 43 headings                      8.3
+    filter:blur on the wrapper                      8.3    promote 0.3 ms
+    duplicated layer 6,041 nodes, blur 6, screen    8.3 / 8.3   build 2.4 / 8.1 ms
+Nothing measurable per frame; the heaviest builds once in 8.1 ms. THE HANDOFF'S RECIPE STANDS AND THE
+BLOOM NEEDS NO SCOPING. My prescription to start from text-shadow would have steered the build away
+from the best-looking option for a reason that does not exist. A true measurement (bytes) asserted
+about a different quantity (render cost) -- the session's own thesis, mine, one relay after allocating
+cccxi for the same shape in another category.
+INSTRUMENT CAVEAT, STATED RATHER THAN BURIED: 8.3 ms is uniform across every condition, so it is a
+vsync/throttle floor. It resolves a STALL -- the thing predicted, which does not occur -- and cannot
+resolve small costs. Pane viewport 614x711; a real window rasterises several times the area.
+AND THE FIRST VERSION OF THAT HARNESS MEASURED AN EMPTY CONTAINER. main#main holds 0 descendants; the
+content is div#combined-library. Three treatments applied to nothing, three confident identical
+numbers returned. The vacuous gate, mine, inside the very harness cccviii says to build first, on its
+first run -- exactly as it happened to the video seat's sweep. Fixed the same way: A POSITIVE CONTROL
+THAT THE TREATMENT ACTUALLY APPLIED, checked before any timing is trusted.
+
+P5's FILM GATE IS SATISFIED FOR THE SCOPED FOUR regardless of schedule. What remains on the film --
+seg 10's out-point, the room-shot wiring (R01/R02/R03 resolve to nothing in capture125; six shots exist
+in shots_v3 where the EDL expects three), and T01/T01b -- is TIMING AND SELECTION. None of it can move
+bezel geometry, LED colour, the bloom's method or the mascot's shape.
+
+FROM THEIR SIDE, CORRECTED IN THE USEFUL DIRECTION: re-deriving both EDLs against capture125 changes
+ZERO windows -- every IN is beat-anchored and unmoved. Their earlier "ten of twelve windows need
+re-authoring" was a statement about EXPOSURE read as a statement about WORK. Seg 10 alone fires.
+
+STANDING. T01b: 723, place = 0.09621, still owed a live capture. Hazard allocation: cccv-cccvii mine,
+cccviii joint, cccix-cccxi theirs by authorship, allocated here.
+
+DOCUMENT-NAME COLLISION, FOUND BY A GATE FIRING CORRECTLY ON THE WRONG THING. This stratum's own
+commit block aborted with "K311d already present" against an unchanged CLAUDE.md (a9977d28...,
+identical to the K311c commit, nothing appended). The match was real: line 2478, INSIDE the K311a
+stratum, reads "Their own K311d measured that anchoring" -- a citation of the VIDEO SEAT's relay
+K311d, which is a different document from this seat's stratum K311d. TWO SEATS MINTING INTO ONE
+K311-SERIES NAMESPACE, the cccvii/cccix collision one level up, in document names rather than hazard
+numbers. The gate was not wrong; the NAME was ambiguous and the gate could not know which one it had
+found. CONVENTION ADOPTED: cite the other seat's documents with a slashed prefix (video/K311d) so the
+token can never collide with a heading here, and gate stratum blocks on the HEADING form "## K311x"
+rather than the bare token. Same fix as everywhere else in this session -- make the thing carry what
+distinguishes it rather than relying on the reader to know.

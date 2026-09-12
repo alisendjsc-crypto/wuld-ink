@@ -1,0 +1,99 @@
+
+## WI-K313a — P5 begun and largely built; cccxxii; ccciii twice more; cccviii amended; cccxvii in this seat's own code
+
+P5 IS NO LONGER A PLAN. The cosmetic layer the operator asked for at the top of the session, and which
+the film's problems buried for ten hours, is built and running on the live site: bezel with lit inner
+lip, chin with the W.U.L.D. wordmark whose periods are the status LEDs, a power button that CYCLES
+off -> cosmetic -> vfx, text glow keyed to currentColor, a vignette, a camera that pans with the cursor,
+and a far-side blur. Delivered as wuld-bezel.css / .html, wuld-vfx.css / .js, a validated inertness
+harness (sweep_inert_web.py), and a console snippet that loads the whole layer on any library page so
+the operator can judge motion with a real cursor, which no screenshot can.
+
+CCCXXII. AN EFFECT MAY BE PRODUCED BY THE PIPELINE RATHER THAN BY THE SETTING THAT NAMES IT, and
+copying the setting to a target that lacks the pipeline step copies nothing. Ask what PRODUCES the
+effect, not what configures it.
+    THE INSTANCE. The film's phosphor glow is specified as threshold 85 / sigma 10 / gain 3.2 on the
+    luma plane, and the handoff (correctly, after its own correction) says the 85 is live rather than
+    inert. All true, and all beside the point on a web page: the film scales 1892 px of content down
+    into a monitor a few hundred px wide, which CONCENTRATES each glyph's energy into fewer and
+    brighter pixels, and blooms THAT. At 1:1 there is nothing to concentrate. Measured: a text-shadow
+    sweep from nothing to past-legible moved mean luma 19.90 -> 20.20 and was indistinguishable by eye
+    at every step. The glow that reads in the film's own stills is on POINT SOURCES -- graph nodes,
+    tier badges -- because those are small and bright, which is what survives a downscale.
+    The fix was not a bigger number. It was to glow the point sources, and to glow text by an
+    annulus-measured currentColor shadow that the film never specified at all.
+    DISTINCT FROM CCCIII, which is about a literal carried between geometries. Here the literal was
+    correct and the PIPELINE was absent. A parameter can be right and still describe nothing.
+
+CCCIII, TWO MORE INSTANCES, and it is now clearly not a scroll rule:
+    THE TOP LIP. The handoff's 20 px was BEZEL_CROP_TOP -- picture rows discarded off the top of the
+    scaled footage, not a bezel dimension. Built as a frame, it clipped the site's sticky nav. Caught
+    by CLOSURE: 20 + 1018 + 34 = 1072 against a 1080 frame, where the corrected set closes exactly.
+    A set of dimensions that does not sum to its own container is refuted before anyone looks at it.
+    THE LIP COLOUR. #191A1C, measured off the film, sits 11 luma above the bezel body and is invisible
+    at full screen -- the frame read as a flat border, which §1 names as the failure mode. Re-derived
+    by scanning the edge: body 15.1, and #43474E puts the lip line at 70.7, a step of +55.5.
+    Both are ccciii AMENDED in its own words: a literal authored at geometry A is an unmeasured claim
+    about geometry B. The film's numbers are right ABOUT THE FILM.
+
+CCCVIII AMENDED (this seat's wording). THE DANGER OF A VACUOUS INSTRUMENT IS NOT THE NUMBER, IT IS THE
+SENTENCE WRITTEN FROM IT. cccviii already says an empty gate returns a confident result; what this
+session adds is that the result gets PROSE attached and the prose outlives the run.
+    SIX VACUOUS SELECTORS IN ONE DAY, every one of them mine:
+        main#main h2          the harness's own positive control -- 0 elements
+        h2                    on a page whose 43 headings are h1/h3/h4 -- 0 elements
+        p,span,td,h1,h3,h4    against the 82 div.trigger-text that hold the bright prose -- 0
+        html[data-mode=...]   correct for the wings, matches nothing on the flagship
+        body.legible          correct for the flagship, matches nothing on the wings
+        radial-masked backdrop-filter   a configuration rather than a selector, same shape
+    TWO OF THEM PRODUCED CLAIMS I WROTE DOWN AS FINDINGS: "a glow does not transfer to prose at 1:1"
+    and "peripheral blur is inert -- three mechanisms, max abs delta 0.000". Both false. The first was
+    a claim about a selector that touched no prose; the second was true of one configuration and
+    written as a general fact about backdrop-filter. Re-tested: white glow on the real element lifts
+    the glyph annulus +36.3%, and a linear-masked strip moves 16.3% of pixels on the treated side and
+    exactly 0.00 on the other. BOTH WENT INTO CSS COMMENTS, where a later reader would have inherited
+    them as settled. An instrument that examines nothing does not error; it agrees with you.
+
+CCCXVII, IN THIS SEAT'S OWN CODE, hours after allocating it. The camera clamp was `MAX = 2` in the
+JavaScript while the CSS declared `--wz-tilt: 0.7deg`. Two writers for one value; the visible one
+inert; setting the documented variable changed nothing and the pivot stayed at 2 degrees at every
+cursor position. The tuning line published to the operator did not work. Fixed by reading the variable
+rather than restating it. Allocating a hazard does not inoculate the allocator.
+
+TWO CONVENTIONS ON ONE SITE, and neither gate was wrong. The flagship marks display mode as
+body.legible / body.high-contrast; the wings mark it as html[data-mode="legible"|"high-contrast"|
+"standard"], and they DEFAULT to legible where the flagship defaults to standard. Each gate was
+written from one page and was vacuous on the other. The covering form takes both, with
+:not([data-mode="standard"]) so BOTH and any later mode are included. A convention verified on one
+page of a site is a fact about that page.
+
+THE GATE THAT STRIPPED ITS OWN CHROME. The accessibility gate was written with a bare `*` and killed
+the bezel's inner shadow and the LED glow along with the content effects -- measured in legible mode as
+frameShadow:none, ledShadow:none. The frame is CHROME, not an effect: a reader who wants plain type
+still wants the monitor around it. Scoped to .wz-stage, which spares the furniture for free, because
+the furniture already lives outside the stage so that the camera cannot move it. One structural
+decision paying twice is the sign that the structure was right.
+
+MEASURED, FOR THE RECORD, all on the site's own pixels:
+    median luma          flagship 17.0 | right-to-die 16.1 | libraries 11.1   (STANDARD; the wings
+                         read 239.6 on load because they default to LEGIBLE -- one click from a wrong
+                         conclusion about a light-themed site)
+    text glow            annulus lift +22.7% / +36.3% / +47.8% at 30 / 45 / 60% white; PEAKS near 80%
+                         and DEGRADES past it (+78.9% at 92%) as the same light spreads wider
+    vignette             centre/corner 0.964 -> 1.468
+    graph views          SVG <text> inherits text-shadow and needed nothing; ONE drop-shadow on the
+                         <svg> root beat per-element filters on both quality (+63.3% vs +38.8%) and
+                         cost (21.6 ms vs 24.3 ms repaint) against ~600 filtered elements
+    background median    17.00 unchanged at every glow level tested -- no legibility traded
+    camera               pan, not tilt; travel bounded BY THE LIP WIDTH, so the gap that opens at the
+                         trailing edge is always under the frame. No void is possible by construction
+                         rather than by choosing a small number.
+
+STANDING. P5's four scoped items are built; the wings right-to-die and libraries are verified end to
+end and needed no wing-specific CSS. Remaining: the other five wings (abortion, transgenderism,
+anthropocentrism, veganism, troubleshooting), a census each before claiming anything, since the census
+has contradicted this seat's assumptions on every page so far. Also open: whether the camera should be
+stilled in legible mode -- it is motion, and prefers-reduced-motion already covers the vestibular case,
+so it is left running pending the operator. The video seat's page_signature drift check remains theirs,
+after the ship. Hazard allocation: cccv-cccvii, cccxvi-cccxix, cccxxi and cccxxii mine, cccviii joint
+(amended here by this seat), cccix-cccxv and cccxx theirs by authorship, all allocated here.
