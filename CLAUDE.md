@@ -4259,3 +4259,35 @@ holds the twenty efilist files, the manifest, the summary swap, the five blocks,
 filed tree with MANIFEST.tsv; the root's parts and packs are the K316 build. Carries: the two new TODO items above; the graph views'
 SVG label fills (a pin move); the flagship's phone layout (a pin move); the tint hue; the wings' light-scheme silence (policy); the
 library seat's K232 items; the film seat's files. Register: cccxxxv is the highest.
+
+## WI-K316b — the relabel swept a dated record: the film's apparatus page restored to the pin it was captured against; the pin tool taught to skip it; cccxxxvi allocated
+
+THE SWEEP DID WHAT IT SAYS AND ONE FILE SHOULD NOT HAVE BEEN IN IT. tools/library-pin.py replaces the old md5, version and byte
+count in every src/**/*.html|js, holding five version PHRASES that are provenance (a substrate tag, a dated record). It holds no
+md5 or byte-count phrase, because until tonight no page carried the pin's hash as history. The apparatus page for the library
+showcase film does -- three times: "Source: the pinned artifact combined.html, md5 9d13359e…, 2,963,789 bytes, byte-identical to
+the published pin at the time of capture"; the numbers table's "Deployed file"; "Every frame of the library's interface in this
+film comes from one artifact … All eleven of the film's interface takes were rendered against that pin." The v4.0.2 relabel
+(9469367) rewrote all six to 62d1e8d8 / 2,974,039, and for forty minutes wuld.ink said the film's frames came from a file that
+did not exist when they were captured. WI-K314's own stratum had named this page and this sentence -- "true as history … whether
+to re-measure is theirs" -- and the block that swept it was written by the same seat the same night. The block's diff gate passed
+it because every added line carried the new pin and every removed line the old: a relabel-shaped change. The gate could see the
+shape of a line and not whether the sentence around it was a claim about now or a record of then.
+    Restored in one commit: src/argument-library/apparatus/index.html back to its bytes at 808c2ee (98b58c3b628c25ee891ccf75a990d7ed /
+    39,376 B -- the second reissue, exactly six substitutions reversed, verified byte-for-byte against the pre-sweep blob), and
+    tools/library-pin.py given EXEMPT_FILES, a list of paths under src/ that the sweep and the residual scan both skip, with the
+    apparatus page in it and the reason above it in the source. The Markdown the page is built from (apparatus_libshow.md, in the
+    drop) still said 9d13359e throughout; a reissue through ship script v4.2 would have restored the page and its verifier would
+    have refused the swept one -- the correction is what a reissue would have done, done now, without the film seat's pipeline.
+    cccxxxvi allocated -- A RELABEL SWEEP REWRITES DATED RECORDS, AND A DIFF-SHAPE GATE CANNOT SEE A DATE. Any sweep that
+    replaces every mention of a value assumes every mention is a live claim; a page that says what the value WAS at a named time
+    is falsified by the replacement, and the more faithfully the sweep works the more completely it falsifies. The guard is not a
+    smarter diff -- a line does not carry its tense -- but a list of files that are records, kept beside the tool, and a seat that
+    puts a file on that list at the moment it writes "true as history" about it rather than the night after.
+
+STATE. wuld-ink: one commit by k316b\WULD_apparatus_restore_commit.ps1 (HEAD blobs of both files gated -- the swept page d10f1bbe,
+the tool 31eebaa5 -- the two inputs by md5, exactly two names staged, index blobs, a gated push, the served apparatus page read
+back until it names 9d13359e three times and 62d1e8d8 not at all), then this stratum. Nothing else moves: the relabel's other
+seventeen files are live claims and stay swept; the search index carries neither hash. Film seat: the apparatus page is as their
+second reissue left it; the pin the site serves is 62d1e8d8 and the film's is 9d13359e, which is what the page says. Register:
+cccxxxvi is the highest.
