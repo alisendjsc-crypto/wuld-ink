@@ -66,6 +66,27 @@ VARIANTS = {
                '<!-- The short\'s own YouTube / Vimeo / Internet Archive links join the line above once it is PUBLIC. -->\n'
                '<!-- It is Unlisted until the binding order completes (handoff-dot section 4); do not link it here before then. -->'),
     ),
+    # The argument-library showcase. Unlike the other two, this artifact is BUILT here
+    # from Markdown (build_libshow_apparatus.py) because that is the form the video seat
+    # ships it in. It reuses the dot artifact's custom properties (--acc / --line / --mut)
+    # and, like the dot, declares its own a{} AFTER this block, so an injected a{} would
+    # lose the cascade and ship as dead CSS: astyle stays empty.
+    # NO FILM LINK YET, deliberately: the cut goes to the JosiahSCooper channel first and
+    # is reposted to the WULD channel after (handout section 3). Nothing is linked until
+    # it is public.
+    "libshow": dict(
+        desc=("Sources, method and verification of the showcase film for the efilist argument library. "
+              "The film carries no credits by rule; this document is its only credit sequence."),
+        title="The Argument Library &mdash; The Apparatus",
+        url="https://wuld.ink/argument-library/apparatus/",
+        og="https://wuld.ink/assets/og-default.png",
+        acc="--acc", line="--line", mut="--mut",
+        astyle="",
+        links=('<p class="wuld-line">The library: <a href="https://library.wuld.ink/">library.wuld.ink</a>'
+               ' &middot; this document as <a href="argument-library-apparatus.md">Markdown</a></p>\n'
+               '<!-- The film\'s own YouTube link joins the line above once it is PUBLIC: the JosiahSCooper -->\n'
+               '<!-- cut first, the W.U.L.D. repost after. Do not link either before the film is public. -->'),
+    ),
 }
 
 
@@ -121,8 +142,21 @@ def main():
         n = t.count(anchor)
         if n != 1:
             sys.exit(f"FAIL: anchor {anchor} occurs {n}x, expected 1 - artifact moved, adjudicate")
-    if t.count("<script") or "://" in t.split("</head>", 1)[1]:
-        sys.exit("FAIL: artifact gained a script or an external ref - adjudicate before shipping")
+    # An external REF is something the browser will fetch: an attribute or a CSS url() whose
+    # value points off-page. A bare "://" substring is not that -- it also matches a URL printed
+    # as text for a reader to type, which is exactly what the hash-shot paragraph does, and
+    # rewording the instruction to get past a checker would damage the sentence the shot exists
+    # to support. Match the reference, not the marker.
+    body = t.split("</head>", 1)[1]
+    ref = re.compile(
+        r"""(?:\b(?:href|src|srcset|action|formaction|poster|data|codebase|cite|background)"""
+        r"""\s*=\s*["']?\s*|\burl\(\s*["']?|@import\s+["']?)(?:https?:)?//""",
+        re.I)
+    hit = ref.search(body)
+    if t.count("<script") or hit:
+        what = "a script" if t.count("<script") else "an external ref: " + repr(
+            body[max(0, hit.start() - 30):hit.end() + 40])
+        sys.exit("FAIL: artifact gained " + what + " - adjudicate before shipping")
     print("anchors OK (1x each) - artifact script-free, no external refs in body")
     if a.check:
         return
