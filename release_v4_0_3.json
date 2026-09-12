@@ -1,0 +1,30 @@
+{
+  "release": "v4.0.3",
+  "canon": {
+    "version": "38.1",
+    "bump": "NONE",
+    "invariant_block_changed": false,
+    "note": "v4.0.3: the flagship laid out for phones and the graph views' SVG labels brought to WCAG AA on their painted ground (WI-K318). NO CONTENT CHANGE: corpus, grading ledger, both graph literals, the argument-flow matrix and the real-world-examples data byte-unchanged (OBJECTIONS, REAL_WORLD_EXAMPLES, MAP1_TRANSITIONS, DEP_GRAPH_DATA, MAP_GRAPH_DATA and the rwe-data block compared literal for literal); objections index unchanged (d034af15). What moved the pin: one @media (max-width: 600px) block at the end of the page's stylesheet (the shared nav, the library's control rows, the graph toolbars, the argument flow's columns, the examples' filter bar; 54 phone states at 390/360/430 in both grounds read 0 overflow against 149/179/110 on v4.0.2), the graph canvases fitted to their drawing on a phone (settle + zoom transform; the dependency graph laid out on its desktop canvas first; the flow map's viewBox), and 16 fill edits + a data-family hook + one class for the graph labels (250 undimmed readings per ground: 123 dark / 172 cream below 4.5:1 -> 0 / 0). Layer untouched (NO-PIN). Canon stays at 38.1 (invariants untouched)."
+  },
+  "git": {
+    "baseline": "efilist 2c58e8f atop 264c0f2 (WI-K317 layer, NO-PIN); the v4.0.3 pin move commit WI-K318 on top",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "combined.html 62d1e8d8/2,974,039 -> 62c733ac8263e6413816cfb6d28e3b8a/2,982,420 (+8,381). Served == committed to be verified by the deploy block's read-back (three fetches of /combined agreeing on the new md5) before this manifest is applied. Version string: combined.html carries none, so the relabel is a loci sweep only. Desktop control: seven of nine 1440x900 captures byte-identical under a seeded Math.random, the two graph captures' settled SVG DOM identical (dependency graph: + 13 data-family attributes)."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "62c733ac8263e6413816cfb6d28e3b8a",
+      "size_bytes": 2982420,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "62d1e8d86056465ebcb5daced38e0a83",
+    "new": "62c733ac8263e6413816cfb6d28e3b8a",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "v4.0.3 pin move (62d1e8d8->62c733ac; phone layout + graph-label AA fills; no content change; layer untouched)"
+}

@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 12 Sep 2026 05:33:04 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2026 09:04:50 +0000</lastBuildDate>
+    <item>
+      <title>The library's pinned edition is now v4.0.3. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is the fit: the flagship now lays itself out for a phone — the navigation, the control rows, the three graph canvases and the examples' filters all inside a 360-pixel screen, where before the view tabs and the depth buttons ran off its edge — and the labels of the graph views were brought to contrast standard on the ground each is painted on, in both grounds. It ships as a new version rather than a re-pinned v4.0.2 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.</title>
+      <link>https://wuld.ink/changelog/#2026-09-12-library-v4-0-3</link>
+      <guid isPermaLink="false">wuld.ink:2026-09-12-library-v4-0-3</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+      <description>The library's pinned edition is now v4.0.3. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is the fit: the flagship now lays itself out for a phone — the navigation, the control rows, the three graph canvases and the examples' filters all inside a 360-pixel screen, where before the view tabs and the depth buttons ran off its edge — and the labels of the graph views were brought to contrast standard on the ground each is painted on, in both grounds. It ships as a new version rather than a re-pinned v4.0.2 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one. (Sections: /argument-library/, /library-about/)</description>
+    </item>
     <item>
       <title>The library's pinned edition is now v4.0.2. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is the frame: the flagship now carries the presentation layer the wings already had — the bezel, the magnifier, the sound, the tutorials, and a feedback form on every card — and its own colours were brought to contrast standard on both grounds. It ships as a new version rather than a re-pinned v4.0.1 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.</title>
       <link>https://wuld.ink/changelog/#2026-09-11-library-v4-0-2</link>

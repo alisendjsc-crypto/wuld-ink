@@ -34,7 +34,7 @@
       ["/recommendations/",  "Pointers",     "Recommendations",  "Film · books · sites · art — not exhaustive, not for sale"]
     ]],
     ["Reference", [
-      ["/argument-library/", "Catalogue",    "Argument Library", "EFIList v4.0.2 — library.wuld.ink"],
+      ["/argument-library/", "Catalogue",    "Argument Library", "EFIList v4.0.3 — library.wuld.ink"],
       ["/glossary/",         "Vocabulary",   "Glossary",         "Alogical Isness · Contextus Claudit · &c."],
       ["/search/",           "Find",         "Search",           "Every surface — client-side; queries never leave your browser"]
     ]],
