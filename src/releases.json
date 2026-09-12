@@ -1,5 +1,14 @@
 [
   {
+    "id": "2026-09-12-argument-library-film",
+    "date": "2026-09-12",
+    "summary": "A four-and-a-half-minute showcase film for the Argument Library joins the Watch page. It moves through the flagship the way a reader would — the eighty-two objections, the grades they carry, the dependency graph, the mechanism web, the argument flow — and it rebuts rather than advocates, which is the library's own rule. Everything measured to make it, down to the brightest single-frame change and the exact render it was cut from, is in the Apparatus. One objection names suicide and a sibling library concerns a right to die; nothing is urged either way.",
+    "sections": [
+      "/watch/",
+      "/argument-library/"
+    ]
+  },
+  {
     "id": "2026-09-12-library-v4-0-3",
     "date": "2026-09-12",
     "summary": "The library's pinned edition is now v4.0.3. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is the fit: the flagship now lays itself out for a phone — the navigation, the control rows, the three graph canvases and the examples' filters all inside a 360-pixel screen, where before the view tabs and the depth buttons ran off its edge — and the labels of the graph views were brought to contrast standard on the ground each is painted on, in both grounds. It ships as a new version rather than a re-pinned v4.0.2 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.",

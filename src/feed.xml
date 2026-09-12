@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 12 Sep 2026 09:04:50 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2026 22:21:06 +0000</lastBuildDate>
+    <item>
+      <title>A four-and-a-half-minute showcase film for the Argument Library joins the Watch page. It moves through the flagship the way a reader would — the eighty-two objections, the grades they carry, the dependency graph, the mechanism web, the argument flow — and it rebuts rather than advocates, which is the library's own rule. Everything measured to make it, down to the brightest single-frame change and the exact render it was cut from, is in the Apparatus. One objection names suicide and a sibling library concerns a right to die; nothing is urged either way.</title>
+      <link>https://wuld.ink/changelog/#2026-09-12-argument-library-film</link>
+      <guid isPermaLink="false">wuld.ink:2026-09-12-argument-library-film</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+      <description>A four-and-a-half-minute showcase film for the Argument Library joins the Watch page. It moves through the flagship the way a reader would — the eighty-two objections, the grades they carry, the dependency graph, the mechanism web, the argument flow — and it rebuts rather than advocates, which is the library's own rule. Everything measured to make it, down to the brightest single-frame change and the exact render it was cut from, is in the Apparatus. One objection names suicide and a sibling library concerns a right to die; nothing is urged either way. (Sections: /watch/, /argument-library/)</description>
+    </item>
     <item>
       <title>The library's pinned edition is now v4.0.3. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is the fit: the flagship now lays itself out for a phone — the navigation, the control rows, the three graph canvases and the examples' filters all inside a 360-pixel screen, where before the view tabs and the depth buttons ran off its edge — and the labels of the graph views were brought to contrast standard on the ground each is painted on, in both grounds. It ships as a new version rather than a re-pinned v4.0.2 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.</title>
       <link>https://wuld.ink/changelog/#2026-09-12-library-v4-0-3</link>
