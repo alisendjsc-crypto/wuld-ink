@@ -6,7 +6,14 @@
     <atom:link href="https://wuld.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Changes to wuld.ink — for posterity and transparency.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 08 Sep 2026 22:16:53 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2026 05:33:04 +0000</lastBuildDate>
+    <item>
+      <title>The library's pinned edition is now v4.0.2. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is the frame: the flagship now carries the presentation layer the wings already had — the bezel, the magnifier, the sound, the tutorials, and a feedback form on every card — and its own colours were brought to contrast standard on both grounds. It ships as a new version rather than a re-pinned v4.0.1 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.</title>
+      <link>https://wuld.ink/changelog/#2026-09-11-library-v4-0-2</link>
+      <guid isPermaLink="false">wuld.ink:2026-09-11-library-v4-0-2</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+      <description>The library's pinned edition is now v4.0.2. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is the frame: the flagship now carries the presentation layer the wings already had — the bezel, the magnifier, the sound, the tutorials, and a feedback form on every card — and its own colours were brought to contrast standard on both grounds. It ships as a new version rather than a re-pinned v4.0.1 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one. (Sections: /argument-library/, /library-about/)</description>
+    </item>
     <item>
       <title>The library's pinned edition is now v4.0.1. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed are display strings that had gone stale against the v4.0.0 cut: the masthead's counts, three methodology panels still saying eighty-one, and one line that went stale whenever a single entry was regraded. It ships as a new version rather than a re-pinned v4.0.0 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.</title>
       <link>https://wuld.ink/changelog/#2026-09-08-library-v4-0-1</link>

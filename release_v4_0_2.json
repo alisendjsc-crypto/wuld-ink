@@ -1,0 +1,30 @@
+{
+  "release": "v4.0.2",
+  "canon": {
+    "version": "38.1",
+    "bump": "NONE",
+    "invariant_block_changed": false,
+    "note": "v4.0.2: the presentation layer integrated into combined.html (WI-K314) and relabelled (WI-K316). NO CONTENT CHANGE: corpus, grading ledger and both graph literals byte-unchanged; the objections index re-vendors as a no-op (d034af15 both sides). What moved the pin: the two layer links + the .wz-stage wrapper, four body> rules rewritten as descendant rules, the START HERE precis in the three methodology panels (+4,024 B), the WCAG-AA colour remap at source (76 rule edits + template hooks; 0 of 5,680 HTML text elements per mode below 4.5:1), the four reading-mode buttons collapsed to two toggles, a null guard on the examples view's #counts, the wing-switcher inset by the bezel lip. Canon stays at 38.1 (invariants untouched)."
+  },
+  "git": {
+    "baseline": "efilist df4f785 atop 23fbbed (the pin move), relabel commit WI-K316 on top",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "combined.html 9d13359e/2,963,789 -> 62d1e8d86056465ebcb5daced38e0a83/2,974,039 (+10,250). Served == committed verified from the pin session's container (03:53 UTC 2026-09-12) and by the deploy block's read-back. Version string: combined.html carries none, so the relabel is a loci sweep only."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "62d1e8d86056465ebcb5daced38e0a83",
+      "size_bytes": 2974039,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "9d13359e305c6caa3ae64759f3dcc0e6",
+    "new": "62d1e8d86056465ebcb5daced38e0a83",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "v4.0.2 pin move (9d13359e->62d1e8d8; presentation layer integrated + AA remap + two toggles + precis; no content change; objections-index re-vendor verified a no-op)"
+}
