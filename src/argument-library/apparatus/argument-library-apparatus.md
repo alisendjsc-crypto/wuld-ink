@@ -89,7 +89,34 @@ One deliberate divergence: red **type** on cards uses `#b3241c` rather than the 
 
 Treatment is a grade (contrast 1.06, saturation 0.94, a small lift so the encoder has something to hold in the blacks), a vignette at `angle=PI/7`, a slow punch-in on held shots, dips to black between beats, three frames of chromatic split on hard cuts into footage, and grain at `alls=2` on **every take segment** — 19 of the film's 42 segments, the drawn room as well as the capture. (An earlier draft said the capture only; that was true before the room shots existed.) No luma strobe anywhere.
 
-Grain at this amplitude does not survive delivery, and that was measured rather than assumed. A controlled pair — identical frames, the only difference `noise=alls=2:allf=t+u` — was encoded VP9 at three rates and the residual isolated by subtraction: at 1.5 Mbps the grain's surviving correlation with the original is **0.264**, which is *worse than denoising the source outright* (0.282); at 3 Mbps, 0.525; at 5 Mbps, 0.665. It is in the master because the master is not the only thing the master is for. `alls=1` is byte-identical to no grain at all.
+Grain at this amplitude does not survive delivery, and that was measured rather than assumed. A
+controlled pair — identical frames, the only difference `noise=alls=2:allf=t+u` — is built, the
+candidates are transcoded from it, and the grain layer is isolated by subtraction. Correlation of
+the delivered grain with the original, re-measured 2026-09-12:
+
+| | r vs the grain |
+|---|---|
+| the grained master itself *(control: must read 1.000)* | **1.0000** |
+| VP9 5.0 Mbps | 0.597 |
+| VP9 3.0 Mbps | 0.529 |
+| VP9 1.5 Mbps | **0.443** |
+| `hqdn3d=16` — deliberate removal, the floor | 0.266 |
+| the ungrained build *(control: must read 0.000)* | **0.0000** |
+
+At 1.5 Mbps more than half the grain's structure is gone, and what a platform serves sits closer to
+a deliberately denoised picture than to the master. It is in the master anyway, because the master
+is not the only thing the master is for. `alls=1` is byte-identical to no grain at all — same md5,
+re-checked the same day.
+
+**An earlier version of this paragraph said 0.264 at 1.5 Mbps and called that *worse than denoising
+the source outright* (0.282). Both figures were wrong and the comparison was inverted**; at 1.5 Mbps
+VP9 retains two-thirds more of the grain than hqdn3d does. The defect was in the instrument's
+inputs rather than its arithmetic: two of the three VP9 candidates had been encoded from a different
+mezzanine than the one their residual was measured against — visible only in their file
+timestamps, which predated the reference pair by forty seconds — and the denoise control was
+averaged over eight sampled frames against the others' forty. The instrument now encodes its own
+candidates from its own source in a single run and prints the commands it used, so a candidate
+cannot predate its reference. This correction changes no figure that describes the film.
 
 ## Every claim on screen, and where it comes from
 
