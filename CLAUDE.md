@@ -4291,3 +4291,65 @@ back until it names 9d13359e three times and 62d1e8d8 not at all), then this str
 seventeen files are live claims and stay swept; the search index carries neither hash. Film seat: the apparatus page is as their
 second reissue left it; the pin the site serves is 62d1e8d8 and the film's is 9d13359e, which is what the page says. Register:
 cccxxxvi is the highest.
+
+## WI-K317 — under the magnifier the pointer is the camera; the flagship's sticky bar un-stuck while zoomed; NO PIN; cccxxxvii allocated
+
+TWO OF JOSIAH'S ITEMS FROM THE K316 EVENING, BUILT AS ONE LAYER DEPLOY. (1) "Increase camera panning ability when zoomed in -- if a
+user zooms in on a paragraph but the full paragraph is not visible, the camera panning strength should be just enough so that they
+can look from word to word to complete the paragraph but not off the web page and into the void." (2) The LIBRARY | EXAMPLES | CODA
+bar floating mid-panel under the magnifier "in a specific section of the methodology panel" and nowhere else he tried. Four efilist
+files in one commit by k317\K317_efilist_commit.ps1: the two packs (wuld-layer.css c06d23100aa628b02777736193f90d33 / 65,661 B,
+wuld-layer.js 895325023541685808f1ae332f0739d8 / 76,494 B), one clause in the README, the v4.0.2 Layer bullet in the CHANGELOG. The
+pin's blob is gated before and after; /combined stays 62d1e8d86056465ebcb5daced38e0a83 / 2,974,039 B.
+
+THE POINTER IS THE CAMERA. Unzoomed the pan stays what K314 made it: 6px toward the pointer, under the lip, the no-void guarantee
+by construction. Zoomed, 6px is nothing against a line three viewports wide, and the reader has no wheel for the rest of it --
+Shift+wheel is the zoom, and once the magnifier button is armed the plain wheel is too. Written down, "just enough to finish the
+paragraph but not into the void" is a statement about geometry, not a number: the pointer's place across the viewport now maps onto
+what the scaled stage hides past that edge. At the centre nothing moves; at the right edge everything past the right edge has come
+in; at the left edge everything past the left. The sweep IS the overflow, so no amplitude was chosen and none can be wrong, and the
+stage's edge can never cross the viewport's because the map's range is exactly the hidden extent. Vertically the same map, capped at
+(zoom - 1) times half the viewport per side, because the wheel still scrolls that axis and a page is tall. The 6px rides on top at
+every zoom, so the feel is continuous through 1.0. Three consequences had to be built with it. A wheel scroll with the pointer
+still moves the bounds and not the camera: the scroll handler clamps and never re-places, so nothing moves that the reader did not
+move. The pointer leaving the window keeps the camera where it was, because the reader who overshoots the window's edge while
+finishing a line must not have the line pulled away. And a zoom step taken under a large pan has to keep the point under the
+cursor under it: the K316 arithmetic divided the raw scroll by the old zoom, which was exact to 0.7px while the pan was 6px and
+would have slid the anchor 120px per step under a camera of 1,000; the camera's translation is composed outside the scale, so it
+comes off before the division, and after the step the camera is split between scroll and pan by a bisection on the monotone map
+so that the pan is what the pointer's model gives at that scroll and the next move changes nothing. Measured on the deploy bytes at
+2.476x: pointer at the right edge, the stage's right edge 0.5px inside the viewport's; at the left edge, 4.5px; a 3,513px-wide block
+readable end to end by the pointer alone (left edge 30.9, right edge 1,413.2 in a 1,440 viewport); 180 pointer positions across five
+scroll positions with no stage edge inside the viewport beyond the lip; a scroll to the top and to the bottom with the pointer
+parked at an edge, no void; a zoom step at 2.476 -> 2.773 taken with the pointer at the right edge, anchor drift 0.02px; mouseleave
+keeps the camera (-2,456.8px); Escape returns zoom 1, camera 0, scroll 0; at 1x the pan reads 5.98 / -5.98 / 3.58, the K314 numbers. The wing
+(veganism) obeys the same invariants at the same zoom. On the K316 bytes the same harness reads the camera at 6px with 1,058px
+still hidden, the block unfinishable, mouseleave resting to 0 -- the control it can have.
+
+THE STICKY BAR, EXPLAINED AND UN-STUCK. position:sticky is resolved by layout against the scrollport in the page's own coordinates;
+the stage's scale is applied at paint. Scrolled s under zoom k, the bar is placed at layout y = s and painted at k*s - s = (k-1)*s
+(plus k times its own `top`): it drifts DOWN the viewport as the reader scrolls, floats mid-panel until that passes the viewport's
+height, and is then simply below the fold -- seen in one section near the top of the page and "nowhere else" because the band of
+scroll positions in which it is visible is the top of the page. Measured on the K316 bytes at 1.974x scrolled 752: the bar 760.6px
+down, (k-1)*752 + k*14.4 = 760.7. One rule in wuld-vfx.css: while html.wz-zoomed, the flagship's .top-nav and the examples
+view's .sidebar (the only two sticky elements in the suite; the wings and the index carry none) are position:relative, so they
+scroll with the page like everything else; Escape restores the zoom and the stickiness with it. Measured: relative under zoom, the
+bar 635px above the viewport after the same scroll and gone after more; sticky again at its own top (14.4px, under the lip) after
+Escape; the sidebar likewise. The tour's magnifier step and the README's magnifier sentence say what the pointer now does; the
+CHANGELOG's v4.0.2 Layer bullet carries both items. tourcopy_gate: 15 claims, 0 unsourced. The K316 battery re-run on the deploy
+bytes: fbform, layerfix, navcheck, wingtoggle GREEN; the sound probe unchanged (the sfx part is byte-identical).
+    cccxxxvii allocated -- A CONTROL IS PROVEN BY ITS OWN ARITHMETIC, NOT BY A ROUND NUMBER. Twice tonight the control run
+    failed for the harness's reasons and not the code's: the expected drift was written as (k-1)*300 because the harness had
+    scrolled 300, when the zoom had already scrolled the page 452 to hold its anchor and the bar sat at (k-1)*752 + k*top; and
+    the old arithmetic's anchor error was expected to exceed 10px when it is proportional to the pan, which on the old bytes is
+    6px, so 0.7px was the correct failure. A control whose expectation is a number the author found convenient tests the
+    author's arithmetic; the expectation has to be derived from the state the harness actually produced and the mechanism the
+    old bytes actually have, or a passing control proves that the harness agrees with itself.
+
+STATE. library.wuld.ink: one commit atop 264c0f2 by K317_efilist_commit.ps1 (four base blobs at HEAD, four inputs by md5 and byte
+count, exactly four names staged, four index blobs by SHA, the pin's blob before and after, a gated push, both packs read back by
+md5 with status and bytes, /combined re-read as 62d1e8d8). wuld-ink: this stratum. Drop: k317\ holds the four files, the two
+blocks, this stratum, constants.json, the harness (k317.py) and its two runs. Carries: the flagship's phone layout (a pin move,
+its own kickoff -- PROMPT_flagship_mobile_pin_move.md in the drop, with the graph views' SVG label fills folded in so there is one
+pin move); the wings' mobile pass (Josiah: "refusal libraries already look good on mobile"); the tint hue; the wings' light-scheme
+silence; the library seat's K232 items; the film seat's files. Register: cccxxxvii is the highest.
