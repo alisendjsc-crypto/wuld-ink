@@ -3655,3 +3655,78 @@ Four 44x44 chin buttons with 6px gaps still fit at 320px, which is why the wordm
 Regression unmoved throughout: 25 contrast cells 0 below AA, CLS 0.000, no horizontal overflow at
 four widths, print suppressed, 16.70ms median at every tier. Hazard allocation: cccxxv, cccxxvi,
 cccxxvii and cccxxviii mine, all four on this seat's own work or its own instruments.
+
+## WI-K313d — the quality-check pass; cccxxix, a guard that lists what it fears; cccxxx, a status carried across a compaction is a claim
+
+ONE COMMIT LANDED, ONE DID NOT. ac609b6 removed the tutorial button from the one page that has no
+tutorial. Deploy 8 -- nine fixes from an adversarial review of the harnesses, run on a model switch at
+the operator's request -- never executed: PowerShell refused to parse it. Its commit message contained
+"stable for two frames" in double quotes inside a double-quoted string. Nothing was committed; the
+gates never ran; HEAD stayed at ac609b6. Reissued with the quotes removed and every deploy block in
+the drop audited for the same three characters.
+
+CCCXXIX. A GUARD WRITTEN AS A LIST OF THE HAZARDS ITS AUTHOR REMEMBERED CERTIFIES AGAINST EXACTLY
+THOSE. The block carried `assert '`' not in msg and '$' not in msg` -- the two characters that had
+bitten before -- and passed a message with four double quotes in it, the one character that actually
+terminates a PowerShell string. The guard was not wrong about backticks or dollars; it was silent
+about the thing it had not been told to fear, and its passing read as a clearance. The general rule:
+a denylist guard's PASS means "none of the listed things", never "safe". Where the grammar is known,
+guard against the grammar -- here, everything a double-quoted string cannot contain -- not against the
+incidents. Distinct from cccxxvii (an assertion whose needle cannot fail): this assertion could fail,
+and did not, because it was asking the wrong question.
+
+THE NINE FINDINGS, for the record, because a green suite tests what its author thought to test.
+    Two in COPY describing the operator's own apparatus, which no geometry test could see: the
+    mechanism-web tour said "click an edge" (117 nodes carry pointer cursors, 142 lines carry none),
+    called that web's edges relations between mechanisms (they join an objection to a mechanism),
+    and called the dependency graph's weak edges "low-confidence" (weak means the response survives
+    the premise's removal; confidence is what REVIEW and PROVISIONAL mark). Now under
+    tourcopy_gate.py: 15 claims, each tied to a verbatim panel sentence, read from the shipped source.
+    Two in GEOMETRY the harness sampled around: the wordmark clashed with the ? button from 421 to
+    476px -- the 420px hide threshold was derived for three chin buttons and never re-derived for
+    four, and chinfit sampled 1440/768/390/320 and nothing between; and two step-2 rings covered 77%
+    of the viewport because the selector guessed `.map-controls`, which is the zoom container.
+    One in TIMING, opposite to the last: smooth scroll's ~2-frame startup latency satisfied "stable
+    for two frames" before the scroll began -- frame log: loop out at 39ms, page moving until 221ms,
+    ring eased by its own CSS transition onto the row 130px above. The wings had passed by luck.
+    Instant scroll now, and no stability inside the first 150ms counts. A function wrong twice in
+    opposite directions is a function that was being tuned rather than understood.
+    Four smaller: a rapid-arrow race (generation counter); tour keys reaching the page's own
+    handlers; the sound layer repainting the mute button on every zoom tick (five writes, now zero);
+    the stage shim re-emitting @supports as @media; an unscoped .obj{position:relative}.
+
+CCCXXX. A STATUS CARRIED ACROSS A COMPACTION IS A CLAIM, NOT A FACT, AND IT DOES NOT RE-VERIFY
+ITSELF. For two days this seat told the operator that the apparatus page for the showcase film was
+"blocked on his endnotes". The endnotes had existed since Thursday evening -- apparatus_libshow.md v4,
+29,261 bytes, in the shared folder -- and the wuld.ink build pipeline for the page had existed since
+the 8th, with a gated ship script in this seat's own repo. The film seat noticed, from the other side.
+The block was inherited through a context compaction as a one-line summary and never measured again;
+every later status document repeated it, each citing the last. This is the project's own "a name is a
+claim, a hash is a fingerprint", applied to state: a status line survives compaction as text, and
+text does not know when it has gone stale. Before restating an inherited "blocked on X", look at X.
+    And the page itself was one version-mismatch deep, in the film seat's confessed shape: the kit
+    the ship script reads was v10 (two cuts); the current document is v4 (one cut); the ship script's
+    marker regex, the build tool's opening assertion and section map, and the verifier's table count
+    and cut count all encoded the two-cut design. The build tool as shipped could build NEITHER
+    document. All three reconciled; v4 builds through the real chain and the verifier reports GREEN
+    at 28 checks, with a control that turns it red. One input remains that this seat cannot honestly
+    produce -- the v4 render manifest, because a manifest reconstructed from the document is
+    circular and the gate exists to compare the two. Relayed.
+
+THE PRECIS, RATIFIED WITH REVISIONS BY THE LIBRARY SEAT (K232), AND THE GATE TIGHTENED. Their finding
+was structural: the source gate certified one sentence per LINE while the lines carried several claims
+each, so "20 lines, 0 unsourced" was true and misleading. Rebuilt per CLAUSE: 48 clauses, 21 lines, 0
+unsourced. The tightened gate then rejected six clauses of the ratified wording itself, which had been
+written before the gate existed -- the ratifier's own text failing the ratifier's requested test, which
+is not a criticism of either but is exactly what the test is for. Their staleness suspicion was placed
+on the wrong number: the Consent Impossibility figure (67 / 42 / 25 / 26%) is exact against the live
+v4.0.0 graph; the panel's LOAD-BEARING HIERARCHY table is what is stale, summing to 222 edges against
+255. Their guess at a panel gap was right: the mechanism-web panel nowhere states that explaining a
+position is not refuting it. Label START HERE, no id, insertion kit ready; it lands in the pin move.
+
+STATE. library.wuld.ink: seven commits local (9077927 .. ac609b6), deploy 8 reissued and pending,
+none pushed. wuld.ink: WI-K313b and c landed at 9ed8ac8 and 0077921; this stratum pending. The push
+block is gated on HEAD's subject in each repo and refuses if origin is ahead. The pin-move prompt now
+carries the stage-wrapper hazard, the precis insertion, the flagship feedback shape, the pre-existing
+top-nav error, and a note that the apparatus quotes the pin the move will supersede. Hazard
+allocation: cccxxix and cccxxx mine; cccxxx is the one to reread before the next handoff.
