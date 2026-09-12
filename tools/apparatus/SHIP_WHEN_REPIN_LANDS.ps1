@@ -1,11 +1,13 @@
-# The Argument Library Apparatus - ship script.
+# The Argument Library Apparatus - ship script, v4.2 (2026-09-12).
 #
-# HOLD: this refuses to run while the page still quotes the PRE-SWEEP pin
-# (md5 e654eabd... / 2,963,752 bytes). Handout section 5: the library is mid re-pin;
-# when it lands the video seat reissues argument-library-apparatus.md with a new hash,
-# byte count, frame count and duration. DROP THAT FILE IN FIRST, then run this.
+# Builds /argument-library/apparatus/ from the kit's Markdown (build -> wrap -> gate), commits,
+# regenerates sitemap + search index, pushes, and reads the served page back against the
+# committed bytes. v4.2 can RE-SHIP a reissued document: the first ship (d60ec13) assumed every
+# file was new and would FAIL on a document-only reissue ("staged 2 want 5", "sitemap want +1").
+# Gates: HEAD == origin/main; the shared wrap tool equals its committed blob; the marker's md5 is
+# present in the render manifest (presence only, no parity - see the note below); verifier GREEN.
 #
-# The page is BUILT here, not copied: its bytes depend on the reissued Markdown.
+# The page is BUILT here, not copied: its bytes depend on the Markdown.
 & {
   $repo = "C:\Users\y_m_a\Projects\wuld-ink"
   $k    = "C:\Users\y_m_a\Downloads\apparatus_libshow"
@@ -94,20 +96,31 @@
 
   # THE HOLD. Refuses while the page still quotes the pre-sweep pin.
   python tools\apparatus\verify_libshow_apparatus.py --md "src\argument-library\apparatus\argument-library-apparatus.md" --page "src\argument-library\apparatus\index.html" --dot "src\illogically-is\dot\apparatus\index.html" --require-repin
-  if ($LASTEXITCODE -ne 0) { Write-Host ""; Write-Host "HELD - the Markdown is still the pre-sweep one. Drop in the seat's reissue and re-run."; return }
-  Write-Host "OK  apparatus gate GREEN, re-pin confirmed"
+  if ($LASTEXITCODE -ne 0) { Write-Host ""; Write-Host "HELD - the verifier is not GREEN on this Markdown (output above). Nothing committed; src/ carries the failed build until the next run overwrites it."; return }
+  Write-Host "OK  apparatus gate GREEN"
 
-  # phase 1 - the page must exist in git before gen_sitemap.py can date it
-  git add "src/argument-library/apparatus/index.html"
-  git add "src/argument-library/apparatus/argument-library-apparatus.md"
-  git add "tools/apparatus/apply_wuld_wrap.py"
-  git add "tools/apparatus/build_libshow_apparatus.py"
-  git add "tools/apparatus/verify_libshow_apparatus.py"
-  $staged = @(git diff --cached --name-only).Count
-  if ($staged -ne 5) { Write-Host "FAIL phase-1 staged $staged want 5"; git diff --cached --name-only; return }
-  git commit -m "The Argument Library Apparatus: /argument-library/apparatus/ built from the video seat's Markdown (build + wrap + gate), shipped after the library re-pin; NO PIN"
+  # phase 1 - the page must exist in git before gen_sitemap.py can date it.
+  # Stage by name, then check the staged SET: everything staged must be one of the five, and the
+  # two page files must be among them. Tools that did not change stage nothing, and that is fine;
+  # a document that did not change means there is nothing to ship, and that is a FAIL.
+  $five = @("src/argument-library/apparatus/index.html",
+            "src/argument-library/apparatus/argument-library-apparatus.md",
+            "tools/apparatus/apply_wuld_wrap.py",
+            "tools/apparatus/build_libshow_apparatus.py",
+            "tools/apparatus/verify_libshow_apparatus.py")
+  foreach ($f in $five) { git add -- $f }
+  $staged = @(git diff --cached --name-only)
+  $stray  = @($staged | Where-Object { $five -notcontains $_ })
+  if ($stray.Count) { Write-Host ("FAIL phase-1 staged a path outside the five: " + ($stray -join ", ")); git reset -q; return }
+  if ($staged -notcontains $five[1]) { Write-Host "FAIL the Markdown in the repo equals HEAD - nothing to ship (is the kit's page\argument-library-apparatus.md the reissue?)"; git reset -q; return }
+  if ($staged -notcontains $five[0]) { Write-Host "FAIL the built page equals HEAD although the Markdown changed - the build did not take"; git reset -q; return }
+  $mdMd5 = Md5 "src\argument-library\apparatus\argument-library-apparatus.md"
+  $first = -not (git ls-tree --name-only HEAD -- "src/argument-library/apparatus/index.html")
+  if ($first) { $msg = "The Argument Library Apparatus: /argument-library/apparatus/ built from the video seat Markdown (build + wrap + gate); NO PIN" }
+  else        { $msg = "The Argument Library Apparatus: reissued from the video seat Markdown " + $mdMd5 + " (build + wrap + gate); NO PIN" }
+  git commit -m $msg
   if ($LASTEXITCODE -ne 0) { Write-Host "FAIL commit 1"; return }
-  Write-Host "OK  phase 1 committed (5 files)"
+  Write-Host ("OK  phase 1 committed (" + $staged.Count + " of 5 files changed: " + ($staged -join ", ") + ")")
 
   # phase 2 - the two generated files, which need phase 1 in history
   # count BEFORE the regen: this ship waits on the re-pin, so an absolute target would
@@ -118,28 +131,43 @@
   python tools\search-index\build_index.py --src src --out src\search-index.json
   if ($LASTEXITCODE -ne 0) { Write-Host "FAIL search index"; return }
   $locs = @(Select-String -Path "src\sitemap.xml" -Pattern "<loc>" -SimpleMatch).Count
-  if ($locs -ne $before + 1) { Write-Host "FAIL sitemap went $before -> $locs, want +1 exactly"; return }
+  $wantDelta = if ($first) { 1 } else { 0 }
+  if ($locs -ne $before + $wantDelta) { Write-Host "FAIL sitemap went $before -> $locs, want +$wantDelta exactly"; return }
   if (-not (Select-String -Path "src\sitemap.xml" -Pattern "argument-library/apparatus/" -SimpleMatch)) { Write-Host "FAIL page not in sitemap"; return }
   Write-Host "OK  sitemap $before -> $locs, page listed; search index regenerated"
 
-  git add "src/sitemap.xml"
-  git add "src/search-index.json"
-  $staged2 = @(git diff --cached --name-only).Count
-  if ($staged2 -ne 2) { Write-Host "FAIL phase-2 staged $staged2 want 2"; git diff --cached --name-only; return }
-  git commit -m "sitemap + search index regenerated for /argument-library/apparatus/ (66 -> 67 locs); NO PIN"
-  if ($LASTEXITCODE -ne 0) { Write-Host "FAIL commit 2"; return }
+  git add -- "src/sitemap.xml"
+  git add -- "src/search-index.json"
+  $staged2 = @(git diff --cached --name-only)
+  $stray2  = @($staged2 | Where-Object { @("src/sitemap.xml","src/search-index.json") -notcontains $_ })
+  if ($stray2.Count) { Write-Host ("FAIL phase-2 staged a path outside the two: " + ($stray2 -join ", ")); git reset -q; return }
+  if ($staged2.Count -eq 0) { Write-Host "note: sitemap and search index unchanged by this reissue - no second commit" }
+  else {
+    git commit -m ("sitemap + search index regenerated for /argument-library/apparatus/ (" + $before + " -> " + $locs + " locs); NO PIN")
+    if ($LASTEXITCODE -ne 0) { Write-Host "FAIL commit 2"; return }
+    Write-Host ("OK  phase 2 committed (" + ($staged2 -join ", ") + ")")
+  }
 
   git config http.postBuffer 524288000
   git push origin main
   if ($LASTEXITCODE -ne 0) { Write-Host "FAIL push"; return }
   Write-Host "OK  pushed"
 
-  Start-Sleep -Seconds 75
-  $t = Join-Path $env:TEMP "apv"
+  # read-back: the served page must be the committed page, byte for byte. Cloudflare Pages serves
+  # static files unchanged, so the md5s agree once the build has deployed. (v4.1 grepped "RESULT
+  # OK" here - a v10 phrase v4 never carried, so it printed RESULT=0 against a "want 1".)
+  Write-Host "waiting 90 s for Cloudflare Pages, then comparing the served page to the committed one..."
+  Start-Sleep -Seconds 90
+  $t = Join-Path $env:TEMP "apv.html"
   curl.exe -s -o $t "https://wuld.ink/argument-library/apparatus/"
+  $served = Md5 $t
+  $local  = Md5 "src\argument-library\apparatus\index.html"
   $h1 = @(Select-String -Path $t -Pattern "The Argument Library" -SimpleMatch).Count
-  $h2 = @(Select-String -Path $t -Pattern "RESULT OK" -SimpleMatch).Count
   $h3 = @(Select-String -Path $t -Pattern "e654eabd" -SimpleMatch).Count
-  Write-Host "    served page: title=$h1  RESULT=$h2  stale-pin=$h3   (want >=1 1 0)"
-  Write-Host "Apparatus done. The film itself is still unlinked - that line goes in when it is public."
+  Write-Host ("    served md5 " + $served)
+  Write-Host ("    local  md5 " + $local)
+  Write-Host "    title=$h1  stale-pin=$h3   (want >=1 0)"
+  if ($served -eq $local) { Write-Host "OK  served page == committed page. Apparatus reissue live." }
+  else { Write-Host "served page differs from the committed one - Cloudflare is probably still building; re-check in two minutes:  curl.exe -s https://wuld.ink/argument-library/apparatus/ | Select-String 're-measured 2026'" }
+  Write-Host "The film is not linked from the page and the verifier asserts that (handout section 6); linking it is a handout change, not a ship-script change."
 }
