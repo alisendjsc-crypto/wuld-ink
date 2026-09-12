@@ -1,0 +1,71 @@
+{
+ "stratum": "WI-K317",
+ "register_highest": "cccxxxvii",
+ "pin": {
+  "md5": "62d1e8d86056465ebcb5daced38e0a83",
+  "bytes": 2974039,
+  "blob": "eab9c7885fbc58f4b6a4f2d16d10408e4ab02a36",
+  "version": "v4.0.2",
+  "moved": false
+ },
+ "efilist_base_blobs": {
+  "wuld-layer.css": "3c9f7bd827783e41d443218978e3485806860364",
+  "wuld-layer.js": "554e5c9a8ad6a079ba5f0a430526b011d28c2c53",
+  "README.md": "304a3fa40c216ba73f962d182d32a79bf1661a8c",
+  "CHANGELOG.md": "06b1062991d2590bcb8bf48c969f3c56758cf741"
+ },
+ "efilist_new_blobs": {
+  "wuld-layer.css": "d853ddefaa7e2e23063862755e4d82aa5bccbb52",
+  "wuld-layer.js": "609ce6a6487cd7ef1b02040b0c04d4b0bf7c9f48",
+  "README.md": "b330a19a9ea6a3e1129fac4e47a01880ae324f50",
+  "CHANGELOG.md": "58e1a55130751878052f5a7324c3d9a922f494db"
+ },
+ "wuld_ink_log": {
+  "base_bytes": 1272580,
+  "base_md5": "afff906cf4a8f258c1983d4552b1e452",
+  "predicted_bytes": 1279820,
+  "predicted_md5": "b47c58edcb7f82a37db44e4cd2830188"
+ },
+ "files": {
+  "wuld-layer.css": {
+   "bytes": 65661,
+   "md5": "c06d23100aa628b02777736193f90d33"
+  },
+  "wuld-layer.js": {
+   "bytes": 76494,
+   "md5": "895325023541685808f1ae332f0739d8"
+  },
+  "README.md": {
+   "bytes": 16379,
+   "md5": "4c9a61597b793b48faddcf5c4e391e54"
+  },
+  "CHANGELOG.md": {
+   "bytes": 24635,
+   "md5": "ce4591c6d38b116883b4026d37986e6a"
+  },
+  "K317_efilist_commit.ps1": {
+   "bytes": 11232,
+   "md5": "ac9de532aa0dfe7860546408b1045a1c"
+  },
+  "WI-K317_stratum.txt": {
+   "bytes": 7240,
+   "md5": "eb4bbacd425858183c450374dda89387"
+  },
+  "WI-K317_commit.ps1": {
+   "bytes": 7721,
+   "md5": "8be9478554bc04dd3dd4026736631fe5"
+  },
+  "k317.py": {
+   "bytes": 16083,
+   "md5": "a00d6bcaf22dfdbdb8044e678132a51a"
+  },
+  "k317_run_new.txt": {
+   "bytes": 2556,
+   "md5": "c7693c2ab80c6d2e94cc7e95c4d536ad"
+  },
+  "k317_run_control.txt": {
+   "bytes": 2490,
+   "md5": "9e413312581cbe235e99cdcd23ebfde0"
+  }
+ }
+}

@@ -243,3 +243,34 @@ payload copies (layer parts and packs, `combined.html`), screenshots, and the Ma
 | `measurement/k316/wing_collapse.py` | 2026-09-11 | !/usr/bin/env python3 |
 | `measurement/k316/wingtoggle.py` | 2026-09-11 | wingtoggle.py -- the wings' and the index's two mode toggles: each click flips one axis, the four modes |
 
+
+## Filed 2026-09-12 (WI-K318) — the phone pin move, and K317's drop
+
+The v4.0.2 → v4.0.3 pin move's drop (`k318\`): the kickoff (spent), the stratum, the release manifest, the three blocks that do not gate this filing (the efilist pin move, the wuld-ink relabel, the log), the harness (the phone probe, the SVG census with the painted ground, the exact-once edit script, the desktop-identity control and its DOM comparer, the contact-sheet and README captures, the layer-at-phone check, this assembler) and a condensed record of its runs; with it K317's drop, which was never filed (its probe, its harness and run, its constants, its two blocks). Left in the drop on purpose: the payloads (`combined.html` and the five edited files, the `.b64` capture), the screenshots and contact sheets, `P5_STATE.md` and `TODO_after_the_pin_move.md`, and the archive block itself.
+
+| file | date | first line |
+|---|---|---|
+| `measurement/k318_phone_pinmove/hz.py` | 2026-09-12 | hz.py -- shared harness for the flagship pin move. |
+| `measurement/k318_phone_pinmove/probe.py` | 2026-09-12 | probe.py -- phone-width layout probe for the flagship (WI-K318 pin move v4.0.2 -> v4.0.3). |
+| `measurement/k318_phone_pinmove/census_svg.py` | 2026-09-12 | census_svg.py -- the graph views' SVG <text> labels against their painted ground (TODO 17 / K314 follow-up). |
+| `measurement/k318_phone_pinmove/k318_edit.py` | 2026-09-12 | k318_edit.py -- the v4.0.3 edit to combined.html: the phone block, the graph-view fit, the SVG label fills. |
+| `measurement/k318_phone_pinmove/k318_texts.py` | 2026-09-12 | k318_texts.py -- the v4.0.3 text edits: README.md, CHANGELOG.md, the corpus JSON's version field, the front door's badge. |
+| `measurement/k318_phone_pinmove/shots_ctl.py` | 2026-09-12 | shots_ctl.py -- the nine README captures at 1440x900 as a DESKTOP-IDENTITY CONTROL (WI-K318). |
+| `measurement/k318_phone_pinmove/domcmp.py` | 2026-09-12 | domcmp.py -- compare two settled graph-SVG DOM dumps: the non-numeric skeleton must be identical (every element, attribute, |
+| `measurement/k318_phone_pinmove/shots_phone.py` | 2026-09-12 | shots_phone.py -- the acceptance screenshots (WI-K318 section 3.4): 390x844 and 360x780, dark then cream, six states each |
+| `measurement/k318_phone_pinmove/shots_readme_dep.py` | 2026-09-12 | shots_readme_dep.py -- the README's dependency-graph capture from the v4.0.3 bytes: k316/shots.py's sequence for that one |
+| `measurement/k318_phone_pinmove/layerphone.py` | 2026-09-12 | layerphone.py -- the layer at phone width (WI-K318 section 3.3): three things the brief said to fix ONLY if found. |
+| `measurement/k318_phone_pinmove/k318_archive.py` | 2026-09-12 | k318_archive.py -- assemble the archive staging set for WULD_archive_commit.ps1 (WI-K318): the K318 harness and run record, |
+| `measurement/k318_phone_pinmove/k318_runs.txt` | 2026-09-12 | k318_runs.txt -- the WI-K318 harness runs, condensed (full JSON in the session container; the numbers here are the ones the stratum cites). |
+| `measurement/k317/k317.py` | 2026-09-12 | k317.py -- the sticky bar under the magnifier (TODO 22) and the pointer-as-camera (TODO 23), measured. |
+| `measurement/k317/mobileprobe.py` | 2026-09-12 | mobileprobe.py -- a first look at the flagship and a wing at phone width, for the mobile kickoff brief. |
+| `measurement/k317/mobileprobe_run.txt` | 2026-09-12 | flagship tier 2: {"cw": 390, "sw": 539, "overflow": 149, "wide": ["button#vbtn-dep.view-btn right=411", "button#vbtn-map1.view-btn right=533 |
+| `measurement/k317/constants.json` | 2026-09-12 | { |
+| `ship-scripts/k317_efilist_commit.ps1` | 2026-09-12 | WI-K317, efilist only, NO PIN. Deploys four files to library.wuld.ink: |
+| `ship-scripts/k317_commit.ps1` | 2026-09-12 | Canonical log: WI-K317 appended and committed, then a gated push. wuld-ink only. |
+| `ship-scripts/k318_efilist_commit.ps1` | 2026-09-12 | WI-K318, efilist only: THE PIN MOVE v4.0.2 -> v4.0.3 (the phone layout + the graph views' SVG label fills). |
+| `ship-scripts/k318_wuld_v403_relabel_commit.ps1` | 2026-09-12 | wuld.ink: the v4.0.3 RELABEL of the library pin (WI-K318). wuld-ink only. Run AFTER K318_efilist_commit.ps1 has printed |
+| `ship-scripts/k318_commit.ps1` | 2026-09-12 | Canonical log: WI-K318 appended and committed, then a gated push. wuld-ink only. |
+| `kickoffs/k318_prompt_flagship_phone_pin_move.md` | 2026-09-12 | > **SPENT — 2026-09-12, WI-K318.** This prompt has been run. Do not open a second pin-move session from it; the pin is v4.0.3 / 62c733ac. |
+| `kickoffs/k318_stratum.txt` | 2026-09-12 | WI-K318 — THE SECOND PIN MOVE OF SEPTEMBER: the flagship laid out for a phone, the graph views' SVG labels to AA on their painted ground; v4 |
+| `kickoffs/k318_release_v4_0_3.json` | 2026-09-12 | { |

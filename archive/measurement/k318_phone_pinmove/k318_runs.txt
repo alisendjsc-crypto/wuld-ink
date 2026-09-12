@@ -1,0 +1,183 @@
+k318_runs.txt -- the WI-K318 harness runs, condensed (full JSON in the session container; the numbers here are the ones the stratum cites).
+pin = combined.html 62d1e8d86056465ebcb5daced38e0a83 / 2,974,039 B (v4.0.2); new = 62c733ac8263e6413816cfb6d28e3b8a / 2,982,420 B (v4.0.3)
+
+== probe.py PIN: mobile contexts (is_mobile, has_touch, dsf 2), tier 2, tour suppressed; overflow = scrollWidth - clientWidth; offenders = visible element rects past clientWidth; <36h = interactive elements under 36px tall; unreach = controls that cannot be tapped: PIN run = centre outside the viewport at scroll 0 (at 390 that is #vbtn-map1 at cx 472 and .rsi-methodology-btn at cx 493, past the right edge); NEW run = centre not reachable by a vertical scroll, or not hit-testing to itself
+  390x844 standard       library  overflow= 149 offenders= 12 taps=107 <36h= 96 unreach=2  top offenders: ['button.rsi-methodology-btn r=539.4', 'div.wz-frame r=539', 'div.wz-chin r=539']
+  390x844 standard       open     overflow= 151 offenders= 13 taps=116 <36h=105 unreach=2  top offenders: ['button.rsi-methodology-btn r=541', 'div.wz-frame r=539', 'div.wz-chin r=539']
+  390x844 standard       rsi      overflow= 151 offenders= 13 taps=107 <36h= 96 unreach=2  top offenders: ['button.rsi-methodology-btn r=541', 'div.wz-frame r=541', 'div.wz-chin r=541']
+  390x844 standard       map      overflow= 145 offenders=140 taps= 21 <36h= 11 unreach=1  top offenders: ['g r=734.6', 'g r=734.6', 'g r=734.6']
+  390x844 standard       dep      overflow= 145 offenders= 50 taps= 21 <36h= 10 unreach=1  top offenders: ['div.wz-frame r=535', 'div.wz-chin r=535', 'div.wz-vig r=535']
+  390x844 standard       map1     overflow= 369 offenders= 16 taps= 20 <36h= 10 unreach=2  top offenders: ['div.wz-frame r=759', 'div.wz-chin r=759', 'div.wz-vig r=759']
+  390x844 standard       map1sel  overflow= 369 offenders=204 taps= 20 <36h= 10 unreach=2  top offenders: ['div.wz-frame r=759', 'div.wz-chin r=759', 'div.wz-vig r=759']
+  390x844 standard       rwe      overflow=  43 offenders= 13 taps=428 <36h=223 unreach=1  top offenders: ['span.v r=482.3', 'span.v r=478.4', 'div.wz-frame r=433']
+  390x844 standard       coda     overflow=  39 offenders=  9 taps= 11 <36h=  5 unreach=1  top offenders: ['div.wz-frame r=429', 'div.wz-chin r=429', 'div.wz-vig r=429']
+  390x844 high-contrast  library  overflow= 149 offenders=  9 taps=107 <36h= 96 unreach=2  top offenders: ['button.rsi-methodology-btn r=539.4', 'div.wz-frame r=539', 'div.wz-chin r=539']
+  390x844 high-contrast  open     overflow= 151 offenders= 10 taps=116 <36h=105 unreach=2  top offenders: ['button.rsi-methodology-btn r=541', 'div.wz-frame r=539', 'div.wz-chin r=539']
+  390x844 high-contrast  rsi      overflow= 151 offenders= 10 taps=107 <36h= 96 unreach=2  top offenders: ['button.rsi-methodology-btn r=541', 'div.wz-frame r=541', 'div.wz-chin r=541']
+  390x844 high-contrast  map      overflow= 145 offenders=148 taps= 21 <36h= 11 unreach=1  top offenders: ['g r=803.3', 'g r=803.3', 'g r=803.3']
+  390x844 high-contrast  dep      overflow= 145 offenders= 50 taps= 21 <36h= 10 unreach=1  top offenders: ['div.wz-frame r=535', 'div.wz-chin r=535', 'div.wz-vig r=535']
+  390x844 high-contrast  map1     overflow= 369 offenders= 16 taps= 20 <36h= 10 unreach=2  top offenders: ['div.wz-frame r=759', 'div.wz-chin r=759', 'div.wz-vig r=759']
+  390x844 high-contrast  map1sel  overflow= 369 offenders=204 taps= 20 <36h= 10 unreach=2  top offenders: ['div.wz-frame r=759', 'div.wz-chin r=759', 'div.wz-vig r=759']
+  390x844 high-contrast  rwe      overflow=  43 offenders= 10 taps=428 <36h=223 unreach=1  top offenders: ['span.v r=482.3', 'span.v r=478.4', 'div.wz-frame r=433']
+  390x844 high-contrast  coda     overflow=  39 offenders=  9 taps= 11 <36h=  5 unreach=1  top offenders: ['div.wz-frame r=429', 'div.wz-chin r=429', 'div.wz-vig r=429']
+  360x780 standard       library  overflow= 179 offenders= 13 taps=107 <36h= 96 unreach=3  top offenders: ['button.rsi-methodology-btn r=539.2', 'div.wz-frame r=539', 'div.wz-chin r=539']
+  360x780 standard       open     overflow= 181 offenders= 14 taps=116 <36h=105 unreach=3  top offenders: ['button.rsi-methodology-btn r=541.1', 'div.wz-frame r=539', 'div.wz-chin r=539']
+  360x780 standard       rsi      overflow= 181 offenders= 14 taps=107 <36h= 96 unreach=3  top offenders: ['button.rsi-methodology-btn r=541.1', 'div.wz-frame r=541', 'div.wz-chin r=541']
+  360x780 standard       map      overflow= 175 offenders=144 taps= 21 <36h= 11 unreach=1  top offenders: ['g r=713.2', 'g r=713.2', 'g r=713.2']
+  360x780 standard       dep      overflow= 175 offenders= 52 taps= 21 <36h= 10 unreach=1  top offenders: ['div.wz-frame r=535', 'div.wz-chin r=535', 'div.wz-vig r=535']
+  360x780 standard       map1     overflow= 399 offenders= 19 taps= 20 <36h= 10 unreach=2  top offenders: ['div.wz-frame r=759', 'div.wz-chin r=759', 'div.wz-vig r=759']
+  360x780 standard       map1sel  overflow= 399 offenders=226 taps= 20 <36h= 10 unreach=2  top offenders: ['div.wz-frame r=759', 'div.wz-chin r=759', 'div.wz-vig r=759']
+  360x780 standard       rwe      overflow=  73 offenders= 15 taps=428 <36h=200 unreach=1  top offenders: ['span.v r=482.4', 'span.v r=478.6', 'div.wz-frame r=433']
+  360x780 standard       coda     overflow=  68 offenders= 10 taps= 11 <36h=  5 unreach=1  top offenders: ['div.wz-frame r=428', 'div.wz-chin r=428', 'div.wz-vig r=428']
+  360x780 high-contrast  library  overflow= 179 offenders= 10 taps=107 <36h= 96 unreach=3  top offenders: ['button.rsi-methodology-btn r=539.2', 'div.wz-frame r=539', 'div.wz-chin r=539']
+  360x780 high-contrast  open     overflow= 181 offenders= 11 taps=116 <36h=105 unreach=3  top offenders: ['button.rsi-methodology-btn r=541.1', 'div.wz-frame r=539', 'div.wz-chin r=539']
+  360x780 high-contrast  rsi      overflow= 181 offenders= 11 taps=107 <36h= 96 unreach=3  top offenders: ['button.rsi-methodology-btn r=541.1', 'div.wz-frame r=541', 'div.wz-chin r=541']
+  360x780 high-contrast  map      overflow= 175 offenders=160 taps= 21 <36h= 11 unreach=1  top offenders: ['g r=730', 'g r=730', 'g r=730']
+  360x780 high-contrast  dep      overflow= 175 offenders= 52 taps= 21 <36h= 10 unreach=1  top offenders: ['div.wz-frame r=535', 'div.wz-chin r=535', 'div.wz-vig r=535']
+  360x780 high-contrast  map1     overflow= 399 offenders= 19 taps= 20 <36h= 10 unreach=2  top offenders: ['div.wz-frame r=759', 'div.wz-chin r=759', 'div.wz-vig r=759']
+  360x780 high-contrast  map1sel  overflow= 399 offenders=226 taps= 20 <36h= 10 unreach=2  top offenders: ['div.wz-frame r=759', 'div.wz-chin r=759', 'div.wz-vig r=759']
+  360x780 high-contrast  rwe      overflow=  73 offenders= 12 taps=428 <36h=200 unreach=1  top offenders: ['span.v r=482.4', 'span.v r=478.6', 'div.wz-frame r=433']
+  360x780 high-contrast  coda     overflow=  68 offenders= 10 taps= 11 <36h=  5 unreach=1  top offenders: ['div.wz-frame r=428', 'div.wz-chin r=428', 'div.wz-vig r=428']
+  430x932 standard       library  overflow= 110 offenders= 11 taps=107 <36h= 98 unreach=2  top offenders: ['div.wz-frame r=540', 'div.wz-chin r=540', 'div.wz-vig r=540']
+  430x932 standard       open     overflow= 111 offenders= 12 taps=116 <36h=107 unreach=2  top offenders: ['button.rsi-methodology-btn r=540.9', 'div.wz-frame r=540', 'div.wz-chin r=540']
+  430x932 standard       rsi      overflow= 111 offenders= 12 taps=107 <36h= 98 unreach=2  top offenders: ['div.wz-frame r=541', 'div.wz-chin r=541', 'div.wz-vig r=541']
+  430x932 standard       map      overflow= 104 offenders=122 taps= 21 <36h= 13 unreach=1  top offenders: ['g r=858.9', 'g r=858.9', 'g r=858.9']
+  430x932 standard       dep      overflow= 104 offenders= 42 taps= 21 <36h= 12 unreach=1  top offenders: ['button#vbtn-map1.view-btn r=534.4', 'div.wz-frame r=534', 'div.wz-chin r=534']
+  430x932 standard       map1     overflow= 328 offenders= 15 taps= 20 <36h= 12 unreach=1  top offenders: ['div#m1-detail-panel.m1-detail-panel r=758.4', 'div.wz-frame r=758', 'div.wz-chin r=758']
+  430x932 standard       map1sel  overflow= 328 offenders=149 taps= 20 <36h= 12 unreach=1  top offenders: ['div#m1-detail-panel.m1-detail-panel r=758.4', 'div.wz-frame r=758', 'div.wz-chin r=758']
+  430x932 standard       rwe      overflow=   3 offenders= 10 taps=428 <36h=281 unreach=0  top offenders: ['span.v r=482.1', 'span.v r=478.3', 'div.mode-toggle r=433.1']
+  430x932 standard       coda     overflow=   1 offenders=  6 taps= 11 <36h=  5 unreach=0  top offenders: ['div.wz-stage r=431.2', 'div.wz-frame r=431', 'div.wz-chin r=431']
+  430x932 high-contrast  library  overflow= 110 offenders=  8 taps=107 <36h= 98 unreach=2  top offenders: ['div.wz-frame r=540', 'div.wz-chin r=540', 'button.rsi-methodology-btn r=539.7']
+  430x932 high-contrast  open     overflow= 111 offenders=  9 taps=116 <36h=107 unreach=2  top offenders: ['button.rsi-methodology-btn r=540.9', 'div.wz-frame r=540', 'div.wz-chin r=540']
+  430x932 high-contrast  rsi      overflow= 111 offenders=  9 taps=107 <36h= 98 unreach=2  top offenders: ['div.wz-frame r=541', 'div.wz-chin r=541', 'button.rsi-methodology-btn r=540.9']
+  430x932 high-contrast  map      overflow= 104 offenders=117 taps= 21 <36h= 13 unreach=1  top offenders: ['g r=744.1', 'g r=744.1', 'g r=744.1']
+  430x932 high-contrast  dep      overflow= 104 offenders= 44 taps= 21 <36h= 12 unreach=1  top offenders: ['button#vbtn-map1.view-btn r=534.4', 'div.wz-frame r=534', 'div.wz-chin r=534']
+  430x932 high-contrast  map1     overflow= 328 offenders= 15 taps= 20 <36h= 12 unreach=1  top offenders: ['div#m1-detail-panel.m1-detail-panel r=758.4', 'div.wz-frame r=758', 'div.wz-chin r=758']
+  430x932 high-contrast  map1sel  overflow= 328 offenders=149 taps= 20 <36h= 12 unreach=1  top offenders: ['div#m1-detail-panel.m1-detail-panel r=758.4', 'div.wz-frame r=758', 'div.wz-chin r=758']
+  430x932 high-contrast  rwe      overflow=   3 offenders=  7 taps=428 <36h=281 unreach=0  top offenders: ['span.v r=482.1', 'span.v r=478.3', 'div.mode-toggle r=433.1']
+  430x932 high-contrast  coda     overflow=   1 offenders=  6 taps= 11 <36h=  5 unreach=0  top offenders: ['div.wz-stage r=431.2', 'div.wz-frame r=431', 'div.wz-chin r=431']
+  wing-veg  390x844 overflow=0 offenders=0 taps=21 <36h=17
+  wing-veg  360x780 overflow=0 offenders=0 taps=21 <36h=17
+  wing-veg  430x932 overflow=0 offenders=0 taps=21 <36h=17
+  wing-abo  390x844 overflow=0 offenders=0 taps=21 <36h=17
+  wing-abo  360x780 overflow=0 offenders=0 taps=21 <36h=17
+  wing-abo  430x932 overflow=0 offenders=0 taps=21 <36h=17
+  wing-ant  390x844 overflow=0 offenders=0 taps=21 <36h=17
+  wing-ant  360x780 overflow=0 offenders=0 taps=21 <36h=17
+  wing-ant  430x932 overflow=0 offenders=0 taps=21 <36h=17
+  wing-rtd  390x844 overflow=0 offenders=0 taps=21 <36h=17
+  wing-rtd  360x780 overflow=0 offenders=0 taps=21 <36h=17
+  wing-rtd  430x932 overflow=0 offenders=0 taps=21 <36h=17
+  wing-tra  390x844 overflow=0 offenders=0 taps=21 <36h=17
+  wing-tra  360x780 overflow=0 offenders=0 taps=21 <36h=17
+  wing-tra  430x932 overflow=0 offenders=0 taps=21 <36h=17
+  index     390x844 overflow=0 offenders=0 taps=19 <36h=9
+  index     360x780 overflow=0 offenders=0 taps=19 <36h=9
+  index     430x932 overflow=0 offenders=0 taps=19 <36h=9
+  veg-index 390x844 overflow=0 offenders=0 taps=0 <36h=0
+  veg-index 360x780 overflow=0 offenders=0 taps=0 <36h=0
+  veg-index 430x932 overflow=0 offenders=0 taps=0 <36h=0
+
+== probe.py NEW: mobile contexts (is_mobile, has_touch, dsf 2), tier 2, tour suppressed; overflow = scrollWidth - clientWidth; offenders = visible element rects past clientWidth; <36h = interactive elements under 36px tall; unreach = controls that cannot be tapped: PIN run = centre outside the viewport at scroll 0 (at 390 that is #vbtn-map1 at cx 472 and .rsi-methodology-btn at cx 493, past the right edge); NEW run = centre not reachable by a vertical scroll, or not hit-testing to itself
+  390x844 standard       library  overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  390x844 standard       open     overflow=   0 offenders=  0 taps=116 <36h= 92 unreach=0
+  390x844 standard       rsi      overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  390x844 standard       map      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  390x844 standard       dep      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  390x844 standard       map1     overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  390x844 standard       map1sel  overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  390x844 standard       rwe      overflow=   0 offenders=  0 taps=428 <36h=214 unreach=0
+  390x844 standard       coda     overflow=   0 offenders=  0 taps= 11 <36h=  2 unreach=0
+  390x844 high-contrast  library  overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  390x844 high-contrast  open     overflow=   0 offenders=  0 taps=116 <36h= 92 unreach=0
+  390x844 high-contrast  rsi      overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  390x844 high-contrast  map      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  390x844 high-contrast  dep      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  390x844 high-contrast  map1     overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  390x844 high-contrast  map1sel  overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  390x844 high-contrast  rwe      overflow=   0 offenders=  0 taps=428 <36h=214 unreach=0
+  390x844 high-contrast  coda     overflow=   0 offenders=  0 taps= 11 <36h=  2 unreach=0
+  360x780 standard       library  overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  360x780 standard       open     overflow=   0 offenders=  0 taps=116 <36h= 92 unreach=0
+  360x780 standard       rsi      overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  360x780 standard       map      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  360x780 standard       dep      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  360x780 standard       map1     overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  360x780 standard       map1sel  overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  360x780 standard       rwe      overflow=   0 offenders=  0 taps=428 <36h=191 unreach=0
+  360x780 standard       coda     overflow=   0 offenders=  0 taps= 11 <36h=  2 unreach=0
+  360x780 high-contrast  library  overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  360x780 high-contrast  open     overflow=   0 offenders=  0 taps=116 <36h= 92 unreach=0
+  360x780 high-contrast  rsi      overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  360x780 high-contrast  map      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  360x780 high-contrast  dep      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  360x780 high-contrast  map1     overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  360x780 high-contrast  map1sel  overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  360x780 high-contrast  rwe      overflow=   0 offenders=  0 taps=428 <36h=191 unreach=0
+  360x780 high-contrast  coda     overflow=   0 offenders=  0 taps= 11 <36h=  2 unreach=0
+  430x932 standard       library  overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  430x932 standard       open     overflow=   0 offenders=  0 taps=116 <36h= 92 unreach=0
+  430x932 standard       rsi      overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  430x932 standard       map      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  430x932 standard       dep      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  430x932 standard       map1     overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  430x932 standard       map1sel  overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  430x932 standard       rwe      overflow=   0 offenders=  0 taps=428 <36h=269 unreach=0
+  430x932 standard       coda     overflow=   0 offenders=  0 taps= 11 <36h=  2 unreach=0
+  430x932 high-contrast  library  overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  430x932 high-contrast  open     overflow=   0 offenders=  0 taps=116 <36h= 92 unreach=0
+  430x932 high-contrast  rsi      overflow=   0 offenders=  0 taps=107 <36h= 83 unreach=0
+  430x932 high-contrast  map      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  430x932 high-contrast  dep      overflow=   0 offenders=  0 taps= 21 <36h=  1 unreach=0
+  430x932 high-contrast  map1     overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  430x932 high-contrast  map1sel  overflow=   0 offenders=  0 taps= 20 <36h=  1 unreach=0
+  430x932 high-contrast  rwe      overflow=   0 offenders=  0 taps=428 <36h=269 unreach=0
+  430x932 high-contrast  coda     overflow=   0 offenders=  0 taps= 11 <36h=  2 unreach=0
+  wing-veg  390x844 overflow=0 offenders=0 taps=50 <36h=46
+  wing-veg  360x780 overflow=0 offenders=0 taps=50 <36h=46
+  wing-veg  430x932 overflow=0 offenders=0 taps=50 <36h=46
+  wing-abo  390x844 overflow=0 offenders=0 taps=45 <36h=36
+  wing-abo  360x780 overflow=0 offenders=0 taps=45 <36h=35
+  wing-abo  430x932 overflow=0 offenders=0 taps=45 <36h=39
+  wing-ant  390x844 overflow=0 offenders=0 taps=58 <36h=47
+  wing-ant  360x780 overflow=0 offenders=0 taps=58 <36h=47
+  wing-ant  430x932 overflow=0 offenders=0 taps=58 <36h=47
+  wing-rtd  390x844 overflow=0 offenders=0 taps=140 <36h=114
+  wing-rtd  360x780 overflow=0 offenders=0 taps=140 <36h=114
+  wing-rtd  430x932 overflow=0 offenders=0 taps=140 <36h=114
+  wing-tra  390x844 overflow=0 offenders=0 taps=60 <36h=52
+  wing-tra  360x780 overflow=0 offenders=0 taps=60 <36h=50
+  wing-tra  430x932 overflow=0 offenders=0 taps=60 <36h=55
+  index     390x844 overflow=0 offenders=0 taps=19 <36h=9
+  index     360x780 overflow=0 offenders=0 taps=19 <36h=9
+  index     430x932 overflow=0 offenders=0 taps=19 <36h=9
+  veg-index 390x844 overflow=0 offenders=0 taps=0 <36h=0
+  veg-index 360x780 overflow=0 offenders=0 taps=0 <36h=0
+  veg-index 430x932 overflow=0 offenders=0 taps=0 <36h=0
+
+== census_svg.py PIN: graph views, 10 states (web; web+panels; graph; graph+panels; flow; flow+source; flow sophisticate/defender/drifter), 1440x900, the mode clicked INSIDE the graph tab (K73 defaults a graph tab to STANDARD)
+  mode=standard       readings=377 dimmed(K74 declutter, opacity)=127 undimmed=250  belowAA on painted ground=123  (K314 method, canvas ground, incl. dimmed: 226)  min undimmed ratio=1.57
+  mode=high-contrast  readings=377 dimmed(K74 declutter, opacity)=127 undimmed=250  belowAA on painted ground=172  (K314 method, canvas ground, incl. dimmed: 286)  min undimmed ratio=1.13
+  mode=legible        readings=377 dimmed(K74 declutter, opacity)=127 undimmed=250  belowAA on painted ground=123  (K314 method, canvas ground, incl. dimmed: 226)  min undimmed ratio=2.22
+  mode=both           readings=377 dimmed(K74 declutter, opacity)=127 undimmed=250  belowAA on painted ground=172  (K314 method, canvas ground, incl. dimmed: 286)  min undimmed ratio=1.13
+
+== census_svg.py NEW: graph views, 10 states (web; web+panels; graph; graph+panels; flow; flow+source; flow sophisticate/defender/drifter), 1440x900, the mode clicked INSIDE the graph tab (K73 defaults a graph tab to STANDARD)
+  mode=standard       readings=377 dimmed(K74 declutter, opacity)=127 undimmed=250  belowAA on painted ground=0  (K314 method, canvas ground, incl. dimmed: 135)  min undimmed ratio=4.93
+  mode=high-contrast  readings=377 dimmed(K74 declutter, opacity)=127 undimmed=250  belowAA on painted ground=0  (K314 method, canvas ground, incl. dimmed: 158)  min undimmed ratio=4.70
+  mode=legible        readings=377 dimmed(K74 declutter, opacity)=127 undimmed=250  belowAA on painted ground=0  (K314 method, canvas ground, incl. dimmed: 135)  min undimmed ratio=4.93
+  mode=both           readings=377 dimmed(K74 declutter, opacity)=127 undimmed=250  belowAA on painted ground=0  (K314 method, canvas ground, incl. dimmed: 158)  min undimmed ratio=4.70
+
+== shots_ctl.py (desktop identity control, 1440x900, seeded Math.random, animations frozen, simulations run to rest)
+  ctl/pin_a          argument-flow-map1=2289ff6c dependency-graph=646a7621 feedback-panel=3d9f0dbe flagship-high-contrast=51f680df flagship-library=1dc1a1e2 magnifier=6fbff956 mechanism-web=fc80b883 real-world-examples=ff7e5c04 wing-veganism=45b27080
+  ctl/pin_b          argument-flow-map1=2289ff6c dependency-graph=646a7621 feedback-panel=3d9f0dbe flagship-high-contrast=51f680df flagship-library=1dc1a1e2 magnifier=6fbff956 mechanism-web=fc80b883 real-world-examples=ff7e5c04 wing-veganism=45b27080
+  ctl/phone          argument-flow-map1=2289ff6c dependency-graph=f5256e07 feedback-panel=3d9f0dbe flagship-high-contrast=51f680df flagship-library=1dc1a1e2 magnifier=6fbff956 mechanism-web=fc80b883 real-world-examples=ff7e5c04 wing-veganism=45b27080
+  ctl/new            argument-flow-map1=2289ff6c dependency-graph=28d8234d feedback-panel=3d9f0dbe flagship-high-contrast=51f680df flagship-library=1dc1a1e2 magnifier=6fbff956 mechanism-web=fc80b883 real-world-examples=ff7e5c04 wing-veganism=45b27080
+  ctl/new_oldfills   argument-flow-map1=2289ff6c dependency-graph=f5256e07 feedback-panel=3d9f0dbe flagship-high-contrast=51f680df flagship-library=1dc1a1e2 magnifier=6fbff956 mechanism-web=fc80b883 real-world-examples=ff7e5c04 wing-veganism=45b27080
+  ctl/final          argument-flow-map1=2289ff6c dependency-graph=28d8234d feedback-panel=3d9f0dbe flagship-high-contrast=51f680df flagship-library=1dc1a1e2 magnifier=6fbff956 mechanism-web=fc80b883 real-world-examples=ff7e5c04 wing-veganism=45b27080
+  pin_a vs pin_b: 9/9 identical (the null run); phone-only vs pin: 8/9 identical, dependency-graph differs by rasterizer noise; final vs pin: 8/9 identical (mechanism-web identical: its objection labels are display:none until hover), dependency-graph differs (the fills + noise)
+  settled graph DOM (domcmp.py; skeleton exact, numbers within tolerance, data-family stripped):
+    dep pin vs pin2: skeleton identical, max drift 0.0144px (the null run); dep pin vs final: identical, 0.0082px; map pin vs final: identical, 0.0000px; final dep carries 13 data-family attributes and nothing else
+
+== K316 battery on the new bytes: navcheck GREEN, fbform GREEN, layerfix GREEN, wingtoggle GREEN, k317 GREEN
+== layerphone.py on the new bytes (360x780, 390x844; flagship, wing, index): feedback panel 336/366px wide inside the viewport; tour card 336/340px; chin controls 44px at y 740/802, no toggle covered, nothing under the chin at the foot of any page -> GREEN, no layer change
+== data literals (k318 diff): OBJECTIONS 609,858 chars, REAL_WORLD_EXAMPLES 509,183, MAP1_TRANSITIONS 1,001,329, DEP_GRAPH_DATA 52,462, MAP_GRAPH_DATA 43,735 and the rwe-data JSON block 494,282: byte-identical pin vs new. 16 hunks; 18 lines removed (fills, tick wrappers, one inline attribute), 108 added.
