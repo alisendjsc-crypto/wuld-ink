@@ -1445,3 +1445,105 @@ under src/ changed. Cowork's bridge on this date: the workspace cannot mount the
 trim_claude_md.py, the four texts, the two sidecars, trim_manifest.json and the block. Carries: everything in
 PROMPT_K319_undone_ledger.md, to be run in a fresh session after this lands; the trim threshold above. Register: cccxl is
 the highest.
+
+## WI-K319 — the showcase film's site-side landing; two published anchors that returned 200 and landed on the wrong view; the flagship's dead breadcrumb ratified and handed to its own pin move; cccxli
+
+TWO COMMITS, NO PIN, NOT ONE EFILIST BYTE. `2e254f9` — the Argument Library showcase film's `/watch/` card
+(`JsUIL9GIfIM`, 4:35, the WULD channel), the single search-index entry that card adds, the `releases.json` entry
+and regenerated `feed.xml`, and the `sitemap.xml` regen owed since the v4.0.3 relabel. `90543b3` — one paragraph
+in `/argument-library/`'s "One click" section pointing at the film on `/watch/` rather than at YouTube, so the
+sentence is correct before and after the flip and never needs revisiting. Both blocks rehearsed green, spent and
+corrupted-input in the container's pwsh against a bare origin before they were handed over; both ran first try.
+The pin was re-read three times at open and again at close and never moved: `62c733ac8263e6413816cfb6d28e3b8a` /
+2,982,420 B, efilist `4e4722b`, v4.0.3.
+
+THE SESSION OPENED BY RE-DERIVING ITS OWN PROMPT and every row held — the WI-K318b trim landed (`143c4c4`,
+CLAUDE.md 192,571 B / `6ba4575a`), the layer serves 65,661 / 76,494 under `private, max-age=0, must-revalidate`
+with `cf-cache-status: BYPASS` (the K315 rule holds, TODO 1.3 closed), the film sat unlisted on
+`@WULDIncorporated`. Two of the prompt's own carried claims did not hold and were corrected by measurement rather
+than carried forward. `releases.json` serialises at **`indent=2`**, not the `indent=1` the prompt prescribed —
+proved byte-exact against the committed bytes before a line was folded, which is what ccxli asks for and is why
+the wrong figure cost nothing. And `tools/gen_sitemap.py --check` was already RED at open: the v4.0.3 relabel had
+moved seventeen `src/` files without regenerating the sitemap, so every `lastmod` on those routes was stale. The
+drift was proven `lastmod`-only — the `<loc>` set identical, zero non-lastmod diff lines — and folded into
+`2e254f9`, which returns `--check` to green.
+
+CCCXLI. **A CLIENT-SIDE ROUTER MAKES A DOCUMENT'S OWN IDS A FALSE GUIDE TO ITS LINK FORMS, AND A WRONG FRAGMENT
+FAILS AT HTTP 200.** A fragment never reaches the server, so every spelling of it returns the same status and the
+same bytes; the page then renders successfully, and renders the wrong thing. There is no failing request to find,
+no console error, and nothing a link-checker can see.
+    THE INSTANCE, on the most-read surface this project has. The published YouTube description for the showcase
+    film shipped `https://library.wuld.ink/combined#coda` and `#rwe`. The flagship's outer router
+    (`window.__arglib.getOuterRoute`) matches only `#/library`, `#/rwe`, `#/coda`; `applyOuterRoute` treats any
+    other non-empty hash as a legacy deep link from the old `rwe.html`, `history.replaceState`s it to
+    `#/rwe/<raw>` and sets the view to RWE. So `#coda` — the one a reader or an author would guess, because the
+    section's id in the markup is `combined-coda` — does not fall through harmlessly to the library view. It opens
+    **Real-World Examples filtered to an objection id that does not exist**. Two carve-outs run before that
+    promote, `#obj-<key>` and `#rwe-<instance>`, the K108 append-only anchor covenant. The corrected forms went
+    into the description and Josiah confirmed `#/coda` on the served page: the CODA tab lit.
+    THE TELL WAS AVAILABLE AND CHEAP. The pinned file contains `'#/coda'`, `'#/library'` and `'#/rwe'` in its own
+    links and **zero** `href="#coda"` or `href="#rwe"` anywhere. One grep of the artifact being linked would have
+    settled it before publication. The rule: before publishing a link INTO a routed document from off-site — a
+    video description, a relay, another site's page — grep that document for its own link forms and open the URL.
+    An anchor that returns 200 is not an anchor that lands.
+    DISTINCT FROM CCCXXIII, which is a gate keyed to a proxy: here there was no gate, and the misleading guide was
+    the document's own markup. Distinct from cccxxxi, a published figure with no generator: this was not a figure
+    but a path, and its generator would be the page it points at.
+
+THE DESCRIPTION, REBUILT AND NOT MERELY PATCHED. Beyond the anchors: its photosensitivity paragraph still quoted
+the **v3 render** (11.6 of 255, 6.9% of the frame) against a v4 file whose Apparatus reads 18.3 of 255 at 6.61 s,
+zero steps above 40, zero general flashes, widest luma-qualifying excursion 6.8% against 25% — a safety claim
+carrying superseded numbers on the surface most people read, which is cccxxxi in the place it costs most. Its
+chapter list was a single run-on line starting at 0:24, so YouTube was rendering **no chapters at all**: the
+documented rule is first timestamp `00:00`, at least three, each at least ten seconds, one per line. Re-cut to
+eleven chapters, first at 0:00, minimum gap ten seconds — and `4:29 out` dropped, because the film is 4:36 and a
+seven-second final chapter would have killed the whole list rather than just itself. The pin sentence was rewritten
+to name the film's own capture pin as history and to point at `/library-about/` for the live one, so it never goes
+stale again; the version label came off and the md5 stayed, because `9d13359e` is unambiguous where "v4.0.1" also
+named `62d1e8d8` for a day.
+
+THE FLAGSHIP'S DEAD BREADCRUMB — MEASURED, RELAYED, RATIFIED, AND DELIBERATELY NOT BUILT HERE. Josiah, from the
+served page: *"the 'refusal libraries' link is dead when on the flagship. You have to click to harm & autonomy
+(which brings you to the right to die wing), then go to the refusal libraries from there."* Measured on the pin:
+`nav.rl-wing` carries exactly one `href` (`/right-to-die/combined`) and the string `/libraries` appears **zero**
+times in 2.98 MB. The five wings do not have this problem — their `nav.eyebrow.wing-switcher` links `/libraries`
+and every sibling — and the front door already renders the first segment as a bare `aria-current="page"` label,
+which is exactly right for the one page where it is not a parent. The library seat ratified at **K233**: ship the
+rule, not the patch — first segment is a link on every surface, a bare label only when the served path is
+`/libraries/`, `href` with the trailing slash. It is a `combined.html` change, so it is a pin move, and this seat
+built and then **abandoned** a dry run of it: the splice was cut and measured (`c60dcb56498debc84d2fb2860cd55167`
+/ 2,982,518, +98 B, the five data literals and the `rwe-data` block identical, a two-line diff), and the work was
+handed forward as `PROMPT_K320_flagship_nav_pin_move.md` rather than finished in a session that had already
+shipped two commits and a published description. A pin move gets its own session. (The container's own tooling
+refused one write mid-build, which is where the dry run stopped; nothing was owed to it.)
+    ONE DEPARTURE FROM THE RATIFICATION, STATED. The library seat agreed "do not spend a pin alone" and meant it
+    to batch with their K232 panel items. Those have since acquired a prerequisite with no date — their own
+    adjudication is that the LOAD-BEARING table must not ship until it sums to 255 or the panel text declares a
+    narrower denominator, since 67/255 = 26.3% against 67/222 = 30.2% and the two named row corrections leave
+    ~26 edges unaccounted. Meanwhile the film's publication is gated on the nav fix by the operator's decision. So
+    K320 spends a pin on one `href`, knowingly, and the batch partner takes the next one.
+
+BOTH OF THE LIBRARY SEAT'S GATES CLOSED FROM THIS SIDE, by reading the surfaces rather than the canon they do not
+hold. **Anthropocentrism is a wing** by their own charter test: its runtime corpus status says it "defends the
+permissibility of declining an unproven anthropocentric mandate; **it asserts no positive ranking**", terminating
+in mutual permission — the optionality register, not a moral-status thesis, so their ratified six-library sentence
+ships as written. **Veganism is served rendered**, not raw: `/veganism/combined` returns 33,800 B of the full
+suite chrome and its own eyebrow already reads "Flagship-adjacent module", the charter's own term, on the live
+page. Recorded for them: the front-door abortion card already declares the suite's lone licensed advisory-positive
+claim, so if the marking they asked about is missing it is missing at the instance, not at the front door.
+
+CONFIRMED WORKING ON THE LIVE SITE, by the operator: the per-card FEEDBACK form end to end — a submission from a
+flagship card reached the Proton inbox through Formspree carrying message, library, objection, `also_called` and
+classification, which closes the standing "send one FEEDBACK" elective — and K317's pointer-as-camera under the
+magnifier. New from him and carried, and not a magnifier item: at ordinary unmagnified reading the text under the
+cursor should **sharpen**, a focusing effect counteracting the vignette's and grain's cost to legibility without
+removing them. The K320 prompt carries the brief, the pointer tick it should ride, the measured fact that the glow
+peaks near 80% and degrades past it (so "sharper" is less spread, not more light), and the known negative that a
+radial-masked `backdrop-filter` was inert at K313b while a linear-masked one moved 16.3% of pixels.
+
+STATE. wuld-ink `origin/main` `90543b3` (this stratum follows). efilist `4e4722b`, untouched. Pin v4.0.3
+`62c733ac` / 2,982,420, unmoved, re-read at close. Drop: `k319\` holds the two blocks, their five and one inputs
+and `libshow_description_v5.txt`; the drop root gains `RELAY_wuld_K319_suite_framing_and_flagship_nav.md` and
+`PROMPT_K320_flagship_nav_pin_move.md`. Carries: the K320 pin move and everything in its §8; the film goes public
+the moment that lands, and its Apparatus film line follows from the video seat; the rest of
+`PROMPT_K319_undone_ledger.md` §3–§9 is untouched and still current. Register: cccxli is the highest.
