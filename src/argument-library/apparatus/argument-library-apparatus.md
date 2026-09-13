@@ -137,7 +137,7 @@ Verified against the corpus `efilist_argument_library_v4_0_0.json`, the ledger `
 | The single C | `masochist-counterexample`, 80.0 | ledger |
 | The highest | `performative-contradiction`, 95.0 | ledger |
 | RSI | geometric mean of five axes, bands A ≥ 88 / B ≥ 82 / C ≥ 76 | rubric |
-| Deployed file | `2,963,789` bytes, md5 `9d13359e305c6caa3ae64759f3dcc0e6` | the pin |
+| Deployed file **at capture** | `2,963,789` bytes, md5 `9d13359e305c6caa3ae64759f3dcc0e6` | the pin the film was shot against |
 
 **Four things the film deliberately does not claim**, each because checking found the claim overstated:
 
@@ -311,6 +311,26 @@ every fetch returned the same hash and the same byte count, and the host was ser
 
 What is drawn is the terminal. **Run the two commands yourself** — that is the only verification this
 film has ever claimed, and it does not depend on believing anything about the pixels.
+
+## The film
+
+**Watch it:** [https://www.youtube.com/watch?v=JsUIL9GIfIM](https://www.youtube.com/watch?v=JsUIL9GIfIM) — public since 2026-09-12.
+
+**What that link serves is not what this document measures, and the distinction is the whole point
+of the document.** Every figure above was taken from `libshow_full_v4.mp4`, md5
+`db01fb9d4331039148fdb51b7649e022`, 279,809,463 bytes — the master, named in the marker at the head
+of this page and cross-checked against the render manifest the render step wrote. YouTube does not
+serve that file. It serves a re-encode of it, at a bitrate and in a codec chosen per viewer, per
+device, per connection.
+
+So: the photosensitivity measurement, the luminance figures, the loudness and the colour conversion
+all describe the master. They are the strongest claim anyone can make about a film, and they stop at
+the platform's front door. **This page closes document-against-render. Nothing closes
+document-against-what-a-platform-serves**, and a document that linked the film without saying so
+would be quietly claiming otherwise.
+
+The runtime YouTube reports is **4:36**; the master is 275.442 s, which is 4:35.4. The difference is
+rounding, not a different cut.
 
 ## Colophon
 

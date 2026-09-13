@@ -84,6 +84,11 @@ RENDER = {
     "Colour": "prose",
     "The monitor is drawn": "prose",
     "Provenance of the frames": "prose",
+    # 2026-09-13: the film went public and the video seat added a section that links it and says
+    # in the same breath what the link serves -- the link is the film, the numbers are the master,
+    # and nothing closes document-against-what-a-platform-serves. Prose. Adjudicated by the
+    # wuld.ink seat, which owns this tool; the verifier's section-6 assertion inverts with it.
+    "The film": "prose",
     "Colophon": "colophon",
 }
 # handout section 4: keep *Argue the Argument* in --acc, "without adding a class"
@@ -106,7 +111,7 @@ def inline(s):
     s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", em, s)
     s = re.sub(r"\*\*([^*]+)\*\*", lambda m: "<strong>" + m.group(1) + "</strong>", s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", lambda m: '<a href="%s">%s</a>' % (m.group(2), m.group(1)), s)
-    return s.replace("--", "&mdash;") if False else s
+    return s
 
 
 def split_blocks(body):

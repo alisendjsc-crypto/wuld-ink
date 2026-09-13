@@ -117,12 +117,26 @@ def main():
     chk("no script tag", "<script" not in pg)
     chk("no video embed or iframe", "<iframe" not in pg and "<video" not in pg)
     chk("no hero image", "<img" not in pg)
-    chk("no external font/analytics ref beyond the two the other pages load",
-        not re.search(r'https?://(?!library\.wuld\.ink|wuld\.ink)', pg.split("</head>", 1)[1]))
-    # the predicate is "is there a LINK to the film", not "does the word appear": the
-    # hold comment names YouTube on purpose, and a substring test fails on its own note.
+    FILM_URL   = "https://www.youtube.com/watch?v=JsUIL9GIfIM"
+    MASTER_MD5 = "db01fb9d4331039148fdb51b7649e022"
+    body_html = pg.split("</head>", 1)[1]
+    ext = sorted(set(re.findall(r'https?://(?!library\.wuld\.ink|wuld\.ink)[^\s"<>]+', body_html)))
+    chk("the only external URL in the body is the film", ext == [FILM_URL], repr(ext))
+    # HANDOUT SECTION 6, INVERTED 2026-09-13. It read "the page does not link the film"; the film
+    # is public and the video seat added a section that links it and says in the same breath what
+    # the link serves. The predicate is still "is there a LINK", not "does the word appear".
     vid = re.findall(r'(?:href|src)="([^"]*(?:youtu\.?be|youtube|vimeo|archive\.org)[^"]*)"', pg, re.I)
-    chk("film is NOT linked (handout section 6)", not vid, repr(vid))
+    chk("the film is linked exactly once, and the link is the film (handout section 6, inverted)",
+        vid == [FILM_URL], repr(vid))
+    # The ACCOMPANIMENT is the half worth gating, in the video seat's words: a bare link could be
+    # added later by anyone, and the thing that makes it honest is the sentence beside it. Scoped to
+    # the SECTION the link sits in rather than to a character window, so the gate does not rest on a
+    # number somebody found convenient (cccxxxvii) -- and the master md5 already appears in the
+    # marker at the head of this page, so a whole-page presence test could not fail (cccviii).
+    film_sec = [x for x in re.split(r"(?=<h2)", pg) if FILM_URL in x]
+    chk("the film link sits in exactly one section", len(film_sec) == 1, len(film_sec))
+    chk("the master's md5 is in THAT section, not merely somewhere on the page",
+        len(film_sec) == 1 and MASTER_MD5 in film_sec[0])
     chk("the Markdown is linked from the page", 'href="argument-library-apparatus.md"' in pg)
     chk("canonical is the argument-library path",
         'href="https://wuld.ink/argument-library/apparatus/"' in pg)

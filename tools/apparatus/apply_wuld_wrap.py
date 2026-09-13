@@ -152,7 +152,22 @@ def main():
         r"""(?:\b(?:href|src|srcset|action|formaction|poster|data|codebase|cite|background)"""
         r"""\s*=\s*["']?\s*|\burl\(\s*["']?|@import\s+["']?)(?:https?:)?//""",
         re.I)
-    hit = ref.search(body)
+    # 2026-09-13: an <a href> is NOT something the browser fetches, and the paragraph above says
+    # the test is "match the reference, not the marker". Keying on the bare attribute name lumped
+    # the anchor in with <link href>, <img src>, url() and @import, which ARE fetches -- a gate
+    # keyed to a proxy for the property it is protecting (cccxxiii), applied here to my own tool.
+    # Anchors are excluded; every other form still refuses. WHAT the anchor may point at is bounded
+    # by each page's own verifier, which is where a per-page allowlist belongs -- for the libshow
+    # page, verify_libshow_apparatus.py asserts the body's only external anchor is the film, once.
+    # SCOPED TO THE libshow VARIANT. The narrowing is right in principle for all three pages, but
+    # each page's bound on WHAT an anchor may point at lives in that page's own verifier, and only
+    # the libshow verifier has one today. Widening a shared guard for two pages whose verifiers
+    # cannot bound the result would trade a proxy fault for an unbounded one.
+    anchors = ([m.span() for m in re.finditer(r"<a\b[^>]*>", body, re.I)]
+               if a.variant == "libshow" else [])
+    def in_anchor_tag(pos):
+        return any(x <= pos < y for x, y in anchors)
+    hit = next((m for m in ref.finditer(body) if not in_anchor_tag(m.start())), None)
     if t.count("<script") or hit:
         what = "a script" if t.count("<script") else "an external ref: " + repr(
             body[max(0, hit.start() - 30):hit.end() + 40])
