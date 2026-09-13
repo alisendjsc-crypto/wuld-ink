@@ -1,0 +1,30 @@
+{
+  "release": "v4.0.5",
+  "canon": {
+    "version": "38.1",
+    "bump": "NONE",
+    "invariant_block_changed": false,
+    "note": "v4.0.5: the K232 batch. The LOAD-BEARING HIERARCHY table under the dependency-graph methodology panel was a v3.3-era fossil -- thirteen rows summing to 148 strong / 74 weak = 222, against a graph that has held 255 links (167 strong / 88 weak) since v4.0.0. The digits 222 appear nowhere in the table, so no string sweep could ever have found it: the fossil is the SUM. Regenerated wholesale from DEP_GRAPH_DATA.links by tools/dep-graph/regen_load_bearing.py; twelve of thirteen rows move, only Depressive Realism holds, and row order is now generator-determined (total desc, strong desc, label asc) because the hand-made order followed no reproducible rule. In the same touch, the thirteen premise nodes' inert strongCount/weakCount/totalCount fields -- a THIRD coexisting era summing to 161/84 = 245, never read at render since K92 made depCount() derive from links -- were stripped, which is the literal touch the K92 comment deferred; that comment now records the strip instead of promising it. The mechanism-web panel gains WHAT THIS MAP CANNOT DO (K234 section 4 verbatim), placed after STRATEGIC APPLICATION, which is where the convergence panel already puts KNOWN LIMITATIONS. And the flagship gains the favicon link line that the icons commit (3661284) explicitly left for this pin move. CORPUS UNTOUCHED, verified by bracket-balance extraction and byte comparison of all five data literals: OBJECTIONS c96e08eadca19d704cb16383fd2ab1de, REAL_WORLD_EXAMPLES b1e45c85277bbe7d680dc4e42fa6b2c9, MAP1_TRANSITIONS c91b3177889af64e291c1613417f8a35 and MAP_GRAPH_DATA 047ae4a3bcda46069cd316d94d0befed are byte-identical before and after. DEP_GRAPH_DATA is the one literal that moved (-602 B), and its links array is byte-identical at 15c51846600613dbc549821715b9a840 across 255 links -- only dead node fields were removed. Canon stays at 38.1: every invariant it records is a count over nodes and links, and none of them changed. NOT in this release: the examples/coda typography. All 26 JetBrains Mono and EB Garamond rules are nested inside body[data-active-view=rwe] and [=coda], alongside their own palette, font-size and line-height -- a deliberate view-scoped reading register, not rwe.html graft residue. Held for the library seat."
+  },
+  "git": {
+    "baseline": "efilist 3661284 (the seven favicons and the five wings' link lines, NO PIN); the v4.0.5 pin move commit 5784fbac on top",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "combined.html c60dcb56498debc84d2fb2860cd55167/2,982,518 -> cee25a00b68ba036138d064c383d9a8b/2,982,658 (+140). Served == committed, verified by three fetches of /combined agreeing on the new md5 after the deploy landed, and the in-tree blob 84765a24e8ff54ac1cdfbfcf7dad4272dc2fe023 hashing to the same value. Version string: combined.html carries none, so the relabel is a loci sweep only; its v4.0.x occurrences are comments recording which pin move introduced a block and are dated records, unchanged by this release. argument-library/apparatus/index.html stays EXEMPT (the film's dated capture record, cccxxxvi); illogically-is/apparatus/index.html carries no v4.0.x string at all, so it needs no exemption."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "cee25a00b68ba036138d064c383d9a8b",
+      "size_bytes": 2982658,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "c60dcb56498debc84d2fb2860cd55167",
+    "new": "cee25a00b68ba036138d064c383d9a8b",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "v4.0.5 pin move (c60dcb56->cee25a00b68ba036138d064c383d9a8b; the LOAD-BEARING table regenerated from the links, 222 -> 255; the inert baked node counts stripped; the mechanism web given its limit text; the flagship favicon line)"
+}

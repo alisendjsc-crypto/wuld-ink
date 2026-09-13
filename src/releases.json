@@ -1,5 +1,14 @@
 [
   {
+    "id": "2026-09-13-library-v4-0-5",
+    "date": "2026-09-13",
+    "summary": "The library's pinned edition is now v4.0.5. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is a table that had quietly stopped being true. The dependency panel's load-bearing hierarchy lists each premise and how many objections lean on it, and its thirteen rows summed to 222 edges — a figure from the v3.3 era, when the library held seventy-four objections. The graph it describes has carried 255 since v4.0.0. The stale number was never written down anywhere: it was only the sum of the rows, so no search for an old figure could find it, and it survived every release that swept for one. The table is generated from the graph now rather than kept by hand, and twelve of its thirteen rows moved. Alongside it, the mechanism map gains a short note on what it cannot do — naming the mechanism behind an objection does not refute the objection, and a reply that stops at the diagnosis has answered nothing — and a set of per-node counts, dead since the graph began deriving its own totals and long out of step with them, is gone from the data. The flagship also picks up the tab mark its siblings already had.",
+    "sections": [
+      "/argument-library/",
+      "/library-about/"
+    ]
+  },
+  {
     "id": "2026-09-12-dot-film",
     "date": "2026-09-12",
     "summary": "A five-minute companion short to Illogically Is joins the Watch page, between that film and the Argument Library's. Illogically Is ends on the period of a Latin sentence; this is that period, painted at eye height on hyper-real plaster, with a camera that starts on it and pulls back until the wall is past any human scale. One shot, one motion, one interruption. The film's own sentences surface in the grain as it recedes and thicken until the wall is more text than wall, and the dot never leaves. It carries no strobe, but there is one white frame, three full-field cuts to black, and sound that includes screams, crying and recorded voices in distress — the card says so before you press play. Method, sources and credits are in its own Apparatus.",
