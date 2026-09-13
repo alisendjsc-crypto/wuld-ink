@@ -169,5 +169,10 @@
   Write-Host "    title=$h1  stale-pin=$h3   (want >=1 0)"
   if ($served -eq $local) { Write-Host "OK  served page == committed page. Apparatus reissue live." }
   else { Write-Host "served page differs from the committed one - Cloudflare is probably still building; re-check in two minutes:  curl.exe -s https://wuld.ink/argument-library/apparatus/ | Select-String 're-measured 2026'" }
-  Write-Host "The film is not linked from the page and the verifier asserts that (handout section 6); linking it is a handout change, not a ship-script change."
+  # 2026-09-13: handout section 6 INVERTED. The film is public, the video seat added the section
+  # that links it and says what the link serves, and the verifier now asserts the link is present
+  # exactly once with the master md5 in the SAME section. The old sentence here said the opposite
+  # and was printed by a GREEN run -- a sentence with no gate behind it, which is cccli in a tool
+  # rather than a document. It now states what the gate that just passed actually checked.
+  Write-Host "The film is linked from the page exactly once, accompanied by the master md5, and the verifier asserts both (handout section 6, inverted 2026-09-13)."
 }
