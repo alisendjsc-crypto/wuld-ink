@@ -1848,3 +1848,102 @@ register, deliberately, since it has no mode switcher and is not a wing; the fla
 in JetBrains and EB Garamond, and their `.copy-btn` in Arial — a pin move, unasked; the front door's `.lib-meta` at
 2.13:1; the K232 batch, still waiting on the LOAD-BEARING table; the film's Apparatus line once the film is public.
 Register: cccxlvi is the highest.
+
+## WI-K322 — the clearing under the cursor, built twice because the brief had two halves that pull opposite ways; a node-select cue for each graph view; a negative result inherited from an instrument its own stratum called vacuous; NO PIN; cccxlvii, cccxlviii
+
+ONE efilist COMMIT, FIVE FILES, NO PIN — the two layer packs and three new `sfx/wz-pick_*.ogg`. Pin HELD at v4.0.3
+`c60dcb56498debc84d2fb2860cd55167` / 2,982,518 B, gated by md5, byte count and blob before the writes and by blob after
+the commit. Both items are Josiah's, and the first had been carried since WI-K320 §8 at his own word.
+
+THE CLEARING, AND THE BRIEF THAT CONTAINED ITS OWN CONTRADICTION. He asked for it in two messages an hour apart:
+*"the sharpening / focusing when hovering with the mouse. It's still fuzz-ish when I run my cursor over a selection ...
+not to the point where the bloom and vignette vanish"*, then *"It shouldn't completely remove the bloom of the text or
+the vignette surrounding the page, but help sharpen what's there and gently illuminate the surrounding area around the
+cursor in a way that pushes back any darkness or blurring."* Sharpen and illuminate are not the same instruction on a
+near-black page, and the arithmetic says so before any pixel is measured: `contrast()` pivots at 0.5, this ground sits
+at luma 0.04, so `(0.04 - 0.5) * c + 0.5` is at or below zero for every c a page could use — contrast can ONLY darken
+this ground, however much it separates the type from it. A lift alone fails the other way: it raises ground and type by
+the same absolute amount, which is brighter fog.
+    BUILT WRONG FIRST, AND THE MEASUREMENT SAID SO. The first build was contrast alone at 1.11. Measured in a box of
+    body text under the cursor: mean luma 18.39 -> 8.49. A shadow following the cursor. The number was in hand before
+    he saw it, which is the only reason it never shipped.
+    THE PAIR, AND THE ORDER IS THE MECHANISM. `backdrop-filter` acts on what is behind the element; the element's own
+    background then paints over that result. So contrast+brightness separates first and a faint warm radial lifts what
+    is left. Ground ends ABOVE where it started, type ends higher still. Swept seven combinations against four
+    quantities read off the real page -- the ground between the strokes, the strokes, the annulus around them, and the
+    two separated -- and shipped `contrast(1.13) brightness(1.08) saturate(1.05)` with lift `0.105`:
+        off                17.00 gnd | 20.37 type | ratio 1.20 | halo (type/annulus) 1.198
+        shipped            +5.4%     | +26.8%     | +20.3%     | 1.261
+        one notch up       +11.1%    | +32.4%     | +19.1%     | 1.296   (1.16 / 1.10 / 0.130)
+    Local RMS contrast in the same box 3.07 -> 4.25. Pixels at or over 250 in a box holding a tier badge and the
+    crimson accent: 0.000% at every stop, unchanged from off, so nothing clips. The halo column is what answers
+    "sharper" without removing the bloom: the bloom is still painted, and it is dimmer RELATIVE to the type it
+    surrounds, which is the only sense in which a uniform text-shadow can tighten.
+    GATED, AND ONE GATE IS HIS. *"The magnification feature is plenty clear as is, so it doesn't need any sharpening
+    with that area"* -- right, and for a reason worth keeping: the clearing is a screen-space box over a scaled stage,
+    so at 2.5x it covers a fifth of the text it covers at 1x and reads as a smear. `html.wz-zoomed` turns it off. Also
+    off on a cream ground, off with no fine pointer, off under `prefers-reduced-motion`, gone 2.6 s after the pointer
+    stops, and off while scrolling -- which is both intent (a reader scrolling is not examining a word) and cost.
+    THE COST, MEASURED AGAINST ITSELF. Same bytes, clearing on versus `display:none`, scrolling and moving the pointer
+    together at 80 events/s: median 16.70 ms both, p75 33.30 both, p90 33.40 vs 33.50, frames over 33 ms 26.0% vs
+    25.5%. Before the scroll suppression the same pair read p75 16.80 vs 33.30 -- the clearing owned the p75 and the
+    scroll owned the rest. A control drawn from the same build is the only one that can say which.
+
+CCCXLVII. A NEGATIVE RESULT RECORDED WITHOUT A POSITIVE CONTROL FORECLOSES THE MECHANISM FOR EVERYONE AFTER, and it
+does not decay into doubt the way a positive claim does — nobody re-runs a thing that is written down as not working.
+    THE INSTANCE, and it is this project's own log. WI-K313b listed "radial-masked backdrop-filter" among six vacuous
+    selectors under cccviii, and the same stratum recorded, as a finding, that peripheral blur "is inert -- three
+    mechanisms, max abs delta 0.000". Both sentences are in one stratum: the instrument is named as vacuous and its
+    output is kept as a fact. WI-K320 §8 then carried it forward as a measured negative into the brief for this very
+    build. Re-measured on the live flagship 2026-09-13: a radial-masked `contrast(1.18) saturate(1.06)` moves 97.6% of
+    the pixels inside the radius by a mean of 8.95 levels and 0.1% of the pixels outside it by 0.005. It is the
+    strongest of the four mechanisms tried and the whole effect is built on it. Had the note been believed the build
+    would have gone to the second-best mechanism for no reason.
+    AND IT HAPPENED AGAIN, MINE, WITHIN THE HOUR. The first run of the vignette leg read 0.0000 / 0.0% and I nearly
+    wrote "cutting a hole in the vignette does nothing". The probe point was (700, 480) on a 1440x1000 viewport --
+    the viewport centre, inside the vignette's own transparent stop. Moved off-centre it reads 2.41 mean levels across
+    88.4% of the pixels in the radius. Same shape, one hour apart, one of them mine.
+    THE COUNTER-DISCIPLINE is cheap and is now in the harness: before a null result is written down, the same
+    instrument must produce a non-null on something it should detect, and the probe must be placed where the thing
+    under test actually paints. A stratum that files an instrument as vacuous must strike the sentences that
+    instrument produced, in the same edit, or they outlive it.
+
+CCCXLVIII. AN IDENTIFIER WHOSE TOLERANCE IS WIDER THAN THE SPACING BETWEEN THE THINGS IT IDENTIFIES REPORTS THE FIRST
+CANDIDATE, CONFIDENTLY, EVERY TIME. The pick-cue gate named cues by decoded duration with a fixed 0.05 s tolerance, and
+the three cues are 0.34 / 0.30 / 0.28 s — 0.02 to 0.06 apart. Every one of them matched `pick_web` first, so the gate
+reported the dependency graph firing the web cue and the flow map firing the dependency cue, and read as two routing
+failures in code that was correct. Distinct from cccxxvii, where the needle can occur OUTSIDE the thing under test;
+here it occurs inside several of them. The fix is not a tighter constant but a nearest-match against the real decoded
+durations, read off the files at run time — the identifier derived from the population it has to separate, rather than
+chosen.
+
+THE NODE-SELECT CUES. Josiah, on three screenshots: *"I wanted SFX for when you click on what the cursor is hovering
+over -- unique to those sections."* One per graph view: `pick_web`, `pick_dep`, `pick_flow`, 0.28–0.34 s.
+    THE CHORD IS MEASURED, NOT QUOTED. The generators the video seat's handoff names are not in the folder it names, so
+    the four shipped `.ogg` files are the specification. FFT peaks under 600 Hz across them: 55.0 / 82.5 / 110.0 /
+    123.6 / 164.8 / 220.0 / 247.2 — A1 E2 A2 E3 A3, the open-fifth stack, with B2/B3 as the ninth in `library_index`.
+    The picks are that stack an octave up.
+    THE OCTAVE IS NOT A DEPARTURE FROM THE REGISTER, IT IS THEIR OWN COST NOTE APPLIED. The view cues sit at centroid
+    114–148 Hz with essentially nothing above 250, and §5 of the handoff states the consequence itself: "on a phone all
+    four will be quiet ... do not make any of these the only feedback for a view change." A pick IS the only sound a
+    selection makes, so inaudible is not an option. The picks land at 208–268 Hz, beside `wz-magnifier_in` (251) and
+    `wz-tier_step` (181) — the bank's own instrument cues — with the master low-pass still at 1.8 kHz and no partial
+    above A4. Levels 2 dB under the bank's −34.9 dB short-term reference; bank parity would be 0.365 / 0.279 / 0.336.
+    Generator `gen_pick_cues.py`, seed 2010, deterministic, printing its own command line, in the video seat's kit
+    folder beside theirs.
+    THE ROUTING IS KEYED ON THE VIEW AND MEASURED AT THE HIT TEST. The node classes belong to d3, not to the layer, so
+    the rule is: inside `#map-view` / `#dep-view` / `#map1-view`, a click that hit-tests to a drawn element inside the
+    svg — never to the `<svg>` root, which is what an empty-canvas click hits — or to a row of the flow map's source
+    list, and not to a button, legend or toolbar. Verified by hit test on real nodes with d3 served from an npm tarball,
+    because cdnjs does not resolve from this container and without it all three graphs render as empty `<svg>` elements
+    — a fact worth knowing before trusting any earlier graph-view census taken here.
+    NINE LEGS GREEN: the right cue in each of the three views, from an svg node and from a source row; a toolbar button
+    still gives the plain click; an empty-canvas click gives nothing; a library row keeps its expand cue.
+
+STATE. efilist: one commit atop the WI-K321b landing (`1dc8e34`) by `k324\K324_efilist.ps1`, rehearsed in pwsh against
+a bare origin and a fake `curl.exe` on five paths — green, spent, a corrupted input, a NEW file that already exists, a
+tampered pin, and an untracked `CLAUDE.md` that must not block. wuld-ink: this stratum. Drop: `k324\` holds the five
+files, the block, the generator and a README with the measured stops and the one-line console dial. Carries: everything
+in `LATER_after_K321b.md` minus item 1, which is this stratum. NOTE ON THIS FILE: it is now within a stratum or two of
+the ~250 KB trim threshold WI-K318b wrote; `k318b\trim_claude_md.py` does the cut and that stratum has the method.
+Register: cccxlviii is the highest.
