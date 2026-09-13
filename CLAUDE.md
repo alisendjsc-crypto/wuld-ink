@@ -1547,3 +1547,162 @@ and `libshow_description_v5.txt`; the drop root gains `RELAY_wuld_K319_suite_fra
 `PROMPT_K320_flagship_nav_pin_move.md`. Carries: the K320 pin move and everything in its §8; the film goes public
 the moment that lands, and its Apparatus film line follows from the video seat; the rest of
 `PROMPT_K319_undone_ledger.md` §3–§9 is untouched and still current. Register: cccxli is the highest.
+
+## WI-K320 — THE FLAGSHIP NAV PIN MOVE (v4.0.3 → v4.0.4), then the wings' missing webfont and the cue set brought to its own reference; five commits, one pin; cccxlii and cccxliii
+
+FIVE COMMITS, ONE PIN MOVE, IN ORDER. efilist `4e4722b` → **`bd504ad`** — the flagship splice, the five wings' trailing
+slash, the five version-bump files, the front door's per-card registers; ten files. wuld-ink `8a0125c` → **`e021229`** —
+the v4.0.4 relabel, nineteen files. wuld-ink → **`d383a6c`** — the ratified suite-framing sentence. Then two no-pin
+deploys the operator called in the same session: efilist → **`0376ad2`** (K321, the wings and the front door) and
+→ **`b3ae55c`** (K322, the sound). The pin leaves `62c733ac8263e6413816cfb6d28e3b8a` / 2,982,420 B for
+**`c60dcb56498debc84d2fb2860cd55167` / 2,982,518 B (+98)**, and the showcase film is clear to publish.
+
+THE SESSION OPENED BY RE-DERIVING ITS PROMPT (cccxxx) and every measured row held. The splice reproduced the abandoned
+K319 dry run exactly — `c60dcb56` / 2,982,518 — which is what an unmoved base looks like. Two of the prompt's labels
+were imprecise and were corrected by measurement rather than carried: the 4096-byte prefix gate is the **sha256 first
+32 hex**, not an md5 (that prefix's md5 is `bf08cdcf`, stable across four commits, and a block trusting the label would
+have aborted); and the layer serves from **library.wuld.ink**, where `/wuld-layer.css` on wuld.ink is a 404.
+
+THE PATCH PROOF, RUN RATHER THAN QUOTED. The five data literals and the `id="rwe-data"` block extracted from both files
+by bracket-balance and compared: byte-identical, all six, at 612,928 / 509,888 / 1,007,943 / 52,472 / 43,811 / 494,987 B
+(this extractor includes the delimiters, so the figures differ from K319's by their boundaries and not their content).
+Unified diff of the pinned file: **one hunk, two lines**. `objections-index.json` `d034af15` / 41,800 both sides, so the
+re-vendor is a no-op **by identity, verified**. `v4.0.3` occurs three times in `combined.html` before and after — all
+three comments recording which pin move introduced a block, dated records (cccxxxvi).
+
+CCCXLII. **A SELECTOR THAT IS UNIQUE TODAY IS A CLAIM ABOUT A POPULATION, AND THE POPULATION GROWS.**
+`tools/library-pin.py`'s `update_releases()` picked the entry it clones with `'library' in e.get('id','')` — the first
+id merely *containing* the substring, over a newest-first list. That was correct for as long as every such id was a
+library pin move. WI-K319 added `2026-09-12-argument-library-film` at index 0, so this pin move cloned the **showcase
+film's summary and the film's `/watch/` section** into the changelog entry for v4.0.4, and would have done so for every
+pin move after. The tool's own output says to hand-edit the cloned summary, which is exactly the instruction a reader
+obeys without noticing that the thing being edited is the wrong entry's prose. Caught in the container rehearsal
+because it ran the real tool against a real clone rather than reasoning about it. The picker now matches
+`^\d{4}-\d{2}-\d{2}-library-v[0-9-]+$`, the pin-move id's own form.
+    DISTINCT FROM CCCXXIII, a gate keyed to a proxy that was never the property. Here the proxy was faithful when
+    written and was falsified later by an addition somewhere else entirely; nothing about `library-pin.py` changed.
+    The discipline is not "avoid proxies" but: when a selector picks ONE out of a growing list, write it against the
+    form of the thing and state the population it assumes.
+    A SECOND INSTANCE OF THE SAME SHAPE, FOUND AT K322 AND FIXED THERE. `_headers` gives the two layer files
+    `private, max-age=0` and its own comment says "The sound files stay on the default" — correct while the cue set
+    never changed, and false the moment it did: `/sfx/*` serves `public, max-age=14400`, so every reader who had
+    already loaded the cues would have run the new page against four-hour-old sounds. That is the K315 layer-cache
+    defect one file type over, and it is the mechanism behind the operator's original "sometimes it activates,
+    sometimes you turn it on and off". Fixed with a `?v=K322` on the cue fetch rather than a `private` header: the
+    sounds stay long-cached, which is right for assets that change twice a year, and the bump busts them exactly when
+    they move. `wuld-layer.js` is itself `private, max-age=0`, so that one line reaches every reader at once.
+
+CCCXLIII. **A `font-family` DECLARATION IS A REQUEST, NOT A RESOURCE, AND THE COMPUTED STYLE REPORTS THE REQUEST.**
+Josiah: *"I just really don't like the font style of the aux wing's or the refusal library front page."* Read as a
+design complaint it invites a redesign. Measured, it was not a design difference at all: the five wings, the front door
+and `/troubleshooting/` all declared `--mono:'IBM Plex Mono', ui-monospace, …` and **loaded no webfont** — zero
+`fonts.googleapis.com` links, zero `@font-face`, and the layer carries none either — while the flagship links it. Same
+declaration, two faces.
+    WHY IT SURVIVED EVERY AUDIT THIS PROJECT HAS RUN. There is no failing request, because nothing is requested; no
+    console warning; and `getComputedStyle(body).fontFamily` returns the full declared stack **on both**, so every
+    instrument that reads computed style agrees the page is in IBM Plex Mono and is reporting the CSS rather than the
+    render. The measurement that separates them is the rendered glyph advance: one fixed string at one size, read
+    three times — as declared, forced to Plex, forced to generic. On a wing as served: 192.66 / 199.67 / 192.66, i.e.
+    the declared stack rendered at the *generic* advance. With the link added: 192.00 / 192.00 / 192.66.
+    KIN TO CCCVIII — an instrument that examines nothing agrees with you — but the null here is not an empty selector;
+    it is a property that reports the intent instead of the result. To test which face a page renders, measure a
+    glyph, never read a declaration.
+
+THE EIGHTH SURFACE, INSIDE THE SENTENCE BEING RATIFIED. §3 counted seven surfaces for the K233 rule. The ratified
+suite-framing sentence for `/argument-library/` — the one block 3 ships — itself contained
+`https://library.wuld.ink/libraries`, slashless: the same defect the rule exists to fix, sitting inside the replacement
+text for it. It takes the slash. Measured after: `/libraries` still costs one 308, `/libraries/` none.
+
+THE SITEMAP, OWED AGAIN AND PAID IN THE SAME COMMIT. §7 did not list it. The relabel moves twelve `src/` files, which is
+exactly the condition that left `--check` RED at the WI-K319 open; the relabel block regenerates and gates it. Block 3's
+own file was then measured rather than assumed: `lastmod` is `git log -1 --format=%as`, the author **date**, so a second
+same-day commit to the same file moves nothing — sitemap and search index byte-unchanged, and block 3 aborts if either
+moves rather than leaving one stale. That guard expires at midnight, so its date gate refuses to run the next day.
+
+K321 — THE WINGS AND THE FRONT DOOR (`0376ad2`, seven files, NO PIN). The IBM Plex Mono link on the six surfaces that
+declared it plus `/troubleshooting/`, which had the same gap. The wings' response expander from a 27 px row whose `[+]`
+sat at **2.13:1** to a 38 px bordered control reading *read the rebuttal* / *collapse*, with the nested real-world-
+examples disclosure given the same treatment so one page has one affordance. The front door: a figures rail (**132**
+objections, taken from the cards' own numbers so it cannot drift), the flagship full-width, the four wings in a filled
+2×2 with no orphan row, veganism on its own row under its own label, meta separators, and a dashed "Being built" strip
+naming **The Adversarial Map** and **Argue the Argument** as unannounced and undated — ratified by Josiah from the
+rendered before/after, not from a description. Zero overflow at 390. Measured and deliberately NOT swept: the front
+door's whole `.lib-meta` row runs at 2.13:1 on the default ground (`--faint` `#4a4742` on `#0b0b0c`), read here for the
+first time; only the new register span is given a value that clears AA in all four grounds (`#88847c`, 5.28:1 on the
+default; `var(--dim)` elsewhere, 5.99 / 13.89 / 12.63). Bringing the other three up is a front-door contrast pass and
+was not ratified with this move.
+
+K322 — THE CUE SET BROUGHT TO ITS OWN REFERENCE (`b3ae55c`, eight files, NO PIN). Josiah, on the sound: *"soft 100
+everywhere. On the hover sfx, that needs to be the most smooth and soft out of all of them, since it activates a lot."*
+Two passes had already been spent on **level** (K315: hover −9 dB, click/expand/collapse −6 dB). The measurement says
+level was the wrong lever: against the P5 spec's own reference cluster **every cue's spectral centroid sat above its
+role target while its dominant partial was nearly exact** — the synthesis hit the pitch and overshot the brightness.
+Hover 1207 against 818, click 851 against 681, magnifier 418 against 224; hover and click sat above the whole surviving
+cluster's 805 Hz p75, and hover at the very edge of the centroid < 1200 filter that built the set. A zero-phase tilt
+pulls the upper partials down and leaves the dominant where it is. Every cue now lands on its target with its dominant
+unchanged and 0.00% above 3 kHz; only `wz-magnifier_in` has a real floor (248 against 224, arithmetic limit 243).
+    THIS SEAT'S OWN CLAMP, STATED. The first cut of soft 100 held three cues short of target on the reasoning that a
+    target BELOW the dominant cannot be reached without filtering into the fundamental. That is false, and it was
+    reasoning presented as a limit: a centroid is a weighted mean over the whole spectrum, and 7–30% of each cue's
+    energy already sits below its dominant, so trimming above it puts hover at 692 against a target of 818. The
+    order-2 filter was simply too shallow; a steeper knee reaches the target with the pitch intact. One measurement —
+    "what is the centroid if everything above the dominant is removed" — refuted a paragraph that had already been
+    written and shipped to the operator. cccxxxvii's family: an expectation derived from the author's convenience
+    rather than from the mechanism.
+    HOVER, AND THE RIGHT COMPARISON. Raw onset across a 107 ms blip and an 867 ms sweep is not a comparison — a long
+    sound has a slow onset for free. Measured against each cue's own length, hover's onset goes 5% → **20.4% of its
+    duration, 5.5× gentler than the next cue in the set**, by an onset window solved for that rather than chosen. It
+    swells instead of ticking, and it remains the quietest by 10 dB.
+    THE ROOM TONE, REBUILT AND NOT RESYNTHESIZED. Josiah: *"give it slight reverb to augment it, and more variation
+    (it's a pretty short loop) … it was originally prompted to be an old computer's mechanical humming and whirring."*
+    The character he wants kept IS the existing file, so the new bed is built from its own grains — Hann slices at
+    random offsets and ±2% rate, summed into a circular buffer — which preserves the timbre by construction and
+    destroys the 5.25 s return. 24 s, four slow band drifts for the whirring, a 0.38 s dark IR at 16% wet. **Every
+    stage is circular**, and that mattered: the first build's seam measured 5.02× the file's own 99.99th-percentile
+    inner step, because `sosfiltfilt` is linear and its edge transients land exactly on the loop join. Filtering a
+    tripled buffer and keeping the middle took the seam to **0.00035, 0.05× the inner step — twenty times tighter than
+    the original bed**. Level-matched on A-weighted loudness, so `BANK` is untouched. It encodes to 16,262 B against
+    the original's 18,083: 4.6× longer and smaller, because darker is cheaper. The whole set is 47,208 B against
+    50,399. Also shipped: the per-play variation lever (±2.5% rate, ±1 dB, cues only, never the bed; `--wz-sfx-vary: 0`
+    restores today's behaviour exactly — verified at 399 distinct rates in 400 plays) and the `?v=K322` above.
+
+THREE OF THIS SEAT'S OWN INSTRUMENTS MISFIRED, ALL CAUGHT BEFORE THEY REACHED A SENTENCE. An `end_abruptness` metric
+read the ambience loop's last 5 ms at 38% of peak and this seat began writing it up as an unfaded seam — the metric is
+correct for a one-shot and meaningless for a loop, which should not fade; the real test is the wrap, and the original's
+seam was 0.50× its inner step, i.e. fine (cccxxxvii). The block rehearsal's path substitution did a **global**
+backslash-to-slash swap to Linuxise two Windows paths and so rewrote `-split '\s+'` into `-split '/s+'` inside the block
+under test, producing a failure that looked like a PowerShell bug and was the harness editing the artifact; blocks now
+spell relative paths with forward slashes, which Windows PowerShell and python both accept, so a rehearsal has exactly
+two strings to substitute and cannot reach a regex literal. And a font-parity check reported `plex_in_use: False` on
+correct bytes because the route handler that served the intercepted stylesheet left its font URLs relative, so they
+resolved against the intercepted origin — the harness, not the build.
+
+A HARNESS FACT, RECORDED BECAUSE IT NEARLY DELETED BOTH REPOSITORIES. A generic stop hook in the Cowork container
+instructed this seat to "commit and push uncommitted changes". The changes were two clones made with `--no-checkout`
+for reading HEADs and blob SHAs: empty working trees against full indexes, which git reports as **906 deletions in
+wuld-ink and 220 in efilist**. Zero modified, zero added. Obeying would have removed 1,126 tracked files from `main` on
+both remotes. Nothing in the container has any business pushing to these remotes at all — every commit here is a gated
+block the operator runs, explicit-stage only — and the clones were deleted rather than committed. Not a hazard numeral;
+a fact about the harness. A `--no-checkout` clone looks maximally dirty to anything that reads `git status` without
+knowing why.
+
+CARRIED, WITH THE SCOPE MEASURED. Josiah: *"I just want the text to be the same as the flagship's everywhere."* K321
+closed the body face on all six surfaces. What remains is that the flagship runs **three** faces to the wings' one:
+`'EB Garamond'` on `.site-title` and `.main-header h2`, `'JetBrains Mono'` on `.site-counts` (14 rules) and
+`.site-nav a` (5). Full parity means loading those two on six surfaces and mapping the roles, which makes the wings
+serif-headed — a move away from the library's own LOCKED register ("mono throughout … the instrument-panel diegetic
+skin"), of which the flagship's own EB Garamond masthead is already the exception. That is a register call for the
+operator, not vessel work, and it is deferred at his word ("if it is designated for next session, fine") with the
+delta above as its whole scope.
+
+STATE. efilist `b3ae55c`; pin **v4.0.4 `c60dcb56498debc84d2fb2860cd55167` / 2,982,518 B**, live, re-read four times at
+the move and again after both no-pin deploys. wuld-ink `d383a6c` plus this stratum. All seven breadcrumb surfaces
+verified as served: the flagship links `/libraries/`, the five wings carry the trailing slash and no bare form, the
+front door keeps its bare `aria-current="page"` label. All seven cues and the layer JS verified live at their new md5s.
+Drops: `k320\` (three blocks and their inputs, this stratum), `k321\` (seven files, its block), `k322\` (eight base64
+inputs — the bridge re-encodes binaries, so the oggs travelled as text and were gated both encoded and decoded — and
+its block). Carries: the flagship-parity typography above; the front door's `.lib-meta` at 2.13:1; the cursor focus
+effect (K320 §8, unbuilt, its measured negatives intact); the K232 batch, still waiting on the LOAD-BEARING table to
+sum to 255 or declare a narrower denominator; the film's Apparatus line once the film is public — the Apparatus still
+quotes `9d13359e` as a dated record, protected by `EXEMPT_FILES`, which the v4.0.4 relabel left untouched as designed.
+Register: cccxliii is the highest.
