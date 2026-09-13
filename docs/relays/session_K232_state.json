@@ -1,0 +1,61 @@
+{
+  "session_id": "K232",
+  "session_kind": "library_seat_ratification_zero_artifact_mutation",
+  "session_date_iso": "2026-09-11",
+  "declared_deliverable": "Ratify the wuld.ink seat's methodology-panel précis drafts (4 panels, 20 lines) and return final wording.",
+  "completed_tasks": [
+    "Ratified all four précis drafts with revisions; final wording emitted in methodology_precis_ratification_v0_1.md",
+    "Audited precis.py's sourcing guarantee: it asserts one source sentence PER LINE, not per claim; identified >=5 lines carrying clauses absent from their cited sentence (MW-2, MW-3, DG-2, AFM-2, RSI-1)",
+    "Verified every numeric claim in the drafts against project_canon_v38_1.json invariants",
+    "Isolated one unverifiable figure (Consent Impossibility 67 edges / 26%) written against a 254-edge graph now at 255",
+    "Ruled on all five editorial questions; changed the block label from IN BRIEF to START HERE; barred an id attribute on the block"
+  ],
+  "verified_facts": {
+    "canon_version": "38.1",
+    "canon_last_updated_by_session": "K221_advmap_staging_scholar_v1_1_vendor",
+    "objection_count": 82,
+    "mechanism_count": 35,
+    "map_graph_data_node_count": 117,
+    "map_graph_data_link_count": 142,
+    "dep_graph_data_node_count": 95,
+    "dep_graph_data_premise_node_count": 13,
+    "dep_graph_data_premise_foundational_count": 9,
+    "dep_graph_data_premise_diagnostic_count": 4,
+    "dep_graph_data_link_count_v4_0_0": 255,
+    "dep_graph_data_strong_link_count_v4_0_0": 167,
+    "dep_graph_data_weak_link_count_v4_0_0": 88,
+    "dep_graph_data_link_count_v361": 254,
+    "map1_node_count": 78,
+    "map1_blended_mode_count_distribution": {"1": 1010, "2": 274, "3": 11},
+    "map1_single_mode_share_derivation": "1010/1295 = 78.0% — reproduces the panel's 78% figure and confirms blended is a union view, not a fourth matrix",
+    "depth_modifiers": "long = base axes; medium c-0.05 r-0.03; short c-0.12 r-0.06 (short = the PUNCH 12/6 précis line)",
+    "display_pct_convention": "ROUND-1dp, ratified v37.32/K72, AMENDING the v37.13 floor-truncation clause; band on UNROUNDED geomean; 12 boundary cells at v3.9.4",
+    "stale_directive_block_note": "The project instruction block in context is v3.8/v3.9-era (81 objections, canon v37.32, 140 MAP_GRAPH links, 254 dep links). File tree and canon v38.1 supersede it: 82 objections, corpus v4.0.0, 142/255.",
+    "combined_html_absent_from_project_tree": true,
+    "methodology_panels_json_and_precis_py_not_visible_from_library_seat": true
+  },
+  "open_questions": [
+    "Consent Impossibility edge count at v4.0.0 — panel says 67 (42 strong / 25 weak, 26%) against a 254-edge graph; weak links moved 87->88. Recompute from DEP_GRAPH_DATA. If it moved, fix the PANEL, not the précis.",
+    "Does #map-methodology-panel state the ad-hominem limit (explaining a belief is not refuting it)? If not, that is a panel gap the précis pass surfaced.",
+    "Does #map1-methodology-panel document the blended view? The UI ships four toggles; the panel appears to document three modes.",
+    "Does #map-methodology-panel carry a general five-types/five-strategies sentence? Determines whether MW-3 keeps a general claim or ships as the defense instance alone."
+  ],
+  "next_recommended_action": {
+    "seat": "wuld.ink Cowork",
+    "class": "High/default — mechanical: gate tightening, one recount, three source-hunts, then splice",
+    "steps": [
+      "Tighten precis.py from per-line to per-clause sourcing; re-run; expect non-zero exit on the five lines named in the ratification doc",
+      "Recompute Consent Impossibility dependency share against v4.0.0 DEP_GRAPH_DATA",
+      "Resolve the three source-hunts",
+      "Splice the ratified wording as first child of each #*-methodology-panel, label START HERE, no id attribute, not collapsible",
+      "Add the four panels' internal figures to the release-time integrity check"
+    ],
+    "canon_bump": "None required — narrative layer, no invariant touched. MINOR only if a top-level key is added (keyset delta logging applies)."
+  },
+  "arc_position_note": "Out-of-arc ratification. The primary arc remains the Adversarial Map: Phase D (T2, n=17, K231) delivered; Phase E (T1, n=13) gated on Cowork completing the Phase D micro-fold and on adding an E element to the validator PHASES tuple.",
+  "artifacts_emitted": [
+    "methodology_precis_ratification_v0_1.md",
+    "session_K232_state.json"
+  ],
+  "mutations": "none — zero artifact mutation; no corpus, canon, ledger, or surface byte touched"
+}

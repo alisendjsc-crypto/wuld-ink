@@ -1184,3 +1184,167 @@ forward; the mechanised pin substitution (cccli, carried not claimed); Phase D a
 `E` bump, both for the library seat; `/rwe`'s orphan-but-served status, which is a no-pin sidecar and
 needs no fix because its figures are right; the flagship's examples and coda typography as the pin
 move's batch partner. Register: **ccclv** is the highest.
+
+## WI-K330 — the K232 batch shipped as a pin move: a fossil that was a SUM, a third era stripped, the mechanism web given its limit; three of the prompt's premises false and its typography item overturned by the nesting; ccclvi, ccclvii, ccclviii
+
+THREE COMMITS, ONE PIN MOVE. efilist `5784fbac` moved the flagship; wuld-ink `2ae1019` relabelled
+the site and `78990d2` regenerated the sitemap. The pin was read three times at open and came back
+identical each time:
+
+> **v4.0.4 · `c60dcb56498debc84d2fb2860cd55167` · 2,982,518 B** — http 200, ×3
+
+and again at close, after the move:
+
+> **v4.0.5 · `cee25a00b68ba036138d064c383d9a8b` · 2,982,658 B** — http 200, ×3
+
+Those are the reads this stratum quotes from (cccli). In-tree `combined.html` at `5784fbac` hashes
+to the close value, blob `84765a24e8ff54ac1cdfbfcf7dad4272dc2fe023`, so pin == live == committed.
+`/library-about/`, `/sitemap.xml` and `/feed.xml` were each read back and serve byte-identical to
+their commits — the CF beacon is off, so an HTML md5 compare was legitimate this time and was taken.
+
+THE NUMBERING IS RECONCILED HERE. The drop series reached `k329` while the strata reached `WI-K325`,
+and `WI-K326` is already spoken for inside the WI-K325 stratum's text, which the numeral gate reads.
+This stratum is **WI-K330** so that the drop `k330\`, the prompt, the three blocks and the log entry
+all carry one number. WI-K326 through WI-K329 are not strata and never will be.
+
+**WHAT SHIPPED — five edits, +140 B.** The table under `<h4>THE LOAD-BEARING HIERARCHY</h4>` was a
+v3.3-era artifact: thirteen rows summing to 148 strong / 74 weak = **222**, against a graph holding
+**255** links (167 + 88) since v4.0.0. Regenerated wholesale from `DEP_GRAPH_DATA.links`; twelve of
+thirteen rows moved, only Depressive Realism held, and row order is now generator-determined (total
+desc, strong desc, label asc) because the hand-made order followed no reproducible rule — Terror
+Management preceded Labor Sine Fructu on a strong-count tie while Zero-Sum trailed two premises it
+outranked. Second, the thirteen premise nodes carried inert `strongCount`/`weakCount`/`totalCount`
+fields summing to 161/84 = **245**, a third coexisting era, never read at render since K92 made
+`depCount()` derive from the links. Stripped — the literal touch the K92 comment deferred — and that
+comment now records the strip instead of promising it. Third, the mechanism panel gained
+`WHAT THIS MAP CANNOT DO`, K234 §4 verbatim, placed after `STRATEGIC APPLICATION` because that is
+where the convergence panel already puts `KNOWN LIMITATIONS`; the placement was taken from the
+artifact, not chosen. Fourth, the flagship gained the favicon line `3661284` had explicitly left for
+this pin move.
+    CORPUS UNTOUCHED, AND PROVEN RATHER THAN ASSERTED. All five data literals were extracted by
+    bracket-balance and compared byte for byte: `OBJECTIONS` `c96e08ea…`, `REAL_WORLD_EXAMPLES`
+    `b1e45c85…`, `MAP1_TRANSITIONS` `c91b3177…` and `MAP_GRAPH_DATA` `047ae4a3…` are identical
+    before and after. `DEP_GRAPH_DATA` is the one that moved (−602 B) and **its links array is
+    byte-identical at `15c51846600613dbc549821715b9a840` across 255 links** — only dead node fields
+    left. Canon stays 38.1: every invariant it records is a count over nodes and links, and none
+    changed. `regen_load_bearing.py` against the result exits 0 with `0 of 13 rows move`; the sweep
+    reports LIVE-CLAIM 0; the long data line's change is exactly the strip, proven by reconstructing
+    the result line from the base by removing the thirteen triples.
+
+**THREE OF THE PROMPT'S PREMISES WERE FALSE, AND ITS ARITHMETIC WAS PERFECT.** Every figure
+`PROMPT_K330` carried reproduced exactly — the 222, the 245, the 255, all thirteen row deltas. What
+rotted was STATE. (i) efilist was not at `a0af468`: `3661284` had landed twenty-six minutes before
+the session opened, adding a `.gitattributes`, seven favicons and six link lines, and deferring the
+flagship's to this move — a batch item the prompt could not have known. (ii) `GRADE THRESHOLDS`
+appears once, not twice, so the micro-label had no ambiguity to resolve. (iii) **K232 is not a hole
+in the archive.** It is at `archive/kickoffs/k232_library_seat_session_state.json`, 4,548 B, holding
+the ratified précis, the five editorial rulings and the very isolation of the 67-edge/26% figure
+against a 254-edge graph that set this batch going. The prompt searched `Downloads\` and the
+Adversarial Corpus folder and not the repo. Nothing is owed from the library seat; `docs/relays/`
+gains a verbatim copy in this commit, and its README, which asserted the hole, is corrected.
+
+**THE TYPOGRAPHY ITEM IS OVERTURNED, AND HELD.** K234 §5 ratified fixing the flagship's examples and
+coda typography as graft residue from `rwe.html`, offering the test *"treat it as graft residue
+unless a session can be named that chose it."* No session can be named — all nineteen EB Garamond
+references in this log are wuld.ink site chrome, and one names the graft path itself. **But the test
+asks the log a question the bytes already answer.** All twenty-six rules — nineteen JetBrains Mono,
+seven EB Garamond — are nested inside `body[data-active-view="rwe"]` or `[="coda"]`, with zero leak
+into the library view, and each view block re-declares its own palette (`--bg: #0F0E0C`,
+`--accent: #B8AC95`), its own size (17px rwe, 20px coda) and its own leading alongside the family.
+A graft copies rules; it does not wrap twenty-six of them in the host artifact's own router state,
+keyed to the same `data-active-view` that drives `#/library` `#/rwe` `#/coda`. That is a deliberate
+view-scoped reading register — serif, warmer and looser for quoted third-party material and authored
+prose, mono for apparatus — whose decision went unrecorded, not unmade. `.copy-btn` confirms it from
+the other side: it is `font-family: inherit`, not Arial, so it wears whatever register it stands in.
+The item's own motive — *"'same as the flagship' has no referent while the reference surface is
+internally inconsistent"* — is answerable at zero bytes: the referent is the flagship's LIBRARY
+view, already uniform IBM Plex Mono, which is what the five wings mirror anyway, having no rwe or
+coda view to diverge in. Ratification rested on a reading the nesting contradicts, so it goes back
+to Josiah and the library seat rather than shipping. Relay written.
+
+**ccclvi — A FENCE IN A REPORT IS A PROMISE THAT THE CONTENTS ARE RUNNABLE.** The opening report
+presented the pin read inside a triple-backtick fence. Josiah pasted it into PowerShell, which
+raised four `CommandNotFoundException`s trying to resolve `https://library.wuld.ink/combined`,
+`http`, `in-tree` and `blob` as command names. Nothing executed, so there were no side effects — but
+in a project whose whole operator protocol is *one PowerShell block, run as one line*, a fenced
+block is a learned instruction to paste. Evidence goes in prose, a table or a blockquote; a fence is
+reserved for the one thing meant to be run. **The report's typography is part of the operator
+interface, not decoration** — register discipline already governs the words handed to the operator,
+and this extends it to the shapes.
+
+**ccclvii — UNDER AN EOL POLICY IT IS NOT ONLY THE WORKING-COPY md5 THAT LIES; `git status` LIES
+TOO.** cccxlix established that a CRLF working copy makes a working-copy md5 gate abort a correct
+repo. efilist gained `.gitattributes` at `3661284` (`*.html text eol=lf`), and with a CRLF working
+copy — what any pre-`3661284` checkout left on disk — `git status --porcelain --untracked-files=no`
+reports ` M combined.html` **persistently, on every call**, while the content is byte-identical to
+HEAD. `git diff --name-only HEAD` returns empty and `git diff --quiet HEAD` exits 0, because diff
+applies the eol filters and compares content. The rehearsal's CRLF path failed on the old gate and
+went green on the new one, producing the identical blob. Cleanliness is gated by `git diff` now,
+which is also immune to the `docs/dot-handoff/` untracked class by construction (K293e) and needs no
+`--untracked-files=no`.
+    AND THE CARRIED RULE ITSELF NEEDED SPLITTING. The prompt's §5 rule 6 bundled a diagnosis — *"the
+    operator runs `core.autocrlf true`"* — with a prescription. The diagnosis is stale: wuld-ink's
+    repo-local config now reads `autocrlf = input` and `CLAUDE.md` is zero-CR on disk and identical
+    to its blob. The prescription is not: stripping CR is a no-op on an already-LF file, so it is
+    correct under either config. **Re-derive the diagnosis, keep the prescription** — and never
+    rewrite a block around a fresh observation, which only swaps one config assumption for another.
+
+**ccclviii — MEASURE THE STATE YOU THINK YOU MEASURED.** Four readings in this session described the
+apparatus rather than the artifact, and each was one step from a wrong conclusion. A `--depth 1`
+clone makes `git log -1 --format=%as` return HEAD for every file, so `gen_sitemap.py` rewrote all
+**55** `lastmod` values to the clone's date; on full history the same regen is a no-op against the
+committed sitemap. **Never run a history-derived generator in a shallow clone** — the failure is
+silent and plausible, because dates are exactly what a sitemap is expected to change. `| head -12`
+turned a BrokenPipeError into an exit 1 that looked precisely like the generator's documented
+*"shape moved, splice nothing"* signal. An `open(p,'wb')` truncated a file before the
+`open(p,'rb').read()` meant to feed it, and the resulting ` M` was read as evidence about line
+endings. And a grep of `rehearse/work` after a multi-path run measured what the harness's own
+`reset_repo` had reverted, not the green path's result. The tell is identical each time: the reading
+was alarming and the apparatus had just changed. Name the tree, the process and the instant before
+believing it; corroborate with an instrument that fails differently. This is cccxxxvii generalized,
+and the companion to the grep rule — that one says the instrument may measure the wrong thing, this
+one says it may measure the wrong moment or the wrong copy.
+
+**THE REHEARSALS EARNED THEIR KEEP TWICE MORE.** Beyond ccclvii, the efilist harness caught a gate
+testing the bare word `strongCount` — which legitimately survives in the K92 comment describing its
+own removal — aborting a correct input. It tests the data-field form now, built from `[char]34` so
+no double quote enters the block, and asserts the count 13 → 0. Grep the defect, not the marker,
+inside a gate this time. Separately, `grep -c` first reported the K92 comment ABSENT because it
+wraps across lines; a character-offset extract found it. Eighteen rehearsal paths across the three
+blocks, green and abort both proven, including a relabel landing on the wrong date.
+
+**THE RELABEL WAS PRECOMPUTED, NOT DELEGATED.** `tools/library-pin.py --apply --date 2026-09-13` ran
+in the container against a full-history clone; its seventeen outputs were verified and shipped as
+byte-gated inputs, so no python ran on the operator's machine. Sweep: md5 ×2, version ×24, bytes ×1
+across twelve files, `0 residual` across 107 html+js, `argument-library/apparatus/index.html` exempt
+with its three `9d13359e` intact (cccxxxvi holds). Verified against a clean checkout: **zero** html
+or js under `src/` still names v4.0.4, `c60dcb56` is gone from `src/` entirely, and the new md5
+appears only in `library-about`, the page that publishes it. The only surviving v4.0.4 strings are
+the v4.0.4 changelog entry in `releases.json` and `feed.xml` — dated history, correctly kept.
+`illogically-is/apparatus/index.html` carries no `v4.0.x` at all and so needs no exemption. The
+search index moved 1,013 → 1,013 with exactly two entries changed; the objection re-vendor is a
+no-op by identity because the corpus did not move. The tool clones the previous release summary and
+says to hand-edit it — done, because v4.0.4's prose was about one breadcrumb link and would have
+been a straight falsehood here. A **date gate** was added: any block whose payload carries a date
+refuses to run once the operator-local date has rolled over.
+    THE SITEMAP IS A THIRD BLOCK FOR A REASON. `lastmod` comes from `git log -1 --format=%as` on
+    each page, so it cannot date content committed in the same commit — the `2f190e6` precedent. Ten
+    routes moved to 2026-09-13, 67 locs before and after, none added or removed, only `<lastmod>`
+    lines differing. Because the shipped bytes assume the relabel's author date, the block
+    re-derives it and aborts naming the file and the date it found.
+
+STATE. efilist **`5784fbac`**, wuld-ink **`78990d2`**, pin **v4.0.5
+`cee25a00b68ba036138d064c383d9a8b` / 2,982,658 B**, read three times at open and three at close,
+in-tree blob `84765a24e8ff54ac1cdfbfcf7dad4272dc2fe023`. `library-pin-state.json` on v4.0.5,
+`updated 2026-09-13`. Canon 38.1, unbumped. `CLAUDE.md` base 166,883 B /
+`1f185cd7250a63b1ede03a7a0793186c`, blob `2e0b1c59e9c84f37ea1879acd9e217d8706ac681`, first-4096
+sha256[:32] `2cef196bc447b0bce2ba96fbc5424ca3`. Cowork's bridge: the workspace still cannot mount
+the operator's folders (the 2026-09-08 Windows update), so every read was a fresh public-origin
+clone in the container or a stage-and-hash; a 2.98 MB commit-and-restage round trip came back
+byte-identical, LF kept. Drop: `k330\` holds the three blocks, the spliced flagship, the seventeen
+relabel outputs, the sitemap, the manifest and a README. Carries: the examples/coda typography, now
+**held pending Josiah + the library seat** rather than owed as a build; the full Exchange fold from 155 forward; the
+mechanised pin substitution (cccli, carried and still not claimed); Phase D and the validator's `E`
+bump, both for the library seat and unmoved since Phase C on 2026-07-18; `/rwe`'s orphan-but-served
+status, which needs no fix because its figures are right; the k316b→k330 drops unfiled in
+`archive/`. Register: **ccclviii** is the highest.

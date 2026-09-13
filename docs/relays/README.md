@@ -24,9 +24,13 @@ session states lived only in `Downloads\Argument Library\` on one machine, which
 reconstruct-from-state half-blind: this repo could show what W did and not what L had decided.
 The library seat asked for the correction and it is theirs.
 
-**Gaps are recorded, not filled.** **K232 has no file.** It was not on the machine at WI-K325 —
-no `K232_*.md`, no `session_K232_state.json`, in the drop or in the Adversarial Corpus folder —
-and it is owed from the library seat. Do not reconstruct it from the K234 relay that discusses it.
+**Gaps are recorded, not filled — and this one was not a gap.** WI-K325 recorded that **K232 had
+no file**, having found no `K232_*.md` and no `session_K232_state.json` in the drop or in the
+Adversarial Corpus folder. Those searches were accurate and the conclusion was wrong: the file is
+`archive/kickoffs/k232_library_seat_session_state.json`, 4,548 B, and it was in this repo the whole
+time — under a name neither search matched, in a directory neither search covered. It is copied
+here verbatim as `session_K232_state.json` (WI-K330), so the relay archive is whole and nothing is
+owed from the library seat. Search `archive/kickoffs/` before declaring an archive hole.
 
 **Where the narrative lives.** `CLAUDE.md` is the running session log. The Exchange-numbered fold
 is `docs/library-claude-coordination.md`, which stops at **Exchange 155 (2026-07-18)**. This
