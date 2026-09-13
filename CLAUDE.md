@@ -991,3 +991,196 @@ sibling instance was patched at L1033 and left stale, and the instruction is to 
 rather than patch rows. Their mechanism-web limit text is authored and ready to land. That is a
 `combined.html` change and therefore the next pin move, with the flagship's examples/coda typography
 as its natural batch partner. Register: cccli is the highest.
+
+## WI-K325 — the other seat's half of the handoff committed as files; the K232 gate read, whose answer is that the fossil nobody can grep for is a sum; two generators shipped instead of two numbers; NO PIN; cccliii, cccliv, ccclv, and the two corrections WI-K324 landed too weak
+
+ONE wuld-ink COMMIT, TWENTY PATHS, NO efilist BYTE. Sixteen relay and session-state files into
+`docs/relays/` under a README saying they are committed verbatim and never edited, two generators
+into `tools/dep-graph/`, and this stratum. The pin was read three
+times at open, `curl.exe`-equivalent with a browser UA, and came back identical each time:
+
+> **v4.0.4 · `c60dcb56498debc84d2fb2860cd55167` · 2,982,518 B** — http 200, 2,982,518 bytes, ×3.
+
+That is the read this stratum quotes from, per cccli, and the in-tree `combined.html` of a fresh
+public-origin shallow clone at `a0af468` hashes to the same value, so pin == live == committed.
+
+THIS STRATUM ALSO DISCHARGES WHAT THE PREVIOUS SESSION OWED. It closed by writing
+`PROMPT_K325_wuld_ink_next.md` and did not write its own stratum; cccliii and cccliv were allocated
+there, and two entries that had already landed were judged too weak. They are recorded here rather
+than backfilled, because landed strata are never rewritten and a correction goes forward (K310w).
+
+**cccliii — A GATE WHOSE VERDICT DEPENDS ON COLLATION IS NOT A GATE.** The trim block compared its
+staged set against its intended set by joining a `Sort-Object` result into one string. `Sort-Object`
+on strings is culture-aware: Windows PowerShell's word sort puts `CLAUDE.md` before
+`CLAUDE-history.md` and the pwsh it was rehearsed in does not. Git handed the block the correct
+set, the sort reversed it, and the block refused a correct state one line before the commit. Sets
+are compared by membership in both directions now — no sort, no locale, no join.
+    THE SECOND HALF IS WORSE AND MORE GENERAL: **a rehearsal in a different shell is a rehearsal of
+    a different program.** Every block this project ships is written and rehearsed in a shell the
+    operator does not run. The rehearsal is still worth doing — it has caught a `break` that only
+    left a loop (cccxlv), a spent path, a tampered pin — but it establishes that the program is
+    correct in the rehearsal shell, which is a weaker claim than the one it feels like. Anything
+    whose behaviour is locale- or host-dependent (sorting, case folding, path separators, date
+    formatting, `-eq` on strings) is outside what a rehearsal can certify, and has to be avoided
+    rather than tested.
+
+**cccliv — BEFORE RECONCILING A DISAGREEMENT ABOUT A NUMBER, ASK WHETHER ANYTHING WAS DECIDED ON
+IT.** The video seat's, by authorship. Two seats spent two relays reconciling a spectral centroid.
+Their §4 then measured that the band shares — the figures every actual decision in that family was
+made on, the cascade's re-registration at 86% below 120 Hz, the settle's retune at 71.8%, the
+phone-speaker caveat — moved **0.1 percentage points** across the same transformations that moved
+the centroids 9 to 44 Hz. The centroid is a first moment over the whole spectrum and therefore
+hostage to small amounts of high-frequency energy a lossy encoder discards; a band share is a ratio
+inside a region holding nearly all the energy. Their sentence, kept: *"the reconciliation is
+bookkeeping rather than work."* Neither seat was wrong to reconcile it; the discipline is that the
+first question is cheap and was never asked.
+
+**ccclii GAINS A THIRD TERM, AND ITS CLOSING SENTENCE IS RETRACTED.** As landed it read: a
+measurement is a number and a definition. The video seat tested the claim instead of accepting it —
+which is what the hazard asks for — and found the reconciliation incomplete by its own standard.
+Adopting magnitude/Hann reproduced their ranking cue for cue, but their own definition applied to
+the shipped OGGs still left **9.6 Hz** mean error against this seat's column A on identical bytes
+under an identical formula, and not uniformly: `library_index` 18.3 Hz apart, `flow_fan` 4.9. So
+*"the residual is source; nothing else is left in the gap"* is struck. It was a claim about what
+remained, made without measuring what remained. What remains is the **decode**: Vorbis is lossy and
+the specification does not require bit-exact decoders, so "the shipped bytes" does not yet say what
+was turned into an array. **A measurement is a number, a definition, and a decode** — or, shorter,
+*state the code that turns the file into an array, because the file is not the array.*
+    Their §3 is the instance that earns it: `HANDOFF_view_cues_sfx.md` §5 reported centroids from
+    the float array inside the generator and band shares from the written WAV — two sources in one
+    table, neither of them the file the page loads. One sound, one definition, three
+    representations, **52 Hz of spread on `library_index`**: three and a half times the 15.9 Hz
+    definition gap that cost two relays.
+
+**cccli IS ONE CLASS TOO WEAK AS LANDED, and the library seat named why.** The counter-discipline
+shipped as *"prose quotes it from the block's own output rather than from memory"* — a compliance
+rule, which asks a writer to do the correct thing at write time, which is precisely what failed.
+Their formulation: *"A rule that can be violated by a document simply being written without running
+the gate will be violated the first time a document is written without running the gate."* Conceded
+without reservation. The mechanised form is theirs: a relay template carries a placeholder, the
+block that reads the surface fills it, and a document with an unfilled placeholder does not ship —
+so the sentence and the gate are one copy rather than two that agree by discipline. It is **carried,
+not claimed**; writing "mechanise it" into a prompt is the compliance rule one level out. Worth
+recording that this is the third time in four exchanges that *ship the rule, not the patch* has been
+the answer, which is itself the finding.
+
+THE §2b PARTIAL, WHICH IS THE COMMIT. `docs/library-claude-coordination.md` stops at Exchange 155
+and folding it forward is still a session. The partial is not: the library seat's K233, K234 and
+K235 relays with their three session states, and the eight wuld-side and two video-side relays
+spanning WI-K318 → WI-K326, are committed verbatim into `docs/relays/`. Their correction is the
+reason — their session states are the other half of a handoff that assumes both halves survive, and
+one seat's record living only in `Downloads\` makes reconstruct-from-state half-blind. Sixteen
+files, 98,681 B, every one pure LF and gated by md5 and byte count before the copy. **K232 itself
+has no file on this machine** — no `K232_*.md`, no `session_K232_state.json` in the drop or the
+Adversarial Corpus folder — so the prompt's "commit K232, K233, K234, K235" is short by one through
+no fault of the instruction. It is owed from the library seat, not recoverable here.
+
+THE K232 GATE READ, WHICH THE LIBRARY SEAT SEQUENCED AND WHICH ANSWERS THE OPPOSITE OF WHAT
+EVERYONE EXPECTED. Their K235 §4 asked for the fossil sweep first, on the ground that every other
+item in the batch is bounded and only the sweep can surprise a large single pin move mid-flight:
+*"a sweep that turns up twelve instances across four surfaces is a different commit from one that
+turns up two."* Run against a fresh clone at `a0af468`, over all ten served surfaces — the flagship,
+`rwe`, the front door, `/troubleshooting/`, veganism ×2 and the four wings — for `222`/`245`/`254`
+as edge counts and `74`/`78`/`81` as objection counts:
+
+    the five wings, the front door, veganism and /troubleshooting/   ZERO occurrences of any of the six
+    combined.html + rwe.html                                          24 claim-proximate candidates
+    of those 24, live false claims about the corpus                   ZERO
+
+Every one is a hex `#222`, an `rgba(245,…)`, a `K74:`/`K81`/`K82` session comment, a percentage that
+merely shares the digits (`78% of edges appear in only one mode`, and `78.0%` beside it), a
+correctly dated record (*"the v3.5 manual pass … adding 38 new edges through close reading of all 74
+entries"*; *"After generation across all 78 source nodes"*, whose table is internally consistent at
+11 + 274 + 1010 = 1295; *"the ratified delta 78->80 to 78->81"*; *"the original 81 objections"*), or
+a different population entirely.
+
+**ccclv — A SWEEP FOR A SUPERSEDED FIGURE, IN A DOCUMENT THAT KEEPS DATED RECORDS, RETURNS MOSTLY
+CORRECT SENTENCES; AND THE FIGURE IT IS LOOKING FOR MAY NOT BE A STRING AT ALL.** Two halves, and
+the second is the one that matters.
+    FIRST: the candidates a sweep surfaces are, in the main, right, and *fixing* them breaks them.
+    `rwe.html`'s meta description — *"136 real-world example instances across 78 objections"* —
+    matches the fossil objection count exactly and is **correct**: the RWE dataset holds 78
+    objections and 136 instances, counted out of its own `rwe-data` block, because four of the 82
+    corpus objections have no real-world examples. And the `mp-note` sitting one `<br>` beneath the
+    LOAD-BEARING table already reads *"67 edges — 42 strong, 25 weak — 26% of all dependencies"*,
+    which is **exactly** what the live links give. A sweeper reconciling the note to the table above
+    it would have replaced a current figure with a v3.5 one. The authority gradient runs backwards:
+    the table looks like the data and the note looks like commentary, and the note is the maintained
+    half.
+    SECOND, AND THE REASON THE SWEEP COULD NOT HAVE FOUND THE FOSSIL: **the digits `222` appear
+    nowhere in the LOAD-BEARING table, or in any prose on any surface.** Every standalone 222 in
+    2.98 MB is the hex colour `#222`. The fossil is the SUM of thirteen row totals — 148 strong + 74
+    weak — under the sentence *"The current dependency distribution reveals the structural priorities
+    of the library"*. An arithmetic property of a set of rows is invisible to every string search
+    ever written, so a clean sweep is not evidence that the counts are current. The instrument that
+    finds it is one that recomputes; the sweep reads sentences and must say so in its own output, or
+    a clean run gets read as a clean bill of health (which is cccviii's family — an instrument that
+    examines nothing agrees with you — one step further out, where the instrument examines the wrong
+    *kind* of thing).
+    THE COUNTER-DISCIPLINE, STATED SO IT IS NOT ANOTHER COMPLIANCE RULE (cccli): the sweep's unit is
+    not the numeral but the claim's **population and tense**, and the script enforces it — every
+    match lands in CSS-OR-CODE, PERCENT, OTHER-POP, DATED-RECORD, UNCLASSIFIED or LIVE-CLAIM, only
+    the last licenses an edit, and nothing lands there automatically. A candidate that turns out to
+    be correct is a finding about the sweep, not a no-op.
+
+TWO GENERATORS RATHER THAN TWO NUMBERS, per cccxxxi and cccl. `tools/dep-graph/regen_load_bearing.py`
+extracts `DEP_GRAPH_DATA` by brace balance, recomputes every premise row from the **links** array —
+the only source `depCount()` reads — parses the committed table, and prints the diff plus a
+replacement table with its own md5. Against the v4.0.4 flagship it reports three eras coexisting
+with nothing marking which is which: the static table at **148/74 = 222**, the inert per-node
+`strongCount`/`weakCount`/`totalCount` fields at **161/84 = 245** (whose own K92 comment says
+"strip on next literal touch"), and the links at **167/88 = 255**. **Twelve of thirteen rows move**;
+only Depressive Realism (1/0/1) holds. Consent Impossibility resolves to **67 (42 strong, 25 weak)**
+= 26.27%, which displays as the 26% the note already carries, so that prose needs no edit at either
+denominator — the "26.3%" the prompt worried about is not on the surface. Convergent Architecture
+13 → 17 and Benatar 33 → 36 are confirmed by independent computation rather than carried.
+`tools/dep-graph/fossil_sweep.py` is the sentence half. Both print their own command line, both
+carry `--self-test`, and both controls fail on the null case (cccxxxix): the regenerator returns 2
+on a drifted table, 0 on an agreeing one, and exits 1 on an edge whose strength it cannot classify;
+the sweep classifies five seeded contexts into five different buckets.
+    ALSO MEASURED, AND IT SHRINKS THE BATCH: the flagship's chrome **already states the live
+    denominator, unqualified, twice** — *"13 premise nodes connected to 82 objection nodes via 255
+    dependency edges"* and the `dep-stats` block reading `13 PREMISES · 82 OBJECTIONS · 255
+    DEPENDENCIES`. So the batch's "denominator 255, unqualified" item is already satisfied
+    everywhere except inside the table that is being regenerated wholesale anyway.
+    ONE VISIBLE CHANGE THE LIBRARY SEAT SHOULD RULE ON: row order becomes generator-determined
+    (total desc, strong desc, label asc). The hand-made order follows no single rule — Terror
+    Management precedes Labor Sine Fructu on a strong-count tie while Zero-Sum trails two premises it
+    outranks on strong — so it cannot be reproduced, only replaced.
+
+TWO STATE CLAIMS RE-DERIVED AT OPEN, BOTH FALSE, NEITHER ANYONE'S CARELESSNESS. The prompt's §0 puts
+wuld-ink at *"`2f190e6` plus the k328 ship-line commit"* and the K326 closing relay says *"`2f190e6`
+plus the ship-line fix"*. **`origin/main` is `2f190e6` and the fix is not in it.** The repo's
+`tools/apparatus/SHIP_WHEN_REPIN_LANDS.ps1` is 14,714 B, last touched at `a233e99`; the drop's is
+15,200 B. `k328\K328_wuld_shipline.ps1` was written and never run — and it is well-formed, its
+gated result blob `1f0116db6493c109babc093748f07126839b65e2` recomputed here from the drop bytes
+and matching. What it fixes is a sentence the script prints **on a green run**: *"The film is not
+linked from the page and the verifier asserts that"*, which handout §6's inversion made false. That
+is cccli in a tool rather than a document, and the script runs at the next pin move, so it lands
+first. Both sentences are the shape cccli names: a state reported in prose while every gate around
+it held. Two more instances on the night the entry was judged too weak.
+    THE ADVERSARIAL MAP, for Josiah, since the library seat's K235 §5 put it to him and guessed at
+    the answer: *"Either it landed and nobody said so, or it has been sitting behind the maintenance
+    the whole time."* **It has been sitting behind the maintenance.** `adversarial_map_staging/` at
+    `a0af468` holds phases A (17 entries), B1 (16), B2 (16) and C (14) — 63 — and **no Phase D
+    fragment**; there is no `adv_map_phaseD_*.json` in the repo or in `Downloads\Argument Library\
+    Adversarial Corpus\`, and no D fold receipt beside the K230 C receipt. The validator is still
+    `adv_map_validator_v0_1.py` with `PHASES = ("A","B1","B2","C","D")` — D valid, **no E**. So both
+    halves of the gate are open, the last fold was Phase C on 2026-07-18, and the map has not moved
+    since **C**, not since D. T2 is seventeen nodes and T1 is thirteen.
+
+STATE. wuld-ink `2f190e6` at open, `origin/main` identical; this commit is one atop it, or atop the
+k328 commit if that lands first — the block gates `HEAD == origin/main` and the base blobs rather
+than a pinned sha, so either order is legal. efilist `a0af468`, untouched, not one byte, no clone
+written to. Pin **v4.0.4 `c60dcb56498debc84d2fb2860cd55167` / 2,982,518 B**, read three times at
+open and once at close. `CLAUDE.md` base 150,251 B / `b568bfae73fcd6bc53a73d2113ae00b5`, blob
+`ca68986cb4834b620f78a66504a2a6ee5ef8a53a`, first-4096 sha256[:32] `2cef196bc447b0bce2ba96fbc5424ca3`.
+Cowork's bridge: the workspace still cannot mount the operator's folders (the 2026-09-08 Windows
+update), so every read was a fresh public-origin clone in the container or a stage-and-hash, and no
+mount read was taken (the stale-mount class). Drop: `k329\` holds the block, the two generators, the
+sweep report and `PROMPT_K330_K232_batch_pin_move.md`. Carries: **run `k328` first**; the K232 batch,
+now scoped by the read above and opened from its own kickoff; the full Exchange fold from 155
+forward; the mechanised pin substitution (cccli, carried not claimed); Phase D and the validator's
+`E` bump, both for the library seat; `/rwe`'s orphan-but-served status, which is a no-pin sidecar and
+needs no fix because its figures are right; the flagship's examples and coda typography as the pin
+move's batch partner. Register: **ccclv** is the highest.

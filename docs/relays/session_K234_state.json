@@ -1,0 +1,64 @@
+{
+  "session_id": "K234",
+  "session_kind": "library_seat_ratification_and_adjudication_zero_artifact_mutation",
+  "session_date_iso": "2026-09-13",
+  "predecessor_relay": "wuld.ink seat relay WI-K321b / WI-K322 / WI-K324, 2026-09-13",
+  "declared_deliverable": "Respond to the WI-K324 relay: rule on the mode-default removal, unblock the K232 batch, and author the mechanism-web limit text.",
+  "completed_tasks": [
+    "Raised the pin-record contradiction as the blocking item: two md5s one day apart, both labelled v4.0.3 unmoved, while the same relay reports a v4.0.3->v4.0.4 pin move at WI-K320 and shows the v4.0.4 label already serving",
+    "Ratified removal of the prefers-color-scheme opening-mode line as a standing decision; corrected the framing (removal was chosen by pin cost, not principle; the principled uniform direction would be adding the query to the flagship)",
+    "Ratified the code/pre, NUL-byte and /troubleshooting/ items; converted the NUL-byte finding into a deploy-gate recommendation (C0 control-byte assertion)",
+    "UNBLOCKED K232: established from canon that the LOAD-BEARING table's 222 is a v3.3-era fossil, not drift, and that the denominator is 255 with no legitimate narrower scope",
+    "Authored shippable panel text for the mechanism-web 'explaining is not refuting' limit",
+    "Ratified batching the flagship examples/coda typography item, and reframed it as a prerequisite for the parity rule rather than an extra"
+  ],
+  "verified_facts": {
+    "dep_graph_denominator_ruling": "255. dep_graph_data_link_count_v4_0_0=255, strong=167, weak=88, 167+88=255 exactly; the strong/weak test is defined response->premise, so every link is a classified dependency edge and no narrower denominator is legitimate.",
+    "222_provenance": "canon patch record, verbatim stale_text: '13 premise nodes connected to 74 objection nodes via 222 dependency edges'; stale_pre_state_inferred_canonical_basis: 'v3.3-era (74 objections / 222 dep-graph edges); never refreshed across cascade or canon-state-refresh updates'",
+    "dep_edge_series": "222 (74 objections) -> 245 (78) -> 254 (81, dep_graph_data_link_count_v361) -> 255 (82, v4_0_0)",
+    "sibling_patch_precedent": "canon patch P3 at region L1033 corrected the same stale basis 74/222 -> 78/245 with byte_delta 0 (byte-neutral numeric substitution); that patch is itself now stale and the LOAD-BEARING table was missed by the same cascade",
+    "shortfall_explained": "222 + Convergent Architecture(+4) + Benatar(+3) = 229; 255-229 = 26 unaccounted, because v4.0 deltas are being applied to a v3.3 artifact",
+    "byte_neutral_precedent": "canon byte_delta_rationale: 'All three patches are byte-neutral: each numeric substitution (74->78, 74->77, 118->133, 222->245) preserves character count within its enclosing chrome string' — so identical byte counts across a pin move are not evidence of an unchanged file in this project",
+    "k233_gates_closed_by_wuld_seat": "anthropocentrism confirmed a wing (runtime status asserts no positive ranking); veganism served rendered with eyebrow 'Flagship-adjacent module' — the K233 public sentence may ship",
+    "pin_conflict": {
+      "k319_relay": "62c733ac8263e6413816cfb6d28e3b8a / 2,982,420 B / v4.0.3 / unmoved",
+      "k324_relay_preamble": "c60dcb56498debc84d2fb2860cd55167 / 2,982,420 B / v4.0.3 / unmoved since WI-K318",
+      "k324_relay_section_3": "v4.0.3 -> v4.0.4 pin move at WI-K320",
+      "k324_relay_section_2": "front door cards render 'PINNED V4.0.4'",
+      "library_seat_reconstruction": "pin moved at WI-K320, c60dcb56 is v4.0.4, preamble header is stale — unverified from this seat (no combined.html in the library project tree)"
+    }
+  },
+  "authored_artifact": {
+    "id": "mechanism_web_limit_panel_text",
+    "label": "WHAT THIS MAP CANNOT DO",
+    "placement": "#map-methodology-panel, tracked uppercase micro-label matching AXES / GRADE THRESHOLDS",
+    "text": "Naming the mechanism behind an objection does not refute the objection. A defense mechanism can produce a true claim; a motivated reasoner can be right. This map describes why an objection is reachable from where the interlocutor is standing — not whether it succeeds. A response that identifies the mechanism and stops there has answered nothing, and has usually insulted someone. Every objection in the taxonomy carries a substantive rebuttal for that reason. Where the mechanism is genuine philosophical engagement there is nothing to diagnose at all, and those are the objections that decide whether the case holds."
+  },
+  "open_questions": [
+    "BLOCKING: reconcile the pin record — one re-read of the served surface yielding {md5, bytes, version label, commit} as a single tuple; correct whichever record is wrong before the K232 batch pin moves.",
+    "Is the reading-mode toggle discoverable on first view? The persisted-toggle mitigation for removing prefers-color-scheme depends on it.",
+    "Sweep result for the v3.3/v3.7-era fossil basis across all surfaces: edge counts 222 / 245 / 254 and objection counts 74 / 78 / 81 in prose or chrome.",
+    "Can any session be named that chose EB Garamond for the flagship's examples and coda? If not, treat as rwe.html graft residue and unify."
+  ],
+  "next_recommended_action": {
+    "seat": "wuld.ink Cowork",
+    "class": "High/default — one verification, one regeneration, then a single batched pin move",
+    "steps": [
+      "Reconcile the pin record first; nothing else moves until it agrees",
+      "Regenerate the LOAD-BEARING table wholesale from DEP_GRAPH_DATA to sum 255; recompute Consent Impossibility's row rather than carrying 67 forward",
+      "Sweep all surfaces for the fossil basis; patch the class, not the instance",
+      "Land the authored WHAT THIS MAP CANNOT DO panel text in #map-methodology-panel",
+      "Batch: dependency table, Convergent Architecture, Benatar, the mechanism-web limit, the breadcrumb rule if not already pinned, and the flagship examples/coda typography unification including .copy-btn",
+      "Add a C0 control-byte assertion to the deploy gate",
+      "Bind panel figures to the release-time integrity check",
+      "Commit the K232, K233 and K234 ratification documents to the repo as a cheap partial against the coordination-doc gap"
+    ],
+    "canon_bump": "None from this session. The dependency-table regeneration touches no invariant; the figures it corrects are surface prose, not canon scalars."
+  },
+  "arc_position_note": "Third consecutive out-of-arc session. Adversarial Map Phase E (T1, n=13) still gated on the Phase D micro-fold and the validator PHASES tuple E element.",
+  "artifacts_emitted": [
+    "K234_pin_reconciliation_and_K232_unblock.md",
+    "session_K234_state.json"
+  ],
+  "mutations": "none"
+}

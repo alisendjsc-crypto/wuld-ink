@@ -1,0 +1,50 @@
+{
+  "session_id": "K235",
+  "session_kind": "library_seat_return_relay_zero_artifact_mutation",
+  "session_date_iso": "2026-09-13",
+  "predecessor_relay": "RELAY_wuld_K325_pin_corrected_for_the_library_seat.md",
+  "declared_deliverable": "Close the open items left by the K325 correction: the cccli counter-discipline, the landed-README question, and my own unmeasurable discoverability condition.",
+  "completed_tasks": [
+    "Accepted the corrected pin tuple; K234 §1 reconstruction confirmed correct by the wuld seat",
+    "Critiqued cccli's counter-discipline as one class too weak — a compliance rule in the same class as the failure it replaces; recommended mechanical substitution of the pin from gate output into document templates",
+    "Split cccxxxvi: records-of-what-was-thought are never swept, but a pin value in a landed README is an instruction rather than a record and must not stay false; recommended a one-line correction stamp with no sweep",
+    "Closed my own K234 discoverability condition: replaced 'discoverable on first view' with a checkable proxy (text label naming the mode, first viewport, 1440 and 390, all six surfaces plus flagship), and registered the unmeasurable remainder as a named residual rather than an open gate",
+    "Flagged the fossil sweep as the only unbounded item in the batch; recommended it run first and report a count before the commit is scoped",
+    "Flagged to Josiah that the Adversarial Map arc has not moved across four sessions and its gate has gone unmentioned in three relays"
+  ],
+  "verified_facts": {
+    "pin_corrected": "v4.0.4 / c60dcb56498debc84d2fb2860cd55167 / 2,982,518 B / efilist a0af468; WI-K320 moved 62c733ac / 2,982,420 -> c60dcb56 / 2,982,518, +98 B (breadcrumb href + aria-current)",
+    "k234_reconstruction_confirmed": "The K234 §1 third-row reconstruction was correct; the K324 relay had paired the new hash with the superseded file's byte count",
+    "wuld_stratum_entry": "cccli — a value that lives in both a gate and a sentence will drift in the sentence, because only the gate is checked",
+    "k232_unblock_accepted_whole": "denominator 255 unqualified; regenerate the LOAD-BEARING table wholesale; recompute Consent Impossibility in the same pass; sweep the fossil basis as a class; bind panel figures to the release check; WHAT THIS MAP CANNOT DO ships as authored, unedited",
+    "examples_coda_ruling_accepted": "no session chose EB Garamond there; rwe.html graft residue; .copy-btn Arial settles it; reframed as prerequisite to the parity rule rather than a rider",
+    "batch_contents": "regenerated table, recomputed Consent Impossibility row, fossil sweep, map limit text, Convergent Architecture 13->17, Benatar 33->36, examples/coda typography — one commit, one pin move, its own session",
+    "coordination_partial_scheduled": "K232/K233/K234 plus WI-K320 through WI-K324 relays to be committed to the repo as the first item of the Exchange-mirror work"
+  },
+  "open_questions": [
+    "Does the mode control carry a text label in the first viewport at 1440 and 390 on all six surfaces and the flagship? This is the checkable replacement for the withdrawn discoverability condition.",
+    "Fossil sweep count — unknown until run; determines the batch commit's true scope.",
+    "Has the Adversarial Map Phase D micro-fold landed, and does the validator PHASES tuple have its E element?"
+  ],
+  "named_residuals": [
+    "A reader whose OS prefers light mode now lands on standard and may never learn legible exists. Accepted cost of a single citable typographic presentation; not measurable without user testing; recorded, not tracked."
+  ],
+  "next_recommended_action": {
+    "seat": "wuld.ink Cowork, then library seat",
+    "class": "High/default for the batch; Max-class for Phase E",
+    "steps": [
+      "Commit K232/K233/K234/K235 and the WI-K320 through WI-K325 relays to the repo (minutes, first)",
+      "Run the fossil sweep and report its count before scoping the batch commit",
+      "Open the batch session with its own kickoff; land the single pin move",
+      "Confirm the Phase D micro-fold and the validator PHASES E element before the batch session opens",
+      "Then Adversarial Map Phase E (T1, n=13) at the library seat"
+    ],
+    "canon_bump": "None from this session."
+  },
+  "arc_position_note": "Fourth consecutive out-of-arc session, and the last one owed. Phase E should follow the batch pin.",
+  "artifacts_emitted": [
+    "K235_return_relay.md",
+    "session_K235_state.json"
+  ],
+  "mutations": "none"
+}

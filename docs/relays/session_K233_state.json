@@ -1,0 +1,57 @@
+{
+  "session_id": "K233",
+  "session_kind": "library_seat_ratification_zero_artifact_mutation",
+  "session_date_iso": "2026-09-12",
+  "predecessor_relay": "RELAY_wuld_K319_suite_framing_and_flagship_nav.md (wuld.ink seat)",
+  "declared_deliverable": "Ratify two K319 items: the dead REFUSAL LIBRARIES nav link (batching call) and the public phrasing that names six libraries while preserving the wing/module register distinction.",
+  "completed_tasks": [
+    "Item 1 ratified as proposed; fix restated as a rule (first breadcrumb segment is a link everywhere except when served path is /libraries/) rather than a one-surface patch",
+    "Item 2 resolved from canon rather than invention: veganism's term is already ratified as 'flagship-adjacent STANDALONE module' (canon veganism_module, K180, from charter K179 L141-region close-note)",
+    "Emitted the ratified public sentence naming all six libraries with the register distinction intact",
+    "Recommended per-card register labels at the front door as the durable fix; ruled 'Refusal Libraries' stays as a venue name, no rename",
+    "Adjudicated the abortion advisory observation: it is the ratified lone Firewall-B exception on which the H4 lone-exception capstone depends — not a breach, must not be tidied away",
+    "Adjudicated the batched K232 LOAD-BEARING table items: identified an internal contradiction in the shipped panel and a residual shortfall after the two named row corrections"
+  ],
+  "verified_facts": {
+    "canon_version_held": "38.1 (2026-07-11, K221)",
+    "veganism_ruling": "flagship-adjacent STANDALONE module, NOT a Refusal Suite wing; register = flagship harm + consent; positive appraisal native and unremarkable; NOT optionality, NOT sovereignty",
+    "veganism_registration": "canon key veganism_module, registered_by_session K180_veganism_module_genesis_cowork_fold, 2026-07-01; source ruling = refusal_suite_charter_v0_1.md b8ad7447/275 L141-region",
+    "veganism_module_version": "0.1.0",
+    "veganism_deploy_at_registration": "library.wuld.ink/veganism/ — auto-deploying efilist path, NOT pin-tracked, no render surface at genesis (corpus + ledger served raw)",
+    "firewall_b_in_suite_exception_count": 1,
+    "firewall_b_exception_identity": "abortion — H4 lone-exception capstone (the-firewall-does-not-misfire) preserved by construction; veganism seam carries a CITE, never the claim",
+    "anthropocentrism_in_canon_v38_1": "0 occurrences — postdates held canon; register unverifiable from the library seat",
+    "dep_graph_data_link_count_v4_0_0": 255,
+    "dep_graph_strong_weak_v4_0_0": "167 strong / 88 weak (sums to 255)",
+    "load_bearing_table_arithmetic": "Consent Impossibility 67/255 = 26.3% (matches shipped prose); 67/222 = 30.2% (does not). Prose is current, table is stale. Correcting Convergent Architecture 13->17 (+4) and Benatar 33->36 (+3) takes 222 to 229, leaving ~26 edges unaccounted.",
+    "combined_html_not_in_library_project_tree": true,
+    "pin_taken_as_relayed_not_verified": "62c733ac8263e6413816cfb6d28e3b8a / 2,982,420 B / v4.0.3 / efilist 4e4722b"
+  },
+  "ratified_public_sentence": "The taxonomy and the force-directed Map 1, the attested real-world deployments, and the coda are all live at library.wuld.ink, beside four rebut-only optionality wings — right to die, abortion, transgenderism, anthropocentrism, which defend the right and never recommend the act — and veganism, which is not a wing at all but a standalone module in the flagship's register, arguing harm rather than defending a choice.",
+  "open_questions": [
+    "GATE ON THE SENTENCE: anthropocentrism's register. Wing if it defends a competent adult's right to a contested personal choice; veganism's category if it argues a moral-status thesis about non-human patients. If the latter, the enumeration recuts before publication.",
+    "GATE ON THE SENTENCE: is Veganism a served, rendered library at the front door or a heading? At registration it served corpus + ledger raw with no render surface.",
+    "Does the abortion wing mark its advisory instance at the instance as the suite's single declared Firewall-B exception? If not, that is a suite-side authoring item owed to the library seat.",
+    "LOAD-BEARING table denominator: does it cover all dependencies or a subset? The panel must name what it counts before the corrected table ships.",
+    "Veganism seam_cite placement in the suite remains OPEN per canon (candidate: Firewall sharpening-1 close-note vicinity)."
+  ],
+  "next_recommended_action": {
+    "seat": "wuld.ink Cowork",
+    "class": "High/default — mechanical splice plus one pin move",
+    "steps": [
+      "Resolve the two sentence gates (anthropocentrism register; veganism served-vs-heading)",
+      "Land the ratified sentence in /argument-library/ 'One click'; reconcile against the efilist README and the front door's own copy",
+      "Add per-card register labels at /libraries/ (rebut-only / argues a thesis)",
+      "Recompute the LOAD-BEARING table to 255 or declare its denominator; author the explaining-is-not-refuting limit as mechanism-web panel text",
+      "Batch the nav fix with the K232 panel items in one pin move; breadcrumb first segment links to /libraries/ with trailing slash; regression-check wings and front door",
+      "Bind panel figures to the release-time integrity check so the assertion ships with the values"
+    ],
+    "canon_bump": "None from this session. A suite-side framing fold and the per-card registers are wuld.ink-canon, not efilist canon."
+  },
+  "arc_position_note": "Second consecutive out-of-arc ratification. Primary arc unchanged: Adversarial Map Phase E (T1, n=13) still gated on the Phase D micro-fold and on adding an E element to the validator PHASES tuple.",
+  "artifacts_emitted": [
+    "K233_suite_framing_nav_ratification.md",
+    "session_K233_state.json"
+  ],
+  "mutations": "none"
+}
