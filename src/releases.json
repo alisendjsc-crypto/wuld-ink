@@ -1,5 +1,14 @@
 [
   {
+    "id": "2026-09-12-library-v4-0-4",
+    "date": "2026-09-12",
+    "summary": "The library's pinned edition is now v4.0.4. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is one link. The flagship's breadcrumb named the Refusal Libraries without linking them, so from the flagship the umbrella front door could be reached only by leaving through a sibling wing and coming back in from there. It is a link now, and by a rule rather than a patch: the first step of that trail is a link on every surface where it is a parent, and a plain label only on the front door itself, where it is the page you are already standing on. The front door's cards now also say which register each library argues in — the four wings rebut without recommending, the flagship and the veganism module argue a thesis — because “Refusal Libraries” is the name of the venue, not a claim about everything inside it. It ships as a new version rather than a re-pinned v4.0.3 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.",
+    "sections": [
+      "/argument-library/",
+      "/library-about/"
+    ]
+  },
+  {
     "id": "2026-09-12-argument-library-film",
     "date": "2026-09-12",
     "summary": "A four-and-a-half-minute showcase film for the Argument Library joins the Watch page. It moves through the flagship the way a reader would — the eighty-two objections, the grades they carry, the dependency graph, the mechanism web, the argument flow — and it rebuts rather than advocates, which is the library's own rule. Everything measured to make it, down to the brightest single-frame change and the exact render it was cut from, is in the Apparatus. One objection names suicide and a sibling library concerns a right to die; nothing is urged either way.",

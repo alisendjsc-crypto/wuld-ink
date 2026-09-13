@@ -1,0 +1,30 @@
+{
+  "release": "v4.0.4",
+  "canon": {
+    "version": "38.1",
+    "bump": "NONE",
+    "invariant_block_changed": false,
+    "note": "v4.0.4: the flagship's breadcrumb bar gains the link it had been missing, and the K233 rule is written down (WI-K320). NO CONTENT CHANGE: corpus, grading ledger, both graph literals, the argument-flow matrix and the real-world-examples data byte-unchanged (OBJECTIONS, REAL_WORLD_EXAMPLES, MAP1_TRANSITIONS, DEP_GRAPH_DATA, MAP_GRAPH_DATA and the rwe-data block extracted by bracket-balance and compared byte for byte); objections index unchanged (d034af15, no version string, so the wuld.ink re-vendor is a no-op by identity). What moved the pin: ONE href. nav.rl-wing rendered 'Refusal Libraries' as a bare span and the string /libraries appeared zero times in 2.98 MB, so the umbrella front door was unreachable from the flagship except by going out through Harm & Autonomy to the right-to-die wing and back in. It is now <a href=\"/libraries/\"> at #88847c (the wings' --faint, 5.28:1 on #0a0a0a, AA) carrying the bar's own existing link treatment. Unified diff of the pinned file: one hunk, two lines, +98 B. Rides along, NO PIN: the five wings' href gains the trailing slash (+1 B each) and the front door gains per-card registers plus the venue-name note. Layer untouched (NO-PIN, no layer bytes move). Canon stays at 38.1 (invariants untouched)."
+  },
+  "git": {
+    "baseline": "efilist 4e4722b (WI-K319 seat: efilist untouched since v4.0.3); the v4.0.4 pin move commit K320 on top",
+    "branches": [
+      "main"
+    ],
+    "parity_required": false,
+    "note": "combined.html 62c733ac/2,982,420 -> c60dcb56498debc84d2fb2860cd55167/2,982,518 (+98). Served == committed to be verified by the deploy block's read-back (three fetches of /combined agreeing on the new md5) before this manifest is applied. Version string: combined.html carries none, so the relabel is a loci sweep only; its three 'v4.0.3' occurrences are comments recording which pin move introduced a block and are dated records, left at 3 before and 3 after. Predicted sweep across src/**/*.{html,js}: md5 x2, version x24, bytes x1 across 12 files, with argument-library/apparatus/index.html EXEMPT (the film's dated capture record, cccxxxvi)."
+  },
+  "surfaces": {
+    "combined.html": {
+      "md5": "c60dcb56498debc84d2fb2860cd55167",
+      "size_bytes": 2982518,
+      "status": "PROVEN"
+    }
+  },
+  "pin": {
+    "old": "62c733ac8263e6413816cfb6d28e3b8a",
+    "new": "c60dcb56498debc84d2fb2860cd55167",
+    "rule": "move ONLY after live combined == new (deploy must land first)"
+  },
+  "commit_message": "v4.0.4 pin move (62c733ac->c60dcb56498debc84d2fb2860cd55167; the flagship breadcrumb becomes a link; no content change; layer untouched)"
+}

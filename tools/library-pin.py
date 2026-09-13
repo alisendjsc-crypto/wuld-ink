@@ -22,7 +22,7 @@ Read on every run, rewritten on --apply. Seed it once with the live pin.
 
 Manifest contract: docs/library-release-manifest-spec.md (release_vX.json schema).
 """
-import argparse, datetime, glob, hashlib, json, os, subprocess, sys
+import argparse, datetime, glob, hashlib, json, os, re, subprocess, sys
 
 HERE  = os.path.dirname(os.path.abspath(__file__))
 ROOT  = os.path.dirname(HERE)
@@ -114,7 +114,10 @@ def update_releases(new_version, old_version, pin_date):
     silently overwrote the prior release's record: K47 cxc / K55.)"""
     rel = os.path.join(SRC, 'releases.json')
     data = load_json(rel)
-    tmpl = next((e for e in data if 'library' in e.get('id', '')), None)
+    # cccxlii: this picked the FIRST id merely CONTAINING "library", and since WI-K319 that is
+    # 2026-09-12-argument-library-film -- the showcase film's entry. A pin move then cloned the
+    # film's summary and its /watch/ section. Match the pin-move id shape instead: <date>-library-vX-Y-Z.
+    tmpl = next((e for e in data if re.match(r'^\d{4}-\d{2}-\d{2}-library-v[0-9-]+$', e.get('id', ''))), None)
     if not tmpl:
         print("  releases.json: no prior library entry to mirror -- skipped (flag for manual).")
         return
