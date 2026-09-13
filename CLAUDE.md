@@ -1706,3 +1706,145 @@ effect (K320 §8, unbuilt, its measured negatives intact); the K232 batch, still
 sum to 255 or declare a narrower denominator; the film's Apparatus line once the film is public — the Apparatus still
 quotes `9d13359e` as a dated record, protected by `EXEMPT_FILES`, which the v4.0.4 relabel left untouched as designed.
 Register: cccxliii is the highest.
+
+## WI-K321b — the wings and the front door open in the flagship's face; a NUL byte where a separator should be; sound that only worked on pages you happened to click; the video seat's four view cues; NO PIN; cccxliv, cccxlv, cccxlvi
+
+ONE efilist COMMIT, TWELVE FILES, NO PIN. `combined.html` gated by md5, byte count and blob before the writes and by
+blob after the commit; it never reaches the index and the block aborts if it does. Pin HELD at v4.0.4
+`c60dcb56498debc84d2fb2860cd55167` / 2,982,518 B. The four items are Josiah's, in his order, and the first of them
+gates publication of the film: *"I will publish after the typography is finished. I want it to look nice when it goes
+live. That's what most of this has been about, cosmetics, aesthetics, ambiance, mood, accessibility, and presentation."*
+
+THE TYPOGRAPHY WAS NOT A FONT STACK, AND THE FIRST TWO DIAGNOSES WERE BOTH WRONG. His ask was one sentence — *"I just
+want the text to be the same as the flagship's everywhere. It's really that simple."* The first reading of it, carried
+into this session, was that the layer lists `ui-monospace` before `"IBM Plex Mono"` so the platform mono always wins.
+True, and worth six edits, and not what he was looking at. The second was that the flagship loads EB Garamond and
+JetBrains Mono and uses neither — measured in the library view, where those selectors match nothing, and **false**:
+across twelve states the flagship reads 1,914 JetBrains Mono and 876 EB Garamond, all of it in the examples and coda
+sections, which were grafted from the standalone `rwe.html` and carry their own type system. cccxxiv, in this seat's
+own census, a second time: a reading taken in one state and written down as a fact about the document.
+    THE ACTUAL CAUSE is one line, present once in each of the six mode-bearing surfaces and absent from the flagship:
+
+        try{ if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches) return "legible"; }catch(e){}
+
+    The wings and the front door resolve their opening mode from the OS colour scheme; the flagship has no
+    `prefers-color-scheme` anywhere in 2.98 MB and opens in standard unless a mode was saved. Both surfaces then behave
+    IDENTICALLY per mode — legible is Georgia serif on both, which is what K175b's "flagship-parity reading mode"
+    comment claimed and, checked here, is correct. They simply START in different ones. Measured in one headless
+    context with no stored mode: flagship 357 elements IBM Plex Mono, wing 45 Liberation Serif, same browser, same
+    second. On a true wing with its corpus served, **1,022 of 1,406 visible text elements were serif; after, 0.**
+    The line is replaced by a comment saying why it is gone, so nobody restores it. Legible is still one click away and
+    still persisted; a reader who chose it keeps it, gated and proven.
+    TWO SMALLER ONES RODE ALONG. `code`/`pre` declared the bare `monospace` generic — the platform default, the only
+    text on those pages that was not the library face even after the mode fix; five wings gain
+    `code,pre,kbd,samp{font-family:var(--mono)}` and the front door does not, because it has no `code` and an inert
+    rule is worse than no rule. And the layer's own chrome: six `ui-monospace`-first stacks reordered (the wordmark,
+    the `?`, the hint, the feedback controls, the panel title, the tour dots) and six `ui-sans-serif` stacks — the
+    feedback panel's body, textarea, Send, note and mail link, and the tour's text and buttons — converted, which was
+    the one part of the suite that rendered the platform sans on **every** platform. Measured on the flagship: DejaVu
+    Sans 4 → 0, Plex +4, nothing else moved. The tour card grows 88.3 → 107 px (mono is wider, one more wrapped line);
+    the feedback panel is unchanged at 1440 and 390 and grows 189.6 → 204.3 at 360; both are positioned boxes, so
+    neither costs a layout elsewhere, and overflow is 0 at every width tested.
+    NOT CHANGED, BY MEASUREMENT. The three chin buttons render FreeSerif and Liberation Sans and were on the fix list
+    until their glyphs were checked against the font: U+2315 ⌕, U+23FB ⏻ and U+25CF ● are **absent from IBM Plex Mono**
+    at every weight. Declaring Plex on them changes nothing — the browser falls back per glyph — so the edit would have
+    been inert, which is cccviii's shape and was avoided by looking rather than by editing.
+    ONE THING THIS CONTAINER CANNOT SEE, STATED AS SUCH. `ui-monospace` is a system keyword Chromium implements on
+    Windows and macOS and not on Linux, so here it falls through and the harness reads Plex on the BROKEN bytes —
+    green on the defect. The reorder was therefore proved by mechanism instead: two paragraphs, `"DejaVu Sans
+    Mono","IBM Plex Mono"` renders DejaVu, the reverse renders Plex. First available wins; on his machine
+    `ui-monospace` is available and Plex is second.
+    THE GATE, and its control. Six surfaces × default mode + a four-step toggle walk with `aria-pressed` and storage
+    checked at each step + a stored mode honoured across reload + AA at 1440 + overflow at 1440/390/360: **0 failures**
+    (the right-to-die wing alone contributes 810 AA readings, 0 below). On the pre-fix bytes the same gate reports 6
+    default-mode failures. It also reports 24 toggle failures, which are **not** 24 defects: the walk's expectations
+    are keyed to a page that starts in standard, so on a page that starts in legible every step is off by one. Said
+    here because a control that fails for its own reasons is not evidence, and counting those 24 would have inflated
+    the finding.
+
+CCCXLIV. A LITERAL OF ONE LANGUAGE WRITTEN INSIDE ANOTHER LANGUAGE'S STRING BELONGS TO THE OUTER LANGUAGE FIRST, AND
+BOTH READINGS CAN BE VALID. The front door shipped at K321 with
+
+        .lib-meta>span+span::before{content:"\00b7";color:var(--faint)}
+
+    intended as the CSS hex escape for MIDDLE DOT. It was written from a Python build script, where `"\00b7"` is the
+    OCTAL escape `\00` followed by the characters `b7`, so the file went out with a **NUL byte** in it and every meta
+    row on the live front page read `◆B7 82 OBJECTIONS ◆B7 PINNED V4.0.4` — the browser's missing-glyph box, not
+    mojibake. Both readings are legal in their own language and neither compiler complains.
+    THE TELLS WERE IN MY OWN OUTPUT AND I READ THEM AS NOISE. `file` reported the page as `data` rather than as HTML;
+    `grep` reported "binary file matches" three separate times while I was looking for something else. Either one names
+    a byte that should not be in a text file. Josiah found it by opening his own site.
+    THE FIX IS THE LITERAL CHARACTER, not a better escape: the file is UTF-8, every other `·` and `—` in it survives
+    the same pipeline, and a literal cannot be re-read by an outer language. The whole deploy set was then scanned for
+    control bytes and U+FFFD — clean. THE RULE: when a build writes one language into another, prefer the literal to
+    the escape; and when a text artefact is reported as binary, that is a finding, not noise.
+
+SOUND ACROSS PAGES — "fix sfx disabling and reenabling randomly when going across pages". Not random, and not the
+cues. An AudioContext unlocks PER DOCUMENT, the click that follows a link is a gesture on the page being LEFT, and the
+layer armed only `pointerdown` and `keydown`, `{once:true}` — neither hover nor scroll nor a wheel is an activation.
+So a page where the reader clicked something early had sound and a page where they only read and hovered had none.
+Measured on the live bytes, arriving and hovering four rows without clicking: **0 cues**. Three changes: the context is
+created and resumed at boot (refused, it falls back exactly as before; accepted — which repeat visits with playback
+earn through the browser's media-engagement score — sound is live from the first hover of every later page); the
+listener re-arms until `ctx.state` is genuinely `running`, where `{once:true}` had spent itself on a refused attempt
+and left the page silent; and it listens in capture phase across a wider set, so no handler between the target and the
+window can swallow the gesture — the feedback control, the tour and the panels all stop propagation by design.
+Patched, the same arrival gives **4 cues**.
+    AND A COUNTERWEIGHT THE ASK DID NOT CONTAIN. Eager resume means the page can make sound before anyone has touched
+    it, which for a continuous bed is the case the autoplay rule exists for and is a worse manner than the defect. So
+    PRESENCE gates the bed and not the cues: every cue answers the reader's own pointer, so a cue that fires proves
+    someone is there, while the bed would start in a background tab nobody has looked at. The bed now waits for any
+    gesture or one hover. Gated four ways, and the four legs read 0/0 on arrival, 4 cues + bed after four hovers, bed
+    after one click with no hover, and — with `resume()` forced to reject and the state forced to `suspended` —
+    0 cues and no bed until a click, then cues. The live bytes go 0/0 on the second leg, which is the defect.
+    cccxxxix, again and caught: leg 4a passed on its first run for the wrong reason. This container creates
+    AudioContexts already `running`, so overriding `resume()` alone refused nothing and the leg was reading the happy
+    path. Forcing the `state` getter too made it exercise the branch it names.
+
+THE FOUR VIEW CUES, WIRED, AND THEIR GAINS DELIBERATELY LEFT ALONE. The video seat's `HANDOFF_view_cues_sfx.md` ships
+one open-fifth chord as four gestures — at rest, converging, descending, branching — with every amplitude read out of
+the corpus at generation time (tier counts 13/17/14/31/7, out-degree, the 167/88 strong-weak split), so the sound
+tracks the data. Four BANK entries, a `playView()` that stops the previous node, and a route on `[id^="vbtn-"]` ahead
+of the generic button branch so a tab press is a view change rather than a click. They flagged the stacking hazard
+themselves — 2.9 to 7.5 seconds each, four tabs in two seconds is mud — so it is built in before ship, not after:
+gated at one cue per press with the handoff's own durations, and four tabs mashed in 0.6 s leaves exactly one sounding.
+    Josiah asked me to adjust their loudness if it did not match the bank. Measured twice, and the two metrics
+    disagree. Whole-file A-weighted RMS × gain puts the family 5.2 dB under the cue bank. **Loudest-400 ms** A-weighted
+    puts the family mean at −35.5 dB against the bank's −34.9: 0.6 dB under, already level. Nothing changed.
+
+CCCXLVI. A LEVEL MEASURED OVER A WHOLE FILE COMPARES A SHORT EVENT AND A LONG ONE ON A SCALE NEITHER IS HEARD ON. A
+0.20 s click and a 7.50 s settle integrated end to end are not the same quantity: the settle's own decay is averaged
+into its level and it reads quiet, so the metric says "lift it" about a cue that is already sitting where it belongs.
+The window has to match how the thing is judged — for a transient, the loudest few hundred milliseconds. Acting on the
+first number would have raised four cues by 5 dB against a bank they already matched, and the mistake would have been
+inaudible in the spreadsheet and obvious in the room. Kin to cccxxxviii, which is about measuring a glyph against the
+ground actually painted behind it: same failure, different axis — the instrument's window rather than its reference.
+
+CCCXLV. A GUARD WHOSE ABORT PRIMITIVE IS SCOPED TO A LOOP REPORTS FAILURE AND CONTINUES. Every block since K320 has
+used `function Fail($m) { Write-Host ('ABORT: ' + $m); break }`, and it was safe in those only because their gates sat
+at top level, where `break` leaves the script. This block gates twelve files in a `foreach`, and there `break` exits
+THE LOOP. The spent-path rehearsal printed `ABORT: base wuld-layer.css md5 ... != ...` and then walked straight on to
+the write phase, the staging phase and `STAGED 0 paths, exactly the intended set` — which PASSED, because with the
+loop broken `$names` was empty too and an empty set equals an empty set — stopping only at the ahead-count gate, by
+luck, one line before `git push`. Two things worth keeping: the abort primitive must unwind the whole script (`throw`,
+not `break`), and a set-comparison that is satisfied by two empty sets is not a gate. Found in rehearsal rather than in
+production, which is the entire argument for rehearsing the failure paths and not only the green one.
+    Six paths now rehearsed in pwsh against a bare local origin and a fake `curl.exe`: green end to end; a spent
+    re-run; a corrupted input; a tampered pin; a tracked file already modified; and an untracked `CLAUDE.md` present,
+    which must not block and does not — the K320 abort that cost a round trip.
+
+MEASURED, FOR THE RECORD. Rendered faces read by CDP `CSS.getPlatformFontsForNode`, never by `getComputedStyle`, which
+reports the declaration and not the face. Right-to-die wing with corpus, three states: 1,406 readings, serif 1,022 → 0,
+Plex 368 → 1,397, remainder the nine inert symbol glyphs. Front door: 252 readings, 0 non-Plex but those glyphs.
+Flagship, twelve states, 4,910 readings: unchanged except DejaVu Sans 4 → 0. CLS 0.1239 → 0.1289 flagship,
+0.1109 → 0.1214 wing, 0.0516 → 0.0637 front door; horizontal overflow 0 on every surface at 1440, 390 and 360.
+
+STATE. efilist: one commit atop `b3ae55c` by `k323\K323_efilist.ps1`; pin HELD; the twelve served files read back by
+md5 with status and byte count beside every hash, the pin read FIRST. wuld-ink: this stratum. Drop: `k323\` holds the
+twelve files, the block and a README carrying the base-and-result table and the six rehearsed paths. Carries, all
+logged in `LATER_after_K321b.md` at the drop root: the cursor focus effect (Josiah, deferred by him to after the
+typography — K320 §8 holds the brief and its measured negatives); `/troubleshooting/` still in the wuld.ink serif
+register, deliberately, since it has no mode switcher and is not a wing; the flagship's own examples and coda sections
+in JetBrains and EB Garamond, and their `.copy-btn` in Arial — a pin move, unasked; the front door's `.lib-meta` at
+2.13:1; the K232 batch, still waiting on the LOAD-BEARING table; the film's Apparatus line once the film is public.
+Register: cccxlvi is the highest.
