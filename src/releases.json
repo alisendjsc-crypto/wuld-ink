@@ -1,5 +1,13 @@
 [
   {
+    "id": "2026-09-12-dot-film",
+    "date": "2026-09-12",
+    "summary": "A five-minute companion short to Illogically Is joins the Watch page, between that film and the Argument Library's. Illogically Is ends on the period of a Latin sentence; this is that period, painted at eye height on hyper-real plaster, with a camera that starts on it and pulls back until the wall is past any human scale. One shot, one motion, one interruption. The film's own sentences surface in the grain as it recedes and thicken until the wall is more text than wall, and the dot never leaves. It carries no strobe, but there is one white frame, three full-field cuts to black, and sound that includes screams, crying and recorded voices in distress — the card says so before you press play. Method, sources and credits are in its own Apparatus.",
+    "sections": [
+      "/watch/"
+    ]
+  },
+  {
     "id": "2026-09-12-library-v4-0-4",
     "date": "2026-09-12",
     "summary": "The library's pinned edition is now v4.0.4. Nothing in the corpus moved — the same eighty-two objections, the same grades, the same graphs. What changed is one link. The flagship's breadcrumb named the Refusal Libraries without linking them, so from the flagship the umbrella front door could be reached only by leaving through a sibling wing and coming back in from there. It is a link now, and by a rule rather than a patch: the first step of that trail is a link on every surface where it is a parent, and a plain label only on the front door itself, where it is the page you are already standing on. The front door's cards now also say which register each library argues in — the four wings rebut without recommending, the flagship and the veganism module argue a thesis — because “Refusal Libraries” is the name of the venue, not a claim about everything inside it. It ships as a new version rather than a re-pinned v4.0.3 so the hash a reader computes belongs to exactly one release; the superseded hash is recorded beside the new one.",
